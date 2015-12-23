@@ -1,0 +1,16 @@
+<#include "manageadmingru_tabs.html" />
+<@tabs tab="featurecategory" />
+
+<@rowBoxHeader i18nTitleKey="gru.modify_featurecategory.pageTitle">
+    <form class="form-horizontal" method="post" name="modify_featurecategory" action="jsp/admin/plugins/gru/ManageFeatureCategorys.jsp">
+        <@messages errors=errors />
+        <input type="hidden" id="id" name="id" value="${featurecategory.id}"/>
+        
+        <@fieldInputText i18nLabelKey="gru.modify_featurecategory.labelName" inputName="name" mandatory=true value="${featurecategory.name}" i18nHelpBlockKey="gru.modify_featurecategory.labelName.help" />
+        <@fieldInputText i18nLabelKey="gru.modify_featurecategory.labelDescription" inputName="description" mandatory=true value="${featurecategory.description}" i18nHelpBlockKey="gru.modify_featurecategory.labelDescription.help" />
+        <@fieldInputText i18nLabelKey="gru.modify_featurecategory.labelIdOrder" inputName="id_order" mandatory=true value="${featurecategory.idOrder}" i18nHelpBlockKey="gru.modify_featurecategory.labelIdOrder.help" />
+        <@fieldInputText i18nLabelKey="gru.modify_featurecategory.labelCategoryIcon" inputName="category_icon"  value="${featurecategory.categoryIcon}" i18nHelpBlockKey="gru.modify_featurecategory.labelCategoryIcon.help" />
+        <@actionButtons button1Name="action_modifyFeatureCategory" button2Name="view_manageFeatureCategorys"/>
+    </form>
+</@rowBoxHeader>
+

@@ -1,0 +1,19 @@
+<#include "manageadmingru_tabs.html" />
+<@tabs tab="feature" />
+
+<@rowBoxHeader i18nTitleKey="gru.create_feature.pageTitle">
+    <form class="form-horizontal" method="post" name="create_feature" action="jsp/admin/plugins/gru/ManageFeatures.jsp">
+        <@messages errors=errors />
+        <input type="hidden" id="id" name="id"/>
+        
+        <@fieldInputText i18nLabelKey="gru.create_feature.labelName" inputName="name" mandatory=true value="${feature.name!''}" i18nHelpBlockKey="gru.create_feature.labelName.help" />
+        <@fieldInputCombo i18nLabelKey="gru.create_feature.labelIdCategory" inputName="id_category" items=categories_list value="${feature.idCategory!''}" i18nHelpBlockKey="gru.create_feature.labelIdCategory.help"  cssClass='form-control' />
+        <@fieldInputText i18nLabelKey="gru.create_feature.labelLink" inputName="link"  value="${feature.link!''}" i18nHelpBlockKey="gru.create_feature.labelLink.help" />
+        <@fieldInputText i18nLabelKey="gru.create_feature.labelLinkCustomerParams" inputName="link_customer_params"  value="${feature.linkCustomerParams!''}" i18nHelpBlockKey="gru.create_feature.labelLinkCustomerParams.help" />
+        <@fieldInputCombo i18nLabelKey="gru.create_feature.labelTarget" inputName="target" items=targets_list value="${feature.target!''}" i18nHelpBlockKey="gru.create_feature.labelTarget.help" cssClass='form-control' />
+        <@fieldInputCombo i18nLabelKey="gru.create_feature.labelDisplayLevel" inputName="display_level" items=display_levels_list value="${feature.displayLevel!''}" i18nHelpBlockKey="gru.create_feature.labelDisplayLevel.help" cssClass='form-control' />
+        <@fieldInputText i18nLabelKey="gru.create_feature.labelIdOrder" inputName="id_order" mandatory=true value="${feature.idOrder!''}" i18nHelpBlockKey="gru.create_feature.labelIdOrder.help" />
+        <@actionButtons button1Name="action_createFeature" button2Name="view_manageFeatures"/>
+    </form>
+</@rowBoxHeader>
+

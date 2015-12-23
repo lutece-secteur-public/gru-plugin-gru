@@ -1,0 +1,61 @@
+<#include "manageadmingru_tabs.html" />
+<@tabs tab="extrasattributes" />
+
+<@rowBox>
+    <@boxHeader i18nTitleKey="gru.manage_extrasattributess.tableLabel">
+        <@headerButtons>
+
+        
+        <form class="form-inline pull-right" method="post" name="manage_extrasattributess" action="jsp/admin/plugins/gru/ManageExtrasAttributess.jsp">
+            <!-- Add pull-right to class1 -->
+            <@actionButtons button1Name="view_createExtrasAttributes" icon1="icon-plus icon-white" i18nValue1Key="gru.manage_extrasattributess.buttonAdd" />
+        </form>
+        
+    </@headerButtons>
+    </@boxHeader>
+    <@boxBody>    
+    <@messages infos=infos />
+    <@paginationAdmin paginator=paginator combo=1 />
+    <div class="clearfix"></div>
+    
+    <@table>
+        <tr>
+            <input type="hidden" id="id" name="id"/>
+            <th>#i18n{gru.manage_extrasattributess.columnAttributeKey}</th>
+            <th>#i18n{gru.manage_extrasattributess.columnName}</th>
+            <th>#i18n{gru.manage_extrasattributess.columnDescription}</th>
+            <th>#i18n{portal.util.labelActions}</th>
+        </tr>
+        <@tableHeadBodySeparator />
+            <#list extrasattributes_list as extrasattributes >
+        <tr>
+            <input type="hidden" id="id" name="id"/>
+            <td>
+                ${extrasattributes.attributeKey}
+            </td>
+            <td>
+                ${extrasattributes.name}
+            </td>
+            <td>
+                ${extrasattributes.description}
+            </td>
+        <td>
+            <a href="jsp/admin/plugins/gru/ManageExtrasAttributess.jsp?view=modifyExtrasAttributes&id=${extrasattributes.id}"
+               class="btn btn-primary btn-sm" title="#i18n{portal.util.labelModify}">
+                <i class="fa fa-pencil"></i>
+            </a>
+
+            <a href="jsp/admin/plugins/gru/ManageExtrasAttributess.jsp?action=confirmRemoveExtrasAttributes&id=${extrasattributes.id}"
+               class="btn btn-danger btn-sm" title="#i18n{portal.util.labelDelete}" >
+                <i class="fa fa-trash"></i>
+            </a>
+        </td>
+        </tr>
+        </#list>
+    </@table>
+
+    <@paginationAdmin paginator=paginator />
+
+  </@boxBody>
+</@rowBox>
+

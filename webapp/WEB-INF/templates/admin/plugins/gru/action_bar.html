@@ -1,0 +1,138 @@
+<#macro renderPanel panel>
+    <#if panel.actionGroups?size &gt; 0 >
+    <li class="header">
+      <h4>${panel.title}</h4>
+    </#if>
+    <#list panel.actionGroups as group>
+        <@renderGroup group />
+    </#list>
+    </li>
+</#macro>
+
+<#macro renderGroup group>
+<li class="treeview">
+  <a href="#">
+    <#if group.icon ??>
+      <i class="fa fa-${group.icon}"></i>
+      <#if group.badgeText??>
+        <span class="label bg-${group.badgeColor}">${group.badgeText}</span>
+      </#if>
+    </#if>
+    <span>${group.title}</span>
+    <!--
+    <span class="pull-right">
+      <#if group.badgeText??>
+        <small class="label pull-right bg-${group.badgeColor}">${group.badgeText}</small>
+      </#if>
+    </span>
+  -->
+  </a>
+  <ul class="treeview-menu">
+    <#list group.actions as action>
+      <@renderAction action />
+    </#list>
+  </ul>
+</li>
+</#macro>
+
+<#macro renderAction action>
+  <li><a href="${action.link!""}"><i class="fa fa-circle-o text-aqua"></i><small>${action.title}</small> </a></li>
+</#macro>
+
+
+
+<#macro actionMenu panels customer>
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <i class="fa fa-bars"></i>
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+        </div>
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+            <li>
+                <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?plugin_name=gru">
+                  <i class="fa fa-home"></i> <span>Accueil - Recherche Usager</span>
+                </a>
+            </li>
+            <#if customer.id != 0 >
+            <li class="treeview active">
+                <a class="bg-green" href="jsp/admin/plugins/gru/ManageCustomers.jsp?plugin_name=gru&view=viewCustomer&id_customer=${customer.id!'1'}">
+                    <i class="fa fa-user"></i>  <span>&nbsp; ${customer.firstname!""} ${customer.lastname!""} </span>
+                </a>
+                <@customerMenuDetails customer=customer />
+            </li>
+            <#else>
+            <li>
+              <a href="#" id="nouser" class="bg-red">
+                <i class="fa fa-user-times"></i>  <span>&nbsp; Aucun usager s&eacute;lectionn&eacute;</span>
+              </a>
+            </li>
+            </#if>
+            <#list panels as panel>
+                <@renderPanel panel />
+            </#list>
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>
+</#macro>
+
+<#macro  customerMenuDetails customer>
+<ul class="treeview-menu user">
+  <li>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <i class="fa fa-phone <#if customer.isMobilePhoneVerified >text-success<#else>text-danger</#if>"> </i> ${customer.mobilePhone!""}
+      </li>
+      <li class="list-group-item">
+        <i class="fa fa-envelope <#if customer.isEmailVerified && true>text-success<#else>text-danger</#if>"></i> ${customer.email!""}
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a class="btn btn-block btn-primary" title=" Modifier" href="jsp/admin/plugins/gru/ManageCustomers.jsp?plugin_name=gru&view=modifyCustomer&id_customer=${customer.id}">
+      <i class="fa fa-pencil"></i> Modifier
+    </a>
+  </li>
+</ul>
+</#macro>
+
+<#macro  customerDetails customer>
+<a title=" Modifier" href="jsp/admin/plugins/gru/ManageCustomers.jsp?plugin_name=gru&view=modifyCustomer&id_customer=${customer.id}">
+  ${customer.firstname} ${customer.lastname} <i class="fa fa-pencil"></i>
+</a>
+<span style="margin:0 15px">
+  <i style="margin:0 5px" class="fa fa-phone <#if customer.isMobilePhoneVerified >text-success<#else>text-danger</#if>"> </i> ${customer.mobilePhone!""}
+</span>
+<span <#if customer.isEmailVerified && true>title="Email Vérifié"</#if>>
+  <i style="margin:0 5px" class="fa fa-envelope <#if customer.isEmailVerified && true>text-success<#else>text-danger</#if>"></i> ${customer.email!""}
+</span>
+<!-- Content Header (Page header)
+    <section id="info-user">
+      <div class="info-box">
+            <span class="info-box-icon bg-aqua"><i class="fa fa-user"></i></span>
+            <div class="info-box-content">
+              <span class="info-box-number">
+                <strong>
+                  <a title=" Modifier" href="jsp/admin/plugins/gru/ManageCustomers.jsp?plugin_name=gru&view=modifyCustomer&id_customer=${customer.id}">
+                    ${customer.firstname} ${customer.lastname} <i class="fa fa-pencil"></i>
+                  </a>
+                </strong>
+              </span>
+              <span class="info-box-text">
+                <i class="fa fa-phone <#if customer.isMobilePhoneVerified >text-success<#else>text-danger</#if>"> </i> ${customer.mobilePhone!""}
+              </span>
+              <span class="info-box-text">
+                <i class="fa fa-envelope <#if customer.isEmailVerified && true>text-success<#else>text-danger</#if>"></i> ${customer.email!""}
+              </span>
+            </div>
+      </div>
+      </section>
+-->
+</#macro>

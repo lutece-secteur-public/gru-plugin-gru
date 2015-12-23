@@ -1,0 +1,89 @@
+<#include "manageadmingru_tabs.html" />
+<@tabs tab="feature" />
+
+<@rowBox>
+    <@boxHeader i18nTitleKey="gru.manage_features.tableLabel">
+        <@headerButtons>
+
+        
+        <form class="form-inline pull-right" method="post" name="manage_features" action="jsp/admin/plugins/gru/ManageFeatures.jsp">
+            <!-- Add pull-right to class1 -->
+            <@actionButtons button1Name="view_createFeature" icon1="icon-plus icon-white" i18nValue1Key="gru.manage_features.buttonAdd" />
+        </form>
+        
+    </@headerButtons>
+    </@boxHeader>
+    <@boxBody>    
+    <@messages infos=infos />
+    <@paginationAdmin paginator=paginator combo=1 />
+    <div class="clearfix"></div>
+    <@table>
+        <tr>
+            <input type="hidden" id="id" name="id"/>
+            <th>#i18n{gru.manage_features.columnIdCategory}</th>
+            <th>#i18n{gru.manage_features.columnName}</th>
+            <th>#i18n{gru.manage_features.columnLink}</th>
+            <th>#i18n{gru.manage_features.columnTarget}</th>
+            <th>#i18n{gru.manage_features.columnDisplayLevel}</th>
+            <th>#i18n{gru.manage_features.columnIdOrder}</th>
+            <th>#i18n{portal.util.labelActions}</th>
+        </tr>
+        <@tableHeadBodySeparator />
+            <#list feature_list?sort_by("category") as feature >
+        <tr>
+            <input type="hidden" id="id" name="id"/>
+            <td>
+                ${feature.category}
+            </td>
+            <td>
+                ${feature.name}
+            </td>
+            <td>
+                ${feature.link}
+            </td>
+            <td>
+               <#switch feature.target>
+                    <#case 0>
+                        <span class="label label-primary">#i18n{gru.features.target.iframe.badge}</span>
+                    <#break>
+                    <#case 1>
+                        <span class="label label-info">#i18n{gru.features.target.internal.badge}</span>
+                    <#break>
+               </#switch>
+            </td>
+            <td>
+               <#switch feature.displayLevel>
+                    <#case 0>
+                        <span class="label label-info">#i18n{gru.features.display.standard.badge}</span>
+                    <#break>
+                    <#case 1>
+                        <span class="label label-primary">#i18n{gru.features.display.home.badge}</span>
+                    <#break>
+                    <#case -1>
+                        <span class="label label-default">#i18n{gru.features.display.hidden.badge}</span>
+                    <#break>
+               </#switch>
+            </td>
+            <td>
+                ${feature.idOrder}
+            </td>
+        <td>
+            <a href="jsp/admin/plugins/gru/ManageFeatures.jsp?view=modifyFeature&id=${feature.id}"
+               class="btn btn-primary btn-sm" title="#i18n{portal.util.labelModify}">
+                <i class="fa fa-pencil"></i>
+            </a>
+
+            <a href="jsp/admin/plugins/gru/ManageFeatures.jsp?action=confirmRemoveFeature&id=${feature.id}"
+               class="btn btn-danger btn-sm" title="#i18n{portal.util.labelDelete}" >
+                <i class="fa fa-trash"></i>
+            </a>
+        </td>
+        </tr>
+        </#list>
+    </@table>
+
+    <@paginationAdmin paginator=paginator />
+
+  </@boxBody>
+</@rowBox>
+
