@@ -1,0 +1,32 @@
+<#include "action_bar.html" />
+<@actionMenu panels=panels customer=customer/>
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+    <div class="row">
+      <div id="form-user" class="col-xs-12 col-sm-offset-3 col-sm-6">
+        <!-- search form -->
+        <form action="jsp/admin/plugins/gru/ManageCustomers.jsp" method="get" class="form">
+          <input type="hidden" name="action" value="search" />
+          <label class="sr-only"><i class="fa fa-search"> </i> #i18n{gru.search_customer.title}</label>
+          <div class="input-group">
+            <input type="text" name="query" class="form-control input-lg" placeholder="#i18n{gru.search_customer.title} : #i18n{gru.search_customer.placeholder}">
+            <span class="input-group-btn">
+              <button type="submit" name="search" id="search-btn" class="btn btn-flat btn-lg">
+                <i class="fa fa-search"></i>
+              </button>
+            </span>
+          </div>
+        </form>
+        <!-- /.search form -->
+    </div>
+  </div>
+  <div class="row">
+    <div id="home-actions" class="col-xs-12 col-sm-offset-3 col-sm-6">
+        <#list features_list as feature>
+            <a class="btn bg-purple btn-lg" href="${feature.link}">
+              ${feature.name}
+            </a>
+        </#list>
+      </div>
+  </div>
+</div>

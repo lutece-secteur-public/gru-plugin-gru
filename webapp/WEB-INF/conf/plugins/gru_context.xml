@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd" >
+
+    <!--    <bean id="gru.customerRest"  class="fr.paris.lutece.plugins.gru.web.rs.CustomerRest" /> -->
+
+    <bean id="gru.customerDAO"  class="fr.paris.lutece.plugins.gru.business.customer.CustomerDAO" />  
+    <bean id="gru.demandTypeDAO" class="fr.paris.lutece.plugins.gru.business.demandtype.DemandTypeDAO"/>
+    <bean id="gru.demandTypeActionDAO" class="fr.paris.lutece.plugins.gru.business.demandtype.DemandTypeActionDAO"/>
+    <bean id="gru.extrasAttributesDAO"  class="fr.paris.lutece.plugins.gru.business.ExtrasAttributesDAO" />  
+    <bean id="gru.featureCategoryDAO"  class="fr.paris.lutece.plugins.gru.business.feature.FeatureCategoryDAO" />  
+    <bean id="gru.featureDAO"  class="fr.paris.lutece.plugins.gru.business.feature.FeatureDAO" />  
+    
+    <bean id="gru.demandService" class="fr.paris.lutece.plugins.gru.service.demand.MokeDemandService" />
+
+    <bean id="gru.actions.builder.Demands" class="fr.paris.lutece.plugins.gru.web.actions.groups.builders.impl.DemandsActionGroupBuilder" >
+        <property name="title">
+            <value>Services numériques</value>
+        </property>
+        <property name="excludedTypesList">
+            <list>
+                <value>101</value>
+                <value>102</value>
+                <value>103</value>
+            </list>
+        </property>
+        <property name="icon">
+            <value>shopping-cart</value>
+        </property>
+        <property name="demandManagementUrl">
+            <value>jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewDemand&amp;id_demand={id}&amp;id_demand_type={type}</value>
+        </property>
+    </bean>
+
+    <bean id="gru.actions.builder.InformationRequest" class="fr.paris.lutece.plugins.gru.web.actions.groups.builders.impl.InformationRequestActionGroupBuilder" >
+        <property name="title">
+            <value>Demandes d'information</value>
+        </property>
+        <property name="includedTypesList">
+            <list>
+                <value>101</value>
+            </list>
+        </property>
+        <property name="icon">
+            <value>comment</value>
+        </property>
+        <property name="demandManagementUrl">
+            <value>jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewDemand&amp;id_demand={id}&amp;id_demand_type={type}</value>
+        </property>
+    </bean>
+    
+    <bean id="gru.actions.builder.Claims" class="fr.paris.lutece.plugins.gru.web.actions.groups.builders.impl.ClaimActionGroupBuilder" >
+        <property name="title">
+            <value>Réclamations</value>
+        </property>
+        <property name="includedTypesList">
+            <list>
+                <value>102</value>
+            </list>
+        </property>
+        <property name="icon">
+            <value>edit</value>
+        </property>
+        <property name="demandManagementUrl">
+            <value>jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewDemand&amp;id_demand={id}&amp;id_demand_type={type}</value>
+        </property>
+    </bean>
+
+    <bean id="gru.actions.builder.Appointments" class="fr.paris.lutece.plugins.gru.web.actions.groups.builders.impl.AppointmentsActionGroupBuilder" >
+        <property name="title">
+            <value>Rendez-vous</value>
+        </property>
+        <property name="includedTypesList">
+            <list>
+                <value>103</value>
+            </list>
+        </property>
+        <property name="icon">
+            <value>calendar</value>
+        </property>
+        <property name="demandManagementUrl">
+            <value>jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewDemand&amp;id_demand={id}&amp;id_demand_type={type}</value>
+        </property>
+    </bean>
+
+    <bean id="gru.actions.panelBuilder.followedActions" class="fr.paris.lutece.plugins.gru.web.actions.panels.builders.impl.ActionGroupListPanelBuilder" >
+        <property name="title">
+            <value>Demandes en cours</value>
+        </property>
+        <property name="actionGroupBuilders">
+            <list>
+                <ref bean="gru.actions.builder.Demands" />
+                <ref bean="gru.actions.builder.InformationRequest" />
+                <ref bean="gru.actions.builder.Claims" />
+                <ref bean="gru.actions.builder.Appointments" />
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="gru.actions.panelBuilder.newActions" class="fr.paris.lutece.plugins.gru.web.actions.panels.builders.impl.FeatureActionsPanelBuilder" >
+        <property name="title">
+            <value>Nouvelles demandes</value>
+        </property>
+    </bean>
+    
+    <bean id="gru.actions.panelComposition" class="fr.paris.lutece.plugins.gru.web.actions.panels.PanelComposition" >
+        <property name="panels">
+            <list>
+                <ref bean="gru.actions.panelBuilder.followedActions" />
+                <ref bean="gru.actions.panelBuilder.newActions" /> 
+            </list>
+        </property>
+    </bean>
+    
+</beans>

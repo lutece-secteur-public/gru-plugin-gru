@@ -1,0 +1,61 @@
+<#include "managedemand_tabs.html" />
+<@tabs tab="demandtypeaction" />
+
+<@rowBox>
+    <@boxHeader i18nTitleKey="gru.manage_demandtypeactions.tableLabel">
+        <@headerButtons>
+
+        
+        <form class="form-inline pull-right" method="post" name="manage_demandtypeactions" action="jsp/admin/plugins/gru/ManageDemandTypeActions.jsp">
+            <!-- Add pull-right to class1 -->
+            <@actionButtons button1Name="view_createDemandTypeAction" icon1="icon-plus icon-white" i18nValue1Key="gru.manage_demandtypeactions.buttonAdd" />
+        </form>
+        
+    </@headerButtons>
+    </@boxHeader>
+    <@boxBody>    
+    <@messages infos=infos />
+    <@paginationAdmin paginator=paginator combo=1 />
+    <div class="clearfix"></div>
+    
+    <@table>
+        <tr>
+            <input type="hidden" id="id" name="id"/>
+            <th>#i18n{gru.manage_demandtypeactions.columnDemandType}</th>
+            <th>#i18n{gru.manage_demandtypeactions.columnActionLabel}</th>
+            <th>#i18n{gru.manage_demandtypeactions.columnActionLink}</th>
+            <th>#i18n{portal.util.labelActions}</th>
+        </tr>
+        <@tableHeadBodySeparator />
+            <#list demandtypeaction_list as demandtypeaction >
+        <tr>
+            <input type="hidden" id="id" name="id"/>
+            <td>
+                ${demandtypeaction.demandType}
+            </td>
+            <td>
+                ${demandtypeaction.label}
+            </td>
+            <td>
+                ${demandtypeaction.link}
+            </td>
+        <td>
+            <a href="jsp/admin/plugins/gru/ManageDemandTypeActions.jsp?view=modifyDemandTypeAction&id=${demandtypeaction.id}"
+               class="btn btn-primary btn-small" title="#i18n{portal.util.labelModify}">
+                <i class="fa fa-pencil"></i>
+            </a>
+
+            <a href="jsp/admin/plugins/gru/ManageDemandTypeActions.jsp?action=confirmRemoveDemandTypeAction&id=${demandtypeaction.id}"
+               class="btn btn-danger btn-small" title="#i18n{portal.util.labelDelete}" >
+                <i class="fa fa-trash"></i>
+            </a>
+        </td>
+        </tr>
+        </#list>
+    </@table>
+
+    <@paginationAdmin paginator=paginator />
+
+  </@boxBody>
+</@rowBox>
+

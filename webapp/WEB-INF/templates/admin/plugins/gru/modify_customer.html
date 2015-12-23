@@ -1,0 +1,25 @@
+<#include "action_bar.html" />
+<@actionMenu panels=panels customer=customer />
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+
+        <@rowBoxHeader i18nTitleKey="gru.modify_customer.pageTitle">
+        <form class="form-horizontal" method="post" name="modify_customer" action="jsp/admin/plugins/gru/ManageCustomers.jsp">
+            <@messages errors=errors />
+            <input type="hidden" id="id_customer" name="id" value="${customer.id}"/>
+
+            <@fieldInputText i18nLabelKey="gru.modify_customer.labelIdTitle" inputName="id_title" mandatory=true value="${customer.idTitle}" i18nHelpBlockKey="gru.modify_customer.labelIdTitle.help" />
+            <@fieldInputText i18nLabelKey="gru.modify_customer.labelFirstname" inputName="firstname" mandatory=true value="${customer.firstname}" i18nHelpBlockKey="gru.modify_customer.labelFirstname.help" />
+            <@fieldInputText i18nLabelKey="gru.modify_customer.labelLastname" inputName="lastname" mandatory=true value="${customer.lastname}" i18nHelpBlockKey="gru.modify_customer.labelLastname.help" />
+            <@fieldInputText i18nLabelKey="gru.modify_customer.labelAccountLogin" inputName="account_login"  value="${customer.accountLogin}" i18nHelpBlockKey="gru.modify_customer.labelAccountLogin.help" />
+            <@fieldInputText i18nLabelKey="gru.modify_customer.labelAccountGuid" inputName="account_guid"  value="${customer.accountGuid}" i18nHelpBlockKey="gru.modify_customer.labelAccountGuid.help" />
+            <@fieldInputText i18nLabelKey="gru.modify_customer.labelEmail" inputName="email"  value="${customer.email}" i18nHelpBlockKey="gru.modify_customer.labelEmail.help" />
+            <@fieldInputText i18nLabelKey="gru.modify_customer.labelMobilePhone" inputName="mobile_phone"  value="${customer.mobilePhone}" i18nHelpBlockKey="gru.modify_customer.labelMobilePhone.help" />
+            <@actionButtons button1Name="action_modifyCustomer" button2Name="view_manageCustomers"/>
+        </form>
+        </@rowBoxHeader>
+    </section>
+</div>
+

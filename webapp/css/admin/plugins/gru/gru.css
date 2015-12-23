@@ -1,0 +1,24 @@
+.content-wrapper{background: url("../../../../images/admin/skin/plugins/gru/bg_gru.jpg") no-repeat; background-size: cover;padding: 15px;}
+.content-header iframe{border:0;}
+#form-user{
+  margin-top: 5%; padding:25px 50px;background-color: #fff;
+  -moz-box-shadow: 0px 0px 20px 2px #656565;  -webkit-box-shadow: 0px 0px 20px 2px #656565;  -o-box-shadow: 0px 0px 20px 2px #656565;  box-shadow: 0px 0px 20px 2px #656565;
+  filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=20);
+  -moz-border-radius: 20px;  -webkit-border-radius: 20px;  border-radius: 20px;
+}
+
+#home-actions{margin-top:2%; text-align: center}
+#home-actions .btn-lg{padding:3% 4%;margin:2%;text-align: center}
+.user-panel { padding-left:20px !important;}
+
+.main-sidebar{top: 120px !important;padding-top: 0 !important;left:15px !important; }
+
+.sidebar-mini.sidebar-collapse .main-header .navbar {  margin-left: 0 !important;}
+.sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > span:not(.pull-right), .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu {	width: 280px;}
+.sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu.user {padding:5px;}
+.sidebar-mini.sidebar-collapse .sidebar-menu > li.treeview > a > .label {	position: absolute;	top: 9px;	right: 7px;	text-align: center;	font-size: 9px;	padding: 2px 3px;	line-height: 0.9;  display: block !important;}
+.sidebar-menu li > a > .pull-right { display: none }
+.sidebar-menu > li > .treeview-menu.user {padding:5px;}
+.sidebar-mini.sidebar-collapse .sidebar-menu li > a > .pull-right { display: block }
+
+#info-user{margin:15px;}

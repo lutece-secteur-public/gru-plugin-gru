@@ -1,0 +1,15 @@
+<#include "manageadmingru_tabs.html" />
+<@tabs tab="extrasattributes" />
+
+<@rowBoxHeader i18nTitleKey="gru.modify_extrasattributes.pageTitle">
+    <form class="form-horizontal" method="post" name="modify_extrasattributes" action="jsp/admin/plugins/gru/ManageExtrasAttributess.jsp">
+        <@messages errors=errors />
+        <input type="hidden" id="id" name="id" value="${extrasattributes.id}"/>
+        
+        <@fieldInputText i18nLabelKey="gru.modify_extrasattributes.labelAttributeKey" inputName="attribute_key" mandatory=true value="${extrasattributes.attributeKey}" i18nHelpBlockKey="gru.modify_extrasattributes.labelAttributeKey.help" />
+        <@fieldInputText i18nLabelKey="gru.modify_extrasattributes.labelName" inputName="name" mandatory=true value="${extrasattributes.name}" i18nHelpBlockKey="gru.modify_extrasattributes.labelName.help" />
+        <@fieldInputText i18nLabelKey="gru.modify_extrasattributes.labelDescription" inputName="description" mandatory=true value="${extrasattributes.description}" i18nHelpBlockKey="gru.modify_extrasattributes.labelDescription.help" />
+        <@actionButtons button1Name="action_modifyExtrasAttributes" button2Name="view_manageExtrasAttributess"/>
+    </form>
+</@rowBoxHeader>
+
