@@ -10,14 +10,14 @@
             <span class="info-box-number">
               <#switch demand.status>
               <#case 0>
-              <span class="label label-warning">En cours</span>
+              <span class="label label-primary">En cours</span>
               <#break>
               <#case 1>
-              <span class="label label-warning">Terminée</span>
+              <span class="label label-default">Termin&eacute;e</span>
               <#break>
               </#switch>
               <strong>
-                ${demand.title} - ID : &nbsp; ${demand.id}
+                &nbsp; ${demand.title} - Ref : ${demand.reference}
               </strong>
               <#list demand.actions as action>
                 <a class="btn btn-primary btn-flat btn-sm pull-right" href="${action.url}">

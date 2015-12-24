@@ -36,7 +36,7 @@
 </#macro>
 
 <#macro renderAction action>
-  <li><a href="${action.link!""}"><i class="fa fa-circle-o text-aqua"></i><small>${action.title}</small> </a></li>
+  <li><a href="${action.link!""}"><i class="fa fa-circle-o text-${action.color!''}"></i><small>${action.title}</small> </a></li>
 </#macro>
 
 
@@ -110,29 +110,8 @@
 <span style="margin:0 15px">
   <i style="margin:0 5px" class="fa fa-phone <#if customer.isMobilePhoneVerified >text-success<#else>text-danger</#if>"> </i> ${customer.mobilePhone!""}
 </span>
-<span <#if customer.isEmailVerified && true>title="Email Vérifié"</#if>>
+<span <#if customer.isEmailVerified && true>title="Email V&eacute;rifi&eacute;"</#if>>
   <i style="margin:0 5px" class="fa fa-envelope <#if customer.isEmailVerified && true>text-success<#else>text-danger</#if>"></i> ${customer.email!""}
 </span>
-<!-- Content Header (Page header)
-    <section id="info-user">
-      <div class="info-box">
-            <span class="info-box-icon bg-aqua"><i class="fa fa-user"></i></span>
-            <div class="info-box-content">
-              <span class="info-box-number">
-                <strong>
-                  <a title=" Modifier" href="jsp/admin/plugins/gru/ManageCustomers.jsp?plugin_name=gru&view=modifyCustomer&id_customer=${customer.id}">
-                    ${customer.firstname} ${customer.lastname} <i class="fa fa-pencil"></i>
-                  </a>
-                </strong>
-              </span>
-              <span class="info-box-text">
-                <i class="fa fa-phone <#if customer.isMobilePhoneVerified >text-success<#else>text-danger</#if>"> </i> ${customer.mobilePhone!""}
-              </span>
-              <span class="info-box-text">
-                <i class="fa fa-envelope <#if customer.isEmailVerified && true>text-success<#else>text-danger</#if>"></i> ${customer.email!""}
-              </span>
-            </div>
-      </div>
-      </section>
--->
+
 </#macro>

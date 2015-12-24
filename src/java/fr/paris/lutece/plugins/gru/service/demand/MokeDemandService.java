@@ -70,14 +70,13 @@ public class MokeDemandService implements IDemandService
         "      \"view_sms_notification\": \"SMS envoyé au numéro 0680125345 _ Message : Votre demande de carte de stationnement est en attente de validation.\"\n" +
         "    }\n" + "  }\n" + "}";
 
+    
+    private static List<BaseDemand> _listDemand;
+    
     @Override
     public Demand getDemand( String strDemandId , String strDemandTypeId )
     {
-        BaseDemand base = new BaseDemand();
-        
-        base.setId( "INFO15031324" );
-        base.setDemandTypeId( strDemandTypeId );
-        base.setStatus( 0 );
+        BaseDemand base = getList().get( Integer.parseInt( strDemandId ));
         
         Demand demand = DemandeTypeService.buildDemand(base);
 
@@ -93,38 +92,46 @@ public class MokeDemandService implements IDemandService
     @Override
     public List<BaseDemand> getDemands( String strCustomerId )
     {
-        List<BaseDemand> list = new ArrayList<BaseDemand>();
-        
-        BaseDemand demand1 = new BaseDemand();
-        demand1.setId( "1");
-        demand1.setReference( "DVD15031324" );
-        demand1.setDemandTypeId( "100");
-        demand1.setStatus( Demand.STATUS_INPROGRESS );
-        list.add(demand1);
-        
-        BaseDemand demand2 = new BaseDemand();
-        demand2.setId( "1");
-        demand2.setReference( "INFO15031324" );
-        demand2.setDemandTypeId( "101");
-        demand2.setStatus( Demand.STATUS_INPROGRESS );
-        list.add(demand2);
-
-        BaseDemand demand3 = new BaseDemand();
-        demand3.setId( "1");
-        demand3.setReference( "SAV15031324" );
-        demand3.setDemandTypeId( "102");
-        demand3.setStatus( Demand.STATUS_INPROGRESS );
-        list.add(demand3);
-
-        BaseDemand demand4 = new BaseDemand();
-        demand4.setId( "1");
-        demand4.setReference( "DU15031324" );
-        demand4.setDemandTypeId( "103" );
-        demand4.setStatus( Demand.STATUS_INPROGRESS );
-        list.add(demand4);
-        
-        return list;
+        return getList();
     }
+    
+    private List<BaseDemand> getList()
+    {
+        if( _listDemand == null )
+        {
+            _listDemand = new ArrayList<BaseDemand>();
+        
+            BaseDemand demand1 = new BaseDemand();
+            demand1.setId( "0");
+            demand1.setReference( "DVD15031324" );
+            demand1.setDemandTypeId( "100");
+            demand1.setStatus( Demand.STATUS_CLOSED );
+            _listDemand.add(demand1);
+
+            BaseDemand demand2 = new BaseDemand();
+            demand2.setId( "1");
+            demand2.setReference( "INFO15031324" );
+            demand2.setDemandTypeId( "101");
+            demand2.setStatus( Demand.STATUS_INPROGRESS );
+            _listDemand.add(demand2);
+
+            BaseDemand demand3 = new BaseDemand();
+            demand3.setId( "2");
+            demand3.setReference( "SAV15031324" );
+            demand3.setDemandTypeId( "102");
+            demand3.setStatus( Demand.STATUS_INPROGRESS );
+            _listDemand.add(demand3);
+
+            BaseDemand demand4 = new BaseDemand();
+            demand4.setId( "3");
+            demand4.setReference( "DU15031324" );
+            demand4.setDemandTypeId( "103" );
+            demand4.setStatus( Demand.STATUS_INPROGRESS );
+            _listDemand.add(demand4);
+        }
+        return _listDemand;
+    }
+    
     
     
     

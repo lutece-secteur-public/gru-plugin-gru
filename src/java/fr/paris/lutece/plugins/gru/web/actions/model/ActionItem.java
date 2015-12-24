@@ -43,6 +43,7 @@ public class ActionItem
     private String _strTitle;
     private String _strIcon;
     private String _strLink;
+    private String _strColor;
 
     /**
      * Returns the Title
@@ -97,4 +98,23 @@ public class ActionItem
     {
         _strLink = strLink;
     }
+    
+    /**
+     * Returns the Color
+     * @return The Color
+     */
+    public String getColor(  )
+    {
+        return _strColor;
+    }
+
+    /**
+     * Sets the Color
+     * @param strColor The Color
+     */
+    public void setColor( String strColor )
+    {
+        _strColor = strColor;
+    }
+    
 }

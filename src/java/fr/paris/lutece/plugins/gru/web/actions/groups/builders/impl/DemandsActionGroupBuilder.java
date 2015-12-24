@@ -53,17 +53,21 @@ public class DemandsActionGroupBuilder extends AbstractDemandActionGroupBuilder
         ActionGroup group = new ActionGroup();
 
         List<Demand> listDemands = DemandService.getDemandsExcludingTypes( customer , getExcludedTypesList() );
+        
+        String strBadgeColor = null;
         for( Demand demand : listDemands )
         {
             ActionItem item = new ActionItem();
             item.setTitle( demand.getTitle() + " " + demand.getReference() );
             item.setLink( buildDemandManagementLink( demand.getId(  ), demand.getDemandTypeId(), "" + customer.getId(  )));
+            item.setColor( processItemColor(demand , COLOR_PRIMARY ));
             group.addActionItem( item );
+            strBadgeColor = processGroupBadgeColor(demand, strBadgeColor, COLOR_PRIMARY );
         }
         group.setTitle( getTitle(  ) );
         group.setIcon( getIcon(  ) );
         group.setBadgeText( "" + group.getActions(  ).size(  ) );
-        group.setBadgeColor( "blue" );
+        group.setBadgeColor( strBadgeColor );
         return group;
     }
     
