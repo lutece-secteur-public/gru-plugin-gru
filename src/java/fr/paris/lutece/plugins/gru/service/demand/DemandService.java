@@ -35,6 +35,7 @@
 
 package fr.paris.lutece.plugins.gru.service.demand;
 
+import fr.paris.lutece.plugins.gru.service.demandtype.DemandTypeService;
 import fr.paris.lutece.plugins.gru.business.customer.Customer;
 import fr.paris.lutece.plugins.gru.business.demand.BaseDemand;
 import fr.paris.lutece.plugins.gru.business.demand.Demand;
@@ -84,7 +85,7 @@ public class DemandService
         List<Demand> listDemand = new ArrayList<Demand>();
         for( BaseDemand base : listBase )
         {
-            listDemand.add( DemandeTypeService.buildDemand(base));
+            listDemand.add(DemandTypeService.buildDemand(base));
         }
         return listDemand;
     }
@@ -103,7 +104,7 @@ public class DemandService
         {
             if( ! listExcludedTypes.contains( base.getDemandTypeId()))
             {
-               listDemand.add( DemandeTypeService.buildDemand(base));
+               listDemand.add(DemandTypeService.buildDemand(base));
             }
         }
         return listDemand;
@@ -123,7 +124,7 @@ public class DemandService
         {
             if( listIncludedTypes.contains( base.getDemandTypeId()))
             {
-               listDemand.add( DemandeTypeService.buildDemand(base));
+               listDemand.add(DemandTypeService.buildDemand(base));
             }
         }
         return listDemand;

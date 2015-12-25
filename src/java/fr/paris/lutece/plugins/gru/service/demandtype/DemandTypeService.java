@@ -31,7 +31,7 @@
  *
  * License 1.0
  */
-package fr.paris.lutece.plugins.gru.service.demand;
+package fr.paris.lutece.plugins.gru.service.demandtype;
 
 import fr.paris.lutece.plugins.gru.business.demand.Action;
 import fr.paris.lutece.plugins.gru.business.demand.BaseDemand;
@@ -47,7 +47,7 @@ import java.util.Map;
 /**
  * Demande Type Service
  */
-public class DemandeTypeService
+public class DemandTypeService
 {
     private static final String BOOKMARK_ID = "{id}";
     

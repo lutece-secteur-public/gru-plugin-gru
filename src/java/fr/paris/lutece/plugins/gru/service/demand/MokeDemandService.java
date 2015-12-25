@@ -33,6 +33,7 @@
  */
 package fr.paris.lutece.plugins.gru.service.demand;
 
+import fr.paris.lutece.plugins.gru.service.demandtype.DemandTypeService;
 import fr.paris.lutece.plugins.gru.business.demand.BaseDemand;
 import fr.paris.lutece.plugins.gru.business.demand.Demand;
 import fr.paris.lutece.plugins.gru.business.demand.Notification;
@@ -78,7 +79,7 @@ public class MokeDemandService implements IDemandService
     {
         BaseDemand base = getList().get( Integer.parseInt( strDemandId ));
         
-        Demand demand = DemandeTypeService.buildDemand(base);
+        Demand demand = DemandTypeService.buildDemand(base);
 
         Notification notification = new Notification(  );
         notification.setTimestamp( ( new Date(  ) ).getTime(  ) );

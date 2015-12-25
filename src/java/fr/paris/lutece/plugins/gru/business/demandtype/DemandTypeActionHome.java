@@ -37,6 +37,7 @@ package fr.paris.lutece.plugins.gru.business.demandtype;
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.portal.service.plugin.PluginService;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
+import fr.paris.lutece.util.ReferenceList;
 import java.util.List;
 
 /**
@@ -122,9 +123,23 @@ public final class DemandTypeActionHome
         return _dao.selectIdDemandTypeActionsList( _plugin );
     }
     
+    /**
+     * Gets a list of action by demand type 
+     * @param nDemandTypeId The demand type id
+     * @return The list
+     */
     public static List<DemandTypeAction> getActionsByType( int nDemandTypeId ) 
     {
         return _dao.selectActionsByType( nDemandTypeId , _plugin );
+    }
+    
+    /**
+     * Gets all actions as a ReferenceList
+     * @return The ReferenceList
+     */
+    public static ReferenceList getActions()
+    {
+        return _dao.selectActionsReferenceList( _plugin );
     }
     
 }

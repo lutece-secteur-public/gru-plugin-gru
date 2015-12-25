@@ -35,6 +35,7 @@
 package fr.paris.lutece.plugins.gru.business.demandtype;
 
 import fr.paris.lutece.portal.service.plugin.Plugin;
+import fr.paris.lutece.util.ReferenceList;
 import java.util.List;
 
 
@@ -97,5 +98,13 @@ public interface IDemandTypeActionDAO
      * @return  The list
      */
     List<DemandTypeAction> selectActionsByType(int nDemandTypeId, Plugin plugin);
+
+    
+    /**
+     * Select all Actions as a Reference List
+     * @param plugin The plugin 
+     * @return  The list
+     */
+    ReferenceList selectActionsReferenceList(Plugin _plugin);
 }
 

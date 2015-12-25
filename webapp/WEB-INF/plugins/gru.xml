@@ -50,6 +50,11 @@
                 fr.paris.lutece.plugins.gru.service.feature.FeatureResourceIdService
             </rbac-resource-type-class>
         </rbac-resource-type>
+        <rbac-resource-type>
+            <rbac-resource-type-class>
+                fr.paris.lutece.plugins.gru.service.demandtype.DemandTypeActionResourceIdService
+            </rbac-resource-type-class>
+        </rbac-resource-type>
     </rbac-resource-types>
 
 </plug-in>

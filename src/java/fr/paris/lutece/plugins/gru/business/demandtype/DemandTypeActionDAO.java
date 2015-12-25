@@ -35,6 +35,7 @@
 package fr.paris.lutece.plugins.gru.business.demandtype;
 
 import fr.paris.lutece.portal.service.plugin.Plugin;
+import fr.paris.lutece.util.ReferenceList;
 import fr.paris.lutece.util.sql.DAOUtil;
 
 import java.util.ArrayList;
@@ -171,10 +172,10 @@ public final class DemandTypeActionDAO implements IDemandTypeActionDAO
             DemandTypeAction demandTypeAction = new DemandTypeAction(  );
             
             demandTypeAction.setId( daoUtil.getInt( 1 ) );
-                demandTypeAction.setLink( daoUtil.getString( 2 ) );
-                demandTypeAction.setLabel( daoUtil.getString( 3 ) );
-                demandTypeAction.setIdDemandType( daoUtil.getInt( 4 ) );
-                demandTypeAction.setDemandType( daoUtil.getString( 5 ) );
+            demandTypeAction.setLink( daoUtil.getString( 2 ) );
+            demandTypeAction.setLabel( daoUtil.getString( 3 ) );
+            demandTypeAction.setIdDemandType( daoUtil.getInt( 4 ) );
+            demandTypeAction.setDemandType( daoUtil.getString( 5 ) );
 
             demandTypeActionList.add( demandTypeAction );
         }
@@ -218,15 +219,34 @@ public final class DemandTypeActionDAO implements IDemandTypeActionDAO
             DemandTypeAction demandTypeAction = new DemandTypeAction(  );
             
             demandTypeAction.setId( daoUtil.getInt( 1 ) );
-                demandTypeAction.setLink( daoUtil.getString( 2 ) );
-                demandTypeAction.setLabel( daoUtil.getString( 3 ) );
-                demandTypeAction.setIdDemandType( daoUtil.getInt( 4 ) );
-                demandTypeAction.setDemandType( daoUtil.getString( 5 ) );
+            demandTypeAction.setLink( daoUtil.getString( 2 ) );
+            demandTypeAction.setLabel( daoUtil.getString( 3 ) );
+            demandTypeAction.setIdDemandType( daoUtil.getInt( 4 ) );
+            demandTypeAction.setDemandType( daoUtil.getString( 5 ) );
 
             demandTypeActionList.add( demandTypeAction );
         }
 
         daoUtil.free( );
         return demandTypeActionList;
+    }
+
+    /**
+     * {@inheritDoc }
+     */
+    @Override
+    public ReferenceList selectActionsReferenceList( Plugin plugin )
+    {
+        ReferenceList list = new ReferenceList(  );
+        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin );
+        daoUtil.executeQuery(  );
+
+        while ( daoUtil.next(  ) )
+        {
+            list.addItem( daoUtil.getInt( 1 ) , daoUtil.getString( 5 ) + " - " + daoUtil.getString( 3 ) );
+        }
+
+        daoUtil.free( );
+        return list;
     }
 }
