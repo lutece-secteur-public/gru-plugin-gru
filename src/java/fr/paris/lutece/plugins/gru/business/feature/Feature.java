@@ -33,6 +33,7 @@
  */
 package fr.paris.lutece.plugins.gru.business.feature;
 
+import fr.paris.lutece.portal.service.rbac.RBACResource;
 import org.hibernate.validator.constraints.*;
 
 import java.io.Serializable;
@@ -43,8 +44,10 @@ import javax.validation.constraints.*;
 /**
  * This is the business class for the object Feature
  */
-public class Feature implements Serializable
+public class Feature implements Serializable, RBACResource
 {
+    public static final String RESOURCE_TYPE = "GRU_FEATURE";
+
     public static final int DISPLAY_STANDARD = 0;
     public static final int DISPLAY_HOME = 1;
     public static final int DISPLAY_HIDDEN = -1;
@@ -243,6 +246,27 @@ public class Feature implements Serializable
     public boolean isHome()
     {
         return _nDisplayLevel == DISPLAY_HOME;
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    // RBAC Resource implementation
+    
+    /**
+     * {@inheritDoc }
+     */
+    @Override
+    public String getResourceTypeCode()
+    {
+        return RESOURCE_TYPE;
+    }
+
+    /**
+     * {@inheritDoc }
+     */
+    @Override
+    public String getResourceId()
+    {
+        return "" + _nId;
     }
     
 }

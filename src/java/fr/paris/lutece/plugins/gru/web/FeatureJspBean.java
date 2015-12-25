@@ -37,7 +37,7 @@ import fr.paris.lutece.plugins.gru.business.feature.Feature;
 import fr.paris.lutece.plugins.gru.business.feature.FeatureCategoryHome;
 import fr.paris.lutece.plugins.gru.business.feature.FeatureHome;
 import fr.paris.lutece.plugins.gru.service.ActionLinkService;
-import fr.paris.lutece.plugins.gru.service.FeatureService;
+import fr.paris.lutece.plugins.gru.service.feature.FeatureService;
 import fr.paris.lutece.portal.service.message.AdminMessage;
 import fr.paris.lutece.portal.service.message.AdminMessageService;
 import fr.paris.lutece.portal.util.mvc.admin.annotations.Controller;

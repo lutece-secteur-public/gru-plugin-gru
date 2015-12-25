@@ -28,7 +28,7 @@
             <feature-level>0</feature-level>
             <feature-url>jsp/admin/plugins/gru/ManageFeatures.jsp</feature-url>
             <feature-icon-url></feature-icon-url>
-      </admin-feature>
+        </admin-feature>
         <admin-feature>
             <feature-id>GRU_MANAGEMENT</feature-id>
             <feature-title>gru.adminFeature.ManageCustomers.name</feature-title>
@@ -36,18 +36,20 @@
             <feature-level>0</feature-level>
             <feature-url>jsp/admin/plugins/gru/ManageCustomers.jsp</feature-url>
             <feature-icon-url></feature-icon-url>
-      </admin-feature>
+        </admin-feature>
     </admin-features>    
     
     <admin-css-stylesheets>
         <admin-css-stylesheet>css/admin/plugins/gru/gru.css</admin-css-stylesheet>
     </admin-css-stylesheets>
 
-    <!-- XPages parameters -->
-    <applications>
-    </applications>
+    <!-- RBAC Resources -->
+    <rbac-resource-types>
+        <rbac-resource-type>
+            <rbac-resource-type-class>
+                fr.paris.lutece.plugins.gru.service.feature.FeatureResourceIdService
+            </rbac-resource-type-class>
+        </rbac-resource-type>
+    </rbac-resource-types>
 
-    <!-- Portlet parameters -->
-    <portlets>
-   </portlets>
 </plug-in>

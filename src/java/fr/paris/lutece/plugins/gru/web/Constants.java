@@ -39,6 +39,8 @@ package fr.paris.lutece.plugins.gru.web;
  */
 public final class Constants
 {
+    public static final String PLUGIN_NAME = "gru";
+
     // Parameters
     public static final String PARAMETER_ID_CUSTOMER = "id_customer";
     public static final String PARAMETER_QUERY = "query";

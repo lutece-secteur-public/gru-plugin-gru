@@ -37,7 +37,7 @@ import fr.paris.lutece.plugins.gru.business.customer.Customer;
 import fr.paris.lutece.plugins.gru.business.customer.CustomerHome;
 import fr.paris.lutece.plugins.gru.business.demand.Demand;
 import fr.paris.lutece.plugins.gru.service.CustomerActionsService;
-import fr.paris.lutece.plugins.gru.service.FeatureService;
+import fr.paris.lutece.plugins.gru.service.feature.FeatureService;
 import fr.paris.lutece.plugins.gru.service.demand.DemandService;
 import fr.paris.lutece.plugins.gru.service.demand.IDemandService;
 import fr.paris.lutece.plugins.gru.service.demand.MokeDemandService;
