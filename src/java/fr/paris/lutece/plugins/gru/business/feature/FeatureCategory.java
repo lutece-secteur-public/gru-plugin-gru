@@ -64,6 +64,7 @@ public class FeatureCategory implements Serializable
     private String _strCategoryIcon;
     private int _nIndicatorStyle;
     private String _strIndicatorText;
+    private String _strColor;
 
     /**
      * Returns the Id
@@ -191,6 +192,28 @@ public class FeatureCategory implements Serializable
         _strIndicatorText = strIndicatorText;
     }
 
+    /**
+     * Returns the Color
+     * @return The Color
+     */
+    public String getColor(  )
+    {
+        return _strColor;
+    }
+
+    /**
+     * Sets the Color
+     * @param strColor The Color
+     */
+    public void setColor( String strColor )
+    {
+        _strColor = strColor;
+    }
+
+    /**
+     * Gets all features for this category
+     * @return The list
+     */
     public List<Feature> getFeatures(  )
     {
         return FeatureHome.getFeaturesListByCategory( _nId );

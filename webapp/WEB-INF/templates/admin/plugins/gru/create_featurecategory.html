@@ -9,7 +9,18 @@
         <@fieldInputText i18nLabelKey="gru.create_featurecategory.labelName" inputName="name" mandatory=true value="${featurecategory.name!''}" i18nHelpBlockKey="gru.create_featurecategory.labelName.help" />
         <@fieldInputText i18nLabelKey="gru.create_featurecategory.labelDescription" inputName="description" mandatory=true value="${featurecategory.description!''}" i18nHelpBlockKey="gru.create_featurecategory.labelDescription.help" />
         <@fieldInputText i18nLabelKey="gru.create_featurecategory.labelIdOrder" inputName="id_order" mandatory=true value="${featurecategory.idOrder!''}" i18nHelpBlockKey="gru.create_featurecategory.labelIdOrder.help" />
-        <@fieldInputText i18nLabelKey="gru.create_featurecategory.labelCategoryIcon" inputName="category_icon"  value="${featurecategory.categoryIcon!''}" i18nHelpBlockKey="gru.create_featurecategory.labelCategoryIcon.help" />
+        <@fieldInputText i18nLabelKey="gru.create_featurecategory.labelCategoryIcon" inputName="category_icon"  value="${featurecategory.icon!''}" i18nHelpBlockKey="gru.create_featurecategory.labelCategoryIcon.help" />
+        <@fieldInputWrapper i18nLabelKey="gru.create_featurecategory.labelColor" inputName="color" i18nHelpBlockKey="gru.create_featurecategory.labelColor.help" >
+            <select class="form-control" name="color">
+                <#list colors_list as color>
+                    <#if featurecategory.color == color>
+                        <option class="bg-${color}" selected > ${color} </option>
+                    <#else>
+                        <option class="bg-${color}" > ${color} </option>
+                    </#if>
+                </#list>
+            </select>
+	</@fieldInputWrapper>     
         <@actionButtons button1Name="action_createFeatureCategory" button2Name="view_manageFeatureCategorys"/>
     </form>
 </@rowBoxHeader>

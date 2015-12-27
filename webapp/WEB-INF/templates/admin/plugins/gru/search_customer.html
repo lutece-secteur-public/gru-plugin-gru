@@ -21,12 +21,13 @@
     </div>
   </div>
   <div class="row">
-    <div id="home-actions" class="col-xs-12 col-sm-offset-3 col-sm-6">
-        <#list features_list as feature>
-            <a class="btn bg-purple btn-lg" href="${feature.link}">
-              ${feature.name}
+      <div id="home-actions" class="col-xs-12 col-sm-offset-3 col-sm-6">
+          <#list buttons_list as button>
+            <a class="btn bg-${button.color} btn-lg" href="${button.link}">
+                <i class="fa fa-${button.icon}"></i> &nbsp; 
+                ${button.title}
             </a>
-        </#list>
+          </#list>
       </div>
   </div>
 </div>

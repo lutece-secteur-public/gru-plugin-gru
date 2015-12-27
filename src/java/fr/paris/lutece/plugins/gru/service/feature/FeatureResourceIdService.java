@@ -49,9 +49,6 @@ import java.util.Locale;
  */
 public class FeatureResourceIdService extends ResourceIdService
 {
-    
-    public static final String PERMISSION_ACCESS = "ACCESS";
-    
     private static final String PROPERTY_LABEL_RESOURCE_TYPE = "gru.rbac.feature.resourceType";
     private static final String PROPERTY_LABEL_ACCESS = "gru.rbac.feature.permission.access";
     
@@ -68,7 +65,7 @@ public class FeatureResourceIdService extends ResourceIdService
         rt.setResourceTypeLabelKey( PROPERTY_LABEL_RESOURCE_TYPE );
         
         Permission p = new Permission(  );
-        p.setPermissionKey( PERMISSION_ACCESS );
+        p.setPermissionKey( Feature.PERMISSION_ACCESS );
         p.setPermissionTitleKey( PROPERTY_LABEL_ACCESS );
         rt.registerPermission( p );
         

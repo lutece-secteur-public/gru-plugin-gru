@@ -1,0 +1,63 @@
+<#include "manageadmingru_tabs.html" />
+<@tabs tab="featurecategory" />
+
+<@rowBox>
+    <@boxHeader i18nTitleKey="gru.manage_featurecategories.tableLabel">
+        <@headerButtons>
+
+        
+        <form class="form-inline pull-right" method="post" name="manage_featurecategories" action="jsp/admin/plugins/gru/ManageFeatureCategorys.jsp">
+            <!-- Add pull-right to class1 -->
+            <@actionButtons button1Name="view_createFeatureCategory" icon1="icon-plus icon-white" i18nValue1Key="gru.manage_featurecategories.buttonAdd" />
+        </form>
+        
+    </@headerButtons>
+    </@boxHeader>
+    <@boxBody>    
+    <@messages infos=infos />
+    <@paginationAdmin paginator=paginator combo=1 />
+    <div class="clearfix"></div>
+    
+    <@table>
+        <tr>
+            <input type="hidden" id="id" name="id"/>
+            <th colspan="2">#i18n{gru.manage_featurecategories.columnName}</th>
+            <th>#i18n{gru.manage_featurecategories.columnDescription}</th>
+            <th>#i18n{gru.manage_featurecategories.columnIdOrder}</th>
+            <th>#i18n{portal.util.labelActions}</th>
+        </tr>
+        <@tableHeadBodySeparator />
+        <#list featurecategory_list as featurecategory >
+            <tr>
+                <input type="hidden" id="id" name="id"/>
+                <td class="bg-${featurecategory.color}" style="width: 1px">
+                </td>
+                <td>
+                    &nbsp; <i class="fa fa-${featurecategory.icon}"></i> &nbsp;  ${featurecategory.name}
+                </td>
+                <td>
+                    ${featurecategory.description}
+                </td>
+                <td>
+                    ${featurecategory.idOrder}
+                </td>
+                <td>
+                    <a href="jsp/admin/plugins/gru/ManageFeatureCategorys.jsp?view=modifyFeatureCategory&id=${featurecategory.id}"
+                       class="btn btn-primary btn-sm" title="#i18n{portal.util.labelModify}">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+
+                    <a href="jsp/admin/plugins/gru/ManageFeatureCategorys.jsp?action=confirmRemoveFeatureCategory&id=${featurecategory.id}"
+                       class="btn btn-danger btn-sm" title="#i18n{portal.util.labelDelete}" >
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        </#list>
+    </@table>
+
+    <@paginationAdmin paginator=paginator />
+
+  </@boxBody>
+</@rowBox>
+

@@ -35,6 +35,7 @@ package fr.paris.lutece.plugins.gru.web;
 
 import fr.paris.lutece.plugins.gru.business.feature.FeatureCategory;
 import fr.paris.lutece.plugins.gru.business.feature.FeatureCategoryHome;
+import fr.paris.lutece.plugins.gru.utils.ColorService;
 import fr.paris.lutece.portal.service.message.AdminMessage;
 import fr.paris.lutece.portal.service.message.AdminMessageService;
 import fr.paris.lutece.portal.util.mvc.admin.annotations.Controller;
@@ -58,7 +59,7 @@ public class FeatureCategoryJspBean extends ManageAdminGRUJspBean
     // Constants
 
     // templates
-    private static final String TEMPLATE_MANAGE_FEATURECATEGORYS = "/admin/plugins/gru/manage_featurecategorys.html";
+    private static final String TEMPLATE_MANAGE_FEATURECATEGORYS = "/admin/plugins/gru/manage_featurecategories.html";
     private static final String TEMPLATE_CREATE_FEATURECATEGORY = "/admin/plugins/gru/create_featurecategory.html";
     private static final String TEMPLATE_MODIFY_FEATURECATEGORY = "/admin/plugins/gru/modify_featurecategory.html";
 
@@ -66,7 +67,7 @@ public class FeatureCategoryJspBean extends ManageAdminGRUJspBean
     private static final String PARAMETER_ID_FEATURECATEGORY = "id";
 
     // Properties for page titles
-    private static final String PROPERTY_PAGE_TITLE_MANAGE_FEATURECATEGORYS = "gru.manage_featurecategorys.pageTitle";
+    private static final String PROPERTY_PAGE_TITLE_MANAGE_FEATURECATEGORYS = "gru.manage_featurecategories.pageTitle";
     private static final String PROPERTY_PAGE_TITLE_MODIFY_FEATURECATEGORY = "gru.modify_featurecategory.pageTitle";
     private static final String PROPERTY_PAGE_TITLE_CREATE_FEATURECATEGORY = "gru.create_featurecategory.pageTitle";
 
@@ -129,6 +130,7 @@ public class FeatureCategoryJspBean extends ManageAdminGRUJspBean
 
         Map<String, Object> model = getModel(  );
         model.put( MARK_FEATURECATEGORY, _featurecategory );
+        model.put( Constants.MARK_COLORS_LIST, ColorService.getColorList() );
 
         return getPage( PROPERTY_PAGE_TITLE_CREATE_FEATURECATEGORY, TEMPLATE_CREATE_FEATURECATEGORY, model );
     }
@@ -210,6 +212,7 @@ public class FeatureCategoryJspBean extends ManageAdminGRUJspBean
 
         Map<String, Object> model = getModel(  );
         model.put( MARK_FEATURECATEGORY, _featurecategory );
+        model.put( Constants.MARK_COLORS_LIST, ColorService.getColorList() );
 
         return getPage( PROPERTY_PAGE_TITLE_MODIFY_FEATURECATEGORY, TEMPLATE_MODIFY_FEATURECATEGORY, model );
     }

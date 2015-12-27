@@ -39,8 +39,7 @@ import fr.paris.lutece.plugins.gru.business.demand.Demand;
 import fr.paris.lutece.plugins.gru.service.CustomerActionsService;
 import fr.paris.lutece.plugins.gru.service.feature.FeatureService;
 import fr.paris.lutece.plugins.gru.service.demand.DemandService;
-import fr.paris.lutece.plugins.gru.service.demand.IDemandService;
-import fr.paris.lutece.plugins.gru.service.demand.MokeDemandService;
+import fr.paris.lutece.plugins.gru.web.actions.buttons.builders.impl.HomeButtonListBuilder;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionPanel;
 import fr.paris.lutece.portal.service.message.AdminMessage;
 import fr.paris.lutece.portal.service.message.AdminMessageService;
@@ -112,11 +111,13 @@ public class CustomerJspBean extends MVCAdminJspBean
     public static final String RIGHT_MANAGECUSTOMERS = "GRU_MANAGEMENT";
     private static final String PROPERTY_DEFAULT_LIST_ITEM_PER_PAGE = "gru.listItems.itemsPerPage";
     private static final long serialVersionUID = 1L;
-
+    private static HomeButtonListBuilder _homeButtonListBuilder = new HomeButtonListBuilder();
+    
     //Variables
     private int _nDefaultItemsPerPage;
     private String _strCurrentPageIndex;
     private int _nItemsPerPage;
+   
 
     // Session variable to store working values
     private Customer _customer;
@@ -124,11 +125,12 @@ public class CustomerJspBean extends MVCAdminJspBean
     @View( value = VIEW_SEARCH_CUSTOMER, defaultView = true )
     public String getSearchCustomer( HttpServletRequest request )
     {
-        List<ActionPanel> listPanels = CustomerActionsService.getPanels( null );
+        Customer customer = null;
+        List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer );
         Map<String, Object> model = getModel(  );
         model.put( Constants.MARK_ACTION_PANELS, listPanels );
         model.put( Constants.MARK_CUSTOMER, new Customer(  ) );
-        model.put( Constants.MARK_FEATURES_LIST, FeatureService.getHomeFeatures( ) );
+        model.put( Constants.MARK_BUTTONS_LIST, _homeButtonListBuilder.buildActionButtonList( customer, getUser() ) );
 
         return getPage( PROPERTY_PAGE_TITLE_SEARCH_CUSTOMER, TEMPLATE_SEARCH_CUSTOMER, model );
     }
@@ -176,6 +178,7 @@ public class CustomerJspBean extends MVCAdminJspBean
                 Map<String, Object> model = getModel(  );
                 model.put( Constants.MARK_ACTION_PANELS, listPanels );
                 model.put( Constants.MARK_CUSTOMER, customer );
+                model.put( Constants.MARK_BUTTONS_LIST, _homeButtonListBuilder.buildActionButtonList( customer, getUser() ) );
 
                 return getPage( "", TEMPLATE_VIEW_CUSTOMER, model );
             }

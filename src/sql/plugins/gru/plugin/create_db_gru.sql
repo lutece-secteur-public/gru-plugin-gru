@@ -70,6 +70,7 @@ name varchar(50) NOT NULL default '',
 description varchar(255) NOT NULL default '',
 id_order int(11) NOT NULL default '0',
 category_icon varchar(255) NOT NULL default '',
+color varchar(50) NOT NULL default '',
 PRIMARY KEY (id_feature_category)
 );
 

@@ -46,7 +46,9 @@ import javax.validation.constraints.*;
  */
 public class Feature implements Serializable, RBACResource
 {
+    // RBAC management
     public static final String RESOURCE_TYPE = "GRU_FEATURE";
+    public static final String PERMISSION_ACCESS = "ACCESS";
 
     public static final int DISPLAY_STANDARD = 0;
     public static final int DISPLAY_HOME = 1;

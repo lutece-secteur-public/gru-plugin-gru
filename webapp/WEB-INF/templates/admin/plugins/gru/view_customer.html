@@ -2,20 +2,16 @@
 <@actionMenu panels=panels customer=customer />
  <div class="content-wrapper">
     <@customerDetails customer=customer />
+    <br>
+    <br>
     <div class="row">
-      <div id="home-actions" class="col-xs-12 col-sm-offset-3 col-sm-6">
-        <a class="btn btn-success btn-lg" href="jsp/admin/plugins/ticketing/ManageTickets.jsp?view=createTicket">
-          <i class="fa fa-commenting fa-lg"></i> Cr&eacute;er une sollicitation
-        </a>
-        <a class="btn btn-primary btn-lg" href="jsp/admin/plugins/appointment/ManageAppointments.jsp?view=viewCalendarManageAppointment&id_form=1">
-          <i class="fa fa-building fa-lg"></i> Prendre un RDV d'Urbanisme
-        </a>
-        <a class="btn btn-warning btn-lg" href="jsp/admin/plugins/gru/FrameView.jsp?url=https%3A%2F%2Fteleservices.paris.fr%2Fsira%2Fjsp%2Fsite%2FPortal.jsp%3Fpage%3Dformengine%26form%3Dramen">
-          <i class="fa fa-trash fa-lg"></i> Enl&egrave;vement d'encombrants
-        </a>
-        <a class="btn bg-purple btn-lg" href="jsp/admin/plugins/gru/FrameView.jsp?url=https%3A%2F%2Fteleservices.paris.fr%2Fsira%2Fjsp%2Fsite%2FPortal.jsp%3Fpage%3Dformengine%26form%3Dsignalement">
-          <i class="fa fa-street-view fa-lg"></i> Signalement Dans Ma Rue
-        </a>
+        <div id="home-actions" class="col-xs-12 col-sm-offset-3 col-sm-6">
+            <#list buttons_list as button>
+              <a class="btn bg-${button.color} btn-lg" href="${button.link}">
+                  <i class="fa fa-${button.icon}"></i> &nbsp; 
+                  ${button.title}
+              </a>
+            </#list>
         </div>
     </div>
  </div>

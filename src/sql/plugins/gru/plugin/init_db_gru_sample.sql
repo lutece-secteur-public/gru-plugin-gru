@@ -26,6 +26,15 @@ INSERT INTO gru_demand_type_action ( id_demand_type_action, id_demand_type, acti
 ( 2 , 3 , 'Gérer la réclamation' , 'jsp/admin/plugins/ticketing/ManageTickets.jsp?view=modifyTicket&id={id}' ),
 ( 3 , 4 , 'Accéder au RDV' , 'jsp/admin/plugins/appointment/ManageAppointments.jsp?view=viewAppointment&id_appointment={id}' );
 
+
+--
+-- Data for table gru_feature_category
+--
+
+INSERT INTO gru_feature_category (id_feature_category, name, description, id_order, category_icon, color ) VALUES 
+(1,'Espace Public','Services numériques concernant l\'espace publique (voirie, parc et jardins, ...)',1,'street-view', 'purple'),
+(2,'Sollicitations','Demandes d\'information ou réclamations',2,'comment', 'yellow');
+
 --
 -- Data for table gru_feature
 --
@@ -36,10 +45,3 @@ INSERT INTO gru_feature ( id_feature, name, link, link_customer_params, target, 
 (3,'Créer une sollicitation','jsp/admin/plugins/ticketing/ManageTickets.jsp?view=createTicket','&fn={firstname}&ln={lastname}&guid={guid}&ph={phone}&em={email}',1,2,1,1),
 (4,'Prendre un RDV Urbanisme ','jsp/admin/plugins/appointment/ManageAppointments.jsp?view=viewCalendarManageAppointment&id_form=1','&fn={firstname}&ln={lastname}&guid={guid}&ph={phone}&em={email}',1,2,1,0);
 
---
--- Data for table gru_feature_category
---
-
-INSERT INTO gru_feature_category (id_feature_category, name, description, id_order, category_icon) VALUES 
-(1,'Espace Public','Services numériques concernant l\'espace publique (voirie, parc et jardins, ...)',1,'street-view'),
-(2,'Sollicitations','Demandes d\'information ou réclamations',2,'comment');

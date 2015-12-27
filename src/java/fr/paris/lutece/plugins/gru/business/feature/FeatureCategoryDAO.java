@@ -48,11 +48,11 @@ public final class FeatureCategoryDAO implements IFeatureCategoryDAO
 {
     // Constants
     private static final String SQL_QUERY_NEW_PK = "SELECT max( id_feature_category ) FROM gru_feature_category";
-    private static final String SQL_QUERY_SELECT = "SELECT id_feature_category, name, description, id_order, category_icon FROM gru_feature_category WHERE id_feature_category = ?";
-    private static final String SQL_QUERY_INSERT = "INSERT INTO gru_feature_category ( id_feature_category, name, description, id_order, category_icon ) VALUES ( ?, ?, ?, ?, ? ) ";
+    private static final String SQL_QUERY_SELECT = "SELECT id_feature_category, name, description, id_order, category_icon, color FROM gru_feature_category WHERE id_feature_category = ?";
+    private static final String SQL_QUERY_INSERT = "INSERT INTO gru_feature_category ( id_feature_category, name, description, id_order, category_icon, color ) VALUES ( ?, ?, ?, ?, ?, ? ) ";
     private static final String SQL_QUERY_DELETE = "DELETE FROM gru_feature_category WHERE id_feature_category = ? ";
-    private static final String SQL_QUERY_UPDATE = "UPDATE gru_feature_category SET id_feature_category = ?, name = ?, description = ?, id_order = ?, category_icon = ? WHERE id_feature_category = ?";
-    private static final String SQL_QUERY_SELECTALL = "SELECT id_feature_category, name, description, id_order, category_icon FROM gru_feature_category";
+    private static final String SQL_QUERY_UPDATE = "UPDATE gru_feature_category SET id_feature_category = ?, name = ?, description = ?, id_order = ?, category_icon = ?, color = ? WHERE id_feature_category = ?";
+    private static final String SQL_QUERY_SELECTALL = "SELECT id_feature_category, name, description, id_order, category_icon, color FROM gru_feature_category";
     private static final String SQL_QUERY_SELECTALL_ID = "SELECT id_feature_category FROM gru_feature_category";
 
     /**
@@ -92,6 +92,7 @@ public final class FeatureCategoryDAO implements IFeatureCategoryDAO
         daoUtil.setString( 3, category.getDescription(  ) );
         daoUtil.setInt( 4, category.getIdOrder(  ) );
         daoUtil.setString( 5, category.getIcon(  ) );
+        daoUtil.setString( 6, category.getColor(  ) );
 
         daoUtil.executeUpdate(  );
         daoUtil.free(  );
@@ -117,6 +118,7 @@ public final class FeatureCategoryDAO implements IFeatureCategoryDAO
             category.setDescription( daoUtil.getString( 3 ) );
             category.setIdOrder( daoUtil.getInt( 4 ) );
             category.setIcon( daoUtil.getString( 5 ) );
+            category.setColor( daoUtil.getString( 6 ) );
         }
 
         daoUtil.free(  );
@@ -149,7 +151,8 @@ public final class FeatureCategoryDAO implements IFeatureCategoryDAO
         daoUtil.setString( 3, category.getDescription(  ) );
         daoUtil.setInt( 4, category.getIdOrder(  ) );
         daoUtil.setString( 5, category.getIcon(  ) );
-        daoUtil.setInt( 6, category.getId(  ) );
+        daoUtil.setString( 6, category.getColor(  ) );
+        daoUtil.setInt( 7, category.getId(  ) );
 
         daoUtil.executeUpdate(  );
         daoUtil.free(  );
@@ -174,6 +177,7 @@ public final class FeatureCategoryDAO implements IFeatureCategoryDAO
             category.setDescription( daoUtil.getString( 3 ) );
             category.setIdOrder( daoUtil.getInt( 4 ) );
             category.setIcon( daoUtil.getString( 5 ) );
+            category.setColor( daoUtil.getString( 6 ) );
 
             listCategories.add( category );
         }
