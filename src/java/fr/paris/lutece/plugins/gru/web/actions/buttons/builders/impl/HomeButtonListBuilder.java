@@ -65,7 +65,7 @@ public class HomeButtonListBuilder implements ButtonListBuilder
                 FeatureCategory category = FeatureCategoryHome.findByPrimaryKey( feature.getIdCategory());
                 ActionButton button = new ActionButton();
                 button.setTitle( feature.getName());
-                button.setLink( feature.getLink());
+                button.setLink( FeatureService.getCustomerLink(feature, customer));
                 button.setIcon( category.getIcon() );
                 button.setColor( category.getColor() );
                 listButtons.add(button);

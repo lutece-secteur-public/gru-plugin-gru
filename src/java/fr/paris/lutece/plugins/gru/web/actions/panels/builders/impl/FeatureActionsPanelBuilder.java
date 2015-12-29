@@ -38,6 +38,7 @@ import fr.paris.lutece.plugins.gru.business.feature.Feature;
 import fr.paris.lutece.plugins.gru.business.feature.FeatureCategory;
 import fr.paris.lutece.plugins.gru.business.feature.FeatureCategoryHome;
 import fr.paris.lutece.plugins.gru.service.ActionLinkService;
+import fr.paris.lutece.plugins.gru.service.feature.FeatureService;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionGroup;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionItem;
 import fr.paris.lutece.plugins.gru.web.actions.panels.builders.PanelBuilder;
@@ -99,15 +100,7 @@ public class FeatureActionsPanelBuilder implements PanelBuilder
                 {    
                     ActionItem item = new ActionItem(  );
                     item.setTitle( feature.getName(  ) );
-
-                    String strLinkTemplate = feature.getLink(  );
-
-                    if ( ( customer != null ) && ( customer.getId(  ) != 0 ) )
-                    {
-                        strLinkTemplate += feature.getLinkCustomerParams(  );
-                    }
-
-                    item.setLink( ActionLinkService.buildLink( strLinkTemplate, feature.getTarget(  ), customer ) );
+                    item.setLink( FeatureService.getCustomerLink( feature , customer ) );
                     group.addActionItem( item );
                 }
             }

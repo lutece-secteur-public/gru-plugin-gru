@@ -9,7 +9,7 @@
         <@fieldInputText i18nLabelKey="gru.modify_featurecategory.labelName" inputName="name" mandatory=true value="${featurecategory.name}" i18nHelpBlockKey="gru.modify_featurecategory.labelName.help" />
         <@fieldInputText i18nLabelKey="gru.modify_featurecategory.labelDescription" inputName="description" mandatory=true value="${featurecategory.description}" i18nHelpBlockKey="gru.modify_featurecategory.labelDescription.help" />
         <@fieldInputText i18nLabelKey="gru.modify_featurecategory.labelIdOrder" inputName="id_order" mandatory=true value="${featurecategory.idOrder}" i18nHelpBlockKey="gru.modify_featurecategory.labelIdOrder.help" />
-        <@fieldInputText i18nLabelKey="gru.modify_featurecategory.labelCategoryIcon" inputName="category_icon"  value="${featurecategory.icon!''}" i18nHelpBlockKey="gru.modify_featurecategory.labelCategoryIcon.help" />
+        <@fieldInputText i18nLabelKey="gru.modify_featurecategory.labelCategoryIcon" inputName="icon"  value="${featurecategory.icon!''}" i18nHelpBlockKey="gru.modify_featurecategory.labelCategoryIcon.help" />
         <@fieldInputWrapper i18nLabelKey="gru.modify_featurecategory.labelColor" inputName="color" i18nHelpBlockKey="gru.modify_featurecategory.labelColor.help" >
             <select class="form-control" name="color">
                 <#list colors_list as color>

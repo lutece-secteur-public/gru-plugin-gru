@@ -33,8 +33,10 @@
  */
 package fr.paris.lutece.plugins.gru.service.feature;
 
+import fr.paris.lutece.plugins.gru.business.customer.Customer;
 import fr.paris.lutece.plugins.gru.business.feature.Feature;
 import fr.paris.lutece.plugins.gru.business.feature.FeatureHome;
+import fr.paris.lutece.plugins.gru.service.ActionLinkService;
 import fr.paris.lutece.portal.service.i18n.I18nService;
 import fr.paris.lutece.util.ReferenceList;
 import java.util.ArrayList;
@@ -62,6 +64,10 @@ public class FeatureService
         return list;
     }
     
+    /**
+     * Gets the list of features that should be displayed on the home page 
+     * @return The list
+     */
     public static List<Feature> getHomeFeatures( )
     {
         List<Feature> list = new ArrayList<Feature>();
@@ -75,5 +81,23 @@ public class FeatureService
         }
         
         return list;
+    }
+    
+    /**
+     * Build a link to a feature for a given customer
+     * @param feature The feature
+     * @param customer The customer
+     * @return The link
+     */
+    public static String getCustomerLink( Feature feature , Customer customer )
+    {
+        String strLinkTemplate = feature.getLink(  );
+
+        if ( ( customer != null ) && ( customer.getId(  ) != 0 ) )
+        {
+            strLinkTemplate += feature.getLinkCustomerParams(  );
+        }
+
+        return ActionLinkService.buildLink( strLinkTemplate, feature.getTarget(  ), customer );
     }
 }

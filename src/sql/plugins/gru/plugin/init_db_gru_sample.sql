@@ -43,5 +43,6 @@ INSERT INTO gru_feature ( id_feature, name, link, link_customer_params, target, 
 (1,'Enlèvement d\'encombrants','https://teleservices.paris.fr/sira/jsp/site/Portal.jsp?page=formengine&form=ramen','',0,1,1,1),
 (2,'Signalement DansMaRue','https://teleservices.paris.fr/sira/jsp/site/Portal.jsp?page=formengine&form=signalement','',0,1,2,1),
 (3,'Créer une sollicitation','jsp/admin/plugins/ticketing/ManageTickets.jsp?view=createTicket','&fn={firstname}&ln={lastname}&guid={guid}&ph={phone}&em={email}',1,2,1,1),
-(4,'Prendre un RDV Urbanisme ','jsp/admin/plugins/appointment/ManageAppointments.jsp?view=viewCalendarManageAppointment&id_form=1','&fn={firstname}&ln={lastname}&guid={guid}&ph={phone}&em={email}',1,2,1,0);
+(4,'Prendre un RDV Urbanisme ','https://teleservices.paris.fr/rdvdu/','&fn={firstname}&ln={lastname}&guid={guid}&ph={phone}&em={email}',0,2,1,1),
+(5,'Prendre un RDV Stationnement ','https://teleservices.paris.fr/rdvssvp/','&fn={firstname}&ln={lastname}&guid={guid}&ph={phone}&em={email}',0,2,1,1);
 
