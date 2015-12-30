@@ -30,36 +30,35 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * License 1.0
- */ 
+ */
 package fr.paris.lutece.plugins.gru.business.demandtype;
 
-import javax.validation.constraints.*;
 import org.hibernate.validator.constraints.*;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.*;
+
 
 /**
  * This is the business class for the object DemandType
- */ 
+ */
 public class DemandType implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
     // Variables declarations 
     private int _nId;
-    
     private int _nDemandTypeId;
-    
     @NotEmpty( message = "#i18n{gru.validation.demandtype.Title.notEmpty}" )
-    @Size( max = 255 , message = "#i18n{gru.validation.demandtype.Title.size}" ) 
+    @Size( max = 255, message = "#i18n{gru.validation.demandtype.Title.size}" )
     private String _strTitle;
 
     /**
      * Returns the Id
      * @return The Id
      */
-    public int getId( )
+    public int getId(  )
     {
         return _nId;
     }
@@ -67,7 +66,7 @@ public class DemandType implements Serializable
     /**
      * Sets the Id
      * @param nId The Id
-     */ 
+     */
     public void setId( int nId )
     {
         _nId = nId;
@@ -77,7 +76,7 @@ public class DemandType implements Serializable
      * Returns the DemandTypeId
      * @return The DemandTypeId
      */
-    public int getDemandTypeId( )
+    public int getDemandTypeId(  )
     {
         return _nDemandTypeId;
     }
@@ -85,16 +84,17 @@ public class DemandType implements Serializable
     /**
      * Sets the DemandTypeId
      * @param nDemandTypeId The DemandTypeId
-     */ 
+     */
     public void setDemandTypeId( int nDemandTypeId )
     {
         _nDemandTypeId = nDemandTypeId;
     }
+
     /**
      * Returns the Title
      * @return The Title
      */
-    public String getTitle( )
+    public String getTitle(  )
     {
         return _strTitle;
     }
@@ -102,7 +102,7 @@ public class DemandType implements Serializable
     /**
      * Sets the Title
      * @param strTitle The Title
-     */ 
+     */
     public void setTitle( String strTitle )
     {
         _strTitle = strTitle;

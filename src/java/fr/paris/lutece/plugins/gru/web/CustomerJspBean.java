@@ -37,8 +37,8 @@ import fr.paris.lutece.plugins.gru.business.customer.Customer;
 import fr.paris.lutece.plugins.gru.business.customer.CustomerHome;
 import fr.paris.lutece.plugins.gru.business.demand.Demand;
 import fr.paris.lutece.plugins.gru.service.CustomerActionsService;
-import fr.paris.lutece.plugins.gru.service.feature.FeatureService;
 import fr.paris.lutece.plugins.gru.service.demand.DemandService;
+import fr.paris.lutece.plugins.gru.service.feature.FeatureService;
 import fr.paris.lutece.plugins.gru.web.actions.buttons.builders.impl.HomeButtonListBuilder;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionPanel;
 import fr.paris.lutece.portal.service.message.AdminMessage;
@@ -111,13 +111,12 @@ public class CustomerJspBean extends MVCAdminJspBean
     public static final String RIGHT_MANAGECUSTOMERS = "GRU_MANAGEMENT";
     private static final String PROPERTY_DEFAULT_LIST_ITEM_PER_PAGE = "gru.listItems.itemsPerPage";
     private static final long serialVersionUID = 1L;
-    private static HomeButtonListBuilder _homeButtonListBuilder = new HomeButtonListBuilder();
-    
+    private static HomeButtonListBuilder _homeButtonListBuilder = new HomeButtonListBuilder(  );
+
     //Variables
     private int _nDefaultItemsPerPage;
     private String _strCurrentPageIndex;
     private int _nItemsPerPage;
-   
 
     // Session variable to store working values
     private Customer _customer;
@@ -126,11 +125,11 @@ public class CustomerJspBean extends MVCAdminJspBean
     public String getSearchCustomer( HttpServletRequest request )
     {
         Customer customer = null;
-        List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer , getUser() );
+        List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
         Map<String, Object> model = getModel(  );
         model.put( Constants.MARK_ACTION_PANELS, listPanels );
         model.put( Constants.MARK_CUSTOMER, new Customer(  ) );
-        model.put( Constants.MARK_BUTTONS_LIST, _homeButtonListBuilder.buildActionButtonList( customer, getUser() ) );
+        model.put( Constants.MARK_BUTTONS_LIST, _homeButtonListBuilder.buildActionButtonList( customer, getUser(  ) ) );
 
         return getPage( PROPERTY_PAGE_TITLE_SEARCH_CUSTOMER, TEMPLATE_SEARCH_CUSTOMER, model );
     }
@@ -174,11 +173,12 @@ public class CustomerJspBean extends MVCAdminJspBean
                 int nId = Integer.parseInt( strId );
                 customer = CustomerHome.findByPrimaryKey( nId );
 
-                List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer , getUser() );
+                List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
                 Map<String, Object> model = getModel(  );
                 model.put( Constants.MARK_ACTION_PANELS, listPanels );
                 model.put( Constants.MARK_CUSTOMER, customer );
-                model.put( Constants.MARK_BUTTONS_LIST, _homeButtonListBuilder.buildActionButtonList( customer, getUser() ) );
+                model.put( Constants.MARK_BUTTONS_LIST,
+                    _homeButtonListBuilder.buildActionButtonList( customer, getUser(  ) ) );
 
                 return getPage( "", TEMPLATE_VIEW_CUSTOMER, model );
             }
@@ -202,7 +202,7 @@ public class CustomerJspBean extends MVCAdminJspBean
         String strIdDemand = request.getParameter( Constants.PARAMETER_ID_DEMAND );
         String strIdDemandType = request.getParameter( Constants.PARAMETER_ID_DEMAND_TYPE );
 
-        Demand demand = DemandService.getDemand( strIdDemand , strIdDemandType , getUser() );
+        Demand demand = DemandService.getDemand( strIdDemand, strIdDemandType, getUser(  ) );
         Customer customer = null;
 
         if ( strId != null )
@@ -212,7 +212,7 @@ public class CustomerJspBean extends MVCAdminJspBean
                 int nId = Integer.parseInt( strId );
                 customer = CustomerHome.findByPrimaryKey( nId );
 
-                List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer , getUser() );
+                List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
                 Map<String, Object> model = getModel(  );
                 model.put( Constants.MARK_ACTION_PANELS, listPanels );
                 model.put( Constants.MARK_CUSTOMER, customer );
@@ -320,7 +320,7 @@ public class CustomerJspBean extends MVCAdminJspBean
             _customer = CustomerHome.findByPrimaryKey( nId );
         }
 
-        List<ActionPanel> listPanels = CustomerActionsService.getPanels( null  , getUser() );
+        List<ActionPanel> listPanels = CustomerActionsService.getPanels( null, getUser(  ) );
         Map<String, Object> model = getModel(  );
         model.put( Constants.MARK_ACTION_PANELS, listPanels );
         model.put( Constants.MARK_CUSTOMER, _customer );

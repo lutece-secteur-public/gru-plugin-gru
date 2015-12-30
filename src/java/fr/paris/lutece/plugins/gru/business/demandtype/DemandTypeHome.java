@@ -31,23 +31,22 @@
  *
  * License 1.0
  */
- 
 package fr.paris.lutece.plugins.gru.business.demandtype;
 
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.portal.service.plugin.PluginService;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 import fr.paris.lutece.util.ReferenceList;
+
 import java.util.List;
+
 
 /**
  * This class provides instances management methods (create, find, ...) for DemandType objects
  */
-
 public final class DemandTypeHome
 {
     // Static variable pointed at the DAO instance
-
     private static IDemandTypeDAO _dao = SpringContextService.getBean( "gru.demandTypeDAO" );
     private static Plugin _plugin = PluginService.getPlugin( "gru" );
 
@@ -101,7 +100,7 @@ public final class DemandTypeHome
      */
     public static DemandType findByPrimaryKey( int nKey )
     {
-        return _dao.load( nKey, _plugin);
+        return _dao.load( nKey, _plugin );
     }
 
     /**
@@ -109,35 +108,35 @@ public final class DemandTypeHome
      * @param strDemandTypeId The demandTypeId
      * @return The DemandType
      */
-    public static DemandType findByTypeId( String strDemandTypeId ) 
+    public static DemandType findByTypeId( String strDemandTypeId )
     {
-        return _dao.selectByTypeId( strDemandTypeId, _plugin);
+        return _dao.selectByTypeId( strDemandTypeId, _plugin );
     }
 
     /**
      * Load the data of all the demandType objects and returns them in form of a collection
      * @return the collection which contains the data of all the demandType objects
      */
-    public static List<DemandType> getDemandTypesList( )
+    public static List<DemandType> getDemandTypesList(  )
     {
         return _dao.selectDemandTypesList( _plugin );
     }
-    
+
     /**
      * Load the id of all the demandType objects and returns them in form of a collection
      * @return the collection which contains the id of all the demandType objects
      */
-    public static List<Integer> getIdDemandTypesList( )
+    public static List<Integer> getIdDemandTypesList(  )
     {
         return _dao.selectIdDemandTypesList( _plugin );
     }
+
     /**
      * Return a reference list of all demands
      * @return The list
      */
-    public static ReferenceList getDemandTypes()
+    public static ReferenceList getDemandTypes(  )
     {
         return _dao.selectDemandTypes( _plugin );
     }
 }
-

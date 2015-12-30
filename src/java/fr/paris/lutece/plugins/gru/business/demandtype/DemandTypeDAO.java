@@ -31,7 +31,6 @@
  *
  * License 1.0
  */
-
 package fr.paris.lutece.plugins.gru.business.demandtype;
 
 import fr.paris.lutece.portal.service.plugin.Plugin;
@@ -41,10 +40,10 @@ import fr.paris.lutece.util.sql.DAOUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * This class provides Data Access methods for DemandType objects
  */
-
 public final class DemandTypeDAO implements IDemandTypeDAO
 {
     // Constants
@@ -62,19 +61,19 @@ public final class DemandTypeDAO implements IDemandTypeDAO
      * @param plugin The Plugin
      * @return The new primary key
      */
-    public int newPrimaryKey( Plugin plugin)
+    public int newPrimaryKey( Plugin plugin )
     {
-        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_NEW_PK , plugin  );
-        daoUtil.executeQuery( );
+        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_NEW_PK, plugin );
+        daoUtil.executeQuery(  );
 
         int nKey = 1;
 
-        if( daoUtil.next( ) )
+        if ( daoUtil.next(  ) )
         {
-                nKey = daoUtil.getInt( 1 ) + 1;
+            nKey = daoUtil.getInt( 1 ) + 1;
         }
 
-        daoUtil.free();
+        daoUtil.free(  );
 
         return nKey;
     }
@@ -89,12 +88,12 @@ public final class DemandTypeDAO implements IDemandTypeDAO
 
         demandType.setId( newPrimaryKey( plugin ) );
 
-        daoUtil.setInt( 1, demandType.getId( ) );
-        daoUtil.setInt( 2, demandType.getDemandTypeId( ) );
-        daoUtil.setString( 3, demandType.getTitle( ) );
+        daoUtil.setInt( 1, demandType.getId(  ) );
+        daoUtil.setInt( 2, demandType.getDemandTypeId(  ) );
+        daoUtil.setString( 3, demandType.getTitle(  ) );
 
-        daoUtil.executeUpdate( );
-        daoUtil.free( );
+        daoUtil.executeUpdate(  );
+        daoUtil.free(  );
     }
 
     /**
@@ -104,20 +103,21 @@ public final class DemandTypeDAO implements IDemandTypeDAO
     public DemandType load( int nKey, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT, plugin );
-        daoUtil.setInt( 1 , nKey );
-        daoUtil.executeQuery( );
+        daoUtil.setInt( 1, nKey );
+        daoUtil.executeQuery(  );
 
         DemandType demandType = null;
 
-        if ( daoUtil.next( ) )
+        if ( daoUtil.next(  ) )
         {
-            demandType = new DemandType();
+            demandType = new DemandType(  );
             demandType.setId( daoUtil.getInt( 1 ) );
             demandType.setDemandTypeId( daoUtil.getInt( 2 ) );
             demandType.setTitle( daoUtil.getString( 3 ) );
         }
 
-        daoUtil.free( );
+        daoUtil.free(  );
+
         return demandType;
     }
 
@@ -128,9 +128,9 @@ public final class DemandTypeDAO implements IDemandTypeDAO
     public void delete( int nKey, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE, plugin );
-        daoUtil.setInt( 1 , nKey );
-        daoUtil.executeUpdate( );
-        daoUtil.free( );
+        daoUtil.setInt( 1, nKey );
+        daoUtil.executeUpdate(  );
+        daoUtil.free(  );
     }
 
     /**
@@ -140,14 +140,14 @@ public final class DemandTypeDAO implements IDemandTypeDAO
     public void store( DemandType demandType, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE, plugin );
-        
-        daoUtil.setInt( 1, demandType.getId( ) );
-        daoUtil.setInt( 2, demandType.getDemandTypeId( ) );
-        daoUtil.setString( 3, demandType.getTitle( ) );
-        daoUtil.setInt( 4, demandType.getId( ) );
 
-        daoUtil.executeUpdate( );
-        daoUtil.free( );
+        daoUtil.setInt( 1, demandType.getId(  ) );
+        daoUtil.setInt( 2, demandType.getDemandTypeId(  ) );
+        daoUtil.setString( 3, demandType.getTitle(  ) );
+        daoUtil.setInt( 4, demandType.getId(  ) );
+
+        daoUtil.executeUpdate(  );
+        daoUtil.free(  );
     }
 
     /**
@@ -163,43 +163,45 @@ public final class DemandTypeDAO implements IDemandTypeDAO
         while ( daoUtil.next(  ) )
         {
             DemandType demandType = new DemandType(  );
-            
+
             demandType.setId( daoUtil.getInt( 1 ) );
-                demandType.setDemandTypeId( daoUtil.getInt( 2 ) );
-                demandType.setTitle( daoUtil.getString( 3 ) );
+            demandType.setDemandTypeId( daoUtil.getInt( 2 ) );
+            demandType.setTitle( daoUtil.getString( 3 ) );
 
             demandTypeList.add( demandType );
         }
 
-        daoUtil.free( );
+        daoUtil.free(  );
+
         return demandTypeList;
     }
-    
+
     /**
      * {@inheritDoc }
      */
     @Override
     public List<Integer> selectIdDemandTypesList( Plugin plugin )
     {
-            @SuppressWarnings("Convert2Diamond")
-            List<Integer> demandTypeList = new ArrayList<Integer>( );
-            DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_ID, plugin );
-            daoUtil.executeQuery(  );
+        @SuppressWarnings( "Convert2Diamond" )
+        List<Integer> demandTypeList = new ArrayList<Integer>(  );
+        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_ID, plugin );
+        daoUtil.executeQuery(  );
 
-            while ( daoUtil.next(  ) )
-            {
-                demandTypeList.add( daoUtil.getInt( 1 ) );
-            }
+        while ( daoUtil.next(  ) )
+        {
+            demandTypeList.add( daoUtil.getInt( 1 ) );
+        }
 
-            daoUtil.free( );
-            return demandTypeList;
+        daoUtil.free(  );
+
+        return demandTypeList;
     }
 
     /**
      * {@inheritDoc }
      */
     @Override
-    public ReferenceList selectDemandTypes(Plugin plugin) 
+    public ReferenceList selectDemandTypes( Plugin plugin )
     {
         ReferenceList list = new ReferenceList(  );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin );
@@ -207,10 +209,11 @@ public final class DemandTypeDAO implements IDemandTypeDAO
 
         while ( daoUtil.next(  ) )
         {
-            list.addItem(daoUtil.getInt( 1 ) , daoUtil.getString( 3 ) );
+            list.addItem( daoUtil.getInt( 1 ), daoUtil.getString( 3 ) );
         }
 
-        daoUtil.free( );
+        daoUtil.free(  );
+
         return list;
     }
 
@@ -218,23 +221,24 @@ public final class DemandTypeDAO implements IDemandTypeDAO
      * {@inheritDoc }
      */
     @Override
-    public DemandType selectByTypeId(String strDemandTypeId, Plugin plugin) 
+    public DemandType selectByTypeId( String strDemandTypeId, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT_BY_TYPE_ID, plugin );
-        daoUtil.setString( 1 , strDemandTypeId );
-        daoUtil.executeQuery( );
+        daoUtil.setString( 1, strDemandTypeId );
+        daoUtil.executeQuery(  );
 
         DemandType demandType = null;
 
-        if ( daoUtil.next( ) )
+        if ( daoUtil.next(  ) )
         {
-            demandType = new DemandType();
+            demandType = new DemandType(  );
             demandType.setId( daoUtil.getInt( 1 ) );
             demandType.setDemandTypeId( daoUtil.getInt( 2 ) );
             demandType.setTitle( daoUtil.getString( 3 ) );
         }
 
-        daoUtil.free( );
+        daoUtil.free(  );
+
         return demandType;
     }
 }

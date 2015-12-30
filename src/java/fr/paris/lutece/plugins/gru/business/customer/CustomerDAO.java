@@ -101,8 +101,8 @@ public final class CustomerDAO implements ICustomerDAO
 
         daoUtil.executeUpdate(  );
         daoUtil.free(  );
-        
-        return customer.getId();
+
+        return customer.getId(  );
     }
 
     /**

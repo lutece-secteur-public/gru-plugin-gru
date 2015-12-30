@@ -130,7 +130,7 @@ public class FeatureCategoryJspBean extends ManageAdminGRUJspBean
 
         Map<String, Object> model = getModel(  );
         model.put( MARK_FEATURECATEGORY, _featurecategory );
-        model.put( Constants.MARK_COLORS_LIST, ColorService.getColorList() );
+        model.put( Constants.MARK_COLORS_LIST, ColorService.getColorList(  ) );
 
         return getPage( PROPERTY_PAGE_TITLE_CREATE_FEATURECATEGORY, TEMPLATE_CREATE_FEATURECATEGORY, model );
     }
@@ -212,7 +212,7 @@ public class FeatureCategoryJspBean extends ManageAdminGRUJspBean
 
         Map<String, Object> model = getModel(  );
         model.put( MARK_FEATURECATEGORY, _featurecategory );
-        model.put( Constants.MARK_COLORS_LIST, ColorService.getColorList() );
+        model.put( Constants.MARK_COLORS_LIST, ColorService.getColorList(  ) );
 
         return getPage( PROPERTY_PAGE_TITLE_MODIFY_FEATURECATEGORY, TEMPLATE_MODIFY_FEATURECATEGORY, model );
     }

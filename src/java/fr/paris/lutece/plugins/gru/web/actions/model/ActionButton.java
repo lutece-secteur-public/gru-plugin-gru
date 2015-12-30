@@ -33,10 +33,10 @@
  */
 package fr.paris.lutece.plugins.gru.web.actions.model;
 
+
 /**
  * ActionButton
  */
 public class ActionButton extends ActionItem
 {
-    
 }

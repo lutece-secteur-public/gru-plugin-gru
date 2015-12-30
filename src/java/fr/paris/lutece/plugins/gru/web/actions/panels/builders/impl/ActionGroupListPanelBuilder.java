@@ -96,7 +96,7 @@ public class ActionGroupListPanelBuilder implements PanelBuilder
      * {@inheritDoc }
      */
     @Override
-    public List<ActionGroup> getActionGroups( Customer customer , AdminUser user )
+    public List<ActionGroup> getActionGroups( Customer customer, AdminUser user )
     {
         List<ActionGroup> listActionGroup = new ArrayList<ActionGroup>(  );
 
@@ -104,7 +104,7 @@ public class ActionGroupListPanelBuilder implements PanelBuilder
         {
             for ( ActionGroupBuilder builder : _listActionGroupBuilders )
             {
-                listActionGroup.add( builder.buildActionGroup( customer , user ) );
+                listActionGroup.add( builder.buildActionGroup( customer, user ) );
             }
         }
 

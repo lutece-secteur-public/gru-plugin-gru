@@ -33,6 +33,7 @@
  */
 package fr.paris.lutece.plugins.gru.business.demand;
 
+
 /**
  *
  * @author pierre
@@ -44,7 +45,7 @@ public class BaseDemand
     private String _strDemandReference;
     private String _strDemandTypeId;
     private int _nDemandStatus;
-    
+
     /**
      * Returns the DemandId
      *
@@ -65,7 +66,6 @@ public class BaseDemand
         _strDemandId = strDemandId;
     }
 
-
     /**
      * Returns the DemandReference
      *
@@ -85,7 +85,6 @@ public class BaseDemand
     {
         _strDemandReference = strDemandReference;
     }
-
 
     /**
      * Returns the DemandStatus
@@ -126,5 +125,4 @@ public class BaseDemand
     {
         return _strDemandTypeId;
     }
-
 }

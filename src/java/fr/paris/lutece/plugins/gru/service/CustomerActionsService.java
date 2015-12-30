@@ -57,7 +57,7 @@ public class CustomerActionsService
      * @param customer The customer
      * @return The list of panels
      */
-    public static List<ActionPanel> getPanels( Customer customer , AdminUser user )
+    public static List<ActionPanel> getPanels( Customer customer, AdminUser user )
     {
         List<ActionPanel> listPanels = new ArrayList<ActionPanel>(  );
 
@@ -66,7 +66,7 @@ public class CustomerActionsService
             ActionPanel panel = new ActionPanel(  );
             panel.setTitle( panelBuilder.getTitle(  ) );
 
-            panel.setActionGroupList( panelBuilder.getActionGroups( customer , user ) );
+            panel.setActionGroupList( panelBuilder.getActionGroups( customer, user ) );
 
             listPanels.add( panel );
         }

@@ -31,8 +31,6 @@
  *
  * License 1.0
  */
-
- 
 package fr.paris.lutece.plugins.gru.web;
 
 import fr.paris.lutece.plugins.gru.business.demandtype.DemandType;
@@ -47,7 +45,6 @@ import fr.paris.lutece.util.url.UrlItem;
 import java.util.List;
 import java.util.Map;
 
-
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -57,7 +54,6 @@ import javax.servlet.http.HttpServletRequest;
 @Controller( controllerJsp = "ManageDemandTypes.jsp", controllerPath = "jsp/admin/plugins/gru/", right = "GRU_DEMAND_MANAGEMENT" )
 public class DemandTypeJspBean extends ManageDemandJspBean
 {
-
     ////////////////////////////////////////////////////////////////////////////
     // Constants
 
@@ -65,7 +61,6 @@ public class DemandTypeJspBean extends ManageDemandJspBean
     private static final String TEMPLATE_MANAGE_DEMANDTYPES = "/admin/plugins/gru/demandtype/manage_demandtypes.html";
     private static final String TEMPLATE_CREATE_DEMANDTYPE = "/admin/plugins/gru/demandtype/create_demandtype.html";
     private static final String TEMPLATE_MODIFY_DEMANDTYPE = "/admin/plugins/gru/demandtype/modify_demandtype.html";
-
 
     // Parameters
     private static final String PARAMETER_ID_DEMANDTYPE = "id";
@@ -78,13 +73,11 @@ public class DemandTypeJspBean extends ManageDemandJspBean
     // Markers
     private static final String MARK_DEMANDTYPE_LIST = "demandtype_list";
     private static final String MARK_DEMANDTYPE = "demandtype";
-
     private static final String JSP_MANAGE_DEMANDTYPES = "jsp/admin/plugins/gru/ManageDemandTypes.jsp";
 
     // Properties
     private static final String MESSAGE_CONFIRM_REMOVE_DEMANDTYPE = "gru.message.confirmRemoveDemandType";
     private static final String PROPERTY_DEFAULT_LIST_DEMANDTYPE_PER_PAGE = "gru.listDemandTypes.itemsPerPage";
- 
     private static final String VALIDATION_ATTRIBUTES_PREFIX = "gru.model.entity.demandtype.attribute.";
 
     // Views
@@ -102,11 +95,10 @@ public class DemandTypeJspBean extends ManageDemandJspBean
     private static final String INFO_DEMANDTYPE_CREATED = "gru.info.demandtype.created";
     private static final String INFO_DEMANDTYPE_UPDATED = "gru.info.demandtype.updated";
     private static final String INFO_DEMANDTYPE_REMOVED = "gru.info.demandtype.removed";
-    
+
     // Session variable to store working values
     private DemandType _demandtype;
-    
-    
+
     /**
      * Build the Manage View
      * @param request The HTTP request
@@ -116,8 +108,10 @@ public class DemandTypeJspBean extends ManageDemandJspBean
     public String getManageDemandTypes( HttpServletRequest request )
     {
         _demandtype = null;
+
         List<DemandType> listDemandTypes = (List<DemandType>) DemandTypeHome.getDemandTypesList(  );
-        Map<String, Object> model = getPaginatedListModel( request, MARK_DEMANDTYPE_LIST, listDemandTypes, JSP_MANAGE_DEMANDTYPES );
+        Map<String, Object> model = getPaginatedListModel( request, MARK_DEMANDTYPE_LIST, listDemandTypes,
+                JSP_MANAGE_DEMANDTYPES );
 
         return getPage( PROPERTY_PAGE_TITLE_MANAGE_DEMANDTYPES, TEMPLATE_MANAGE_DEMANDTYPES, model );
     }
@@ -209,7 +203,7 @@ public class DemandTypeJspBean extends ManageDemandJspBean
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_DEMANDTYPE ) );
 
-        if ( _demandtype == null || ( _demandtype.getId(  ) != nId ))
+        if ( ( _demandtype == null ) || ( _demandtype.getId(  ) != nId ) )
         {
             _demandtype = DemandTypeHome.findByPrimaryKey( nId );
         }
@@ -234,7 +228,7 @@ public class DemandTypeJspBean extends ManageDemandJspBean
         // Check constraints
         if ( !validateBean( _demandtype, VALIDATION_ATTRIBUTES_PREFIX ) )
         {
-            return redirect( request, VIEW_MODIFY_DEMANDTYPE, PARAMETER_ID_DEMANDTYPE, _demandtype.getId( ) );
+            return redirect( request, VIEW_MODIFY_DEMANDTYPE, PARAMETER_ID_DEMANDTYPE, _demandtype.getId(  ) );
         }
 
         DemandTypeHome.update( _demandtype );

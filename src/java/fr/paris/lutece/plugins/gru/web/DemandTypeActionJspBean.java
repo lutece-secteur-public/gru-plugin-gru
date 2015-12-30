@@ -31,8 +31,6 @@
  *
  * License 1.0
  */
-
- 
 package fr.paris.lutece.plugins.gru.web;
 
 import fr.paris.lutece.plugins.gru.business.demandtype.DemandTypeAction;
@@ -48,7 +46,6 @@ import fr.paris.lutece.util.url.UrlItem;
 import java.util.List;
 import java.util.Map;
 
-
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -58,7 +55,6 @@ import javax.servlet.http.HttpServletRequest;
 @Controller( controllerJsp = "ManageDemandTypeActions.jsp", controllerPath = "jsp/admin/plugins/gru/", right = "GRU_DEMAND_MANAGEMENT" )
 public class DemandTypeActionJspBean extends ManageDemandJspBean
 {
-
     ////////////////////////////////////////////////////////////////////////////
     // Constants
 
@@ -66,7 +62,6 @@ public class DemandTypeActionJspBean extends ManageDemandJspBean
     private static final String TEMPLATE_MANAGE_DEMANDTYPEACTIONS = "/admin/plugins/gru/demandtype/manage_demandtypeactions.html";
     private static final String TEMPLATE_CREATE_DEMANDTYPEACTION = "/admin/plugins/gru/demandtype/create_demandtypeaction.html";
     private static final String TEMPLATE_MODIFY_DEMANDTYPEACTION = "/admin/plugins/gru/demandtype/modify_demandtypeaction.html";
-
 
     // Parameters
     private static final String PARAMETER_ID_DEMANDTYPEACTION = "id";
@@ -80,13 +75,11 @@ public class DemandTypeActionJspBean extends ManageDemandJspBean
     private static final String MARK_DEMANDTYPEACTION_LIST = "demandtypeaction_list";
     private static final String MARK_DEMANDTYPEACTION = "demandtypeaction";
     private static final String MARK_DEMAND_TYPES_LIST = "demand_types_list";
-
     private static final String JSP_MANAGE_DEMANDTYPEACTIONS = "jsp/admin/plugins/gru/ManageDemandTypeActions.jsp";
 
     // Properties
     private static final String MESSAGE_CONFIRM_REMOVE_DEMANDTYPEACTION = "gru.message.confirmRemoveDemandTypeAction";
     private static final String PROPERTY_DEFAULT_LIST_DEMANDTYPEACTION_PER_PAGE = "gru.listDemandTypeActions.itemsPerPage";
- 
     private static final String VALIDATION_ATTRIBUTES_PREFIX = "gru.model.entity.demandtypeaction.attribute.";
 
     // Views
@@ -104,11 +97,10 @@ public class DemandTypeActionJspBean extends ManageDemandJspBean
     private static final String INFO_DEMANDTYPEACTION_CREATED = "gru.info.demandtypeaction.created";
     private static final String INFO_DEMANDTYPEACTION_UPDATED = "gru.info.demandtypeaction.updated";
     private static final String INFO_DEMANDTYPEACTION_REMOVED = "gru.info.demandtypeaction.removed";
-    
+
     // Session variable to store working values
     private DemandTypeAction _demandtypeaction;
-    
-    
+
     /**
      * Build the Manage View
      * @param request The HTTP request
@@ -118,8 +110,10 @@ public class DemandTypeActionJspBean extends ManageDemandJspBean
     public String getManageDemandTypeActions( HttpServletRequest request )
     {
         _demandtypeaction = null;
+
         List<DemandTypeAction> listDemandTypeActions = (List<DemandTypeAction>) DemandTypeActionHome.getDemandTypeActionsList(  );
-        Map<String, Object> model = getPaginatedListModel( request, MARK_DEMANDTYPEACTION_LIST, listDemandTypeActions, JSP_MANAGE_DEMANDTYPEACTIONS );
+        Map<String, Object> model = getPaginatedListModel( request, MARK_DEMANDTYPEACTION_LIST, listDemandTypeActions,
+                JSP_MANAGE_DEMANDTYPEACTIONS );
 
         return getPage( PROPERTY_PAGE_TITLE_MANAGE_DEMANDTYPEACTIONS, TEMPLATE_MANAGE_DEMANDTYPEACTIONS, model );
     }
@@ -137,7 +131,7 @@ public class DemandTypeActionJspBean extends ManageDemandJspBean
 
         Map<String, Object> model = getModel(  );
         model.put( MARK_DEMANDTYPEACTION, _demandtypeaction );
-        model.put( MARK_DEMAND_TYPES_LIST, DemandTypeHome.getDemandTypes() );
+        model.put( MARK_DEMAND_TYPES_LIST, DemandTypeHome.getDemandTypes(  ) );
 
         return getPage( PROPERTY_PAGE_TITLE_CREATE_DEMANDTYPEACTION, TEMPLATE_CREATE_DEMANDTYPEACTION, model );
     }
@@ -212,14 +206,14 @@ public class DemandTypeActionJspBean extends ManageDemandJspBean
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_DEMANDTYPEACTION ) );
 
-        if ( _demandtypeaction == null || ( _demandtypeaction.getId(  ) != nId ))
+        if ( ( _demandtypeaction == null ) || ( _demandtypeaction.getId(  ) != nId ) )
         {
             _demandtypeaction = DemandTypeActionHome.findByPrimaryKey( nId );
         }
 
         Map<String, Object> model = getModel(  );
         model.put( MARK_DEMANDTYPEACTION, _demandtypeaction );
-        model.put( MARK_DEMAND_TYPES_LIST, DemandTypeHome.getDemandTypes() );
+        model.put( MARK_DEMAND_TYPES_LIST, DemandTypeHome.getDemandTypes(  ) );
 
         return getPage( PROPERTY_PAGE_TITLE_MODIFY_DEMANDTYPEACTION, TEMPLATE_MODIFY_DEMANDTYPEACTION, model );
     }
@@ -238,7 +232,8 @@ public class DemandTypeActionJspBean extends ManageDemandJspBean
         // Check constraints
         if ( !validateBean( _demandtypeaction, VALIDATION_ATTRIBUTES_PREFIX ) )
         {
-            return redirect( request, VIEW_MODIFY_DEMANDTYPEACTION, PARAMETER_ID_DEMANDTYPEACTION, _demandtypeaction.getId( ) );
+            return redirect( request, VIEW_MODIFY_DEMANDTYPEACTION, PARAMETER_ID_DEMANDTYPEACTION,
+                _demandtypeaction.getId(  ) );
         }
 
         DemandTypeActionHome.update( _demandtypeaction );

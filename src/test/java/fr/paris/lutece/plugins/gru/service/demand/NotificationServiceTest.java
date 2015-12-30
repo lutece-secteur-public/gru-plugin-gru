@@ -53,9 +53,9 @@ public class NotificationServiceTest
     public void testSomeMethod(  ) throws IOException
     {
         String strJSON = IOUtils.toString( this.getClass(  ).getResourceAsStream( FILE_TEST ), "UTF-8" );
-        Notification notification = new Notification();
-        NotificationService.parseJSON( notification , strJSON );
-        
-        System.out.println( "recipient :" + notification.getEmail().getRecipient() );
+        Notification notification = new Notification(  );
+        NotificationService.parseJSON( notification, strJSON );
+
+        System.out.println( "recipient :" + notification.getEmail(  ).getRecipient(  ) );
     }
 }

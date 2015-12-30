@@ -41,7 +41,9 @@ import fr.paris.lutece.portal.service.rbac.ResourceIdService;
 import fr.paris.lutece.portal.service.rbac.ResourceType;
 import fr.paris.lutece.portal.service.rbac.ResourceTypeManager;
 import fr.paris.lutece.util.ReferenceList;
+
 import java.util.Locale;
+
 
 /**
  * DemandTypeAction ResourceIdService
@@ -50,26 +52,25 @@ public class DemandTypeActionResourceIdService extends ResourceIdService
 {
     private static final String PROPERTY_LABEL_RESOURCE_TYPE = "gru.rbac.demandTypeAction.resourceType";
     private static final String PROPERTY_LABEL_ACCESS = "gru.rbac.demandTypeAction.permission.access";
-    
+
     /**
      * {@inheritDoc }
      */
     @Override
-    public void register()
+    public void register(  )
     {
         ResourceType rt = new ResourceType(  );
         rt.setResourceIdServiceClass( DemandTypeActionResourceIdService.class.getName(  ) );
         rt.setPluginName( Constants.PLUGIN_NAME );
         rt.setResourceTypeKey( DemandTypeAction.RESOURCE_TYPE );
         rt.setResourceTypeLabelKey( PROPERTY_LABEL_RESOURCE_TYPE );
-        
+
         Permission p = new Permission(  );
         p.setPermissionKey( DemandTypeAction.PERMISSION_ACCESS );
         p.setPermissionTitleKey( PROPERTY_LABEL_ACCESS );
         rt.registerPermission( p );
-        
-        ResourceTypeManager.registerResourceType( rt );
 
+        ResourceTypeManager.registerResourceType( rt );
     }
 
     /**
@@ -78,7 +79,7 @@ public class DemandTypeActionResourceIdService extends ResourceIdService
     @Override
     public ReferenceList getResourceIdList( Locale locale )
     {
-        return DemandTypeActionHome.getActions();
+        return DemandTypeActionHome.getActions(  );
     }
 
     /**
@@ -87,8 +88,8 @@ public class DemandTypeActionResourceIdService extends ResourceIdService
     @Override
     public String getTitle( String strId, Locale locale )
     {
-        DemandTypeAction action = DemandTypeActionHome.findByPrimaryKey( Integer.parseInt(strId));
-        return action.getDemandType() + " - " + action.getLabel();
+        DemandTypeAction action = DemandTypeActionHome.findByPrimaryKey( Integer.parseInt( strId ) );
+
+        return action.getDemandType(  ) + " - " + action.getLabel(  );
     }
-    
 }

@@ -42,36 +42,38 @@ import fr.paris.lutece.plugins.gru.web.actions.buttons.builders.ButtonListBuilde
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionButton;
 import fr.paris.lutece.portal.business.user.AdminUser;
 import fr.paris.lutece.portal.service.rbac.RBACService;
+
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * HomeButtonListBuilder
  */
 public class HomeButtonListBuilder implements ButtonListBuilder
 {
-    
     /**
      * {@inheritDoc }
      */
     @Override
-    public List<ActionButton> buildActionButtonList(Customer customer, AdminUser user)
+    public List<ActionButton> buildActionButtonList( Customer customer, AdminUser user )
     {
-        List<ActionButton> listButtons = new ArrayList<ActionButton>();
-        for( Feature feature : FeatureService.getHomeFeatures() )
+        List<ActionButton> listButtons = new ArrayList<ActionButton>(  );
+
+        for ( Feature feature : FeatureService.getHomeFeatures(  ) )
         {
-            if( RBACService.isAuthorized( feature, Feature.PERMISSION_ACCESS , user ) )
+            if ( RBACService.isAuthorized( feature, Feature.PERMISSION_ACCESS, user ) )
             {
-                FeatureCategory category = FeatureCategoryHome.findByPrimaryKey( feature.getIdCategory());
-                ActionButton button = new ActionButton();
-                button.setTitle( feature.getName());
-                button.setLink( FeatureService.getCustomerLink(feature, customer));
-                button.setIcon( category.getIcon() );
-                button.setColor( category.getColor() );
-                listButtons.add(button);
+                FeatureCategory category = FeatureCategoryHome.findByPrimaryKey( feature.getIdCategory(  ) );
+                ActionButton button = new ActionButton(  );
+                button.setTitle( feature.getName(  ) );
+                button.setLink( FeatureService.getCustomerLink( feature, customer ) );
+                button.setIcon( category.getIcon(  ) );
+                button.setColor( category.getColor(  ) );
+                listButtons.add( button );
             }
         }
+
         return listButtons;
     }
-    
 }

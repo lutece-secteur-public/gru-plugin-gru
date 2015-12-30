@@ -31,51 +31,49 @@
  *
  * License 1.0
  */
-
-
 package fr.paris.lutece.plugins.gru.business.demand;
+
 
 /**
  * Action
  */
-public class Action 
+public class Action
 {
     // Variables declarations 
     private String _strName;
     private String _strUrl;
-    
-    
-       /**
-        * Returns the Name
-        * @return The Name
-        */ 
-    public String getName()
+
+    /**
+     * Returns the Name
+     * @return The Name
+     */
+    public String getName(  )
     {
         return _strName;
     }
-    
-       /**
-        * Sets the Name
-        * @param strName The Name
-        */ 
+
+    /**
+     * Sets the Name
+     * @param strName The Name
+     */
     public void setName( String strName )
     {
         _strName = strName;
     }
-    
-       /**
-        * Returns the Url
-        * @return The Url
-        */ 
-    public String getUrl()
+
+    /**
+     * Returns the Url
+     * @return The Url
+     */
+    public String getUrl(  )
     {
         return _strUrl;
     }
-    
-       /**
-        * Sets the Url
-        * @param strUrl The Url
-        */ 
+
+    /**
+     * Sets the Url
+     * @param strUrl The Url
+     */
     public void setUrl( String strUrl )
     {
         _strUrl = strUrl;

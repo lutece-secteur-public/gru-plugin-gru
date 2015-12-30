@@ -96,7 +96,7 @@ public final class FeatureDAO implements IFeatureDAO
         daoUtil.setInt( nIndex++, feature.getTarget(  ) );
         daoUtil.setInt( nIndex++, feature.getIdCategory(  ) );
         daoUtil.setInt( nIndex++, feature.getIdOrder(  ) );
-        daoUtil.setInt( nIndex++, feature.getDisplayLevel());
+        daoUtil.setInt( nIndex++, feature.getDisplayLevel(  ) );
 
         daoUtil.executeUpdate(  );
         daoUtil.free(  );
@@ -126,7 +126,7 @@ public final class FeatureDAO implements IFeatureDAO
             feature.setTarget( daoUtil.getInt( nIndex++ ) );
             feature.setIdCategory( daoUtil.getInt( nIndex++ ) );
             feature.setIdOrder( daoUtil.getInt( nIndex++ ) );
-            feature.setDisplayLevel(daoUtil.getInt( nIndex++ ) );
+            feature.setDisplayLevel( daoUtil.getInt( nIndex++ ) );
         }
 
         daoUtil.free(  );
@@ -162,7 +162,7 @@ public final class FeatureDAO implements IFeatureDAO
         daoUtil.setInt( nIndex++, feature.getTarget(  ) );
         daoUtil.setInt( nIndex++, feature.getIdCategory(  ) );
         daoUtil.setInt( nIndex++, feature.getIdOrder(  ) );
-        daoUtil.setInt( nIndex++, feature.getDisplayLevel());
+        daoUtil.setInt( nIndex++, feature.getDisplayLevel(  ) );
         daoUtil.setInt( nIndex++, feature.getId(  ) );
 
         daoUtil.executeUpdate(  );
@@ -192,7 +192,7 @@ public final class FeatureDAO implements IFeatureDAO
             feature.setIdCategory( daoUtil.getInt( nIndex++ ) );
             feature.setCategory( daoUtil.getString( nIndex++ ) );
             feature.setIdOrder( daoUtil.getInt( nIndex++ ) );
-            feature.setDisplayLevel(daoUtil.getInt( nIndex++ ) );
+            feature.setDisplayLevel( daoUtil.getInt( nIndex++ ) );
 
             featureList.add( feature );
         }
@@ -225,7 +225,7 @@ public final class FeatureDAO implements IFeatureDAO
             feature.setTarget( daoUtil.getInt( nIndex++ ) );
             feature.setIdCategory( daoUtil.getInt( nIndex++ ) );
             feature.setIdOrder( daoUtil.getInt( nIndex++ ) );
-            feature.setDisplayLevel(daoUtil.getInt( nIndex++ ) );
+            feature.setDisplayLevel( daoUtil.getInt( nIndex++ ) );
 
             featureList.add( feature );
         }

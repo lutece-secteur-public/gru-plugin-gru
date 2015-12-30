@@ -136,7 +136,7 @@ public class FeatureJspBean extends ManageAdminGRUJspBean
         model.put( MARK_FEATURE, _feature );
         model.put( MARK_CATEGORIES_LIST, FeatureCategoryHome.getCategoriesList(  ) );
         model.put( MARK_TARGETS_LIST, ActionLinkService.getTargetList( getLocale(  ) ) );
-        model.put( MARK_DISPLAY_LEVELS_LIST, FeatureService.getFeatureDisplayLevels( getLocale() ) );
+        model.put( MARK_DISPLAY_LEVELS_LIST, FeatureService.getFeatureDisplayLevels( getLocale(  ) ) );
 
         return getPage( PROPERTY_PAGE_TITLE_CREATE_FEATURE, TEMPLATE_CREATE_FEATURE, model );
     }
@@ -218,7 +218,7 @@ public class FeatureJspBean extends ManageAdminGRUJspBean
         Map<String, Object> model = getModel(  );
         model.put( MARK_CATEGORIES_LIST, FeatureCategoryHome.getCategoriesList(  ) );
         model.put( MARK_TARGETS_LIST, ActionLinkService.getTargetList( getLocale(  ) ) );
-        model.put( MARK_DISPLAY_LEVELS_LIST, FeatureService.getFeatureDisplayLevels( getLocale() ) );
+        model.put( MARK_DISPLAY_LEVELS_LIST, FeatureService.getFeatureDisplayLevels( getLocale(  ) ) );
         model.put( MARK_FEATURE, _feature );
 
         return getPage( PROPERTY_PAGE_TITLE_MODIFY_FEATURE, TEMPLATE_MODIFY_FEATURE, model );

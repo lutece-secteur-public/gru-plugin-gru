@@ -35,13 +35,13 @@ package fr.paris.lutece.plugins.gru.service.demand;
 
 import fr.paris.lutece.plugins.gru.business.customer.Customer;
 import fr.paris.lutece.plugins.gru.business.customer.CustomerHome;
-import fr.paris.lutece.plugins.gru.service.demandtype.DemandTypeService;
 import fr.paris.lutece.plugins.gru.business.demand.BaseDemand;
 import fr.paris.lutece.plugins.gru.business.demand.Demand;
 import fr.paris.lutece.plugins.gru.business.demand.Notification;
+import fr.paris.lutece.plugins.gru.service.demandtype.DemandTypeService;
 import fr.paris.lutece.portal.business.user.AdminUser;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -51,12 +51,13 @@ import java.util.List;
  */
 public class MokeDemandService implements IDemandService
 {
-    private static final String JSON = "{\n" + "   \"notification\": {\n" + "    \"user_guid\": 1108,\n" + " \"notification_source\": \"Gestion des sollicitations\",\n" +
-        "    \"email\": \"mdupont@domain.com\",\n" + "    \"crm_status_id\": 1,\n" +
-        "    \"notification_type\": \"\",\n" + "    \"demand_id\": 1099,\n" + "    \"demand_id_type\": 14,\n" +
-        "    \"demand_max_step\": 5,\n" + "    \"demand_user_current_step\": 3,\n" + "    \"demand_state\": 9,\n" +
-        "\n" + "    \"user_email\": {\n" + "      \"sender_name\": \"Mairie de Paris\",\n" +
-        "      \"sender_email\": \"no_reply@paris.fr\",\n" + "      \"recipient\": \"mdupont@domain.com\",\n" +
+    private static final String JSON = "{\n" + "   \"notification\": {\n" + "    \"user_guid\": 1108,\n" +
+        " \"notification_source\": \"Gestion des sollicitations\",\n" + "    \"email\": \"mdupont@domain.com\",\n" +
+        "    \"crm_status_id\": 1,\n" + "    \"notification_type\": \"\",\n" + "    \"demand_id\": 1099,\n" +
+        "    \"demand_id_type\": 14,\n" + "    \"demand_max_step\": 5,\n" + "    \"demand_user_current_step\": 3,\n" +
+        "    \"demand_state\": 9,\n" + "\n" + "    \"user_email\": {\n" +
+        "      \"sender_name\": \"Mairie de Paris\",\n" + "      \"sender_email\": \"no_reply@paris.fr\",\n" +
+        "      \"recipient\": \"mdupont@domain.com\",\n" +
         "      \"subject\": \"[Mairie de Paris] Demande de carte de stationnement\",\n" +
         "      \"message\": \"Bonjour Monsieur Maurice Dupont, Votre demande de carte de stationnement est en attente de validation. ...\",\n" +
         "      \"cc\": \"\",\n" + "      \"cci\": \"\"\n" + "    },\n" + "\n" + "    \"user_dashboard\": {\n" +
@@ -73,17 +74,15 @@ public class MokeDemandService implements IDemandService
         "      \"display_level_sms_notification\": 2,\n" +
         "      \"view_sms_notification\": \"SMS envoyé au numéro 0680125345 _ Message : Votre demande de carte de stationnement est en attente de validation.\"\n" +
         "    }\n" + "  }\n" + "}";
-
-    
     private static List<BaseDemand> _listDemand;
-    
+
     @Override
-    public Demand getDemand( String strDemandId , String strDemandTypeId , AdminUser user )
+    public Demand getDemand( String strDemandId, String strDemandTypeId, AdminUser user )
     {
-        BaseDemand base = getList().get( Integer.parseInt( strDemandId ));
-        
+        BaseDemand base = getList(  ).get( Integer.parseInt( strDemandId ) );
+
         Customer customer = CustomerHome.findByPrimaryKey( 1 );
-        Demand demand = DemandTypeService.buildDemand( base , customer , user );
+        Demand demand = DemandTypeService.buildDemand( base, customer, user );
 
         Notification notification = new Notification(  );
         notification.setTimestamp( ( new Date(  ) ).getTime(  ) );
@@ -95,49 +94,46 @@ public class MokeDemandService implements IDemandService
     }
 
     @Override
-    public List<BaseDemand> getDemands( String strCustomerId , AdminUser user )
+    public List<BaseDemand> getDemands( String strCustomerId, AdminUser user )
     {
-        return getList();
+        return getList(  );
     }
-    
-    private List<BaseDemand> getList()
+
+    private List<BaseDemand> getList(  )
     {
-        if( _listDemand == null )
+        if ( _listDemand == null )
         {
-            _listDemand = new ArrayList<BaseDemand>();
-        
-            BaseDemand demand1 = new BaseDemand();
-            demand1.setId( "0");
+            _listDemand = new ArrayList<BaseDemand>(  );
+
+            BaseDemand demand1 = new BaseDemand(  );
+            demand1.setId( "0" );
             demand1.setReference( "DVD15031324" );
-            demand1.setDemandTypeId( "100");
+            demand1.setDemandTypeId( "100" );
             demand1.setStatus( Demand.STATUS_CLOSED );
-            _listDemand.add(demand1);
+            _listDemand.add( demand1 );
 
-            BaseDemand demand2 = new BaseDemand();
-            demand2.setId( "1");
+            BaseDemand demand2 = new BaseDemand(  );
+            demand2.setId( "1" );
             demand2.setReference( "INFO15031324" );
-            demand2.setDemandTypeId( "101");
+            demand2.setDemandTypeId( "101" );
             demand2.setStatus( Demand.STATUS_INPROGRESS );
-            _listDemand.add(demand2);
+            _listDemand.add( demand2 );
 
-            BaseDemand demand3 = new BaseDemand();
-            demand3.setId( "2");
+            BaseDemand demand3 = new BaseDemand(  );
+            demand3.setId( "2" );
             demand3.setReference( "SAV15031324" );
-            demand3.setDemandTypeId( "102");
+            demand3.setDemandTypeId( "102" );
             demand3.setStatus( Demand.STATUS_INPROGRESS );
-            _listDemand.add(demand3);
+            _listDemand.add( demand3 );
 
-            BaseDemand demand4 = new BaseDemand();
-            demand4.setId( "3");
+            BaseDemand demand4 = new BaseDemand(  );
+            demand4.setId( "3" );
             demand4.setReference( "DU15031324" );
             demand4.setDemandTypeId( "103" );
             demand4.setStatus( Demand.STATUS_INPROGRESS );
-            _listDemand.add(demand4);
+            _listDemand.add( demand4 );
         }
+
         return _listDemand;
     }
-    
-    
-    
-    
 }

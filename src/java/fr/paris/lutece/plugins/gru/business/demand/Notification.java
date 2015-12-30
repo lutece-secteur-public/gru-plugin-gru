@@ -124,11 +124,11 @@ public class Notification
     * Returns the Email object
     * @return The Email object
     */
-    public Email getEmail() 
+    public Email getEmail(  )
     {
         return _email;
     }
-    
+
     /**
      * Sets the SMS object
      * @param sms The SMS object
@@ -142,9 +142,8 @@ public class Notification
     * Returns the SMS Object
     * @return The SMS Object
     */
-    public Sms getSms() 
+    public Sms getSms(  )
     {
         return _sms;
     }
-
 }

@@ -34,9 +34,11 @@
 package fr.paris.lutece.plugins.gru.utils;
 
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+
 
 /**
  * ColorService
@@ -45,20 +47,22 @@ public class ColorService
 {
     private static final String PROPERTY_COLORS_LIST = "gru.colors.list";
     private static List<String> _listColors;
-    
-    public static List<String> getColorList()
+
+    public static List<String> getColorList(  )
     {
-        if( _listColors == null )
+        if ( _listColors == null )
         {
-            _listColors = new ArrayList<String>();
+            _listColors = new ArrayList<String>(  );
+
             String strColors = AppPropertiesService.getProperty( PROPERTY_COLORS_LIST );
-            StringTokenizer st = new StringTokenizer( strColors , "," );
-            while( st.hasMoreTokens() )
+            StringTokenizer st = new StringTokenizer( strColors, "," );
+
+            while ( st.hasMoreTokens(  ) )
             {
-                _listColors.add( st.nextToken().trim() );
+                _listColors.add( st.nextToken(  ).trim(  ) );
             }
         }
+
         return _listColors;
     }
-            
 }

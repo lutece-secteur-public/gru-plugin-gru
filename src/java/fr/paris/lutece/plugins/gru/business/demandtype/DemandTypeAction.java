@@ -30,47 +30,44 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * License 1.0
- */ 
+ */
 package fr.paris.lutece.plugins.gru.business.demandtype;
 
 import fr.paris.lutece.portal.service.rbac.RBACResource;
-import javax.validation.constraints.*;
+
 import org.hibernate.validator.constraints.*;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.*;
+
 
 /**
  * This is the business class for the object DemandTypeAction
- */ 
+ */
 public class DemandTypeAction implements Serializable, RBACResource
 {
     public static final String RESOURCE_TYPE = "GRU_DEMAND_ACTION";
     public static final String PERMISSION_ACCESS = "ACCESS";
-    
     private static final long serialVersionUID = 1L;
 
     // Variables declarations 
     private int _nId;
-    
     @NotEmpty( message = "#i18n{gru.validation.demandtypeaction.ActionLink.notEmpty}" )
-    @Size( max = 255 , message = "#i18n{gru.validation.demandtypeaction.ActionLink.size}" ) 
+    @Size( max = 255, message = "#i18n{gru.validation.demandtypeaction.ActionLink.size}" )
     private String _strActionLink;
-    
     @NotEmpty( message = "#i18n{gru.validation.demandtypeaction.ActionLabel.notEmpty}" )
-    @Size( max = 50 , message = "#i18n{gru.validation.demandtypeaction.ActionLabel.size}" ) 
+    @Size( max = 50, message = "#i18n{gru.validation.demandtypeaction.ActionLabel.size}" )
     private String _strActionLabel;
-    
     private int _nIdDemandType;
-    
-    @Size( max = 50 , message = "#i18n{gru.validation.demandtypeaction.DemandType.size}" ) 
+    @Size( max = 50, message = "#i18n{gru.validation.demandtypeaction.DemandType.size}" )
     private String _strDemandType;
 
     /**
      * Returns the Id
      * @return The Id
      */
-    public int getId( )
+    public int getId(  )
     {
         return _nId;
     }
@@ -78,7 +75,7 @@ public class DemandTypeAction implements Serializable, RBACResource
     /**
      * Sets the Id
      * @param nId The Id
-     */ 
+     */
     public void setId( int nId )
     {
         _nId = nId;
@@ -88,7 +85,7 @@ public class DemandTypeAction implements Serializable, RBACResource
      * Returns the ActionLink
      * @return The ActionLink
      */
-    public String getLink( )
+    public String getLink(  )
     {
         return _strActionLink;
     }
@@ -96,16 +93,17 @@ public class DemandTypeAction implements Serializable, RBACResource
     /**
      * Sets the ActionLink
      * @param strActionLink The ActionLink
-     */ 
+     */
     public void setLink( String strActionLink )
     {
         _strActionLink = strActionLink;
     }
+
     /**
      * Returns the ActionLabel
      * @return The ActionLabel
      */
-    public String getLabel( )
+    public String getLabel(  )
     {
         return _strActionLabel;
     }
@@ -113,16 +111,17 @@ public class DemandTypeAction implements Serializable, RBACResource
     /**
      * Sets the ActionLabel
      * @param strActionLabel The ActionLabel
-     */ 
+     */
     public void setLabel( String strActionLabel )
     {
         _strActionLabel = strActionLabel;
     }
+
     /**
      * Returns the IdDemandType
      * @return The IdDemandType
      */
-    public int getIdDemandType( )
+    public int getIdDemandType(  )
     {
         return _nIdDemandType;
     }
@@ -130,16 +129,17 @@ public class DemandTypeAction implements Serializable, RBACResource
     /**
      * Sets the IdDemandType
      * @param nIdDemandType The IdDemandType
-     */ 
+     */
     public void setIdDemandType( int nIdDemandType )
     {
         _nIdDemandType = nIdDemandType;
     }
+
     /**
      * Returns the DemandType
      * @return The DemandType
      */
-    public String getDemandType( )
+    public String getDemandType(  )
     {
         return _strDemandType;
     }
@@ -147,7 +147,7 @@ public class DemandTypeAction implements Serializable, RBACResource
     /**
      * Sets the DemandType
      * @param strDemandType The DemandType
-     */ 
+     */
     public void setDemandType( String strDemandType )
     {
         _strDemandType = strDemandType;
@@ -155,12 +155,12 @@ public class DemandTypeAction implements Serializable, RBACResource
 
     ////////////////////////////////////////////////////////////////////////////
     // RBAC Resource implementation
-    
+
     /**
      * {@inheritDoc }
      */
     @Override
-    public String getResourceTypeCode()
+    public String getResourceTypeCode(  )
     {
         return RESOURCE_TYPE;
     }
@@ -169,8 +169,8 @@ public class DemandTypeAction implements Serializable, RBACResource
      * {@inheritDoc }
      */
     @Override
-    public String getResourceId()
+    public String getResourceId(  )
     {
         return "" + _nId;
     }
-    }
+}

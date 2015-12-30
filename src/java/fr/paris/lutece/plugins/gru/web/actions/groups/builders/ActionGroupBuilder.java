@@ -49,5 +49,5 @@ public interface ActionGroupBuilder
      * @param user The Admin User
      * @return The panel
      */
-    ActionGroup buildActionGroup( Customer customer , AdminUser user );
+    ActionGroup buildActionGroup( Customer customer, AdminUser user );
 }

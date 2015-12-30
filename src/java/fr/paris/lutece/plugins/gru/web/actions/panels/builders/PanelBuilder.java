@@ -59,5 +59,5 @@ public interface PanelBuilder
      * @param user The Admin User
      * @return The ListActionGroups
      */
-    List<ActionGroup> getActionGroups( Customer customer , AdminUser user );
+    List<ActionGroup> getActionGroups( Customer customer, AdminUser user );
 }

@@ -44,9 +44,11 @@ import fr.paris.lutece.plugins.gru.business.demandtype.DemandTypeHome;
 import fr.paris.lutece.plugins.gru.service.ActionLinkService;
 import fr.paris.lutece.portal.business.user.AdminUser;
 import fr.paris.lutece.portal.service.rbac.RBACService;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 /**
  * Demande Type Service
@@ -54,37 +56,38 @@ import java.util.Map;
 public class DemandTypeService
 {
     private static final String BOOKMARK_ID = "{id}";
-    
-    private static Map<String, DemandType> _mapDemandTypes = new HashMap<String, DemandType>();
-    
-    public static Demand buildDemand( BaseDemand base , Customer customer , AdminUser user )
+    private static Map<String, DemandType> _mapDemandTypes = new HashMap<String, DemandType>(  );
+
+    public static Demand buildDemand( BaseDemand base, Customer customer, AdminUser user )
     {
         Demand demand = new Demand( base );
-        DemandType type = _mapDemandTypes.get( demand.getDemandTypeId() );
-        if( type == null )
+        DemandType type = _mapDemandTypes.get( demand.getDemandTypeId(  ) );
+
+        if ( type == null )
         {
-            type = DemandTypeHome.findByTypeId( demand.getDemandTypeId() );
-            _mapDemandTypes.put( demand.getDemandTypeId() , type );
+            type = DemandTypeHome.findByTypeId( demand.getDemandTypeId(  ) );
+            _mapDemandTypes.put( demand.getDemandTypeId(  ), type );
         }
-        demand.setTitle( type.getTitle() );
-        List<DemandTypeAction> listActions = DemandTypeActionHome.getActionsByType( type.getId() );
-        for( DemandTypeAction dta : listActions )
+
+        demand.setTitle( type.getTitle(  ) );
+
+        List<DemandTypeAction> listActions = DemandTypeActionHome.getActionsByType( type.getId(  ) );
+
+        for ( DemandTypeAction dta : listActions )
         {
-            if( RBACService.isAuthorized( dta , DemandTypeAction.PERMISSION_ACCESS , user ))
+            if ( RBACService.isAuthorized( dta, DemandTypeAction.PERMISSION_ACCESS, user ) )
             {
-                Action action = new Action();
-                action.setName( dta.getLabel() );
-                String strUrl = dta.getLink();
-                strUrl = strUrl.replace( BOOKMARK_ID , demand.getId() );
+                Action action = new Action(  );
+                action.setName( dta.getLabel(  ) );
+
+                String strUrl = dta.getLink(  );
+                strUrl = strUrl.replace( BOOKMARK_ID, demand.getId(  ) );
                 // TODO manage target
-                action.setUrl( ActionLinkService.buildLink( strUrl, ActionLinkService.TARGET_NO_FRAME , customer) );
+                action.setUrl( ActionLinkService.buildLink( strUrl, ActionLinkService.TARGET_NO_FRAME, customer ) );
                 demand.addAction( action );
             }
         }
-        
+
         return demand;
-        
     }
-            
-    
 }

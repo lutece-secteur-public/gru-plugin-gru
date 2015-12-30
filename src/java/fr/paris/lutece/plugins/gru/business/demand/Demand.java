@@ -52,22 +52,21 @@ public class Demand extends BaseDemand
     private List<Notification> _listNotifications = new ArrayList<Notification>(  );
     private List<Action> _listActions = new ArrayList<Action>(  );
 
- 
     /** Constructor */
-    public Demand()
+    public Demand(  )
     {
     }
-    
+
     /**
      * Constructor
-     * @param base Base demand 
+     * @param base Base demand
      */
     public Demand( BaseDemand base )
     {
-        setId( base.getId());
-        setReference( base.getReference() );
-        setDemandTypeId( base.getDemandTypeId() );
-        setStatus( base.getStatus() );
+        setId( base.getId(  ) );
+        setReference( base.getReference(  ) );
+        setDemandTypeId( base.getDemandTypeId(  ) );
+        setStatus( base.getStatus(  ) );
     }
 
     /**
@@ -87,7 +86,7 @@ public class Demand extends BaseDemand
     {
         _strTitle = strTitle;
     }
-    
+
     /**
      * Returns the Notifications
      *
@@ -145,6 +144,4 @@ public class Demand extends BaseDemand
     {
         _listActions.add( notification );
     }
-
-    
 }

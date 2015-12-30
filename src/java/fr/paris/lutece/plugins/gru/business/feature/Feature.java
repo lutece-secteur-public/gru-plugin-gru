@@ -34,6 +34,7 @@
 package fr.paris.lutece.plugins.gru.business.feature;
 
 import fr.paris.lutece.portal.service.rbac.RBACResource;
+
 import org.hibernate.validator.constraints.*;
 
 import java.io.Serializable;
@@ -49,11 +50,9 @@ public class Feature implements Serializable, RBACResource
     // RBAC management
     public static final String RESOURCE_TYPE = "GRU_FEATURE";
     public static final String PERMISSION_ACCESS = "ACCESS";
-
     public static final int DISPLAY_STANDARD = 0;
     public static final int DISPLAY_HOME = 1;
     public static final int DISPLAY_HIDDEN = -1;
-
     private static final long serialVersionUID = 1L;
 
     // Variables declarations 
@@ -213,7 +212,7 @@ public class Feature implements Serializable, RBACResource
     {
         _nTarget = nTarget;
     }
-    
+
     /**
      * Returns the DisplayLevel
      * @return The DisplayLevel
@@ -231,33 +230,33 @@ public class Feature implements Serializable, RBACResource
     {
         _nDisplayLevel = nDisplayLevel;
     }
-    
+
     /**
      * Is feature disabled
      * @return true if disabled otherwise false
      */
-    public boolean isHidden()
+    public boolean isHidden(  )
     {
         return _nDisplayLevel == DISPLAY_HIDDEN;
     }
-    
+
     /**
      * Is feature on Home page
      * @return true if on Home page otherwise false
      */
-    public boolean isHome()
+    public boolean isHome(  )
     {
         return _nDisplayLevel == DISPLAY_HOME;
     }
 
     ////////////////////////////////////////////////////////////////////////////
     // RBAC Resource implementation
-    
+
     /**
      * {@inheritDoc }
      */
     @Override
-    public String getResourceTypeCode()
+    public String getResourceTypeCode(  )
     {
         return RESOURCE_TYPE;
     }
@@ -266,9 +265,8 @@ public class Feature implements Serializable, RBACResource
      * {@inheritDoc }
      */
     @Override
-    public String getResourceId()
+    public String getResourceId(  )
     {
         return "" + _nId;
     }
-    
 }

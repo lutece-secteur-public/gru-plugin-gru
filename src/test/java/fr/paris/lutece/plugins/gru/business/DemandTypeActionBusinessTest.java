@@ -31,7 +31,6 @@
  *
  * License 1.0
  */
-
 package fr.paris.lutece.plugins.gru.business;
 
 import fr.paris.lutece.plugins.gru.business.demandtype.DemandTypeAction;
@@ -53,7 +52,7 @@ public class DemandTypeActionBusinessTest extends LuteceTestCase
     public void testBusiness(  )
     {
         // Initialize an object
-        DemandTypeAction demandTypeAction = new DemandTypeAction();
+        DemandTypeAction demandTypeAction = new DemandTypeAction(  );
         demandTypeAction.setLink( ACTIONLINK1 );
         demandTypeAction.setLabel( ACTIONLABEL1 );
         demandTypeAction.setIdDemandType( IDDEMANDTYPE1 );
@@ -61,11 +60,12 @@ public class DemandTypeActionBusinessTest extends LuteceTestCase
 
         // Create test
         DemandTypeActionHome.create( demandTypeAction );
-        DemandTypeAction demandTypeActionStored = DemandTypeActionHome.findByPrimaryKey( demandTypeAction.getId( ) );
-        assertEquals( demandTypeActionStored.getLink() , demandTypeAction.getLink( ) );
-        assertEquals( demandTypeActionStored.getLabel() , demandTypeAction.getLabel( ) );
-        assertEquals( demandTypeActionStored.getIdDemandType() , demandTypeAction.getIdDemandType( ) );
-        assertEquals( demandTypeActionStored.getDemandType() , demandTypeAction.getDemandType( ) );
+
+        DemandTypeAction demandTypeActionStored = DemandTypeActionHome.findByPrimaryKey( demandTypeAction.getId(  ) );
+        assertEquals( demandTypeActionStored.getLink(  ), demandTypeAction.getLink(  ) );
+        assertEquals( demandTypeActionStored.getLabel(  ), demandTypeAction.getLabel(  ) );
+        assertEquals( demandTypeActionStored.getIdDemandType(  ), demandTypeAction.getIdDemandType(  ) );
+        assertEquals( demandTypeActionStored.getDemandType(  ), demandTypeAction.getDemandType(  ) );
 
         // Update test
         demandTypeAction.setLink( ACTIONLINK2 );
@@ -73,20 +73,18 @@ public class DemandTypeActionBusinessTest extends LuteceTestCase
         demandTypeAction.setIdDemandType( IDDEMANDTYPE2 );
         demandTypeAction.setDemandType( DEMANDTYPE2 );
         DemandTypeActionHome.update( demandTypeAction );
-        demandTypeActionStored = DemandTypeActionHome.findByPrimaryKey( demandTypeAction.getId( ) );
-        assertEquals( demandTypeActionStored.getLink() , demandTypeAction.getLink( ) );
-        assertEquals( demandTypeActionStored.getLabel() , demandTypeAction.getLabel( ) );
-        assertEquals( demandTypeActionStored.getIdDemandType() , demandTypeAction.getIdDemandType( ) );
-        assertEquals( demandTypeActionStored.getDemandType() , demandTypeAction.getDemandType( ) );
+        demandTypeActionStored = DemandTypeActionHome.findByPrimaryKey( demandTypeAction.getId(  ) );
+        assertEquals( demandTypeActionStored.getLink(  ), demandTypeAction.getLink(  ) );
+        assertEquals( demandTypeActionStored.getLabel(  ), demandTypeAction.getLabel(  ) );
+        assertEquals( demandTypeActionStored.getIdDemandType(  ), demandTypeAction.getIdDemandType(  ) );
+        assertEquals( demandTypeActionStored.getDemandType(  ), demandTypeAction.getDemandType(  ) );
 
         // List test
-        DemandTypeActionHome.getDemandTypeActionsList();
+        DemandTypeActionHome.getDemandTypeActionsList(  );
 
         // Delete test
-        DemandTypeActionHome.remove( demandTypeAction.getId( ) );
-        demandTypeActionStored = DemandTypeActionHome.findByPrimaryKey( demandTypeAction.getId( ) );
+        DemandTypeActionHome.remove( demandTypeAction.getId(  ) );
+        demandTypeActionStored = DemandTypeActionHome.findByPrimaryKey( demandTypeAction.getId(  ) );
         assertNull( demandTypeActionStored );
-        
     }
-
 }

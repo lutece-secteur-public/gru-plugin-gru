@@ -41,8 +41,10 @@ import fr.paris.lutece.portal.service.rbac.ResourceIdService;
 import fr.paris.lutece.portal.service.rbac.ResourceType;
 import fr.paris.lutece.portal.service.rbac.ResourceTypeManager;
 import fr.paris.lutece.util.ReferenceList;
+
 import java.util.List;
 import java.util.Locale;
+
 
 /**
  * Feature ResourceIdService
@@ -51,26 +53,25 @@ public class FeatureResourceIdService extends ResourceIdService
 {
     private static final String PROPERTY_LABEL_RESOURCE_TYPE = "gru.rbac.feature.resourceType";
     private static final String PROPERTY_LABEL_ACCESS = "gru.rbac.feature.permission.access";
-    
+
     /**
      * {@inheritDoc }
      */
     @Override
-    public void register()
+    public void register(  )
     {
         ResourceType rt = new ResourceType(  );
         rt.setResourceIdServiceClass( FeatureResourceIdService.class.getName(  ) );
         rt.setPluginName( Constants.PLUGIN_NAME );
         rt.setResourceTypeKey( Feature.RESOURCE_TYPE );
         rt.setResourceTypeLabelKey( PROPERTY_LABEL_RESOURCE_TYPE );
-        
+
         Permission p = new Permission(  );
         p.setPermissionKey( Feature.PERMISSION_ACCESS );
         p.setPermissionTitleKey( PROPERTY_LABEL_ACCESS );
         rt.registerPermission( p );
-        
-        ResourceTypeManager.registerResourceType( rt );
 
+        ResourceTypeManager.registerResourceType( rt );
     }
 
     /**
@@ -79,8 +80,9 @@ public class FeatureResourceIdService extends ResourceIdService
     @Override
     public ReferenceList getResourceIdList( Locale locale )
     {
-        List<Feature> listFeatures = FeatureHome.getFeaturesList();
-        return ReferenceList.convert(listFeatures,"id", "name", true);
+        List<Feature> listFeatures = FeatureHome.getFeaturesList(  );
+
+        return ReferenceList.convert( listFeatures, "id", "name", true );
     }
 
     /**
@@ -89,8 +91,8 @@ public class FeatureResourceIdService extends ResourceIdService
     @Override
     public String getTitle( String strId, Locale locale )
     {
-        Feature feature = FeatureHome.findByPrimaryKey( Integer.parseInt(strId));
-        return feature.getName();
+        Feature feature = FeatureHome.findByPrimaryKey( Integer.parseInt( strId ) );
+
+        return feature.getName(  );
     }
-    
 }

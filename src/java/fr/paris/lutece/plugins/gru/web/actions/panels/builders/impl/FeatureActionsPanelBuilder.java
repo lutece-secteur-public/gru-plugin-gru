@@ -44,7 +44,6 @@ import fr.paris.lutece.plugins.gru.web.actions.panels.builders.PanelBuilder;
 import fr.paris.lutece.portal.business.user.AdminUser;
 import fr.paris.lutece.portal.service.rbac.RBACService;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,7 +78,7 @@ public class FeatureActionsPanelBuilder implements PanelBuilder
      * {@inheritDoc }
      */
     @Override
-    public List<ActionGroup> getActionGroups( Customer customer , AdminUser user )
+    public List<ActionGroup> getActionGroups( Customer customer, AdminUser user )
     {
         List<ActionGroup> listActionGroups = new ArrayList<ActionGroup>(  );
         List<FeatureCategory> listCategories = FeatureCategoryHome.getFeatureCategorysList(  );
@@ -92,11 +91,11 @@ public class FeatureActionsPanelBuilder implements PanelBuilder
 
             for ( Feature feature : category.getFeatures(  ) )
             {
-                if( RBACService.isAuthorized( feature, Feature.PERMISSION_ACCESS , user ) && ! feature.isHidden() )
+                if ( RBACService.isAuthorized( feature, Feature.PERMISSION_ACCESS, user ) && !feature.isHidden(  ) )
                 {
                     ActionItem item = new ActionItem(  );
                     item.setTitle( feature.getName(  ) );
-                    item.setLink( FeatureService.getCustomerLink( feature , customer ) );
+                    item.setLink( FeatureService.getCustomerLink( feature, customer ) );
                     group.addActionItem( item );
                 }
             }

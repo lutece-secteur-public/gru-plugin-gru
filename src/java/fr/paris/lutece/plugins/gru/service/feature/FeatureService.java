@@ -39,6 +39,7 @@ import fr.paris.lutece.plugins.gru.business.feature.FeatureHome;
 import fr.paris.lutece.plugins.gru.service.ActionLinkService;
 import fr.paris.lutece.portal.service.i18n.I18nService;
 import fr.paris.lutece.util.ReferenceList;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -52,44 +53,44 @@ public class FeatureService
     private static final String PROPERTY_DISPLAY_STANDARD = "gru.features.display.standard";
     private static final String PROPERTY_DISPLAY_HOME = "gru.features.display.home";
     private static final String PROPERTY_DISPLAY_HIDDEN = "gru.features.display.hidden";
-    
+
     public static ReferenceList getFeatureDisplayLevels( Locale locale )
     {
-        ReferenceList list = new ReferenceList();
-        
-        list.addItem( Feature.DISPLAY_STANDARD , I18nService.getLocalizedString( PROPERTY_DISPLAY_STANDARD , locale));
-        list.addItem( Feature.DISPLAY_HOME , I18nService.getLocalizedString( PROPERTY_DISPLAY_HOME , locale));
-        list.addItem( Feature.DISPLAY_HIDDEN , I18nService.getLocalizedString( PROPERTY_DISPLAY_HIDDEN , locale));
+        ReferenceList list = new ReferenceList(  );
+
+        list.addItem( Feature.DISPLAY_STANDARD, I18nService.getLocalizedString( PROPERTY_DISPLAY_STANDARD, locale ) );
+        list.addItem( Feature.DISPLAY_HOME, I18nService.getLocalizedString( PROPERTY_DISPLAY_HOME, locale ) );
+        list.addItem( Feature.DISPLAY_HIDDEN, I18nService.getLocalizedString( PROPERTY_DISPLAY_HIDDEN, locale ) );
 
         return list;
     }
-    
+
     /**
-     * Gets the list of features that should be displayed on the home page 
+     * Gets the list of features that should be displayed on the home page
      * @return The list
      */
-    public static List<Feature> getHomeFeatures( )
+    public static List<Feature> getHomeFeatures(  )
     {
-        List<Feature> list = new ArrayList<Feature>();
-        
-        for( Feature feature : FeatureHome.getFeaturesList() )
+        List<Feature> list = new ArrayList<Feature>(  );
+
+        for ( Feature feature : FeatureHome.getFeaturesList(  ) )
         {
-            if( feature.isHome() )
+            if ( feature.isHome(  ) )
             {
                 list.add( feature );
             }
         }
-        
+
         return list;
     }
-    
+
     /**
      * Build a link to a feature for a given customer
      * @param feature The feature
      * @param customer The customer
      * @return The link
      */
-    public static String getCustomerLink( Feature feature , Customer customer )
+    public static String getCustomerLink( Feature feature, Customer customer )
     {
         String strLinkTemplate = feature.getLink(  );
 

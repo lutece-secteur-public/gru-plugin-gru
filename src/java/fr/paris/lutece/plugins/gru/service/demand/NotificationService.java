@@ -44,9 +44,10 @@ import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
+import java.text.SimpleDateFormat;
+
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Level;
@@ -59,17 +60,16 @@ import java.util.logging.Logger;
 public class NotificationService
 {
     private static final String PROPERTY_DATE_FORMAT = "gru.notifications.date_format";
-    private static final String  _strPattern = AppPropertiesService.getProperty( PROPERTY_DATE_FORMAT ); 
+    private static final String _strPattern = AppPropertiesService.getProperty( PROPERTY_DATE_FORMAT );
     private static final SimpleDateFormat _formater = new SimpleDateFormat( _strPattern );
 
-    
     /**
      * Add info to a given notification from a JSON data
      * @param notification The notification
      * @param strJSON The JSON data
      * @return The filled notification
      */
-    public static Notification parseJSON( Notification notification , String strJSON )
+    public static Notification parseJSON( Notification notification, String strJSON )
     {
         try
         {
@@ -78,7 +78,7 @@ public class NotificationService
             parser.setCodec( new ObjectMapper(  ) );
 
             JsonNode jsonNode = parser.readValueAsTree(  );
-            readJsonData( jsonNode , notification );
+            readJsonData( jsonNode, notification );
         }
         catch ( IOException ex )
         {
@@ -91,9 +91,9 @@ public class NotificationService
     /**
      * Read recursively the JSON flow
      * @param jsonNode A Json node
-     * @param notification A notification to fill 
+     * @param notification A notification to fill
      */
-    private static void readJsonData( JsonNode jsonNode , Notification notification )
+    private static void readJsonData( JsonNode jsonNode, Notification notification )
     {
         Iterator<Map.Entry<String, JsonNode>> ite = jsonNode.getFields(  );
 
@@ -103,42 +103,42 @@ public class NotificationService
 
             if ( entry.getValue(  ).isObject(  ) )
             {
-                if( entry.getKey().equals( "user_email"))
+                if ( entry.getKey(  ).equals( "user_email" ) )
                 {
-                    notification.setEmail( readEmail( entry.getValue(  )));
+                    notification.setEmail( readEmail( entry.getValue(  ) ) );
                 }
-                else if( entry.getKey().equals( "user_sms") )
+                else if ( entry.getKey(  ).equals( "user_sms" ) )
                 {
-                    notification.setSms( readSms( entry.getValue(  )));
+                    notification.setSms( readSms( entry.getValue(  ) ) );
                 }
                 else
                 {
-                    readJsonData( entry.getValue(  ) , notification );
+                    readJsonData( entry.getValue(  ), notification );
                 }
             }
             else
             {
-                if( entry.getKey().equals( "notification_source"))
+                if ( entry.getKey(  ).equals( "notification_source" ) )
                 {
-                    notification.setSource( entry.getValue().getTextValue());
+                    notification.setSource( entry.getValue(  ).getTextValue(  ) );
                 }
             }
         }
     }
-    
+
     /**
      * Read Email data
      * @param jsonNode The Email node
      * @return An Email object
      */
-    private static Email readEmail( JsonNode jsonNode)
+    private static Email readEmail( JsonNode jsonNode )
     {
-        Email email = new Email();
-        email.setRecipient( jsonNode.get( "recipient" ).asText());
-        email.setSubject( jsonNode.get( "subject" ).asText());
-        email.setMessage( jsonNode.get( "message" ).asText());
+        Email email = new Email(  );
+        email.setRecipient( jsonNode.get( "recipient" ).asText(  ) );
+        email.setSubject( jsonNode.get( "subject" ).asText(  ) );
+        email.setMessage( jsonNode.get( "message" ).asText(  ) );
+
         return email;
-        
     }
 
     /**
@@ -146,15 +146,15 @@ public class NotificationService
      * @param jsonNode The SMS node
      * @return An SMS object
      */
-    private static Sms readSms( JsonNode jsonNode)
+    private static Sms readSms( JsonNode jsonNode )
     {
-        Sms sms = new Sms();
-        sms.setPhoneNumber(jsonNode.get( "phone_number" ).asText());
-        sms.setMessage( jsonNode.get( "message" ).asText());
+        Sms sms = new Sms(  );
+        sms.setPhoneNumber( jsonNode.get( "phone_number" ).asText(  ) );
+        sms.setMessage( jsonNode.get( "message" ).asText(  ) );
+
         return sms;
-        
     }
-    
+
     /**
      * Date formatter
      * @param lTime Time
@@ -162,7 +162,6 @@ public class NotificationService
      */
     public static String dateFormat( long lTime )
     {
-        return _formater.format( (new Date( lTime )));
+        return _formater.format( ( new Date( lTime ) ) );
     }
-
 }

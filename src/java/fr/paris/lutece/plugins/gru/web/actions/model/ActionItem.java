@@ -98,7 +98,7 @@ public class ActionItem
     {
         _strLink = strLink;
     }
-    
+
     /**
      * Returns the Color
      * @return The Color
@@ -116,5 +116,4 @@ public class ActionItem
     {
         _strColor = strColor;
     }
-    
 }

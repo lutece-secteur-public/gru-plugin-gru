@@ -31,13 +31,12 @@
  *
  * License 1.0
  */
- 
 package fr.paris.lutece.plugins.gru.business.demandtype;
 
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.util.ReferenceList;
-import java.util.List;
 
+import java.util.List;
 
 
 /**
@@ -83,7 +82,7 @@ public interface IDemandTypeDAO
      * @return The collection which contains the data of all the demandType objects
      */
     List<DemandType> selectDemandTypesList( Plugin plugin );
-    
+
     /**
      * Load the id of all the demandType objects and returns them as a collection
      * @param plugin the Plugin
@@ -91,7 +90,6 @@ public interface IDemandTypeDAO
      */
     List<Integer> selectIdDemandTypesList( Plugin plugin );
 
-    
     /**
      * Return a reference list of all demands
      * @param plugin The plugin
@@ -105,6 +103,5 @@ public interface IDemandTypeDAO
      * @param plugin The plugin
      * @return The DemandType
      */
-    DemandType selectByTypeId(String strDemandTypeId, Plugin plugin );
+    DemandType selectByTypeId( String strDemandTypeId, Plugin plugin );
 }
-

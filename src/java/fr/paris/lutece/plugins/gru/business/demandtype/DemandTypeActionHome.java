@@ -31,26 +31,24 @@
  *
  * License 1.0
  */
- 
 package fr.paris.lutece.plugins.gru.business.demandtype;
 
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.portal.service.plugin.PluginService;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 import fr.paris.lutece.util.ReferenceList;
+
 import java.util.List;
+
 
 /**
  * This class provides instances management methods (create, find, ...) for DemandTypeAction objects
  */
-
 public final class DemandTypeActionHome
 {
     // Static variable pointed at the DAO instance
-
     private static IDemandTypeActionDAO _dao = SpringContextService.getBean( "gru.demandTypeActionDAO" );
     private static Plugin _plugin = PluginService.getPlugin( "gru" );
-
 
     /**
      * Private constructor - this class need not be instantiated
@@ -102,45 +100,43 @@ public final class DemandTypeActionHome
      */
     public static DemandTypeAction findByPrimaryKey( int nKey )
     {
-        return _dao.load( nKey, _plugin);
+        return _dao.load( nKey, _plugin );
     }
 
     /**
      * Load the data of all the demandTypeAction objects and returns them in form of a collection
      * @return the collection which contains the data of all the demandTypeAction objects
      */
-    public static List<DemandTypeAction> getDemandTypeActionsList( )
+    public static List<DemandTypeAction> getDemandTypeActionsList(  )
     {
         return _dao.selectDemandTypeActionsList( _plugin );
     }
-    
+
     /**
      * Load the id of all the demandTypeAction objects and returns them in form of a collection
      * @return the collection which contains the id of all the demandTypeAction objects
      */
-    public static List<Integer> getIdDemandTypeActionsList( )
+    public static List<Integer> getIdDemandTypeActionsList(  )
     {
         return _dao.selectIdDemandTypeActionsList( _plugin );
     }
-    
+
     /**
-     * Gets a list of action by demand type 
+     * Gets a list of action by demand type
      * @param nDemandTypeId The demand type id
      * @return The list
      */
-    public static List<DemandTypeAction> getActionsByType( int nDemandTypeId ) 
+    public static List<DemandTypeAction> getActionsByType( int nDemandTypeId )
     {
-        return _dao.selectActionsByType( nDemandTypeId , _plugin );
+        return _dao.selectActionsByType( nDemandTypeId, _plugin );
     }
-    
+
     /**
      * Gets all actions as a ReferenceList
      * @return The ReferenceList
      */
-    public static ReferenceList getActions()
+    public static ReferenceList getActions(  )
     {
         return _dao.selectActionsReferenceList( _plugin );
     }
-    
 }
-

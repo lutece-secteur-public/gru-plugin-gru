@@ -31,13 +31,12 @@
  *
  * License 1.0
  */
- 
 package fr.paris.lutece.plugins.gru.business.demandtype;
 
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.util.ReferenceList;
-import java.util.List;
 
+import java.util.List;
 
 
 /**
@@ -83,7 +82,7 @@ public interface IDemandTypeActionDAO
      * @return The collection which contains the data of all the demandTypeAction objects
      */
     List<DemandTypeAction> selectDemandTypeActionsList( Plugin plugin );
-    
+
     /**
      * Load the id of all the demandTypeAction objects and returns them as a collection
      * @param plugin the Plugin
@@ -94,17 +93,15 @@ public interface IDemandTypeActionDAO
     /**
      * Select all Actions for a given demand type
      * @param nDemandTypeId The DemandType ID
-     * @param plugin The plugin 
+     * @param plugin The plugin
      * @return  The list
      */
-    List<DemandTypeAction> selectActionsByType(int nDemandTypeId, Plugin plugin);
+    List<DemandTypeAction> selectActionsByType( int nDemandTypeId, Plugin plugin );
 
-    
     /**
      * Select all Actions as a Reference List
-     * @param plugin The plugin 
+     * @param plugin The plugin
      * @return  The list
      */
-    ReferenceList selectActionsReferenceList(Plugin _plugin);
+    ReferenceList selectActionsReferenceList( Plugin _plugin );
 }
-

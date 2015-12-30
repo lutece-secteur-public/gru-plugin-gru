@@ -52,20 +52,22 @@ public class InformationRequestActionGroupBuilder extends AbstractDemandActionGr
      * {@inheritDoc }
      */
     @Override
-    public ActionGroup buildActionGroup( Customer customer , AdminUser user )
+    public ActionGroup buildActionGroup( Customer customer, AdminUser user )
     {
         ActionGroup group = new ActionGroup(  );
-        List<Demand> listDemands = DemandService.getDemandsIncludingTypes( customer , getIncludedTypesList() , user );
+        List<Demand> listDemands = DemandService.getDemandsIncludingTypes( customer, getIncludedTypesList(  ), user );
 
         String strBadgeColor = null;
+
         for ( Demand demand : listDemands )
         {
             ActionItem item = new ActionItem(  );
-            item.setTitle( demand.getTitle() + " " + demand.getReference() );
-            item.setLink( buildDemandManagementLink( demand.getId(  ), demand.getDemandTypeId(), "" + customer.getId(  ) ) );
-            item.setColor( processItemColor(demand , COLOR_PRIMARY ));
+            item.setTitle( demand.getTitle(  ) + " " + demand.getReference(  ) );
+            item.setLink( buildDemandManagementLink( demand.getId(  ), demand.getDemandTypeId(  ),
+                    "" + customer.getId(  ) ) );
+            item.setColor( processItemColor( demand, COLOR_PRIMARY ) );
             group.addActionItem( item );
-            strBadgeColor = processGroupBadgeColor(demand, strBadgeColor, COLOR_PRIMARY );
+            strBadgeColor = processGroupBadgeColor( demand, strBadgeColor, COLOR_PRIMARY );
         }
 
         group.setTitle( getTitle(  ) );

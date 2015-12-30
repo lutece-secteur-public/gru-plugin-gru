@@ -31,9 +31,8 @@
  *
  * License 1.0
  */
-
-
 package fr.paris.lutece.plugins.gru.business.demand;
+
 
 /**
  * This is the business class for the object Email
@@ -61,7 +60,6 @@ public class Sms
     {
         _strPhoneNumber = strPhoneNumber;
     }
-
 
     /**
      * Returns the Message
