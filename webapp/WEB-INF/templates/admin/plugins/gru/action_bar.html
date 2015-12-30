@@ -10,29 +10,24 @@
 </#macro>
 
 <#macro renderGroup group>
-<li class="treeview">
-  <a href="#">
-    <#if group.icon ??>
-      <i class="fa fa-${group.icon}"></i>
-      <#if group.badgeText??>
-        <span class="label bg-${group.badgeColor}">${group.badgeText}</span>
-      </#if>
+    <#if group.actions?size &gt; 0 >
+    <li class="treeview">
+      <a href="#">
+        <#if group.icon ??>
+          <i class="fa fa-${group.icon}"></i>
+          <#if group.badgeText??>
+            <span class="label bg-${group.badgeColor}">${group.badgeText}</span>
+          </#if>
+        </#if>
+        <span>${group.title}</span>
+      </a>
+      <ul class="treeview-menu">
+        <#list group.actions as action>
+          <@renderAction action />
+        </#list>
+      </ul>
+    </li>
     </#if>
-    <span>${group.title}</span>
-    <!--
-    <span class="pull-right">
-      <#if group.badgeText??>
-        <small class="label pull-right bg-${group.badgeColor}">${group.badgeText}</small>
-      </#if>
-    </span>
-  -->
-  </a>
-  <ul class="treeview-menu">
-    <#list group.actions as action>
-      <@renderAction action />
-    </#list>
-  </ul>
-</li>
 </#macro>
 
 <#macro renderAction action>

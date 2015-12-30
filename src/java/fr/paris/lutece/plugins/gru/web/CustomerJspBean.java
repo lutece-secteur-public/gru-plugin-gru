@@ -126,7 +126,7 @@ public class CustomerJspBean extends MVCAdminJspBean
     public String getSearchCustomer( HttpServletRequest request )
     {
         Customer customer = null;
-        List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer );
+        List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer , getUser() );
         Map<String, Object> model = getModel(  );
         model.put( Constants.MARK_ACTION_PANELS, listPanels );
         model.put( Constants.MARK_CUSTOMER, new Customer(  ) );
@@ -174,7 +174,7 @@ public class CustomerJspBean extends MVCAdminJspBean
                 int nId = Integer.parseInt( strId );
                 customer = CustomerHome.findByPrimaryKey( nId );
 
-                List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer );
+                List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer , getUser() );
                 Map<String, Object> model = getModel(  );
                 model.put( Constants.MARK_ACTION_PANELS, listPanels );
                 model.put( Constants.MARK_CUSTOMER, customer );
@@ -202,7 +202,7 @@ public class CustomerJspBean extends MVCAdminJspBean
         String strIdDemand = request.getParameter( Constants.PARAMETER_ID_DEMAND );
         String strIdDemandType = request.getParameter( Constants.PARAMETER_ID_DEMAND_TYPE );
 
-        Demand demand = DemandService.getDemand( strIdDemand , strIdDemandType );
+        Demand demand = DemandService.getDemand( strIdDemand , strIdDemandType , getUser() );
         Customer customer = null;
 
         if ( strId != null )
@@ -212,7 +212,7 @@ public class CustomerJspBean extends MVCAdminJspBean
                 int nId = Integer.parseInt( strId );
                 customer = CustomerHome.findByPrimaryKey( nId );
 
-                List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer );
+                List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer , getUser() );
                 Map<String, Object> model = getModel(  );
                 model.put( Constants.MARK_ACTION_PANELS, listPanels );
                 model.put( Constants.MARK_CUSTOMER, customer );
@@ -320,7 +320,7 @@ public class CustomerJspBean extends MVCAdminJspBean
             _customer = CustomerHome.findByPrimaryKey( nId );
         }
 
-        List<ActionPanel> listPanels = CustomerActionsService.getPanels( null );
+        List<ActionPanel> listPanels = CustomerActionsService.getPanels( null  , getUser() );
         Map<String, Object> model = getModel(  );
         model.put( Constants.MARK_ACTION_PANELS, listPanels );
         model.put( Constants.MARK_CUSTOMER, _customer );

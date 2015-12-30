@@ -39,6 +39,7 @@ import fr.paris.lutece.plugins.gru.service.demandtype.DemandTypeService;
 import fr.paris.lutece.plugins.gru.business.customer.Customer;
 import fr.paris.lutece.plugins.gru.business.demand.BaseDemand;
 import fr.paris.lutece.plugins.gru.business.demand.Demand;
+import fr.paris.lutece.portal.business.user.AdminUser;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,9 +70,9 @@ public class DemandService
      * @param strDemandId The Demand Id
      * @return The demand
      */
-    public static Demand getDemand( String strDemandId  , String strDemandTypeId )
+    public static Demand getDemand( String strDemandId  , String strDemandTypeId , AdminUser user )
     {
-        return getService().getDemand( strDemandId , strDemandTypeId );
+        return getService().getDemand( strDemandId , strDemandTypeId , user );
     }
 
     /**
@@ -79,13 +80,13 @@ public class DemandService
      * @param customer The customer
      * @return The list
      */
-    public static List<Demand> getDemands( Customer customer )
+    public static List<Demand> getDemands( Customer customer , AdminUser user )
     {
-        List<BaseDemand> listBase = getService().getDemands( "" + customer.getId() );
+        List<BaseDemand> listBase = getService().getDemands( "" + customer.getId() , user );
         List<Demand> listDemand = new ArrayList<Demand>();
         for( BaseDemand base : listBase )
         {
-            listDemand.add(DemandTypeService.buildDemand(base));
+            listDemand.add(DemandTypeService.buildDemand( base , customer , user ));
         }
         return listDemand;
     }
@@ -96,15 +97,15 @@ public class DemandService
      * @param listExcludedTypes excluded types  
      * @return The list
      */
-    public static List<Demand> getDemandsExcludingTypes( Customer customer , List<String> listExcludedTypes )
+    public static List<Demand> getDemandsExcludingTypes( Customer customer , List<String> listExcludedTypes , AdminUser user )
     {
-        List<BaseDemand> listBase = getService().getDemands( "" + customer.getId() );
+        List<BaseDemand> listBase = getService().getDemands( "" + customer.getId() , user  );
         List<Demand> listDemand = new ArrayList<Demand>();
         for( BaseDemand base : listBase )
         {
             if( ! listExcludedTypes.contains( base.getDemandTypeId()))
             {
-               listDemand.add(DemandTypeService.buildDemand(base));
+               listDemand.add(DemandTypeService.buildDemand( base , customer , user ));
             }
         }
         return listDemand;
@@ -116,15 +117,15 @@ public class DemandService
      * @param listIncludedTypes included types  
      * @return The list
      */
-    public static List<Demand> getDemandsIncludingTypes( Customer customer , List<String> listIncludedTypes )
+    public static List<Demand> getDemandsIncludingTypes( Customer customer , List<String> listIncludedTypes , AdminUser user )
     {
-        List<BaseDemand> listBase = getService().getDemands( "" + customer.getId() );
+        List<BaseDemand> listBase = getService().getDemands( "" + customer.getId() , user );
         List<Demand> listDemand = new ArrayList<Demand>();
         for( BaseDemand base : listBase )
         {
             if( listIncludedTypes.contains( base.getDemandTypeId()))
             {
-               listDemand.add(DemandTypeService.buildDemand(base));
+               listDemand.add(DemandTypeService.buildDemand( base , customer , user ));
             }
         }
         return listDemand;

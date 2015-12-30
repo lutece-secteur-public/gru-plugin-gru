@@ -40,6 +40,7 @@ import fr.paris.lutece.plugins.gru.business.demand.Demand;
 import fr.paris.lutece.plugins.gru.service.demand.DemandService;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionGroup;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionItem;
+import fr.paris.lutece.portal.business.user.AdminUser;
 import java.util.List;
 
 /**
@@ -51,10 +52,10 @@ public class AppointmentsActionGroupBuilder extends AbstractDemandActionGroupBui
      * {@inheritDoc }
      */
     @Override
-    public ActionGroup buildActionGroup( Customer customer )
+    public ActionGroup buildActionGroup( Customer customer , AdminUser user )
     {
         ActionGroup group = new ActionGroup(  );
-        List<Demand> listDemands = DemandService.getDemandsIncludingTypes( customer , getIncludedTypesList() );
+        List<Demand> listDemands = DemandService.getDemandsIncludingTypes( customer , getIncludedTypesList() , user );
 
         String strBadgeColor = null;
         for ( Demand demand : listDemands )

@@ -33,10 +33,13 @@
  */
 package fr.paris.lutece.plugins.gru.service.demand;
 
+import fr.paris.lutece.plugins.gru.business.customer.Customer;
+import fr.paris.lutece.plugins.gru.business.customer.CustomerHome;
 import fr.paris.lutece.plugins.gru.service.demandtype.DemandTypeService;
 import fr.paris.lutece.plugins.gru.business.demand.BaseDemand;
 import fr.paris.lutece.plugins.gru.business.demand.Demand;
 import fr.paris.lutece.plugins.gru.business.demand.Notification;
+import fr.paris.lutece.portal.business.user.AdminUser;
 import java.util.ArrayList;
 
 import java.util.Date;
@@ -75,11 +78,12 @@ public class MokeDemandService implements IDemandService
     private static List<BaseDemand> _listDemand;
     
     @Override
-    public Demand getDemand( String strDemandId , String strDemandTypeId )
+    public Demand getDemand( String strDemandId , String strDemandTypeId , AdminUser user )
     {
         BaseDemand base = getList().get( Integer.parseInt( strDemandId ));
         
-        Demand demand = DemandTypeService.buildDemand(base);
+        Customer customer = CustomerHome.findByPrimaryKey( 1 );
+        Demand demand = DemandTypeService.buildDemand( base , customer , user );
 
         Notification notification = new Notification(  );
         notification.setTimestamp( ( new Date(  ) ).getTime(  ) );
@@ -91,7 +95,7 @@ public class MokeDemandService implements IDemandService
     }
 
     @Override
-    public List<BaseDemand> getDemands( String strCustomerId )
+    public List<BaseDemand> getDemands( String strCustomerId , AdminUser user )
     {
         return getList();
     }

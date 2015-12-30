@@ -37,6 +37,7 @@ import fr.paris.lutece.plugins.gru.business.customer.Customer;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionPanel;
 import fr.paris.lutece.plugins.gru.web.actions.panels.PanelComposition;
 import fr.paris.lutece.plugins.gru.web.actions.panels.builders.PanelBuilder;
+import fr.paris.lutece.portal.business.user.AdminUser;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 
 import java.util.ArrayList;
@@ -56,7 +57,7 @@ public class CustomerActionsService
      * @param customer The customer
      * @return The list of panels
      */
-    public static List<ActionPanel> getPanels( Customer customer )
+    public static List<ActionPanel> getPanels( Customer customer , AdminUser user )
     {
         List<ActionPanel> listPanels = new ArrayList<ActionPanel>(  );
 
@@ -65,7 +66,7 @@ public class CustomerActionsService
             ActionPanel panel = new ActionPanel(  );
             panel.setTitle( panelBuilder.getTitle(  ) );
 
-            panel.setActionGroupList( panelBuilder.getActionGroups( customer ) );
+            panel.setActionGroupList( panelBuilder.getActionGroups( customer , user ) );
 
             listPanels.add( panel );
         }

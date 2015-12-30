@@ -25,7 +25,7 @@ INSERT INTO gru_demand_type_action ( id_demand_type_action, id_demand_type, acti
 ( 1 , 2 , 'Gérer la demande' , 'jsp/admin/plugins/ticketing/ManageTickets.jsp?view=modifyTicket&id={id}' ),
 ( 2 , 3 , 'Gérer la réclamation' , 'jsp/admin/plugins/ticketing/ManageTickets.jsp?view=modifyTicket&id={id}' ),
 ( 3 , 4 , 'Accéder au RDV' , 'jsp/admin/plugins/appointment/ManageAppointments.jsp?view=viewAppointment&id_appointment={id}' ),
-( 4 , 1 , 'Faire une réclamation' , 'jsp/admin/plugins/ticketing/ManageTickets.jsp?view=createTicket&cat=DVDSSVP');
+( 4 , 1 , 'Faire une réclamation' , 'jsp/admin/plugins/ticketing/ManageTickets.jsp?view=createTicket&cat=DVDSSVP&fn={firstname}&ln={lastname}&guid={guid}&ph={phone}&em={email}');
 
 
 --
@@ -45,7 +45,7 @@ INSERT INTO gru_feature ( id_feature, name, link, link_customer_params, target, 
 (1,'Enlèvement d\'encombrants','https://teleservices.paris.fr/sira/jsp/site/Portal.jsp?page=formengine&form=ramen','',0,1,1,1),
 (2,'Signalement DansMaRue','https://teleservices.paris.fr/sira/jsp/site/Portal.jsp?page=formengine&form=signalement','',0,1,2,1),
 (3,'Créer une sollicitation','jsp/admin/plugins/ticketing/ManageTickets.jsp?view=createTicket','&fn={firstname}&ln={lastname}&guid={guid}&ph={phone}&em={email}',1,2,1,1),
-(4,'Prendre un RDV Urbanisme ','https://teleservices.paris.fr/rdvdu/','&fn={firstname}&ln={lastname}&guid={guid}&ph={phone}&em={email}',0,4,1,1),
+(4,'Prendre un RDV Urbanisme ','https://teleservices.paris.fr/rdvdu/','',0,4,1,1),
 (5,'Réclamation Carte stationnement ','jsp/admin/plugins/ticketing/ManageTickets.jsp?view=createTicket&cat=DVDSSVP','&fn={firstname}&ln={lastname}&guid={guid}&ph={phone}&em={email}',0,3,2,1),
-(6,'Prendre un RDV Stationnement','https://teleservices.paris.fr/rdvssvp/','&fn={firstname}&ln={lastname}&guid={guid}&ph={phone}&em={email}',0,3,1,1);
+(6,'Prendre un RDV Stationnement','https://teleservices.paris.fr/rdvssvp/','',0,3,1,1);
 

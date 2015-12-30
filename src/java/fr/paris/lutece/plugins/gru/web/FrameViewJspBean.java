@@ -116,7 +116,7 @@ public class FrameViewJspBean extends MVCAdminJspBean
             }
         }
 
-        List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer );
+        List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer , getUser() );
 
         Map<String, Object> model = getModel(  );
         model.put( Constants.MARK_ACTION_PANELS, listPanels );

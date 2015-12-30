@@ -33,6 +33,7 @@
  */
 package fr.paris.lutece.plugins.gru.service.demandtype;
 
+import fr.paris.lutece.plugins.gru.business.customer.Customer;
 import fr.paris.lutece.plugins.gru.business.demand.Action;
 import fr.paris.lutece.plugins.gru.business.demand.BaseDemand;
 import fr.paris.lutece.plugins.gru.business.demand.Demand;
@@ -40,6 +41,9 @@ import fr.paris.lutece.plugins.gru.business.demandtype.DemandType;
 import fr.paris.lutece.plugins.gru.business.demandtype.DemandTypeAction;
 import fr.paris.lutece.plugins.gru.business.demandtype.DemandTypeActionHome;
 import fr.paris.lutece.plugins.gru.business.demandtype.DemandTypeHome;
+import fr.paris.lutece.plugins.gru.service.ActionLinkService;
+import fr.paris.lutece.portal.business.user.AdminUser;
+import fr.paris.lutece.portal.service.rbac.RBACService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,11 +57,9 @@ public class DemandTypeService
     
     private static Map<String, DemandType> _mapDemandTypes = new HashMap<String, DemandType>();
     
-    public static Demand buildDemand( BaseDemand base )
+    public static Demand buildDemand( BaseDemand base , Customer customer , AdminUser user )
     {
         Demand demand = new Demand( base );
-        
-        
         DemandType type = _mapDemandTypes.get( demand.getDemandTypeId() );
         if( type == null )
         {
@@ -68,12 +70,16 @@ public class DemandTypeService
         List<DemandTypeAction> listActions = DemandTypeActionHome.getActionsByType( type.getId() );
         for( DemandTypeAction dta : listActions )
         {
-            Action action = new Action();
-            action.setName( dta.getLabel() );
-            String strUrl = dta.getLink();
-            strUrl = strUrl.replace( BOOKMARK_ID , demand.getId() );
-            action.setUrl( strUrl );
-            demand.addAction( action );
+            if( RBACService.isAuthorized( dta , DemandTypeAction.PERMISSION_ACCESS , user ))
+            {
+                Action action = new Action();
+                action.setName( dta.getLabel() );
+                String strUrl = dta.getLink();
+                strUrl = strUrl.replace( BOOKMARK_ID , demand.getId() );
+                // TODO manage target
+                action.setUrl( ActionLinkService.buildLink( strUrl, ActionLinkService.TARGET_NO_FRAME , customer) );
+                demand.addAction( action );
+            }
         }
         
         return demand;

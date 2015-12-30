@@ -46,6 +46,7 @@ import java.io.Serializable;
 public class DemandTypeAction implements Serializable, RBACResource
 {
     public static final String RESOURCE_TYPE = "GRU_DEMAND_ACTION";
+    public static final String PERMISSION_ACCESS = "ACCESS";
     
     private static final long serialVersionUID = 1L;
 

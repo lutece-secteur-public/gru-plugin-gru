@@ -37,6 +37,7 @@ import fr.paris.lutece.plugins.gru.business.customer.Customer;
 import fr.paris.lutece.plugins.gru.web.actions.groups.builders.ActionGroupBuilder;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionGroup;
 import fr.paris.lutece.plugins.gru.web.actions.panels.builders.PanelBuilder;
+import fr.paris.lutece.portal.business.user.AdminUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,7 +96,7 @@ public class ActionGroupListPanelBuilder implements PanelBuilder
      * {@inheritDoc }
      */
     @Override
-    public List<ActionGroup> getActionGroups( Customer customer )
+    public List<ActionGroup> getActionGroups( Customer customer , AdminUser user )
     {
         List<ActionGroup> listActionGroup = new ArrayList<ActionGroup>(  );
 
@@ -103,7 +104,7 @@ public class ActionGroupListPanelBuilder implements PanelBuilder
         {
             for ( ActionGroupBuilder builder : _listActionGroupBuilders )
             {
-                listActionGroup.add( builder.buildActionGroup( customer ) );
+                listActionGroup.add( builder.buildActionGroup( customer , user ) );
             }
         }
 

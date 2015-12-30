@@ -35,6 +35,7 @@ package fr.paris.lutece.plugins.gru.web.actions.panels.builders;
 
 import fr.paris.lutece.plugins.gru.business.customer.Customer;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionGroup;
+import fr.paris.lutece.portal.business.user.AdminUser;
 
 import java.util.List;
 
@@ -54,7 +55,9 @@ public interface PanelBuilder
     /**
      * Returns the ListActionGroups
      *
+     * @param customer The customer
+     * @param user The Admin User
      * @return The ListActionGroups
      */
-    List<ActionGroup> getActionGroups( Customer customer );
+    List<ActionGroup> getActionGroups( Customer customer , AdminUser user );
 }

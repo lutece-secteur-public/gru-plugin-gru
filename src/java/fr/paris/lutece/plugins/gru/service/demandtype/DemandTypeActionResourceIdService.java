@@ -41,7 +41,6 @@ import fr.paris.lutece.portal.service.rbac.ResourceIdService;
 import fr.paris.lutece.portal.service.rbac.ResourceType;
 import fr.paris.lutece.portal.service.rbac.ResourceTypeManager;
 import fr.paris.lutece.util.ReferenceList;
-import java.util.List;
 import java.util.Locale;
 
 /**
@@ -49,9 +48,6 @@ import java.util.Locale;
  */
 public class DemandTypeActionResourceIdService extends ResourceIdService
 {
-    
-    public static final String PERMISSION_ACCESS = "ACCESS";
-    
     private static final String PROPERTY_LABEL_RESOURCE_TYPE = "gru.rbac.demandTypeAction.resourceType";
     private static final String PROPERTY_LABEL_ACCESS = "gru.rbac.demandTypeAction.permission.access";
     
@@ -68,7 +64,7 @@ public class DemandTypeActionResourceIdService extends ResourceIdService
         rt.setResourceTypeLabelKey( PROPERTY_LABEL_RESOURCE_TYPE );
         
         Permission p = new Permission(  );
-        p.setPermissionKey( PERMISSION_ACCESS );
+        p.setPermissionKey( DemandTypeAction.PERMISSION_ACCESS );
         p.setPermissionTitleKey( PROPERTY_LABEL_ACCESS );
         rt.registerPermission( p );
         

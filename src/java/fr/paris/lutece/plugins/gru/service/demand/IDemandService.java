@@ -37,6 +37,7 @@ package fr.paris.lutece.plugins.gru.service.demand;
 
 import fr.paris.lutece.plugins.gru.business.demand.BaseDemand;
 import fr.paris.lutece.plugins.gru.business.demand.Demand;
+import fr.paris.lutece.portal.business.user.AdminUser;
 import java.util.List;
 
 /**
@@ -48,14 +49,16 @@ public interface IDemandService
      * Provides a demand from its ID  
      * @param strDemandId The ID
      * @param strDemandTypeId The demand type ID
+     * @param user The user
      * @return The demand
      */
-    Demand getDemand( String strDemandId ,String strDemandTypeId );
+    Demand getDemand( String strDemandId ,String strDemandTypeId , AdminUser user );
 
     /**
      * Provides demands from a given customer
      * @param strCustomerId The customer ID 
+     * @param user The user
      * @return The list of demands
      */
-    List<BaseDemand> getDemands( String strCustomerId );
+    List<BaseDemand> getDemands( String strCustomerId , AdminUser user );
 }

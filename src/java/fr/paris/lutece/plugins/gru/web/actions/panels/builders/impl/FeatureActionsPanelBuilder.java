@@ -37,20 +37,16 @@ import fr.paris.lutece.plugins.gru.business.customer.Customer;
 import fr.paris.lutece.plugins.gru.business.feature.Feature;
 import fr.paris.lutece.plugins.gru.business.feature.FeatureCategory;
 import fr.paris.lutece.plugins.gru.business.feature.FeatureCategoryHome;
-import fr.paris.lutece.plugins.gru.service.ActionLinkService;
 import fr.paris.lutece.plugins.gru.service.feature.FeatureService;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionGroup;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionItem;
 import fr.paris.lutece.plugins.gru.web.actions.panels.builders.PanelBuilder;
+import fr.paris.lutece.portal.business.user.AdminUser;
+import fr.paris.lutece.portal.service.rbac.RBACService;
 
-import java.io.UnsupportedEncodingException;
-
-import java.net.URLEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 /**
@@ -83,7 +79,7 @@ public class FeatureActionsPanelBuilder implements PanelBuilder
      * {@inheritDoc }
      */
     @Override
-    public List<ActionGroup> getActionGroups( Customer customer )
+    public List<ActionGroup> getActionGroups( Customer customer , AdminUser user )
     {
         List<ActionGroup> listActionGroups = new ArrayList<ActionGroup>(  );
         List<FeatureCategory> listCategories = FeatureCategoryHome.getFeatureCategorysList(  );
@@ -96,8 +92,8 @@ public class FeatureActionsPanelBuilder implements PanelBuilder
 
             for ( Feature feature : category.getFeatures(  ) )
             {
-                if(  ! feature.isHidden() )
-                {    
+                if( RBACService.isAuthorized( feature, Feature.PERMISSION_ACCESS , user ) && ! feature.isHidden() )
+                {
                     ActionItem item = new ActionItem(  );
                     item.setTitle( feature.getName(  ) );
                     item.setLink( FeatureService.getCustomerLink( feature , customer ) );

@@ -99,7 +99,7 @@ public class ActionLinkService
      * @param customer The customer
      * @return  The link
      */
-    private static String setCustomerInfo( String strLinkTemplate, Customer customer )
+    public static String setCustomerInfo( String strLinkTemplate, Customer customer )
     {
         String strLink = strLinkTemplate;
 
