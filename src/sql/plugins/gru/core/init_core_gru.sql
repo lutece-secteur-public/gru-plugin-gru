@@ -73,9 +73,9 @@ INSERT INTO core_admin_role_resource ( rbac_id , role_key, resource_type, resour
 
 DELETE FROM core_admin_user WHERE id_user >= 10 AND id_user <= 12;
 INSERT INTO core_admin_user VALUES 
-(10,'gruadmin','GRU','Administrateur','admin@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(11,'gru1','GRU niveau 1','Agent','admin@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(12,'gru2','GRU niveau 2','Agent','admin@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all');
+(10,'gruadmin','GRU','Administrateur','gruadmin@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(11,'gru1','GRU niveau 1','Agent','gru1@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(12,'gru2','GRU niveau 2','Agent','gru2@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all');
 
 DELETE FROM core_user_role WHERE role_key LIKE 'gru_%';
 INSERT INTO core_user_role ( role_key , id_user ) VALUES
