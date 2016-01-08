@@ -37,6 +37,14 @@
             <feature-url>jsp/admin/plugins/gru/ManageCustomers.jsp</feature-url>
             <feature-icon-url></feature-icon-url>
         </admin-feature>
+        <admin-feature>
+            <feature-id>GRU_DEMAND_MANAGEMENT</feature-id>
+            <feature-title>gru.adminFeature.ManageDemand.name</feature-title>
+            <feature-description>gru.adminFeature.ManageDemand.description</feature-description>
+            <feature-level>0</feature-level>
+            <feature-url>jsp/admin/plugins/gru/ManageDemandTypes.jsp</feature-url>
+            <feature-icon-url></feature-icon-url>
+        </admin-feature>
     </admin-features>    
     
     <admin-css-stylesheets>
