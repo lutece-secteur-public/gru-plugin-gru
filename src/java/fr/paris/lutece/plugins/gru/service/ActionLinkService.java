@@ -60,6 +60,7 @@ public class ActionLinkService
     private static final String PROPERTY_TARGET_NO_FRAME = "gru.actions.link.target.noFrame";
     private static final String PROPERTY_TARGET_NEW_WINDOW = "gru.actions.link.target.newWindow";
     private static final String INFO_GUID = "{guid}";
+    private static final String INFO_CUSTOMER_ID = "{cid}";
     private static final String INFO_FIRSTNAME = "{firstname}";
     private static final String INFO_LASTNAME = "{lastname}";
     private static final String INFO_PHONE = "{phone}";
@@ -106,6 +107,7 @@ public class ActionLinkService
         if ( customer != null )
         {
             strLink = fillLink( strLink, INFO_GUID, customer.getAccountGuid(  ) );
+            strLink = fillLink( strLink, INFO_CUSTOMER_ID, "" + customer.getId( ) );
             strLink = fillLink( strLink, INFO_FIRSTNAME, customer.getFirstname(  ) );
             strLink = fillLink( strLink, INFO_LASTNAME, customer.getLastname(  ) );
             strLink = fillLink( strLink, INFO_PHONE, customer.getMobilePhone(  ) );

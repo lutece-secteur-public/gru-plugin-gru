@@ -44,8 +44,8 @@ INSERT INTO gru_feature_category (id_feature_category, name, description, id_ord
 INSERT INTO gru_feature ( id_feature, name, link, link_customer_params, target, id_category, id_order, display_level ) VALUES 
 (1,'Enlèvement d\'encombrants','https://teleservices.paris.fr/sira/jsp/site/Portal.jsp?page=formengine&form=ramen','',0,1,1,1),
 (2,'Signalement DansMaRue','https://teleservices.paris.fr/sira/jsp/site/Portal.jsp?page=formengine&form=signalement','',0,1,2,1),
-(3,'Créer une sollicitation','jsp/admin/plugins/ticketing/ManageTickets.jsp?view=createTicket','&fn={firstname}&ln={lastname}&guid={guid}&ph={phone}&em={email}',1,2,1,1),
+(3,'Créer une sollicitation','jsp/admin/plugins/ticketing/ManageTickets.jsp?view=createTicket','&fn={firstname}&ln={lastname}&guid={guid}&ph={phone}&em={email}&cid={cid}',1,2,1,1),
 (4,'Prendre un RDV Urbanisme ','https://teleservices.paris.fr/rdvdu/','',0,4,1,1),
-(5,'Réclamation Carte stationnement ','jsp/admin/plugins/ticketing/ManageTickets.jsp?view=createTicket&cat=DVDSSVP','&fn={firstname}&ln={lastname}&guid={guid}&ph={phone}&em={email}',0,3,2,1),
+(5,'Réclamation Carte stationnement ','jsp/admin/plugins/ticketing/ManageTickets.jsp?view=createTicket&cat=DVDSSVP','&fn={firstname}&ln={lastname}&guid={guid}&ph={phone}&em={email}&cid={cid}',0,3,2,1),
 (6,'Prendre un RDV Stationnement','https://teleservices.paris.fr/rdvssvp/','',0,3,1,1);
 
