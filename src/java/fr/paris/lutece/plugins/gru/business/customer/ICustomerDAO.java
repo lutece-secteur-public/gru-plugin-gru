@@ -89,4 +89,12 @@ public interface ICustomerDAO
      * @return The collection which contains the id of all the customer objects
      */
     List<Integer> selectIdCustomersList( Plugin plugin );
+
+    /**
+     * Find a customer by its GUID
+     * @param strGuid The GUID
+     * @param plugin The Plugin
+     * @return The customer
+     */
+    Customer selectByGuid( String strGuid , Plugin plugin );
 }
