@@ -40,6 +40,7 @@ import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.io.StringWriter;
 
 
 /**
@@ -50,11 +51,12 @@ public class NotificationServiceTest
     private static final String FILE_TEST = "/notification.json";
 
     @Test
-    public void testSomeMethod(  ) throws IOException
+    public void testParseJSON(  ) throws IOException
     {
-        String strJSON = IOUtils.toString( this.getClass(  ).getResourceAsStream( FILE_TEST ), "UTF-8" );
-        Notification notification = new Notification(  );
-        NotificationService.parseJSON( notification, strJSON );
+        StringWriter writer = new StringWriter();
+        IOUtils.copy( getClass(  ).getResourceAsStream( FILE_TEST ), writer, "UTF-8");
+        String strJSON = writer.toString();
+        Notification notification = NotificationService.parseJSON( strJSON );
 
         System.out.println( "recipient :" + notification.getEmail(  ).getRecipient(  ) );
     }

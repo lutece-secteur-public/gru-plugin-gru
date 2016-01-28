@@ -84,10 +84,9 @@ public class MokeDemandService implements IDemandService
         Customer customer = CustomerHome.findByPrimaryKey( 1 );
         Demand demand = DemandTypeService.buildDemand( base, customer, user );
 
-        Notification notification = new Notification(  );
+        Notification notification = NotificationService.parseJSON( JSON );
         notification.setTimestamp( ( new Date(  ) ).getTime(  ) );
         notification.setTitle( "Prise en compte de la demande" );
-        NotificationService.parseJSON( notification, JSON );
         demand.addNotification( notification );
 
         return demand;

@@ -44,6 +44,8 @@ import fr.paris.lutece.plugins.gru.business.demandtype.DemandTypeHome;
 import fr.paris.lutece.plugins.gru.service.ActionLinkService;
 import fr.paris.lutece.portal.business.user.AdminUser;
 import fr.paris.lutece.portal.service.rbac.RBACService;
+import fr.paris.lutece.portal.service.util.AppException;
+import fr.paris.lutece.portal.service.util.AppLogService;
 
 import java.util.HashMap;
 import java.util.List;
@@ -66,8 +68,13 @@ public class DemandTypeService
         if ( type == null )
         {
             type = DemandTypeHome.findByTypeId( demand.getDemandTypeId(  ) );
+            if( type == null )
+            {
+                throw new AppException( "Unable to find DemandType with the ID : " + demand.getDemandTypeId(  ) );
+            }
             _mapDemandTypes.put( demand.getDemandTypeId(  ), type );
         }
+        
 
         demand.setTitle( type.getTitle(  ) );
 

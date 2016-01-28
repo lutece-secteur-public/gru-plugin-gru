@@ -33,6 +33,8 @@
  */
 package fr.paris.lutece.plugins.gru.business.demand;
 
+import org.codehaus.jackson.annotate.JsonProperty;
+
 
 /**
  * This is the business class for the object Email
@@ -56,6 +58,7 @@ public class Sms
      * Sets the PhoneNumber
      * @param strPhoneNumber The PhoneNumber
      */
+    @JsonProperty( "phone_number" )
     public void setPhoneNumber( String strPhoneNumber )
     {
         _strPhoneNumber = strPhoneNumber;
@@ -74,6 +77,7 @@ public class Sms
      * Sets the Message
      * @param strMessage The Message
      */
+    @JsonProperty( "message" )
     public void setMessage( String strMessage )
     {
         _strMessage = strMessage;

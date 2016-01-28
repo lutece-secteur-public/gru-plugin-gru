@@ -33,10 +33,14 @@
  */
 package fr.paris.lutece.plugins.gru.business.demand;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonProperty;
+
 
 /**
  * This is the business class for the object Email
  */
+@JsonIgnoreProperties( ignoreUnknown = true )
 public class Email
 {
     // Variables declarations 
@@ -58,6 +62,7 @@ public class Email
      * Sets the SenderName
      * @param strSenderName The SenderName
      */
+    @JsonProperty( "sender_name" )
     public void setSenderName( String strSenderName )
     {
         _strSenderName = strSenderName;
@@ -76,6 +81,7 @@ public class Email
      * Sets the Recipient
      * @param strRecipient The Recipient
      */
+    @JsonProperty( "recipient" )
     public void setRecipient( String strRecipient )
     {
         _strRecipient = strRecipient;
@@ -94,6 +100,7 @@ public class Email
      * Sets the Subject
      * @param strSubject The Subject
      */
+    @JsonProperty( "subject" )
     public void setSubject( String strSubject )
     {
         _strSubject = strSubject;
@@ -112,6 +119,7 @@ public class Email
      * Sets the Message
      * @param strMessage The Message
      */
+    @JsonProperty( "message" )
     public void setMessage( String strMessage )
     {
         _strMessage = strMessage;

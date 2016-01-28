@@ -17,7 +17,7 @@
               <#break>
               </#switch>
               <strong>
-                &nbsp; ${demand.title} - Ref : ${demand.reference}
+                &nbsp; ${demand.title!'Title missing'} - Ref : ${demand.reference!'Reference missing'}
               </strong>
               <#list demand.actions as action>
                 <a class="btn btn-primary btn-flat btn-sm pull-right" href="${action.url}">
@@ -36,18 +36,28 @@
       <div class="box box-info box-solid">
         <div class="box-header with-border">
           <h3 class="box-title">
-            <strong>${notification.date}</strong> ${notification.title}
+            <strong>${notification.date!'Date missing'}</strong> ${notification.title!'Title missing'}
           </h3>
           <div class="box-tools">
-            Notification envoy&eacute;e par l'application :  <strong>${notification.source}</strong>
+            Notification envoy&eacute;e par l'application :  <strong>${notification.source!'Source missing'}</strong>
           </div>
         </div>
         <div class="box-body">
+        <#if notification.userDashboard ??>
+          <div class="direct-chat-msg">
+            <div class="direct-chat-info clearfix">
+                <span class="direct-chat-name pull-left"><i class="fa fa-user"></i> Notification envoy&eacute dans le tableau de bord <strong>Mon Compte</strong> de l'usager. <br><strong>Statut : ${notification.userDashboard.statusText!'Status text missing'}</strong>
+            </div>
+            <img class="direct-chat-img" src="images/admin/skin/plugins/gru/company.png" alt="message user image">
+            <div class="direct-chat-text">
+              ${notification.userDashboard.message!'SMS message missing'}
+            </div>
+          </div>
+        </#if>
         <#if notification.email ??>
           <div class="direct-chat-msg">
             <div class="direct-chat-info clearfix">
-              <span class="direct-chat-name pull-left"><i class="fa fa-envelope"></i> Email envoy&eacute; &agrave; l'adresse <strong>${notification.email.recipient}</strong></span>
-              <span class="direct-chat-timestamp pull-right">${notification.date}</span>
+              <span class="direct-chat-name pull-left"><i class="fa fa-envelope"></i> Email envoy&eacute; &agrave; l'adresse <strong>${notification.email.recipient!'recipient missing'}</strong></span>
             </div>
             <img class="direct-chat-img" src="images/admin/skin/plugins/gru/company.png" alt="message user image">
             <div class="direct-chat-text">
@@ -62,12 +72,11 @@
         <#if notification.sms ??>
           <div class="direct-chat-msg">
             <div class="direct-chat-info clearfix">
-              <span class="direct-chat-name pull-left"><i class="fa fa-mobile"></i> SMS envoy&eacute au num&eacute;ro : <strong>${notification.sms.phoneNumber}</strong></span>
-              <span class="direct-chat-timestamp pull-right">${notification.date}</span>
+              <span class="direct-chat-name pull-left"><i class="fa fa-mobile"></i> SMS envoy&eacute au num&eacute;ro : <strong>${notification.sms.phoneNumber!'Phone missing'}</strong></span>
             </div>
             <img class="direct-chat-img" src="images/admin/skin/plugins/gru/company.png" alt="message user image">
             <div class="direct-chat-text">
-              ${notification.sms.message}
+              ${notification.sms.message!'SMS message missing'}
             </div>
           </div>
         </#if>

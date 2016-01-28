@@ -36,7 +36,7 @@ package fr.paris.lutece.plugins.gru.service.demand;
 import fr.paris.lutece.plugins.gru.business.demand.Email;
 import fr.paris.lutece.plugins.gru.business.demand.Notification;
 import fr.paris.lutece.plugins.gru.business.demand.Sms;
-import fr.paris.lutece.portal.service.util.AppPropertiesService;
+// import fr.paris.lutece.portal.service.util.AppPropertiesService;
 
 import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.JsonNode;
@@ -45,13 +45,11 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.IOException;
 
-import java.text.SimpleDateFormat;
-
-import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.codehaus.jackson.map.DeserializationConfig;
 
 
 /**
@@ -59,109 +57,26 @@ import java.util.logging.Logger;
  */
 public class NotificationService
 {
-    private static final String PROPERTY_DATE_FORMAT = "gru.notifications.date_format";
-    private static final String _strPattern = AppPropertiesService.getProperty( PROPERTY_DATE_FORMAT );
-    private static final SimpleDateFormat _formater = new SimpleDateFormat( _strPattern );
 
-    /**
-     * Add info to a given notification from a JSON data
-     * @param notification The notification
-     * @param strJSON The JSON data
-     * @return The filled notification
-     */
-    public static Notification parseJSON( Notification notification, String strJSON )
+    
+    
+    public static Notification parseJSON( String strJson )
     {
+        Notification notification = null;
         try
         {
-            JsonFactory factory = new JsonFactory(  );
-            JsonParser parser = factory.createJsonParser( strJSON );
-            parser.setCodec( new ObjectMapper(  ) );
+            ObjectMapper mapper = new ObjectMapper(  );
+            mapper.configure( DeserializationConfig.Feature.UNWRAP_ROOT_VALUE, true );
 
-            JsonNode jsonNode = parser.readValueAsTree(  );
-            readJsonData( jsonNode, notification );
+            notification = mapper.readValue( strJson, Notification.class );
+            return notification;
         }
-        catch ( IOException ex )
+        catch( IOException ex )
         {
-            Logger.getLogger( NotificationService.class.getName(  ) ).log( Level.SEVERE, null, ex );
+            Logger.getLogger( NotificationService.class.getName() ).log( Level.SEVERE, null, ex );
         }
-
         return notification;
+        
     }
 
-    /**
-     * Read recursively the JSON flow
-     * @param jsonNode A Json node
-     * @param notification A notification to fill
-     */
-    private static void readJsonData( JsonNode jsonNode, Notification notification )
-    {
-        Iterator<Map.Entry<String, JsonNode>> ite = jsonNode.getFields(  );
-
-        while ( ite.hasNext(  ) )
-        {
-            Map.Entry<String, JsonNode> entry = ite.next(  );
-
-            if ( entry.getValue(  ).isObject(  ) )
-            {
-                if ( entry.getKey(  ).equals( "user_email" ) )
-                {
-                    notification.setEmail( readEmail( entry.getValue(  ) ) );
-                }
-                else if ( entry.getKey(  ).equals( "user_sms" ) )
-                {
-                    notification.setSms( readSms( entry.getValue(  ) ) );
-                }
-                else
-                {
-                    readJsonData( entry.getValue(  ), notification );
-                }
-            }
-            else
-            {
-                if ( entry.getKey(  ).equals( "notification_source" ) )
-                {
-                    notification.setSource( entry.getValue(  ).getTextValue(  ) );
-                }
-            }
-        }
-    }
-
-    /**
-     * Read Email data
-     * @param jsonNode The Email node
-     * @return An Email object
-     */
-    private static Email readEmail( JsonNode jsonNode )
-    {
-        Email email = new Email(  );
-        email.setRecipient( jsonNode.get( "recipient" ).asText(  ) );
-        email.setSubject( jsonNode.get( "subject" ).asText(  ) );
-        email.setMessage( jsonNode.get( "message" ).asText(  ) );
-
-        return email;
-    }
-
-    /**
-     * Read SMS data
-     * @param jsonNode The SMS node
-     * @return An SMS object
-     */
-    private static Sms readSms( JsonNode jsonNode )
-    {
-        Sms sms = new Sms(  );
-        sms.setPhoneNumber( jsonNode.get( "phone_number" ).asText(  ) );
-        sms.setMessage( jsonNode.get( "message" ).asText(  ) );
-
-        return sms;
-    }
-
-    /**
-     * Date formatter
-     * @param lTime Time
-     * @return The date
-     */
-    public static String dateFormat( long lTime )
-    {
-        return _formater.format( ( new Date( lTime ) ) );
-    }
 }

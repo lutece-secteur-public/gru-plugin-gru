@@ -33,12 +33,17 @@
  */
 package fr.paris.lutece.plugins.gru.business.demand;
 
-import fr.paris.lutece.plugins.gru.service.demand.NotificationService;
+import fr.paris.lutece.plugins.gru.utils.DateUtils;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.map.annotate.JsonRootName;
 
 
 /**
  * Notification
  */
+@JsonRootName( value = "notification" )
+@JsonIgnoreProperties( ignoreUnknown = true )
 public class Notification
 {
     // Variables declarations 
@@ -47,6 +52,7 @@ public class Notification
     private String _strSource;
     private Email _email;
     private Sms _sms;
+    private UserDashboard _userDashboard;
 
     /**
      * Returns the Timestamp
@@ -72,7 +78,7 @@ public class Notification
      */
     public String getDate(  )
     {
-        return NotificationService.dateFormat( _lTimestamp );
+        return DateUtils.dateFormat( _lTimestamp );
     }
 
     /**
@@ -115,6 +121,7 @@ public class Notification
      * Set the Email object
      * @param email The Email Object
      */
+    @JsonProperty( "user_email" )
     public void setEmail( Email email )
     {
         _email = email;
@@ -133,6 +140,7 @@ public class Notification
      * Sets the SMS object
      * @param sms The SMS object
      */
+    @JsonProperty( "user_sms" )
     public void setSms( Sms sms )
     {
         _sms = sms;
@@ -146,4 +154,24 @@ public class Notification
     {
         return _sms;
     }
+    
+    /**
+     * Set the UserDashboard object
+     * @param userDashboard The UserDashboard Object
+     */
+    @JsonProperty( "user_dashboard" )
+    public void setUserDashboard( UserDashboard userDashboard )
+    {
+        _userDashboard = userDashboard;
+    }
+
+    /**
+    * Returns the UserDashboard object
+    * @return The UserDashboard object
+    */
+    public UserDashboard getUserDashboard(  )
+    {
+        return _userDashboard;
+    }
+
 }
