@@ -40,6 +40,7 @@ import fr.paris.lutece.plugins.gru.service.CustomerActionsService;
 import fr.paris.lutece.plugins.gru.service.demand.DemandService;
 import fr.paris.lutece.plugins.gru.service.feature.FeatureService;
 import fr.paris.lutece.plugins.gru.web.actions.buttons.builders.impl.HomeButtonListBuilder;
+import fr.paris.lutece.plugins.gru.web.actions.model.ActionButton;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionPanel;
 import fr.paris.lutece.portal.service.message.AdminMessage;
 import fr.paris.lutece.portal.service.message.AdminMessageService;
@@ -72,7 +73,9 @@ public class CustomerJspBean extends MVCAdminJspBean
     private static final String TEMPLATE_MANAGE_CUSTOMERS = "/admin/plugins/gru/manage_customers.html";
     private static final String TEMPLATE_CREATE_CUSTOMER = "/admin/plugins/gru/create_customer.html";
     private static final String TEMPLATE_MODIFY_CUSTOMER = "/admin/plugins/gru/modify_customer.html";
-    private static final String TEMPLATE_VIEW_CUSTOMER = "/admin/plugins/gru/view_customer.html";
+    private static final String TEMPLATE_VIEW_CUSTOMER_DEMANDS = "/admin/plugins/gru/view_customer_demands.html";
+    private static final String TEMPLATE_VIEW_CUSTOMER_OLD_DEMANDS = "/admin/plugins/gru/view_customer_old_demands.html";
+    private static final String TEMPLATE_VIEW_CUSTOMER_NEW_DEMANDS = "/admin/plugins/gru/view_customer_new_demands.html";
     private static final String TEMPLATE_VIEW_DEMAND = "/admin/plugins/gru/view_demand.html";
 
     // Properties for page titles
@@ -92,7 +95,9 @@ public class CustomerJspBean extends MVCAdminJspBean
     private static final String VIEW_CREATE_CUSTOMER = "createCustomer";
     private static final String VIEW_MODIFY_CUSTOMER = "modifyCustomer";
     private static final String VIEW_SEARCH_CUSTOMER = "searchCustomer";
-    private static final String VIEW_CUSTOMER = "viewCustomer";
+    private static final String VIEW_CUSTOMER_DEMANDS = "viewCustomerDemands";
+    private static final String VIEW_CUSTOMER_OLD_DEMANDS = "viewCustomerOldDemands";
+    private static final String VIEW_CUSTOMER_NEW_DEMANDS = "viewCustomerNewDemands";
     private static final String VIEW_DEMAND = "viewDemand";
 
     // Actions
@@ -140,7 +145,7 @@ public class CustomerJspBean extends MVCAdminJspBean
         String strQuery = request.getParameter( Constants.PARAMETER_QUERY );
 
         // TODO search implementation
-        return redirect( request, VIEW_CUSTOMER, Constants.PARAMETER_ID_CUSTOMER, 1 );
+        return redirect( request, VIEW_CUSTOMER_DEMANDS, Constants.PARAMETER_ID_CUSTOMER, 1 );
     }
 
     /**
@@ -160,8 +165,67 @@ public class CustomerJspBean extends MVCAdminJspBean
         return getPage( PROPERTY_PAGE_TITLE_MANAGE_CUSTOMERS, TEMPLATE_MANAGE_CUSTOMERS, model );
     }
 
-    @View( VIEW_CUSTOMER )
-    public String getViewCustomer( HttpServletRequest request )
+    @View( VIEW_CUSTOMER_DEMANDS )
+    public String getViewCustomerDemands( HttpServletRequest request )
+    {
+        Customer customer = getCustomer( request );
+        if( customer != null )
+        {
+            List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
+            List<Demand> listDemands = DemandService.getDemands( customer , getUser(  ) );
+
+            Map<String, Object> model = getModel(  );
+            model.put( Constants.MARK_ACTION_PANELS, listPanels );
+            model.put( Constants.MARK_CUSTOMER, customer );
+            model.put( Constants.MARK_DEMANDS_LIST, listDemands );
+
+            return getPage( "", TEMPLATE_VIEW_CUSTOMER_DEMANDS, model );
+        }
+
+        return "Invalid Customer";
+    }
+    
+    @View( VIEW_CUSTOMER_OLD_DEMANDS )
+    public String getViewCustomerOldDemands( HttpServletRequest request )
+    {
+        Customer customer = getCustomer( request );
+        if( customer != null )
+        {
+            List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
+            List<Demand> listDemands = DemandService.getDemands( customer , getUser(  ) );
+
+            Map<String, Object> model = getModel(  );
+            model.put( Constants.MARK_ACTION_PANELS, listPanels );
+            model.put( Constants.MARK_CUSTOMER, customer );
+            model.put( Constants.MARK_DEMANDS_LIST, listDemands );
+
+            return getPage( "", TEMPLATE_VIEW_CUSTOMER_OLD_DEMANDS, model );
+        }
+
+        return "Invalid Customer";
+    }
+
+    @View( VIEW_CUSTOMER_NEW_DEMANDS )
+    public String getViewCustomerNewDemands( HttpServletRequest request )
+    {
+        Customer customer = getCustomer( request );
+        if( customer != null )
+        {
+            List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
+            List<ActionButton> listButtons =  _homeButtonListBuilder.buildActionButtonList( customer, getUser(  ));
+
+            Map<String, Object> model = getModel(  );
+            model.put( Constants.MARK_ACTION_PANELS, listPanels );
+            model.put( Constants.MARK_CUSTOMER, customer );
+            model.put( Constants.MARK_BUTTONS_LIST, listButtons );
+
+            return getPage( "", TEMPLATE_VIEW_CUSTOMER_NEW_DEMANDS, model );
+        }
+
+        return "Invalid Customer";
+    }
+
+    private Customer getCustomer( HttpServletRequest request )
     {
         String strId = request.getParameter( Constants.PARAMETER_ID_CUSTOMER );
         Customer customer = null;
@@ -172,22 +236,13 @@ public class CustomerJspBean extends MVCAdminJspBean
             {
                 int nId = Integer.parseInt( strId );
                 customer = CustomerHome.findByPrimaryKey( nId );
-
-                List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
-                Map<String, Object> model = getModel(  );
-                model.put( Constants.MARK_ACTION_PANELS, listPanels );
-                model.put( Constants.MARK_CUSTOMER, customer );
-                model.put( Constants.MARK_BUTTONS_LIST,
-                    _homeButtonListBuilder.buildActionButtonList( customer, getUser(  ) ) );
-
-                return getPage( "", TEMPLATE_VIEW_CUSTOMER, model );
+        
             }
             catch ( NumberFormatException e )
             {
             }
         }
-
-        return "Invalid ID";
+        return customer;
     }
 
     /**

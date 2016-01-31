@@ -1,0 +1,24 @@
+<#include "action_bar.html" />
+<#include "view_customer_tabs.html" />
+<@actionMenu panels=panels customer=customer />
+<div class="content-wrapper">
+    <@customerDetails customer=customer />
+    <br>
+    <br>
+    <div class="row">
+        <@tabs tab="oldDemands" customer_id=customer.id />
+        <table class="table table-stripped table-bordered">
+            <tr>
+                <th>Reference</th>
+                <th>Objet</th>
+            </tr>
+            <#list demands_list as demand>
+            <tr>
+                <td>${demand.reference}</td>
+                <td>${demand.title}</td>
+            </tr>
+            </#list>
+        </table>
+    </div>
+</div>
+

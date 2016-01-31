@@ -1,11 +1,13 @@
 <#include "action_bar.html" />
+<#include "view_customer_tabs.html" />
 <@actionMenu panels=panels customer=customer />
  <div class="content-wrapper">
     <@customerDetails customer=customer />
     <br>
     <br>
     <div class="row">
-        <div id="home-actions" class="col-xs-12 col-sm-offset-3 col-sm-6">
+    <@tabs tab="newDemands" customer_id=customer.id />
+         <div id="home-actions" class="col-xs-12 col-sm-offset-3 col-sm-6">
             <#list buttons_list as button>
               <a class="btn bg-${button.color} btn-lg" href="${button.link}">
                   <i class="fa fa-${button.icon}"></i> &nbsp; 

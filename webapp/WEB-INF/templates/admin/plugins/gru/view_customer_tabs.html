@@ -1,0 +1,21 @@
+<#macro tabs tab customer_id>
+<div>
+    <ul class="nav nav-tabs">
+        <li <#if tab="demands">class="active"</#if>>
+            <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerDemands&id_customer=${customer_id}">
+                #i18n{gru.view_customer_tabs.tabDemands}
+            </a>
+        </li>
+        <li <#if tab="oldDemands">class="active"</#if>>
+            <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerOldDemands&id_customer=${customer_id}">
+                #i18n{gru.view_customer_tabs.tabOldDemands}
+            </a>
+        </li>
+        <li <#if tab="newDemands">class="active"</#if>>
+            <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerNewDemands&id_customer=${customer_id}">
+                #i18n{gru.view_customer_tabs.tabNewDemands}
+            </a>
+        </li>
+    </ul>
+</div>
+</#macro>

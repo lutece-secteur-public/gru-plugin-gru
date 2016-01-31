@@ -1,0 +1,28 @@
+<#include "action_bar.html" />
+<#include "view_customer_tabs.html" />
+<@actionMenu panels=panels customer=customer />
+<div class="content-wrapper">
+    <@customerDetails customer=customer />
+    <br>
+    <br>
+    <div class="row">
+        <@tabs tab="demands" customer_id=customer.id />
+        <table class="table table-stripped table-bordered">
+            <tr>
+                <th>Reference</th>
+                <th>Objet</th>
+            </tr>
+            <#list demands_list as demand>
+            <tr>
+                <td>
+                    <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewDemand&id_demand=${demand.id}&id_demand_type=${demand.demandTypeId}&id_customer=${customer.id}">
+                       ${demand.reference}
+                    </a>
+                </td>
+                <td>${demand.title}</td>
+            </tr>
+            </#list>
+        </table>
+    </div>
+</div>
+
