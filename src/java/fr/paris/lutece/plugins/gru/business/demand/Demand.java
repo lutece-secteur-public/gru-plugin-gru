@@ -51,6 +51,8 @@ public class Demand extends BaseDemand
     private String _strTitle;
     private List<Notification> _listNotifications = new ArrayList<Notification>(  );
     private List<Action> _listActions = new ArrayList<Action>(  );
+    private String _strStatusForCustomer;
+    private String _strStatusForGRU;
 
     /** Constructor */
     public Demand(  )
@@ -144,4 +146,45 @@ public class Demand extends BaseDemand
     {
         _listActions.add( notification );
     }
+    
+    /**
+     * Returns the StatusForCustomer
+     *
+     * @return The StatusForCustomer
+     */
+    public String getStatusForCustomer()
+    {
+        return _strStatusForCustomer;
+    }
+
+    /**
+     * Sets the StatusForCustomer
+     *
+     * @param strStatusForCustomer The StatusForCustomer
+     */
+    public void setStatusForCustomer( String strStatusForCustomer )
+    {
+        _strStatusForCustomer = strStatusForCustomer;
+    }
+
+    /**
+     * Returns the StatusForGRU
+     *
+     * @return The StatusForGRU
+     */
+    public String getStatusForGRU()
+    {
+        return _strStatusForGRU;
+    }
+
+    /**
+     * Sets the StatusForGRU
+     *
+     * @param strStatusForGRU The StatusForGRU
+     */
+    public void setStatusForGRU( String strStatusForGRU )
+    {
+        _strStatusForGRU = strStatusForGRU;
+    }
+    
 }

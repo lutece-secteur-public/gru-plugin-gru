@@ -11,6 +11,8 @@
             <tr>
                 <th>Reference</th>
                 <th>Objet</th>
+                <th>Statut vue Usager</th>
+                <th>Statut vue Agent</th>
             </tr>
             <#list demands_list as demand>
             <tr>
@@ -20,6 +22,8 @@
                     </a>
                 </td>
                 <td>${demand.title}</td>
+                <td>${demand.statusForCustomer!''}</td>
+                <td>${demand.statusForGRU!''}</td>
             </tr>
             </#list>
         </table>
