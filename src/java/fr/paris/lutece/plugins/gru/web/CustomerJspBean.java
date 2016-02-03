@@ -39,6 +39,8 @@ import fr.paris.lutece.plugins.gru.business.demand.Demand;
 import fr.paris.lutece.plugins.gru.service.CustomerActionsService;
 import fr.paris.lutece.plugins.gru.service.demand.DemandService;
 import fr.paris.lutece.plugins.gru.service.feature.FeatureService;
+import fr.paris.lutece.plugins.gru.service.search.CustomerResult;
+import fr.paris.lutece.plugins.gru.service.search.SearchService;
 import fr.paris.lutece.plugins.gru.web.actions.buttons.builders.impl.HomeButtonListBuilder;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionButton;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionPanel;
@@ -77,7 +79,10 @@ public class CustomerJspBean extends MVCAdminJspBean
     private static final String TEMPLATE_VIEW_CUSTOMER_OLD_DEMANDS = "/admin/plugins/gru/view_customer_old_demands.html";
     private static final String TEMPLATE_VIEW_CUSTOMER_NEW_DEMANDS = "/admin/plugins/gru/view_customer_new_demands.html";
     private static final String TEMPLATE_VIEW_DEMAND = "/admin/plugins/gru/view_demand.html";
+    private static final String TEMPLATE_SEARCH_RESULTS = "/admin/plugins/gru/search_results.html";
+            
 
+    
     // Properties for page titles
     private static final String PROPERTY_PAGE_TITLE_MANAGE_CUSTOMERS = "gru.manage_customers.pageTitle";
     private static final String PROPERTY_PAGE_TITLE_MODIFY_CUSTOMER = "gru.modify_customer.pageTitle";
@@ -95,6 +100,7 @@ public class CustomerJspBean extends MVCAdminJspBean
     private static final String VIEW_CREATE_CUSTOMER = "createCustomer";
     private static final String VIEW_MODIFY_CUSTOMER = "modifyCustomer";
     private static final String VIEW_SEARCH_CUSTOMER = "searchCustomer";
+    private static final String VIEW_SEARCH_RESULTS = "searchResults";
     private static final String VIEW_CUSTOMER_DEMANDS = "viewCustomerDemands";
     private static final String VIEW_CUSTOMER_OLD_DEMANDS = "viewCustomerOldDemands";
     private static final String VIEW_CUSTOMER_NEW_DEMANDS = "viewCustomerNewDemands";
@@ -125,6 +131,7 @@ public class CustomerJspBean extends MVCAdminJspBean
 
     // Session variable to store working values
     private Customer _customer;
+    private List<CustomerResult> _listCustomer;
 
     @View( value = VIEW_SEARCH_CUSTOMER, defaultView = true )
     public String getSearchCustomer( HttpServletRequest request )
@@ -135,8 +142,11 @@ public class CustomerJspBean extends MVCAdminJspBean
         model.put( Constants.MARK_ACTION_PANELS, listPanels );
         model.put( Constants.MARK_CUSTOMER, new Customer(  ) );
         model.put( Constants.MARK_BUTTONS_LIST, _homeButtonListBuilder.buildActionButtonList( customer, getUser(  ) ) );
-
+        model.put( Constants.MARK_AUTOCOMPLETE , SearchService.instance().isAutoComplete() );
+        model.put( Constants.MARK_AUTOCOMPLETE_URL , SearchService.instance().getAutoCompleteUrl() );
+        
         return getPage( PROPERTY_PAGE_TITLE_SEARCH_CUSTOMER, TEMPLATE_SEARCH_CUSTOMER, model );
+        
     }
 
     @Action( ACTION_SEARCH )
@@ -144,8 +154,28 @@ public class CustomerJspBean extends MVCAdminJspBean
     {
         String strQuery = request.getParameter( Constants.PARAMETER_QUERY );
 
-        // TODO search implementation
-        return redirect( request, VIEW_CUSTOMER_DEMANDS, Constants.PARAMETER_ID_CUSTOMER, 1 );
+        _listCustomer = SearchService.instance().searchCustomer( strQuery );
+        
+        if( _listCustomer.size() == 1 )
+        {
+            return redirect( request, VIEW_CUSTOMER_DEMANDS, Constants.PARAMETER_ID_CUSTOMER, _listCustomer.get( 0 ).getId() );
+        }
+        return redirectView( request, VIEW_SEARCH_RESULTS );
+        
+    }
+    
+    @View( VIEW_SEARCH_RESULTS )
+    public String getSearchResults( HttpServletRequest request )
+    {
+        Customer customer = null;
+        List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
+    
+        Map<String, Object> model = getModel();
+        model.put( Constants.MARK_RESULTS_LIST, _listCustomer );
+        model.put( Constants.MARK_ACTION_PANELS, listPanels );
+        model.put( Constants.MARK_CUSTOMER, new Customer(  ) );
+        
+        return getPage( PROPERTY_PAGE_TITLE_MANAGE_CUSTOMERS, TEMPLATE_SEARCH_RESULTS, model );
     }
 
     /**
