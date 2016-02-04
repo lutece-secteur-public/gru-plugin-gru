@@ -14,9 +14,9 @@ INSERT INTO workflow_action (id_action, name, description, id_workflow, id_state
 			(302,'Qualifier','Qualifier',301,302,303,1,0,0,2,0),
 			(303,'Requalifier','Requalifier',301,303,303,1,0,0,3,0),
             (304,'Escalader','Escalader',301,303,303,1,0,0,7,0),
-			(305,'Assigner une sollicitation à une autre entité','Assigner à une autre entité',301,303,303,1,0,0,6,0),
-            (306,'Assigner une sollicitation à un autre agent','Assigner à un autre agent',301,303,303,1,0,0,5,0),
-			(307,'M\'assigner une sollicitation','Me l\'assigner',301,303,303,1,0,0,4,0);
+			(305,'Assigner à une autre entité','Assigner une sollicitation à une autre entité',301,303,303,1,0,0,6,0),
+            (306,'Assigner à un autre agent','Assigner une sollicitation à un autre agent',301,303,303,1,0,0,5,0),
+			(307,'Me l\'assigner','M\'assigner une sollicitation',301,303,303,1,0,0,4,0);
 		
 DELETE FROM workflow_task WHERE id_action >= 300 AND id_action < 400;
 INSERT INTO workflow_task (id_task, task_type_key, id_action, display_order) 
