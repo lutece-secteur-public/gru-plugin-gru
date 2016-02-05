@@ -13,8 +13,10 @@
     <bean id="gru.featureCategoryDAO"  class="fr.paris.lutece.plugins.gru.business.feature.FeatureCategoryDAO" />  
     <bean id="gru.featureDAO"  class="fr.paris.lutece.plugins.gru.business.feature.FeatureDAO" />  
     
-    <bean id="gru.demandService" class="fr.paris.lutece.plugins.gru.service.demand.MokeDemandService" />
-    <bean id="gru.searchService" class="fr.paris.lutece.plugins.gru.service.search.MokeSearchService" />
+  <!-- <bean id="gru.demandService" class="fr.paris.lutece.plugins.gru.service.demand.MokeDemandService" />
+    <bean id="gru.searchService" class="fr.paris.lutece.plugins.gru.service.search.MokeSearchService" /> -->  
+    <bean id="gru.demandService" class="fr.paris.lutece.plugins.grustorage.elastic.service.ElasticDemandService" />
+    <bean id="gru.searchService" class="fr.paris.lutece.plugins.grustorage.elastic.service.ElasticSearchService" />
 
     <bean id="gru.actions.builder.Demands" class="fr.paris.lutece.plugins.gru.web.actions.groups.builders.impl.DemandsActionGroupBuilder" >
         <property name="title">
