@@ -32,14 +32,6 @@
   </div>
 </div>
 
-<#if auto_complete>
-
-${auto_complete_url}
-
-</#if>
-
-
-
 <style>
 .ui-autocomplete {
     position: absolute;
@@ -85,14 +77,13 @@ ${auto_complete_url}
 </style>
 
 
+<#if auto_complete>
 <script>
 $(function() {
     $('.autocomplete').autocomplete({
         source: function(request, response) {
             $.ajax({
-                url: 
-                	${auto_complete_url}+'?query=' + request.term,
-                dataType: 'json',
+                url: "${auto_complete_url}?query=" + request.term,
                 minLength: 3,
                 success: function(data) {
                     var formattedResponse = $.map(data.autocomplete, function(ob) {
@@ -114,6 +105,7 @@ $(function() {
 });
 </script>
 
+</#if>
 
 
 

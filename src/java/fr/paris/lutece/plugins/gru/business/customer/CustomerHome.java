@@ -109,8 +109,9 @@ public final class CustomerHome
      */
     public static Customer findByGuid( String strGuid )
     {
-        return _dao.selectByGuid( strGuid , _plugin );
+        return _dao.selectByGuid( strGuid, _plugin );
     }
+
     /**
      * Load the data of all the customer objects and returns them in form of a collection
      * @return the collection which contains the data of all the customer objects

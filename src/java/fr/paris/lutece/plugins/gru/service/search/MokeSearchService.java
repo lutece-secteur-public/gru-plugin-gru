@@ -31,12 +31,11 @@
  *
  * License 1.0
  */
-
-
 package fr.paris.lutece.plugins.gru.service.search;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * MokeSearchService
@@ -49,17 +48,18 @@ public class MokeSearchService implements ISearchService
     @Override
     public List<CustomerResult> searchCustomer( String strQuery )
     {
-        List<CustomerResult> list = new ArrayList<CustomerResult>();
-        CustomerResult customer1 = new CustomerResult();
+        List<CustomerResult> list = new ArrayList<CustomerResult>(  );
+        CustomerResult customer1 = new CustomerResult(  );
         customer1.setId( 1 );
         customer1.setFirstname( "Maurice" );
         customer1.setLastname( "Dupont" );
         customer1.setMobilePhone( "0612459812" );
         customer1.setEmail( "maurice.dupont@domain.com" );
         list.add( customer1 );
-        if( strQuery.equals( "multiple" ))
+
+        if ( strQuery.equals( "multiple" ) )
         {
-            CustomerResult customer2 = new CustomerResult();
+            CustomerResult customer2 = new CustomerResult(  );
             customer2.setId( 1 );
             customer2.setFirstname( "Maurice" );
             customer2.setLastname( "Dupont" );
@@ -67,6 +67,7 @@ public class MokeSearchService implements ISearchService
             customer2.setEmail( "maurice.dupont@somewhere.com" );
             list.add( customer2 );
         }
+
         return list;
     }
 
@@ -74,7 +75,7 @@ public class MokeSearchService implements ISearchService
      * {@inheritDoc }
      */
     @Override
-    public boolean isAutoComplete()
+    public boolean isAutoComplete(  )
     {
         return false;
     }
@@ -83,9 +84,8 @@ public class MokeSearchService implements ISearchService
      * {@inheritDoc }
      */
     @Override
-    public String getAutoCompleteUrl()
+    public String getAutoCompleteUrl(  )
     {
         return "";
     }
-
 }

@@ -96,5 +96,5 @@ public interface ICustomerDAO
      * @param plugin The Plugin
      * @return The customer
      */
-    Customer selectByGuid( String strGuid , Plugin plugin );
+    Customer selectByGuid( String strGuid, Plugin plugin );
 }

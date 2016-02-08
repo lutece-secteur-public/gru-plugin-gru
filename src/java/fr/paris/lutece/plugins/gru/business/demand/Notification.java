@@ -34,6 +34,7 @@
 package fr.paris.lutece.plugins.gru.business.demand;
 
 import fr.paris.lutece.plugins.gru.utils.DateUtils;
+
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.map.annotate.JsonRootName;
@@ -154,7 +155,7 @@ public class Notification
     {
         return _sms;
     }
-    
+
     /**
      * Set the UserDashboard object
      * @param userDashboard The UserDashboard Object
@@ -173,5 +174,4 @@ public class Notification
     {
         return _userDashboard;
     }
-
 }

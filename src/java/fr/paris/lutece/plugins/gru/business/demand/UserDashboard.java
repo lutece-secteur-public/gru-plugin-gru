@@ -31,96 +31,94 @@
  *
  * License 1.0
  */
-
-
 package fr.paris.lutece.plugins.gru.business.demand;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
+
 /**
  * UserDashboard
  */
 @JsonIgnoreProperties( ignoreUnknown = true )
-public class UserDashboard 
+public class UserDashboard
 {
     // Variables declarations 
     private String _strStatusText;
     private String _strSenderName;
     private String _strSubject;
     private String _strMessage;
-    
-    
-       /**
-        * Returns the StatusText
-        * @return The StatusText
-        */ 
-    public String getStatusText()
+
+    /**
+     * Returns the StatusText
+     * @return The StatusText
+     */
+    public String getStatusText(  )
     {
         return _strStatusText;
     }
-    
-       /**
-        * Sets the StatusText
-        * @param strStatusText The StatusText
-        */ 
+
+    /**
+     * Sets the StatusText
+     * @param strStatusText The StatusText
+     */
     @JsonProperty( "status_text" )
     public void setStatusText( String strStatusText )
     {
         _strStatusText = strStatusText;
     }
-    
-       /**
-        * Returns the SenderName
-        * @return The SenderName
-        */ 
-    public String getSenderName()
+
+    /**
+     * Returns the SenderName
+     * @return The SenderName
+     */
+    public String getSenderName(  )
     {
         return _strSenderName;
     }
-    
-       /**
-        * Sets the SenderName
-        * @param strSenderName The SenderName
-        */ 
+
+    /**
+     * Sets the SenderName
+     * @param strSenderName The SenderName
+     */
     @JsonProperty( "sender_name" )
     public void setSenderName( String strSenderName )
     {
         _strSenderName = strSenderName;
     }
-    
-       /**
-        * Returns the Subject
-        * @return The Subject
-        */ 
-    public String getSubject()
+
+    /**
+     * Returns the Subject
+     * @return The Subject
+     */
+    public String getSubject(  )
     {
         return _strSubject;
     }
-    
-       /**
-        * Sets the Subject
-        * @param strSubject The Subject
-        */ 
+
+    /**
+     * Sets the Subject
+     * @param strSubject The Subject
+     */
     @JsonProperty( "subject" )
     public void setSubject( String strSubject )
     {
         _strSubject = strSubject;
     }
-    
-       /**
-        * Returns the Message
-        * @return The Message
-        */ 
-    public String getMessage()
+
+    /**
+     * Returns the Message
+     * @return The Message
+     */
+    public String getMessage(  )
     {
         return _strMessage;
     }
-    
-       /**
-        * Sets the Message
-        * @param strMessage The Message
-        */ 
+
+    /**
+     * Sets the Message
+     * @param strMessage The Message
+     */
     @JsonProperty( "message" )
     public void setMessage( String strMessage )
     {

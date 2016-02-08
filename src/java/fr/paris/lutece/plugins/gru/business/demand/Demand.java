@@ -146,13 +146,13 @@ public class Demand extends BaseDemand
     {
         _listActions.add( notification );
     }
-    
+
     /**
      * Returns the StatusForCustomer
      *
      * @return The StatusForCustomer
      */
-    public String getStatusForCustomer()
+    public String getStatusForCustomer(  )
     {
         return _strStatusForCustomer;
     }
@@ -172,7 +172,7 @@ public class Demand extends BaseDemand
      *
      * @return The StatusForGRU
      */
-    public String getStatusForGRU()
+    public String getStatusForGRU(  )
     {
         return _strStatusForGRU;
     }
@@ -186,5 +186,4 @@ public class Demand extends BaseDemand
     {
         _strStatusForGRU = strStatusForGRU;
     }
-    
 }

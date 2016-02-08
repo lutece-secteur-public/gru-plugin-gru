@@ -36,11 +36,12 @@ package fr.paris.lutece.plugins.gru.service.demand;
 import fr.paris.lutece.plugins.gru.business.demand.Email;
 import fr.paris.lutece.plugins.gru.business.demand.Notification;
 import fr.paris.lutece.plugins.gru.business.demand.Sms;
-// import fr.paris.lutece.portal.service.util.AppPropertiesService;
 
+// import fr.paris.lutece.portal.service.util.AppPropertiesService;
 import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.JsonParser;
+import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.IOException;
@@ -49,7 +50,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.codehaus.jackson.map.DeserializationConfig;
 
 
 /**
@@ -57,26 +57,24 @@ import org.codehaus.jackson.map.DeserializationConfig;
  */
 public class NotificationService
 {
-
-    
-    
     public static Notification parseJSON( String strJson )
     {
         Notification notification = null;
+
         try
         {
             ObjectMapper mapper = new ObjectMapper(  );
             mapper.configure( DeserializationConfig.Feature.UNWRAP_ROOT_VALUE, true );
 
             notification = mapper.readValue( strJson, Notification.class );
+
             return notification;
         }
-        catch( IOException ex )
+        catch ( IOException ex )
         {
-            Logger.getLogger( NotificationService.class.getName() ).log( Level.SEVERE, null, ex );
+            Logger.getLogger( NotificationService.class.getName(  ) ).log( Level.SEVERE, null, ex );
         }
-        return notification;
-        
-    }
 
+        return notification;
+    }
 }

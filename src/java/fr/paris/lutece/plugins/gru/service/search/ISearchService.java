@@ -31,16 +31,15 @@
  *
  * License 1.0
  */
-
-
 package fr.paris.lutece.plugins.gru.service.search;
 
 import java.util.List;
 
+
 /**
  * ISearchService
  */
-public interface ISearchService 
+public interface ISearchService
 {
     /**
      * Search for Customers using a query string
@@ -48,16 +47,16 @@ public interface ISearchService
      * @return The customer list
      */
     List<CustomerResult> searchCustomer( String strQuery );
-    
+
     /**
      * An autocomplete feature is available
      * @return true of auto complete otherwise false
      */
-    boolean isAutoComplete();
-    
+    boolean isAutoComplete(  );
+
     /**
      * Return the AutoComplete Web Service URL
      * @return The URL
      */
-    String getAutoCompleteUrl();
+    String getAutoCompleteUrl(  );
 }

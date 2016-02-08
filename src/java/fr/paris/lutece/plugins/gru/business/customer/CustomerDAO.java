@@ -237,7 +237,7 @@ public final class CustomerDAO implements ICustomerDAO
      * {@inheritDoc }
      */
     @Override
-    public Customer selectByGuid(String strGuid, Plugin plugin) 
+    public Customer selectByGuid( String strGuid, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT_BY_GUID, plugin );
         daoUtil.setString( 1, strGuid );

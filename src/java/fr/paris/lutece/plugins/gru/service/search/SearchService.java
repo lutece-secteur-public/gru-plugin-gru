@@ -31,27 +31,26 @@
  *
  * License 1.0
  */
-
-
 package fr.paris.lutece.plugins.gru.service.search;
 
 import fr.paris.lutece.portal.service.spring.SpringContextService;
+
 import java.util.List;
+
 
 /**
  * SearchService
  */
-public class SearchService 
+public class SearchService
 {
     private static final String BEAN_SEARCH_SERVICE = "gru.searchService";
     private static ISearchService _service;
 
-    
     /** Private constructor */
-    private SearchService()
+    private SearchService(  )
     {
     }
-    
+
     /**
      * Get the unique instance
      * @return The instance
@@ -65,7 +64,7 @@ public class SearchService
 
         return _service;
     }
-    
+
     /**
      * Search for Customers using a query string
      * @param strQuery The query
@@ -75,23 +74,22 @@ public class SearchService
     {
         return _service.searchCustomer( strQuery );
     }
-    
+
     /**
      * Is autocomplete feature available
      * @return true if available
      */
-    public boolean isAutoComplete()
+    public boolean isAutoComplete(  )
     {
-        return _service.isAutoComplete();
+        return _service.isAutoComplete(  );
     }
-    
+
     /**
      * The AutoComplete WebService URL
      * @return The AutoComplete WebService URL
      */
-    public String getAutoCompleteUrl()
+    public String getAutoCompleteUrl(  )
     {
-        return _service.getAutoCompleteUrl();
+        return _service.getAutoCompleteUrl(  );
     }
-
 }

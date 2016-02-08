@@ -53,9 +53,10 @@ public class NotificationServiceTest
     @Test
     public void testParseJSON(  ) throws IOException
     {
-        StringWriter writer = new StringWriter();
-        IOUtils.copy( getClass(  ).getResourceAsStream( FILE_TEST ), writer, "UTF-8");
-        String strJSON = writer.toString();
+        StringWriter writer = new StringWriter(  );
+        IOUtils.copy( getClass(  ).getResourceAsStream( FILE_TEST ), writer, "UTF-8" );
+
+        String strJSON = writer.toString(  );
         Notification notification = NotificationService.parseJSON( strJSON );
 
         System.out.println( "recipient :" + notification.getEmail(  ).getRecipient(  ) );

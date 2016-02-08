@@ -31,34 +31,31 @@
  *
  * License 1.0
  */
-
-
 package fr.paris.lutece.plugins.gru.utils;
 
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
+
 import java.text.SimpleDateFormat;
+
 import java.util.Date;
+
 
 /**
  * DateUtils
  */
-public class DateUtils 
+public class DateUtils
 {
     private static final String PROPERTY_DATE_FORMAT = "gru.notifications.date_format";
     private static final String _strPattern = AppPropertiesService.getProperty( PROPERTY_DATE_FORMAT );
     private static final SimpleDateFormat _formater = new SimpleDateFormat( _strPattern );
-    
+
     /**
      * Date formatter
      * @param lTime Time
      * @return The date
      */
-    
-   
     public static String dateFormat( long lTime )
     {
         return _formater.format( ( new Date( lTime ) ) );
     }
-    
-
 }

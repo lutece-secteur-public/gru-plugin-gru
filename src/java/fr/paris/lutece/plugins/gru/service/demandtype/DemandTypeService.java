@@ -68,13 +68,14 @@ public class DemandTypeService
         if ( type == null )
         {
             type = DemandTypeHome.findByTypeId( demand.getDemandTypeId(  ) );
-            if( type == null )
+
+            if ( type == null )
             {
                 throw new AppException( "Unable to find DemandType with the ID : " + demand.getDemandTypeId(  ) );
             }
+
             _mapDemandTypes.put( demand.getDemandTypeId(  ), type );
         }
-        
 
         demand.setTitle( type.getTitle(  ) );
 

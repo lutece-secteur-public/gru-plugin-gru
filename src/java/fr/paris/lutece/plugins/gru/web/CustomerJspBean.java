@@ -80,9 +80,7 @@ public class CustomerJspBean extends MVCAdminJspBean
     private static final String TEMPLATE_VIEW_CUSTOMER_NEW_DEMANDS = "/admin/plugins/gru/view_customer_new_demands.html";
     private static final String TEMPLATE_VIEW_DEMAND = "/admin/plugins/gru/view_demand.html";
     private static final String TEMPLATE_SEARCH_RESULTS = "/admin/plugins/gru/search_results.html";
-            
 
-    
     // Properties for page titles
     private static final String PROPERTY_PAGE_TITLE_MANAGE_CUSTOMERS = "gru.manage_customers.pageTitle";
     private static final String PROPERTY_PAGE_TITLE_MODIFY_CUSTOMER = "gru.modify_customer.pageTitle";
@@ -142,11 +140,10 @@ public class CustomerJspBean extends MVCAdminJspBean
         model.put( Constants.MARK_ACTION_PANELS, listPanels );
         model.put( Constants.MARK_CUSTOMER, new Customer(  ) );
         model.put( Constants.MARK_BUTTONS_LIST, _homeButtonListBuilder.buildActionButtonList( customer, getUser(  ) ) );
-        model.put( Constants.MARK_AUTOCOMPLETE , SearchService.instance().isAutoComplete() );
-        model.put( Constants.MARK_AUTOCOMPLETE_URL , SearchService.instance().getAutoCompleteUrl() );
-        
+        model.put( Constants.MARK_AUTOCOMPLETE, SearchService.instance(  ).isAutoComplete(  ) );
+        model.put( Constants.MARK_AUTOCOMPLETE_URL, SearchService.instance(  ).getAutoCompleteUrl(  ) );
+
         return getPage( PROPERTY_PAGE_TITLE_SEARCH_CUSTOMER, TEMPLATE_SEARCH_CUSTOMER, model );
-        
     }
 
     @Action( ACTION_SEARCH )
@@ -154,27 +151,28 @@ public class CustomerJspBean extends MVCAdminJspBean
     {
         String strQuery = request.getParameter( Constants.PARAMETER_QUERY );
 
-        _listCustomer = SearchService.instance().searchCustomer( strQuery );
-        
-        if( _listCustomer.size() == 1 )
+        _listCustomer = SearchService.instance(  ).searchCustomer( strQuery );
+
+        if ( _listCustomer.size(  ) == 1 )
         {
-            return redirect( request, VIEW_CUSTOMER_DEMANDS, Constants.PARAMETER_ID_CUSTOMER, _listCustomer.get( 0 ).getId() );
+            return redirect( request, VIEW_CUSTOMER_DEMANDS, Constants.PARAMETER_ID_CUSTOMER,
+                _listCustomer.get( 0 ).getId(  ) );
         }
+
         return redirectView( request, VIEW_SEARCH_RESULTS );
-        
     }
-    
+
     @View( VIEW_SEARCH_RESULTS )
     public String getSearchResults( HttpServletRequest request )
     {
         Customer customer = null;
         List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
-    
-        Map<String, Object> model = getModel();
+
+        Map<String, Object> model = getModel(  );
         model.put( Constants.MARK_RESULTS_LIST, _listCustomer );
         model.put( Constants.MARK_ACTION_PANELS, listPanels );
         model.put( Constants.MARK_CUSTOMER, new Customer(  ) );
-        
+
         return getPage( PROPERTY_PAGE_TITLE_MANAGE_CUSTOMERS, TEMPLATE_SEARCH_RESULTS, model );
     }
 
@@ -199,10 +197,11 @@ public class CustomerJspBean extends MVCAdminJspBean
     public String getViewCustomerDemands( HttpServletRequest request )
     {
         Customer customer = getCustomer( request );
-        if( customer != null )
+
+        if ( customer != null )
         {
             List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
-            List<Demand> listDemands = DemandService.getDemands( customer , getUser(  ) );
+            List<Demand> listDemands = DemandService.getDemands( customer, getUser(  ) );
 
             Map<String, Object> model = getModel(  );
             model.put( Constants.MARK_ACTION_PANELS, listPanels );
@@ -214,15 +213,16 @@ public class CustomerJspBean extends MVCAdminJspBean
 
         return "Invalid Customer";
     }
-    
+
     @View( VIEW_CUSTOMER_OLD_DEMANDS )
     public String getViewCustomerOldDemands( HttpServletRequest request )
     {
         Customer customer = getCustomer( request );
-        if( customer != null )
+
+        if ( customer != null )
         {
             List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
-            List<Demand> listDemands = DemandService.getDemands( customer , getUser(  ) );
+            List<Demand> listDemands = DemandService.getDemands( customer, getUser(  ) );
 
             Map<String, Object> model = getModel(  );
             model.put( Constants.MARK_ACTION_PANELS, listPanels );
@@ -239,10 +239,11 @@ public class CustomerJspBean extends MVCAdminJspBean
     public String getViewCustomerNewDemands( HttpServletRequest request )
     {
         Customer customer = getCustomer( request );
-        if( customer != null )
+
+        if ( customer != null )
         {
             List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
-            List<ActionButton> listButtons =  _homeButtonListBuilder.buildActionButtonList( customer, getUser(  ));
+            List<ActionButton> listButtons = _homeButtonListBuilder.buildActionButtonList( customer, getUser(  ) );
 
             Map<String, Object> model = getModel(  );
             model.put( Constants.MARK_ACTION_PANELS, listPanels );
@@ -266,12 +267,12 @@ public class CustomerJspBean extends MVCAdminJspBean
             {
                 int nId = Integer.parseInt( strId );
                 customer = CustomerHome.findByPrimaryKey( nId );
-        
             }
             catch ( NumberFormatException e )
             {
             }
         }
+
         return customer;
     }
 

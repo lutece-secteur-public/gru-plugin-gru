@@ -31,22 +31,20 @@
  *
  * License 1.0
  */
-
-
 package fr.paris.lutece.plugins.gru.service.search;
+
 
 /**
  * CustomerResult
  */
-public class CustomerResult 
+public class CustomerResult
 {
     private int _nId;
     private String _strFirstname;
     private String _strLastname;
     private String _strEmail;
     private String _strMobilePhone;
-    
-    
+
     /**
      * Returns the Id
      * @return The Id
@@ -136,6 +134,4 @@ public class CustomerResult
     {
         _strMobilePhone = strMobilePhone;
     }
-
-
 }
