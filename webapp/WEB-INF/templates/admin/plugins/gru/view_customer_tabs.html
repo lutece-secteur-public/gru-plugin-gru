@@ -1,21 +1,50 @@
 <#macro tabs tab customer_id>
-<div>
-    <ul class="nav nav-tabs">
-        <li <#if tab="demands">class="active"</#if>>
-            <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerDemands&id_customer=${customer_id}">
-                #i18n{gru.view_customer_tabs.tabDemands}
-            </a>
+  <ul class="nav nav-tabs">
+    <li <#if tab="demands">class="active"</#if>>
+      <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerDemands&id_customer=${customer_id}" >
+        #i18n{gru.view_customer_tabs.tabDemands}
+      </a>
+    </li>
+    <li <#if tab="oldDemands">class="active"</#if>>
+      <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerOldDemands&id_customer=${customer_id}">
+        #i18n{gru.view_customer_tabs.tabOldDemands}
+      </a>
+    </li>
+    <!--
+    <li <#if tab="newDemands">class="active"</#if>>
+      <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerNewDemands&id_customer=${customer_id}" class="">
+        <i class="fa fa-plus-circle"></i> #i18n{gru.view_customer_tabs.tabNewDemands}
+      </a>
+    </li>
+  -->
+    <!-- PROPOSITION ALTERNATIVE -->
+    <li role="presentation" class="dropdown" >
+      <a href="#" id="demandeTab" class="dropdown-toggle bg-gru-light" data-toggle="dropdown" aria-controls="demandeTab-contents" aria-expanded="false">
+        <i class="fa fa-plus-circle"></i> #i18n{gru.view_customer_tabs.tabNewDemands} <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="demandeTab" id="demandeTab-contents">
+        <li>
+          <a  href="jsp/admin/plugins/ticketing/ManageTickets.jsp?view=createTicket&fn=Maurice&ln=Dupont&guid=3121231&ph=0677889911&em=mdupont@domain.com&cid=1">
+            <i class="fa fa-bullhorn"></i>&nbsp;Nouvelle sollicitaton
+          </a>
         </li>
-        <li <#if tab="oldDemands">class="active"</#if>>
-            <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerOldDemands&id_customer=${customer_id}">
-                #i18n{gru.view_customer_tabs.tabOldDemands}
-            </a>
+        <li>
+          <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerNewDemands&id_customer=${customer_id}#espacepublic">
+            <i class="fa fa-street-view"></i>&nbsp;Espace Public
+          </a>
         </li>
-        <li <#if tab="newDemands">class="active"</#if>>
-            <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerNewDemands&id_customer=${customer_id}">
-                #i18n{gru.view_customer_tabs.tabNewDemands}
-            </a>
+        <li>
+          <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerNewDemands&id_customer=${customer_id}#voirie">
+            <i class="fa fa-car"></i>&nbsp;Voirie
+          </a>
         </li>
-    </ul>
-</div>
+        <li>
+          <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerNewDemands&id_customer=${customer_id}#urbanisme">
+            <i class="fa fa-building"></i>&nbsp;Urbanisme
+          </a>
+        </li>
+      </ul>
+    </li>
+    <!-- FIN -->
+  </ul>
 </#macro>

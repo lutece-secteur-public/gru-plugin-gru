@@ -1,24 +1,110 @@
-.content-wrapper{background: url("../../../../images/admin/skin/plugins/gru/bg_gru.jpg") no-repeat; background-size: cover;padding: 15px;}
-.content-header iframe{border:0;}
-#form-user{
-  margin-top: 5%; padding:25px 50px;background-color: #fff;
-  -moz-box-shadow: 0px 0px 20px 2px #656565;  -webkit-box-shadow: 0px 0px 20px 2px #656565;  -o-box-shadow: 0px 0px 20px 2px #656565;  box-shadow: 0px 0px 20px 2px #656565;
-  filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=20);
-  -moz-border-radius: 20px;  -webkit-border-radius: 20px;  border-radius: 20px;
+/* FONTS */
+@font-face {font-family:'Montserrat-Regular';
+src:url('../../../fonts/Montserrat-Regular-webfont.eot');
+src:url('../../../fonts/Montserrat-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+url('../../../fonts/Montserrat-Regular-webfont.woff') format('woff'),
+url('../../../fonts/Montserrat-Regular-webfont.woff2') format('woff2'),
+url('../../../fonts/Montserrat-Regular-webfont.ttf') format('truetype'),
+url('../../../fonts/Montserrat-Regular-webfont.svg') format('svg');
+font-weight:normal;
+font-style:normal;
 }
 
-#home-actions{margin-top:2%; text-align: center}
-#home-actions .btn-lg{padding:3% 4%;margin:2%;text-align: center}
-.user-panel { padding-left:20px !important;}
+@font-face {font-family:'Montserrat-Bold';
+src:url('../../../fonts/Montserrat-Bold-webfont.eot');
+src:url('../../../fonts/Montserrat-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+url('../../../fonts/Montserrat-Bold-webfont.woff') format('woff'),
+url('../../../fonts/Montserrat-Bold-webfont.woff2') format('woff2'),
+url('../../../fonts/Montserrat-Bold-webfont.ttf') format('truetype'),
+url('../../../fonts/Montserrat-Bold-webfont.svg') format('svg');
+font-weight:normal;
+font-style:normal;
+}
 
-.main-sidebar{top: 120px !important;padding-top: 0 !important;left:15px !important; }
+@font-face {font-family:'Montserrat-Light';
+src:url('../../../fonts/Montserrat-Light-webfont.eot');
+src:url('../../../fonts/Montserrat-Light-webfont.eot?#iefix') format('embedded-opentype'),
+url('../../../fonts/Montserrat-Light-webfont.woff') format('woff'),
+url('../../../fonts/Montserrat-Light-webfont.woff2') format('woff2'),
+url('../../../fonts/Montserrat-Light-webfont.ttf') format('truetype'),
+url('../../../fonts/Montserrat-Light-webfont.svg') format('svg');
+font-weight:normal;
+font-style:normal;
+}
 
-.sidebar-mini.sidebar-collapse .main-header .navbar {  margin-left: 0 !important;}
+/* SURCHARGE CORE */
+#admin-wrapper { margin: 85px  0; font-family:'Montserrat-Light'}
+.content {padding: 0;margin: 0 }
+
+.skin-blue-light .main-header .navbar{background-color: #0082D8}
+.skin-blue-light .main-header .navbar .form-control{border-top-right-radius : 10px;border-bottom-right-radius : 10px;border-color: #FFF;background-color: #FFF;width:25rem;}
+.skin-blue-light .main-header .navbar .input-group .input-group-addon {	border-top-left-radius : 10px;border-bottom-left-radius : 10px;border-color: #FFF;background-color: #FFF;}
+
+.home{ display: none !important }
+
+/* GRU SPECIFIC */
+/* HELPER CLASSES */
+.text-gru{color: #0082D8 !important}
+.bg-gru-light{ background-color: #0082D8 }
+.bg-gru-dark{ background-color: #0C3B59}
+#btn-back{ position:absolute; top:136px; left:150px; color:#fff }
+
+/* TOOLBAR */
+.sidebar-mini .main-header .navbar {margin-left: 0px !important;	min-height: 90px;	padding-top: 20px;}
 .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > span:not(.pull-right), .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu {	width: 280px;}
 .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu.user {padding:5px;}
 .sidebar-mini.sidebar-collapse .sidebar-menu > li.treeview > a > .label {	position: absolute;	top: 9px;	right: 7px;	text-align: center;	font-size: 9px;	padding: 2px 3px;	line-height: 0.9;  display: block !important;}
 .sidebar-menu li > a > .pull-right { display: none }
 .sidebar-menu > li > .treeview-menu.user {padding:5px;}
 .sidebar-mini.sidebar-collapse .sidebar-menu li > a > .pull-right { display: block }
+.main-sidebar{ top:40px }
+.user-panel{ padding-left:20px !important;}
+#info-user{ margin:15px 0}
 
-#info-user{margin:15px;}
+/* CUSTOMER */
+#gru-wrapper{background: url(../../../../images/admin/skin/plugins/gru/fond_360.jpg); background-size:cover;}
+#form-user{ margin-top: 7.5% }
+#form-user form input{ padding:20px; height:80px;  border-top-left-radius:10px; border-bottom-left-radius:10px}
+#form-user form .input-group-btn button{ width:80px; height:80px; border-top-right-radius:10px; border-bottom-right-radius:10px}
+#home-actions a{ margin-top:15px; margin-right: 5px }
+#customer-panel{padding: 15px;height: 150px;color:#fff;}
+#customer-panel .row{margin-top: 1rem;width:87%;margin-left: auto;margin-right: auto;}
+#customer-panel p{font-size: 1.8rem;}
+#customer-panel p:first-of-type{margin-top:20px}
+#customer-panel p#info{font-size: 1.4rem; font-style: italic;}
+#customer-panel a.btn-link{border: 1px solid #fff; border-radius: 5px; color:#fff; text-transform: uppercase;font-size: 1.4rem;vertical-align: center;margin-top:60px;padding:6px 35px;}
+
+/* DEMAND */
+#demand-panel{ padding: 15px 0;	background-color: #F3F7FA; color:#fff; min-height: 800px}
+#demand-panel .nav-tabs{margin-bottom:0}
+#demand-panel .nav-tabs > li > a{border: 1px solid #DDD;padding:15px 30px; margin-left:25px;text-transform: uppercase;font-size: 1.5rem;}
+#demand-panel .nav-tabs > li.active > a{border-bottom:1px solid #fff}
+#demand-panel .nav-tabs > li:first-of-type {margin-left: 100px;}
+#demand-panel .nav-tabs > li:last-of-type a{background-color: #0082D8; color:#fff}
+#demand-panel .nav-tabs .dropdown-menu{padding: 0px 26px; border: 0; min-width:291px }
+#demand-panel .nav-tabs .dropdown-menu li{ width:274px }
+
+#demand-panel .tab-content{padding:10px 0;padding-left: 7.5%;  background-color: #fff }
+#demand-panel .tab-content table{ color: #BEBEBE }
+#demand-panel .tab-content table tr:first-of-type{ background-color: #fff; color: #000  }
+#demand-panel .tab-content table th{ border-top: 0; text-transform: uppercase }
+#demand-panel .tab-content table td{color: #656565 }
+#demand-panel .tab-content>.tab-pane ul{padding-left: 0; }
+#demand-panel .tab-content>.tab-pane h3{font-family: "Montserrat-Regular"; font-size: 2rem}
+#demand-panel .tab-content>.tab-pane>ul>li{padding-left: 0; border-bottom: 1px solid  #DDD; padding-bottom: 30px; }
+#demand-panel .tab-content>.tab-pane ul li ul li a{ font-family: "Montserrat-Regular";font-size: 1.25rem; text-transform: uppercase; padding:10px; border-radius: 7px }
+
+/* FILTERS */
+#filter{font-size: 1.2rem; color:#000;margin:35px 0;}
+#filter .form-control{border-color: #000}
+#filter .form-control-static{text-transform: uppercase;}
+#filter select{height:28px;min-width:150px;font-weight:normal; padding:1px;margin:0 15px;background: #FFF;color:#000;border: 1px solid "000"; border-radius: 6px;outline:none;display: inline-block;-webkit-appearance:none;-moz-appearance:none;appearance:none;cursor:pointer}
+/* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
+@media screen and (-webkit-min-device-pixel-ratio:0) { #filter select {padding-right:18px} }
+#filter label.select{ position:relative }
+#filter label.select:last-of-type{ margin-right:0 }
+#filter label.select:after{ content:'\f107';color:#606059;font-family: 'FontAwesome';font-size:20px;right:20px; top:0px;position:absolute;pointer-events:none }
+#filter .btn{ color:#fff; min-width: 50px }
+
+/* IFRAME */
+.content-header iframe{border:0;}

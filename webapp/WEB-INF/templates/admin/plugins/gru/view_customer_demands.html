@@ -1,32 +1,59 @@
 <#include "action_bar.html" />
 <#include "view_customer_tabs.html" />
 <@actionMenu panels=panels customer=customer />
-<div class="content-wrapper">
+<div class="content-wrapper" id="gru-content-wrapper">
+  <div id="customer-panel" class="bg-gru-dark">
     <@customerDetails customer=customer />
-    <br>
-    <br>
-    <div class="row">
-        <@tabs tab="demands" customer_id=customer.id />
-        <table class="table table-stripped table-bordered">
-            <tr>
-                <th>Reference</th>
-                <th>Objet</th>
-                <th>Statut vue Usager</th>
-                <th>Statut vue Agent</th>
-            </tr>
-            <#list demands_list as demand>
-            <tr>
-                <td>
-                    <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewDemand&id_demand=${demand.id}&id_demand_type=${demand.demandTypeId}&id_customer=${customer.id}">
+  </div>
+  <div id="demand-panel">
+      <@tabs tab="demands" customer_id=customer.id />
+        <div class="tab-content">
+          <@customerFilter />
+          <div role="tabpanel" class="tab-pane active table-responsive">
+            <table class="table table-striped table-hover">
+                <tr>
+                    <th class="col-xs-12 col-sm-1">Reference</th>
+                    <th class="col-xs-12 col-sm-1">Ouvert depuis</th>
+                    <th class="col-xs-12 col-sm-1">Nature</th>
+                    <th class="col-xs-12 col-sm-7">Derni&egrave;re notification</th>
+                    <th class="col-xs-12 col-sm-1">Statut</th>
+                    <th class="col-xs-12 col-sm-1"></th>
+                </tr>
+                <#list demands_list as demand>
+                  <tr>
+                    <td>
+                      <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewDemand&id_demand=${demand.id}&id_demand_type=${demand.demandTypeId}&id_customer=${customer.id}">
                        ${demand.reference}
-                    </a>
-                </td>
-                <td>${demand.title}</td>
-                <td>${demand.statusForCustomer!''}</td>
-                <td>${demand.statusForGRU!''}</td>
-            </tr>
-            </#list>
-        </table>
+                      </a>
+                    </td>
+                    <td class="text-center text-gru">${demand.date!'2'} <br>jours</td>
+                    <td class="text-demand">${demand.title}</td>
+                    <td class="text-demand">Not long after the warden deprived us of his company, I got a postcard in the mail. It was blank, but the postmark said Fort Hancock, Texas. Fort Hancock... right on the border. That's where Andy crossed. When I picture him heading south in his own car with the top down, it always makes me laugh. </td>
+                    <td>
+                        <#switch demand.status>
+                        <#case 0>
+                          En cours
+                        <#break>
+                        <#case 1>
+                          Termin&eacute;e
+                        <#break>
+                      </#switch>
+                    </td>
+                    <td>
+                      <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewDemand&id_demand=${demand.id}&id_demand_type=${demand.demandTypeId}&id_customer=${customer.id}" title="D&eacute;tail">
+                        <i class="fa fa-list fa-2x text-gru"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </#list>
+            </table>
+      </div>
     </div>
+  </div>
 </div>
 
+<script>
+$( function(){
+  $(".content-header").toggle();
+});
+</script>

@@ -1,16 +1,16 @@
 <#macro renderPanel panel>
-    <#if panel.actionGroups?size &gt; 0 >
+  <#if panel.actionGroups?size &gt; 0>
     <li class="header">
       <h4>${panel.title}</h4>
-    </#if>
-    <#list panel.actionGroups as group>
+      <#list panel.actionGroups as group>
         <@renderGroup group />
-    </#list>
+      </#list>
     </li>
+  </#if>
 </#macro>
 
 <#macro renderGroup group>
-    <#if group.actions?size &gt; 0 >
+  <#if group.actions?size &gt; 0>
     <li class="treeview">
       <a href="#">
         <#if group.icon ??>
@@ -27,86 +27,156 @@
         </#list>
       </ul>
     </li>
-    </#if>
+  </#if>
 </#macro>
 
 <#macro renderAction action>
-  <li><a href="${action.link!""}"><i class="fa fa-circle-o text-${action.color!''}"></i><small>${action.title}</small> </a></li>
+  <li><a href="${action.link!" "}"><i class="fa fa-circle-o text-${action.color!''}"></i><small>${action.title}</small> </a></li>
 </#macro>
-
-
 
 <#macro actionMenu panels customer>
-<!-- Left side column. contains the logo and sidebar -->
-<aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
+  <aside class="main-sidebar">
     <section class="sidebar">
-        <!-- Sidebar user panel -->
-        <div class="user-panel">
-            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-                <i class="fa fa-bars"></i>
-                <span class="sr-only">Toggle navigation</span>
-            </a>
-        </div>
-        <!-- sidebar menu: : style can be found in sidebar.less -->
-        <ul class="sidebar-menu">
-            <li>
-                <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?plugin_name=gru">
-                  <i class="fa fa-home"></i> <span>Accueil - Recherche Usager</span>
-                </a>
-            </li>
-            <#if customer.id != 0 >
-            <li class="treeview active">
-                <a class="bg-green" href="jsp/admin/plugins/gru/ManageCustomers.jsp?plugin_name=gru&view=viewCustomer&id_customer=${customer.id!'1'}">
-                    <i class="fa fa-user"></i>  <span>&nbsp; ${customer.firstname!""} ${customer.lastname!""} </span>
-                </a>
-                <@customerMenuDetails customer=customer />
-            </li>
-            <#else>
-            <li>
-              <a href="#" id="nouser" class="bg-red">
-                <i class="fa fa-user-times"></i>  <span>&nbsp; Aucun usager s&eacute;lectionn&eacute;</span>
-              </a>
-            </li>
-            </#if>
-            <#list panels as panel>
-                <@renderPanel panel />
-            </#list>
-        </ul>
+      <div class="user-panel">
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+          <i class="fa fa-bars"></i>
+          <span class="sr-only">Toggle navigation</span>
+        </a>
+      </div>
+      <ul class="sidebar-menu">
+        <li>
+         <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?plugin_name=gru">
+           <i class="fa fa-home"></i> <span>Accueil - Recherche Usager</span>
+         </a>
+        </li>
+        <#list panels as panel>
+          <@renderPanel panel />
+        </#list>
+      </ul>
     </section>
-    <!-- /.sidebar -->
-</aside>
+  </aside>
 </#macro>
 
-<#macro  customerMenuDetails customer>
-<ul class="treeview-menu user">
-  <li>
-    <ul class="list-group">
-      <li class="list-group-item">
-        <i class="fa fa-phone <#if customer.isMobilePhoneVerified >text-success<#else>text-danger</#if>"> </i> ${customer.mobilePhone!""}
-      </li>
-      <li class="list-group-item">
-        <i class="fa fa-envelope <#if customer.isEmailVerified && true>text-success<#else>text-danger</#if>"></i> ${customer.email!""}
-      </li>
-    </ul>
-  </li>
-  <li>
-    <a class="btn btn-block btn-primary" title=" Modifier" href="jsp/admin/plugins/gru/ManageCustomers.jsp?plugin_name=gru&view=modifyCustomer&id_customer=${customer.id}">
-      <i class="fa fa-pencil"></i> Modifier
+<#macro renderTreeGroup group>
+  <#if group.actions?size &gt; 0>
+    <li>
+      <h3>
+      <a href="#" id="${group.title?trim?lower_case?replace(" ","")}" class="text-gru" >
+        <#if group.icon ??>
+          <i class="fa fa-${group.icon} fa-2x"></i>&nbsp;&nbsp;
+          <#if group.badgeText??>
+            <span >${group.badgeText}</span>
+          </#if>
+        </#if>
+        <span>${group.title}</span>
+      </a>
+    </h3>
+    <br>
+      <ul class="list-inline list-unstyled">
+        <#list group.actions as action>
+          <li>
+            <a href="${action.link!" "}" class="btn btn-primary bg-gru-light">
+              <i class="fa fa-${group.icon}"></i>&nbsp;&nbsp;${action.title}
+            </a>
+          </li>
+        </#list>
+      </ul>
+    </li>
+  </#if>
+</#macro>
+
+<#macro actionTree panels customer>
+  <#assign index=0>
+  <#list panels as panel>
+    <#if panel.actionGroups?size &gt; 0 && index==1  >
+      <ul>
+        <#list panel.actionGroups as group>
+          <@renderTreeGroup group />
+        </#list>
+      </ul>
+      <br>
+    </#if>
+    <#assign index=index+1>
+  </#list>
+</#macro>
+
+<#macro customerMenuDetails customer>
+  <ul class="treeview-menu user">
+    <li>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <i class="fa fa-phone <#if customer.isMobilePhoneVerified >text-success<#else>text-danger</#if>"> </i> ${customer.mobilePhone!""}
+        </li>
+        <li class="list-group-item">
+          <i class="fa fa-envelope <#if customer.isEmailVerified && true>text-success<#else>text-danger</#if>"></i> ${customer.email!""}
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a class="btn btn-block btn-primary" title=" Modifier" href="jsp/admin/plugins/gru/ManageCustomers.jsp?plugin_name=gru&view=modifyCustomer&id_customer=${customer.id}">
+        <i class="fa fa-pencil"></i> Modifier
+      </a>
+    </li>
+  </ul>
+</#macro>
+
+<#macro customerDetails customer>
+<div class="row">
+  <div class="col-xs-12 col-sm-4">
+    <h2>${customer.firstname} ${customer.lastname}</h2>
+  </div>
+  <div class="col-xs-12 col-sm-4">
+    <p>
+       <i class="fa fa-envelope"></i> ${customer.email!""} <#if customer.isEmailVerified && true><i class="fa fa-check-circle-o  text-success" title="Email V&eacute;rifi&eacute;"></i></#if>
+    </p>
+    <p>
+      <i class="fa fa-phone" ></i> ${customer.mobilePhone!""} <#if customer.isMobilePhoneVerified && true><i class="fa fa-check fa-2x text-success" title="Tel V&eacute;rifi&eacute;"></i></#if>
+    </p>
+    <p id="info">Pour me contacter privil&eacute;gier le mail</p>
+  </div>
+  <div class="col-xs-12 col-sm-4">
+
+    <a class="btn btn-link btn-lg" title=" Modifier" href="jsp/admin/plugins/gru/ManageCustomers.jsp?plugin_name=gru&view=modifyCustomer&id_customer=${customer.id}">
+       <i class="fa fa-pencil"></i> Modifier le profil
     </a>
-  </li>
-</ul>
+  </div>
+</div>
 </#macro>
 
-<#macro  customerDetails customer>
-<a title=" Modifier" href="jsp/admin/plugins/gru/ManageCustomers.jsp?plugin_name=gru&view=modifyCustomer&id_customer=${customer.id}">
-  ${customer.firstname} ${customer.lastname} <i class="fa fa-pencil"></i>
-</a>
-<span style="margin:0 15px">
-  <i style="margin:0 5px" class="fa fa-phone <#if customer.isMobilePhoneVerified >text-success<#else>text-danger</#if>"> </i> ${customer.mobilePhone!""}
-</span>
-<span <#if customer.isEmailVerified && true>title="Email V&eacute;rifi&eacute;"</#if>>
-  <i style="margin:0 5px" class="fa fa-envelope <#if customer.isEmailVerified && true>text-success<#else>text-danger</#if>"></i> ${customer.email!""}
-</span>
-
+<#macro customerFilter>
+<div class="row">
+  <div id="filter" class="col-xs-12 col-sm-12">
+    <form class="form-inline" action="">
+        <div class="form-group">
+            <p class="form-control-static">
+              Filter par :
+            </p>
+        </div>
+        <div class="form-group">
+             <label class="select" for="nature">
+              <select name="nature" id="nature" class="form-control">
+                <option value="all" selected="selected" >Nature</option>
+                <option value="carte">Demande de carte</option>
+                <option value="stationnement">Horaire de stationnement</option>
+                <option value="autre">Autre</option>
+              </select>
+             </label>
+             <label class="select" for="domaine">
+              <select name="domaine" id="domaine" class="form-control">
+                <option value="all" selected="selected" >Domaine</option>
+                <option value="autre">Autre</option>
+              </select>
+             </label>
+             <label class="select" for="since">
+              <select name="since" id="since" class="form-control">
+                <option value="all" selected="selected" >Ouvert depuis</option>
+                <option value="1">1 jours</option>
+                <option value="2">1 semaine</option>
+                <option value="3">1 mois</option>
+              </select>
+             </label>
+        </div>
+    </form>
+  </div>
+</div>
 </#macro>

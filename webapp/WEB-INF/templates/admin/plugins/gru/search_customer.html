@@ -1,36 +1,39 @@
 <#include "action_bar.html" />
 <@actionMenu panels=panels customer=customer/>
-<div class="content-wrapper">
-  <!-- Content Header (Page header) -->
-    <div class="row">
-      <div id="form-user" class="col-xs-12 col-sm-offset-3 col-sm-6">
-        <!-- search form -->
+<div class="content-wrapper" id="gru-wrapper">
+  <div class="row">
+    <div id="form-user" class="col-xs-12 col-sm-offset-2 col-sm-6">
+      <!-- search form -->
         <form action="jsp/admin/plugins/gru/ManageCustomers.jsp" method="get" class="form">
           <input type="hidden" name="action" value="search" />
           <label class="sr-only"><i class="fa fa-search"> </i> #i18n{gru.search_customer.title}</label>
           <div class="input-group">
             <input type="text" name="query" class="form-control input-lg autocomplete" placeholder="#i18n{gru.search_customer.title} : #i18n{gru.search_customer.placeholder}">
             <span class="input-group-btn">
-              <button type="submit" name="search" id="search-btn" class="btn btn-flat btn-lg">
+              <button type="submit" name="search" class="btn btn-flat btn-lg" id="search-btn" >
                 <i class="fa fa-search"></i>
               </button>
             </span>
           </div>
         </form>
-        <!-- /.search form -->
+      <!-- /.search form -->
     </div>
   </div>
-  <div class="row">
-      <div id="home-actions" class="col-xs-12 col-sm-offset-3 col-sm-6">
-          <#list buttons_list as button>
-            <a class="btn bg-${button.color} btn-lg" href="${button.link}">
-                <i class="fa fa-${button.icon}"></i> &nbsp; 
-                ${button.title}
-            </a>
-          </#list>
-      </div>
+  <div id="home-actions" class="row">
+    <div class="col-xs-12 col-sm-offset-2 col-sm-9">
+    <#list buttons_list as button>
+      <a class="btn btn-primary bg-${button.color} btn-lg" href="${button.link}">
+        <i class="fa fa-${button.icon}"></i> &nbsp;&nbsp; ${button.title}
+      </a>
+    </#list>
+    </div>
   </div>
 </div>
+<script>
+$( function(){
+  $(".content-header").toggle();
+});
+</script>
 
 <style>
 .ui-autocomplete {
@@ -106,7 +109,3 @@ $(function() {
 </script>
 
 </#if>
-
-
-
-

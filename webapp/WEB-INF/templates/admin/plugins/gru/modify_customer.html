@@ -1,15 +1,12 @@
 <#include "action_bar.html" />
 <@actionMenu panels=panels customer=customer />
-
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-
+<div class="content-wrapper" id="gru-content-wrapper">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12">
         <@rowBoxHeader i18nTitleKey="gru.modify_customer.pageTitle">
         <form class="form-horizontal" method="post" name="modify_customer" action="jsp/admin/plugins/gru/ManageCustomers.jsp">
             <@messages errors=errors />
             <input type="hidden" id="id_customer" name="id" value="${customer.id}"/>
-
             <@fieldInputText i18nLabelKey="gru.modify_customer.labelIdTitle" inputName="id_title" mandatory=true value="${customer.idTitle}" i18nHelpBlockKey="gru.modify_customer.labelIdTitle.help" />
             <@fieldInputText i18nLabelKey="gru.modify_customer.labelFirstname" inputName="firstname" mandatory=true value="${customer.firstname}" i18nHelpBlockKey="gru.modify_customer.labelFirstname.help" />
             <@fieldInputText i18nLabelKey="gru.modify_customer.labelLastname" inputName="lastname" mandatory=true value="${customer.lastname}" i18nHelpBlockKey="gru.modify_customer.labelLastname.help" />
@@ -20,6 +17,11 @@
             <@actionButtons button1Name="action_modifyCustomer" button2Name="view_manageCustomers"/>
         </form>
         </@rowBoxHeader>
-    </section>
+    </div>
+  </div>
 </div>
-
+<script>
+$( function(){
+  $(".content-header").toggle();
+});
+</script>

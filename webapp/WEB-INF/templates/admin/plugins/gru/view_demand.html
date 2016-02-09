@@ -1,87 +1,110 @@
 <#include "action_bar.html" />
 <@actionMenu panels=panels customer=customer />
-<div class="content-wrapper">
-
-    <div class="info-box info-demand">
-        <span class="info-box-icon bg-aqua">
-          <i class="fa fa-comment-o"></i>
-        </span>
-          <div class="info-box-content">
-            <span class="info-box-number">
+<div class="content-wrapper" id="gru-content-wrapper">
+  <div id="customer-panel" class="bg-gru-dark">
+    <@customerDetails customer=customer />
+    <a href="javascript:history.back();" id="btn-back">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+  </div>
+  <div id="demand-panel">
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active table-responsive">
+        <table class="table table-hover">
+          <tr>
+            <th class="col-xs-12 col-sm-1">Reference</th>
+            <th class="col-xs-12 col-sm-1">Ouvert depuis</th>
+            <th class="col-xs-12 col-sm-1">Nature</th>
+            <th class="col-xs-12 col-sm-7">Derni&egrave;re notification</th>
+            <th class="col-xs-12 col-sm-1">Statut</th>
+            <th class="col-xs-12 col-sm-1"></th>
+          </tr>
+          <tr>
+            <td>
+              <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewDemand&id_demand=${demand.id}&id_demand_type=${demand.demandTypeId}&id_customer=${customer.id}">
+               ${demand.reference!'Reference missing'}
+              </a>
+            </td>
+            <td class="text-center text-gru">${demand.date!'2'} <br>jours</td>
+            <td class="text-demand">${demand.title!'Title missing'} </td>
+            <td class="text-demand">
+              Not long after the warden deprived us of his company, I got a postcard in the mail. It was blank, but the postmark said Fort Hancock, Texas. Fort Hancock... right on the border. That's where Andy crossed. When I picture him heading south in his own car with the top down, it always makes me laugh.
+            </td>
+            <td>
               <#switch demand.status>
-              <#case 0>
-              <span class="label label-primary">En cours</span>
-              <#break>
-              <#case 1>
-              <span class="label label-default">Termin&eacute;e</span>
-              <#break>
+                <#case 0>
+                  En cours
+                  <#break>
+                <#case 1>
+                  Termin&eacute;e
+                <#break>
               </#switch>
-              <strong>
-                &nbsp; ${demand.title!'Title missing'} - Ref : ${demand.reference!'Reference missing'}
-              </strong>
+            </td>
+            <td>
               <#list demand.actions as action>
                 <a class="btn btn-primary btn-flat btn-sm pull-right" href="${action.url}">
                   <i class="fa fa-pencil"></i> ${action.name}
                 </a>
               </#list>
-            </span>
-            <span class="info-box-text" style="padding-top:10px">
-                <@customerDetails customer=customer />
-            </span>
-          </div>
-    </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="6">
+              <#list demand.notifications as notification>
+              <blockquote>
+                <h2><i class="fa fa-"${notification.date!'Date missing'}  ${notification.title!'Title missing'} <small>Notification envoy&eacute;e par l'application : ${notification.source!'Source missing'}</small></h2>
+                <div class="row">
+                  <div class="col-xs-12 col-sm-offset-1 col-sm-11">
+                  <#if notification.userDashboard ??>
+                  <div class="direct-chat-msg">
+                        <div class="direct-chat-info clearfix">
+                          <span class="direct-chat-name pull-left"><i class="fa fa-user"></i> Notification envoy&eacute dans le tableau de bord <strong>Mon Compte</strong> de l'usager. <br><strong>Statut : ${notification.userDashboard.statusText!'Status text missing'}</strong>
+                        </div>
+                        <img class="direct-chat-img" src="images/admin/skin/plugins/gru/company.png" alt="message user image">
+                        <div class="direct-chat-text">
+                          ${notification.userDashboard.message!'SMS message missing'}
+                        </div>
+                      </div>
+                    </#if>
+                    <#if notification.email ??>
+                      <div class="direct-chat-msg">
+                        <div class="direct-chat-info clearfix">
+                          <span class="direct-chat-name pull-left"><i class="fa fa-envelope"></i> Email envoy&eacute; &agrave; l'adresse <strong>${notification.email.recipient!'recipient missing'}</strong></span>
+                        </div>
+                        <img class="direct-chat-img" src="images/admin/skin/plugins/gru/company.png" alt="message user image">
+                        <div class="direct-chat-text">
+                          <em>Objet <strong>${notification.email.subject}</strong></em>
+                          <br>
+                          ${notification.email.message}
+                        </div>
+                      </div>
+                    </#if>
+                    <#if notification.sms ??>
+                      <div class="direct-chat-msg">
+                        <div class="direct-chat-info clearfix">
+                          <span class="direct-chat-name pull-left"><i class="fa fa-mobile"></i> SMS envoy&eacute au num&eacute;ro : <strong>${notification.sms.phoneNumber!'Phone missing'}</strong></span>
+                        </div>
+                        <img class="direct-chat-img" src="images/admin/skin/plugins/gru/company.png" alt="message user image">
+                        <div class="direct-chat-text">
+                          ${notification.sms.message!'SMS message missing'}
+                        </div>
+                      </div>
+                </#if>
+                </div>
+              </div>
+              </blockquote>
+              </#list>
 
-  <section class="demand">
-    <#list demand.notifications as notification>
-      <div class="box box-info box-solid">
-        <div class="box-header with-border">
-          <h3 class="box-title">
-            <strong>${notification.date!'Date missing'}</strong> ${notification.title!'Title missing'}
-          </h3>
-          <div class="box-tools">
-            Notification envoy&eacute;e par l'application :  <strong>${notification.source!'Source missing'}</strong>
-          </div>
-        </div>
-        <div class="box-body">
-        <#if notification.userDashboard ??>
-          <div class="direct-chat-msg">
-            <div class="direct-chat-info clearfix">
-                <span class="direct-chat-name pull-left"><i class="fa fa-user"></i> Notification envoy&eacute dans le tableau de bord <strong>Mon Compte</strong> de l'usager. <br><strong>Statut : ${notification.userDashboard.statusText!'Status text missing'}</strong>
-            </div>
-            <img class="direct-chat-img" src="images/admin/skin/plugins/gru/company.png" alt="message user image">
-            <div class="direct-chat-text">
-              ${notification.userDashboard.message!'SMS message missing'}
-            </div>
-          </div>
-        </#if>
-        <#if notification.email ??>
-          <div class="direct-chat-msg">
-            <div class="direct-chat-info clearfix">
-              <span class="direct-chat-name pull-left"><i class="fa fa-envelope"></i> Email envoy&eacute; &agrave; l'adresse <strong>${notification.email.recipient!'recipient missing'}</strong></span>
-            </div>
-            <img class="direct-chat-img" src="images/admin/skin/plugins/gru/company.png" alt="message user image">
-            <div class="direct-chat-text">
-              <em>
-                Objet <strong>${notification.email.subject}</strong>
-              </em>
-              <br>  
-              ${notification.email.message}
-            </div>
-          </div>
-        </#if>
-        <#if notification.sms ??>
-          <div class="direct-chat-msg">
-            <div class="direct-chat-info clearfix">
-              <span class="direct-chat-name pull-left"><i class="fa fa-mobile"></i> SMS envoy&eacute au num&eacute;ro : <strong>${notification.sms.phoneNumber!'Phone missing'}</strong></span>
-            </div>
-            <img class="direct-chat-img" src="images/admin/skin/plugins/gru/company.png" alt="message user image">
-            <div class="direct-chat-text">
-              ${notification.sms.message!'SMS message missing'}
-            </div>
-          </div>
-        </#if>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
-    </#list>
-  </section>
+  </div>
 </div>
+<script>
+$( function(){
+  $(".content-header").toggle();
+
+});
+</script>

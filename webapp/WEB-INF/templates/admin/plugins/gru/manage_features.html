@@ -5,15 +5,15 @@
     <@boxHeader i18nTitleKey="gru.manage_features.tableLabel">
         <@headerButtons>
 
-        
+
         <form class="form-inline pull-right" method="post" name="manage_features" action="jsp/admin/plugins/gru/ManageFeatures.jsp">
             <!-- Add pull-right to class1 -->
-            <@actionButtons button1Name="view_createFeature" icon1="icon-plus icon-white" i18nValue1Key="gru.manage_features.buttonAdd" />
+            <@actionButtons button1Name="view_createFeature" icon1="fa fa-plus" i18nValue1Key="gru.manage_features.buttonAdd" />
         </form>
-        
+
     </@headerButtons>
     </@boxHeader>
-    <@boxBody>    
+    <@boxBody>
     <@messages infos=infos />
     <@paginationAdmin paginator=paginator combo=1 />
     <div class="clearfix"></div>
@@ -86,4 +86,3 @@
 
   </@boxBody>
 </@rowBox>
-
