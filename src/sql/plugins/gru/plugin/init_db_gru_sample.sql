@@ -34,9 +34,10 @@ INSERT INTO gru_demand_type_action ( id_demand_type_action, id_demand_type, acti
 DELETE FROM gru_feature_category  ;
 INSERT INTO gru_feature_category (id_feature_category, name, description, id_order, category_icon, color ) VALUES 
 (1,'Espace Public','Services numériques concernant l\'espace publique (voirie, parc et jardins, ...)',1,'street-view', 'purple'),
-(2,'Sollicitations','Demandes d\'information ou réclamations',2,'comment', 'yellow'),
-(3,'Voirie','Demandes concernant le stationnement',3,'car', 'lime'),
-(4,'Urbanisme','Demandes d\'urbanisme',4,'building', 'olive');
+(2,'Sollicitations','Demandes d\'information ou réclamations',2,'comment', 'aqua'),
+(3,'Voirie','Demandes concernant le stationnement',3,'car', 'blue'),
+(4,'Urbanisme','Demandes d\'urbanisme',4,'building', 'teal'),
+(5,'Famille','Demandes relatives à la famille',5,'child', 'navy');
 --
 -- Data for table gru_feature
 --
