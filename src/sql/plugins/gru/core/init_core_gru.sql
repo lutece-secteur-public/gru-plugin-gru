@@ -300,7 +300,10 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1452, 'gru_dom_info_stationnement', 'TICKET_DOMAIN', '120','VIEW'),
 (1453, 'gru_dom_info_autre', 'TICKET_DOMAIN', '100','VIEW'),
 (1454, 'gru_dom_recl_facilfamille', 'TICKET_DOMAIN', '210','VIEW'),
-(1455, 'gru_dom_recl_autre', 'TICKET_DOMAIN', '200','VIEW')
+(1455, 'gru_dom_recl_autre', 'TICKET_DOMAIN', '200','VIEW'),
+
+-- User front ticketing
+(1456, 'ticketing_user_front', 'WORKFLOW_ACTION_TYPE', '309','*')
 ;
 
 
