@@ -233,6 +233,9 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1114, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '305', '*'), -- assign to an other entity
 (1115, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '306', '*'), -- assign to an other user
 (1116, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '307', '*'), -- self assign
+(1117, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '308', '*'), -- ask new informations
+(1118, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '310', '*'), -- answer from agent to user
+(1119, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '311', '*'), -- reopen ticket  
 (1120, 'gru_admin', 'UNIT_TYPE', '*', '*'), 
 (1151, 'gru_admin', 'TICKET_DOMAIN', '*', '*'), 
 (1163, 'gru_admin', 'SUPPORT_ENTITY', '*', '*'), 
@@ -255,6 +258,9 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1214, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '305', '*'), -- assign to an other entity
 (1215, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '306', '*'), -- assign to an other user
 (1216, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '307', '*'), -- self assign
+(1217, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '308', '*'), -- ask new informations
+(1218, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '310', '*'), -- answer from agent to user
+(1219, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '311', '*'), -- reopen ticket  
 
 -- support entity
 (1251, 'gru_level_1', 'SUPPORT_ENTITY', '1', 'VIEW'), 
@@ -280,6 +286,9 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1314, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '305', '*'), -- assign to an other entity
 (1315, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '306', '*'), -- assign to an other user
 (1316, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '307', '*'), -- self assign
+(1317, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '308', '*'), -- ask new informations
+(1318, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '310', '*'), -- answer from agent to user
+(1319, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '311', '*'), -- reopen ticket  
 
 -- support entity
 (1351, 'gru_level_2', 'SUPPORT_ENTITY', '4', 'VIEW'),
@@ -303,7 +312,8 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1455, 'gru_dom_recl_autre', 'TICKET_DOMAIN', '200','VIEW'),
 
 -- User front ticketing
-(1456, 'ticketing_user_front', 'WORKFLOW_ACTION_TYPE', '309','*')
+(1456, 'ticketing_user_front', 'WORKFLOW_ACTION_TYPE', '309','*'),
+(1457, 'ticketing_user_front', 'WORKFLOW_ACTION_TYPE', '311', '*') -- reopen ticket 
 ;
 
 
