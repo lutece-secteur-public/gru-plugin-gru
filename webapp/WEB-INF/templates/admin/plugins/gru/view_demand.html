@@ -28,7 +28,22 @@
             <td class="text-center text-gru">${demand.date!'2'} <br>jours</td>
             <td class="text-demand">${demand.title!'Title missing'} </td>
             <td class="text-demand">
-              Not long after the warden deprived us of his company, I got a postcard in the mail. It was blank, but the postmark said Fort Hancock, Texas. Fort Hancock... right on the border. That's where Andy crossed. When I picture him heading south in his own car with the top down, it always makes me laugh.
+              <#list demand.notifications?reverse as notification>
+                <#if notification.userDashboard ??>
+                  <div><i class="fa fa-mobile"></i>  ${notification.userDashboard.message!'SMS message missing'}</div>
+                </#if>
+                <#if notification.email ??>
+                  <div>
+                    <i class="fa fa-envelope"></i> <em>Objet <strong>${notification.email.subject}</strong></em>
+                    <br>
+                    ${notification.email.message}
+                  </div>
+                </#if>
+                <#if notification.sms ??>
+                  <div><i class="fa fa-user"></i> ${notification.sms.message!'SMS message missing'}
+                </#if>
+                <#break>
+              </#list>
             </td>
             <td>
               <#switch demand.status>
@@ -42,7 +57,7 @@
             </td>
             <td>
               <#list demand.actions as action>
-                <a class="btn btn-primary btn-flat btn-sm pull-right" href="${action.url}">
+                <a class="btn btn-primary btn-flat btn-sm" href="${action.url}">
                   <i class="fa fa-pencil"></i> ${action.name}
                 </a>
               </#list>
@@ -50,51 +65,59 @@
           </tr>
           <tr>
             <td colspan="6">
-              <#list demand.notifications as notification>
-              <blockquote>
-                <h2><i class="fa fa-"${notification.date!'Date missing'}  ${notification.title!'Title missing'} <small>Notification envoy&eacute;e par l'application : ${notification.source!'Source missing'}</small></h2>
-                <div class="row">
-                  <div class="col-xs-12 col-sm-offset-1 col-sm-11">
-                  <#if notification.userDashboard ??>
-                  <div class="direct-chat-msg">
-                        <div class="direct-chat-info clearfix">
-                          <span class="direct-chat-name pull-left"><i class="fa fa-user"></i> Notification envoy&eacute dans le tableau de bord <strong>Mon Compte</strong> de l'usager. <br><strong>Statut : ${notification.userDashboard.statusText!'Status text missing'}</strong>
-                        </div>
-                        <img class="direct-chat-img" src="images/admin/skin/plugins/gru/company.png" alt="message user image">
-                        <div class="direct-chat-text">
-                          ${notification.userDashboard.message!'SMS message missing'}
-                        </div>
+            <#list demand.notifications as notification>
+              <h3>
+                ${notification.title!'Title missing'}
+                <small>Notification envoy&eacute;e par l'application : ${notification.source!'Source missing'}</small>
+              </h3>
+              <p>${notification.date!'Date missing'}</p>
+              <ul class="timeline">
+              <#if notification.userDashboard ??>
+                <li>
+                  <i class="fa fa-user bg-gru-cat2"></i>
+                  <div class="timeline-item">
+                    <h4 class="timeline-header">
+                      Notification envoy&eacute dans le tableau de bord <span>Mon Compte</span> de l'usager.
+                    </h4>
+                    <div class="timeline-body">
+                      ${notification.userDashboard.message!'SMS message missing'}
+                    </div>
+                    <div class="timeline-footer"><strong>Statut : ${notification.userDashboard.statusText!'Status text missing'}</strong></div>
+                  </div>
+                </li>
+              </#if>
+              <#if notification.email ??>
+                <li>
+                  <i class="fa fa-envelope bg-orange"></i>
+                  <div class="timeline-item">
+                    <h4 class="timeline-header">
+                      Email envoy&eacute; &agrave; l'adresse <span>${notification.email.recipient!'recipient missing'}</span>
+                    </h4>
+                    <div class="timeline-body">
+                      <em>Objet <strong>${notification.email.subject}</strong></em>
+                      <br>
+                      ${notification.email.message}
+                    </div>
+                    <div class="timeline-footer"></div>
+                  </div>
+                </li>
+              </#if>
+              <#if notification.sms ??>
+                <li>
+                  <i class="fa fa-mobile bg-green"></i>
+                  <div class="timeline-item">
+                    <h4 class="timeline-header">
+                      SMS envoy&eacute au num&eacute;ro : <span>${notification.sms.phoneNumber!'Phone missing'}</span>
+                    </h4>
+                     <div class="timeline-body">
+                        ${notification.sms.message!'SMS message missing'}
                       </div>
-                    </#if>
-                    <#if notification.email ??>
-                      <div class="direct-chat-msg">
-                        <div class="direct-chat-info clearfix">
-                          <span class="direct-chat-name pull-left"><i class="fa fa-envelope"></i> Email envoy&eacute; &agrave; l'adresse <strong>${notification.email.recipient!'recipient missing'}</strong></span>
-                        </div>
-                        <img class="direct-chat-img" src="images/admin/skin/plugins/gru/company.png" alt="message user image">
-                        <div class="direct-chat-text">
-                          <em>Objet <strong>${notification.email.subject}</strong></em>
-                          <br>
-                          ${notification.email.message}
-                        </div>
-                      </div>
-                    </#if>
-                    <#if notification.sms ??>
-                      <div class="direct-chat-msg">
-                        <div class="direct-chat-info clearfix">
-                          <span class="direct-chat-name pull-left"><i class="fa fa-mobile"></i> SMS envoy&eacute au num&eacute;ro : <strong>${notification.sms.phoneNumber!'Phone missing'}</strong></span>
-                        </div>
-                        <img class="direct-chat-img" src="images/admin/skin/plugins/gru/company.png" alt="message user image">
-                        <div class="direct-chat-text">
-                          ${notification.sms.message!'SMS message missing'}
-                        </div>
-                      </div>
+                      <div class="timeline-footer"></div>
+                    </div>
+                  </li>
                 </#if>
-                </div>
-              </div>
-              </blockquote>
               </#list>
-
+              </ul>
             </td>
           </tr>
         </table>

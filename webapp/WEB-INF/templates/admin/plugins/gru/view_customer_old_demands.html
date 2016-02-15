@@ -13,52 +13,59 @@
           <@customerFilter />
           <div role="tabpanel" class="tab-pane active table-responsive">
             <table class="table table-striped table-hover">
-                <tr>
-                    <th class="col-xs-12 col-sm-1">Reference</th>
-                    <th class="col-xs-12 col-sm-1">Trait&eacute; en</th>
-                    <th class="col-xs-12 col-sm-1">Nature</th>
-                    <th class="col-xs-12 col-sm-7">Derni&egrave;re notification</th>
-                    <th class="col-xs-12 col-sm-1">Statut</th>
-                    <th class="col-xs-12 col-sm-1"></th>
-                </tr>
-                <#list demands_list as demand>
-                  <tr>
-                    <td>
-                      <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewDemand&id_demand=${demand.id}&id_demand_type=${demand.demandTypeId}&id_customer=${customer.id}">
+              <tr>
+                <th class="col-xs-12 col-sm-1">Reference</th>
+                <th class="col-xs-12 col-sm-1">Trait&eacute; en</th>
+                <th class="col-xs-12 col-sm-1">Nature</th>
+                <th class="col-xs-12 col-sm-7">Derni&egrave;re notification</th>
+                <th class="col-xs-12 col-sm-1">Statut</th>
+                <!-- <th class="col-xs-12 col-sm-1"></th> -->
+              </tr>
+              <#list demands_list as demand>
+                <tr data-url="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewDemand&id_demand=${demand.id}&id_demand_type=${demand.demandTypeId}&id_customer=${customer.id}">
+                  <td>
+                    <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewDemand&id_demand=${demand.id}&id_demand_type=${demand.demandTypeId}&id_customer=${customer.id}">
                        ${demand.reference}
                       </a>
-                    </td>
-                    <td class="text-center text-gru">${demand.date!'2'} <br>jours</td>
-                    <td>${demand.title}</td>
-                    <td>Not long after the warden deprived us of his company, I got a postcard in the mail. It was blank, but the postmark said Fort Hancock, Texas. Fort Hancock... right on the border. That's where Andy crossed. When I picture him heading south in his own car with the top down, it always makes me laugh. </td>
-                    <td>
-                        <#switch demand.status>
-                        <#case 0>
-                          En cours
-                        <#break>
-                        <#case 1>
-                          Termin&eacute;e
-                        <#break>
-                      </#switch>
-                    </td>
-                    <td>
-                      <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewDemand&id_demand=${demand.id}&id_demand_type=${demand.demandTypeId}&id_customer=${customer.id}">
-                        <i class="fa fa-plus fa-2x text-gru"></i>
-                      </a>
-                    </td>
-                  </tr>
-            
-                </#list>
+                  </td>
+                  <td class="text-center text-gru">${demand.date!'2'}
+                    <br>jours</td>
+                  <td>${demand.title}</td>
+                  <td>Not long after the warden deprived us of his company, I got a postcard in the mail. It was blank, but the postmark said Fort Hancock, Texas. Fort Hancock... right on the border. That's where Andy crossed. When I picture him heading south
+                    in his own car with the top down, it always makes me laugh. </td>
+                  <td>
+                    <#switch demand.status>
+                    <#case 0>
+                      En cours
+                      <#break>
+                    <#case 1>
+                      Termin&eacute;e
+                      <#break>
+                    </#switch>
+                  </td>
+                  <!--
+                  <td>
+                    <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewDemand&id_demand=${demand.id}&id_demand_type=${demand.demandTypeId}&id_customer=${customer.id}">
+                      <i class="fa fa-plus fa-2x text-gru"></i>
+                    </a>
+                  </td>
+                -->
+                </tr>
+              </#list>
             </table>
           </div>
         </div>
       </div>
     </div>
- </div>
+  </div>
 </div>
 </div>
 <script>
-$( function(){
-  $(".content-header").toggle();
-});
+  $(function() {
+    $(".content-header").toggle();
+    // Set link on whole tr
+    $("tr").on( 'click', function(e){
+      location.replace( $(this).attr("data-url") );
+    });
+  });
 </script>

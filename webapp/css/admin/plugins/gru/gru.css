@@ -1,78 +1,37 @@
-/* FONTS */
-@font-face {font-family:'Montserrat-Regular';
-src:url('../../../fonts/Montserrat-Regular-webfont.eot');
-src:url('../../../fonts/Montserrat-Regular-webfont.eot?#iefix') format('embedded-opentype'),
-url('../../../fonts/Montserrat-Regular-webfont.woff') format('woff'),
-url('../../../fonts/Montserrat-Regular-webfont.woff2') format('woff2'),
-url('../../../fonts/Montserrat-Regular-webfont.ttf') format('truetype'),
-url('../../../fonts/Montserrat-Regular-webfont.svg') format('svg');
-font-weight:normal;
-font-style:normal;
-}
-
-@font-face {font-family:'Montserrat-Bold';
-src:url('../../../fonts/Montserrat-Bold-webfont.eot');
-src:url('../../../fonts/Montserrat-Bold-webfont.eot?#iefix') format('embedded-opentype'),
-url('../../../fonts/Montserrat-Bold-webfont.woff') format('woff'),
-url('../../../fonts/Montserrat-Bold-webfont.woff2') format('woff2'),
-url('../../../fonts/Montserrat-Bold-webfont.ttf') format('truetype'),
-url('../../../fonts/Montserrat-Bold-webfont.svg') format('svg');
-font-weight:normal;
-font-style:normal;
-}
-
-@font-face {font-family:'Montserrat-Light';
-src:url('../../../fonts/Montserrat-Light-webfont.eot');
-src:url('../../../fonts/Montserrat-Light-webfont.eot?#iefix') format('embedded-opentype'),
-url('../../../fonts/Montserrat-Light-webfont.woff') format('woff'),
-url('../../../fonts/Montserrat-Light-webfont.woff2') format('woff2'),
-url('../../../fonts/Montserrat-Light-webfont.ttf') format('truetype'),
-url('../../../fonts/Montserrat-Light-webfont.svg') format('svg');
-font-weight:normal;
-font-style:normal;
-}
-
-/* SURCHARGE CORE */
-#admin-wrapper { margin: 85px  0; font-family:'Montserrat-Light'}
-.content {padding: 0;margin: 0 }
-
-.skin-blue-light .main-header .navbar{background-color: #0082D8}
-.skin-blue-light .main-header .navbar .form-control{border-top-right-radius : 10px;border-bottom-right-radius : 10px;border-color: #FFF;background-color: #FFF;width:25rem;}
-.skin-blue-light .main-header .navbar .input-group .input-group-addon {	border-top-left-radius : 10px;border-bottom-left-radius : 10px;border-color: #FFF;background-color: #FFF;}
-
-.home{ display: none !important }
-
 /* GRU SPECIFIC */
 /* HELPER CLASSES */
 .text-gru{color: #0082D8 !important}
 .bg-gru-light{ background-color: #0082D8 }
-.bg-gru-dark{ background-color: #0C3B59}
+.bg-gru-dark{ background-color: #0C3B59; color: #fff }
 #btn-back{ position:absolute; top:136px; left:150px; color:#fff }
+table.table-hover tr:hover{ cursor: pointer }
 
 /* TOOLBAR */
-.sidebar-mini .main-header .navbar {margin-left: 0px !important;	min-height: 90px;	padding-top: 20px;}
 .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > span:not(.pull-right), .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu {	width: 280px;}
 .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu.user {padding:5px;}
 .sidebar-mini.sidebar-collapse .sidebar-menu > li.treeview > a > .label {	position: absolute;	top: 9px;	right: 7px;	text-align: center;	font-size: 9px;	padding: 2px 3px;	line-height: 0.9;  display: block !important;}
 .sidebar-menu li > a > .pull-right { display: none }
 .sidebar-menu > li > .treeview-menu.user {padding:5px;}
 .sidebar-mini.sidebar-collapse .sidebar-menu li > a > .pull-right { display: block }
-.main-sidebar{ top:40px }
+.sidebar-mini.sidebar-collapse .content-wrapper, .sidebar-mini.sidebar-collapse .right-side, .sidebar-mini.sidebar-collapse .main-footer {margin-left: 35px !important;}
 .user-panel{ padding-left:20px !important;}
 #info-user{ margin:15px 0}
 
 /* CUSTOMER */
-#gru-wrapper{background: url(../../../../images/admin/skin/plugins/gru/fond_360.jpg); background-size:cover;}
+#gru-wrapper{background: url(../../../../images/admin/skin/plugins/gru/fond_360.jpg); background-size:cover }
 #form-user{ margin-top: 7.5% }
-#form-user form input{ padding:20px; height:80px;  border-top-left-radius:10px; border-bottom-left-radius:10px}
-#form-user form .input-group-btn button{ width:80px; height:80px; border-top-right-radius:10px; border-bottom-right-radius:10px}
+#form-user form input{ padding:20px; height:80px;  border-top-left-radius:10px; border-bottom-left-radius:10px }
+#form-user form .input-group-btn button{ width:80px; height:80px; border-top-right-radius:10px; border-bottom-right-radius:10px }
 #home-actions a{ margin-top:15px; margin-right: 5px }
-#customer-panel{padding: 15px;height: 150px;color:#fff;}
-#customer-panel .row{margin-top: 1rem;width:87%;margin-left: auto;margin-right: auto;}
-#customer-panel p{font-size: 1.8rem;}
-#customer-panel p:first-of-type{margin-top:20px}
-#customer-panel p#info{font-size: 1.4rem; font-style: italic;}
-#customer-panel a.btn-link{border: 1px solid #fff; border-radius: 5px; color:#fff; text-transform: uppercase;font-size: 1.4rem;vertical-align: center;margin-top:60px;padding:6px 35px;}
+
+#customer-panel{ padding: 15px;height: 150px;color:#fff }
+#customer-panel .row{ margin-top: 1rem;width:87%;margin-left: auto;margin-right: auto }
+#customer-panel p{ font-size: 1.8rem }
+#customer-panel p:first-of-type{ margin-top:20px }
+#customer-panel p#info{ font-size: 1.4rem; font-style: italic }
+#customer-panel a.btn-link{ border: 1px solid #fff; border-radius: 5px; color:#fff; text-transform: uppercase;font-size: 1.4rem;vertical-align: center;margin-top:60px;padding:6px 35px;}
+#search-panel{ background-color: #fff; }
+#search-panel h2{ margin:30px 0; }
 
 /* DEMAND */
 #demand-panel{ padding: 15px 0;	background-color: #F3F7FA; color:#fff; min-height: 800px}
