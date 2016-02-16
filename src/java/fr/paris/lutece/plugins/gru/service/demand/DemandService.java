@@ -73,7 +73,11 @@ public class DemandService
      */
     public static Demand getDemand( String strDemandId, String strDemandTypeId, AdminUser user )
     {
-        return getService(  ).getDemand( strDemandId, strDemandTypeId, user );
+        Demand demand = getService(  ).getDemand( strDemandId, strDemandTypeId, user );
+        
+        demand.setTitle( DemandTypeService.getTypeLabel( strDemandTypeId ) );
+        
+        return demand;
     }
 
     /**

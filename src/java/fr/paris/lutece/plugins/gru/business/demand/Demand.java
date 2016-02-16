@@ -46,6 +46,7 @@ public class Demand extends BaseDemand
     public static final int STATUS_CLOSED = 1;
     public static final int STATUS_CANCELED = 2;
     public static final int STATUS_WAITING = 3;
+    private static final String NO_DATE = "";
 
     // Variables declarations 
     private String _strTitle;
@@ -186,4 +187,23 @@ public class Demand extends BaseDemand
     {
         _strStatusForGRU = strStatusForGRU;
     }
+    
+    public String getFirstNotificationDate()
+    {
+        if( (_listNotifications != null ) && ! _listNotifications.isEmpty() )
+        {
+            return _listNotifications.get( 0 ).getDate();
+        }
+        return NO_DATE;
+    }
+    
+    public String getLastNotificationDate()
+    {
+        if( (_listNotifications != null ) && ! _listNotifications.isEmpty() )
+        {
+            return _listNotifications.get( _listNotifications.size() - 1 ).getDate();
+        }
+        return NO_DATE;
+    }
+    
 }

@@ -45,7 +45,6 @@ import fr.paris.lutece.plugins.gru.service.ActionLinkService;
 import fr.paris.lutece.portal.business.user.AdminUser;
 import fr.paris.lutece.portal.service.rbac.RBACService;
 import fr.paris.lutece.portal.service.util.AppException;
-import fr.paris.lutece.portal.service.util.AppLogService;
 
 import java.util.HashMap;
 import java.util.List;
@@ -97,5 +96,25 @@ public class DemandTypeService
         }
 
         return demand;
+    }
+    
+    /**
+     * Get a demand type label
+     * @param strDemandTypeId The ID
+     * @return The label
+     */
+    public static String getTypeLabel( String strDemandTypeId )
+    {
+        DemandType type = _mapDemandTypes.get( strDemandTypeId );
+        if( type == null )
+        {
+            type = DemandTypeHome.findByTypeId( strDemandTypeId );
+            if( type == null )
+            {
+                return "Invalid demand type";
+            }
+            _mapDemandTypes.put( strDemandTypeId , type );
+        }
+        return type.getTitle();
     }
 }

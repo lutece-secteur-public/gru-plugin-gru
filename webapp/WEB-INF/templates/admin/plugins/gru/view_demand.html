@@ -14,9 +14,10 @@
           <tr>
             <th class="col-xs-12 col-sm-1">Reference</th>
             <th class="col-xs-12 col-sm-1">Ouvert depuis</th>
-            <th class="col-xs-12 col-sm-1">Nature</th>
-            <th class="col-xs-12 col-sm-7">Derni&egrave;re notification</th>
-            <th class="col-xs-12 col-sm-1">Statut</th>
+            <th class="col-xs-12 col-sm-2">Type de demande</th>
+            <th class="col-xs-12 col-sm-3">Statut usager</th>
+            <th class="col-xs-12 col-sm-3">Statut agent</th>
+            <th class="col-xs-12 col-sm-1">Etat</th>
             <th class="col-xs-12 col-sm-1"></th>
           </tr>
           <tr>
@@ -27,24 +28,8 @@
             </td>
             <td class="text-center text-gru">${demand.date!'2'} <br>jours</td>
             <td class="text-demand">${demand.title!'Title missing'} </td>
-            <td class="text-demand">
-              <#list demand.notifications?reverse as notification>
-                <#if notification.userDashboard ??>
-                  <div><i class="fa fa-mobile"></i>  ${notification.userDashboard.message!'SMS message missing'}</div>
-                </#if>
-                <#if notification.email ??>
-                  <div>
-                    <i class="fa fa-envelope"></i> <em>Objet <strong>${notification.email.subject}</strong></em>
-                    <br>
-                    ${notification.email.message}
-                  </div>
-                </#if>
-                <#if notification.sms ??>
-                  <div><i class="fa fa-user"></i> ${notification.sms.message!'SMS message missing'}
-                </#if>
-                <#break>
-              </#list>
-            </td>
+            <td class="text-demand">${demand.statusForCustomer!''}</td>
+            <td class="text-demand">${demand.statusForGRU!''}</td>
             <td>
               <#switch demand.status>
                 <#case 0>
@@ -77,7 +62,7 @@
                   <i class="fa fa-user bg-gru-cat2"></i>
                   <div class="timeline-item">
                     <h4 class="timeline-header">
-                      Notification envoy&eacute dans le tableau de bord <span>Mon Compte</span> de l'usager.
+                        Notification envoy&eacutee dans le tableau de bord <span><b>Mon Compte</b></span> de l'usager.
                     </h4>
                     <div class="timeline-body">
                       ${notification.userDashboard.message!'SMS message missing'}
