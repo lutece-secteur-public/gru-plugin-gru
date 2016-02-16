@@ -28,28 +28,40 @@ DELETE FROM workflow_task WHERE id_action >= 300 AND id_action < 450;
 INSERT INTO workflow_task (id_task, task_type_key, id_action, display_order) 
 	VALUES 	(301,'taskTicketingGenerateTicketReference',301,1),
 			(302,'taskTicketingAssignUnitLinkedToCategory',301,2),
+            (303,'taskNotifyGru',301,3),
             (321,'taskTicketingQualifyTicket',302,1),
             (322,'taskTicketingAssignTicketToUnit',302,2),
             (323,'taskTicketingModifyTicketCategory',302,3),
 			(324, 'taskTypeComment', 302,4), 
+            (325,'taskNotifyGru',302,5),
             (341,'taskTicketingQualifyTicket',303,1),
             (342,'taskTicketingModifyTicketCategory',303,2),
             (343, 'taskTypeComment', 303,3),
+            (344,'taskNotifyGru',303,4),
             (351,'taskTicketingAssignTicketToUnit',305,1),
             (352, 'taskTypeComment', 305,2),
+            (353,'taskNotifyGru',305,3),
             (361,'taskTicketingAssignTicketToUser',306,1),
             (362, 'taskTypeComment', 306,2),
+            (363,'taskNotifyGru',306,3),
             (371,'taskTicketingAssignTicketToMe',307,1),
             (372, 'taskTypeComment', 307,2),
+            (373,'taskNotifyGru',307,3),
 			(381,'taskTicketingAssignUpTicket',304,1),
 			(382, 'taskTypeComment', 304,2),
+            (383,'taskNotifyGru',304,3),
             (390, 'taskTicketingReply', 308,1), -- Ask for user information
+            (392,'taskNotifyGru',308,2),
             (400, 'taskTicketingReply', 309,1), -- Reply to agent
+            (402,'taskNotifyGru',309,2),
 			(420, 'taskTicketingReply', 310,1), -- Reply to user
+            (422,'taskNotifyGru',310,2),
 			(431, 'taskTicketingQualifyTicket', 311, 1), 
 			(432, 'taskTicketingAssignTicketToUnit', 311, 2), 
 			(433, 'taskTicketingModifyTicketCategory', 311, 3), 
-			(434, 'taskTypeComment', 311, 4);
+			(434, 'taskTypeComment', 311, 4),
+            (435,'taskNotifyGru',311,5)
+;
 
 DELETE FROM workflow_task_comment_config WHERE id_task >= 300 AND id_task < 450;			
 INSERT INTO workflow_task_comment_config (id_task, title, is_mandatory) 
@@ -66,5 +78,216 @@ INSERT INTO workflow_task_ticketing_reply_config (id_task, message_direction)
     VALUES  (390, 1),  -- Ask for user information
             (400, 0), -- Reply to agent
             (420, 1) -- Reply to user
+;
+
+DELETE FROM workflow_task_notify_gru_cf;
+INSERT INTO workflow_task_notify_gru_cf (id_task,id_spring_provider,key_provider,
+    message_guichet,status_text_guichet,sender_name_guichet,subject_guichet,demand_max_step_guichet,demand_user_current_step_guichet,demand_state_guichet,level_notification_guichet,is_active_onglet_guichet,
+    message_agent,level_notification_agent,is_active_onglet_agent,
+    subject_email,message_email,sender_name_email,recipients_cc_email,recipients_cci_email,level_notification_email,is_active_onglet_email,
+    message_sms,level_notification_sms,is_active_onglet_sms,
+    crm_status_id_commune,id_mailing_list_broadcast,subject_broadcast,message_broadcast,sender_name_broadcast,recipients_cc_broadcast,recipients_cci_broadcast,level_notification_broadcast,is_active_onglet_broadcast,
+    set_onglet) 
+    VALUES  (303,'notifygru-ticketing.ProviderService','notifygru-ticketing.ProviderService',
+            '<p>Bonjour ${firstname} ${lastname},</p>
+            <p>Nous avons bien re&ccedil;u votre demande et nous vous remercions de votre confiance.</p>
+            <p>Un e-mail de confirmation vous a &eacute;t&eacute; envoy&eacute; &agrave; l''adresse suivante ${email}. Il contient un num&eacute;ro de suivi qui vous sera demand&eacute; au 3975 pour suivre son &eacute;tat d''avancement. Il est &eacute;galement disponible dans votre espace Compte Parisien.</p>
+            <p>Nous restons &agrave; votre enti&egrave;re disposition pour toute information compl&eacute;mentaire.</p>
+            <p>Cordialement,</p>
+            <p>Mairie de Paris.</p>',
+            'En cours de traitement','Mairie de Paris','Votre demande','4','1','0',null,'1',
+            '<p>Bonjour ${firstname} ${lastname},</p>
+            <p>Votre sollicitation est bien re&ccedil;ue.</p>
+            <p>Cordialement,</p>
+            <p>Mairie de Paris</p>',
+            null,'1',
+            'Votre demande',
+            '<p>Bonjour ${firstname} ${lastname},</p>
+            <p>Votre sollicitation est bien re&ccedil;ue.</p>
+            <p>Cordialement,</p>
+            <p>Mairie de Paris</p>',
+            'Mairie de Paris','','',null,'1',
+            'Bonjour ${firstname} ${lastname}, votre demande est bien reçue. Cordialement. Mairie de Paris',
+            null,'1',
+            0,1,'Votre demande',
+            '<p>Bonjour ${firstname} ${lastname},</p>
+            <p>Votre sollicitation est bien re&ccedil;ue.</p>
+            <p>Cordialement,</p>
+            <p>Mairie de Paris</p>',
+            'Mairie de Paris','','',null,'1',
+            '0'),
+            
+            (325,'notifygru-ticketing.ProviderService','notifygru-ticketing.ProviderService',
+            null,null,null,null,'4','1','0',null,'0',
+            '<p>La sollicitation ${reference} a &eacute;t&eacute; qualifi&eacute;e.</p>',
+            null,'1',
+            null,null,null,null,null,null,'0',
+            null,null,'0',
+            0,1,null,null,null,null,null,null,'0',
+            '0'),
+
+            (344,'notifygru-ticketing.ProviderService','notifygru-ticketing.ProviderService',
+            null,null,null,null,'4','1','0',null,'0',
+            '<p>La sollicitation ${reference} a &eacute;t&eacute; requalifi&eacute;e.</p>',
+            null,'1',
+            null,null,null,null,null,null,'0',
+            null,null,'0',
+            0,1,null,null,null,null,null,null,'0',
+            '0'),
+
+            (353,'notifygru-ticketing.ProviderService','notifygru-ticketing.ProviderService',
+            null,null,null,null,'4','1','0',null,'0',
+            '<p>La sollicitation ${reference} a &eacute;t&eacute; assign&eacutee &agrave; une autre entit&eacute;.</p>',
+            null,'1',
+            null,null,null,null,null,null,'0',
+            null,null,'0',
+            0,1,null,null,null,null,null,null,'0',
+            '0'),
+
+            (363,'notifygru-ticketing.ProviderService','notifygru-ticketing.ProviderService',
+            null,null,null,null,'4','1','0',null,'0',
+            '<p>La sollicitation ${reference} a &eacute;t&eacute; assign&eacutee &agrave; un autre agent.</p>',
+            null,'1',
+            null,null,null,null,null,null,'0',
+            null,null,'0',
+            0,1,null,null,null,null,null,null,'0',
+            '0'),
+
+            (373,'notifygru-ticketing.ProviderService','notifygru-ticketing.ProviderService',
+            null,null,null,null,'4','1','0',null,'0',
+            '<p>La sollicitation ${reference} vous a &eacute;t&eacute; assign&eacute;e.</p>',
+            null,'1',
+            null,null,null,null,null,null,'0',
+            null,null,'0',
+            0,1,null,null,null,null,null,null,'0',
+            '0'),
+
+            (383,'notifygru-ticketing.ProviderService','notifygru-ticketing.ProviderService',
+            null,null,null,null,'4','1','0',null,'0',
+            '<p>La sollicitation ${reference} a &eacute;t&eacute; transmise &agrave; l''entit&eacute; de support.</p>',
+            null,'1',
+            null,null,null,null,null,null,'0',
+            null,null,'0',
+            0,1,null,null,null,null,null,null,'0',
+            '0'),
+
+            (392,'notifygru-ticketing.ProviderService','notifygru-ticketing.ProviderService',
+            '<p>Bonjour ${firstname} ${lastname},</p>
+            <p>Une demande d''informations compl&eacute;mentaires vous a &eacute;t&eacute; envoy&eacute;e &agrave; l''adresse suivante ${email}.</p>
+            <p>Cordialement,</p>
+            <p>Mairie de Paris.</p>',
+            'En attente de compléments','Mairie de Paris','Demande d''information complémentaires','4','2','0',null,'1',
+            '<p>Bonjour ${firstname} ${lastname},</p>
+            <p>Votre demande ${reference} est en attente d''informations compl&eacute;mentaires de votre part. Cliquez ici pour acc&eacute;der &agrave; votre demande.</p>
+            <p>Cordialement,</p>
+            <p>Mairie de Paris</p>',
+            null,'1',
+            'Demande d''information complémentaires',
+            '<p>Bonjour ${firstname} ${lastname},</p>
+            <p>Votre demande ${reference} est en attente d''informations compl&eacute;mentaires de votre part. Cliquez ici pour acc&eacute;der &agrave; votre demande.</p>
+            <p>Cordialement,</p>
+            <p>Mairie de Paris</p>',
+            'Mairie de Paris','','',null,'1',
+            'Bonjour ${firstname} ${lastname}, votre demande ${reference} est en attente d''informations complémentaires de votre part. Cordialement. Mairie de Paris',
+            null,'1',
+            0,1,'Demande d''information complémentaires',
+            '<p>Bonjour ${firstname} ${lastname},</p>
+            <p>Votre demande ${reference} est en attente d''informations compl&eacute;mentaires de votre part. Cliquez ici pour acc&eacute;der &agrave; votre demande.</p>
+            <p>Cordialement,</p>
+            <p>Mairie de Paris</p>',
+            'Mairie de Paris','','',null,'1',
+            '0'),
+
+            (402,'notifygru-ticketing.ProviderService','notifygru-ticketing.ProviderService',
+            '<p>Bonjour ${firstname} ${lastname},</p>
+            <p>Nous avons bien re&ccedil;u vos informations compl&eacute;mentaires et nous vous en remercions.</p>
+            <p>Nous allons traiter votre demande dans les plus brefs d&eacute;lais.</p>
+            <p>Cordialement,</p>
+            <p>Mairie de Paris.</p>',
+            'En cours de traitement','Mairie de Paris','Réception de vos information complémentaires','4','1','0',null,'1',
+            '<p>Bonjour ${firstname} ${lastname},</p>
+            <p>Nous avons bien re&ccedil;u vos informations compl&eacute;mentaires pour votre demande ${reference} et nous vous en remercions.</p>
+            <p>Nous allons traiter votre demande dans les plus brefs d&eacute;lais.</p>
+            <p>Cordialement,</p>
+            <p>Mairie de Paris.</p>',
+            null,'1',
+            'Réception de vos information complémentaires',
+            '<p>Bonjour ${firstname} ${lastname},</p>
+            <p>Nous avons bien re&ccedil;u vos informations compl&eacute;mentaires pour votre demande ${reference} et nous vous en remercions.</p>
+            <p>Nous allons traiter votre demande dans les plus brefs d&eacute;lais.</p>
+            <p>Cordialement,</p>
+            <p>Mairie de Paris.</p>',
+            'Mairie de Paris','','',null,'1',
+            'Bonjour ${firstname} ${lastname}, Nous avons bien reçu vos informations complémentaires pour votre demande ${reference}. Nous allons traiter votre demande dans les plus brefs délais. Cordialement. Mairie de Paris',
+            null,'1',
+            0,1,'Réception de vos information complémentaires',
+            '<p>Bonjour ${firstname} ${lastname},</p>
+            <p>Nous avons bien re&ccedil;u vos informations compl&eacute;mentaires pour votre demande ${reference} et nous vous en remercions.</p>
+            <p>Nous allons traiter votre demande dans les plus brefs d&eacute;lais.</p>
+            <p>Cordialement,</p>
+            <p>Mairie de Paris.</p>',
+            'Mairie de Paris','','',null,'1',
+            '0'),
+
+            (422,'notifygru-ticketing.ProviderService','notifygru-ticketing.ProviderService',
+            '<p>Bonjour ${firstname} ${lastname},</p>
+            <p>Nous avons r&eacute;pondu &agrave; votre demande.</p>
+            <p>Un e-mail vous a &eacute;t&eacute; envoy&eacute; &agrave; l''adresse suivante ${email}.</p>
+            <p>Nous restons &agrave; votre enti&egrave;re disposition pour toute information compl&eacute;mentaire.</p>
+            <p>Cordialement,</p>
+            <p>Mairie de Paris.</p>',
+            'Traité','Mairie de Paris','Réponse à votre demande','4','3','0',null,'1',
+            '<p>Bonjour ${firstname} ${lastname},</p>
+            <p>Nous avons r&eacute;pondu &agrave; votre demande ${reference}. Cliquez ici pour voir la r&eacute;ponse.</p>
+            <p>Cordialement,</p>
+            <p>Mairie de Paris</p>',
+            null,'1',
+            'Réponse à votre demande',
+            '<p>Bonjour ${firstname} ${lastname},</p>
+            <p>Nous avons r&eacute;pondu &agrave; votre demande ${reference}. Cliquez ici pour voir la r&eacute;ponse.</p>
+            <p>Cordialement,</p>
+            <p>Mairie de Paris</p>',
+            'Mairie de Paris','','',null,'1',
+            'Bonjour ${firstname} ${lastname}, Nous avons répondu à votre demande ${reference}. Cordialement. Mairie de Paris',
+            null,'1',
+            0,1,'Réponse à votre demande',
+            '<p>Bonjour ${firstname} ${lastname},</p>
+            <p>Nous avons r&eacute;pondu &agrave; votre demande ${reference}. Cliquez ici pour voir la r&eacute;ponse.</p>
+            <p>Cordialement,</p>
+            <p>Mairie de Paris</p>',
+            'Mairie de Paris','','',null,'1',
+            '0'),
+
+            (435,'notifygru-ticketing.ProviderService','notifygru-ticketing.ProviderService',
+            '<p>Bonjour ${firstname} ${lastname},</p>
+            <p>Nous avons bien re&ccedil;u la r&eacute;-ouverture de votre demande.</p>
+            <p>Un e-mail vous a &eacute;t&eacute; envoy&eacute; &agrave; l''adresse suivante ${email}.</p>
+            <p>Nous allons traiter votre demande dans les plus brefs d&eacute;lais.</p>
+            <p>Cordialement,</p>
+            <p>Mairie de Paris.</p>',
+            'En cours de traitement','Mairie de Paris','Ré-ouverture de votre demande','4','1','0',null,'1',
+            '<p>Bonjour ${firstname} ${lastname},</p>
+            <p>Nous avons bien re&ccedil;u la r&eacute;-ouverture de votre demande ${reference}.</p>
+            <p>Nous allons traiter votre demande dans les plus brefs d&eacute;lais.</p>
+            <p>Cordialement,</p>
+            <p>Mairie de Paris.</p>',
+            null,'1',
+            'Ré-ouverture de votre demande',
+            '<p>Bonjour ${firstname} ${lastname},</p>
+            <p>Nous avons bien re&ccedil;u la r&eacute;-ouverture de votre demande ${reference}.</p>
+            <p>Nous allons traiter votre demande dans les plus brefs d&eacute;lais.</p>
+            <p>Cordialement,</p>
+            <p>Mairie de Paris.</p>',
+            'Mairie de Paris','','',null,'1',
+            'Bonjour ${firstname} ${lastname}, nous avons bien reçue la ré-ouverture de votre demande ${reference}. Nous allons traiter votre demande dans les plus brefs délais. Cordialement. Mairie de Paris',
+            null,'1',
+            0,1,'Ré-ouverture de votre demande',
+            '<p>Bonjour ${firstname} ${lastname},</p>
+            <p>Nous avons bien re&ccedil;u la r&eacute;-ouverture de votre demande ${reference}.</p>
+            <p>Nous allons traiter votre demande dans les plus brefs d&eacute;lais.</p>
+            <p>Cordialement,</p>
+            <p>Mairie de Paris.</p>',
+            'Mairie de Paris','','',null,'1',
+            '0')
 ;
 	
