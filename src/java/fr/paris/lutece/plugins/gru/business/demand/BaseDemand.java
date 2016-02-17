@@ -35,8 +35,7 @@ package fr.paris.lutece.plugins.gru.business.demand;
 
 
 /**
- *
- * @author pierre
+ * Base Demand
  */
 public class BaseDemand
 {

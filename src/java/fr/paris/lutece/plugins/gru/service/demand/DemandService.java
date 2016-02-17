@@ -85,14 +85,17 @@ public class DemandService
      * @param customer The customer
      * @return The list
      */
-    public static List<Demand> getDemands( Customer customer, AdminUser user )
+    public static List<Demand> getDemands( Customer customer, AdminUser user , int nStatus )
     {
         List<BaseDemand> listBase = getService(  ).getDemands( "" + customer.getId(  ), user );
         List<Demand> listDemand = new ArrayList<Demand>(  );
 
         for ( BaseDemand base : listBase )
         {
-            listDemand.add( DemandTypeService.buildDemand( base, customer, user ) );
+            if( base.getStatus() == nStatus )
+            {
+                listDemand.add( DemandTypeService.buildDemand( base, customer, user ) );
+            }
         }
 
         return listDemand;
