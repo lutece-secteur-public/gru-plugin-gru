@@ -10,7 +10,7 @@
           <div class="input-group">
             <input type="text" name="query" class="form-control input-lg autocomplete" placeholder="#i18n{gru.search_customer.title} : #i18n{gru.search_customer.placeholder}">
             <span class="input-group-btn">
-              <button type="submit" name="search" class="btn btn-flat btn-lg" id="search-btn" >
+              <button type="submit" name="search" class="btn btn-flat btn-lg" id="search-btn" disabled>
                 <i class="fa fa-search"></i>
               </button>
             </span>
@@ -98,6 +98,8 @@ $(function() {
                     response(formattedResponse);
                     if(formattedResponse.length > 0){
                         $("#search-btn").removeAttr("disabled");
+                    }else{
+                        $("#search-btn").prop("disabled");                    	
                     }
 
                 }
