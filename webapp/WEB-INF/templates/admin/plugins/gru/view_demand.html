@@ -1,24 +1,31 @@
 <#include "action_bar.html" />
 <@actionMenu panels=panels customer=customer />
-<div class="content-wrapper" id="gru-content-wrapper">
-  <div id="customer-panel" class="bg-gru-dark">
-    <@customerDetails customer=customer />
-    <a href="javascript:history.back();" id="btn-back">
-      <i class="fa fa-arrow-left"></i>
-    </a>
+<div class="gru-wrapper">
+  <div id="customer-panel" class="row bg-gru-dark">
+    <div class="col-xs-12 col-sm-8">
+      <@customerDetails customer=customer />
+    
+    </div>
+    <div id="header-right" class="col-xs-12 col-sm-4">
+      <p>
+        <a class="btn btn-link btn-lg" title=" Modifier" href="jsp/admin/plugins/gru/ManageCustomers.jsp?plugin_name=gru&view=modifyCustomer&id_customer=${customer.id}">
+           <i class="fa fa-pencil"></i> Modifier le profil
+        </a>
+      </p>
+    </div>
   </div>
-  <div id="demand-panel">
-    <div class="tab-content">
-      <div role="tabpanel" class="tab-pane active table-responsive">
+  <div id="demand-panel" class="row">
+    <div class="col-xs-12 col-sm-8">
+      <div class="table-responsive">
         <table class="table table-hover">
           <tr>
             <th class="col-xs-12 col-sm-1">Reference</th>
             <th class="col-xs-12 col-sm-1">Ouvert depuis</th>
             <th class="col-xs-12 col-sm-2">Type de demande</th>
-            <th class="col-xs-12 col-sm-3">Statut usager</th>
-            <th class="col-xs-12 col-sm-3">Statut agent</th>
+            <!-- th class="col-xs-12 col-sm-3">Statut usager</th>
+            <th class="col-xs-12 col-sm-3">Statut agent</th -->
             <th class="col-xs-12 col-sm-1">Etat</th>
-            <th class="col-xs-12 col-sm-1"></th>
+
           </tr>
           <tr>
             <td>
@@ -28,8 +35,10 @@
             </td>
             <td class="text-center text-gru">${demand.date!'2'} <br>jours</td>
             <td class="text-demand">${demand.title!'Title missing'} </td>
+            <!--
             <td class="text-demand">${demand.statusForCustomer!''}</td>
             <td class="text-demand">${demand.statusForGRU!''}</td>
+          -->
             <td>
               <#switch demand.status>
                 <#case 0>
@@ -40,17 +49,11 @@
                 <#break>
               </#switch>
             </td>
-            <td>
-              <#list demand.actions as action>
-                <a class="btn btn-primary btn-flat btn-sm" href="${action.url}">
-                  <i class="fa fa-pencil"></i> ${action.name}
-                </a>
-              </#list>
-            </td>
+
           </tr>
-          <tr>
-            <td colspan="6">
-            <#list demand.notifications as notification>
+        </table>
+        <div class="panel">
+          <#list demand.notifications as notification>
               <h3>
                 ${notification.title!'Title missing'}
                 <small>Notification envoy&eacute;e par l'application : ${notification.source!'Source missing'}</small>
@@ -103,10 +106,16 @@
                 </#if>
               </#list>
               </ul>
-            </td>
-          </tr>
-        </table>
+
+        </div>
       </div>
+    </div>
+    <div class="col-xs-12 col-sm-4" id="header-right">
+      <#list demand.actions as action>
+       <a class="btn btn-primary btn-flat btn-lg bg-gru-ligth" href="${action.url}">
+         <i class="fa fa-pencil"></i> ${action.name}
+      </a>
+     </#list>
     </div>
   </div>
 </div>

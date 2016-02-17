@@ -1,6 +1,6 @@
 <#include "action_bar.html" />
 <@actionMenu panels=panels customer=customer/>
-<div class="content-wrapper" id="gru-wrapper">
+<div class="gru-wrapper gru-360">
   <div class="row">
     <div id="form-user" class="col-xs-12 col-sm-offset-2 col-sm-6">
       <!-- search form -->
@@ -10,7 +10,7 @@
           <div class="input-group">
             <input type="text" name="query" class="form-control input-lg autocomplete" placeholder="#i18n{gru.search_customer.title} : #i18n{gru.search_customer.placeholder}">
             <span class="input-group-btn">
-              <button type="submit" name="search" class="btn btn-flat btn-lg" id="search-btn" disabled>
+              <button type="submit" name="search" class="btn btn-flat btn-lg" id="search-btn" <#if auto_complete>disabled</#if>>
                 <i class="fa fa-search"></i>
               </button>
             </span>
@@ -35,51 +35,6 @@ $( function(){
 });
 </script>
 
-<style>
-.ui-autocomplete {
-    position: absolute;
-     cursor: pointer;
-    top: 100%;
-    left: 0;
-    z-index: 1000;
-    float: left;
-    display: none;
-    min-width: 160px;
-    _width: 160px;
-    padding: 4px 0;
-    margin: 2px 0 0 0;
-    list-style: none;
-    background-color: #ffffff;
-    border-color: #ccc;
-    border-color: rgba(0, 0, 0, 0.2);
-    border-style: solid;
-    border-width: 1px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    -webkit-background-clip: padding-box;
-    -moz-background-clip: padding;
-    background-clip: padding-box;
-    *border-right-width: 2px;
-    *border-bottom-width: 2px;
-}
-.ui-menu-item > a.ui-corner-all {
-    display: block;
-    padding: 3px 15px;
-    clear: both;
-    font-weight: normal;
-    line-height: 18px;
-    color: #555555;
-    white-space: nowrap;
-    cursor: pointer;
-
-}
-</style>
-
-
 <#if auto_complete>
 <script>
 $(function() {
@@ -87,7 +42,7 @@ $(function() {
     	minLength: 3,
         source: function(request, response) {
             $.ajax({
-                url: "${auto_complete_url}?query=" + request.term,               
+                url: "${auto_complete_url}?query=" + request.term,
                 success: function(data) {
                     var formattedResponse = $.map(data.autocomplete, function(ob) {
                         return {
@@ -98,8 +53,6 @@ $(function() {
                     response(formattedResponse);
                     if(formattedResponse.length > 0){
                         $("#search-btn").removeAttr("disabled");
-                    }else{
-                        $("#search-btn").prop("disabled");                    	
                     }
 
                 }
