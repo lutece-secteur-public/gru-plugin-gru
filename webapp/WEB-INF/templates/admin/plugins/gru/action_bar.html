@@ -49,9 +49,16 @@
            <i class="fa fa-home"></i> <span>Accueil - Recherche Usager</span>
          </a>
         </li>
-        <#list panels as panel>
-          <@renderPanel panel />
-        </#list>
+        <#if customer.id != 0 >
+         <li>
+             <a class="text-success" href="jsp/admin/plugins/gru/ManageCustomers.jsp?plugin_name=gru&view=viewCustomer&id_customer=${customer.id!'1'}">
+                <i class="fa fa-user text-green"></i>  <span> ${customer.firstname!""} ${customer.lastname!""} </span>
+             </a>
+          </li>
+       </#if>
+      <#list panels as panel>
+        <@renderPanel panel />
+      </#list>
       </ul>
     </section>
   </aside>
