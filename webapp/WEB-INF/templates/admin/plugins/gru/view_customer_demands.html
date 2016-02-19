@@ -1,11 +1,20 @@
 <#include "action_bar.html" />
 <#include "view_customer_tabs.html" />
+<#include "demands_utils.html" />
+
+
 <@actionMenu panels=panels customer=customer />
 <div class="gru-wrapper">
-    <div id="customer-panel" class="bg-gru-dark">
-        <@customerDetails customer=customer />
+  <div id="customer-panel" class="row bg-gru-dark">
+    <div class="col-xs-12 col-sm-8">
+      <@customerDetails customer=customer />
     </div>
-    <div id="demand-panel">
+    <div class="col-xs-12 col-sm-4">
+        &nbsp;
+    </div>
+  </div>
+  <div id="demand-panel" class="row">
+    <div class="col-xs-12 col-sm-12">
         <@tabs tab="demands" customer_id=customer.id />
         <div class="tab-content">
             <#if demands_list?size &gt; 0 >
@@ -26,8 +35,7 @@
                                 ${demand.reference}
                             </a>
                         </td>
-                        <td class="text-center text-gru">${demand.date!'2'}
-                            <br>jours</td>
+                        <td class="text-center text-gru">${displayTimeOpenedTicket(demand.timeOpenedInMs)}</td>
                         <td class="text-demand">${demand.title}</td>
                         <td class="text-demand">${demand.statusForCustomer!''}</td>
                         <td class="text-demand">${demand.statusForGRU!''}</td>
@@ -47,6 +55,7 @@
             </#if>
         </div>
     </div>
+  </div>
 </div>
 <script>
     $(function () {
@@ -57,3 +66,4 @@
         });
     });
 </script>
+

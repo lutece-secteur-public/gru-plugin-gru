@@ -1,0 +1,15 @@
+<#function displayTimeOpenedTicket time_ms>
+    <#assign days = (time_ms / 86400000)?int>
+    <#assign hours = (time_ms / 3600000)?int>
+    <#assign minutes = (time_ms / 60000)?int>
+
+    <#if days gte 1>
+        <#return days + " #i18n{gru.demands_utils.unitDay}">
+    <#else>
+        <#if hours gte 1>
+                <#return hours + " #i18n{gru.demands_utils.unitHour}">
+        <#else>
+                <#return minutes + " #i18n{gru.demands_utils.unitMinute}">
+        </#if>
+    </#if>
+</#function>

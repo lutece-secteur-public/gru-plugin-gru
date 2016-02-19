@@ -15,6 +15,7 @@ table.table-hover tr:hover{ cursor: pointer }
 .sidebar-menu > li > .treeview-menu.user {padding:5px;}
 .sidebar-mini.sidebar-collapse .sidebar-menu li > a > .pull-right { display: block }
 .sidebar-mini.sidebar-collapse .content-wrapper, .sidebar-mini.sidebar-collapse .right-side, .sidebar-mini.sidebar-collapse .main-footer {margin-left: 35px !important;}
+
 .user-panel{ padding-left:20px !important;}
 #info-user{ margin:15px 0}
 
@@ -24,8 +25,7 @@ table.table-hover tr:hover{ cursor: pointer }
 .gru-360 .table{ margin-top:15px;  background-color: #fff; opacity: 0.7 }
 .gru-360 .table:hover{ opacity: 1 }
 
-.gru-360 .ui-autocomplete {
-  position: absolute;cursor: pointer;top: 100%;left: 0;z-index: 1000;float: left;display: none;min-width: 160px;_width: 160px;
+.gru-360 .ui-autocomplete { position: absolute;cursor: pointer;top: 100%;left: 0;z-index: 1000;float: left;display: none;min-width: 160px;_width: 160px;
   padding: 4px 0;margin: 2px 0 0 0;list-style: none; background-color: #fff;border-color: #ccc;border-color: rgba(0, 0, 0, 0.2);
   border-style: solid;border-width: 1px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); -webkit-background-clip: padding-box; -moz-background-clip: padding;
@@ -36,6 +36,7 @@ table.table-hover tr:hover{ cursor: pointer }
 #form-user{ margin-top: 7.5% }
 #form-user form input{ padding:20px; height:80px;  border-top-left-radius:10px; border-bottom-left-radius:10px }
 #form-user form .input-group-btn button{ width:80px; height:80px; border-top-right-radius:10px; border-bottom-right-radius:10px }
+
 #home-actions a{ margin-top:15px; margin-right: 5px }
 
 #customer-panel{ padding: 15px;height: 150px;color:#fff }
@@ -43,7 +44,9 @@ table.table-hover tr:hover{ cursor: pointer }
 #customer-panel p{ font-size: 1.8rem }
 #customer-panel p:first-of-type{ margin-top:20px }
 #customer-panel p#info{ font-size: 1.4rem; font-style: italic }
-#customer-panel a.btn-link{ border: 1px solid #fff; border-radius: 5px; color:#fff; text-transform: uppercase;font-size: 1.4rem;vertical-align: center;margin-top:60px;padding:6px 35px;}
+#customer-panel a.btn-link{ border: 1px solid #fff; border-radius: 5px; color:#fff; text-transform: uppercase;font-size: 1.4rem;vertical-align: center;}
+#customer-panel a.btn-lg{ margin-top:60px;padding:6px 35px;}
+
 #search-panel{ background-color: #fff; }
 #search-panel h2{ margin:30px 0; }
 

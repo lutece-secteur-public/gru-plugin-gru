@@ -33,11 +33,13 @@
  */
 package fr.paris.lutece.plugins.gru.business.demand;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
  * BackOffice Logging
  */
+@JsonIgnoreProperties( ignoreUnknown = true )
 public class BackOfficeLogging
 {
     // Variables declarations 

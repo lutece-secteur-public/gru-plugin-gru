@@ -1,4 +1,6 @@
 <#include "action_bar.html" />
+<#include "demands_utils.html" />
+
 <@actionMenu panels=panels customer=customer />
 <div class="gru-wrapper">
   <div id="customer-panel" class="row bg-gru-dark">
@@ -15,44 +17,14 @@
   </div>
   <div id="demand-panel-detail" class="row">
     <div class="col-xs-12 col-sm-8">
-      <!--
-      <table class="table table-hover">
-        <tr>
-          <th class="col-xs-12 col-sm-1">Reference </th>
-          <th class="col-xs-12 col-sm-1">Ouvert depuis</th>
-          <th class="col-xs-12 col-sm-2">Type de demande</th>
-          <th class="col-xs-12 col-sm-3">Statut usager</th>
-          <th class="col-xs-12 col-sm-3">Statut agent</th>
-          <th class="col-xs-12 col-sm-1">Etat</th>
-        </tr>
-        <tr>
-          <td>
-            <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewDemand&id_demand=${demand.id}&id_demand_type=${demand.demandTypeId}&id_customer=${customer.id}">
-               ${demand.reference!'Reference missing'}
-              </a>
-          </td>
-          <td class="text-center text-gru">${demand.date!'2'} <br>jours</td>
-          <td class="text-demand">${demand.title!'Title missing'} </td>
-          <td class="text-demand">${demand.statusForCustomer!''}</td>
-          <td class="text-demand">${demand.statusForGRU!''}</td>
-          <td>
-            <#switch demand.status>
-              <#case 0>
-                En cours
-                <#break>
-              <#case 1>
-                Termin&eacute;e
-              <#break>
-            </#switch>
-          </td>
-        </tr>
-      </table>
-    -->
       <div class="panel">
-        <#list demand.notifications as notification>
+
+          <h2>${demand.title!'Title missing'} <span class="text-gru"> Référence : ${demand.reference!'Reference missing'} </span></h2>
+          
+          <#list demand.notifications as notification>
               <h3>
                 ${notification.title!'Title missing'}
-                <small>Notification envoy&eacute;e par l'application : ${notification.source!'Source missing'}</small>
+            <!--    <small>Notification envoy&eacute;e par l'application : ${notification.source!'Source missing'}</small> -->
               </h3>
               <p>${notification.date!'Date missing'}</p>
               <ul class="timeline">
@@ -105,14 +77,16 @@
       </div>
     </div>
     <div class="col-xs-12 col-sm-4" id="header-right">
+      <!--  
+      <p>Type de demande : <strong>${demand.title!'Title missing'}</strong></p>
       <p>Reference :
         <strong class="text-gru">
          ${demand.reference!'Reference missing'}
        </strong>
       </p>
-      <p>Ouvert depuis : <strong class="text-gru">${demand.date!'2'} jours</strong></p>
-      <p>Type de demande : <strong>${demand.title!'Title missing'}</strong></p>
-      <p>Statut usager: <strong>${demand.statusForCustomer!''}</strong></p>
+      -->
+      <p>Ouvert depuis : <strong class="text-gru">${displayTimeOpenedTicket(demand.timeOpenedInMs)}</strong></p>
+      <p>Statut usager : <strong>${demand.statusForCustomer!''}</strong></p>
       <p>Statut agent : <strong>${demand.statusForGRU!''}</strong></p>
       <p>Etat :
         <strong>

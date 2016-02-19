@@ -52,6 +52,7 @@ public class Demand extends BaseDemand
     private List<Action> _listActions = new ArrayList<Action>(  );
     private String _strStatusForCustomer;
     private String _strStatusForGRU;
+    private long _lTimeOpened;
 
     /** Constructor */
     public Demand(  )
@@ -202,6 +203,24 @@ public class Demand extends BaseDemand
             return _listNotifications.get( _listNotifications.size() - 1 ).getDate();
         }
         return NO_DATE;
+    }
+    
+    /**
+     * Set Time opened in milliseconds
+     * @param lTimeOpened Time opened in milliseconds
+     */
+    public void setTimeOpenedInMs( long lTimeOpened )
+    {
+        _lTimeOpened = lTimeOpened;
+    }
+ 
+    /**
+     * Get Time opened in milliseconds
+     * @return Time opened in milliseconds
+     */
+    public long getTimeOpenedInMs()
+    {
+        return _lTimeOpened;
     }
     
 }

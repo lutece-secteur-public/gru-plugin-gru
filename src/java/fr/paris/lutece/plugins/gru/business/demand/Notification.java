@@ -69,6 +69,7 @@ public class Notification
      * Sets the Timestamp
      * @param Timestamp The Timestamp
      */
+    @JsonProperty( "notification_date" )
     public void setTimestamp( long Timestamp )
     {
         _lTimestamp = Timestamp;
@@ -194,5 +195,6 @@ public class Notification
     {
         return _backOfficeLogging;
     }
+    
     
 }
