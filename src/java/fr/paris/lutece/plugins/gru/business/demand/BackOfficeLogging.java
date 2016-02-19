@@ -31,40 +31,56 @@
  *
  * License 1.0
  */
-package fr.paris.lutece.plugins.gru.service.demand;
+package fr.paris.lutece.plugins.gru.business.demand;
 
-import fr.paris.lutece.plugins.gru.business.demand.Notification;
-import fr.paris.lutece.portal.service.util.AppLogService;
-import org.codehaus.jackson.map.DeserializationConfig;
-import org.codehaus.jackson.map.ObjectMapper;
-
-import java.io.IOException;
-
-
+import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
- * NotificationService
+ * BackOffice Logging
  */
-public class NotificationService
+public class BackOfficeLogging
 {
-    public static Notification parseJSON( String strJson )
+    // Variables declarations 
+    private String _strStatusText;
+    private String _strMessage;
+    
+    
+       /**
+        * Returns the StatusText
+        * @return The StatusText
+        */ 
+    public String getStatusText()
     {
-        Notification notification = null;
-
-        try
-        {
-            ObjectMapper mapper = new ObjectMapper(  );
-            mapper.configure( DeserializationConfig.Feature.UNWRAP_ROOT_VALUE, true );
-
-            notification = mapper.readValue( strJson, Notification.class );
-
-            return notification;
-        }
-        catch ( IOException ex )
-        {
-            AppLogService.error( "Error parsing notification " + ex.getMessage() , ex );
-        }
-
-        return notification;
+        return _strStatusText;
     }
+    
+       /**
+        * Sets the StatusText
+        * @param strStatusText The StatusText
+        */ 
+    @JsonProperty( "status_text" )
+    public void setStatusText( String strStatusText )
+    {
+        _strStatusText = strStatusText;
+    }
+    
+       /**
+        * Returns the Message
+        * @return The Message
+        */ 
+    public String getMessage()
+    {
+        return _strMessage;
+    }
+    
+       /**
+        * Sets the Message
+        * @param strMessage The Message
+        */ 
+    @JsonProperty( "message" )
+    public void setMessage( String strMessage )
+    {
+        _strMessage = strMessage;
+    }
+    
 }

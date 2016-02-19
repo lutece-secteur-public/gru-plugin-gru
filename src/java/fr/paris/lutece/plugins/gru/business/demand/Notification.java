@@ -54,6 +54,7 @@ public class Notification
     private Email _email;
     private Sms _sms;
     private UserDashboard _userDashboard;
+    private BackOfficeLogging _backOfficeLogging;
 
     /**
      * Returns the Timestamp
@@ -174,4 +175,24 @@ public class Notification
     {
         return _userDashboard;
     }
+    
+    /**
+     * Set the BackOfficeLogging object
+     * @param backOfficeLogging The BackOfficeLogging Object
+     */
+    @JsonProperty( "backoffice_logging" )
+    public void setBackOfficeLogging( BackOfficeLogging backOfficeLogging )
+    {
+        _backOfficeLogging = backOfficeLogging;
+    }
+
+    /**
+    * Returns the BackOfficeLogging object
+    * @return The BackOfficeLogging object
+    */
+    public BackOfficeLogging getBackOfficeLogging(  )
+    {
+        return _backOfficeLogging;
+    }
+    
 }
