@@ -1,16 +1,33 @@
-<#macro tabs tab >
-<div>
-    <ul class="nav nav-tabs">
-        <li <#if tab="demandtype">class="active"</#if>>
-            <a href="jsp/admin/plugins/gru/ManageDemandTypes.jsp">
-                #i18n{gru.manage_demandtypes.pageTitle}
-            </a>
-        </li>
-        <li <#if tab="demandtypeaction">class="active"</#if>>
-            <a href="jsp/admin/plugins/gru/ManageDemandTypeActions.jsp">
-                #i18n{gru.manage_demandtypeactions.pageTitle}
-            </a>
-        </li>
-    </ul>
+<#macro tabs>
+<div class="row">
+  <div class="col-xs-12 col-sm-12">
+    <br>
+    <div class="nav-tabs-custom">
+      <#nested>
+    </div>
+  </div>
+</div>
+</#macro>
+
+<#macro tabHeader tab>
+  <ul class="nav nav-tabs">
+    <li <#if tab="demandtype">class="active"</#if>>
+      <a href="jsp/admin/plugins/gru/ManageDemandTypes.jsp">
+        #i18n{gru.manage_demandtypes.pageTitle}
+      </a>
+    </li>
+    <li <#if tab="demandtypeaction">class="active"</#if>>
+      <a href="jsp/admin/plugins/gru/ManageDemandTypeActions.jsp">
+        #i18n{gru.manage_demandtypeactions.pageTitle}
+      </a>
+    </li>
+  </ul>
+</#macro>
+
+<#macro tabContent tab>
+<div class="tab-content">
+  <div role="tab-panel" class="tab-pane active">
+    <#nested>
+  </div>
 </div>
 </#macro>

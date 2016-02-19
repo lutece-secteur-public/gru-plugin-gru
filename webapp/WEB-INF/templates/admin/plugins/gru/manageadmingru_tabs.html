@@ -1,16 +1,33 @@
-<#macro tabs tab >
-<div>
-    <ul class="nav nav-tabs">
-        <li <#if tab="feature">class="active"</#if>>
-            <a href="jsp/admin/plugins/gru/ManageFeatures.jsp">
-                #i18n{gru.manage_features.pageTitle}
-            </a>
-        </li>
-        <li <#if tab="featurecategory">class="active"</#if>>
-            <a href="jsp/admin/plugins/gru/ManageFeatureCategorys.jsp">
-                #i18n{gru.manage_featurecategories.pageTitle}
-            </a>
-        </li>
-    </ul>
+<#macro tabs>
+<div class="row">
+  <div class="col-xs-12 col-sm-12">
+    <br>
+    <div class="nav-tabs-custom">
+      <#nested>
+    </div>
+  </div>
+</div>
+</#macro>
+
+<#macro tabHeader tab>
+  <ul class="nav nav-tabs">
+    <li <#if tab="feature">class="active"</#if>>
+      <a href="jsp/admin/plugins/gru/ManageFeatures.jsp">
+        #i18n{gru.manage_features.pageTitle}
+      </a>
+    </li>
+    <li <#if tab="featurecategory">class="active"</#if>>
+      <a href="jsp/admin/plugins/gru/ManageFeatureCategorys.jsp">
+        #i18n{gru.manage_featurecategories.pageTitle}
+      </a>
+    </li>
+  </ul>
+</#macro>
+
+<#macro tabContent tab>
+<div class="tab-content">
+  <div role="tab-panel" class="tab-pane active">
+    <#nested>
+  </div>
 </div>
 </#macro>

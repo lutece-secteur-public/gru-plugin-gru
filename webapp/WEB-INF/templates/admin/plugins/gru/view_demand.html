@@ -4,7 +4,6 @@
   <div id="customer-panel" class="row bg-gru-dark">
     <div class="col-xs-12 col-sm-8">
       <@customerDetails customer=customer />
-    
     </div>
     <div id="header-right" class="col-xs-12 col-sm-4">
       <p>
@@ -14,46 +13,43 @@
       </p>
     </div>
   </div>
-  <div id="demand-panel" class="row">
+  <div id="demand-panel-detail" class="row">
     <div class="col-xs-12 col-sm-8">
-      <div class="table-responsive">
-        <table class="table table-hover">
-          <tr>
-            <th class="col-xs-12 col-sm-1">Reference</th>
-            <th class="col-xs-12 col-sm-1">Ouvert depuis</th>
-            <th class="col-xs-12 col-sm-2">Type de demande</th>
-            <!-- th class="col-xs-12 col-sm-3">Statut usager</th>
-            <th class="col-xs-12 col-sm-3">Statut agent</th -->
-            <th class="col-xs-12 col-sm-1">Etat</th>
-
-          </tr>
-          <tr>
-            <td>
-              <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewDemand&id_demand=${demand.id}&id_demand_type=${demand.demandTypeId}&id_customer=${customer.id}">
+      <!--
+      <table class="table table-hover">
+        <tr>
+          <th class="col-xs-12 col-sm-1">Reference </th>
+          <th class="col-xs-12 col-sm-1">Ouvert depuis</th>
+          <th class="col-xs-12 col-sm-2">Type de demande</th>
+          <th class="col-xs-12 col-sm-3">Statut usager</th>
+          <th class="col-xs-12 col-sm-3">Statut agent</th>
+          <th class="col-xs-12 col-sm-1">Etat</th>
+        </tr>
+        <tr>
+          <td>
+            <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewDemand&id_demand=${demand.id}&id_demand_type=${demand.demandTypeId}&id_customer=${customer.id}">
                ${demand.reference!'Reference missing'}
               </a>
-            </td>
-            <td class="text-center text-gru">${demand.date!'2'} <br>jours</td>
-            <td class="text-demand">${demand.title!'Title missing'} </td>
-            <!--
-            <td class="text-demand">${demand.statusForCustomer!''}</td>
-            <td class="text-demand">${demand.statusForGRU!''}</td>
-          -->
-            <td>
-              <#switch demand.status>
-                <#case 0>
-                  En cours
-                  <#break>
-                <#case 1>
-                  Termin&eacute;e
+          </td>
+          <td class="text-center text-gru">${demand.date!'2'} <br>jours</td>
+          <td class="text-demand">${demand.title!'Title missing'} </td>
+          <td class="text-demand">${demand.statusForCustomer!''}</td>
+          <td class="text-demand">${demand.statusForGRU!''}</td>
+          <td>
+            <#switch demand.status>
+              <#case 0>
+                En cours
                 <#break>
-              </#switch>
-            </td>
-
-          </tr>
-        </table>
-        <div class="panel">
-          <#list demand.notifications as notification>
+              <#case 1>
+                Termin&eacute;e
+              <#break>
+            </#switch>
+          </td>
+        </tr>
+      </table>
+    -->
+      <div class="panel">
+        <#list demand.notifications as notification>
               <h3>
                 ${notification.title!'Title missing'}
                 <small>Notification envoy&eacute;e par l'application : ${notification.source!'Source missing'}</small>
@@ -104,13 +100,33 @@
                     </div>
                   </li>
                 </#if>
-              </#list>
-              </ul>
-
-        </div>
+            </#list>
+        </ul>
       </div>
     </div>
     <div class="col-xs-12 col-sm-4" id="header-right">
+      <p>Reference :
+        <strong class="text-gru">
+         ${demand.reference!'Reference missing'}
+       </strong>
+      </p>
+      <p>Ouvert depuis : <strong class="text-gru">${demand.date!'2'} jours</strong></p>
+      <p>Type de demande : <strong>${demand.title!'Title missing'}</strong></p>
+      <p>Statut usager: <strong>${demand.statusForCustomer!''}</strong></p>
+      <p>Statut agent : <strong>${demand.statusForGRU!''}</strong></p>
+      <p>Etat :
+        <strong>
+        <#switch demand.status>
+          <#case 0>
+            En cours
+            <#break>
+          <#case 1>
+            Termin&eacute;e
+          <#break>
+        </#switch>
+      </strong>
+      </p>
+      <hr>
       <#list demand.actions as action>
        <a class="btn btn-primary btn-flat btn-lg bg-gru-ligth" href="${action.url}">
          <i class="fa fa-pencil"></i> ${action.name}

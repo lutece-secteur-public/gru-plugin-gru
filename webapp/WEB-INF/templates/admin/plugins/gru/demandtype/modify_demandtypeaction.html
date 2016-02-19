@@ -1,15 +1,16 @@
 <#include "managedemand_tabs.html" />
-<@tabs tab="demandtypeaction" />
-
-<@rowBoxHeader i18nTitleKey="gru.modify_demandtypeaction.pageTitle">
-    <form class="form-horizontal" method="post" name="modify_demandtypeaction" action="jsp/admin/plugins/gru/ManageDemandTypeActions.jsp">
+<@tabs>
+  <@tabHeader tab="demandtypeaction" />
+    <@tabContent tab="demandtypeaction">
+    <@rowBoxHeader i18nTitleKey="gru.modify_demandtypeaction.pageTitle">
+      <form class="form-horizontal" method="post" name="modify_demandtypeaction" action="jsp/admin/plugins/gru/ManageDemandTypeActions.jsp">
         <@messages errors=errors />
         <input type="hidden" id="id" name="id" value="${demandtypeaction.id}"/>
-
         <@fieldInputCombo i18nLabelKey="gru.modify_demandtypeaction.labelIdDemandType" inputName="id_demand_type" items=demand_types_list value="${demandtypeaction.idDemandType!''}" i18nHelpBlockKey="gru.modify_demandtypeaction.labelIdDemandType.help" cssClass='form-control' />
         <@fieldInputText i18nLabelKey="gru.modify_demandtypeaction.labelActionLabel" inputName="label" mandatory=true value="${demandtypeaction.label}" i18nHelpBlockKey="gru.modify_demandtypeaction.labelActionLabel.help" />
         <@fieldInputText i18nLabelKey="gru.modify_demandtypeaction.labelActionLink" inputName="link" mandatory=true value="${demandtypeaction.link}" i18nHelpBlockKey="gru.modify_demandtypeaction.labelActionLink.help" />
         <@actionButtons button1Name="action_modifyDemandTypeAction" button2Name="view_manageDemandTypeActions"/>
-    </form>
-</@rowBoxHeader>
-
+      </form>
+    </@rowBoxHeader>
+  </@tabContent>
+</@tabs>

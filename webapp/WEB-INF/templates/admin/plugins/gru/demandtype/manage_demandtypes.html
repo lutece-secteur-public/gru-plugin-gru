@@ -1,57 +1,44 @@
 <#include "managedemand_tabs.html" />
-<@tabs tab="demandtype" />
-
-<@rowBox>
-    <@boxHeader i18nTitleKey="gru.manage_demandtypes.tableLabel">
+<@tabs>
+  <@tabHeader tab="demandtype" />
+    <@tabContent tab="featurecategory">
+      <@rowBox>
+        <@boxHeader i18nTitleKey="gru.manage_demandtypes.tableLabel">
         <@headerButtons>
-
-        
-        <form class="form-inline pull-right" method="post" name="manage_demandtypes" action="jsp/admin/plugins/gru/ManageDemandTypes.jsp">
-            <!-- Add pull-right to class1 -->
-            <@actionButtons button1Name="view_createDemandType" icon1="icon-plus icon-white" i18nValue1Key="gru.manage_demandtypes.buttonAdd" />
-        </form>
-        
-    </@headerButtons>
-    </@boxHeader>
-    <@boxBody>    
-    <@messages infos=infos />
-    <@paginationAdmin paginator=paginator combo=1 />
-    <div class="clearfix"></div>
-    
-    <@table>
-        <tr>
+          <form class="form-inline pull-right" method="post" name="manage_demandtypes" action="jsp/admin/plugins/gru/ManageDemandTypes.jsp">
+          <!-- Add pull-right to class1 -->
+          <@actionButtons button1Name="view_createDemandType" icon1="icon-plus icon-white" i18nValue1Key="gru.manage_demandtypes.buttonAdd" />
+          </form>
+        </@headerButtons>
+      </@boxHeader>
+      <@boxBody>
+        <@messages infos=infos />
+        <@table>
+          <tr>
             <input type="hidden" id="id" name="id"/>
             <th>#i18n{gru.manage_demandtypes.columnTitle}</th>
             <th>#i18n{gru.manage_demandtypes.columnDemandTypeId}</th>
             <th>#i18n{portal.util.labelActions}</th>
-        </tr>
-        <@tableHeadBodySeparator />
-            <#list demandtype_list as demandtype >
-        <tr>
+          </tr>
+          <@tableHeadBodySeparator />
+          <#list demandtype_list as demandtype >
+          <tr>
             <input type="hidden" id="id" name="id"/>
+            <td>${demandtype.title}</td>
+            <td>${demandtype.demandTypeId}</td>
             <td>
-                ${demandtype.title}
-            </td>
-            <td>
-                ${demandtype.demandTypeId}
-            </td>
-        <td>
-            <a href="jsp/admin/plugins/gru/ManageDemandTypes.jsp?view=modifyDemandType&id=${demandtype.id}"
-               class="btn btn-primary btn-small" title="#i18n{portal.util.labelModify}">
+              <a href="jsp/admin/plugins/gru/ManageDemandTypes.jsp?view=modifyDemandType&id=${demandtype.id}" class="btn btn-primary btn-sm" title="#i18n{portal.util.labelModify}">
                 <i class="fa fa-pencil"></i>
-            </a>
-
-            <a href="jsp/admin/plugins/gru/ManageDemandTypes.jsp?action=confirmRemoveDemandType&id=${demandtype.id}"
-               class="btn btn-danger btn-small" title="#i18n{portal.util.labelDelete}" >
+              </a>
+              <a href="jsp/admin/plugins/gru/ManageDemandTypes.jsp?action=confirmRemoveDemandType&id=${demandtype.id}" class="btn btn-danger btn-sm" title="#i18n{portal.util.labelDelete}" >
                 <i class="fa fa-trash"></i>
-            </a>
-        </td>
-        </tr>
-        </#list>
-    </@table>
-
-    <@paginationAdmin paginator=paginator />
-
-  </@boxBody>
-</@rowBox>
-
+              </a>
+            </td>
+          </tr>
+          </#list>
+          </@table>
+        <@paginationAdmin paginator=paginator combo=1 />
+      </@boxBody>
+    </@rowBox>
+  </@tabContent>
+</@tabs>
