@@ -19,14 +19,13 @@
     <div class="col-xs-12 col-sm-8">
       <div class="panel">
 
-          <h2>${demand.title!'Title missing'} <span class="text-gru"> Référence : ${demand.reference!'Reference missing'} </span></h2>
+          <h2>${demand.title!'Title missing'} </h2>
           
           <#list demand.notifications as notification>
-              <h3>
-                ${notification.title!'Title missing'}
-            <!--    <small>Notification envoy&eacute;e par l'application : ${notification.source!'Source missing'}</small> -->
-              </h3>
-              <p>${notification.date!'Date missing'}</p>
+          <p>
+               <strong class="text-gru">${notification.date!'Date missing'}</strong> 
+               <strong>${notification.title!'Title missing'}</strong>
+          </p> 
               <ul class="timeline">
               <#if notification.userDashboard ??>
                 <li>
@@ -77,14 +76,7 @@
       </div>
     </div>
     <div class="col-xs-12 col-sm-4" id="header-right">
-      <!--  
-      <p>Type de demande : <strong>${demand.title!'Title missing'}</strong></p>
-      <p>Reference :
-        <strong class="text-gru">
-         ${demand.reference!'Reference missing'}
-       </strong>
-      </p>
-      -->
+      <p>Référence : <strong class="text-gru">${demand.reference!'Reference missing'} </strong>  
       <p>Ouvert depuis : <strong class="text-gru">${displayTimeOpenedTicket(demand.timeOpenedInMs)}</strong></p>
       <p>Statut usager : <strong>${demand.statusForCustomer!''}</strong></p>
       <p>Statut agent : <strong>${demand.statusForGRU!''}</strong></p>
