@@ -68,6 +68,7 @@ public class Demand extends BaseDemand
         setReference( base.getReference(  ) );
         setDemandTypeId( base.getDemandTypeId(  ) );
         setStatus( base.getStatus(  ) );
+        setTimeOpenedInMs( base.getTimeOpenedInMs(  ) );
     }
 
     /**
