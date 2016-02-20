@@ -44,6 +44,7 @@ public class BaseDemand
     private String _strDemandReference;
     private String _strDemandTypeId;
     private int _nDemandStatus;
+    private long _lTimeOpened;
 
     /**
      * Returns the DemandId
@@ -124,4 +125,23 @@ public class BaseDemand
     {
         return _strDemandTypeId;
     }
+    
+    /**
+     * Set Time opened in milliseconds
+     * @param lTimeOpened Time opened in milliseconds
+     */
+    public void setTimeOpenedInMs( long lTimeOpened )
+    {
+        _lTimeOpened = lTimeOpened;
+    }
+ 
+    /**
+     * Get Time opened in milliseconds
+     * @return Time opened in milliseconds
+     */
+    public long getTimeOpenedInMs()
+    {
+        return _lTimeOpened;
+    }
+    
 }
