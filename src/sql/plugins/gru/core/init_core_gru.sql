@@ -236,6 +236,7 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1117, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '308', '*'), -- ask new informations
 (1118, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '310', '*'), -- answer from agent to user
 (1119, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '311', '*'), -- reopen ticket  
+(1121, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '312', '*'), -- respond assign up  
 (1120, 'gru_admin', 'UNIT_TYPE', '*', '*'), 
 (1151, 'gru_admin', 'TICKET_DOMAIN', '*', '*'), 
 (1163, 'gru_admin', 'SUPPORT_ENTITY', '*', '*'), 
@@ -300,9 +301,11 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1404, 'gru_level_3', 'ticket', '*', 'SELF_ASSIGN'),
 (1405, 'gru_level_3', 'ticket', '*', 'ASSIGN_TO_USER'),
 (1408, 'gru_level_3', 'ticket', '*', 'RETURN_TO_ASSIGNER'),
+(1409, 'gru_level_3', 'ticket', '*', 'RESPOND_ASSIGN_UP_LEVEL'),
 (1414, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '305', '*'), -- assign to an other entity
 (1415, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '306', '*'), -- assign to an other user
 (1416, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '307', '*'), -- self assign
+(1417, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '312', '*'), -- respond assign up
 
 -- domaines
 (1451, 'gru_dom_info_mairie', 'TICKET_DOMAIN', '110','VIEW'),
