@@ -29,11 +29,13 @@ DELETE FROM workflow_task WHERE id_action >= 300 AND id_action < 450;
 INSERT INTO workflow_task (id_task, task_type_key, id_action, display_order) 
 	VALUES 	(301,'taskTicketingGenerateTicketReference',301,1),
 			(302,'taskTicketingAssignUnitLinkedToCategory',301,2),
-            (303,'taskNotifyGru',301,3),
+			-- 303 is reserved by module ticketing gru 	(303,'taskTicketingCreateCustomer',301,3)
+            (304,'taskNotifyGru',301,3),
             (321,'taskTicketingQualifyTicket',302,1),
             (322,'taskTicketingAssignTicketToUnit',302,2),
-            (323,'taskTicketingModifyTicketCategory',302,3),
-			(324, 'taskTypeComment', 302,4), 
+			(323,'taskTicketingAssignTicketToUser',302,3),
+            (324,'taskTicketingModifyTicketCategory',302,4),
+			(325, 'taskTypeComment', 302,5), 
             (325,'taskNotifyGru',302,5),
             (341,'taskTicketingQualifyTicket',303,1),
             (342,'taskTicketingModifyTicketCategory',303,2),
@@ -69,7 +71,7 @@ INSERT INTO workflow_task (id_task, task_type_key, id_action, display_order)
 
 DELETE FROM workflow_task_comment_config WHERE id_task >= 300 AND id_task < 450;			
 INSERT INTO workflow_task_comment_config (id_task, title, is_mandatory) 
-	VALUES	(324, 'Commentaire', 0),
+	VALUES	(325, 'Commentaire', 0),
 			(343, 'Commentaire', 0),
 			(352, 'Commentaire', 0),
 			(362, 'Commentaire', 0),
