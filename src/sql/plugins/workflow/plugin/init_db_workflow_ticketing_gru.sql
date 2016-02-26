@@ -51,9 +51,9 @@ INSERT INTO workflow_task (id_task, task_type_key, id_action, display_order)
 			(381,'taskTicketingAssignUpTicket',304,1),
 			(382, 'taskTypeComment', 304,2),
             (383,'taskNotifyGru',304,3),
-            (390, 'taskTicketingReply', 308,1), -- Ask for user information
+            (390, 'taskTicketingEditTicket', 308,1), -- Ask for user information
             (392,'taskNotifyGru',308,2),
-            (400, 'taskTicketingReply', 309,1), -- Reply to agent
+            (400, 'taskTicketingEditTicket', 309,1), -- Reply to agent
             (402,'taskNotifyGru',309,2),
 			(420, 'taskTicketingReply', 310,1), -- Reply to user
             (422,'taskNotifyGru',310,2),
@@ -76,13 +76,21 @@ INSERT INTO workflow_task_comment_config (id_task, title, is_mandatory)
 			(372, 'Commentaire', 0),
 			(382, 'Commentaire', 0),
 			(434, 'Motif de ré-ouverture', 1),
-            (442, 'Commentaire', 0);
+            (442, 'Commentaire', 0)
+;
+
+DELETE FROM workflow_task_ticketing_edit_ticket_config;
+INSERT INTO workflow_task_ticketing_edit_ticket_config (id_task, message_direction, id_user_edition_action, default_message) 
+    VALUES  (390, 1, 309, "Bonjour,
+Merci de compléter les champs suivants.
+En vous remerciant par avance,
+Mairie de Paris"),  -- Ask for user information
+            (400, 0, 309, "") -- Reply to agent
+;
 			
 DELETE FROM workflow_task_ticketing_reply_config;
 INSERT INTO workflow_task_ticketing_reply_config (id_task, message_direction) 
-    VALUES  (390, 1),  -- Ask for user information
-            (400, 0), -- Reply to agent
-            (420, 1) -- Reply to user
+    VALUES  (420, 1) -- Reply to user
 ;
 	
 DELETE FROM workflow_task_notify_gru_cf;
