@@ -262,6 +262,7 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1217, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '308', '*'), -- ask new informations
 (1218, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '310', '*'), -- answer from agent to user
 (1219, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '311', '*'), -- reopen ticket  
+(1220, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '309', '*'), -- answer from user to agent
 
 -- support entity
 (1251, 'gru_level_1', 'SUPPORT_ENTITY', '1', 'VIEW'), 
