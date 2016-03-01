@@ -1,13 +1,12 @@
 <#include "action_bar.html" />
 <#include "demands_utils.html" />
-
 <@actionMenu panels=panels customer=customer />
 <div class="gru-wrapper">
   <div id="customer-panel" class="row bg-gru-dark">
     <div class="col-xs-12 col-sm-8">
       <@customerDetails customer=customer />
     </div>
-    <div id="header-right" class="col-xs-12 col-sm-4">
+    <div id="header-right" class="hidden-xs col-sm-4">
       <p>
         <a class="btn btn-link btn-lg" title=" Modifier" href="jsp/admin/plugins/gru/ManageCustomers.jsp?plugin_name=gru&view=modifyCustomer&id_customer=${customer.id}">
            <i class="fa fa-pencil"></i> Modifier le profil
@@ -18,21 +17,19 @@
   <div id="demand-panel-detail" class="row">
     <div class="col-xs-12 col-sm-8">
       <div class="panel">
-
           <h2>${demand.title!'Title missing'} </h2>
-          
           <#list demand.notifications as notification>
-          <p>
-               <strong class="text-gru">${notification.date!'Date missing'}</strong> 
+            <p>
+               <strong class="text-gru">${notification.date!'Date missing'}</strong>
                <strong>${notification.title!'Title missing'}</strong>
-          </p> 
-              <ul class="timeline">
+            </p>
+            <ul class="timeline">
               <#if notification.userDashboard ??>
                 <li>
                   <i class="fa fa-user bg-gru-cat2"></i>
                   <div class="timeline-item">
                     <h4 class="timeline-header">
-                        Notification envoy&eacutee dans le tableau de bord <span><b>Mon Compte</b></span> de l'usager.
+                        Notification envoy&eacute;e dans le tableau de bord <span><b>Mon Compte</b></span> de l'usager.
                     </h4>
                     <div class="timeline-body">
                       ${notification.userDashboard.message!'SMS message missing'}
@@ -76,7 +73,7 @@
       </div>
     </div>
     <div class="col-xs-12 col-sm-4" id="header-right">
-      <p>Référence : <strong class="text-gru">${demand.reference!'Reference missing'} </strong>  
+      <p>R&eacute;f&eacute;rence : <strong class="text-gru">${demand.reference!'Reference missing'} </strong>
       <p>Ouvert depuis : <strong class="text-gru">${displayTimeOpenedTicket(demand.timeOpenedInMs)}</strong></p>
       <p>Statut usager : <strong>${demand.statusForCustomer!''}</strong></p>
       <p>Statut agent : <strong>${demand.statusForGRU!''}</strong></p>

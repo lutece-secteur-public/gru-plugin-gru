@@ -19,18 +19,15 @@ table.table-hover tr:hover{ cursor: pointer }
 #info-user{ margin:15px 0}
 
 /* CUSTOMER */
-.gru-wrapper{ margin: -10px -15px }
+.gru-wrapper{ margin: -15px }
 .gru-360{ min-height: 840px; background: url(../../../../images/admin/skin/plugins/gru/fond_360.jpg); background-size:cover }
 .gru-360 .table{ margin-top:15px;  background-color: #fff; opacity: 0.7 }
 .gru-360 .table:hover{ opacity: 1 }
-
-.gru-360 .ui-autocomplete {
-  position: absolute;cursor: pointer;top: 100%;left: 0;z-index: 1000;float: left;display: none;min-width: 160px;_width: 160px;
+.gru-360 .ui-autocomplete { position: absolute;cursor: pointer;top: 100%;left: 0;z-index: 1000;float: left;display: none;min-width: 160px;_width: 160px;
   padding: 4px 0;margin: 2px 0 0 0;list-style: none; background-color: #fff;border-color: #ccc;border-color: rgba(0, 0, 0, 0.2);
   border-style: solid;border-width: 1px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); -webkit-background-clip: padding-box; -moz-background-clip: padding;
-  background-clip: padding-box; *border-right-width: 2px;*border-bottom-width: 2px;
-}
+  background-clip: padding-box; *border-right-width: 2px;*border-bottom-width: 2px }
 .gru-360 .ui-menu-item > a.ui-corner-all { display: block; padding: 3px 15px; clear: both; font-weight: normal; line-height: 18px; color: #555555;  white-space: nowrap; cursor: pointer }
 
 #form-user{ margin-top: 7.5% }
@@ -43,22 +40,25 @@ table.table-hover tr:hover{ cursor: pointer }
 #customer-panel p{ font-size: 1.8rem }
 #customer-panel p:first-of-type{ margin-top:20px }
 #customer-panel p#info{ font-size: 1.4rem; font-style: italic }
-#customer-panel a.btn-link{ border: 1px solid #fff; border-radius: 5px; color:#fff; text-transform: uppercase;font-size: 1.4rem;vertical-align: center;margin-top:60px;padding:6px 35px;}
-#search-panel{ background-color: #fff; }
-#search-panel h2{ margin:30px 0; }
+#customer-panel a.btn-link{ border: 1px solid #fff; border-radius: 5px; color:#fff; text-transform: uppercase; font-size: 1.4rem; vertical-align: center; margin-top:60px;padding:6px 35px;}
+#search-panel{ background-color: #fff }
+#search-panel h2{ margin:30px 0 }
 
 /* DEMAND */
+.gru-wrapper #no-content{ min-height:620px; margin:0 auto; width:100%; text-align: center  }
+.gru-wrapper #no-content img{ position: absolute; top: 60%;left: 60%; margin-top: -250px; margin-left: -250px }
+
 #demand-panel-detail{ padding: 15px 0;	background-color: #F3F7FA; min-height: 800px;margin-left: 50px }
 #demand-panel-detail .panel{ padding: 15px; background-color: #EEE; width:98% }
 #demand-panel-detail #header-right{ border-left: 1px solid #DDD;min-height:600px;margin-top:-15px;padding:20px 20px; margin-left: -25px }
 
 #demand-panel{ padding: 15px 0;	background-color: #F3F7FA; min-height: 800px }
-#demand-panel .nav-tabs{ margin-bottom:0 }
-#demand-panel .nav-tabs > li > a{ border: 1px solid #DDD;padding:15px 30px; margin-left:25px;text-transform: uppercase;font-size: 1.5rem;}
+#demand-panel .nav-tabs{ margin-bottom: 0 }
+#demand-panel .nav-tabs > li > a{ border: 1px solid #DDD; padding:15px 30px; margin-left:25px; text-transform: uppercase; font-size: 1.5rem }
 #demand-panel .nav-tabs > li.active > a{ border-bottom:1px solid #fff }
 #demand-panel .nav-tabs > li:first-of-type { margin-left: 100px; }
-#demand-panel .nav-tabs > li:last-of-type a{ background-color: #0082D8; color:#fff }
-#demand-panel .nav-tabs .dropdown-menu{ padding: 0px 26px; border: 0; min-width:291px }
+#demand-panel .nav-tabs > li:last-of-type a{ background-color: #0C3B59; color:#fff }
+#demand-panel .nav-tabs .dropdown-menu{ padding: 0px 26px; border: 0; min-width: 300px }
 #demand-panel .nav-tabs .dropdown-menu li{ width:274px }
 
 #demand-panel .tab-content{ padding:10px 0;padding-left: 7.5%;  background-color: #fff }
@@ -85,3 +85,45 @@ table.table-hover tr:hover{ cursor: pointer }
 
 /* IFRAME */
 .content-header iframe{border:0;}
+
+/*==========  Non-Mobile First Method  ==========*/
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+  #demand-panel .nav-tabs > li:first-of-type { margin-left: 80px }
+  #demand-panel .nav-tabs > li > a { padding: 15px 15px; margin-left: 10px }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+  .gru-wrapper{ padding: 15px}
+  .gru-360 { min-height: 640px }
+  .h1, .h2, .h3, h1, h2, h3 { margin-top: 0; margin-bottom: 5px }
+  #demand-panel .nav-tabs > li:first-of-type { margin-left: 50px }
+  #demand-panel .nav-tabs > li > a { padding: 15px 10px; margin-left: 10px; font-size: 1.2rem }
+  #demand-panel .nav-tabs .dropdown-menu { padding: 0 11px }
+  #demand-panel{ margin:auto -30px }
+}
+
+@media screen and (max-width: 560px) {
+  .gru-wrapper{ margin-top: 60px}
+  .h1, .h2, .h3, h1, h2, h3 { margin-top: 0; margin-bottom: 5px }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+  .gru-wrapper{ margin-top: 0 }
+  #demand-panel .nav-tabs > li:first-of-type { margin-left: 15px }
+  #demand-panel .nav-tabs > li > a { padding: 15px 5px; margin-left: 5px; font-size: 1rem }
+  #demand-panel .nav-tabs .dropdown-menu { padding: 0 6px }
+  .gru-wrapper #no-content{ min-height:640px; width:80%  }
+  .gru-wrapper #no-content img{ left:80%; width:50%  }
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 320px) {
+
+}

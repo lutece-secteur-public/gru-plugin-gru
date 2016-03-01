@@ -1,9 +1,28 @@
 <#include "action_bar.html" />
 <#include "view_customer_tabs.html" />
 <@actionMenu panels=panels customer=customer />
-<div class="gru-wrapper"><div id="customer-panel" class="row bg-gru-dark"><div class="col-xs-12 col-sm-8"><@customerDetails customer=customer /></div><div class="col-xs-12 col-sm-4">&nbsp;</div></div><div id="demand-panel" class="row"><div class="col-xs-12 col-sm-12"><@tabs tab="newDemands" customer_id=customer.id /><div class="tab-content"><div role="tabpanel" class="tab-pane active"><!--<#list buttons_list as button><a class="btn text-${button.color} btn-app" href="${button.link}"><i class="fa fa-${button.icon}"></i> &nbsp;${button.title}</a></#list>--><!-- TODO ajouter groupe par type --><@actionTree panels=panels customer=customer /></div></div></div></div></div>
+<div class="gru-wrapper">
+  <div id="customer-panel" class="row bg-gru-dark">
+    <div class="col-xs-12 col-sm-8">
+      <@customerDetails customer=customer />
+    </div>
+    <div class="col-xs-12 col-sm-4">&nbsp;</div>
+  </div>
+  <div id="demand-panel" class="row">
+    <div class="col-xs-12 col-sm-12">
+      <@tabs tab="newDemands" customer_id=customer.id />
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active">
+          <!--<#list buttons_list as button><a class="btn text-${button.color} btn-app" href="${button.link}"><i class="fa fa-${button.icon}"></i> &nbsp;${button.title}</a></#list>-->
+          <!-- TODO ajouter groupe par type -->
+          <@actionTree panels=panels customer=customer />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <script>
-$( function(){
-  $(".content-header").toggle();
-});
+  $(function() {
+    $(".content-header").toggle();
+  });
 </script>
