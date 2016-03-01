@@ -31,7 +31,6 @@
  *
  * License 1.0
  */
-
 package fr.paris.lutece.plugins.gru.business;
 
 import fr.paris.lutece.test.LuteceTestCase;
@@ -47,32 +46,31 @@ public class BusinessSectorBusinessTest extends LuteceTestCase
     public void testBusiness(  )
     {
         // Initialize an object
-        BusinessSector businessSector = new BusinessSector();
+        BusinessSector businessSector = new BusinessSector(  );
         businessSector.setName( NAME1 );
         businessSector.setDescription( DESCRIPTION1 );
 
         // Create test
         BusinessSectorHome.create( businessSector );
-        BusinessSector businessSectorStored = BusinessSectorHome.findByPrimaryKey( businessSector.getId( ) );
-        assertEquals( businessSectorStored.getName() , businessSector.getName( ) );
-        assertEquals( businessSectorStored.getDescription() , businessSector.getDescription( ) );
+
+        BusinessSector businessSectorStored = BusinessSectorHome.findByPrimaryKey( businessSector.getId(  ) );
+        assertEquals( businessSectorStored.getName(  ), businessSector.getName(  ) );
+        assertEquals( businessSectorStored.getDescription(  ), businessSector.getDescription(  ) );
 
         // Update test
         businessSector.setName( NAME2 );
         businessSector.setDescription( DESCRIPTION2 );
         BusinessSectorHome.update( businessSector );
-        businessSectorStored = BusinessSectorHome.findByPrimaryKey( businessSector.getId( ) );
-        assertEquals( businessSectorStored.getName() , businessSector.getName( ) );
-        assertEquals( businessSectorStored.getDescription() , businessSector.getDescription( ) );
+        businessSectorStored = BusinessSectorHome.findByPrimaryKey( businessSector.getId(  ) );
+        assertEquals( businessSectorStored.getName(  ), businessSector.getName(  ) );
+        assertEquals( businessSectorStored.getDescription(  ), businessSector.getDescription(  ) );
 
         // List test
-        BusinessSectorHome.getBusinessSectorsList();
+        BusinessSectorHome.getBusinessSectorsList(  );
 
         // Delete test
-        BusinessSectorHome.remove( businessSector.getId( ) );
-        businessSectorStored = BusinessSectorHome.findByPrimaryKey( businessSector.getId( ) );
+        BusinessSectorHome.remove( businessSector.getId(  ) );
+        businessSectorStored = BusinessSectorHome.findByPrimaryKey( businessSector.getId(  ) );
         assertNull( businessSectorStored );
-        
     }
-
 }

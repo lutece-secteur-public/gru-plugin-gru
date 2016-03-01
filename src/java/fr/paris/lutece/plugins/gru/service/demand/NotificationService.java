@@ -35,11 +35,11 @@ package fr.paris.lutece.plugins.gru.service.demand;
 
 import fr.paris.lutece.plugins.gru.business.demand.Notification;
 import fr.paris.lutece.portal.service.util.AppLogService;
+
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.IOException;
-
 
 
 /**
@@ -62,7 +62,7 @@ public class NotificationService
         }
         catch ( IOException ex )
         {
-            AppLogService.error( "Error parsing notification " + ex.getMessage() , ex );
+            AppLogService.error( "Error parsing notification " + ex.getMessage(  ), ex );
         }
 
         return notification;

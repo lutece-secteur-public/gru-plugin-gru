@@ -31,8 +31,6 @@
  *
  * License 1.0
  */
-
- 
 package fr.paris.lutece.plugins.gru.web.domain;
 
 import fr.paris.lutece.plugins.gru.business.domain.BusinessSector;
@@ -47,7 +45,6 @@ import fr.paris.lutece.util.url.UrlItem;
 import java.util.List;
 import java.util.Map;
 
-
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -57,7 +54,6 @@ import javax.servlet.http.HttpServletRequest;
 @Controller( controllerJsp = "ManageBusinessSectors.jsp", controllerPath = "jsp/admin/plugins/gru/", right = "GRU_DOMAIN_MANAGEMENT" )
 public class BusinessSectorJspBean extends ManageDomainGruJspBean
 {
-
     ////////////////////////////////////////////////////////////////////////////
     // Constants
 
@@ -65,7 +61,6 @@ public class BusinessSectorJspBean extends ManageDomainGruJspBean
     private static final String TEMPLATE_MANAGE_BUSINESSSECTORS = "/admin/plugins/gru/domain/manage_business_sectors.html";
     private static final String TEMPLATE_CREATE_BUSINESSSECTOR = "/admin/plugins/gru/domain/create_business_sector.html";
     private static final String TEMPLATE_MODIFY_BUSINESSSECTOR = "/admin/plugins/gru/domain/modify_business_sector.html";
-
 
     // Parameters
     private static final String PARAMETER_ID_BUSINESSSECTOR = "id";
@@ -78,13 +73,11 @@ public class BusinessSectorJspBean extends ManageDomainGruJspBean
     // Markers
     private static final String MARK_BUSINESSSECTOR_LIST = "businesssector_list";
     private static final String MARK_BUSINESSSECTOR = "businesssector";
-
     private static final String JSP_MANAGE_BUSINESSSECTORS = "jsp/admin/plugins/gru/ManageBusinessSectors.jsp";
 
     // Properties
     private static final String MESSAGE_CONFIRM_REMOVE_BUSINESSSECTOR = "gru.message.confirmRemoveBusinessSector";
     private static final String PROPERTY_DEFAULT_LIST_BUSINESSSECTOR_PER_PAGE = "gru.listBusinessSectors.itemsPerPage";
- 
     private static final String VALIDATION_ATTRIBUTES_PREFIX = "gru.model.entity.businesssector.attribute.";
 
     // Views
@@ -102,11 +95,10 @@ public class BusinessSectorJspBean extends ManageDomainGruJspBean
     private static final String INFO_BUSINESSSECTOR_CREATED = "gru.info.businesssector.created";
     private static final String INFO_BUSINESSSECTOR_UPDATED = "gru.info.businesssector.updated";
     private static final String INFO_BUSINESSSECTOR_REMOVED = "gru.info.businesssector.removed";
-    
+
     // Session variable to store working values
     private BusinessSector _businesssector;
-    
-    
+
     /**
      * Build the Manage View
      * @param request The HTTP request
@@ -116,8 +108,10 @@ public class BusinessSectorJspBean extends ManageDomainGruJspBean
     public String getManageBusinessSectors( HttpServletRequest request )
     {
         _businesssector = null;
+
         List<BusinessSector> listBusinessSectors = (List<BusinessSector>) BusinessSectorHome.getBusinessSectorsList(  );
-        Map<String, Object> model = getPaginatedListModel( request, MARK_BUSINESSSECTOR_LIST, listBusinessSectors, JSP_MANAGE_BUSINESSSECTORS );
+        Map<String, Object> model = getPaginatedListModel( request, MARK_BUSINESSSECTOR_LIST, listBusinessSectors,
+                JSP_MANAGE_BUSINESSSECTORS );
 
         return getPage( PROPERTY_PAGE_TITLE_MANAGE_BUSINESSSECTORS, TEMPLATE_MANAGE_BUSINESSSECTORS, model );
     }
@@ -209,7 +203,7 @@ public class BusinessSectorJspBean extends ManageDomainGruJspBean
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_BUSINESSSECTOR ) );
 
-        if ( _businesssector == null || ( _businesssector.getId(  ) != nId ))
+        if ( ( _businesssector == null ) || ( _businesssector.getId(  ) != nId ) )
         {
             _businesssector = BusinessSectorHome.findByPrimaryKey( nId );
         }
@@ -234,7 +228,7 @@ public class BusinessSectorJspBean extends ManageDomainGruJspBean
         // Check constraints
         if ( !validateBean( _businesssector, VALIDATION_ATTRIBUTES_PREFIX ) )
         {
-            return redirect( request, VIEW_MODIFY_BUSINESSSECTOR, PARAMETER_ID_BUSINESSSECTOR, _businesssector.getId( ) );
+            return redirect( request, VIEW_MODIFY_BUSINESSSECTOR, PARAMETER_ID_BUSINESSSECTOR, _businesssector.getId(  ) );
         }
 
         BusinessSectorHome.update( _businesssector );

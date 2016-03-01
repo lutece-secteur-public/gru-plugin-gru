@@ -30,40 +30,36 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * License 1.0
- */ 
+ */
 package fr.paris.lutece.plugins.gru.business.domain;
 
 import fr.paris.lutece.portal.service.rbac.RBACResource;
 
-import javax.validation.constraints.*;
 import org.hibernate.validator.constraints.*;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.*;
+
 
 /**
  * This is the business class for the object BusinessDomain
- */ 
+ */
 public class BusinessDomain implements Serializable, RBACResource
 {
     // RBAC management
     public static final String RESOURCE_TYPE = "GRU_DOMAIN";
     public static final String PERMISSION_ACCESS = "ACCESS";
-
     private static final long serialVersionUID = 1L;
 
     // Variables declarations 
     private int _nId;
-    
-    
     @NotEmpty( message = "#i18n{gru.validation.businessdomain.Name.notEmpty}" )
-    @Size( max = 50 , message = "#i18n{gru.validation.businessdomain.Name.size}" ) 
+    @Size( max = 50, message = "#i18n{gru.validation.businessdomain.Name.size}" )
     private String _strName;
-    
     @NotEmpty( message = "#i18n{gru.validation.businessdomain.Description.notEmpty}" )
-    @Size( max = 255 , message = "#i18n{gru.validation.businessdomain.Description.size}" ) 
+    @Size( max = 255, message = "#i18n{gru.validation.businessdomain.Description.size}" )
     private String _strDescription;
-
     private int _nIdBusinessSector;
     private String _strBusinessSector;
 
@@ -71,7 +67,7 @@ public class BusinessDomain implements Serializable, RBACResource
      * Returns the Id
      * @return The Id
      */
-    public int getId( )
+    public int getId(  )
     {
         return _nId;
     }
@@ -79,7 +75,7 @@ public class BusinessDomain implements Serializable, RBACResource
     /**
      * Sets the Id
      * @param nId The Id
-     */ 
+     */
     public void setId( int nId )
     {
         _nId = nId;
@@ -89,7 +85,7 @@ public class BusinessDomain implements Serializable, RBACResource
      * Returns the IdBusinessSector
      * @return The IdBusinessSector
      */
-    public int getIdBusinessSector( )
+    public int getIdBusinessSector(  )
     {
         return _nIdBusinessSector;
     }
@@ -97,16 +93,17 @@ public class BusinessDomain implements Serializable, RBACResource
     /**
      * Sets the IdBusinessSector
      * @param nIdBusinessSector The IdBusinessSector
-     */ 
+     */
     public void setIdBusinessSector( int nIdBusinessSector )
     {
         _nIdBusinessSector = nIdBusinessSector;
     }
+
     /**
      * Returns the BusinessSector
      * @return The BusinessSector
      */
-    public String getBusinessSector( )
+    public String getBusinessSector(  )
     {
         return _strBusinessSector;
     }
@@ -114,16 +111,17 @@ public class BusinessDomain implements Serializable, RBACResource
     /**
      * Sets the BusinessSector
      * @param strBusinessSector The BusinessSector
-     */ 
+     */
     public void setBusinessSector( String strBusinessSector )
     {
         _strBusinessSector = strBusinessSector;
     }
+
     /**
      * Returns the Name
      * @return The Name
      */
-    public String getName( )
+    public String getName(  )
     {
         return _strName;
     }
@@ -131,16 +129,17 @@ public class BusinessDomain implements Serializable, RBACResource
     /**
      * Sets the Name
      * @param strName The Name
-     */ 
+     */
     public void setName( String strName )
     {
         _strName = strName;
     }
+
     /**
      * Returns the Description
      * @return The Description
      */
-    public String getDescription( )
+    public String getDescription(  )
     {
         return _strDescription;
     }
@@ -148,12 +147,12 @@ public class BusinessDomain implements Serializable, RBACResource
     /**
      * Sets the Description
      * @param strDescription The Description
-     */ 
+     */
     public void setDescription( String strDescription )
     {
         _strDescription = strDescription;
     }
-    
+
     ////////////////////////////////////////////////////////////////////////////
     // RBAC Resource implementation
 
@@ -172,7 +171,6 @@ public class BusinessDomain implements Serializable, RBACResource
     @Override
     public String getResourceId(  )
     {
-        return String.valueOf( _nId );  // for exemple
+        return String.valueOf( _nId ); // for exemple
     }
-}    
-
+}

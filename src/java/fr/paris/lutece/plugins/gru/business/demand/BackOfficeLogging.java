@@ -36,6 +36,7 @@ package fr.paris.lutece.plugins.gru.business.demand;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
+
 /**
  * BackOffice Logging
  */
@@ -45,44 +46,42 @@ public class BackOfficeLogging
     // Variables declarations 
     private String _strStatusText;
     private String _strMessage;
-    
-    
-       /**
-        * Returns the StatusText
-        * @return The StatusText
-        */ 
-    public String getStatusText()
+
+    /**
+     * Returns the StatusText
+     * @return The StatusText
+     */
+    public String getStatusText(  )
     {
         return _strStatusText;
     }
-    
-       /**
-        * Sets the StatusText
-        * @param strStatusText The StatusText
-        */ 
+
+    /**
+     * Sets the StatusText
+     * @param strStatusText The StatusText
+     */
     @JsonProperty( "status_text" )
     public void setStatusText( String strStatusText )
     {
         _strStatusText = strStatusText;
     }
-    
-       /**
-        * Returns the Message
-        * @return The Message
-        */ 
-    public String getMessage()
+
+    /**
+     * Returns the Message
+     * @return The Message
+     */
+    public String getMessage(  )
     {
         return _strMessage;
     }
-    
-       /**
-        * Sets the Message
-        * @param strMessage The Message
-        */ 
+
+    /**
+     * Sets the Message
+     * @param strMessage The Message
+     */
     @JsonProperty( "message" )
     public void setMessage( String strMessage )
     {
         _strMessage = strMessage;
     }
-    
 }

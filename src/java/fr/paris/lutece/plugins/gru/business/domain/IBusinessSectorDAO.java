@@ -31,13 +31,12 @@
  *
  * License 1.0
  */
- 
 package fr.paris.lutece.plugins.gru.business.domain;
 
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.util.ReferenceList;
-import java.util.List;
 
+import java.util.List;
 
 
 /**
@@ -83,7 +82,7 @@ public interface IBusinessSectorDAO
      * @return The collection which contains the data of all the businessSector objects
      */
     List<BusinessSector> selectBusinessSectorsList( Plugin plugin );
-    
+
     /**
      * Load the id of all the businessSector objects and returns them as a collection
      * @param plugin the Plugin
@@ -98,4 +97,3 @@ public interface IBusinessSectorDAO
      */
     ReferenceList selectBusinessSectors( Plugin plugin );
 }
-

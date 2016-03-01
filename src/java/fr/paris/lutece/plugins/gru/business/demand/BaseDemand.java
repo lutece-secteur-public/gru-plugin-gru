@@ -125,7 +125,7 @@ public class BaseDemand
     {
         return _strDemandTypeId;
     }
-    
+
     /**
      * Set Time opened in milliseconds
      * @param lTimeOpened Time opened in milliseconds
@@ -134,14 +134,13 @@ public class BaseDemand
     {
         _lTimeOpened = lTimeOpened;
     }
- 
+
     /**
      * Get Time opened in milliseconds
      * @return Time opened in milliseconds
      */
-    public long getTimeOpenedInMs()
+    public long getTimeOpenedInMs(  )
     {
         return _lTimeOpened;
     }
-    
 }

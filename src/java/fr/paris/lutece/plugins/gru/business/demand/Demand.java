@@ -186,24 +186,24 @@ public class Demand extends BaseDemand
     {
         _strStatusForGRU = strStatusForGRU;
     }
-    
-    public String getFirstNotificationDate()
+
+    public String getFirstNotificationDate(  )
     {
-        if( (_listNotifications != null ) && ! _listNotifications.isEmpty() )
+        if ( ( _listNotifications != null ) && !_listNotifications.isEmpty(  ) )
         {
-            return _listNotifications.get( 0 ).getDate();
+            return _listNotifications.get( 0 ).getDate(  );
         }
+
         return NO_DATE;
     }
-    
-    public String getLastNotificationDate()
+
+    public String getLastNotificationDate(  )
     {
-        if( (_listNotifications != null ) && ! _listNotifications.isEmpty() )
+        if ( ( _listNotifications != null ) && !_listNotifications.isEmpty(  ) )
         {
-            return _listNotifications.get( _listNotifications.size() - 1 ).getDate();
+            return _listNotifications.get( _listNotifications.size(  ) - 1 ).getDate(  );
         }
+
         return NO_DATE;
     }
-    
-    
 }

@@ -30,38 +30,37 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * License 1.0
- */ 
+ */
 package fr.paris.lutece.plugins.gru.business.domain;
 
-import javax.validation.constraints.*;
 import org.hibernate.validator.constraints.*;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.*;
+
 
 /**
  * This is the business class for the object BusinessSector
- */ 
+ */
 public class BusinessSector implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
     // Variables declarations 
     private int _nId;
-    
     @NotEmpty( message = "#i18n{gru.validation.businesssector.Name.notEmpty}" )
-    @Size( max = 50 , message = "#i18n{gru.validation.businesssector.Name.size}" ) 
+    @Size( max = 50, message = "#i18n{gru.validation.businesssector.Name.size}" )
     private String _strName;
-    
     @NotEmpty( message = "#i18n{gru.validation.businesssector.Description.notEmpty}" )
-    @Size( max = 255 , message = "#i18n{gru.validation.businesssector.Description.size}" ) 
+    @Size( max = 255, message = "#i18n{gru.validation.businesssector.Description.size}" )
     private String _strDescription;
 
     /**
      * Returns the Id
      * @return The Id
      */
-    public int getId( )
+    public int getId(  )
     {
         return _nId;
     }
@@ -69,7 +68,7 @@ public class BusinessSector implements Serializable
     /**
      * Sets the Id
      * @param nId The Id
-     */ 
+     */
     public void setId( int nId )
     {
         _nId = nId;
@@ -79,7 +78,7 @@ public class BusinessSector implements Serializable
      * Returns the Name
      * @return The Name
      */
-    public String getName( )
+    public String getName(  )
     {
         return _strName;
     }
@@ -87,16 +86,17 @@ public class BusinessSector implements Serializable
     /**
      * Sets the Name
      * @param strName The Name
-     */ 
+     */
     public void setName( String strName )
     {
         _strName = strName;
     }
+
     /**
      * Returns the Description
      * @return The Description
      */
-    public String getDescription( )
+    public String getDescription(  )
     {
         return _strDescription;
     }
@@ -104,7 +104,7 @@ public class BusinessSector implements Serializable
     /**
      * Sets the Description
      * @param strDescription The Description
-     */ 
+     */
     public void setDescription( String strDescription )
     {
         _strDescription = strDescription;

@@ -31,22 +31,21 @@
  *
  * License 1.0
  */
- 
 package fr.paris.lutece.plugins.gru.business.domain;
 
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.portal.service.plugin.PluginService;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
+
 import java.util.List;
+
 
 /**
  * This class provides instances management methods (create, find, ...) for BusinessDomain objects
  */
-
 public final class BusinessDomainHome
 {
     // Static variable pointed at the DAO instance
-
     private static IBusinessDomainDAO _dao = SpringContextService.getBean( "gru.businessDomainDAO" );
     private static Plugin _plugin = PluginService.getPlugin( "gru" );
 
@@ -100,25 +99,24 @@ public final class BusinessDomainHome
      */
     public static BusinessDomain findByPrimaryKey( int nKey )
     {
-        return _dao.load( nKey, _plugin);
+        return _dao.load( nKey, _plugin );
     }
 
     /**
      * Load the data of all the businessDomain objects and returns them in form of a collection
      * @return the collection which contains the data of all the businessDomain objects
      */
-    public static List<BusinessDomain> getBusinessDomainsList( )
+    public static List<BusinessDomain> getBusinessDomainsList(  )
     {
         return _dao.selectBusinessDomainsList( _plugin );
     }
-    
+
     /**
      * Load the id of all the businessDomain objects and returns them in form of a collection
      * @return the collection which contains the id of all the businessDomain objects
      */
-    public static List<Integer> getIdBusinessDomainsList( )
+    public static List<Integer> getIdBusinessDomainsList(  )
     {
         return _dao.selectIdBusinessDomainsList( _plugin );
     }
 }
-

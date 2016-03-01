@@ -74,9 +74,9 @@ public class DemandService
     public static Demand getDemand( String strDemandId, String strDemandTypeId, AdminUser user )
     {
         Demand demand = getService(  ).getDemand( strDemandId, strDemandTypeId, user );
-        
+
         demand.setTitle( DemandTypeService.getTypeLabel( strDemandTypeId ) );
-        
+
         return demand;
     }
 
@@ -85,14 +85,14 @@ public class DemandService
      * @param customer The customer
      * @return The list
      */
-    public static List<Demand> getDemands( Customer customer, AdminUser user , int nStatus )
+    public static List<Demand> getDemands( Customer customer, AdminUser user, int nStatus )
     {
         List<BaseDemand> listBase = getService(  ).getDemands( "" + customer.getId(  ), user );
         List<Demand> listDemand = new ArrayList<Demand>(  );
 
         for ( BaseDemand base : listBase )
         {
-            if( base.getStatus() == nStatus )
+            if ( base.getStatus(  ) == nStatus )
             {
                 listDemand.add( DemandTypeService.buildDemand( base, customer, user ) );
             }

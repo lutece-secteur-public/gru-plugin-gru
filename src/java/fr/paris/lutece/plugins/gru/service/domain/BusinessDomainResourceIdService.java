@@ -31,8 +31,6 @@
  *
  * License 1.0
  */
-
-
 package fr.paris.lutece.plugins.gru.service.domain;
 
 import fr.paris.lutece.plugins.gru.business.domain.BusinessDomain;
@@ -44,8 +42,10 @@ import fr.paris.lutece.portal.service.rbac.ResourceIdService;
 import fr.paris.lutece.portal.service.rbac.ResourceType;
 import fr.paris.lutece.portal.service.rbac.ResourceTypeManager;
 import fr.paris.lutece.util.ReferenceList;
+
 import java.util.List;
 import java.util.Locale;
+
 
 /**
  * BusinessDomainResourceIdService
@@ -63,7 +63,7 @@ public class BusinessDomainResourceIdService extends ResourceIdService
     public void register(  )
     {
         ResourceType rt = new ResourceType(  );
-        rt.setResourceIdServiceClass( BusinessDomainResourceIdService .class.getName(  ) );
+        rt.setResourceIdServiceClass( BusinessDomainResourceIdService.class.getName(  ) );
         rt.setPluginName( Constants.PLUGIN_NAME );
         rt.setResourceTypeKey( BusinessDomain.RESOURCE_TYPE );
         rt.setResourceTypeLabelKey( PROPERTY_LABEL_RESOURCE_TYPE );
@@ -74,7 +74,6 @@ public class BusinessDomainResourceIdService extends ResourceIdService
         rt.registerPermission( p );
 
         // ...          for all permissions
-
         ResourceTypeManager.registerResourceType( rt );
     }
 
@@ -84,14 +83,15 @@ public class BusinessDomainResourceIdService extends ResourceIdService
     @Override
     public ReferenceList getResourceIdList( Locale locale )
     {
-        List<BusinessDomain>  listDomains = BusinessDomainHome.getBusinessDomainsList();
-        
-        ReferenceList list = new ReferenceList();
-        for( BusinessDomain domain : listDomains )
+        List<BusinessDomain> listDomains = BusinessDomainHome.getBusinessDomainsList(  );
+
+        ReferenceList list = new ReferenceList(  );
+
+        for ( BusinessDomain domain : listDomains )
         {
-            Object[] args = { domain.getBusinessSector() , domain.getName() };
-            String strLabel = I18nService.getLocalizedString( PROPERTY_RESOURCE_NAME_FORMAT , args, locale );
-            list.addItem(  domain.getId(),  strLabel );
+            Object[] args = { domain.getBusinessSector(  ), domain.getName(  ) };
+            String strLabel = I18nService.getLocalizedString( PROPERTY_RESOURCE_NAME_FORMAT, args, locale );
+            list.addItem( domain.getId(  ), strLabel );
         }
 
         return list;
@@ -107,5 +107,4 @@ public class BusinessDomainResourceIdService extends ResourceIdService
 
         return domain.getName(  );
     }
-
 }

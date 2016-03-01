@@ -201,7 +201,7 @@ public class CustomerJspBean extends MVCAdminJspBean
         if ( customer != null )
         {
             List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
-            List<Demand> listDemands = DemandService.getDemands( customer, getUser(  ) , Demand.STATUS_INPROGRESS );
+            List<Demand> listDemands = DemandService.getDemands( customer, getUser(  ), Demand.STATUS_INPROGRESS );
 
             Map<String, Object> model = getModel(  );
             model.put( Constants.MARK_ACTION_PANELS, listPanels );
@@ -222,7 +222,7 @@ public class CustomerJspBean extends MVCAdminJspBean
         if ( customer != null )
         {
             List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
-            List<Demand> listDemands = DemandService.getDemands( customer, getUser(  ) , Demand.STATUS_CLOSED );
+            List<Demand> listDemands = DemandService.getDemands( customer, getUser(  ), Demand.STATUS_CLOSED );
 
             Map<String, Object> model = getModel(  );
             model.put( Constants.MARK_ACTION_PANELS, listPanels );

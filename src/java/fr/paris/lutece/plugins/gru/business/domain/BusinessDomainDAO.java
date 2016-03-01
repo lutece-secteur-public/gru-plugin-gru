@@ -31,7 +31,6 @@
  *
  * License 1.0
  */
-
 package fr.paris.lutece.plugins.gru.business.domain;
 
 import fr.paris.lutece.portal.service.plugin.Plugin;
@@ -40,23 +39,22 @@ import fr.paris.lutece.util.sql.DAOUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * This class provides Data Access methods for BusinessDomain objects
  */
-
 public final class BusinessDomainDAO implements IBusinessDomainDAO
 {
     // Constants
     private static final String SQL_QUERY_NEW_PK = "SELECT max( id_business_domain ) FROM gru_business_domain";
-    private static final String SQL_QUERY_SELECT = "SELECT a.id_business_domain, a.name, a.description, a.id_business_sector, b.name "
-            + " FROM gru_business_domain a, gru_business_sector b "
-            + " WHERE a.id_business_domain = ? AND a.id_business_sector = b.id_business_sector";
+    private static final String SQL_QUERY_SELECT = "SELECT a.id_business_domain, a.name, a.description, a.id_business_sector, b.name " +
+        " FROM gru_business_domain a, gru_business_sector b " +
+        " WHERE a.id_business_domain = ? AND a.id_business_sector = b.id_business_sector";
     private static final String SQL_QUERY_INSERT = "INSERT INTO gru_business_domain ( id_business_domain, name, description, id_business_sector ) VALUES ( ?, ?, ?, ? ) ";
     private static final String SQL_QUERY_DELETE = "DELETE FROM gru_business_domain WHERE id_business_domain = ? ";
     private static final String SQL_QUERY_UPDATE = "UPDATE gru_business_domain SET id_business_domain = ?, name = ?, description = ?, id_business_sector = ? WHERE id_business_domain = ?";
-    private static final String SQL_QUERY_SELECTALL = "SELECT a.id_business_domain, a.name, a.description, a.id_business_sector, b.name "
-            + " FROM gru_business_domain a, gru_business_sector b "
-            + " WHERE a.id_business_sector = b.id_business_sector";
+    private static final String SQL_QUERY_SELECTALL = "SELECT a.id_business_domain, a.name, a.description, a.id_business_sector, b.name " +
+        " FROM gru_business_domain a, gru_business_sector b " + " WHERE a.id_business_sector = b.id_business_sector";
     private static final String SQL_QUERY_SELECTALL_ID = "SELECT id_business_domain FROM gru_business_domain";
 
     /**
@@ -64,19 +62,19 @@ public final class BusinessDomainDAO implements IBusinessDomainDAO
      * @param plugin The Plugin
      * @return The new primary key
      */
-    public int newPrimaryKey( Plugin plugin)
+    public int newPrimaryKey( Plugin plugin )
     {
-        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_NEW_PK , plugin  );
-        daoUtil.executeQuery( );
+        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_NEW_PK, plugin );
+        daoUtil.executeQuery(  );
 
         int nKey = 1;
 
-        if( daoUtil.next( ) )
+        if ( daoUtil.next(  ) )
         {
-                nKey = daoUtil.getInt( 1 ) + 1;
+            nKey = daoUtil.getInt( 1 ) + 1;
         }
 
-        daoUtil.free();
+        daoUtil.free(  );
 
         return nKey;
     }
@@ -92,13 +90,13 @@ public final class BusinessDomainDAO implements IBusinessDomainDAO
         businessDomain.setId( newPrimaryKey( plugin ) );
 
         int nIndex = 1;
-        daoUtil.setInt( nIndex++ , businessDomain.getId( ) );
-        daoUtil.setString( nIndex++, businessDomain.getName( ) );
-        daoUtil.setString( nIndex++, businessDomain.getDescription( ) );
-        daoUtil.setInt( nIndex++, businessDomain.getIdBusinessSector( ) );
+        daoUtil.setInt( nIndex++, businessDomain.getId(  ) );
+        daoUtil.setString( nIndex++, businessDomain.getName(  ) );
+        daoUtil.setString( nIndex++, businessDomain.getDescription(  ) );
+        daoUtil.setInt( nIndex++, businessDomain.getIdBusinessSector(  ) );
 
-        daoUtil.executeUpdate( );
-        daoUtil.free( );
+        daoUtil.executeUpdate(  );
+        daoUtil.free(  );
     }
 
     /**
@@ -108,15 +106,15 @@ public final class BusinessDomainDAO implements IBusinessDomainDAO
     public BusinessDomain load( int nKey, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT, plugin );
-        daoUtil.setInt( 1 , nKey );
-        daoUtil.executeQuery( );
+        daoUtil.setInt( 1, nKey );
+        daoUtil.executeQuery(  );
 
         BusinessDomain businessDomain = null;
 
-        if ( daoUtil.next( ) )
+        if ( daoUtil.next(  ) )
         {
             int nIndex = 1;
-            businessDomain = new BusinessDomain();
+            businessDomain = new BusinessDomain(  );
             businessDomain.setId( daoUtil.getInt( nIndex++ ) );
             businessDomain.setName( daoUtil.getString( nIndex++ ) );
             businessDomain.setDescription( daoUtil.getString( nIndex++ ) );
@@ -124,7 +122,8 @@ public final class BusinessDomainDAO implements IBusinessDomainDAO
             businessDomain.setBusinessSector( daoUtil.getString( nIndex++ ) );
         }
 
-        daoUtil.free( );
+        daoUtil.free(  );
+
         return businessDomain;
     }
 
@@ -135,9 +134,9 @@ public final class BusinessDomainDAO implements IBusinessDomainDAO
     public void delete( int nKey, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE, plugin );
-        daoUtil.setInt( 1 , nKey );
-        daoUtil.executeUpdate( );
-        daoUtil.free( );
+        daoUtil.setInt( 1, nKey );
+        daoUtil.executeUpdate(  );
+        daoUtil.free(  );
     }
 
     /**
@@ -147,16 +146,16 @@ public final class BusinessDomainDAO implements IBusinessDomainDAO
     public void store( BusinessDomain businessDomain, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE, plugin );
-        
-        int nIndex = 1;
-        daoUtil.setInt( nIndex++ , businessDomain.getId( ) );
-        daoUtil.setString( nIndex++ , businessDomain.getName( ) );
-        daoUtil.setString( nIndex++ , businessDomain.getDescription( ) );
-        daoUtil.setInt( nIndex++ , businessDomain.getIdBusinessSector( ) );
-        daoUtil.setInt( nIndex++ , businessDomain.getId( ) );
 
-        daoUtil.executeUpdate( );
-        daoUtil.free( );
+        int nIndex = 1;
+        daoUtil.setInt( nIndex++, businessDomain.getId(  ) );
+        daoUtil.setString( nIndex++, businessDomain.getName(  ) );
+        daoUtil.setString( nIndex++, businessDomain.getDescription(  ) );
+        daoUtil.setInt( nIndex++, businessDomain.getIdBusinessSector(  ) );
+        daoUtil.setInt( nIndex++, businessDomain.getId(  ) );
+
+        daoUtil.executeUpdate(  );
+        daoUtil.free(  );
     }
 
     /**
@@ -172,36 +171,38 @@ public final class BusinessDomainDAO implements IBusinessDomainDAO
         while ( daoUtil.next(  ) )
         {
             int nIndex = 1;
-            BusinessDomain businessDomain = new BusinessDomain();
+            BusinessDomain businessDomain = new BusinessDomain(  );
             businessDomain.setId( daoUtil.getInt( nIndex++ ) );
             businessDomain.setName( daoUtil.getString( nIndex++ ) );
             businessDomain.setDescription( daoUtil.getString( nIndex++ ) );
             businessDomain.setIdBusinessSector( daoUtil.getInt( nIndex++ ) );
             businessDomain.setBusinessSector( daoUtil.getString( nIndex++ ) );
- 
+
             businessDomainList.add( businessDomain );
         }
 
-        daoUtil.free( );
+        daoUtil.free(  );
+
         return businessDomainList;
     }
-    
+
     /**
      * {@inheritDoc }
      */
     @Override
     public List<Integer> selectIdBusinessDomainsList( Plugin plugin )
     {
-            List<Integer> businessDomainList = new ArrayList<Integer>( );
-            DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_ID, plugin );
-            daoUtil.executeQuery(  );
+        List<Integer> businessDomainList = new ArrayList<Integer>(  );
+        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_ID, plugin );
+        daoUtil.executeQuery(  );
 
-            while ( daoUtil.next(  ) )
-            {
-                businessDomainList.add( daoUtil.getInt( 1 ) );
-            }
+        while ( daoUtil.next(  ) )
+        {
+            businessDomainList.add( daoUtil.getInt( 1 ) );
+        }
 
-            daoUtil.free( );
-            return businessDomainList;
+        daoUtil.free(  );
+
+        return businessDomainList;
     }
 }

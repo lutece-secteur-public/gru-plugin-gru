@@ -97,7 +97,7 @@ public class DemandTypeService
 
         return demand;
     }
-    
+
     /**
      * Get a demand type label
      * @param strDemandTypeId The ID
@@ -106,15 +106,19 @@ public class DemandTypeService
     public static String getTypeLabel( String strDemandTypeId )
     {
         DemandType type = _mapDemandTypes.get( strDemandTypeId );
-        if( type == null )
+
+        if ( type == null )
         {
             type = DemandTypeHome.findByTypeId( strDemandTypeId );
-            if( type == null )
+
+            if ( type == null )
             {
                 return "Invalid demand type";
             }
-            _mapDemandTypes.put( strDemandTypeId , type );
+
+            _mapDemandTypes.put( strDemandTypeId, type );
         }
-        return type.getTitle();
+
+        return type.getTitle(  );
     }
 }

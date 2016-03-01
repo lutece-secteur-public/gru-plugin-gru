@@ -31,8 +31,6 @@
  *
  * License 1.0
  */
-
- 
 package fr.paris.lutece.plugins.gru.web.domain;
 
 import fr.paris.lutece.plugins.gru.business.domain.BusinessDomain;
@@ -48,7 +46,6 @@ import fr.paris.lutece.util.url.UrlItem;
 import java.util.List;
 import java.util.Map;
 
-
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -58,7 +55,6 @@ import javax.servlet.http.HttpServletRequest;
 @Controller( controllerJsp = "ManageBusinessDomains.jsp", controllerPath = "jsp/admin/plugins/gru/", right = "GRU_DOMAIN_MANAGEMENT" )
 public class BusinessDomainJspBean extends ManageDomainGruJspBean
 {
-
     ////////////////////////////////////////////////////////////////////////////
     // Constants
 
@@ -66,7 +62,6 @@ public class BusinessDomainJspBean extends ManageDomainGruJspBean
     private static final String TEMPLATE_MANAGE_BUSINESSDOMAINS = "/admin/plugins/gru/domain/manage_business_domains.html";
     private static final String TEMPLATE_CREATE_BUSINESSDOMAIN = "/admin/plugins/gru/domain/create_business_domain.html";
     private static final String TEMPLATE_MODIFY_BUSINESSDOMAIN = "/admin/plugins/gru/domain/modify_business_domain.html";
-
 
     // Parameters
     private static final String PARAMETER_ID_BUSINESSDOMAIN = "id";
@@ -80,13 +75,11 @@ public class BusinessDomainJspBean extends ManageDomainGruJspBean
     private static final String MARK_BUSINESS_DOMAIN_LIST = "businessdomain_list";
     private static final String MARK_BUSINESS_DOMAIN = "businessdomain";
     private static final String MARK_BUSINESS_SECTORS_LIST = "business_sectors_list";
-
     private static final String JSP_MANAGE_BUSINESSDOMAINS = "jsp/admin/plugins/gru/ManageBusinessDomains.jsp";
 
     // Properties
     private static final String MESSAGE_CONFIRM_REMOVE_BUSINESSDOMAIN = "gru.message.confirmRemoveBusinessDomain";
     private static final String PROPERTY_DEFAULT_LIST_BUSINESSDOMAIN_PER_PAGE = "gru.listBusinessDomains.itemsPerPage";
- 
     private static final String VALIDATION_ATTRIBUTES_PREFIX = "gru.model.entity.businessdomain.attribute.";
 
     // Views
@@ -104,11 +97,10 @@ public class BusinessDomainJspBean extends ManageDomainGruJspBean
     private static final String INFO_BUSINESSDOMAIN_CREATED = "gru.info.businessdomain.created";
     private static final String INFO_BUSINESSDOMAIN_UPDATED = "gru.info.businessdomain.updated";
     private static final String INFO_BUSINESSDOMAIN_REMOVED = "gru.info.businessdomain.removed";
-    
+
     // Session variable to store working values
     private BusinessDomain _businessdomain;
-    
-    
+
     /**
      * Build the Manage View
      * @param request The HTTP request
@@ -118,8 +110,10 @@ public class BusinessDomainJspBean extends ManageDomainGruJspBean
     public String getManageBusinessDomains( HttpServletRequest request )
     {
         _businessdomain = null;
+
         List<BusinessDomain> listBusinessDomains = (List<BusinessDomain>) BusinessDomainHome.getBusinessDomainsList(  );
-        Map<String, Object> model = getPaginatedListModel( request, MARK_BUSINESS_DOMAIN_LIST, listBusinessDomains, JSP_MANAGE_BUSINESSDOMAINS );
+        Map<String, Object> model = getPaginatedListModel( request, MARK_BUSINESS_DOMAIN_LIST, listBusinessDomains,
+                JSP_MANAGE_BUSINESSDOMAINS );
 
         return getPage( PROPERTY_PAGE_TITLE_MANAGE_BUSINESSDOMAINS, TEMPLATE_MANAGE_BUSINESSDOMAINS, model );
     }
@@ -137,7 +131,7 @@ public class BusinessDomainJspBean extends ManageDomainGruJspBean
 
         Map<String, Object> model = getModel(  );
         model.put( MARK_BUSINESS_DOMAIN, _businessdomain );
-        model.put( MARK_BUSINESS_SECTORS_LIST, BusinessSectorHome.getBusinessSectors() );
+        model.put( MARK_BUSINESS_SECTORS_LIST, BusinessSectorHome.getBusinessSectors(  ) );
 
         return getPage( PROPERTY_PAGE_TITLE_CREATE_BUSINESSDOMAIN, TEMPLATE_CREATE_BUSINESSDOMAIN, model );
     }
@@ -212,14 +206,14 @@ public class BusinessDomainJspBean extends ManageDomainGruJspBean
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_BUSINESSDOMAIN ) );
 
-        if ( _businessdomain == null || ( _businessdomain.getId(  ) != nId ))
+        if ( ( _businessdomain == null ) || ( _businessdomain.getId(  ) != nId ) )
         {
             _businessdomain = BusinessDomainHome.findByPrimaryKey( nId );
         }
 
         Map<String, Object> model = getModel(  );
         model.put( MARK_BUSINESS_DOMAIN, _businessdomain );
-        model.put( MARK_BUSINESS_SECTORS_LIST, BusinessSectorHome.getBusinessSectors() );
+        model.put( MARK_BUSINESS_SECTORS_LIST, BusinessSectorHome.getBusinessSectors(  ) );
 
         return getPage( PROPERTY_PAGE_TITLE_MODIFY_BUSINESSDOMAIN, TEMPLATE_MODIFY_BUSINESSDOMAIN, model );
     }
@@ -238,7 +232,7 @@ public class BusinessDomainJspBean extends ManageDomainGruJspBean
         // Check constraints
         if ( !validateBean( _businessdomain, VALIDATION_ATTRIBUTES_PREFIX ) )
         {
-            return redirect( request, VIEW_MODIFY_BUSINESSDOMAIN, PARAMETER_ID_BUSINESSDOMAIN, _businessdomain.getId( ) );
+            return redirect( request, VIEW_MODIFY_BUSINESSDOMAIN, PARAMETER_ID_BUSINESSDOMAIN, _businessdomain.getId(  ) );
         }
 
         BusinessDomainHome.update( _businessdomain );

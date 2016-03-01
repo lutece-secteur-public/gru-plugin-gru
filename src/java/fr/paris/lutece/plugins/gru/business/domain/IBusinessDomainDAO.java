@@ -31,12 +31,11 @@
  *
  * License 1.0
  */
- 
 package fr.paris.lutece.plugins.gru.business.domain;
 
 import fr.paris.lutece.portal.service.plugin.Plugin;
-import java.util.List;
 
+import java.util.List;
 
 
 /**
@@ -82,7 +81,7 @@ public interface IBusinessDomainDAO
      * @return The collection which contains the data of all the businessDomain objects
      */
     List<BusinessDomain> selectBusinessDomainsList( Plugin plugin );
-    
+
     /**
      * Load the id of all the businessDomain objects and returns them as a collection
      * @param plugin the Plugin
@@ -90,4 +89,3 @@ public interface IBusinessDomainDAO
      */
     List<Integer> selectIdBusinessDomainsList( Plugin plugin );
 }
-

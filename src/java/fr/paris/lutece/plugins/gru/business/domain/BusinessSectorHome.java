@@ -31,23 +31,22 @@
  *
  * License 1.0
  */
- 
 package fr.paris.lutece.plugins.gru.business.domain;
 
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.portal.service.plugin.PluginService;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 import fr.paris.lutece.util.ReferenceList;
+
 import java.util.List;
+
 
 /**
  * This class provides instances management methods (create, find, ...) for BusinessSector objects
  */
-
 public final class BusinessSectorHome
 {
     // Static variable pointed at the DAO instance
-
     private static IBusinessSectorDAO _dao = SpringContextService.getBean( "gru.businessSectorDAO" );
     private static Plugin _plugin = PluginService.getPlugin( "gru" );
 
@@ -101,34 +100,33 @@ public final class BusinessSectorHome
      */
     public static BusinessSector findByPrimaryKey( int nKey )
     {
-        return _dao.load( nKey, _plugin);
+        return _dao.load( nKey, _plugin );
     }
 
     /**
      * Load the data of all the businessSector objects and returns them in form of a collection
      * @return the collection which contains the data of all the businessSector objects
      */
-    public static List<BusinessSector> getBusinessSectorsList( )
+    public static List<BusinessSector> getBusinessSectorsList(  )
     {
         return _dao.selectBusinessSectorsList( _plugin );
     }
-    
+
     /**
      * Load the id of all the businessSector objects and returns them in form of a collection
      * @return the collection which contains the id of all the businessSector objects
      */
-    public static List<Integer> getIdBusinessSectorsList( )
+    public static List<Integer> getIdBusinessSectorsList(  )
     {
         return _dao.selectIdBusinessSectorsList( _plugin );
     }
-    
+
     /**
      * Gets all business sectors as a reference list
      * @return all business sectors as a reference list
      */
-    public static ReferenceList getBusinessSectors( )
+    public static ReferenceList getBusinessSectors(  )
     {
-        return _dao.selectBusinessSectors(  _plugin );
+        return _dao.selectBusinessSectors( _plugin );
     }
 }
-

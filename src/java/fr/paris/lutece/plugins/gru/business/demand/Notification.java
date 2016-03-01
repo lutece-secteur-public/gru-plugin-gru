@@ -176,7 +176,7 @@ public class Notification
     {
         return _userDashboard;
     }
-    
+
     /**
      * Set the BackOfficeLogging object
      * @param backOfficeLogging The BackOfficeLogging Object
@@ -195,6 +195,4 @@ public class Notification
     {
         return _backOfficeLogging;
     }
-    
-    
 }
