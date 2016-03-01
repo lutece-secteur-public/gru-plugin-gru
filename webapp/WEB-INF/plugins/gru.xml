@@ -45,6 +45,14 @@
             <feature-url>jsp/admin/plugins/gru/ManageDemandTypes.jsp</feature-url>
             <feature-icon-url></feature-icon-url>
         </admin-feature>
+        <admin-feature>
+            <feature-id>GRU_DOMAIN_MANAGEMENT</feature-id>
+            <feature-title>gru.adminFeature.ManageDomainGru.name</feature-title>
+            <feature-description>gru.adminFeature.ManageDomainGru.description</feature-description>
+            <feature-level>0</feature-level>
+            <feature-url>jsp/admin/plugins/gru/ManageBusinessDomains.jsp</feature-url>
+            <feature-icon-url></feature-icon-url>
+      </admin-feature>
     </admin-features>    
     
     <admin-css-stylesheets>

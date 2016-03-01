@@ -50,3 +50,29 @@ INSERT INTO gru_feature ( id_feature, name, link, link_customer_params, target, 
 (5,'Réclamation Carte stationnement ','jsp/admin/plugins/ticketing/ManageTickets.jsp?view=createTicket&cat=DVDSSVP','&fn={firstname}&ln={lastname}&guid={guid}&ph={phone}&em={email}&cid={cid}',0,3,2,1),
 (6,'Prendre un RDV Stationnement','https://teleservices.paris.fr/rdvssvp/','',0,3,1,1);
 
+
+DELETE FROM gru_business_sector;
+INSERT INTO gru_business_sector ( id_business_sector , name, description ) VALUES
+( 1 , 'Fiscalité' , 'Taxe ou redevance d\'enlèvement des ordures ménagères, taxe de séjour, etc.'),
+( 2, 'Travail et social' , 'Gestion des aides sociales (demande, attribution et suivi) dans les domaines suivants :
+allocation personnalisée d\'autonomie, revenu de solidarité active, etc.'),
+( 3, 'Santé' ,'Protection maternelle et infantile, plan d\'alerte et sauvegarde de la population, etc.' ),
+( 4, 'Transports' ,'Inscription, suivi et paiement en ligne des prestations, scolaires ou municipales, de transports
+individuels ou en commun (vélo, voiture, autobus, etc.) ; informations sur les conditions de circulation, etc.'),
+( 5, 'Etat civil et citoyenneté' , 'Demande d\'extraits ou de copies d\'actes de l\'état civil ; inscription sur les listes
+électorales ; etc.' ),
+( 6, 'Relations avec les élus' , 'Communication municipale ; relations des usagers avec les élus ; etc.' ),
+( 7, 'Scolaire, périscolaire, sport et culture', 'Gestion des dossiers (inscription,
+suivi et paiement en ligne) dans les domaines suivants : prestations touristiques ; centre de vacances, école,
+bibliothèque, etc.'),
+( 8, 'Economie et urbanisme', 'Demande de locaux professionnels ; gestion des dossiers (demande, attribution, suivi
+et paiement en ligne) dans les domaines suivants : eau-assainissement, permis de construire, etc.'),
+( 9 , 'Polices spéciales et voirie' , 'Autorisation temporaire de débit de boissons ; accès aux voies piétonnes ; etc.'),
+( 10 , 'Relations avec les usagers' , 'Relation des usagers avec les services ; exercice des droits " Informatique et
+Libertés " (demande d\'information, d\'accès, de rectification, suppression, etc.).');
+
+INSERT INTO gru_business_domain ( id_business_domain, id_business_sector , name, description ) VALUES
+( 1 , 7 , 'Facil\'Familles', 'Facil\'Familles' ),
+( 2 , 9 , 'Stationnement' , 'Stationnement' ),
+( 3 , 5 , 'Demandes d\actes d\'état civil', 'Demandes d\actes d\'état civil : naissance, mariage, décès.' ),
+( 4 , 8 , 'Demande d\'urbanisme' ,'Permis de construire, autorisation de travaux, enseignes' );

@@ -1,0 +1,14 @@
+<#include "managedomaingru_tabs.html" />
+<@tabs tab="businesssector" />
+
+<@rowBoxHeader i18nTitleKey="gru.create_businesssector.pageTitle">
+    <form class="form-horizontal" method="post" name="create_businesssector" action="jsp/admin/plugins/gru/ManageBusinessSectors.jsp">
+        <@messages errors=errors />
+        <input type="hidden" id="id" name="id"/>
+        
+        <@fieldInputText i18nLabelKey="gru.create_businesssector.labelName" inputName="name" mandatory=true value="${businesssector.name!''}" i18nHelpBlockKey="gru.create_businesssector.labelName.help" />
+        <@fieldInputText i18nLabelKey="gru.create_businesssector.labelDescription" inputName="description" mandatory=true value="${businesssector.description!''}" i18nHelpBlockKey="gru.create_businesssector.labelDescription.help" />
+        <@actionButtons button1Name="action_createBusinessSector" button2Name="view_manageBusinessSectors"/>
+    </form>
+</@rowBoxHeader>
+

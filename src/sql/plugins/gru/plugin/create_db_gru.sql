@@ -59,6 +59,33 @@ id_demand_type int(11) NOT NULL default '0',
 PRIMARY KEY (id_demand_type_action)
 );
 
+
+--
+-- Structure for table gru_business_sector
+--
+
+DROP TABLE IF EXISTS gru_business_sector;
+CREATE TABLE gru_business_sector (
+id_business_sector int(6) NOT NULL,
+name varchar(50) NOT NULL default '',
+description varchar(255) NOT NULL default '',
+PRIMARY KEY (id_business_sector)
+);
+
+--
+-- Structure for table gru_business_domain
+--
+
+DROP TABLE IF EXISTS gru_business_domain;
+CREATE TABLE gru_business_domain (
+id_business_domain int(6) NOT NULL,
+id_business_sector int(11) NOT NULL default '0',
+name varchar(50) NOT NULL default '',
+description varchar(255) NOT NULL default '',
+PRIMARY KEY (id_business_domain)
+);
+
+
 --
 -- Structure for table gru_feature_category
 --

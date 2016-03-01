@@ -1,0 +1,15 @@
+<#include "managedomaingru_tabs.html" />
+<@tabs tab="businessdomain" />
+
+<@rowBoxHeader i18nTitleKey="gru.modify_businessdomain.pageTitle">
+    <form class="form-horizontal" method="post" name="modify_businessdomain" action="jsp/admin/plugins/gru/ManageBusinessDomains.jsp">
+        <@messages errors=errors />
+        <input type="hidden" id="id" name="id" value="${businessdomain.id}"/>
+        
+        <@fieldInputText i18nLabelKey="gru.modify_businessdomain.labelName" inputName="name" mandatory=true value="${businessdomain.name!''}" i18nHelpBlockKey="gru.modify_businessdomain.labelName.help" />
+        <@fieldInputText i18nLabelKey="gru.modify_businessdomain.labelDescription" inputName="description" mandatory=true value="${businessdomain.description!''}" i18nHelpBlockKey="gru.modify_businessdomain.labelDescription.help" />
+        <@fieldInputCombo i18nLabelKey="gru.modify_businessdomain.labelIdBusinessSector" inputName="id_business_sector" items=business_sectors_list value="${businessdomain.idBusinessSector!''}" i18nHelpBlockKey="gru.modify_businessdomain.labelIdBusinessSector.help" cssClass='form-control' />
+        <@actionButtons button1Name="action_modifyBusinessDomain" button2Name="view_manageBusinessDomains"/>
+    </form>
+</@rowBoxHeader>
+
