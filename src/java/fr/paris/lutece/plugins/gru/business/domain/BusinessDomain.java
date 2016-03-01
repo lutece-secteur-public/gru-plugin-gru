@@ -33,6 +33,8 @@
  */ 
 package fr.paris.lutece.plugins.gru.business.domain;
 
+import fr.paris.lutece.portal.service.rbac.RBACResource;
+
 import javax.validation.constraints.*;
 import org.hibernate.validator.constraints.*;
 
@@ -42,8 +44,12 @@ import java.io.Serializable;
 /**
  * This is the business class for the object BusinessDomain
  */ 
-public class BusinessDomain implements Serializable
+public class BusinessDomain implements Serializable, RBACResource
 {
+    // RBAC management
+    public static final String RESOURCE_TYPE = "GRU_DOMAIN";
+    public static final String PERMISSION_ACCESS = "ACCESS";
+
     private static final long serialVersionUID = 1L;
 
     // Variables declarations 
@@ -147,4 +153,26 @@ public class BusinessDomain implements Serializable
     {
         _strDescription = strDescription;
     }
-}
+    
+    ////////////////////////////////////////////////////////////////////////////
+    // RBAC Resource implementation
+
+    /**
+     * {@inheritDoc }
+     */
+    @Override
+    public String getResourceTypeCode(  )
+    {
+        return RESOURCE_TYPE;
+    }
+
+    /**
+     * {@inheritDoc }
+     */
+    @Override
+    public String getResourceId(  )
+    {
+        return String.valueOf( _nId );  // for exemple
+    }
+}    
+
