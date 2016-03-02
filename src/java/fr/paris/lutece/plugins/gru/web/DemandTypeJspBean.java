@@ -35,6 +35,7 @@ package fr.paris.lutece.plugins.gru.web;
 
 import fr.paris.lutece.plugins.gru.business.demandtype.DemandType;
 import fr.paris.lutece.plugins.gru.business.demandtype.DemandTypeHome;
+import fr.paris.lutece.plugins.gru.service.domain.BusinessDomainService;
 import fr.paris.lutece.portal.service.message.AdminMessage;
 import fr.paris.lutece.portal.service.message.AdminMessageService;
 import fr.paris.lutece.portal.util.mvc.admin.annotations.Controller;
@@ -73,6 +74,8 @@ public class DemandTypeJspBean extends ManageDemandJspBean
     // Markers
     private static final String MARK_DEMANDTYPE_LIST = "demandtype_list";
     private static final String MARK_DEMANDTYPE = "demandtype";
+    private static final String MARK_BUSINESS_DOMAINS_LIST = "domains_list";
+
     private static final String JSP_MANAGE_DEMANDTYPES = "jsp/admin/plugins/gru/ManageDemandTypes.jsp";
 
     // Properties
@@ -129,6 +132,7 @@ public class DemandTypeJspBean extends ManageDemandJspBean
 
         Map<String, Object> model = getModel(  );
         model.put( MARK_DEMANDTYPE, _demandtype );
+        model.put( MARK_BUSINESS_DOMAINS_LIST, BusinessDomainService.getDomains( getLocale() ));
 
         return getPage( PROPERTY_PAGE_TITLE_CREATE_DEMANDTYPE, TEMPLATE_CREATE_DEMANDTYPE, model );
     }
@@ -210,6 +214,7 @@ public class DemandTypeJspBean extends ManageDemandJspBean
 
         Map<String, Object> model = getModel(  );
         model.put( MARK_DEMANDTYPE, _demandtype );
+        model.put( MARK_BUSINESS_DOMAINS_LIST, BusinessDomainService.getDomains( getLocale() ));
 
         return getPage( PROPERTY_PAGE_TITLE_MODIFY_DEMANDTYPE, TEMPLATE_MODIFY_DEMANDTYPE, model );
     }

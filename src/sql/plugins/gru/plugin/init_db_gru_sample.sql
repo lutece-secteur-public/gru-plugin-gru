@@ -10,11 +10,11 @@ INSERT INTO gru_customer (id_customer, id_title, firstname, lastname, has_accoun
 -- Data for table gru_demand_type
 --
 DELETE FROM gru_demand_type ;
-INSERT INTO gru_demand_type ( id_demand_type, demand_type_id ,title ) VALUES
-(1,100,'Carte de stationnement'),
-(2,101,'Demande d\'information'),
-(3,102,'Réclamation'),
-(4,103,'RDV Urbanisme');
+INSERT INTO gru_demand_type ( id_demand_type, demand_type_id ,title, id_business_domain ) VALUES
+(1,100,'Carte de stationnement', 9 ),
+(2,101,'Demande d\'information', 10 ),
+(3,102,'Réclamation', 10 ),
+(4,103,'RDV Urbanisme', 8 );
 
 
 --

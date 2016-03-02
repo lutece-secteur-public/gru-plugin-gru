@@ -55,7 +55,6 @@ public class BusinessDomainResourceIdService extends ResourceIdService
     private static final String PROPERTY_LABEL_RESOURCE_TYPE = "gru.rbac.domain.resourceType";
     private static final String PROPERTY_LABEL_VIEW_SUMMARY = "gru.rbac.domain.permission.viewSummary";
     private static final String PROPERTY_LABEL_VIEW_DETAILS = "gru.rbac.domain.permission.viewDetails";
-    private static final String PROPERTY_RESOURCE_NAME_FORMAT = "gru.rbac.domain.resourceName.format";
 
     /**
      * {@inheritDoc }
@@ -88,18 +87,7 @@ public class BusinessDomainResourceIdService extends ResourceIdService
     @Override
     public ReferenceList getResourceIdList( Locale locale )
     {
-        List<BusinessDomain> listDomains = BusinessDomainHome.getBusinessDomainsList(  );
-
-        ReferenceList list = new ReferenceList(  );
-
-        for ( BusinessDomain domain : listDomains )
-        {
-            Object[] args = { domain.getBusinessSector(  ), domain.getName(  ) };
-            String strLabel = I18nService.getLocalizedString( PROPERTY_RESOURCE_NAME_FORMAT, args, locale );
-            list.addItem( domain.getId(  ), strLabel );
-        }
-
-        return list;
+        return BusinessDomainService.getDomains( locale );
     }
 
     /**

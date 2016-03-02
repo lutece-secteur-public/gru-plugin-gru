@@ -16,16 +16,20 @@
         <@table>
           <tr>
             <input type="hidden" id="id" name="id"/>
-            <th>#i18n{gru.manage_demandtypes.columnTitle}</th>
             <th>#i18n{gru.manage_demandtypes.columnDemandTypeId}</th>
+            <th>#i18n{gru.manage_demandtypes.columnTitle}</th>
+            <th>#i18n{gru.manage_demandtypes.columnBusinessDomain}</th>
+            <th>#i18n{gru.manage_demandtypes.columnBusinessSector}</th>
             <th>#i18n{portal.util.labelActions}</th>
           </tr>
           <@tableHeadBodySeparator />
           <#list demandtype_list as demandtype >
           <tr>
             <input type="hidden" id="id" name="id"/>
-            <td>${demandtype.title}</td>
             <td>${demandtype.demandTypeId}</td>
+            <td>${demandtype.title!''}</td>
+            <td>${demandtype.businessDomain!''}</td>
+            <td>${demandtype.businessSector!''}</td>
             <td>
               <a href="jsp/admin/plugins/gru/ManageDemandTypes.jsp?view=modifyDemandType&id=${demandtype.id}" class="btn btn-primary btn-sm" title="#i18n{portal.util.labelModify}">
                 <i class="fa fa-pencil"></i>

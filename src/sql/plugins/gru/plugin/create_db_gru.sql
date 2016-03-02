@@ -43,6 +43,7 @@ CREATE TABLE gru_demand_type (
 id_demand_type int(6) NOT NULL,
 demand_type_id int(11) NOT NULL default '0',
 title varchar(255) NOT NULL default '',
+id_business_domain int(6) NOT NULL,
 PRIMARY KEY (id_demand_type)
 );
 

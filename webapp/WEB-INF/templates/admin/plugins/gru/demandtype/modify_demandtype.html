@@ -8,6 +8,7 @@
         <input type="hidden" id="id" name="id" value="${demandtype.id}"/>
         <@fieldInputText i18nLabelKey="gru.modify_demandtype.labelDemandTypeId" inputName="demand_type_id" mandatory=true value="${demandtype.demandTypeId}" i18nHelpBlockKey="gru.modify_demandtype.labelDemandTypeId.help" />
         <@fieldInputText i18nLabelKey="gru.modify_demandtype.labelTitle" inputName="title" mandatory=true value="${demandtype.title}" i18nHelpBlockKey="gru.modify_demandtype.labelTitle.help" />
+        <@fieldInputCombo i18nLabelKey="gru.modify_demandtype.labelBusinessDomainId" inputName="business_domain_id" items=domains_list value="${demandtype.businessDomainId!''}" i18nHelpBlockKey="gru.modify_demandtype.labelBusinessDomainId.help" cssClass='form-control' />
         <@actionButtons button1Name="action_modifyDemandType" button2Name="view_manageDemandTypes"/>
         </form>
     </@rowBoxHeader>

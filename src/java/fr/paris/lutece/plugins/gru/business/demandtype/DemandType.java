@@ -53,6 +53,9 @@ public class DemandType implements Serializable
     @NotEmpty( message = "#i18n{gru.validation.demandtype.Title.notEmpty}" )
     @Size( max = 255, message = "#i18n{gru.validation.demandtype.Title.size}" )
     private String _strTitle;
+    private int _nBusinessDomainId;
+    private String _strBusinessDomain;
+    private String _strBusinessSector;
 
     /**
      * Returns the Id
@@ -107,4 +110,59 @@ public class DemandType implements Serializable
     {
         _strTitle = strTitle;
     }
+    
+      /**
+        * Returns the BusinessDomainId
+        * @return The BusinessDomainId
+        */ 
+    public int getBusinessDomainId()
+    {
+        return _nBusinessDomainId;
+    }
+    
+       /**
+        * Sets the BusinessDomainId
+        * @param nBusinessDomainId The BusinessDomainId
+        */ 
+    public void setBusinessDomainId( int nBusinessDomainId )
+    {
+        _nBusinessDomainId = nBusinessDomainId;
+    }
+    
+    /**
+     * Returns the BusinessDomain
+     * @return The BusinessDomain
+     */ 
+    public String getBusinessDomain()
+    {
+        return _strBusinessDomain;
+    }
+    
+    /**
+     * Sets the BusinessDomain
+     * @param strBusinessDomain The BusinessDomain
+     */ 
+    public void setBusinessDomain( String strBusinessDomain )
+    {
+        _strBusinessDomain = strBusinessDomain;
+    }  
+    
+    /**
+     * Returns the BusinessSector
+     * @return The BusinessSector
+     */ 
+    public String getBusinessSector()
+    {
+        return _strBusinessSector;
+    }
+    
+    /**
+     * Sets the BusinessSector
+     * @param strBusinessSector The BusinessSector
+     */ 
+    public void setBusinessSector( String strBusinessSector )
+    {
+        _strBusinessSector = strBusinessSector;
+    }    
+    
 }
