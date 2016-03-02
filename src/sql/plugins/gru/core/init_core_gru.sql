@@ -229,7 +229,14 @@ INSERT INTO core_user_right ( id_user , id_right ) VALUES
 ( 27 , 'TICKETING_USER_PREFERENCES_MANAGEMENT' ),
 ( 28 , 'TICKETING_USER_PREFERENCES_MANAGEMENT' ),
 ( 29 , 'TICKETING_USER_PREFERENCES_MANAGEMENT' ),
-( 30 , 'TICKETING_USER_PREFERENCES_MANAGEMENT' )
+( 30 , 'TICKETING_USER_PREFERENCES_MANAGEMENT' ),
+( 21 , 'CORE_LINK_SERVICE_MANAGEMENT' ),
+( 22 , 'CORE_LINK_SERVICE_MANAGEMENT' ),
+( 23 , 'CORE_LINK_SERVICE_MANAGEMENT' ),
+( 24 , 'CORE_LINK_SERVICE_MANAGEMENT' ),
+( 25 , 'CORE_LINK_SERVICE_MANAGEMENT' ),
+( 27 , 'CORE_LINK_SERVICE_MANAGEMENT' ),
+( 30 , 'CORE_LINK_SERVICE_MANAGEMENT' )
 ;
 
 
@@ -283,6 +290,15 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1252, 'gru_level_1', 'SUPPORT_ENTITY', '2', 'VIEW'), 
 (1253, 'gru_level_1', 'SUPPORT_ENTITY', '3', 'VIEW'), 
 
+-- Attached files
+(1459, 'gru_level_1', 'INSERT_SERVICE', 'librarylinkservice', '*'), -- add attached file
+(1460, 'gru_level_1', 'INSERT_SERVICE', 'libraryuploadlinkservice', '*'), -- upload attached file
+(1461, 'gru_level_1', 'DOCUMENT_SPACE', '7', '*'), -- document space image
+(1462, 'gru_level_1', 'DOCUMENT_SPACE', '8', '*'), -- document space PDF
+(1463, 'gru_level_1', 'DOCUMENT_SPACE', '6', '*'), -- document space uploaded files
+(1464, 'gru_level_1', 'DOCUMENT_TYPE', 'image', '*'),
+(1465, 'gru_level_1', 'DOCUMENT_TYPE', 'pdf', '*'),
+
 
 -- level 2
 (1301, 'gru_level_2', 'ticket', '*', 'CREATE'),
@@ -308,6 +324,15 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 
 -- support entity
 (1351, 'gru_level_2', 'SUPPORT_ENTITY', '4', 'VIEW'),
+
+-- Attached files
+(1466, 'gru_level_2', 'INSERT_SERVICE', 'librarylinkservice', '*'), -- add attached file
+(1467, 'gru_level_2', 'INSERT_SERVICE', 'libraryuploadlinkservice', '*'), -- upload attached file
+(1468, 'gru_level_2', 'DOCUMENT_SPACE', '7', '*'), -- document space image
+(1469, 'gru_level_2', 'DOCUMENT_SPACE', '8', '*'), -- document space PDF
+(1470, 'gru_level_2', 'DOCUMENT_SPACE', '6', '*'), -- document space uploaded files
+(1471, 'gru_level_2', 'DOCUMENT_TYPE', 'image', '*'),
+(1472, 'gru_level_2', 'DOCUMENT_TYPE', 'pdf', '*'),
 
 
 -- level 3
