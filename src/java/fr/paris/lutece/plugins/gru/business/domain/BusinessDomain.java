@@ -49,7 +49,8 @@ public class BusinessDomain implements Serializable, RBACResource
 {
     // RBAC management
     public static final String RESOURCE_TYPE = "GRU_DOMAIN";
-    public static final String PERMISSION_ACCESS = "ACCESS";
+    public static final String PERMISSION_VIEW_SUMMARY = "VIEW_SUMMARY";
+    public static final String PERMISSION_VIEW_DETAILS = "VIEW_DETAILS";
     private static final long serialVersionUID = 1L;
 
     // Variables declarations 

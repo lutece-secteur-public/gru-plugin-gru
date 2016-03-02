@@ -53,7 +53,8 @@ import java.util.Locale;
 public class BusinessDomainResourceIdService extends ResourceIdService
 {
     private static final String PROPERTY_LABEL_RESOURCE_TYPE = "gru.rbac.domain.resourceType";
-    private static final String PROPERTY_LABEL_VIEW = "gru.rbac.domain.permission.access";
+    private static final String PROPERTY_LABEL_VIEW_SUMMARY = "gru.rbac.domain.permission.viewSummary";
+    private static final String PROPERTY_LABEL_VIEW_DETAILS = "gru.rbac.domain.permission.viewDetails";
     private static final String PROPERTY_RESOURCE_NAME_FORMAT = "gru.rbac.domain.resourceName.format";
 
     /**
@@ -68,12 +69,16 @@ public class BusinessDomainResourceIdService extends ResourceIdService
         rt.setResourceTypeKey( BusinessDomain.RESOURCE_TYPE );
         rt.setResourceTypeLabelKey( PROPERTY_LABEL_RESOURCE_TYPE );
 
-        Permission p = new Permission(  );
-        p.setPermissionKey( BusinessDomain.PERMISSION_ACCESS );
-        p.setPermissionTitleKey( PROPERTY_LABEL_VIEW );
-        rt.registerPermission( p );
+        Permission pSummary = new Permission(  );
+        pSummary.setPermissionKey(BusinessDomain.PERMISSION_VIEW_SUMMARY );
+        pSummary.setPermissionTitleKey( PROPERTY_LABEL_VIEW_SUMMARY );
+        rt.registerPermission( pSummary );
 
-        // ...          for all permissions
+        Permission pDetails = new Permission(  );
+        pDetails.setPermissionKey(BusinessDomain.PERMISSION_VIEW_DETAILS );
+        pDetails.setPermissionTitleKey( PROPERTY_LABEL_VIEW_DETAILS );
+        rt.registerPermission( pDetails );
+
         ResourceTypeManager.registerResourceType( rt );
     }
 
