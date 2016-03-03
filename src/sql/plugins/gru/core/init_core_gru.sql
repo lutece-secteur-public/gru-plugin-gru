@@ -85,15 +85,20 @@ INSERT INTO core_admin_role ( role_key , role_description ) VALUES
 --
 -- Data for table core_admin_role_resource
 --
-DELETE FROM core_admin_role_resource WHERE rbac_id >= 400 AND rbac_id <= 410;
+DELETE FROM core_admin_role_resource WHERE rbac_id >= 400 AND rbac_id <= 412;
 INSERT INTO core_admin_role_resource ( rbac_id , role_key, resource_type, resource_id, permission ) VALUES 
 ( 400 , 'gru_admin' , 'GRU_FEATURE' , '*' , '*' ),
 ( 401 , 'gru_admin' , 'GRU_DEMAND_ACTION' , '*' , '*' ),
-( 402 , 'gru_level_1' ,'GRU_FEATURE' , '*' , '*' ),
-( 403 , 'gru_level_2' , 'GRU_FEATURE' , '*' , '*' ),
-( 404 , 'gru_level_2' , 'GRU_DEMAND_ACTION' , '*' , '*' ),
-( 405 , 'gru_level_3' , 'GRU_FEATURE' , '*' , '*' ),
-( 406 , 'gru_level_3' , 'GRU_DEMAND_ACTION' , '*' , '*' )
+( 402 , 'gru_admin' , 'GRU_DOMAIN' , '*' , '*' ),
+( 403 , 'gru_level_1' ,'GRU_FEATURE' , '*' , '*' ),
+( 404 , 'gru_level_1' ,'GRU_DEMAND_ACTION' , '*' , '*' ),
+( 405 , 'gru_level_1' ,'GRU_DOMAIN' , '*' , '*' ),
+( 406 , 'gru_level_2' ,'GRU_FEATURE' , '*' , '*' ),
+( 407 , 'gru_level_2' ,'GRU_DEMAND_ACTION' , '*' , '*' ),
+( 408 , 'gru_level_2' ,'GRU_DOMAIN' , '*' , '*' ),
+( 409 , 'gru_level_3' ,'GRU_FEATURE' , '*' , '*' ),
+( 410 , 'gru_level_3' ,'GRU_DEMAND_ACTION' , '*' , '*' ),
+( 411 , 'gru_level_3' ,'GRU_DOMAIN' , '*' , '*' )
 ;
 
 
@@ -168,6 +173,7 @@ INSERT INTO core_user_right ( id_user , id_right ) VALUES
 ( 10 , 'GRU_ADMIN_MANAGEMENT' ),
 ( 10 , 'GRU_DEMAND_MANAGEMENT' ),
 ( 10 , 'GRU_MANAGEMENT' ),
+( 10 , 'GRU_DOMAIN_MANAGEMENT' ),
 ( 11 , 'GRU_MANAGEMENT' ),
 ( 12 , 'GRU_MANAGEMENT' ),
 ( 13 , 'GRU_MANAGEMENT' ),
