@@ -77,5 +77,15 @@
             </rbac-resource-type-class>
         </rbac-resource-type>
     </rbac-resource-types>
+    
+    <!-- Dashboard  components -->
+    <dashboard-components>
+        <dashboard-component>
+            <dashboard-component-name>GRU</dashboard-component-name>
+            <dashboard-component-class>fr.paris.lutece.plugins.gru.web.dashboard.GruDashboardComponent</dashboard-component-class>
+            <dashboard-feature-right>GRU_MANAGEMENT</dashboard-feature-right>
+        </dashboard-component>
+    </dashboard-components>
+    
 
 </plug-in>

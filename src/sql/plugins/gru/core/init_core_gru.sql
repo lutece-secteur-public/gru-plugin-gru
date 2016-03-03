@@ -353,3 +353,8 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 ;
 
 
+--
+-- Init  table core_dashboard
+--
+INSERT INTO core_dashboard(dashboard_name, dashboard_column, dashboard_order) VALUES('GRU', 1, 2);
+

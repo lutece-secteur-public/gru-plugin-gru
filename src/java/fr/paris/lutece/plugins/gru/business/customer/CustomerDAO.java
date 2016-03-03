@@ -47,6 +47,7 @@ public final class CustomerDAO implements ICustomerDAO
 {
     // Constants
     private static final String SQL_QUERY_NEW_PK = "SELECT max( id_customer ) FROM gru_customer";
+    private static final String SQL_QUERY_COUNT = "SELECT count( * ) FROM gru_customer";
     private static final String SQL_QUERY_SELECT = "SELECT id_customer, id_title, firstname, lastname, has_account, account_login, account_guid, email, is_email_verified, mobile_phone, is_mobile_phone_verified, extras_attributes FROM gru_customer WHERE id_customer = ?";
     private static final String SQL_QUERY_INSERT = "INSERT INTO gru_customer ( id_customer, id_title, firstname, lastname, has_account, account_login, account_guid, email, is_email_verified, mobile_phone, is_mobile_phone_verified, extras_attributes ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) ";
     private static final String SQL_QUERY_DELETE = "DELETE FROM gru_customer WHERE id_customer = ? ";
@@ -265,5 +266,26 @@ public final class CustomerDAO implements ICustomerDAO
         daoUtil.free(  );
 
         return customer;
+    }
+
+    /**
+     * {@inheritDoc }
+     */
+    @Override
+    public int selectCustomersCount( Plugin plugin )
+    {
+        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_COUNT, plugin );
+        daoUtil.executeQuery(  );
+
+        int nKey = 1;
+
+        if ( daoUtil.next(  ) )
+        {
+            nKey = daoUtil.getInt( 1 ) + 1;
+        }
+
+        daoUtil.free(  );
+
+        return nKey;
     }
 }

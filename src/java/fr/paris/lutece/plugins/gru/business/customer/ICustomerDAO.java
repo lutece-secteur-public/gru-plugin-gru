@@ -97,4 +97,11 @@ public interface ICustomerDAO
      * @return The customer
      */
     Customer selectByGuid( String strGuid, Plugin plugin );
+
+    /**
+     * The number of customers
+     * @param plugin The Plugin
+     * @return The number of customers
+     */
+    int selectCustomersCount( Plugin plugin );
 }
