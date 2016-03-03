@@ -1,3 +1,4 @@
+
 <#macro renderPanel panel>
   <#if panel.actionGroups?size &gt; 0>
     <li class="header">
@@ -65,7 +66,7 @@
 </#macro>
 
 <#macro renderTreeGroup group>
-  <#if group.actions?size &gt; 0>
+    <#if group.actions?size &gt; 0>
     <li>
       <h3>
       <a href="#" id="${group.title?trim?lower_case?replace(" ","")}" class="text-gru" >
@@ -82,7 +83,7 @@
       <ul class="list-inline list-unstyled">
         <#list group.actions as action>
           <li>
-            <a href="${action.link!" "}" class="btn btn-primary bg-gru-light">
+            <a href="${action.link!" "}" class="btn btn-primary ">
               <i class="fa fa-${group.icon}"></i> ${action.title}
             </a>
           </li>
@@ -129,22 +130,20 @@
 
 <#macro customerDetails customer>
 <div class="row">
-  <div class="hidden-xs col-sm-1">
+  <div class="col-xs-12 col-sm-offset-1 col-sm-2">
     <h2>
-      <a href="javascript:history.back();" class="btn btn-back">
-        <i class="fa fa-arrow-left"></i>
+      <a href="javascript:history.back();" class="btn btn-border">
+        <i class="fa fa-arrow-left"></i> <span class="hidden-xs"> Retour</span>
       </a>
     </h2>
   </div>
-  <div class="col-xs-12 col-sm-5">
-    <h2>${customer.firstname} ${customer.lastname}</h2>
-  </div>
   <div class="col-xs-12 col-sm-6">
+    <h2>${customer.firstname} ${customer.lastname}</h2>
     <p>
-       <i class="fa fa-envelope"></i> ${customer.email!""} <#if customer.isEmailVerified && true><i class="fa fa-check-circle-o hidden-xs  text-success" title="Email V&eacute;rifi&eacute;"></i></#if>
+       <i class="fa fa-envelope hidden-sm"></i> ${customer.email!""} <#if customer.isEmailVerified && true><i class="fa fa-check-circle-o hidden-xs hidden-sm text-success" title="Email V&eacute;rifi&eacute;"></i></#if>
     </p>
     <p>
-      <i class="fa fa-phone" ></i> ${customer.mobilePhone!""} <#if customer.isMobilePhoneVerified && true><i class="fa fa-check fa-2x hidden-xs  text-success" title="Tel V&eacute;rifi&eacute;"></i></#if>
+      <i class="fa fa-phone hidden-sm" ></i> ${customer.mobilePhone!""} <#if customer.isMobilePhoneVerified && true><i class="fa fa-check fa-2x hidden-xs hidden-sm text-success" title="Tel V&eacute;rifi&eacute;"></i></#if>
     </p>
     <!-- FIXME -->
     <!--
@@ -159,9 +158,7 @@
   <div id="filter" class="col-xs-12 col-sm-12">
     <form class="form-inline" action="">
         <div class="form-group">
-            <p class="form-control-static">
-              Filter par :
-            </p>
+            <p class="form-control-static">Filter par :</p>
         </div>
         <div class="form-group">
              <label class="select" for="nature">

@@ -10,12 +10,32 @@
   </div>
   <div id="demand-panel" class="row">
     <div class="col-xs-12 col-sm-12">
-      <@tabs tab="newDemands" customer_id=customer.id />
+      <@tabs tab="newDemands" customer=customer />
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active">
-          <!--<#list buttons_list as button><a class="btn text-${button.color} btn-app" href="${button.link}"><i class="fa fa-${button.icon}"></i> &nbsp;${button.title}</a></#list>-->
+
+          <#assign group="">
+          <#list buttons_list?sort_by("icon") as button>
+            <#if group != button.icon>
+              <#assign group=button.icon>
+              <#if group !="">
+                </ul>
+                <hr style="margin-left:-80px; border-color: #CBCCCE">
+              </#if>
+
+              <h2><i class="fa fa-${button.icon} fa-fw text-${button.color}"></i> Groupe </h2>
+              <ul class="list-inline list-unstyled">
+            </#if>
+            <li>
+              <a class="btn bg-${button.color}" href="${button.link}">
+                <i class="fa fa-${button.icon}"></i> ${button.title}
+              </a>
+            </li>
+          </#list>
           <!-- TODO ajouter groupe par type -->
+        <!--
           <@actionTree panels=panels customer=customer />
+        -->
         </div>
       </div>
     </div>

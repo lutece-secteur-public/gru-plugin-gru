@@ -2,21 +2,19 @@
 <@actionMenu panels=panels customer=customer />
 <div class="gru-wrapper">
   <div id="customer-panel" class="row bg-gru-dark">
-    <div class="row">
-      <div class="col-xs-1 col-sm-1">
-        <h2>
-          <a href="javascript:history.back();" class="btn btn-back">
-            <i class="fa fa-arrow-left"></i>
-          </a>
-        </h2>
-      </div>
-      <div class="col-xs-11 col-sm-11">
-        <h2>${customer.firstname} ${customer.lastname}</h2>
-      </div>
+    <div class="col-xs-12 col-sm-offset-1 col-sm-2">
+      <h2>
+        <a href="javascript:history.back();" class="btn btn-border">
+          <i class="fa fa-arrow-left"></i> Retour
+        </a>
+      </h2>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <h2>${customer.firstname} ${customer.lastname}</h2>
     </div>
   </div>
-  <div id="demand-panel-detail" class="row">
-    <div class="col-xs-12 col-sm-12">
+  <div id="demand-panel" class="row">
+    <div class="col-xs-12 col-sm-offset-1 col-sm-9">
       <form class="form-horizontal" method="post" name="modify_customer" action="jsp/admin/plugins/gru/ManageCustomers.jsp">
         <@messages errors=errors />
         <input type="hidden" id="id_customer" name="id" value="${customer.id}"/>
@@ -26,7 +24,7 @@
         <@fieldInputText i18nLabelKey="gru.modify_customer.labelAccountLogin" inputName="account_login"  value="${customer.accountLogin}" i18nHelpBlockKey="gru.modify_customer.labelAccountLogin.help" />
         <@fieldInputText i18nLabelKey="gru.modify_customer.labelAccountGuid" inputName="account_guid"  value="${customer.accountGuid}" i18nHelpBlockKey="gru.modify_customer.labelAccountGuid.help" />
         <@fieldInputText i18nLabelKey="gru.modify_customer.labelEmail" inputName="email"  value="${customer.email}" i18nHelpBlockKey="gru.modify_customer.labelEmail.help" />
-        <@fieldInputText i18nLabelKey="gru.modify_customer.labelMobilePhone" inputName="mobile_phone"  value="${customer.mobilePhone}" i18nHelpBlockKey="gru.modify_customer.labelMobilePhone.help" />
+        <@fieldInputText i18nLabelKey="gru.modify_customer.labelMobilePhone" inputName="mobile_phone" value="${customer.mobilePhone}" i18nHelpBlockKey="gru.modify_customer.labelMobilePhone.help" />
         <@actionButtons button1Name="action_modifyCustomer" button2Name="view_manageCustomers"/>
       </form>
     </div>

@@ -5,6 +5,11 @@
 .bg-gru-dark{ background-color: #0C3B59; color: #fff }
 .btn-back{ color:#fff; border-radius: 0 }
 .btn-back:hover{ color:#fff; border-radius: 0 }
+.btn-border{ border: 1px solid #fff; border-radius: 5px; color:#fff; text-transform: uppercase; font-size: 1.4rem; vertical-align: center; padding:6px 35px;}
+.btn-border:hover, .btn-border:active, .btn-border:focus, .btn-border:visited, .btn.bg-gru-dark:hover, .btn.bg-gru-light:hover{ color:#fff }
+
+.top{ margin-top: 2rem }
+
 table.table-hover tr:hover{ cursor: pointer }
 
 /* TOOLBAR */
@@ -15,12 +20,17 @@ table.table-hover tr:hover{ cursor: pointer }
 .sidebar-menu > li > .treeview-menu.user {padding:5px;}
 .sidebar-mini.sidebar-collapse .sidebar-menu li > a > .pull-right { display: block }
 .sidebar-mini.sidebar-collapse .content-wrapper, .sidebar-mini.sidebar-collapse .right-side, .sidebar-mini.sidebar-collapse .main-footer {margin-left: 35px !important;}
+
 .user-panel{ padding-left:20px !important;}
+
 #info-user{ margin:15px 0}
 
 /* CUSTOMER */
-.gru-wrapper{ margin: -15px }
+.gru-wrapper{ margin: -15px; background: #fff }
+
 .gru-360{ min-height: 840px; background: url(../../../../images/admin/skin/plugins/gru/fond_360.jpg); background-size:cover }
+.gru-360{ min-height: 840px; background: url(../../../../images/admin/skin/8DKFMK9UNW.jpg); background-size:cover }
+
 .gru-360 .table{ margin-top:15px;  background-color: #fff; opacity: 0.7 }
 .gru-360 .table:hover{ opacity: 1 }
 .gru-360 .ui-autocomplete { position: absolute;cursor: pointer;top: 100%;left: 0;z-index: 1000;float: left;display: none;min-width: 160px;_width: 160px;
@@ -30,17 +40,25 @@ table.table-hover tr:hover{ cursor: pointer }
   background-clip: padding-box; *border-right-width: 2px;*border-bottom-width: 2px }
 .gru-360 .ui-menu-item > a.ui-corner-all { display: block; padding: 3px 15px; clear: both; font-weight: normal; line-height: 18px; color: #555555;  white-space: nowrap; cursor: pointer }
 
+#form-user-2{ margin-top: 2rem }
+
 #form-user{ margin-top: 7.5% }
 #form-user form input{ padding:20px; height:80px;  border-top-left-radius:10px; border-bottom-left-radius:10px }
 #form-user form .input-group-btn button{ width:80px; height:80px; border-top-right-radius:10px; border-bottom-right-radius:10px }
-#home-actions a{ margin-top:15px; margin-right: 5px }
 
-#customer-panel{ padding: 15px;height: 150px;color:#fff }
-#customer-panel .row{ margin-top: 1rem;width:87%;margin-left: auto;margin-right: auto }
+#home-actions a{ margin-top:15px; margin-right: 5px }
+/*
+#customer-panel{ padding: 0; margin-left: -30px; height: 150px; color:#fff }
+*/
+#customer-panel{ padding: 0; margin-left: 0; height: 150px; color:#fff }
+/*
+#customer-panel .row{ margin-top: 1rem; width:87%; margin-left: auto;margin-right: auto }
+*/
 #customer-panel p{ font-size: 1.8rem }
 #customer-panel p:first-of-type{ margin-top:20px }
 #customer-panel p#info{ font-size: 1.4rem; font-style: italic }
-#customer-panel a.btn-link{ border: 1px solid #fff; border-radius: 5px; color:#fff; text-transform: uppercase; font-size: 1.4rem; vertical-align: center; margin-top:60px;padding:6px 35px;}
+#customer-panel .dropdown-menu { min-width: 260px }
+
 #search-panel{ background-color: #fff }
 #search-panel h2{ margin:30px 0 }
 
@@ -48,28 +66,30 @@ table.table-hover tr:hover{ cursor: pointer }
 .gru-wrapper #no-content{ min-height:620px; margin:0 auto; width:100%; text-align: center  }
 .gru-wrapper #no-content img{ position: absolute; top: 60%;left: 60%; margin-top: -250px; margin-left: -250px }
 
-#demand-panel-detail{ padding: 15px 0;	background-color: #F3F7FA; min-height: 800px;margin-left: 50px }
+#demand-panel-detail{ padding: 15px 0;	background-color: #F3F7FA; min-height: 800px; margin-left: 65px }
 #demand-panel-detail .panel{ padding: 15px; background-color: #EEE; width:98% }
 #demand-panel-detail #header-right{ border-left: 1px solid #DDD;min-height:600px;margin-top:-15px;padding:20px 20px; margin-left: -25px }
 
-#demand-panel{ padding: 15px 0;	background-color: #F3F7FA; min-height: 800px }
-#demand-panel .nav-tabs{ margin-bottom: 0 }
-#demand-panel .nav-tabs > li > a{ border: 1px solid #DDD; padding:15px 30px; margin-left:25px; text-transform: uppercase; font-size: 1.5rem }
-#demand-panel .nav-tabs > li.active > a{ border-bottom:1px solid #fff }
-#demand-panel .nav-tabs > li:first-of-type { margin-left: 100px; }
-#demand-panel .nav-tabs > li:last-of-type a{ background-color: #0C3B59; color:#fff }
-#demand-panel .nav-tabs .dropdown-menu{ padding: 0px 26px; border: 0; min-width: 300px }
-#demand-panel .nav-tabs .dropdown-menu li{ width:274px }
+#demand-panel{ padding: 0;	/*background-color: #F3F7FA;*/ min-height: 800px }
 
-#demand-panel .tab-content{ padding:10px 0;padding-left: 7.5%;  background-color: #fff }
+#demand-panel .nav-tabs{ margin-bottom: 0 }
+#demand-panel .nav-tabs > li > a{ background-color: #FFF; border: 1px solid #DDD; padding:15px 30px; margin-left:25px; text-transform: uppercase; font-size: 1.5rem }
+#demand-panel .nav-tabs > li.active > a{ border-bottom:1px solid #fff }
+#demand-panel .nav-gru > li:first-of-type { margin-left: 190px }
+#demand-panel .nav-tabs .dropdown-menu{ padding: 0px 26px; border: 0; min-width: 300px }
+#demand-panel .nav-tabs .dropdown-menu li{ width:281px }
+
+#demand-panel .tab-content{ padding:10px 0; background-color: #fff; min-height: 800px }
+
 #demand-panel .tab-content table{ color: #BEBEBE }
 #demand-panel .tab-content table tr:first-of-type{ background-color: #fff; color: #000  }
 #demand-panel .tab-content table th{ border-top: 0; text-transform: uppercase }
 #demand-panel .tab-content table td{color: #656565 }
 #demand-panel .tab-content>.tab-pane ul{ padding-left: 0 }
 #demand-panel .tab-content>.tab-pane h3{ font-family: "Montserrat-Regular"; font-size: 2rem }
-#demand-panel .tab-content>.tab-pane>ul>li{ padding-left: 0; border-bottom: 1px solid  #DDD; padding-bottom: 30px }
+#demand-panel .tab-content>.tab-pane>ul>li{ padding-left: 0; padding-bottom: 30px }
 #demand-panel .tab-content>.tab-pane ul li ul li a{ font-family: "Montserrat-Regular";font-size: 1.25rem; text-transform: uppercase; padding:10px; border-radius: 7px }
+
 
 /* FILTERS */
 #filter{ font-size: 1.2rem; color:#000;margin:35px 0;}
@@ -93,8 +113,8 @@ table.table-hover tr:hover{ cursor: pointer }
 
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px) {
-  #demand-panel .nav-tabs > li:first-of-type { margin-left: 80px }
-  #demand-panel .nav-tabs > li > a { padding: 15px 15px; margin-left: 10px }
+.nav-tabs > li:first-of-type { margin-left: 80px }
+.nav-tabs > li > a { padding: 15px 15px; margin-left: 10px }
 }
 
 /* Small Devices, Tablets */
@@ -102,23 +122,31 @@ table.table-hover tr:hover{ cursor: pointer }
   .gru-wrapper{ padding: 15px}
   .gru-360 { min-height: 640px }
   .h1, .h2, .h3, h1, h2, h3 { margin-top: 0; margin-bottom: 5px }
-  #demand-panel .nav-tabs > li:first-of-type { margin-left: 50px }
-  #demand-panel .nav-tabs > li > a { padding: 15px 10px; margin-left: 10px; font-size: 1.2rem }
-  #demand-panel .nav-tabs .dropdown-menu { padding: 0 11px }
+  .nav-tabs > li:first-of-type { margin-left: 50px }
+  .nav-tabs > li > a { padding: 15px 10px; margin-left: 10px; font-size: 1.2rem }
+  .nav-tabs .dropdown-menu { padding: 0 11px }
+
   #demand-panel{ margin:auto -30px }
+  #demand-panel-detail { margin-left: 0 }
+  #demand-panel-detail #header-right{ border-left: 0; min-height: auto;  margin-left: 0 }
 }
 
 @media screen and (max-width: 560px) {
-  .gru-wrapper{ margin-top: 60px}
+  .gru-wrapper{ margin-top: 60px }
   .h1, .h2, .h3, h1, h2, h3 { margin-top: 0; margin-bottom: 5px }
 }
 
 /* Extra Small Devices, Phones */
 @media only screen and (max-width : 480px) {
   .gru-wrapper{ margin-top: 0 }
-  #demand-panel .nav-tabs > li:first-of-type { margin-left: 15px }
-  #demand-panel .nav-tabs > li > a { padding: 15px 5px; margin-left: 5px; font-size: 1rem }
-  #demand-panel .nav-tabs .dropdown-menu { padding: 0 6px }
+  #customer-panel { height: auto }
+  #customer-panel h2{ margin-left: 2.5rem; font-size: 2.5rem }
+  #customer-panel .btn{ font-size: 1.2rem }
+  .nav-tabs > li:first-of-type { margin-left: 15px }
+  .nav-tabs > li > a { padding: 15px 5px; margin-left: 5px; font-size: 1rem }
+  .nav-tabs .dropdown-menu { margin-left: -180px }
+  .nav-tabs .dropdown-menu { padding: 0 6px }
+
   .gru-wrapper #no-content{ min-height:640px; width:80%  }
   .gru-wrapper #no-content img{ left:80%; width:50%  }
 }
