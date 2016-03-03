@@ -35,8 +35,8 @@ INSERT INTO ticketing_ticket_category (id_ticket_category, id_ticket_domain, lab
 (7, 210, "Problème tarifaire périscolaire" , "FFTARIFPERISCO", 2, 301, 20 ), 
  -- affecte a section tarifaire peri
 (8, 210, "Problème tarifaire petite enfance" , "FFTARIFPE", 1, 301, 21 ),
--- affecte a MIB
-(9, 210, "Autre" , NULL, 3, 301, 11 ); 
+-- affecte a Tulipe FF
+(9, 210, "Autre" , NULL, 3, 301, 12 ); 
 
 DELETE FROM ticketing_user_title ;
 INSERT INTO ticketing_user_title (id_user_title, label) VALUES
@@ -70,4 +70,4 @@ INSERT INTO ticketing_support_entity (id_support_entity, name, level, id_unit, i
 (1, 'SN1 Facil Famille ', 1, 2, -1, 210), 
 (2, 'SN2 Facil Famille tarif. Petite Enfance. ', 2, 21, -1, 210), 
 (3, 'SN2 Facil Famille tarif. périscolaire', 3, 20, -1, 210),
-(4, 'SN3 DFPE ', 3, 4, -1, 210);
+(4, 'SN3 DFPE ', 3, 40, -1, 210);

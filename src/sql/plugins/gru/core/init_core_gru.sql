@@ -6,6 +6,7 @@ DELETE FROM core_feature_group WHERE id_feature_group LIKE "GRU%";
 INSERT INTO core_feature_group VALUES ('GRU','gru.features.group.gru.description','gru.features.group.gru.label',0);
 INSERT INTO core_feature_group VALUES ('GRU_ADMIN','gru.features.group.gru_admin.description','gru.features.group.gru_admin.label',0);
 
+
 --
 -- Data for table core_admin_right
 --
@@ -106,30 +107,24 @@ INSERT INTO core_admin_role_resource ( rbac_id , role_key, resource_type, resour
 DELETE FROM core_admin_user WHERE id_user >= 10 AND id_user <= 50;
 INSERT INTO core_admin_user VALUES 
 (10,'gruadmin','GRU','Administrateur','gruadmin@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(11,'gru1','GRU niveau 1','Agent','gru1@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(12,'gru2','GRU niveau 2','Agent','gru2@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(13,'gru3','GRU niveau 3','Agent','gru3@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(20,'dom','GRU niv 1 - Agent DOM','Dominique','dom@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(21,'ale','GRU niv 1 - Agent ALE','Alexia','ale@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(22,'gui','GRU niv 1 - Agent GUI','Guillaume','gui@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(23,'lau','GRU niv 2 - Agent LAU','Laura','lau@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(24,'max','GRU niv 2 - Agent MAX','Maxime','max@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(25,'ber','GRU niv 2 - Agent BER','Bernard','ber@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(26,'vic','GRU niv 3 - Agent VIC','Victor','vic@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(27,'mar','GRU niv 1 - Agent MAR','Marie','mar@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(28,'ant','GRU niv 3 - Agent ANT','Antoine','ant@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(29,'jul','GRU niv 3 - Agent JUL','Jules','jul@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(30,'vla','GRU niv 2 - Agent VLA','Vladimir','vla@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all');
+(20,'dom','Durant','Dominique','dom@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(21,'ale','Dupont','Alexia','ale@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(22,'gui','Martin','Guillaume','gui@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(23,'lau','Dubois','Laura','lau@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(24,'max','Petit','Maxime','max@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(25,'ber','Morel','Bernard','ber@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(26,'vic','Roussel','Victor','vic@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(27,'mar','Fontaine','Marie','mar@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(28,'ant','Chevalier','Antoine','ant@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(29,'jul','Robin','Jules','jul@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(30,'vla','Perrin','Vladimir','vla@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all');
 
-
+UPDATE core_admin_user SET password = 'grudemo!' WHERE access_code = 'admin'; 
 
 DELETE FROM core_user_role WHERE role_key LIKE 'gru_%';
 INSERT INTO core_user_role ( role_key , id_user ) VALUES
 ( 'gru_admin' , 1 ),
 ( 'gru_admin' , 10 ),
-( 'gru_level_1' , 11 ),
-( 'gru_level_2' , 12 ),
-( 'gru_level_3' , 13 ),
 
 ( 'gru_dom_recl_facilfamille', 21), -- Alexia
 ( 'gru_level_1', 21),
@@ -158,10 +153,10 @@ INSERT INTO core_user_role ( role_key , id_user ) VALUES
 ( 'gru_dom_info_stationnement', 25), -- Bernard
 ( 'gru_level_2', 25),
 
-( 'gru_dom_info_stationnement', 28), -- Antoine
+( 'gru_dom_recl_facilfamille', 28), -- Antoine
 ( 'gru_level_3', 28),
 
-( 'gru_dom_recl_facilfamille', 29), -- Jules
+( 'gru_dom_info_stationnement', 29), -- Jules
 ( 'gru_level_3', 29),
 
 ( 'gru_dom_recl_facilfamille', 30), -- Vladimir
@@ -174,9 +169,6 @@ INSERT INTO core_user_right ( id_user , id_right ) VALUES
 ( 10 , 'GRU_DEMAND_MANAGEMENT' ),
 ( 10 , 'GRU_MANAGEMENT' ),
 ( 10 , 'GRU_DOMAIN_MANAGEMENT' ),
-( 11 , 'GRU_MANAGEMENT' ),
-( 12 , 'GRU_MANAGEMENT' ),
-( 13 , 'GRU_MANAGEMENT' ),
 ( 14 , 'GRU_MANAGEMENT' ),
 ( 15 , 'GRU_MANAGEMENT' ),
 ( 16 , 'GRU_MANAGEMENT' ),
@@ -195,9 +187,6 @@ INSERT INTO core_user_right ( id_user , id_right ) VALUES
 ( 29 , 'GRU_MANAGEMENT' ),
 ( 30 , 'GRU_MANAGEMENT' ),
 ( 10 , 'TICKETING_TICKETS_MANAGEMENT' ),
-( 11 , 'TICKETING_TICKETS_MANAGEMENT' ),
-( 12 , 'TICKETING_TICKETS_MANAGEMENT' ),
-( 13 , 'TICKETING_TICKETS_MANAGEMENT' ),
 ( 14 , 'TICKETING_TICKETS_MANAGEMENT' ),
 ( 15 , 'TICKETING_TICKETS_MANAGEMENT' ),
 ( 16 , 'TICKETING_TICKETS_MANAGEMENT' ),
@@ -216,9 +205,6 @@ INSERT INTO core_user_right ( id_user , id_right ) VALUES
 ( 29 , 'TICKETING_TICKETS_MANAGEMENT' ),
 ( 30 , 'TICKETING_TICKETS_MANAGEMENT' ),
 ( 10 , 'TICKETING_USER_PREFERENCES_MANAGEMENT' ),
-( 11 , 'TICKETING_USER_PREFERENCES_MANAGEMENT' ),
-( 12 , 'TICKETING_USER_PREFERENCES_MANAGEMENT' ),
-( 13 , 'TICKETING_USER_PREFERENCES_MANAGEMENT' ),
 ( 14 , 'TICKETING_USER_PREFERENCES_MANAGEMENT' ),
 ( 15 , 'TICKETING_USER_PREFERENCES_MANAGEMENT' ),
 ( 16 , 'TICKETING_USER_PREFERENCES_MANAGEMENT' ),

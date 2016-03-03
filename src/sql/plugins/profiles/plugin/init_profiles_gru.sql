@@ -96,8 +96,8 @@ INSERT INTO profile_user (profile_key, id_user) VALUES
 ('PROF_GRU_LEVEL1_Mairie', 20), -- Dominique 
 ('PROF_GRU_LEVEL1_Mairie', 22), -- Guillaume
 ('PROF_GRU_LEVEL2_Station', 25), -- Bernard
-('PROF_GRU_LEVEL3_Station', 28), -- Antoine
-('PROF_GRU_LEVEL3_FacilFam', 29), -- Jules
+('PROF_GRU_LEVEL3_FacilFam', 28), -- Antoine
+('PROF_GRU_LEVEL3_Station', 29), -- Jules
 ('PROF_GRU_LEVEL2_FacilFam', 30) -- Vladimir
 ;
 

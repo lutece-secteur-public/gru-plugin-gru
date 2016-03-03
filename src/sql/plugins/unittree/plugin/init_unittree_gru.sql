@@ -8,6 +8,7 @@ INSERT INTO unittree_unit (id_unit, id_parent, label, description) VALUES (0,-1,
 INSERT INTO unittree_unit (id_unit, id_parent, label, description) VALUES (1,0,'DICOM','Direction de la communication');
 INSERT INTO unittree_unit (id_unit, id_parent, label, description) VALUES (10,1,'3975','Centre d\'appel du 3975');
 INSERT INTO unittree_unit (id_unit, id_parent, label, description) VALUES (11,1,'MIB','Message in the bottle');
+INSERT INTO unittree_unit (id_unit, id_parent, label, description) VALUES (12,1,'Tulip FF','Tulipe Facil Famille');
 INSERT INTO unittree_unit (id_unit, id_parent, label, description) VALUES (2,0,'Equipe FF','Equipe Facil Famille');
 INSERT INTO unittree_unit (id_unit, id_parent, label, description) VALUES (20,2,'Fact. périscolaire','Section facturation périscolaire');
 INSERT INTO unittree_unit (id_unit, id_parent, label, description) VALUES (21,2,'Fact. petite enfance','Section facturation petite enfance');
@@ -26,9 +27,8 @@ DELETE FROM unittree_unit_user ;
 
 INSERT INTO unittree_unit_user (id_unit, id_user) VALUES (0,1);
 INSERT INTO unittree_unit_user (id_unit, id_user) VALUES (0,10);
-INSERT INTO unittree_unit_user (id_unit, id_user) VALUES (11,11);
 INSERT INTO unittree_unit_user (id_unit, id_user) VALUES (10,20);
-INSERT INTO unittree_unit_user (id_unit, id_user) VALUES (10,21);
+INSERT INTO unittree_unit_user (id_unit, id_user) VALUES (12,21);
 INSERT INTO unittree_unit_user (id_unit, id_user) VALUES (11,22);
 INSERT INTO unittree_unit_user (id_unit, id_user) VALUES (20,24);
 INSERT INTO unittree_unit_user (id_unit, id_user) VALUES (21,23);
@@ -36,5 +36,5 @@ INSERT INTO unittree_unit_user (id_unit, id_user) VALUES (30,25);
 INSERT INTO unittree_unit_user (id_unit, id_user) VALUES (40,26);
 INSERT INTO unittree_unit_user (id_unit, id_user) VALUES (60,27);
 INSERT INTO unittree_unit_user (id_unit, id_user) VALUES (5,28);
-INSERT INTO unittree_unit_user (id_unit, id_user) VALUES (4,29);
+INSERT INTO unittree_unit_user (id_unit, id_user) VALUES (3,29);
 INSERT INTO unittree_unit_user (id_unit, id_user) VALUES (2,30);
