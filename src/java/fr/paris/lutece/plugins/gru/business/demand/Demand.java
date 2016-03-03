@@ -52,6 +52,7 @@ public class Demand extends BaseDemand
     private List<Action> _listActions = new ArrayList<Action>(  );
     private String _strStatusForCustomer;
     private String _strStatusForGRU;
+    private boolean _bShowDetails;
 
     /** Constructor */
     public Demand(  )
@@ -187,6 +188,10 @@ public class Demand extends BaseDemand
         _strStatusForGRU = strStatusForGRU;
     }
 
+    /**
+     * The first notification date
+     * @return The first notification date
+     */
     public String getFirstNotificationDate(  )
     {
         if ( ( _listNotifications != null ) && !_listNotifications.isEmpty(  ) )
@@ -197,6 +202,10 @@ public class Demand extends BaseDemand
         return NO_DATE;
     }
 
+    /**
+     * The last notification date
+     * @return The last notification date
+     */
     public String getLastNotificationDate(  )
     {
         if ( ( _listNotifications != null ) && !_listNotifications.isEmpty(  ) )
@@ -205,5 +214,23 @@ public class Demand extends BaseDemand
         }
 
         return NO_DATE;
+    }
+
+    /**
+     * Set the flag to show or not details
+     * @param bShowDetails the flag value
+     */
+    public void setShowDetails( boolean bShowDetails )
+    {
+        _bShowDetails = bShowDetails;
+    }
+    
+    /**
+     * Return true if details can be shown otherwise false.
+     * @return The display details flag
+     */
+    public boolean showDetails(  )
+    {
+        return _bShowDetails;
     }
 }

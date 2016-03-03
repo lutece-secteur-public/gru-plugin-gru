@@ -23,6 +23,7 @@
                <strong class="text-gru">${notification.date!'Date missing'}</strong>
                <strong>${notification.title!'Title missing'}</strong>
             </p>
+            <#if demand.showDetails>
             <ul class="timeline">
               <#if notification.userDashboard ??>
                 <li>
@@ -67,6 +68,7 @@
                       <div class="timeline-footer"></div>
                     </div>
                   </li>
+                </#if>
                 </#if>
             </#list>
         </ul>

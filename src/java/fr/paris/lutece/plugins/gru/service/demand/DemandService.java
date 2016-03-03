@@ -36,8 +36,12 @@ package fr.paris.lutece.plugins.gru.service.demand;
 import fr.paris.lutece.plugins.gru.business.customer.Customer;
 import fr.paris.lutece.plugins.gru.business.demand.BaseDemand;
 import fr.paris.lutece.plugins.gru.business.demand.Demand;
+import fr.paris.lutece.plugins.gru.business.demandtype.DemandType;
+import fr.paris.lutece.plugins.gru.business.demandtype.DemandTypeHome;
+import fr.paris.lutece.plugins.gru.business.domain.BusinessDomain;
 import fr.paris.lutece.plugins.gru.service.demandtype.DemandTypeService;
 import fr.paris.lutece.portal.business.user.AdminUser;
+import fr.paris.lutece.portal.service.rbac.RBACService;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 
 import java.util.ArrayList;
@@ -45,7 +49,7 @@ import java.util.List;
 
 
 /**
- * DemandeService
+ * Demande Service
  */
 public class DemandService
 {
@@ -69,6 +73,8 @@ public class DemandService
     /**
      * Return a Demand object from an Id
      * @param strDemandId The Demand Id
+     * @param strDemandTypeId
+     * @param user The Admin User
      * @return The demand
      */
     public static Demand getDemand( String strDemandId, String strDemandTypeId, AdminUser user )
@@ -76,6 +82,7 @@ public class DemandService
         Demand demand = getService(  ).getDemand( strDemandId, strDemandTypeId, user );
 
         demand.setTitle( DemandTypeService.getTypeLabel( strDemandTypeId ) );
+        demand.setShowDetails( isDetailsAuthorized( strDemandTypeId , user ) ); 
 
         return demand;
     }
@@ -83,6 +90,8 @@ public class DemandService
     /**
      * Gets a list of demand for a given Customer
      * @param customer The customer
+     * @param user The admin user
+     * @param nStatus The status
      * @return The list
      */
     public static List<Demand> getDemands( Customer customer, AdminUser user, int nStatus )
@@ -94,7 +103,10 @@ public class DemandService
         {
             if ( base.getStatus(  ) == nStatus )
             {
-                listDemand.add( DemandTypeService.buildDemand( base, customer, user ) );
+                if( isAuthorized( base , user ) )
+                {    
+                    listDemand.add( DemandTypeService.buildDemand( base, customer, user ) );
+                }
             }
         }
 
@@ -105,6 +117,7 @@ public class DemandService
      * Gets a list of demand for a given Customer filtered by types
      * @param customer The customer
      * @param listExcludedTypes excluded types
+     * @param user The admin user
      * @return The list
      */
     public static List<Demand> getDemandsExcludingTypes( Customer customer, List<String> listExcludedTypes,
@@ -117,7 +130,10 @@ public class DemandService
         {
             if ( !listExcludedTypes.contains( base.getDemandTypeId(  ) ) )
             {
-                listDemand.add( DemandTypeService.buildDemand( base, customer, user ) );
+                if( isAuthorized( base , user ) )
+                {    
+                    listDemand.add( DemandTypeService.buildDemand( base, customer, user ) );
+                }
             }
         }
 
@@ -128,6 +144,7 @@ public class DemandService
      * Gets a list of demand for a given Customer filtered by types
      * @param customer The customer
      * @param listIncludedTypes included types
+     * @param user The admin user
      * @return The list
      */
     public static List<Demand> getDemandsIncludingTypes( Customer customer, List<String> listIncludedTypes,
@@ -140,10 +157,42 @@ public class DemandService
         {
             if ( listIncludedTypes.contains( base.getDemandTypeId(  ) ) )
             {
-                listDemand.add( DemandTypeService.buildDemand( base, customer, user ) );
+                if( isAuthorized( base , user ) )
+                {    
+                    listDemand.add( DemandTypeService.buildDemand( base, customer, user ) );
+                }
             }
         }
 
         return listDemand;
+    }
+
+    /**
+     * Check if the user can view the demand
+     * @param base The base demand
+     * @param user The Admin User
+     * @return true if authorized
+     */
+    private static boolean isAuthorized( BaseDemand base, AdminUser user )
+    {
+        int nDemandTypeId = Integer.parseInt( base.getDemandTypeId() );
+        DemandType type = DemandTypeHome.findByPrimaryKey( nDemandTypeId );
+        String strBusinessDomainId = String.valueOf( type.getBusinessDomainId() );
+        return RBACService.isAuthorized( BusinessDomain.RESOURCE_TYPE, strBusinessDomainId, BusinessDomain.PERMISSION_VIEW_SUMMARY , user) 
+                || RBACService.isAuthorized( BusinessDomain.RESOURCE_TYPE, strBusinessDomainId, BusinessDomain.PERMISSION_VIEW_DETAILS , user);
+    }
+    
+    /**
+     * Check if the user can view details
+     * @param strDemandTypeId The demand Id type
+     * @param user The admin user
+     * @return true if authorized
+     */
+    private static boolean isDetailsAuthorized( String strDemandTypeId , AdminUser user )
+    {
+        int nDemandTypeId = Integer.parseInt( strDemandTypeId );
+        DemandType type = DemandTypeHome.findByPrimaryKey( nDemandTypeId );
+        String strBusinessDomainId = String.valueOf( type.getBusinessDomainId() );
+        return RBACService.isAuthorized( BusinessDomain.RESOURCE_TYPE, strBusinessDomainId, BusinessDomain.PERMISSION_VIEW_DETAILS , user);
     }
 }
