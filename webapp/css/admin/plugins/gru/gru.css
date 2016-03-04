@@ -5,7 +5,7 @@
 .bg-gru-dark{ background-color: #0C3B59; color: #fff }
 .btn-back{ color:#fff; border-radius: 0 }
 .btn-back:hover{ color:#fff; border-radius: 0 }
-.btn-border{ border: 1px solid #fff; border-radius: 5px; color:#fff; text-transform: uppercase; font-size: 1.4rem; vertical-align: center; padding:6px 35px;}
+.btn-border{ border: 1px solid #fff; border-radius: 5px; color:#fff; text-transform: uppercase; font-size: 1.2rem; vertical-align: center; padding:6px 12px}
 .btn-border:hover, .btn-border:active, .btn-border:focus, .btn-border:visited, .btn.bg-gru-dark:hover, .btn.bg-gru-light:hover{ color:#fff }
 
 .top{ margin-top: 2rem }
@@ -28,8 +28,8 @@ table.table-hover tr:hover{ cursor: pointer }
 /* CUSTOMER */
 .gru-wrapper{ margin: -15px; background: #fff }
 
-.gru-360{ min-height: 840px; background: url(../../../../images/admin/skin/plugins/gru/fond_360.jpg); background-size:cover }
-.gru-360{ min-height: 840px; background: url(../../../../images/admin/skin/8DKFMK9UNW.jpg); background-size:cover }
+/*.gru-360{ min-height: 840px; background: url(../../../../images/admin/skin/plugins/gru/fond_360.jpg); background-size:cover }*/
+.gru-360{ min-height: 840px; background-image: url(../../../../images/admin/skin/plugins/gru/360.png), url(../../../../images/admin/skin/8DKFMK9UNW.jpg); background-repeat: no-repeat, no-repeat; background-position: right top, left top; background-size: 50px 50px , cover;}
 
 .gru-360 .table{ margin-top:15px;  background-color: #fff; opacity: 0.7 }
 .gru-360 .table:hover{ opacity: 1 }
@@ -75,9 +75,9 @@ table.table-hover tr:hover{ cursor: pointer }
 #demand-panel .nav-tabs{ margin-bottom: 0 }
 #demand-panel .nav-tabs > li > a{ background-color: #FFF; border: 1px solid #DDD; padding:15px 30px; margin-left:25px; text-transform: uppercase; font-size: 1.5rem }
 #demand-panel .nav-tabs > li.active > a{ border-bottom:1px solid #fff }
-#demand-panel .nav-gru > li:first-of-type { margin-left: 190px }
 #demand-panel .nav-tabs .dropdown-menu{ padding: 0px 26px; border: 0; min-width: 300px }
 #demand-panel .nav-tabs .dropdown-menu li{ width:281px }
+.nav-gru > li:first-of-type { margin-left: 190px }
 
 #demand-panel .tab-content{ padding:10px 0; background-color: #fff; min-height: 800px }
 
@@ -89,7 +89,6 @@ table.table-hover tr:hover{ cursor: pointer }
 #demand-panel .tab-content>.tab-pane h3{ font-family: "Montserrat-Regular"; font-size: 2rem }
 #demand-panel .tab-content>.tab-pane>ul>li{ padding-left: 0; padding-bottom: 30px }
 #demand-panel .tab-content>.tab-pane ul li ul li a{ font-family: "Montserrat-Regular";font-size: 1.25rem; text-transform: uppercase; padding:10px; border-radius: 7px }
-
 
 /* FILTERS */
 #filter{ font-size: 1.2rem; color:#000;margin:35px 0;}
@@ -109,18 +108,27 @@ table.table-hover tr:hover{ cursor: pointer }
 /*==========  Non-Mobile First Method  ==========*/
 /* Large Devices, Wide Screens */
 @media only screen and (max-width : 1200px) {
+  .nav-gru > li:first-of-type {	margin-left: 120px }
+  .nav-gru > li > a {	font-size: 1.3rem }
+  .btn-border span{ font-size: 0.9rem }
+
 }
 
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px) {
-.nav-tabs > li:first-of-type { margin-left: 80px }
-.nav-tabs > li > a { padding: 15px 15px; margin-left: 10px }
+  .nav-gru > li:first-of-type {	margin-left: 80px }
+
 }
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px) {
-  .gru-wrapper{ padding: 15px}
+  .nav-gru > li:first-of-type {	margin-left: 40px }
+  #demand-panel .nav-gru > li > a {	font-size: 1.2rem;}
   .gru-360 { min-height: 640px }
+  #customer-panel {	height: 70px }
+
+
+  /*
   .h1, .h2, .h3, h1, h2, h3 { margin-top: 0; margin-bottom: 5px }
   .nav-tabs > li:first-of-type { margin-left: 50px }
   .nav-tabs > li > a { padding: 15px 10px; margin-left: 10px; font-size: 1.2rem }
@@ -129,16 +137,23 @@ table.table-hover tr:hover{ cursor: pointer }
   #demand-panel{ margin:auto -30px }
   #demand-panel-detail { margin-left: 0 }
   #demand-panel-detail #header-right{ border-left: 0; min-height: auto;  margin-left: 0 }
+  */
 }
 
 @media screen and (max-width: 560px) {
+  .nav-gru > li:first-of-type {	margin-left: 10px }
+  #demand-panel .nav-gru > li > a {	padding: 15px 15px;	margin-left: 5px; font-size: 1rem;}
+
+  /*
   .gru-wrapper{ margin-top: 60px }
   .h1, .h2, .h3, h1, h2, h3 { margin-top: 0; margin-bottom: 5px }
+  */
 }
 
 /* Extra Small Devices, Phones */
 @media only screen and (max-width : 480px) {
-  .gru-wrapper{ margin-top: 0 }
+
+  /*
   #customer-panel { height: auto }
   #customer-panel h2{ margin-left: 2.5rem; font-size: 2.5rem }
   #customer-panel .btn{ font-size: 1.2rem }
@@ -146,6 +161,7 @@ table.table-hover tr:hover{ cursor: pointer }
   .nav-tabs > li > a { padding: 15px 5px; margin-left: 5px; font-size: 1rem }
   .nav-tabs .dropdown-menu { margin-left: -180px }
   .nav-tabs .dropdown-menu { padding: 0 6px }
+  */
 
   .gru-wrapper #no-content{ min-height:640px; width:80%  }
   .gru-wrapper #no-content img{ left:80%; width:50%  }
