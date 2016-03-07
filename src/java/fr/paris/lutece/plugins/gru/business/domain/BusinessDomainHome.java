@@ -120,5 +120,4 @@ public final class BusinessDomainHome
     {
         return _dao.selectIdBusinessDomainsList( _plugin );
     }
-    
 }

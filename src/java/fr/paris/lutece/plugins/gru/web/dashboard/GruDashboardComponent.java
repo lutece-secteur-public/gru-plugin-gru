@@ -31,8 +31,6 @@
  *
  * License 1.0
  */
-
-
 package fr.paris.lutece.plugins.gru.web.dashboard;
 
 import fr.paris.lutece.plugins.gru.business.customer.CustomerHome;
@@ -48,10 +46,13 @@ import fr.paris.lutece.portal.service.plugin.PluginService;
 import fr.paris.lutece.portal.service.template.AppTemplateService;
 import fr.paris.lutece.util.html.HtmlTemplate;
 import fr.paris.lutece.util.url.UrlItem;
+
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
+
 
 /**
  * GruDashboardComponent
@@ -59,6 +60,7 @@ import javax.servlet.http.HttpServletRequest;
 public class GruDashboardComponent extends DashboardComponent
 {
     private static final String PROPERTY_CUSTOMERS_COUNT = "gru.dashboard.customersCount";
+
     // MARKS
     private static final String MARK_URL = "url";
     private static final String MARK_ICON = "icon";
@@ -82,13 +84,14 @@ public class GruDashboardComponent extends DashboardComponent
         UrlItem url = new UrlItem( right.getUrl(  ) );
         url.addParameter( PARAMETER_PLUGIN_NAME, right.getPluginName(  ) );
 
-        Object[] arguments = { CustomerHome.getCustomersCount() };
-        String strCustomersCount = I18nService.getLocalizedString( PROPERTY_CUSTOMERS_COUNT, arguments, user.getLocale() );
-        
+        Object[] arguments = { CustomerHome.getCustomersCount(  ) };
+        String strCustomersCount = I18nService.getLocalizedString( PROPERTY_CUSTOMERS_COUNT, arguments,
+                user.getLocale(  ) );
+
         Map<String, Object> model = new HashMap<String, Object>(  );
         model.put( MARK_URL, url.getUrl(  ) );
         model.put( MARK_ICON, plugin.getIconUrl(  ) );
-        model.put( MARK_CUSTOMERS_COUNT , strCustomersCount );
+        model.put( MARK_CUSTOMERS_COUNT, strCustomersCount );
         model.put( Constants.MARK_AUTOCOMPLETE, SearchService.instance(  ).isAutoComplete(  ) );
         model.put( Constants.MARK_AUTOCOMPLETE_URL, SearchService.instance(  ).getAutoCompleteUrl(  ) );
 

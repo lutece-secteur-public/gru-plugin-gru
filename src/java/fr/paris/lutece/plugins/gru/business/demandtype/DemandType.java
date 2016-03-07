@@ -110,59 +110,58 @@ public class DemandType implements Serializable
     {
         _strTitle = strTitle;
     }
-    
-      /**
-        * Returns the BusinessDomainId
-        * @return The BusinessDomainId
-        */ 
-    public int getBusinessDomainId()
+
+    /**
+      * Returns the BusinessDomainId
+      * @return The BusinessDomainId
+      */
+    public int getBusinessDomainId(  )
     {
         return _nBusinessDomainId;
     }
-    
-       /**
-        * Sets the BusinessDomainId
-        * @param nBusinessDomainId The BusinessDomainId
-        */ 
+
+    /**
+     * Sets the BusinessDomainId
+     * @param nBusinessDomainId The BusinessDomainId
+     */
     public void setBusinessDomainId( int nBusinessDomainId )
     {
         _nBusinessDomainId = nBusinessDomainId;
     }
-    
+
     /**
      * Returns the BusinessDomain
      * @return The BusinessDomain
-     */ 
-    public String getBusinessDomain()
+     */
+    public String getBusinessDomain(  )
     {
         return _strBusinessDomain;
     }
-    
+
     /**
      * Sets the BusinessDomain
      * @param strBusinessDomain The BusinessDomain
-     */ 
+     */
     public void setBusinessDomain( String strBusinessDomain )
     {
         _strBusinessDomain = strBusinessDomain;
-    }  
-    
+    }
+
     /**
      * Returns the BusinessSector
      * @return The BusinessSector
-     */ 
-    public String getBusinessSector()
+     */
+    public String getBusinessSector(  )
     {
         return _strBusinessSector;
     }
-    
+
     /**
      * Sets the BusinessSector
      * @param strBusinessSector The BusinessSector
-     */ 
+     */
     public void setBusinessSector( String strBusinessSector )
     {
         _strBusinessSector = strBusinessSector;
-    }    
-    
+    }
 }

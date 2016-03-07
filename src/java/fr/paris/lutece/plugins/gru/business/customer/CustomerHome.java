@@ -129,12 +129,12 @@ public final class CustomerHome
     {
         return _dao.selectIdCustomersList( _plugin );
     }
-    
+
     /**
      * The number of customers
      * @return The number of customers
      */
-    public static int  getCustomersCount(  )
+    public static int getCustomersCount(  )
     {
         return _dao.selectCustomersCount( _plugin );
     }

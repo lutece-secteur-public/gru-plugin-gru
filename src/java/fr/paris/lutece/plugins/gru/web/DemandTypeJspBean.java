@@ -75,7 +75,6 @@ public class DemandTypeJspBean extends ManageDemandJspBean
     private static final String MARK_DEMANDTYPE_LIST = "demandtype_list";
     private static final String MARK_DEMANDTYPE = "demandtype";
     private static final String MARK_BUSINESS_DOMAINS_LIST = "domains_list";
-
     private static final String JSP_MANAGE_DEMANDTYPES = "jsp/admin/plugins/gru/ManageDemandTypes.jsp";
 
     // Properties
@@ -132,7 +131,7 @@ public class DemandTypeJspBean extends ManageDemandJspBean
 
         Map<String, Object> model = getModel(  );
         model.put( MARK_DEMANDTYPE, _demandtype );
-        model.put( MARK_BUSINESS_DOMAINS_LIST, BusinessDomainService.getDomains( getLocale() ));
+        model.put( MARK_BUSINESS_DOMAINS_LIST, BusinessDomainService.getDomains( getLocale(  ) ) );
 
         return getPage( PROPERTY_PAGE_TITLE_CREATE_DEMANDTYPE, TEMPLATE_CREATE_DEMANDTYPE, model );
     }
@@ -214,7 +213,7 @@ public class DemandTypeJspBean extends ManageDemandJspBean
 
         Map<String, Object> model = getModel(  );
         model.put( MARK_DEMANDTYPE, _demandtype );
-        model.put( MARK_BUSINESS_DOMAINS_LIST, BusinessDomainService.getDomains( getLocale() ));
+        model.put( MARK_BUSINESS_DOMAINS_LIST, BusinessDomainService.getDomains( getLocale(  ) ) );
 
         return getPage( PROPERTY_PAGE_TITLE_MODIFY_DEMANDTYPE, TEMPLATE_MODIFY_DEMANDTYPE, model );
     }

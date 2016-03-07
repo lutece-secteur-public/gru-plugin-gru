@@ -224,7 +224,7 @@ public class Demand extends BaseDemand
     {
         _bShowDetails = bShowDetails;
     }
-    
+
     /**
      * Return true if details can be shown otherwise false.
      * @return The display details flag

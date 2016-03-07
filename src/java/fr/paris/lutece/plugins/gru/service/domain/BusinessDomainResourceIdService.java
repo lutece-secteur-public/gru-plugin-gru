@@ -69,12 +69,12 @@ public class BusinessDomainResourceIdService extends ResourceIdService
         rt.setResourceTypeLabelKey( PROPERTY_LABEL_RESOURCE_TYPE );
 
         Permission pSummary = new Permission(  );
-        pSummary.setPermissionKey(BusinessDomain.PERMISSION_VIEW_SUMMARY );
+        pSummary.setPermissionKey( BusinessDomain.PERMISSION_VIEW_SUMMARY );
         pSummary.setPermissionTitleKey( PROPERTY_LABEL_VIEW_SUMMARY );
         rt.registerPermission( pSummary );
 
         Permission pDetails = new Permission(  );
-        pDetails.setPermissionKey(BusinessDomain.PERMISSION_VIEW_DETAILS );
+        pDetails.setPermissionKey( BusinessDomain.PERMISSION_VIEW_DETAILS );
         pDetails.setPermissionTitleKey( PROPERTY_LABEL_VIEW_DETAILS );
         rt.registerPermission( pDetails );
 

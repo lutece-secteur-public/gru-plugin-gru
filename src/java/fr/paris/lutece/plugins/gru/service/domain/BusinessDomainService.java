@@ -31,24 +31,24 @@
  *
  * License 1.0
  */
-
-
 package fr.paris.lutece.plugins.gru.service.domain;
 
 import fr.paris.lutece.plugins.gru.business.domain.BusinessDomain;
 import fr.paris.lutece.plugins.gru.business.domain.BusinessDomainHome;
 import fr.paris.lutece.portal.service.i18n.I18nService;
 import fr.paris.lutece.util.ReferenceList;
+
 import java.util.List;
 import java.util.Locale;
+
 
 /**
  * Business Domain Service
  */
-public class BusinessDomainService 
+public class BusinessDomainService
 {
     private static final String PROPERTY_RESOURCE_NAME_FORMAT = "gru.rbac.domain.resourceName.format";
-    
+
     /**
      * Get all business domains
      * @param locale The locale
@@ -68,7 +68,5 @@ public class BusinessDomainService
         }
 
         return list;
-        
     }
-
 }

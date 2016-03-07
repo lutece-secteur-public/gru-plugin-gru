@@ -83,7 +83,7 @@ public class DemandService
         Demand demand = getService(  ).getDemand( strDemandId, strDemandTypeId, user );
 
         demand.setTitle( DemandTypeService.getTypeLabel( strDemandTypeId ) );
-        demand.setShowDetails( isDetailsAuthorized( strDemandTypeId , user ) ); 
+        demand.setShowDetails( isDetailsAuthorized( strDemandTypeId, user ) );
 
         return demand;
     }
@@ -104,8 +104,8 @@ public class DemandService
         {
             if ( base.getStatus(  ) == nStatus )
             {
-                if( isAuthorized( base , user ) )
-                {    
+                if ( isAuthorized( base, user ) )
+                {
                     listDemand.add( DemandTypeService.buildDemand( base, customer, user ) );
                 }
             }
@@ -131,8 +131,8 @@ public class DemandService
         {
             if ( !listExcludedTypes.contains( base.getDemandTypeId(  ) ) )
             {
-                if( isAuthorized( base , user ) )
-                {    
+                if ( isAuthorized( base, user ) )
+                {
                     listDemand.add( DemandTypeService.buildDemand( base, customer, user ) );
                 }
             }
@@ -158,8 +158,8 @@ public class DemandService
         {
             if ( listIncludedTypes.contains( base.getDemandTypeId(  ) ) )
             {
-                if( isAuthorized( base , user ) )
-                {    
+                if ( isAuthorized( base, user ) )
+                {
                     listDemand.add( DemandTypeService.buildDemand( base, customer, user ) );
                 }
             }
@@ -176,30 +176,39 @@ public class DemandService
      */
     private static boolean isAuthorized( BaseDemand base, AdminUser user )
     {
-        DemandType type = DemandTypeHome.findByTypeId(  base.getDemandTypeId() );
-        if( type == null )
+        DemandType type = DemandTypeHome.findByTypeId( base.getDemandTypeId(  ) );
+
+        if ( type == null )
         {
-            throw new AppException( "Demand Type missing for ID : " + base.getDemandTypeId() );
+            throw new AppException( "Demand Type missing for ID : " + base.getDemandTypeId(  ) );
         }
-        String strBusinessDomainId = String.valueOf( type.getBusinessDomainId() );
-        return RBACService.isAuthorized( BusinessDomain.RESOURCE_TYPE, strBusinessDomainId, BusinessDomain.PERMISSION_VIEW_SUMMARY , user) 
-                || RBACService.isAuthorized( BusinessDomain.RESOURCE_TYPE, strBusinessDomainId, BusinessDomain.PERMISSION_VIEW_DETAILS , user);
+
+        String strBusinessDomainId = String.valueOf( type.getBusinessDomainId(  ) );
+
+        return RBACService.isAuthorized( BusinessDomain.RESOURCE_TYPE, strBusinessDomainId,
+            BusinessDomain.PERMISSION_VIEW_SUMMARY, user ) ||
+        RBACService.isAuthorized( BusinessDomain.RESOURCE_TYPE, strBusinessDomainId,
+            BusinessDomain.PERMISSION_VIEW_DETAILS, user );
     }
-    
+
     /**
      * Check if the user can view details
      * @param strDemandTypeId The demand Id type
      * @param user The admin user
      * @return true if authorized
      */
-    private static boolean isDetailsAuthorized( String strDemandTypeId , AdminUser user )
+    private static boolean isDetailsAuthorized( String strDemandTypeId, AdminUser user )
     {
         DemandType type = DemandTypeHome.findByTypeId( strDemandTypeId );
-        if( type == null )
+
+        if ( type == null )
         {
             throw new AppException( "Demand Type missing for ID : " + strDemandTypeId );
         }
-        String strBusinessDomainId = String.valueOf( type.getBusinessDomainId() );
-        return RBACService.isAuthorized( BusinessDomain.RESOURCE_TYPE, strBusinessDomainId, BusinessDomain.PERMISSION_VIEW_DETAILS , user);
+
+        String strBusinessDomainId = String.valueOf( type.getBusinessDomainId(  ) );
+
+        return RBACService.isAuthorized( BusinessDomain.RESOURCE_TYPE, strBusinessDomainId,
+            BusinessDomain.PERMISSION_VIEW_DETAILS, user );
     }
 }
