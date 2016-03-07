@@ -11,10 +11,10 @@ INSERT INTO gru_customer (id_customer, id_title, firstname, lastname, has_accoun
 --
 DELETE FROM gru_demand_type ;
 INSERT INTO gru_demand_type ( id_demand_type, demand_type_id ,title, id_business_domain ) VALUES
-(1,100,'Carte de stationnement', 9 ),
-(2,101,'Demande d\'information', 10 ),
-(3,102,'Réclamation', 10 ),
-(4,103,'RDV Urbanisme', 8 );
+(1,100,'Carte de stationnement', 2 ),
+(2,101,'Demande d\'information', 5 ),
+(3,102,'Réclamation', 5 ),
+(4,103,'RDV Urbanisme', 4 );
 
 
 --
@@ -74,5 +74,6 @@ Libertés " (demande d\'information, d\'accès, de rectification, suppression, e
 INSERT INTO gru_business_domain ( id_business_domain, id_business_sector , name, description ) VALUES
 ( 1 , 7 , 'Facil\'Familles', 'Facil\'Familles' ),
 ( 2 , 9 , 'Stationnement' , 'Stationnement' ),
-( 3 , 5 , 'Demandes d\actes d\'état civil', 'Demandes d\actes d\'état civil : naissance, mariage, décès.' ),
-( 4 , 8 , 'Demande d\'urbanisme' ,'Permis de construire, autorisation de travaux, enseignes' );
+( 3 , 5 , 'Demandes d\'actes d\'état civil', 'Demandes d\actes d\'état civil : naissance, mariage, décès.' ),
+( 4 , 8 , 'Demande d\'urbanisme' ,'Permis de construire, autorisation de travaux, enseignes' ),
+( 5 , 10 ,  'Demande Usager', 'Relation usager : demande d\'information ou réclamation');

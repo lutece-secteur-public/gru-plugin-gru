@@ -43,6 +43,7 @@ import fr.paris.lutece.plugins.gru.service.demandtype.DemandTypeService;
 import fr.paris.lutece.portal.business.user.AdminUser;
 import fr.paris.lutece.portal.service.rbac.RBACService;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
+import fr.paris.lutece.portal.service.util.AppException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -175,8 +176,11 @@ public class DemandService
      */
     private static boolean isAuthorized( BaseDemand base, AdminUser user )
     {
-        int nDemandTypeId = Integer.parseInt( base.getDemandTypeId() );
-        DemandType type = DemandTypeHome.findByPrimaryKey( nDemandTypeId );
+        DemandType type = DemandTypeHome.findByTypeId(  base.getDemandTypeId() );
+        if( type == null )
+        {
+            throw new AppException( "Demand Type missing for ID : " + base.getDemandTypeId() );
+        }
         String strBusinessDomainId = String.valueOf( type.getBusinessDomainId() );
         return RBACService.isAuthorized( BusinessDomain.RESOURCE_TYPE, strBusinessDomainId, BusinessDomain.PERMISSION_VIEW_SUMMARY , user) 
                 || RBACService.isAuthorized( BusinessDomain.RESOURCE_TYPE, strBusinessDomainId, BusinessDomain.PERMISSION_VIEW_DETAILS , user);
@@ -190,8 +194,11 @@ public class DemandService
      */
     private static boolean isDetailsAuthorized( String strDemandTypeId , AdminUser user )
     {
-        int nDemandTypeId = Integer.parseInt( strDemandTypeId );
-        DemandType type = DemandTypeHome.findByPrimaryKey( nDemandTypeId );
+        DemandType type = DemandTypeHome.findByTypeId( strDemandTypeId );
+        if( type == null )
+        {
+            throw new AppException( "Demand Type missing for ID : " + strDemandTypeId );
+        }
         String strBusinessDomainId = String.valueOf( type.getBusinessDomainId() );
         return RBACService.isAuthorized( BusinessDomain.RESOURCE_TYPE, strBusinessDomainId, BusinessDomain.PERMISSION_VIEW_DETAILS , user);
     }
