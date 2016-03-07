@@ -14,10 +14,10 @@
         <div class="col-xs-12 col-sm-offset-1 col-sm-6  bg-gru-dark">
           <h2>${customer.firstname} ${customer.lastname}</h2>
           <p>
-             <i class="fa fa-envelope"></i> ${customer.email!""} <#if customer.isEmailVerified && true><i class="fa fa-check-circle-o text-success" title="Email V&eacute;rifi&eacute;"></i></#if>
+             <i class="fa fa-envelope"></i> ${customer.email!""} <#if customer.isEmailVerified && true><i class="fa fa-check text-green" title="Email V&eacute;rifi&eacute;"></i></#if>
           </p>
           <p>
-            <i class="fa fa-phone" ></i> ${customer.mobilePhone!""} <#if customer.isMobilePhoneVerified && true><i class="fa fa-check fa-2x text-success" title="Tel V&eacute;rifi&eacute;"></i></#if>
+            <i class="fa fa-phone" ></i> ${customer.mobilePhone!""} <#if customer.isMobilePhoneVerified && true><i class="fa fa-check text-green" title="Tel V&eacute;rifi&eacute;"></i></#if>
           </p>
           <!-- FIXME -->
           <!--

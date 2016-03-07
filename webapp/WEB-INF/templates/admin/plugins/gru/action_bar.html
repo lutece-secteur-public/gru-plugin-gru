@@ -113,10 +113,10 @@
     <li>
       <ul class="list-group">
         <li class="list-group-item">
-          <i class="fa fa-phone <#if customer.isMobilePhoneVerified >text-success<#else>text-danger</#if>"> </i> ${customer.mobilePhone!""}
+          <i class="fa fa-phone <#if customer.isMobilePhoneVerified >text-green<#else>text-danger</#if>"> </i> ${customer.mobilePhone!""}
         </li>
         <li class="list-group-item">
-          <i class="fa fa-envelope <#if customer.isEmailVerified && true>text-success<#else>text-danger</#if>"></i> ${customer.email!""}
+          <i class="fa fa-envelope <#if customer.isEmailVerified && true>text-green<#else>text-danger</#if>"></i> ${customer.email!""}
         </li>
       </ul>
     </li>
@@ -140,10 +140,10 @@
   <div class="col-xs-12 col-sm-offset-1 col-sm-6">
     <h2>${customer.firstname} ${customer.lastname}</h2>
     <p>
-       <i class="fa fa-envelope hidden-sm"></i> ${customer.email!""} <#if customer.isEmailVerified && true><i class="fa fa-check-circle-o hidden-xs hidden-sm text-success" title="Email V&eacute;rifi&eacute;"></i></#if>
+       <i class="fa fa-envelope hidden-sm"></i> ${customer.email!""} <#if customer.isEmailVerified && true><i class="fa fa-check text-green" title="Email V&eacute;rifi&eacute;"></i></#if>
     </p>
     <p>
-      <i class="fa fa-phone hidden-sm" ></i> ${customer.mobilePhone!""} <#if customer.isMobilePhoneVerified && true><i class="fa fa-check fa-2x hidden-xs hidden-sm text-success" title="Tel V&eacute;rifi&eacute;"></i></#if>
+      <i class="fa fa-phone hidden-sm" ></i> ${customer.mobilePhone!""} <#if customer.isMobilePhoneVerified && true><i class="fa fa-check text-green" title="Tel V&eacute;rifi&eacute;"></i></#if>
     </p>
     <!-- FIXME -->
     <!--

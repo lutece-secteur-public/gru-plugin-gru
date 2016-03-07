@@ -29,7 +29,7 @@ table.table-hover tr:hover{ cursor: pointer }
 .gru-wrapper{ margin: -15px; background: #fff }
 
 /*.gru-360{ min-height: 840px; background: url(../../../../images/admin/skin/plugins/gru/fond_360.jpg); background-size:cover }*/
-.gru-360{ min-height: 840px; background-image: url(../../../../images/admin/skin/plugins/gru/360.png), url(../../../../images/admin/skin/8DKFMK9UNW.jpg); background-repeat: no-repeat, no-repeat; background-position: right top, left top; background-size: 50px 50px , cover;}
+.gru-360{ min-height: 840px; background-image: url(../../../../images/admin/skin/plugins/gru/360_inverse.png), url(../../../../images/admin/skin/plugins/gru/fond_360_2.jpg); background-repeat: no-repeat, no-repeat; background-position: 100px 20px, left top; background-size: 50px 50px, cover;}
 
 .gru-360 .table{ margin-top:15px;  background-color: #fff; opacity: 0.7 }
 .gru-360 .table:hover{ opacity: 1 }
@@ -83,8 +83,10 @@ table.table-hover tr:hover{ cursor: pointer }
 
 #demand-panel .tab-content table{ color: #BEBEBE }
 #demand-panel .tab-content table tr:first-of-type{ background-color: #fff; color: #000  }
-#demand-panel .tab-content table th{ border-top: 0; text-transform: uppercase }
-#demand-panel .tab-content table td{color: #656565 }
+#demand-panel .tab-content table th{ border-top: 0; text-transform: uppercase; max-width:  }
+#demand-panel .tab-content table th i.fa{ font-size: 10px; vertical-align: 2px }
+#demand-panel .tab-content table td{ color: #656565 }
+#demand-panel .tab-content table td .ticket-comments{ max-width: 350px; max-height: 100px; overflow: auto; background: #DDD }
 #demand-panel .tab-content>.tab-pane ul{ padding-left: 0 }
 #demand-panel .tab-content>.tab-pane h3{ font-family: "Montserrat-Regular"; font-size: 2rem }
 #demand-panel .tab-content>.tab-pane>ul>li{ padding-left: 0; padding-bottom: 30px }
