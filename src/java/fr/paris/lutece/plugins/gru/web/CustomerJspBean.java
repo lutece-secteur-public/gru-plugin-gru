@@ -46,11 +46,13 @@ import fr.paris.lutece.plugins.gru.web.actions.model.ActionButton;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionPanel;
 import fr.paris.lutece.portal.service.message.AdminMessage;
 import fr.paris.lutece.portal.service.message.AdminMessageService;
+import fr.paris.lutece.portal.service.util.AppPathService;
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
 import fr.paris.lutece.portal.util.mvc.admin.MVCAdminJspBean;
 import fr.paris.lutece.portal.util.mvc.admin.annotations.Controller;
 import fr.paris.lutece.portal.util.mvc.commons.annotations.Action;
 import fr.paris.lutece.portal.util.mvc.commons.annotations.View;
+import fr.paris.lutece.portal.web.constants.Markers;
 import fr.paris.lutece.portal.web.util.LocalizedPaginator;
 import fr.paris.lutece.util.html.Paginator;
 import fr.paris.lutece.util.url.UrlItem;
@@ -207,6 +209,7 @@ public class CustomerJspBean extends MVCAdminJspBean
             model.put( Constants.MARK_ACTION_PANELS, listPanels );
             model.put( Constants.MARK_CUSTOMER, customer );
             model.put( Constants.MARK_DEMANDS_LIST, listDemands );
+            model.put( Markers.BASE_URL, AppPathService.getBaseUrl( request ) );
 
             return getPage( "", TEMPLATE_VIEW_CUSTOMER_DEMANDS, model );
         }
@@ -228,6 +231,7 @@ public class CustomerJspBean extends MVCAdminJspBean
             model.put( Constants.MARK_ACTION_PANELS, listPanels );
             model.put( Constants.MARK_CUSTOMER, customer );
             model.put( Constants.MARK_DEMANDS_LIST, listDemands );
+            model.put( Markers.BASE_URL, AppPathService.getBaseUrl( request ) );
 
             return getPage( "", TEMPLATE_VIEW_CUSTOMER_OLD_DEMANDS, model );
         }
@@ -303,6 +307,7 @@ public class CustomerJspBean extends MVCAdminJspBean
                 model.put( Constants.MARK_ACTION_PANELS, listPanels );
                 model.put( Constants.MARK_CUSTOMER, customer );
                 model.put( Constants.MARK_DEMAND, demand );
+                model.put( Markers.BASE_URL, AppPathService.getBaseUrl( request ) );
 
                 return getPage( "", TEMPLATE_VIEW_DEMAND, model );
             }
