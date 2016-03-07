@@ -281,6 +281,7 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1251, 'gru_level_1', 'SUPPORT_ENTITY', '1', 'VIEW'), 
 (1252, 'gru_level_1', 'SUPPORT_ENTITY', '2', 'VIEW'), 
 (1253, 'gru_level_1', 'SUPPORT_ENTITY', '3', 'VIEW'), 
+(1254, 'gru_level_1', 'SUPPORT_ENTITY', '5', 'VIEW'), 
 
 -- Attached files
 (1459, 'gru_level_1', 'INSERT_SERVICE', 'librarylinkservice', '*'), -- add attached file
