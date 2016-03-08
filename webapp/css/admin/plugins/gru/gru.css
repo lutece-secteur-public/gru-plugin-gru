@@ -86,9 +86,11 @@ table.table-hover tr:hover{ cursor: pointer }
 #demand-panel .tab-content table th{ border-top: 0; text-transform: uppercase; max-width:  }
 #demand-panel .tab-content table th i.fa{ font-size: 10px; vertical-align: 2px }
 #demand-panel .tab-content table td{ color: #656565 }
-#demand-panel .tab-content table td .ticket-comments{ max-width: 350px; max-height: 100px; overflow: auto; background: #DDD }
+#demand-panel .tab-content table td:nth-of-type(2){ padding-right: 55px; padding-top: 0 }
+#demand-panel .tab-content table td strong.lead{ font-size: 4rem; font-weight: bold  }
+#demand-panel .tab-content table td .ticket-comments{ max-width: 400px; max-height: 100px; overflow: auto; background: #EEE; padding: 10px; border-radius: 8px }
 #demand-panel .tab-content>.tab-pane ul{ padding-left: 0 }
-#demand-panel .tab-content>.tab-pane h3{ font-family: "Montserrat-Regular"; font-size: 2rem }
+#demand-panel .tab-content>.tab-pane h3{ font-family: "Montserrat-Regular"; font-size: 2rem  }
 #demand-panel .tab-content>.tab-pane>ul>li{ padding-left: 0; padding-bottom: 30px }
 #demand-panel .tab-content>.tab-pane ul li ul li a{ font-family: "Montserrat-Regular";font-size: 1.25rem; text-transform: uppercase; padding:10px; border-radius: 7px }
 
