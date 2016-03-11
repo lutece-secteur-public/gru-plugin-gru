@@ -28,9 +28,7 @@ table.table-hover tr:hover{ cursor: pointer }
 /* CUSTOMER */
 .gru-wrapper{ margin: -15px; background: #fff }
 
-/*.gru-360{ min-height: 840px; background: url(../../../../images/admin/skin/plugins/gru/fond_360.jpg); background-size:cover }*/
-.gru-360{ min-height: 840px; background-image: url(../../../../images/admin/skin/plugins/gru/360_inverse.png), url(../../../../images/admin/skin/plugins/gru/fond_360_2.jpg); background-repeat: no-repeat, no-repeat; background-position: 100px 20px, left top; background-size: 50px 50px, cover;}
-
+.gru-360{ min-height: 830px; background-image: url(../../../../images/admin/skin/plugins/gru/360_inverse.png), url(../../../../images/admin/skin/5K3LHRDZ3I.jpg); background-repeat: no-repeat, no-repeat; background-position: 100px 20px, left top; background-size: 50px 50px, cover;}
 .gru-360 .table{ margin-top:15px;  background-color: #fff; opacity: 0.7 }
 .gru-360 .table:hover{ opacity: 1 }
 .gru-360 .ui-autocomplete { position: absolute;cursor: pointer;top: 100%;left: 0;z-index: 1000;float: left;display: none;min-width: 160px;_width: 160px;
@@ -47,13 +45,8 @@ table.table-hover tr:hover{ cursor: pointer }
 #form-user form .input-group-btn button{ width:80px; height:80px; border-top-right-radius:10px; border-bottom-right-radius:10px }
 
 #home-actions a{ margin-top:15px; margin-right: 5px }
-/*
-#customer-panel{ padding: 0; margin-left: -30px; height: 150px; color:#fff }
-*/
+
 #customer-panel{ padding: 0; margin-left: 0; height: 150px; color:#fff }
-/*
-#customer-panel .row{ margin-top: 1rem; width:87%; margin-left: auto;margin-right: auto }
-*/
 #customer-panel p{ font-size: 1.8rem }
 #customer-panel p:first-of-type{ margin-top:20px }
 #customer-panel p#info{ font-size: 1.4rem; font-style: italic }
@@ -66,45 +59,57 @@ table.table-hover tr:hover{ cursor: pointer }
 .gru-wrapper #no-content{ min-height:620px; margin:0 auto; width:100%; text-align: center  }
 .gru-wrapper #no-content img{ position: absolute; top: 60%;left: 60%; margin-top: -250px; margin-left: -250px }
 
-#demand-panel-detail{ padding: 15px 0;	background-color: #F3F7FA; min-height: 800px; margin-left: 65px }
-#demand-panel-detail .panel{ padding: 15px; background-color: #EEE; width:98% }
-#demand-panel-detail #header-right{ border-left: 1px solid #DDD;min-height:600px;margin-top:-15px;padding:20px 20px; margin-left: -25px }
+#demand-panel-detail{ padding: 15px 0 0 80px;	background-color: #F3F7FA; min-height: 800px }
+#demand-panel-detail #header-right{ border-left: 1px solid #DDD; min-height:600px; margin-top:-15px; padding:20px 20px; margin-left: -25px }
+#demand-panel-detail .panel{ padding: 15px; background-color: #EEE }
 
-#demand-panel{ padding: 0;	/*background-color: #F3F7FA;*/ min-height: 800px }
+#demand-panel{ padding: 0; min-height: 800px }
 
 #demand-panel .nav-tabs{ margin-bottom: 0 }
-#demand-panel .nav-tabs > li > a{ background-color: #FFF; border: 1px solid #DDD; padding:15px 30px; margin-left:25px; text-transform: uppercase; font-size: 1.5rem }
-#demand-panel .nav-tabs > li.active > a{ border-bottom:1px solid #fff }
+#demand-panel .nav-tabs.nav-gru { padding-left: 25px }
+#demand-panel .nav-tabs > li > a{ background-color: #EEE; border: 1px solid #DDD; padding:15px 30px; margin-left:15px; text-transform: uppercase; font-size: 1.5rem }
+#demand-panel .nav-tabs > li.active > a{ border-bottom:1px solid #fff; background-color: #FFF }
 #demand-panel .nav-tabs .dropdown-menu{ padding: 0px 26px; border: 0; min-width: 300px }
 #demand-panel .nav-tabs .dropdown-menu li{ width:281px }
+
 .nav-gru > li:first-of-type { margin-left: 190px }
 
-#demand-panel .tab-content{ padding:10px 0; background-color: #fff; min-height: 800px }
+#demand-panel .tab-content{ padding:10px 0 0 90px; background-color: #fff; min-height: 800px }
 
 #demand-panel .tab-content table{ color: #BEBEBE }
 #demand-panel .tab-content table tr:first-of-type{ background-color: #fff; color: #000  }
-#demand-panel .tab-content table th{ border-top: 0; text-transform: uppercase; max-width:  }
+
+#demand-panel .tab-content table th{ border-top: 0; text-transform: uppercase; font-size: 1rem; vertical-align: top; text-align: center }
 #demand-panel .tab-content table th i.fa{ font-size: 10px; vertical-align: 2px }
-#demand-panel .tab-content table td{ color: #656565 }
-#demand-panel .tab-content table td:nth-of-type(2){ padding-right: 55px; padding-top: 0 }
+
+#demand-panel .tab-content table td{ color: #656565; font-size: 1.3rem; text-align: center  }
+#demand-panel .tab-content table td:first-of-type{ width: 140px }
+
+#demand-panel .tab-content table td:nth-of-type(2){ padding-right: 55px; padding-top: 0; width: 130px }
+
+#demand-panel .tab-content table td:nth-of-type(3){ width: 200px }
+#demand-panel .tab-content table td:nth-of-type(4){ width: 400px }
+
+
 #demand-panel .tab-content table td strong.lead{ font-size: 4rem; font-weight: bold  }
-#demand-panel .tab-content table td .ticket-comments{ max-width: 400px; max-height: 100px; overflow: auto; background: #EEE; padding: 10px; border-radius: 8px }
+#demand-panel .tab-content table td .ticket-comments{ max-height: 100px; overflow: auto; background: #EEE; padding: 10px; border-radius: 8px }
+
 #demand-panel .tab-content>.tab-pane ul{ padding-left: 0 }
 #demand-panel .tab-content>.tab-pane h3{ font-family: "Montserrat-Regular"; font-size: 2rem  }
 #demand-panel .tab-content>.tab-pane>ul>li{ padding-left: 0; padding-bottom: 30px }
 #demand-panel .tab-content>.tab-pane ul li ul li a{ font-family: "Montserrat-Regular";font-size: 1.25rem; text-transform: uppercase; padding:10px; border-radius: 7px }
 
 /* FILTERS */
-#filter{ font-size: 1.2rem; color:#000;margin:35px 0;}
-#filter .form-control{ border-color: #000}
-#filter .form-control-static{text-transform: uppercase;}
-#filter select{height:28px;min-width:150px;font-weight:normal; padding:1px;margin:0 15px;background: #FFF;color:#000;border: 1px solid "000"; border-radius: 6px;outline:none;display: inline-block;-webkit-appearance:none;-moz-appearance:none;appearance:none;cursor:pointer}
+#filter{ font-size: 1.2rem; color:#000; margin: 0 0 15px 0 }
+#filter .form-control{ border-color: #000 }
+#filter .form-control-static{ text-transform: uppercase }
+#filter select{ height:20px; min-width:150px; font-weight:normal; padding:1px; margin:0 15px; background: #FFF; color:#000;border: 1px solid "000"; border-radius: 6px; outline:none; display: inline-block; -webkit-appearance:none; -moz-appearance:none; appearance:none; cursor:pointer}
 /* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
 @media screen and (-webkit-min-device-pixel-ratio:0) { #filter select {padding-right:18px} }
 #filter label.select{ position:relative }
 #filter label.select:last-of-type{ margin-right:0 }
-#filter label.select:after{ content:'\f107';color:#606059;font-family: 'FontAwesome';font-size:20px;right:20px; top:0px;position:absolute;pointer-events:none }
-#filter .btn{ color:#fff; min-width: 50px }
+#filter label.select:after{ content:'\f107';color:#606059;font-family: 'FontAwesome'; font-size:15px; right:20px; top:0px; position:absolute; pointer-events:none }
+/*#filter .btn{ color:#fff; min-width: 50px }*/
 
 /* IFRAME */
 .content-header iframe{border:0;}
@@ -115,63 +120,61 @@ table.table-hover tr:hover{ cursor: pointer }
   .nav-gru > li:first-of-type {	margin-left: 120px }
   .nav-gru > li > a {	font-size: 1.3rem }
   .btn-border span{ font-size: 0.9rem }
-
 }
 
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px) {
-  .nav-gru > li:first-of-type {	margin-left: 80px }
-
+  .gru-360 { min-height: 640px }
+  #demand-panel .nav-gru > li:first-of-type {	margin-left: 40px }
+  #demand-panel .nav-gru > li > a {	font-size: 1.2rem;}
 }
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px) {
+  .gru-360 { min-height: 640px }
   .nav-gru > li:first-of-type {	margin-left: 40px }
   #demand-panel .nav-gru > li > a {	font-size: 1.2rem;}
-  .gru-360 { min-height: 640px }
-  #customer-panel {	height: 70px }
 
+  #filter label.select:after{ right: 0 }
 
-  /*
-  .h1, .h2, .h3, h1, h2, h3 { margin-top: 0; margin-bottom: 5px }
-  .nav-tabs > li:first-of-type { margin-left: 50px }
-  .nav-tabs > li > a { padding: 15px 10px; margin-left: 10px; font-size: 1.2rem }
-  .nav-tabs .dropdown-menu { padding: 0 11px }
+  #demand-panel-detail { margin-top: 0; margin-left: 0; padding: 0 }
+  #demand-panel-detail #header-right { border-left: 0; min-height: 0; padding: 5px 10px ; margin: 0 }
+  #demand-panel-detail .panel{ padding: 5px; margin:0 5px 0 -8px }
+  #demand-panel .nav-gru > li > a {	padding: 15px 15px;	margin-left: 5px; font-size: 1rem;}
+  #demand-panel .tab-content {	padding: 10px; min-height: 400px }
 
-  #demand-panel{ margin:auto -30px }
-  #demand-panel-detail { margin-left: 0 }
-  #demand-panel-detail #header-right{ border-left: 0; min-height: auto;  margin-left: 0 }
-  */
+  /* Force table to not be like tables anymore */
+  #demand-panel table, #demand-panel thead, #demand-panel tbody, #demand-panel th, #demand-panel td, #demand-panel tr { display: block; }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  #demand-panel thead tr { position: absolute; top: -9999px; left: -9999px }
+	#demand-panel tr {  border: 1px solid #ccc	}
+	#demand-panel td { font-size: 1.2rem !important; vertical-align: middle; width: auto !important; padding: 0; margin: 0 /* Behave  like a "row" */	border: none;	border-bottom: 1px solid #eee; position: relative;	padding-left: 50%; min-height: 40px	}
+  #demand-panel td strong.lead{ font-size: 1.2rem !important }
+	#demand-panel td:before { /* Now like a table header */	position: absolute;	/* Top/left values mimic padding */	top: 6px;	left: 6px;	width: 45%; padding-right: 10px; 	white-space: nowrap	}
+	/*	Label the data*/
+  #demand-panel.gru td:nth-of-type(1):before { content: "Reference"; }
+  #demand-panel.gru td:nth-of-type(2):before { content: "Ouvert depuis"; }
+  #demand-panel.gru td:nth-of-type(3):before { content: "Type de demande"; }
+	#demand-panel.gru td:nth-of-type(4):before { content: "Statut Usager"; }
+	#demand-panel.gru td:nth-of-type(5):before { content: "Statut GRU"; }
 }
 
 @media screen and (max-width: 560px) {
-  .nav-gru > li:first-of-type {	margin-left: 10px }
-  #demand-panel .nav-gru > li > a {	padding: 15px 15px;	margin-left: 5px; font-size: 1rem;}
-
-  /*
-  .gru-wrapper{ margin-top: 60px }
-  .h1, .h2, .h3, h1, h2, h3 { margin-top: 0; margin-bottom: 5px }
-  */
+  .gru-360{ min-height: 640px; padding:100px 0 0 10px }
+  #demand-panel .nav-gru{ padding-left: 0; margin-left: 0 }
+  #demand-panel   .nav-gru > li:first-of-type {	margin-left: 10px }
+  #customer-panel p{ font-size: 1.4rem }
 }
 
 /* Extra Small Devices, Phones */
 @media only screen and (max-width : 480px) {
-
-  /*
-  #customer-panel { height: auto }
-  #customer-panel h2{ margin-left: 2.5rem; font-size: 2.5rem }
-  #customer-panel .btn{ font-size: 1.2rem }
-  .nav-tabs > li:first-of-type { margin-left: 15px }
-  .nav-tabs > li > a { padding: 15px 5px; margin-left: 5px; font-size: 1rem }
-  .nav-tabs .dropdown-menu { margin-left: -180px }
-  .nav-tabs .dropdown-menu { padding: 0 6px }
-  */
-
   .gru-wrapper #no-content{ min-height:640px; width:80%  }
   .gru-wrapper #no-content img{ left:80%; width:50%  }
+  #demand-panel-detail { margin-top: 0; margin-left: 0 }
 }
 
 /* Custom, iPhone Retina */
 @media only screen and (max-width : 320px) {
-
+  #customer-panel p{ font-size: 1.2rem }
 }

@@ -4,11 +4,11 @@
   <div class="row">
     <div id="form-user" class="col-xs-12 col-sm-offset-2 col-sm-6">
       <!-- search form -->
-        <form action="jsp/admin/plugins/gru/ManageCustomers.jsp" method="get" class="form">
-          <input type="hidden" name="action" value="search" />
+        <form action="jsp/admin/plugins/gru/ManageCustomers.jsp" method="get" class="form" id="search-customer">
+          <input type="hidden" name="action" value="search">
           <label class="sr-only"><i class="fa fa-search"> </i> #i18n{gru.search_customer.title}</label>
           <div class="input-group">
-            <input type="text" name="query" class="form-control input-lg autocomplete" placeholder="#i18n{gru.search_customer.title} : #i18n{gru.search_customer.placeholder}">
+            <input type="text" name="query" id="query" class="form-control input-lg autocomplete" placeholder="#i18n{gru.search_customer.title} : #i18n{gru.search_customer.placeholder}">
             <span class="input-group-btn">
               <button type="submit" name="search" class="btn btn-flat btn-lg" id="search-btn" <#if auto_complete>disabled</#if>>
                 <i class="fa fa-search"></i>
@@ -33,12 +33,7 @@
 <script>
 $( function(){
   $(".content-header").toggle();
-});
-</script>
-
-<#if auto_complete>
-<script>
-$(function() {
+  <#if auto_complete>
     $('.autocomplete').autocomplete({
     	minLength: 3,
         source: function(request, response) {
@@ -55,17 +50,15 @@ $(function() {
                     if(formattedResponse.length > 0){
                         $("#search-btn").removeAttr("disabled");
                     }
-
                 }
             });
-        }
-    });
-    $(".autocomplete").autocomplete({
+        },
         select: function(event, ui) {
-            $(".autocomplete").val(ui.item.first_name+"|"+ui.item.last_name);
+            $(".autocomplete").val( ui.item.first_name+"|"+ui.item.last_name);
+            $(this).val( ui.item.value );
+            $("#search-customer").submit();
         }
     });
+  </#if>
 });
 </script>
-
-</#if>

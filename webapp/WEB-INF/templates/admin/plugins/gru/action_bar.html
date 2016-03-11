@@ -33,7 +33,7 @@
 
 <#macro renderAction action>
   <li><a href="${action.link!" "}" <#if return_url?? && return_url?has_content>return-url="${return_url}"</#if>>
-    <i class="fa fa-circle-o text-${action.color!''}"></i><small>${action.title}</small> 
+    <i class="fa fa-circle-o text-${action.color!''}"></i><small>${action.title}</small>
   </a></li>
 </#macro>
 
@@ -132,20 +132,20 @@
 
 <#macro customerDetails customer>
 <div class="row">
-  <div class="col-xs-12 col-sm-offset-1 col-sm-2">
+  <div class="col-xs-2 col-sm-offset-1 col-sm-2">
     <h2>
-      <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?plugin_name=gru" class="btn btn-border">
+      <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerDemands&id_customer=${customer.id}" class="btn btn-border">
         <i class="fa fa-arrow-left"></i> <span class="hidden-xs"> Retour</span>
       </a>
     </h2>
   </div>
-  <div class="col-xs-12 col-sm-offset-1 col-sm-6">
+  <div class="col-xs-10 col-sm-offset-1 col-sm-8">
     <h2>${customer.firstname} ${customer.lastname}</h2>
     <p>
-       <i class="fa fa-envelope hidden-sm"></i> ${customer.email!""} <#if customer.isEmailVerified && true><i class="fa fa-check text-green" title="Email V&eacute;rifi&eacute;"></i></#if>
+       <i class="fa fa-envelope"></i> ${customer.email!""} <#if customer.isEmailVerified && true><i class="fa fa-check text-green" title="Email V&eacute;rifi&eacute;"></i></#if>
     </p>
     <p>
-      <i class="fa fa-phone hidden-sm" ></i> ${customer.mobilePhone!""} <#if customer.isMobilePhoneVerified && true><i class="fa fa-check text-green" title="Tel V&eacute;rifi&eacute;"></i></#if>
+      <i class="fa fa-phone" ></i> ${customer.mobilePhone!""} <#if customer.isMobilePhoneVerified && true><i class="fa fa-check text-green" title="Tel V&eacute;rifi&eacute;"></i></#if>
     </p>
     <!-- FIXME -->
     <!--
@@ -156,37 +156,65 @@
 </#macro>
 
 <#macro customerFilter>
-<div class="row">
-  <div id="filter" class="col-xs-12 col-sm-12">
-    <form class="form-inline" action="">
-        <div class="form-group">
-            <p class="form-control-static">Filter par :</p>
-        </div>
-        <div class="form-group">
-             <label class="select" for="nature">
-              <select name="nature" id="nature" class="form-control">
-                <option value="all" selected="selected" >Nature</option>
-                <option value="carte">Demande de carte</option>
-                <option value="stationnement">Horaire de stationnement</option>
-                <option value="autre">Autre</option>
-              </select>
-             </label>
-             <label class="select" for="domaine">
-              <select name="domaine" id="domaine" class="form-control">
-                <option value="all" selected="selected" >Domaine</option>
-                <option value="autre">Autre</option>
-              </select>
-             </label>
-             <label class="select" for="since">
-              <select name="since" id="since" class="form-control">
-                <option value="all" selected="selected" >Ouvert depuis</option>
-                <option value="1">1 jours</option>
-                <option value="2">1 semaine</option>
-                <option value="3">1 mois</option>
-              </select>
-             </label>
-        </div>
-    </form>
-  </div>
+<div id="filter">
+  <form class="form-inline" action="">
+    <span class="form-control-static">Filter par :</span>
+    <label class="select" for="nature">
+      <select name="nature" id="nature" class="form-control input-xs">
+        <option value="all" selected="selected" >Nature</option>
+        <option value="carte">Demande de carte</option>
+        <option value="stationnement">Horaire de stationnement</option>
+        <option value="autre">Autre</option>
+      </select>
+     </label>
+     <label class="select" for="domaine">
+      <select name="domaine" id="domaine" class="form-control input-xs">
+        <option value="all" selected="selected" >Domaine</option>
+        <option value="autre">Autre</option>
+      </select>
+     </label>
+     <label class="select" for="since">
+      <select name="since" id="since" class="form-control input-xs">
+        <option value="all" selected="selected" >Ouvert depuis</option>
+        <option value="1">1 jours</option>
+        <option value="2">1 semaine</option>
+        <option value="3">1 mois</option>
+      </select>
+   </label>
+  </form>
 </div>
+</#macro>
+
+
+<#-- Macro messages : display message block for errors or infos -->
+<#macro notification infos=[] type="info" pos="bottom-left">
+  <#-- Error messages handling -->
+  <#-- Info messages handling -->
+  <#if infos??>
+    <#if infos?size &gt; 0 >
+      <div class="notifications ${pos}">
+        <span>
+        <#list infos as info >
+          <i class="fa fa-info-circle"></i> ${info.message} <a class="close" data-dismiss="alert" href="#">x</a><br>
+        </#list>
+        </span>
+      </div>
+    <script src="js/jquery/plugins/bnotify/bootstrap-notify.js"></script>
+    <script>
+    <#list infos as info >
+      var txt = "${info.message}";
+    </#list>
+    $( function(){
+      $(".notifications span").hide();
+      $(".notifications").notify({
+        message: { text: txt + " " },
+        type: '${type}',
+        fadeOut: {
+            delay: Math.floor(Math.random() * 500) + 2500
+            }
+          }).show();
+        });
+        </script>
+      </#if>
+    </#if>
 </#macro>
