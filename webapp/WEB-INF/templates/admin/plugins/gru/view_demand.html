@@ -20,7 +20,7 @@
         <ul class="dropdown-menu" aria-labelledby="demandeTab" id="demandeTab-contents">
           <li>
             <a href="jsp/admin/plugins/ticketing/ManageTickets.jsp?view=createTicket&cid=${customer.id!}&fn=${customer.firstname!}&ln=${customer.lastname!}&ut=${customer.idTitle!}&guid=${customer.accountGuid!}&ph=${customer.mobilePhone!}&em=${customer.email!}"
-                return-url="${base_url}jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerDemands&id_customer=${customer.id!}" >
+                return-url="${return_url}" >
               <i class="fa fa-bullhorn"></i> Nouvelle sollicitation
             </a>
           </li>

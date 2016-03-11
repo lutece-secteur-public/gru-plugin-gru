@@ -32,7 +32,9 @@
 </#macro>
 
 <#macro renderAction action>
-  <li><a href="${action.link!" "}"><i class="fa fa-circle-o text-${action.color!''}"></i><small>${action.title}</small> </a></li>
+  <li><a href="${action.link!" "}" <#if return_url?? && return_url?has_content>return-url="${return_url}"</#if>>
+    <i class="fa fa-circle-o text-${action.color!''}"></i><small>${action.title}</small> 
+  </a></li>
 </#macro>
 
 <#macro actionMenu panels customer>

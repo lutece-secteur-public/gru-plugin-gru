@@ -36,11 +36,14 @@ package fr.paris.lutece.plugins.gru.web;
 import fr.paris.lutece.plugins.gru.business.customer.Customer;
 import fr.paris.lutece.plugins.gru.business.customer.CustomerHome;
 import fr.paris.lutece.plugins.gru.service.CustomerActionsService;
+import fr.paris.lutece.plugins.gru.utils.UrlUtils;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionPanel;
+import fr.paris.lutece.portal.service.util.AppPathService;
 import fr.paris.lutece.portal.util.mvc.admin.MVCAdminJspBean;
 import fr.paris.lutece.portal.util.mvc.admin.annotations.Controller;
 import fr.paris.lutece.portal.util.mvc.commons.annotations.View;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -103,6 +106,8 @@ public class FrameViewJspBean extends MVCAdminJspBean
         String strCustomerId = request.getParameter( Constants.PARAMETER_ID_CUSTOMER );
 
         Customer customer = null;
+        Map<String, String> mapParameters = new HashMap<String, String>(  );
+        mapParameters.put( Constants.PARAMETER_URL_FRAME, UrlUtils.encodeUrl( strUrl ) );
 
         if ( strCustomerId != null )
         {
@@ -110,6 +115,7 @@ public class FrameViewJspBean extends MVCAdminJspBean
             {
                 int nCustomerId = Integer.parseInt( strCustomerId );
                 customer = CustomerHome.findByPrimaryKey( nCustomerId );
+                mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, String.valueOf( customer.getId(  ) ) );
             }
             catch ( NumberFormatException e )
             {
@@ -122,6 +128,9 @@ public class FrameViewJspBean extends MVCAdminJspBean
         model.put( Constants.MARK_ACTION_PANELS, listPanels );
         model.put( Constants.MARK_CUSTOMER, ( customer != null ) ? customer : new Customer(  ) );
         model.put( Constants.MARK_URL_FRAME, strUrl );
+        model.put( Constants.MARK_RETURN_URL,
+            UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath(  ) +
+                getControllerJsp(  ), VIEW_FRAME, mapParameters ) );
 
         return getPage( "", TEMPLATE_FRAME, model );
     }

@@ -64,6 +64,7 @@ public final class Constants
     public static final String MARK_RESULTS_LIST = "results_list";
     public static final String MARK_AUTOCOMPLETE = "auto_complete";
     public static final String MARK_AUTOCOMPLETE_URL = "auto_complete_url";
+    public static final String MARK_RETURN_URL = "return_url";
 
     private Constants(  )
     {

@@ -38,9 +38,9 @@ import fr.paris.lutece.plugins.gru.business.customer.CustomerHome;
 import fr.paris.lutece.plugins.gru.business.demand.Demand;
 import fr.paris.lutece.plugins.gru.service.CustomerActionsService;
 import fr.paris.lutece.plugins.gru.service.demand.DemandService;
-import fr.paris.lutece.plugins.gru.service.feature.FeatureService;
 import fr.paris.lutece.plugins.gru.service.search.CustomerResult;
 import fr.paris.lutece.plugins.gru.service.search.SearchService;
+import fr.paris.lutece.plugins.gru.utils.UrlUtils;
 import fr.paris.lutece.plugins.gru.web.actions.buttons.builders.impl.HomeButtonListBuilder;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionButton;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionPanel;
@@ -52,11 +52,11 @@ import fr.paris.lutece.portal.util.mvc.admin.MVCAdminJspBean;
 import fr.paris.lutece.portal.util.mvc.admin.annotations.Controller;
 import fr.paris.lutece.portal.util.mvc.commons.annotations.Action;
 import fr.paris.lutece.portal.util.mvc.commons.annotations.View;
-import fr.paris.lutece.portal.web.constants.Markers;
 import fr.paris.lutece.portal.web.util.LocalizedPaginator;
 import fr.paris.lutece.util.html.Paginator;
 import fr.paris.lutece.util.url.UrlItem;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -144,6 +144,9 @@ public class CustomerJspBean extends MVCAdminJspBean
         model.put( Constants.MARK_BUTTONS_LIST, _homeButtonListBuilder.buildActionButtonList( customer, getUser(  ) ) );
         model.put( Constants.MARK_AUTOCOMPLETE, SearchService.instance(  ).isAutoComplete(  ) );
         model.put( Constants.MARK_AUTOCOMPLETE_URL, SearchService.instance(  ).getAutoCompleteUrl(  ) );
+        model.put( Constants.MARK_RETURN_URL,
+            UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath(  ) +
+                getControllerJsp(  ), VIEW_SEARCH_CUSTOMER, customer ) );
 
         return getPage( PROPERTY_PAGE_TITLE_SEARCH_CUSTOMER, TEMPLATE_SEARCH_CUSTOMER, model );
     }
@@ -209,7 +212,9 @@ public class CustomerJspBean extends MVCAdminJspBean
             model.put( Constants.MARK_ACTION_PANELS, listPanels );
             model.put( Constants.MARK_CUSTOMER, customer );
             model.put( Constants.MARK_DEMANDS_LIST, listDemands );
-            model.put( Markers.BASE_URL, AppPathService.getBaseUrl( request ) );
+            model.put( Constants.MARK_RETURN_URL,
+                UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath(  ) +
+                    getControllerJsp(  ), VIEW_CUSTOMER_DEMANDS, customer ) );
 
             return getPage( "", TEMPLATE_VIEW_CUSTOMER_DEMANDS, model );
         }
@@ -231,7 +236,9 @@ public class CustomerJspBean extends MVCAdminJspBean
             model.put( Constants.MARK_ACTION_PANELS, listPanels );
             model.put( Constants.MARK_CUSTOMER, customer );
             model.put( Constants.MARK_DEMANDS_LIST, listDemands );
-            model.put( Markers.BASE_URL, AppPathService.getBaseUrl( request ) );
+            model.put( Constants.MARK_RETURN_URL,
+                UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath(  ) +
+                    getControllerJsp(  ), VIEW_CUSTOMER_OLD_DEMANDS, customer ) );
 
             return getPage( "", TEMPLATE_VIEW_CUSTOMER_OLD_DEMANDS, model );
         }
@@ -253,6 +260,9 @@ public class CustomerJspBean extends MVCAdminJspBean
             model.put( Constants.MARK_ACTION_PANELS, listPanels );
             model.put( Constants.MARK_CUSTOMER, customer );
             model.put( Constants.MARK_BUTTONS_LIST, listButtons );
+            model.put( Constants.MARK_RETURN_URL,
+                UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath(  ) +
+                    getControllerJsp(  ), VIEW_CUSTOMER_NEW_DEMANDS, customer ) );
 
             return getPage( "", TEMPLATE_VIEW_CUSTOMER_NEW_DEMANDS, model );
         }
@@ -307,7 +317,15 @@ public class CustomerJspBean extends MVCAdminJspBean
                 model.put( Constants.MARK_ACTION_PANELS, listPanels );
                 model.put( Constants.MARK_CUSTOMER, customer );
                 model.put( Constants.MARK_DEMAND, demand );
-                model.put( Markers.BASE_URL, AppPathService.getBaseUrl( request ) );
+
+                Map<String, String> mapParameters = new HashMap<String, String>(  );
+                mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, String.valueOf( customer.getId(  ) ) );
+                mapParameters.put( Constants.PARAMETER_ID_DEMAND, String.valueOf( demand.getId(  ) ) );
+                mapParameters.put( Constants.PARAMETER_ID_DEMAND_TYPE, String.valueOf( demand.getDemandTypeId(  ) ) );
+
+                model.put( Constants.MARK_RETURN_URL,
+                    UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath(  ) +
+                        getControllerJsp(  ), VIEW_DEMAND, mapParameters ) );
 
                 return getPage( "", TEMPLATE_VIEW_DEMAND, model );
             }

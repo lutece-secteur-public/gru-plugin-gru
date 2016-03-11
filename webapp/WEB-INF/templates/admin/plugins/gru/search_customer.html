@@ -22,13 +22,14 @@
   <div id="home-actions" class="row">
     <div class="col-xs-12 col-sm-offset-2 col-sm-9">
     <#list buttons_list as button>
-      <a class="btn btn-primary bg-${button.color} btn-lg" href="${button.link}">
+      <a class="btn btn-primary bg-${button.color} btn-lg" href="${button.link}" return-url="${return_url}">
         <i class="fa fa-${button.icon}"></i> &nbsp;&nbsp; ${button.title}
       </a>
     </#list>
     </div>
   </div>
 </div>
+<script src="js/plugins/gru/gru.js"></script>
 <script>
 $( function(){
   $(".content-header").toggle();
