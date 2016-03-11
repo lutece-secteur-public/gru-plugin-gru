@@ -48,7 +48,9 @@ INSERT INTO gru_feature ( id_feature, name, link, link_customer_params, target, 
 (3,'Créer une sollicitation','jsp/admin/plugins/ticketing/ManageTickets.jsp?view=createTicket','&ut={user_title}&cid={cid}&fn={firstname}&ln={lastname}&guid={guid}&ph={phone}&em={email}&cid={cid}',1,2,1,1),
 (4,'Prendre un RDV Urbanisme ','https://teleservices.paris.fr/rdvdu/','',0,4,1,1),
 (5,'Réclamation Carte stationnement ','jsp/admin/plugins/ticketing/ManageTickets.jsp?view=createTicket&cat=DVDSSVP','&ut={user_title}&cid={cid}&fn={firstname}&ln={lastname}&guid={guid}&ph={phone}&em={email}&cid={cid}',0,3,2,1),
-(6,'Prendre un RDV Stationnement','https://teleservices.paris.fr/rdvssvp/','',0,3,1,1);
+(6,'Prendre un RDV Stationnement','https://teleservices.paris.fr/rdvssvp/','',0,3,1,1),
+(7,'Motif d\'appel ou de visite','jsp/admin/plugins/ticketing/ManageInstantResponses.jsp?view=createInstantResponse','',1,2,2,1)
+;
 
 
 DELETE FROM gru_business_sector;
