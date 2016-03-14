@@ -31,7 +31,7 @@
  *
  * License 1.0
  */
-package fr.paris.lutece.plugins.gru.business;
+package fr.paris.lutece.plugins.gru.business.domain;
 
 import fr.paris.lutece.test.LuteceTestCase;
 
