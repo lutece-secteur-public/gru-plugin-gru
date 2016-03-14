@@ -1,4 +1,10 @@
 --
+-- Data for table core_portlet
+--
+INSERT INTO `core_portlet` VALUES (95,'HTML_PORTLET',1,'Liens','2016-03-10 17:05:55',0,1,1,100,0,'2016-02-16 16:11:11',1,'none',4369);
+
+
+--
 -- Data for table core_datastore
 --
 
