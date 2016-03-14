@@ -79,4 +79,5 @@ INSERT INTO ticketing_channel (id_channel, label) VALUES
 (2, "Visite"),
 (3, "E-mail"),
 (4, "Twitter"),
-(5, "Web");
+(5, "Facebook"),
+(99, "Guichet (Web)");
