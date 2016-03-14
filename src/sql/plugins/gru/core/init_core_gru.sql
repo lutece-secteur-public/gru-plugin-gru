@@ -1,4 +1,12 @@
 --
+-- Data for table core_datastore
+--
+
+DELETE FROM core_datastore WHERE entity_key='portal.site.site_property.logo_url';
+INSERT INTO core_datastore VALUES('portal.site.site_property.logo_url', 'images/admin/skin/nef_inverse.png');
+
+
+--
 -- Data for table core_feature_group
 --
 
