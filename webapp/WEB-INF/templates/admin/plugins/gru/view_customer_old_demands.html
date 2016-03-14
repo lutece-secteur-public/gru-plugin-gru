@@ -52,16 +52,12 @@
         <div class="row">
           <div class="col-xs-12 col-sm-offset-1 col-sm-9">
           <#if demands_list?size &gt; 0 >
-            <@customerFilter />
             <div role="tabpanel" class="tab-pane active table-responsive">
             <table class="table table-striped table-hover">
             <tr>
-              <th class="col-xs-12 col-sm-1">Reference</th>
-              <th class="col-xs-12 col-sm-1">Trait&eacute; en</th>
-              <th class="col-xs-12 col-sm-4">Type de demande</th>
-              <th class="col-xs-12 col-sm-3">Statut Usager</th>
-              <th class="col-xs-12 col-sm-3">Statut GRU</th>
-              <!-- <th class="col-xs-12 col-sm-1"></th> -->
+              <th class="col-xs-12 col-sm-2">Reference</th>
+              <th class="col-xs-12 col-sm-2">Trait&eacute; en</th>
+              <th class="col-xs-12 col-sm-8">Type de demande</th>
             </tr>
             <#list demands_list as demand>
               <tr data-url="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewDemand&id_demand=${demand.id}&id_demand_type=${demand.demandTypeId}&id_customer=${customer.id}">
@@ -72,8 +68,6 @@
                 </td>
                 <td class="text-center text-gru">${displayTimeOpenedTicket(demand.timeOpenedInMs)}</td>
                 <td>${demand.title}</td>
-                <td class="text-demand">${demand.statusForCustomer!''}</td>
-                <td class="text-demand">${demand.statusForGRU!''}</td>
               </tr>
             </#list>
           </table>

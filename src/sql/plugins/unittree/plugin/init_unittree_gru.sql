@@ -7,7 +7,7 @@ DELETE FROM unittree_unit;
 INSERT INTO unittree_unit (id_unit, id_parent, label, description) VALUES (0,-1,'Mairie de Paris','Mairie de Paris');
 INSERT INTO unittree_unit (id_unit, id_parent, label, description) VALUES (1,0,'DICOM','Direction de la communication');
 INSERT INTO unittree_unit (id_unit, id_parent, label, description) VALUES (10,1,'3975','Centre d\'appel du 3975');
-INSERT INTO unittree_unit (id_unit, id_parent, label, description) VALUES (11,1,'MIB','Message in the bottle');
+INSERT INTO unittree_unit (id_unit, id_parent, label, description) VALUES (11,1,'EMP','Message des parisiens');
 INSERT INTO unittree_unit (id_unit, id_parent, label, description) VALUES (12,1,'Tulip FF','Tulipe Facil Famille');
 INSERT INTO unittree_unit (id_unit, id_parent, label, description) VALUES (2,0,'Equipe FF','Equipe Facil Famille');
 INSERT INTO unittree_unit (id_unit, id_parent, label, description) VALUES (20,2,'Fact. périscolaire','Section facturation périscolaire');
