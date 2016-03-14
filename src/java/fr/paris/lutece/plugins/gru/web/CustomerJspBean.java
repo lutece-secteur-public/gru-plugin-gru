@@ -44,6 +44,7 @@ import fr.paris.lutece.plugins.gru.utils.UrlUtils;
 import fr.paris.lutece.plugins.gru.web.actions.buttons.builders.impl.HomeButtonListBuilder;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionButton;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionPanel;
+import fr.paris.lutece.portal.service.i18n.I18nService;
 import fr.paris.lutece.portal.service.message.AdminMessage;
 import fr.paris.lutece.portal.service.message.AdminMessageService;
 import fr.paris.lutece.portal.service.util.AppPathService;
@@ -58,6 +59,7 @@ import fr.paris.lutece.util.url.UrlItem;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -92,6 +94,7 @@ public class CustomerJspBean extends MVCAdminJspBean
 
     // Properties
     private static final String MESSAGE_CONFIRM_REMOVE_CUSTOMER = "gru.message.confirmRemoveCustomer";
+    private static final String MESSAGE_NO_CUSTOMER_FOUND = "gru.message.noCustomerFound";
     private static final String PROPERTY_DEFAULT_LIST_CUSTOMER_PER_PAGE = "gru.listCustomers.itemsPerPage";
     private static final String VALIDATION_ATTRIBUTES_PREFIX = "gru.model.entity.customer.attribute.";
 
@@ -157,6 +160,13 @@ public class CustomerJspBean extends MVCAdminJspBean
         String strQuery = request.getParameter( Constants.PARAMETER_QUERY );
 
         _listCustomer = SearchService.instance(  ).searchCustomer( strQuery );
+
+        if ( _listCustomer.size(  ) == 0 )
+        {
+            String strError = I18nService.getLocalizedString( MESSAGE_NO_CUSTOMER_FOUND , getLocale() );
+            addError( strError );
+            return redirectView(request, VIEW_SEARCH_CUSTOMER );
+        }
 
         if ( _listCustomer.size(  ) == 1 )
         {
