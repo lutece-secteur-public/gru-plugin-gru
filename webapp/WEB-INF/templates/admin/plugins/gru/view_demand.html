@@ -45,7 +45,7 @@
     </div>
   </div>
   <div id="demand-panel-detail" class="row">
-    <div class="col-xs-12 col-sm-4 col-sm-push-8" id="header-right">
+    <div class="col-xs-12 col-sm-3 col-sm-push-9" id="header-right">
       <p>R&eacute;f&eacute;rence : <strong class="text-gru">${demand.reference!'Reference missing'} </strong>
       <p>Ouvert depuis : <strong class="text-gru">${displayTimeOpenedTicket(demand.timeOpenedInMs)}</strong></p>
       <p>Statut usager : <strong>${demand.statusForCustomer!''}</strong></p>
@@ -64,12 +64,12 @@
       </p>
       <hr class="hidden-xs">
       <#list demand.actions as action>
-       <a class="btn btn-primary btn-flat btn-lg bg-gru-light" href="${action.url}">
+       <a class="btn btn-primary btn-flat btn-lg bg-gru-light btn-block" href="${action.url}">
          <i class="fa fa-pencil"></i> ${action.name}
       </a>
      </#list>
     </div>
-    <div class="col-xs-12 col-sm-8 col-sm-pull-4" id="content-right">
+    <div class="col-xs-12 col-sm-9 col-sm-pull-3" id="content-right">
       <div class="panel">
           <h2>${demand.title!'Title missing'} </h2>
           <#list demand.notifications as notification>

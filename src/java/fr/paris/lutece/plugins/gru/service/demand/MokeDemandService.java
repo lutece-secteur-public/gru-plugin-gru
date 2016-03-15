@@ -82,7 +82,7 @@ public class MokeDemandService implements IDemandService
         BaseDemand base = getList(  ).get( Integer.parseInt( strDemandId ) );
 
         Customer customer = CustomerHome.findByPrimaryKey( 1 );
-        Demand demand = DemandTypeService.buildDemand( base, customer, user );
+        Demand demand = DemandTypeService.setDemandActions( base, customer, user );
 
         Notification notification = NotificationService.parseJSON( JSON );
         notification.setTimestamp( ( new Date(  ) ).getTime(  ) );

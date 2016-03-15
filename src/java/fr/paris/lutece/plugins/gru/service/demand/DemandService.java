@@ -85,6 +85,7 @@ public class DemandService
         demand.setTitle( DemandTypeService.getTypeLabel( strDemandTypeId ) );
         demand.setShowDetails( isDetailsAuthorized( strDemandTypeId, user ) );
 
+        
         return demand;
     }
 
@@ -106,7 +107,7 @@ public class DemandService
             {
                 if ( isAuthorized( base, user ) )
                 {
-                    listDemand.add( DemandTypeService.buildDemand( base, customer, user ) );
+                    listDemand.add( DemandTypeService.setDemandActions( base, customer, user ) );
                 }
             }
         }
@@ -133,7 +134,7 @@ public class DemandService
             {
                 if ( isAuthorized( base, user ) )
                 {
-                    listDemand.add( DemandTypeService.buildDemand( base, customer, user ) );
+                    listDemand.add( DemandTypeService.setDemandActions( base, customer, user ) );
                 }
             }
         }
@@ -160,7 +161,7 @@ public class DemandService
             {
                 if ( isAuthorized( base, user ) )
                 {
-                    listDemand.add( DemandTypeService.buildDemand( base, customer, user ) );
+                    listDemand.add( DemandTypeService.setDemandActions( base, customer, user ) );
                 }
             }
         }

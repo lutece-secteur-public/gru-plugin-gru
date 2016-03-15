@@ -38,6 +38,7 @@ import fr.paris.lutece.plugins.gru.business.customer.CustomerHome;
 import fr.paris.lutece.plugins.gru.business.demand.Demand;
 import fr.paris.lutece.plugins.gru.service.CustomerActionsService;
 import fr.paris.lutece.plugins.gru.service.demand.DemandService;
+import fr.paris.lutece.plugins.gru.service.demandtype.DemandTypeService;
 import fr.paris.lutece.plugins.gru.service.search.CustomerResult;
 import fr.paris.lutece.plugins.gru.service.search.SearchService;
 import fr.paris.lutece.plugins.gru.utils.UrlUtils;
@@ -321,6 +322,7 @@ public class CustomerJspBean extends MVCAdminJspBean
             {
                 int nId = Integer.parseInt( strId );
                 customer = CustomerHome.findByPrimaryKey( nId );
+                demand = DemandTypeService.setDemandActions( demand, customer, getUser() );
 
                 List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
                 Map<String, Object> model = getModel(  );

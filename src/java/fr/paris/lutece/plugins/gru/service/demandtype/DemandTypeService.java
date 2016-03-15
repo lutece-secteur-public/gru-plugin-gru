@@ -59,9 +59,27 @@ public class DemandTypeService
     private static final String BOOKMARK_ID = "{id}";
     private static Map<String, DemandType> _mapDemandTypes = new HashMap<String, DemandType>(  );
 
-    public static Demand buildDemand( BaseDemand base, Customer customer, AdminUser user )
+    /**
+     * Create a demand with actions from a base demand
+     * @param base A base demand
+     * @param customer The customer
+     * @param user The Admin User
+     * @return The demand
+     */
+    public static Demand setDemandActions( BaseDemand base, Customer customer, AdminUser user )
     {
-        Demand demand = new Demand( base );
+        return setDemandActions( new Demand( base ) , customer, user );
+    }
+    
+    /**
+     * Add actions to a given demand with actions from a base demand
+     * @param demand A demand
+     * @param customer The customer
+     * @param user The Admin User
+     * @return The demand
+     */
+    public static Demand setDemandActions( Demand demand, Customer customer, AdminUser user )
+    {
         DemandType type = _mapDemandTypes.get( demand.getDemandTypeId(  ) );
 
         if ( type == null )

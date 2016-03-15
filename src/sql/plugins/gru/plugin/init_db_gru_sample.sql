@@ -22,8 +22,8 @@ INSERT INTO gru_demand_type ( id_demand_type, demand_type_id ,title, id_business
 --
 DELETE FROM gru_demand_type_action  ;
 INSERT INTO gru_demand_type_action ( id_demand_type_action, id_demand_type, action_label, action_link ) VALUES
-( 1 , 2 , 'Gérer la demande' , 'jsp/admin/plugins/ticketing/ManageTickets.jsp?view=modifyTicket&id={id}' ),
-( 2 , 3 , 'Gérer la réclamation' , 'jsp/admin/plugins/ticketing/ManageTickets.jsp?view=modifyTicket&id={id}' ),
+( 1 , 2 , 'Gérer la demande' , 'jsp/admin/plugins/ticketing/TicketView.jsp?id={id}' ),
+( 2 , 3 , 'Gérer la réclamation' , 'jsp/admin/plugins/ticketing/TicketView.jsp?id={id}' ),
 ( 3 , 4 , 'Accéder au RDV' , 'jsp/admin/plugins/appointment/ManageAppointments.jsp?view=viewAppointment&id_appointment={id}' ),
 ( 4 , 1 , 'Faire une réclamation' , 'jsp/admin/plugins/ticketing/ManageTickets.jsp?view=createTicket&cat=DVDSSVP&fn={firstname}&ut={user_title}&cid={cid}&ln={lastname}&guid={guid}&ph={phone}&em={email}');
 
