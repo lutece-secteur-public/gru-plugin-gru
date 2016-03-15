@@ -13,29 +13,19 @@
       <@tabs tab="newDemands" customer=customer />
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active">
-
-          <#assign group="">
-          <#list buttons_list?sort_by("icon") as button>
-            <#if group != button.icon>
-              <#assign group=button.icon>
-              <#if group !="">
-                </ul>
-                <hr style="margin-left:-80px; border-color: #CBCCCE">
-              </#if>
-
-              <h2><i class="fa fa-${button.icon} fa-fw text-${button.color}"></i> Groupe </h2>
+          <#list buttons_groups_list as group>
+            <hr style="margin-left:-80px; border-color: #CBCCCE">
+            <h2><i class="fa fa-${group.icon} fa-fw text-${group.badgeColor}"></i> ${group.title}</h2>
               <ul class="list-inline list-unstyled">
-            </#if>
-            <li>
-              <a class="btn bg-${button.color}" href="${button.link}">
-                <i class="fa fa-${button.icon}"></i> ${button.title}
-              </a>
-            </li>
+              <#list group.actions as button>    
+                <li>
+                  <a class="btn bg-${button.color}" href="${button.link}">
+                    <i class="fa fa-${button.icon}"></i> ${button.title}
+                  </a>
+                </li>
+            </#list>
+              </ul>
           </#list>
-          <!-- TODO ajouter groupe par type -->
-        <!--
-          <@actionTree panels=panels customer=customer />
-        -->
         </div>
       </div>
     </div>

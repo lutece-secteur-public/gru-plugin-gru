@@ -40,11 +40,14 @@ import fr.paris.lutece.plugins.gru.business.feature.FeatureCategoryHome;
 import fr.paris.lutece.plugins.gru.service.feature.FeatureService;
 import fr.paris.lutece.plugins.gru.web.actions.buttons.builders.ButtonListBuilder;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionButton;
+import fr.paris.lutece.plugins.gru.web.actions.model.ActionGroup;
 import fr.paris.lutece.portal.business.user.AdminUser;
 import fr.paris.lutece.portal.service.rbac.RBACService;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -75,5 +78,41 @@ public class HomeButtonListBuilder implements ButtonListBuilder
         }
 
         return listButtons;
+    }
+    
+    
+    /**
+     * {@inheritDoc }
+     */
+    @Override
+    public List<ActionGroup> buildButtonGroupList( Customer customer, AdminUser user )
+    {
+        Map<String, ActionGroup> map = new HashMap<String, ActionGroup>();
+        
+        for ( Feature feature : FeatureService.getHomeFeatures(  ) )
+        {
+            if ( RBACService.isAuthorized( feature, Feature.PERMISSION_ACCESS, user ) )
+            {
+                FeatureCategory category = FeatureCategoryHome.findByPrimaryKey( feature.getIdCategory(  ) );
+                ActionGroup group = map.get( category.getName() ); 
+                if( group == null )
+                {
+                    group = new ActionGroup();
+                    group.setTitle( category.getName());
+                    group.setIcon(  category.getIcon());
+                    group.setBadgeColor( category.getColor() );
+                    map.put( category.getName() , group );
+                }
+                ActionButton button = new ActionButton(  );
+                button.setTitle( feature.getName(  ) );
+                button.setLink( FeatureService.getCustomerLink( feature, customer ) );
+                button.setIcon( category.getIcon(  ) );
+                button.setColor( category.getColor(  ) );
+                group.addActionItem( button );
+            }
+        }
+
+        return new ArrayList( map.values());
+        
     }
 }

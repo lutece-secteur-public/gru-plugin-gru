@@ -35,7 +35,9 @@ package fr.paris.lutece.plugins.gru.web.actions.buttons.builders;
 
 import fr.paris.lutece.plugins.gru.business.customer.Customer;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionButton;
+import fr.paris.lutece.plugins.gru.web.actions.model.ActionGroup;
 import fr.paris.lutece.portal.business.user.AdminUser;
+import java.util.Collection;
 
 import java.util.List;
 
@@ -52,4 +54,12 @@ public interface ButtonListBuilder
      * @return The panel
      */
     List<ActionButton> buildActionButtonList( Customer customer, AdminUser user );
+    
+    /**
+     * Build a collection of ButtonGroup
+     * @param customer The customer
+     * @param user The user
+     * @return The list
+     */
+    List<ActionGroup> buildButtonGroupList( Customer customer, AdminUser user );
 }

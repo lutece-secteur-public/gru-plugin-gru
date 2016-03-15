@@ -44,6 +44,7 @@ import fr.paris.lutece.plugins.gru.service.search.SearchService;
 import fr.paris.lutece.plugins.gru.utils.UrlUtils;
 import fr.paris.lutece.plugins.gru.web.actions.buttons.builders.impl.HomeButtonListBuilder;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionButton;
+import fr.paris.lutece.plugins.gru.web.actions.model.ActionGroup;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionPanel;
 import fr.paris.lutece.portal.service.i18n.I18nService;
 import fr.paris.lutece.portal.service.message.AdminMessage;
@@ -265,12 +266,12 @@ public class CustomerJspBean extends MVCAdminJspBean
         if ( customer != null )
         {
             List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
-            List<ActionButton> listButtons = _homeButtonListBuilder.buildActionButtonList( customer, getUser(  ) );
+            List<ActionGroup> listButtonsGroups = _homeButtonListBuilder.buildButtonGroupList( customer, getUser(  ) );
 
             Map<String, Object> model = getModel(  );
             model.put( Constants.MARK_ACTION_PANELS, listPanels );
             model.put( Constants.MARK_CUSTOMER, customer );
-            model.put( Constants.MARK_BUTTONS_LIST, listButtons );
+            model.put( Constants.MARK_BUTTONS_GROUPS_LIST, listButtonsGroups );
             model.put( Constants.MARK_RETURN_URL,
                 UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath(  ) +
                     getControllerJsp(  ), VIEW_CUSTOMER_NEW_DEMANDS, customer ) );

@@ -60,6 +60,7 @@ public final class Constants
     public static final String MARK_DEMAND = "demand";
     public static final String MARK_FEATURES_LIST = "features_list";
     public static final String MARK_BUTTONS_LIST = "buttons_list";
+    public static final String MARK_BUTTONS_GROUPS_LIST = "buttons_groups_list";
     public static final String MARK_COLORS_LIST = "colors_list";
     public static final String MARK_RESULTS_LIST = "results_list";
     public static final String MARK_AUTOCOMPLETE = "auto_complete";
