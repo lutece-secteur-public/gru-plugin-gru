@@ -76,6 +76,8 @@ table.table-hover tr:hover{ cursor: pointer }
 
 #demand-panel .tab-content{ padding:10px 0 0 90px; background-color: #fff; min-height: 800px }
 
+#demand-panel.group .tab-content hr{ margin-left:-80px; border-color: #CBCCCE }
+
 #demand-panel .tab-content table{ color: #BEBEBE }
 #demand-panel .tab-content table tr:first-of-type{ background-color: #fff; color: #000  }
 
