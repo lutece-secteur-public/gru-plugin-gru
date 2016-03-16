@@ -19,9 +19,9 @@ INSERT INTO workflow_action (id_action, name, description, id_workflow, id_state
 			(305,'Assigner à une autre entité','Assigner la sollicitation à une autre entité',301,303,303,1,0,0,6,0),
             (306,'Assigner à un autre agent','Assigner la sollicitation à un autre agent',301,303,303,1,0,0,5,0),
 			(307,'Me l\'assigner','M\'assigner la sollicitation',301,303,303,1,0,0,4,0),
-			(308,'Informations complémentaires','Demander des informations complémentaires à l\'usager',301,303,304,1,0,0,8,0),
+			(308,'Demander compléments','Demander des informations complémentaires à l\'usager',301,303,304,1,0,0,8,0),
 			(309,'Répondre pour l\'usager','Répondre à la place de l\'usager',301,304,303,1,0,0,9,0),
-            (310,'Répondre','Répondre à la sollicitation',301,303,305,1,0,0,10,0),            
+            (310,'Répondre à l''usager','Répondre à l''usager',301,303,305,1,0,0,10,0),            
 			(311, 'Ré-ouvrir la sollicitation', 'Ré-ouvrir la sollicitation close', 301, 305, 303, 1, 0, 0, 11, 0),
             (312, 'Répondre à l\'escalade', 'Répondre à l\'escalade', 301, 303, 303, 1, 0, 0, 12, 0);
 		
