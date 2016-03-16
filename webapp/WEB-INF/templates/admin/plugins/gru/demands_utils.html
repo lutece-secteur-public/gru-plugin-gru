@@ -1,14 +1,32 @@
-<#function displayTimeOpenedTicket time_ms>
+<#function displayTimeOpenedTicket time_ms >
     <#assign days = (time_ms / 86400000)?int>
     <#assign hours = (time_ms / 3600000)?int>
     <#assign minutes = (time_ms / 60000)?int>
+    
     <#if days gte 1>
-        <#return "<strong class=\"lead\">" + days + "</strong><br class=\"hidden-xs\"> #i18n{gru.demands_utils.unitDay}">
+        <#return "" + days + " #i18n{gru.demands_utils.unitDay}">
     <#else>
         <#if hours gte 1>
-          <#return "<strong class=\"lead\">" + days + "</strong><br class=\"hidden-xs\"> #i18n{gru.demands_utils.unitHour}">
+          <#return "" + hours + " #i18n{gru.demands_utils.unitHour}">
         <#else>
-          <#return "<strong class=\"lead\">" + days + "</strong><br class=\"hidden-xs\"> #i18n{gru.demands_utils.unitMinute}">
+          <#return "" + minutes + " #i18n{gru.demands_utils.unitMinute}">
         </#if>
     </#if>
 </#function>
+
+<#function displayTimeOpenedTicket2 time_ms >
+    <#assign days = (time_ms / 86400000)?int>
+    <#assign hours = (time_ms / 3600000)?int>
+    <#assign minutes = (time_ms / 60000)?int>
+    
+    <#if days gte 1>
+    <#return "<strong class=\"lead\">" + days + "</strong><br> #i18n{gru.demands_utils.unitDay}">
+    <#else>
+        <#if hours gte 1>
+          <#return "<strong class=\"lead\">" + hours + "</strong><br> #i18n{gru.demands_utils.unitHour}">
+        <#else>
+          <#return "<strong class=\"lead\">" + minutes + "</strong><br> #i18n{gru.demands_utils.unitMinute}">
+        </#if>
+    </#if>
+</#function>
+
