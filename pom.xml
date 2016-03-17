@@ -20,7 +20,7 @@
             <url>http://dev.lutece.paris.fr/maven_repository</url>
             <layout>default</layout>
         </repository>
-      
+       
     </repositories>
 
     <dependencies>
