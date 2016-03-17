@@ -49,6 +49,7 @@ import fr.paris.lutece.plugins.gru.web.actions.model.ActionPanel;
 import fr.paris.lutece.portal.service.i18n.I18nService;
 import fr.paris.lutece.portal.service.message.AdminMessage;
 import fr.paris.lutece.portal.service.message.AdminMessageService;
+import fr.paris.lutece.portal.service.util.AppLogService;
 import fr.paris.lutece.portal.service.util.AppPathService;
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
 import fr.paris.lutece.portal.util.mvc.admin.MVCAdminJspBean;
@@ -162,9 +163,11 @@ public class CustomerJspBean extends MVCAdminJspBean
         String strQuery = request.getParameter( Constants.PARAMETER_QUERY );
 
         _listCustomer = SearchService.instance(  ).searchCustomer( strQuery );
+        AppLogService.debug( "size listCustomer found :"+ _listCustomer.size( ) );
 
         if ( _listCustomer.size(  ) == 0 )
         {
+        	AppLogService.debug( " if { } listCustomer size = 0 " );
             String strError = I18nService.getLocalizedString( MESSAGE_NO_CUSTOMER_FOUND , getLocale() );
             addError( strError );
             return redirectView(request, VIEW_SEARCH_CUSTOMER );
@@ -172,6 +175,7 @@ public class CustomerJspBean extends MVCAdminJspBean
 
         if ( _listCustomer.size(  ) == 1 )
         {
+        	AppLogService.debug( " if { } listCustomer size = 1 " );
             return redirect( request, VIEW_CUSTOMER_DEMANDS, Constants.PARAMETER_ID_CUSTOMER,
                 _listCustomer.get( 0 ).getId(  ) );
         }
