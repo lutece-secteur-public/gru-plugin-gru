@@ -4,7 +4,7 @@
   <div class="row">
     <div id="form-user" class="col-xs-12 col-sm-offset-2 col-sm-6">
       <!-- search form -->
-        <form action="jsp/admin/plugins/gru/ManageCustomers.jsp" method="get" class="form" id="search-customer">
+        <form action="jsp/admin/plugins/gru/ManageCustomers.jsp" method="get" class="form" id="search-customer" accept-charset="UTF-8">
           <input type="hidden" name="action" value="search">
           <label class="sr-only"><i class="fa fa-search"> </i> #i18n{gru.search_customer.title}</label>
           <div class="input-group">
@@ -40,7 +40,9 @@ $( function(){
     	minLength: 3,
         source: function(request, response) {
             $.ajax({
-                url: "${auto_complete_url}?query=" + encodeURIComponent(request.term),
+            	contentType: "application/json; charset=UTF-8",
+                url: "${auto_complete_url}?query=" + request.term,
+          
                 success: function(data) {
                     var formattedResponse = $.map(data.autocomplete, function(ob) {
                         return {

@@ -60,6 +60,7 @@ import fr.paris.lutece.portal.web.util.LocalizedPaginator;
 import fr.paris.lutece.util.html.Paginator;
 import fr.paris.lutece.util.url.UrlItem;
 
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.List;
@@ -159,12 +160,13 @@ public class CustomerJspBean extends MVCAdminJspBean
     }
 
     @Action( ACTION_SEARCH )
-    public String doSearch( HttpServletRequest request )
+    public String doSearch( HttpServletRequest request ) throws UnsupportedEncodingException 
     {
     	String strQuery = request.getParameter( Constants.PARAMETER_QUERY );
+    	AppLogService.info( "content type request :"+ request.getContentType() );
         AppLogService.info( "Query :"+ strQuery );
-        strQuery = new String(strQuery.getBytes(),Charset.forName("UTF-8"));
-        AppLogService.info( "Query utf:"+ strQuery );
+        AppLogService.info( "Query utf 8 :"+ new String(strQuery.getBytes("UTF-8") ) );
+        
         
         _listCustomer = SearchService.instance(  ).searchCustomer( strQuery );
         AppLogService.debug( "size listCustomer found :"+ _listCustomer.size( ) );
