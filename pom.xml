@@ -46,9 +46,9 @@
     </properties>
 
     <scm>
-        <connection>scm:svn:http://dev.lutece.paris.fr/svn/lutece/applications/gru/plugin-gru/trunk/</connection>
-        <developerConnection>scm:svn:http://dev.lutece.paris.fr/svn/lutece/applications/gru/plugin-gru/trunk/</developerConnection>
-        <url>http://dev.lutece.paris.fr/svn/lutece/applications/gru/plugin-gru/trunk/</url>
+        <connection>scm:git:https://github.com/lutece-secteur-public/gru-plugin-gru.git</connection>
+        <developerConnection>scm:git:https://github.com/lutece-secteur-public/gru-plugin-gru.git</developerConnection>
+        <url>https://github.com/lutece-secteur-public/gru-plugin-gru.git</url>
     </scm>
         
 </project>
