@@ -163,6 +163,7 @@ public class CustomerJspBean extends MVCAdminJspBean
     @Action( ACTION_SEARCH )
     public String doSearch( HttpServletRequest request ) throws UnsupportedEncodingException 
     {
+    	request.setCharacterEncoding("UTF-8");
     	String strQuery = request.getParameter( Constants.PARAMETER_QUERY );
     	AppLogService.info( "content type request :"+ request.getContentType() );
         AppLogService.info( "Query :"+ strQuery );
