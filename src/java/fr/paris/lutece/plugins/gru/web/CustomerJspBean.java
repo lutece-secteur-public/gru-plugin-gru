@@ -62,6 +62,7 @@ import fr.paris.lutece.util.url.UrlItem;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -166,25 +167,27 @@ public class CustomerJspBean extends MVCAdminJspBean
     	AppLogService.info( "content type request :"+ request.getContentType() );
         AppLogService.info( "Query :"+ strQuery );
         AppLogService.info( "Query utf 8 :"+ new String(strQuery.getBytes("UTF-8") ) );
-        
-        
+
         _listCustomer = SearchService.instance(  ).searchCustomer( strQuery );
-        AppLogService.debug( "size listCustomer found :"+ _listCustomer.size( ) );
-        AppLogService.info( "size listCustomer found :"+ _listCustomer.size( ) );
+        AppLogService.debug( "size listCustomer found :" + _listCustomer.size(  ) );
+        AppLogService.info( "size listCustomer found :" + _listCustomer.size(  ) );
 
         if ( _listCustomer.size(  ) == 0 )
         {
-        	AppLogService.debug( " if { } listCustomer size = 0 " );
-        	AppLogService.info( " if { } listCustomer size = 0 " );
-            String strError = I18nService.getLocalizedString( MESSAGE_NO_CUSTOMER_FOUND , getLocale() );
+            AppLogService.debug( " if { } listCustomer size = 0 " );
+            AppLogService.info( " if { } listCustomer size = 0 " );
+
+            String strError = I18nService.getLocalizedString( MESSAGE_NO_CUSTOMER_FOUND, getLocale(  ) );
             addError( strError );
-            return redirectView(request, VIEW_SEARCH_CUSTOMER );
+
+            return redirectView( request, VIEW_SEARCH_CUSTOMER );
         }
 
         if ( _listCustomer.size(  ) == 1 )
         {
-        	AppLogService.debug( " if { } listCustomer size = 1 " );
-        	AppLogService.info( " if { } listCustomer size = 1 " );
+            AppLogService.debug( " if { } listCustomer size = 1 " );
+            AppLogService.info( " if { } listCustomer size = 1 " );
+
             return redirect( request, VIEW_CUSTOMER_DEMANDS, Constants.PARAMETER_ID_CUSTOMER,
                 _listCustomer.get( 0 ).getId(  ) );
         }
@@ -336,7 +339,7 @@ public class CustomerJspBean extends MVCAdminJspBean
             {
                 int nId = Integer.parseInt( strId );
                 customer = CustomerHome.findByPrimaryKey( nId );
-                demand = DemandTypeService.setDemandActions( demand, customer, getUser() );
+                demand = DemandTypeService.setDemandActions( demand, customer, getUser(  ) );
 
                 List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
                 Map<String, Object> model = getModel(  );

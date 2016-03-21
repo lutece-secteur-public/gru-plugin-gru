@@ -85,7 +85,6 @@ public class DemandService
         demand.setTitle( DemandTypeService.getTypeLabel( strDemandTypeId ) );
         demand.setShowDetails( isDetailsAuthorized( strDemandTypeId, user ) );
 
-        
         return demand;
     }
 
