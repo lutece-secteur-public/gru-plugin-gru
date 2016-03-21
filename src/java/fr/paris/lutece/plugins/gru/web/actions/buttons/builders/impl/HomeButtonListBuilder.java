@@ -79,30 +79,31 @@ public class HomeButtonListBuilder implements ButtonListBuilder
 
         return listButtons;
     }
-    
-    
+
     /**
      * {@inheritDoc }
      */
     @Override
     public List<ActionGroup> buildButtonGroupList( Customer customer, AdminUser user )
     {
-        Map<String, ActionGroup> map = new HashMap<String, ActionGroup>();
-        
+        Map<String, ActionGroup> map = new HashMap<String, ActionGroup>(  );
+
         for ( Feature feature : FeatureService.getHomeFeatures(  ) )
         {
             if ( RBACService.isAuthorized( feature, Feature.PERMISSION_ACCESS, user ) )
             {
                 FeatureCategory category = FeatureCategoryHome.findByPrimaryKey( feature.getIdCategory(  ) );
-                ActionGroup group = map.get( category.getName() ); 
-                if( group == null )
+                ActionGroup group = map.get( category.getName(  ) );
+
+                if ( group == null )
                 {
-                    group = new ActionGroup();
-                    group.setTitle( category.getName());
-                    group.setIcon(  category.getIcon());
-                    group.setBadgeColor( category.getColor() );
-                    map.put( category.getName() , group );
+                    group = new ActionGroup(  );
+                    group.setTitle( category.getName(  ) );
+                    group.setIcon( category.getIcon(  ) );
+                    group.setBadgeColor( category.getColor(  ) );
+                    map.put( category.getName(  ), group );
                 }
+
                 ActionButton button = new ActionButton(  );
                 button.setTitle( feature.getName(  ) );
                 button.setLink( FeatureService.getCustomerLink( feature, customer ) );
@@ -112,7 +113,6 @@ public class HomeButtonListBuilder implements ButtonListBuilder
             }
         }
 
-        return new ArrayList( map.values());
-        
+        return new ArrayList( map.values(  ) );
     }
 }

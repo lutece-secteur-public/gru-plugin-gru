@@ -68,9 +68,9 @@ public class DemandTypeService
      */
     public static Demand setDemandActions( BaseDemand base, Customer customer, AdminUser user )
     {
-        return setDemandActions( new Demand( base ) , customer, user );
+        return setDemandActions( new Demand( base ), customer, user );
     }
-    
+
     /**
      * Add actions to a given demand with actions from a base demand
      * @param demand A demand
