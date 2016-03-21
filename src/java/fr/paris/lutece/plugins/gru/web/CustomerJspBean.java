@@ -60,6 +60,7 @@ import fr.paris.lutece.portal.web.util.LocalizedPaginator;
 import fr.paris.lutece.util.html.Paginator;
 import fr.paris.lutece.util.url.UrlItem;
 
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -161,7 +162,8 @@ public class CustomerJspBean extends MVCAdminJspBean
     public String doSearch( HttpServletRequest request )
     {
         String strQuery = request.getParameter( Constants.PARAMETER_QUERY );
-
+        strQuery = new String(strQuery.getBytes(),Charset.forName("UTF-8"));
+        
         _listCustomer = SearchService.instance(  ).searchCustomer( strQuery );
         AppLogService.debug( "size listCustomer found :"+ _listCustomer.size( ) );
         AppLogService.info( "size listCustomer found :"+ _listCustomer.size( ) );
