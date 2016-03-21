@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<plug-in>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><plug-in>
     <name>gru</name>
     <class>fr.paris.lutece.portal.service.plugin.PluginDefaultImplementation</class>
     <version>0.9.0</version>
-    <documentation></documentation>
-    <installation></installation>
-    <changes></changes>
-    <user-guide></user-guide>
+    <documentation/>
+    <installation/>
+    <changes/>
+    <user-guide/>
     <description>gru.plugin.description</description>
     <provider>gru.plugin.provider</provider>
     <provider-url>http://fr.luece.paris.fr</provider-url>
@@ -27,7 +26,7 @@
             <feature-description>gru.adminFeature.ManageAdminGRU.description</feature-description>
             <feature-level>0</feature-level>
             <feature-url>jsp/admin/plugins/gru/ManageFeatures.jsp</feature-url>
-            <feature-icon-url></feature-icon-url>
+            <feature-icon-url/>
         </admin-feature>
         <admin-feature>
             <feature-id>GRU_MANAGEMENT</feature-id>
@@ -35,7 +34,7 @@
             <feature-description>gru.adminFeature.ManageCustomers.description</feature-description>
             <feature-level>0</feature-level>
             <feature-url>jsp/admin/plugins/gru/ManageCustomers.jsp</feature-url>
-            <feature-icon-url></feature-icon-url>
+            <feature-icon-url/>
         </admin-feature>
         <admin-feature>
             <feature-id>GRU_DEMAND_MANAGEMENT</feature-id>
@@ -43,7 +42,7 @@
             <feature-description>gru.adminFeature.ManageDemand.description</feature-description>
             <feature-level>0</feature-level>
             <feature-url>jsp/admin/plugins/gru/ManageDemandTypes.jsp</feature-url>
-            <feature-icon-url></feature-icon-url>
+            <feature-icon-url/>
         </admin-feature>
         <admin-feature>
             <feature-id>GRU_DOMAIN_MANAGEMENT</feature-id>
@@ -51,7 +50,7 @@
             <feature-description>gru.adminFeature.ManageDomainGru.description</feature-description>
             <feature-level>0</feature-level>
             <feature-url>jsp/admin/plugins/gru/ManageBusinessDomains.jsp</feature-url>
-            <feature-icon-url></feature-icon-url>
+            <feature-icon-url/>
       </admin-feature>
     </admin-features>    
     
