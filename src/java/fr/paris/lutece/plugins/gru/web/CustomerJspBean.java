@@ -161,8 +161,10 @@ public class CustomerJspBean extends MVCAdminJspBean
     @Action( ACTION_SEARCH )
     public String doSearch( HttpServletRequest request )
     {
-        String strQuery = request.getParameter( Constants.PARAMETER_QUERY );
+    	String strQuery = request.getParameter( Constants.PARAMETER_QUERY );
+        AppLogService.info( "Query :"+ strQuery );
         strQuery = new String(strQuery.getBytes(),Charset.forName("UTF-8"));
+        AppLogService.info( "Query utf:"+ strQuery );
         
         _listCustomer = SearchService.instance(  ).searchCustomer( strQuery );
         AppLogService.debug( "size listCustomer found :"+ _listCustomer.size( ) );
