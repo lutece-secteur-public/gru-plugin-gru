@@ -73,10 +73,12 @@
       <div class="panel">
           <h2>${demand.title!'Title missing'} </h2>
           <#list demand.notifications as notification>
+            <#if notification.userDashboard ??>
             <p>
                <strong class="text-gru">${notification.date!'Date missing'}</strong>
                <strong>${notification.title!'Title missing'}</strong>
             </p>
+            </#if>
           <#if demand.showDetails>
             <ul class="timeline">
             
