@@ -79,6 +79,7 @@
             </p>
           <#if demand.showDetails>
             <ul class="timeline">
+            
               <#if notification.userDashboard ??>
                 <li>
                   <i class="fa fa-user bg-gru-cat2"></i>
@@ -101,9 +102,9 @@
                       Email envoy&eacute; &agrave; l'adresse <span>${notification.email.recipient!'recipient missing'}</span>
                     </h4>
                     <div class="timeline-body">
-                      <em>Objet <strong>${notification.email.subject}</strong></em>
+                      <em>Objet <strong>${notification.email.subject!'subject missing'}</strong></em>
                       <br>
-                      ${notification.email.message}
+                      ${notification.email.message!'message missing'}
                     </div>
                     <div class="timeline-footer"></div>
                   </div>
