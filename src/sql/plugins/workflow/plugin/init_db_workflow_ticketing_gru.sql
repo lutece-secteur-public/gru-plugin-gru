@@ -7,8 +7,8 @@ INSERT INTO workflow_state (id_state, name, description, id_workflow, is_initial
 	VALUES	(301,'Nouveau','Nouveau',301,1,0,NULL,1),
 			(302,'A qualifier','A qualifier',301,0,0,NULL,2),
 			(303,'A traiter','A traiter',301,0,0,NULL,3),
-			(304,'En attente d\'informations de l\'usager','En attente d\'informations de l\'usager',301,0,0,NULL,4),
-			(305,'Clos','Clos',301,0,0,NULL,5);
+			(304,'En attente de compléments par l''usager','En attente de compléments par l''usager',301,0,0,NULL,4),
+			(305,'Traité','Traité',301,0,0,NULL,5);
 
 DELETE FROM workflow_action WHERE id_workflow >= 300 AND id_workflow < 400;
 INSERT INTO workflow_action (id_action, name, description, id_workflow, id_state_before, id_state_after, id_icon, is_automatic, is_mass_action, display_order, is_automatic_reflexive_action) 
