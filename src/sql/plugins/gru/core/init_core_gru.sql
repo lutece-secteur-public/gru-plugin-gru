@@ -265,7 +265,6 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 -- full right on ticketing resources for gru_admin role 
 (1101, 'gru_admin', 'ticket', '*', '*'), 
 (1110, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '301', '*'), -- init 
-(1111, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '302', '*'), -- qualify
 (1112, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '303', '*'), -- requalify
 (1113, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '304', '*'), -- assign up
 (1114, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '305', '*'), -- assign to an other entity
@@ -291,7 +290,6 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1209, 'gru_level_1', 'ticket', '*', 'RESPOND_TO_USER'),
 
 (1210, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '301', '*'), -- init 
-(1211, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '302', '*'), -- qualify
 (1212, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '303', '*'), -- requalify
 (1213, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '304', '*'), -- assign up
 (1214, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '305', '*'), -- assign to an other entity
@@ -330,7 +328,6 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1309, 'gru_level_2', 'ticket', '*', 'RESPOND_TO_USER'),
 
 (1310, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '301', '*'), -- init 
-(1311, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '302', '*'), -- qualify
 (1312, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '303', '*'), -- requalify
 (1313, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '304', '*'), -- assign up
 (1314, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '305', '*'), -- assign to an other entity
