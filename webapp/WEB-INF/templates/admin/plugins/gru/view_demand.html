@@ -64,7 +64,7 @@
       </p>
       <hr class="hidden-xs">
       <#list demand.actions as action>
-       <a class="btn btn-primary btn-flat btn-lg bg-gru-light btn-block" href="${action.url}">
+       <a class="btn btn-primary btn-flat btn-lg bg-gru-light btn-block" href="${action.url}" return-url="${return_url}">
          <i class="fa fa-pencil"></i> ${action.name}
       </a>
      </#list>
