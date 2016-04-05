@@ -371,8 +371,7 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 
 -- User front ticketing
 (1456, 'ticketing_user_front', 'WORKFLOW_ACTION_TYPE', '309','*'),
-(1457, 'ticketing_user_front', 'WORKFLOW_ACTION_TYPE', '311', '*'), -- reopen ticket 
-(1458, 'ticketing_user_front', 'DOCUMENT_SPACE', '7', 'VIEW') -- see PDF document space
+(1457, 'ticketing_user_front', 'WORKFLOW_ACTION_TYPE', '311', '*') -- reopen ticket 
 ;
 
 
