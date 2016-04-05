@@ -20,8 +20,7 @@ INSERT INTO workflow_action (id_action, name, description, id_workflow, id_state
 			(308,'Demander compléments','Demander des informations complémentaires à l\'usager',301,303,304,1,0,0,7,0),
 			(309,'Répondre pour l\'usager','Répondre à la place de l\'usager',301,304,303,1,0,0,8,0),
             (310,'Répondre à l''usager','Répondre à l''usager',301,303,305,1,0,0,9,0),
-			(311, 'Ré-ouvrir la sollicitation', 'Ré-ouvrir la sollicitation close', 301, 305, 303, 1, 0, 0, 10, 0),
-            (312, 'Répondre à l\'escalade', 'Répondre à l\'escalade', 301, 303, 303, 1, 0, 0, 11, 0);
+            (311, 'Répondre à l\'escalade', 'Répondre à l\'escalade', 301, 303, 303, 1, 0, 0, 11, 0);
 		
 DELETE FROM workflow_task WHERE id_action >= 300 AND id_action < 450 ;
 INSERT INTO workflow_task (id_task, task_type_key, id_action, display_order) 
@@ -58,14 +57,9 @@ INSERT INTO workflow_task (id_task, task_type_key, id_action, display_order)
             (402,'taskNotifyGru',309,3),
 			(420, 'taskTicketingReply', 310,1), -- Reply to user
             (422,'taskNotifyGru',310,2),
-			(431, 'taskTicketingQualifyTicket', 311, 1), 
-			(432, 'taskTicketingAssignTicketToUnit', 311, 2), 
-			(433, 'taskTicketingModifyTicketCategory', 311, 3), 
-			(434, 'taskTypeComment', 311, 4),
-            (435,'taskNotifyGru',311,5),
-            (441, 'taskTicketingReplyAssignUpTicket',312,1),
-            (442, 'taskTypeComment', 312,2),
-            (443,'taskNotifyGru',312,3)
+            (441, 'taskTicketingReplyAssignUpTicket',311,1),
+            (442, 'taskTypeComment', 311,2),
+            (443,'taskNotifyGru',311,3)
 ;
 
 DELETE FROM workflow_task_comment_config WHERE id_task >= 300 AND id_task < 450;			
@@ -76,7 +70,6 @@ INSERT INTO workflow_task_comment_config (id_task, title, is_mandatory)
 			(362, 'Commentaire', 0),
 			(372, 'Commentaire', 0),
 			(382, 'Commentaire', 0),
-			(434, 'Motif de ré-ouverture', 1),
             (442, 'Commentaire', 0)
 ;
 
