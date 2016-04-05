@@ -28,3 +28,41 @@ SELECT IFNULL(MAX(a.id_field)+1,10) as id_field, IFNULL(b.id_attribute,1) AS id_
 INSERT INTO core_attribute_field (id_field, id_attribute, title, default_value, field_position) 
 SELECT IFNULL(MAX(a.id_field)+1,11) as id_field, IFNULL(b.id_attribute,1) AS id_attr, 'PROF_GRU_LEVEL3_Mairie' AS title, 'Agent de Niveau 3 - domaine Mairie' as defaut, IFNULL(MAX(a.field_position)+1,11) as pos FROM core_attribute_field as a, core_attribute as b where b.title='Profil' AND b.plugin_name='profiles' ;
 
+DELETE FROM core_admin_user_field WHERE user_field_value like 'PROF_GRU_%';
+-- gruadmin 10
+INSERT INTO core_admin_user_field (id_user_field, id_user, id_attribute, id_field, id_file, user_field_value) 
+SELECT IFNULL(MAX(a.id_user_field)+1,1)  as id_user_field, 10, b.id_attribute AS id_attribute, b.id_field as id_field, NULL, b.title FROM core_admin_user_field a, core_attribute_field b WHERE b.title='PROF_GRU_ADMIN';
+-- Dominique 20
+INSERT INTO core_admin_user_field (id_user_field, id_user, id_attribute, id_field, id_file, user_field_value) 
+SELECT IFNULL(MAX(a.id_user_field)+1,1)  as id_user_field, 20, b.id_attribute AS id_attribute, b.id_field as id_field, NULL, b.title FROM core_admin_user_field a, core_attribute_field b WHERE b.title='PROF_GRU_LEVEL1_Mairie';
+-- Alexia 21
+INSERT INTO core_admin_user_field (id_user_field, id_user, id_attribute, id_field, id_file, user_field_value) 
+SELECT IFNULL(MAX(a.id_user_field)+1,1)  as id_user_field, 21, b.id_attribute AS id_attribute, b.id_field as id_field, NULL, b.title FROM core_admin_user_field a, core_attribute_field b WHERE b.title='PROF_GRU_LEVEL1_FacilFam';
+-- Guillaume 22
+INSERT INTO core_admin_user_field (id_user_field, id_user, id_attribute, id_field, id_file, user_field_value) 
+SELECT IFNULL(MAX(a.id_user_field)+1,1)  as id_user_field, 22, b.id_attribute AS id_attribute, b.id_field as id_field, NULL, b.title FROM core_admin_user_field a, core_attribute_field b WHERE b.title='PROF_GRU_LEVEL1_Mairie';
+-- Laura 23
+INSERT INTO core_admin_user_field (id_user_field, id_user, id_attribute, id_field, id_file, user_field_value) 
+SELECT IFNULL(MAX(a.id_user_field)+1,1)  as id_user_field, 23, b.id_attribute AS id_attribute, b.id_field as id_field, NULL, b.title FROM core_admin_user_field a, core_attribute_field b WHERE b.title='PROF_GRU_LEVEL2_FacilFam';
+-- Maxime 24
+INSERT INTO core_admin_user_field (id_user_field, id_user, id_attribute, id_field, id_file, user_field_value) 
+SELECT IFNULL(MAX(a.id_user_field)+1,1)  as id_user_field, 24, b.id_attribute AS id_attribute, b.id_field as id_field, NULL, b.title FROM core_admin_user_field a, core_attribute_field b WHERE b.title='PROF_GRU_LEVEL2_FacilFam';
+-- Bernard 25
+INSERT INTO core_admin_user_field (id_user_field, id_user, id_attribute, id_field, id_file, user_field_value) 
+SELECT IFNULL(MAX(a.id_user_field)+1,1)  as id_user_field, 25, b.id_attribute AS id_attribute, b.id_field as id_field, NULL, b.title FROM core_admin_user_field a, core_attribute_field b WHERE b.title='PROF_GRU_LEVEL2_Station';
+-- Victor 26
+INSERT INTO core_admin_user_field (id_user_field, id_user, id_attribute, id_field, id_file, user_field_value) 
+SELECT IFNULL(MAX(a.id_user_field)+1,1)  as id_user_field, 26, b.id_attribute AS id_attribute, b.id_field as id_field, NULL, b.title FROM core_admin_user_field a, core_attribute_field b WHERE b.title='PROF_GRU_LEVEL3_FacilFam';
+-- Marie 27
+INSERT INTO core_admin_user_field (id_user_field, id_user, id_attribute, id_field, id_file, user_field_value) 
+SELECT IFNULL(MAX(a.id_user_field)+1,1)  as id_user_field, 27, b.id_attribute AS id_attribute, b.id_field as id_field, NULL, b.title FROM core_admin_user_field a, core_attribute_field b WHERE b.title='PROF_GRU_LEVEL1_Mairie';
+-- Antoine 28
+INSERT INTO core_admin_user_field (id_user_field, id_user, id_attribute, id_field, id_file, user_field_value) 
+SELECT IFNULL(MAX(a.id_user_field)+1,1)  as id_user_field, 28, b.id_attribute AS id_attribute, b.id_field as id_field, NULL, b.title FROM core_admin_user_field a, core_attribute_field b WHERE b.title='PROF_GRU_LEVEL3_FacilFam';
+-- Jules 29
+INSERT INTO core_admin_user_field (id_user_field, id_user, id_attribute, id_field, id_file, user_field_value) 
+SELECT IFNULL(MAX(a.id_user_field)+1,1)  as id_user_field, 29, b.id_attribute AS id_attribute, b.id_field as id_field, NULL, b.title FROM core_admin_user_field a, core_attribute_field b WHERE b.title='PROF_GRU_LEVEL3_Station';
+-- Vladimir 30
+INSERT INTO core_admin_user_field (id_user_field, id_user, id_attribute, id_field, id_file, user_field_value) 
+SELECT IFNULL(MAX(a.id_user_field)+1,1)  as id_user_field, 30, b.id_attribute AS id_attribute, b.id_field as id_field, NULL, b.title FROM core_admin_user_field a, core_attribute_field b WHERE b.title='PROF_GRU_LEVEL2_FacilFam';
+
