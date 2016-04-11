@@ -23,8 +23,9 @@
             <th>#i18n{gru.manage_customers.columnAccountGuid}</th>
             <th>#i18n{gru.manage_customers.columnEmail}</th>
             <th>#i18n{gru.manage_customers.columnIsEmailVerified}</th>
-            <th>#i18n{gru.manage_customers.columnMobilePhone}</th>
+            <th>#i18n{gru.manage_customers.columnMobilePhone}</th>           
             <th>#i18n{gru.manage_customers.columnIsMobilePhoneVerified}</th>
+             <th>#i18n{gru.manage_customers.columnFixedPhoneNumber}</th>
             <th>#i18n{gru.manage_customers.columnExtrasAttributes}</th>
             <th>#i18n{portal.util.labelActions}</th>
           </tr>
@@ -40,8 +41,9 @@
               <td>${customer.accountGuid!}</td>
               <td>${customer.email!}</td>
               <td>${customer.isEmailVerified?c}</td>
-              <td>${customer.mobilePhone!}</td>
+              <td>${customer.mobilePhone!}</td>              
               <td>${customer.isMobilePhoneVerified?c}</td>
+              <td>${customer.fixedPhoneNumber!}</td>
               <td>${customer.extrasAttributes!}</td>
               <td>
                 <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=modifyCustomer&id_customer=${customer.id}" class="btn btn-primary btn-sm" title="#i18n{portal.util.labelModify}">

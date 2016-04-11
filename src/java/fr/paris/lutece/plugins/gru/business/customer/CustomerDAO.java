@@ -48,13 +48,13 @@ public final class CustomerDAO implements ICustomerDAO
     // Constants
     private static final String SQL_QUERY_NEW_PK = "SELECT max( id_customer ) FROM gru_customer";
     private static final String SQL_QUERY_COUNT = "SELECT count( * ) FROM gru_customer";
-    private static final String SQL_QUERY_SELECT = "SELECT id_customer, id_title, firstname, lastname, has_account, account_login, account_guid, email, is_email_verified, mobile_phone, is_mobile_phone_verified, extras_attributes FROM gru_customer WHERE id_customer = ?";
-    private static final String SQL_QUERY_INSERT = "INSERT INTO gru_customer ( id_customer, id_title, firstname, lastname, has_account, account_login, account_guid, email, is_email_verified, mobile_phone, is_mobile_phone_verified, extras_attributes ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) ";
+    private static final String SQL_QUERY_SELECT = "SELECT id_customer, id_title, firstname, lastname, has_account, account_login, account_guid, email, is_email_verified, mobile_phone, is_mobile_phone_verified,fixed_phone_number, extras_attributes FROM gru_customer WHERE id_customer = ?";
+    private static final String SQL_QUERY_INSERT = "INSERT INTO gru_customer ( id_customer, id_title, firstname, lastname, has_account, account_login, account_guid, email, is_email_verified, mobile_phone, is_mobile_phone_verified,fixed_phone_number, extras_attributes ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) ";
     private static final String SQL_QUERY_DELETE = "DELETE FROM gru_customer WHERE id_customer = ? ";
-    private static final String SQL_QUERY_UPDATE = "UPDATE gru_customer SET id_customer = ?, id_title = ?, firstname = ?, lastname = ?, has_account = ?, account_login = ?, account_guid = ?, email = ?, is_email_verified = ?, mobile_phone = ?, is_mobile_phone_verified = ?, extras_attributes = ? WHERE id_customer = ?";
-    private static final String SQL_QUERY_SELECTALL = "SELECT id_customer, id_title, firstname, lastname, has_account, account_login, account_guid, email, is_email_verified, mobile_phone, is_mobile_phone_verified, extras_attributes FROM gru_customer";
+    private static final String SQL_QUERY_UPDATE = "UPDATE gru_customer SET id_customer = ?, id_title = ?, firstname = ?, lastname = ?, has_account = ?, account_login = ?, account_guid = ?, email = ?, is_email_verified = ?, mobile_phone = ?, is_mobile_phone_verified = ?, fixed_phone_number = ?, extras_attributes = ? WHERE id_customer = ?";
+    private static final String SQL_QUERY_SELECTALL = "SELECT id_customer, id_title, firstname, lastname, has_account, account_login, account_guid, email, is_email_verified, mobile_phone, is_mobile_phone_verified, fixed_phone_number, extras_attributes  FROM gru_customer";
     private static final String SQL_QUERY_SELECTALL_ID = "SELECT id_customer FROM gru_customer";
-    private static final String SQL_QUERY_SELECT_BY_GUID = "SELECT id_customer, id_title, firstname, lastname, has_account, account_login, account_guid, email, is_email_verified, mobile_phone, is_mobile_phone_verified, extras_attributes FROM gru_customer WHERE account_guid = ?";
+    private static final String SQL_QUERY_SELECT_BY_GUID = "SELECT id_customer, id_title, firstname, lastname, has_account, account_login, account_guid, email, is_email_verified, mobile_phone, is_mobile_phone_verified, fixed_phone_number ,extras_attributes FROM gru_customer WHERE account_guid = ?";
 
     /**
      * Generates a new primary key
@@ -87,19 +87,20 @@ public final class CustomerDAO implements ICustomerDAO
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_INSERT, plugin );
 
         customer.setId( newPrimaryKey( plugin ) );
-
-        daoUtil.setInt( 1, customer.getId(  ) );
-        daoUtil.setInt( 2, customer.getIdTitle(  ) );
-        daoUtil.setString( 3, customer.getFirstname(  ) );
-        daoUtil.setString( 4, customer.getLastname(  ) );
-        daoUtil.setBoolean( 5, customer.getHasAccount(  ) );
-        daoUtil.setString( 6, customer.getAccountLogin(  ) );
-        daoUtil.setString( 7, customer.getAccountGuid(  ) );
-        daoUtil.setString( 8, customer.getEmail(  ) );
-        daoUtil.setBoolean( 9, customer.getIsEmailVerified(  ) );
-        daoUtil.setString( 10, customer.getMobilePhone(  ) );
-        daoUtil.setBoolean( 11, customer.getIsMobilePhoneVerified(  ) );
-        daoUtil.setString( 12, customer.getExtrasAttributes(  ) );
+        int ncpt=1;
+        daoUtil.setInt( ncpt++, customer.getId(  ) );
+        daoUtil.setInt( ncpt++, customer.getIdTitle(  ) );
+        daoUtil.setString( ncpt++, customer.getFirstname(  ) );
+        daoUtil.setString( ncpt++, customer.getLastname(  ) );
+        daoUtil.setBoolean( ncpt++, customer.getHasAccount(  ) );
+        daoUtil.setString( ncpt++, customer.getAccountLogin(  ) );
+        daoUtil.setString( ncpt++, customer.getAccountGuid(  ) );
+        daoUtil.setString( ncpt++, customer.getEmail(  ) );
+        daoUtil.setBoolean( ncpt++, customer.getIsEmailVerified(  ) );
+        daoUtil.setString( ncpt++, customer.getMobilePhone(  ) );
+        daoUtil.setBoolean( ncpt++, customer.getIsMobilePhoneVerified(  ) );
+        daoUtil.setString( ncpt++, customer.getFixedPhoneNumber(  ) );
+        daoUtil.setString( ncpt++, customer.getExtrasAttributes(  ) );
 
         daoUtil.executeUpdate(  );
         daoUtil.free(  );
@@ -122,18 +123,20 @@ public final class CustomerDAO implements ICustomerDAO
         if ( daoUtil.next(  ) )
         {
             customer = new Customer(  );
-            customer.setId( daoUtil.getInt( 1 ) );
-            customer.setIdTitle( daoUtil.getInt( 2 ) );
-            customer.setFirstname( daoUtil.getString( 3 ) );
-            customer.setLastname( daoUtil.getString( 4 ) );
-            customer.setHasAccount( daoUtil.getBoolean( 5 ) );
-            customer.setAccountLogin( daoUtil.getString( 6 ) );
-            customer.setAccountGuid( daoUtil.getString( 7 ) );
-            customer.setEmail( daoUtil.getString( 8 ) );
-            customer.setIsEmailVerified( daoUtil.getBoolean( 9 ) );
-            customer.setMobilePhone( daoUtil.getString( 10 ) );
-            customer.setIsMobilePhoneVerified( daoUtil.getBoolean( 11 ) );
-            customer.setExtrasAttributes( daoUtil.getString( 12 ) );
+            int ncpt=1;
+            customer.setId( daoUtil.getInt( ncpt++ ) );
+            customer.setIdTitle( daoUtil.getInt( ncpt++ ) );
+            customer.setFirstname( daoUtil.getString( ncpt++ ) );
+            customer.setLastname( daoUtil.getString( ncpt++ ) );
+            customer.setHasAccount( daoUtil.getBoolean( ncpt++ ) );
+            customer.setAccountLogin( daoUtil.getString( ncpt++ ) );
+            customer.setAccountGuid( daoUtil.getString( ncpt++ ) );
+            customer.setEmail( daoUtil.getString( ncpt++ ) );
+            customer.setIsEmailVerified( daoUtil.getBoolean( ncpt++ ) );
+            customer.setMobilePhone( daoUtil.getString( ncpt++ ) );
+            customer.setIsMobilePhoneVerified( daoUtil.getBoolean( ncpt++ ) );
+            customer.setFixedPhoneNumber( daoUtil.getString( ncpt++ ) );
+            customer.setExtrasAttributes( daoUtil.getString( ncpt++ ) );
         }
 
         daoUtil.free(  );
@@ -160,20 +163,21 @@ public final class CustomerDAO implements ICustomerDAO
     public void store( Customer customer, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE, plugin );
-
-        daoUtil.setInt( 1, customer.getId(  ) );
-        daoUtil.setInt( 2, customer.getIdTitle(  ) );
-        daoUtil.setString( 3, customer.getFirstname(  ) );
-        daoUtil.setString( 4, customer.getLastname(  ) );
-        daoUtil.setBoolean( 5, customer.getHasAccount(  ) );
-        daoUtil.setString( 6, customer.getAccountLogin(  ) );
-        daoUtil.setString( 7, customer.getAccountGuid(  ) );
-        daoUtil.setString( 8, customer.getEmail(  ) );
-        daoUtil.setBoolean( 9, customer.getIsEmailVerified(  ) );
-        daoUtil.setString( 10, customer.getMobilePhone(  ) );
-        daoUtil.setBoolean( 11, customer.getIsMobilePhoneVerified(  ) );
-        daoUtil.setString( 12, customer.getExtrasAttributes(  ) );
-        daoUtil.setInt( 13, customer.getId(  ) );
+        int ncpt=1;
+        daoUtil.setInt( ncpt++, customer.getId(  ) );
+        daoUtil.setInt( ncpt++, customer.getIdTitle(  ) );
+        daoUtil.setString( ncpt++, customer.getFirstname(  ) );
+        daoUtil.setString( ncpt++, customer.getLastname(  ) );
+        daoUtil.setBoolean( ncpt++, customer.getHasAccount(  ) );
+        daoUtil.setString( ncpt++, customer.getAccountLogin(  ) );
+        daoUtil.setString( ncpt++, customer.getAccountGuid(  ) );
+        daoUtil.setString( ncpt++, customer.getEmail(  ) );
+        daoUtil.setBoolean( ncpt++, customer.getIsEmailVerified(  ) );
+        daoUtil.setString( ncpt++, customer.getMobilePhone(  ) );
+        daoUtil.setBoolean( ncpt++, customer.getIsMobilePhoneVerified(  ) );
+        daoUtil.setString( ncpt++, customer.getFixedPhoneNumber(  ) );
+        daoUtil.setString( ncpt++, customer.getExtrasAttributes(  ) );       
+        daoUtil.setInt( ncpt++, customer.getId(  ) );
 
         daoUtil.executeUpdate(  );
         daoUtil.free(  );
@@ -192,19 +196,20 @@ public final class CustomerDAO implements ICustomerDAO
         while ( daoUtil.next(  ) )
         {
             Customer customer = new Customer(  );
-
-            customer.setId( daoUtil.getInt( 1 ) );
-            customer.setIdTitle( daoUtil.getInt( 2 ) );
-            customer.setFirstname( daoUtil.getString( 3 ) );
-            customer.setLastname( daoUtil.getString( 4 ) );
-            customer.setHasAccount( daoUtil.getBoolean( 5 ) );
-            customer.setAccountLogin( daoUtil.getString( 6 ) );
-            customer.setAccountGuid( daoUtil.getString( 7 ) );
-            customer.setEmail( daoUtil.getString( 8 ) );
-            customer.setIsEmailVerified( daoUtil.getBoolean( 9 ) );
-            customer.setMobilePhone( daoUtil.getString( 10 ) );
-            customer.setIsMobilePhoneVerified( daoUtil.getBoolean( 11 ) );
-            customer.setExtrasAttributes( daoUtil.getString( 12 ) );
+            int ncpt=1;
+            customer.setId( daoUtil.getInt( ncpt++ ) );
+            customer.setIdTitle( daoUtil.getInt( ncpt++ ) );
+            customer.setFirstname( daoUtil.getString( ncpt++ ) );
+            customer.setLastname( daoUtil.getString( ncpt++ ) );
+            customer.setHasAccount( daoUtil.getBoolean( ncpt++ ) );
+            customer.setAccountLogin( daoUtil.getString( ncpt++ ) );
+            customer.setAccountGuid( daoUtil.getString( ncpt++ ) );
+            customer.setEmail( daoUtil.getString( ncpt++ ) );
+            customer.setIsEmailVerified( daoUtil.getBoolean( ncpt++ ) );
+            customer.setMobilePhone( daoUtil.getString( ncpt++ ) );
+            customer.setIsMobilePhoneVerified( daoUtil.getBoolean( ncpt++ ) );
+            customer.setFixedPhoneNumber( daoUtil.getString( ncpt++ ) );
+            customer.setExtrasAttributes( daoUtil.getString( ncpt++ ) );
 
             customerList.add( customer );
         }
@@ -247,20 +252,22 @@ public final class CustomerDAO implements ICustomerDAO
         Customer customer = null;
 
         if ( daoUtil.next(  ) )
-        {
+        {    
+        	 int ncpt=1;
             customer = new Customer(  );
-            customer.setId( daoUtil.getInt( 1 ) );
-            customer.setIdTitle( daoUtil.getInt( 2 ) );
-            customer.setFirstname( daoUtil.getString( 3 ) );
-            customer.setLastname( daoUtil.getString( 4 ) );
-            customer.setHasAccount( daoUtil.getBoolean( 5 ) );
-            customer.setAccountLogin( daoUtil.getString( 6 ) );
-            customer.setAccountGuid( daoUtil.getString( 7 ) );
-            customer.setEmail( daoUtil.getString( 8 ) );
-            customer.setIsEmailVerified( daoUtil.getBoolean( 9 ) );
-            customer.setMobilePhone( daoUtil.getString( 10 ) );
-            customer.setIsMobilePhoneVerified( daoUtil.getBoolean( 11 ) );
-            customer.setExtrasAttributes( daoUtil.getString( 12 ) );
+            customer.setId( daoUtil.getInt( ncpt++ ) );
+            customer.setIdTitle( daoUtil.getInt( ncpt++ ) );
+            customer.setFirstname( daoUtil.getString( ncpt++ ) );
+            customer.setLastname( daoUtil.getString( ncpt++ ) );
+            customer.setHasAccount( daoUtil.getBoolean( ncpt++ ) );
+            customer.setAccountLogin( daoUtil.getString( ncpt++ ) );
+            customer.setAccountGuid( daoUtil.getString( ncpt++ ) );
+            customer.setEmail( daoUtil.getString( ncpt++ ) );
+            customer.setIsEmailVerified( daoUtil.getBoolean( ncpt++ ) );
+            customer.setMobilePhone( daoUtil.getString( ncpt++ ) );
+            customer.setIsMobilePhoneVerified( daoUtil.getBoolean( ncpt++ ) );            
+            customer.setFixedPhoneNumber( daoUtil.getString( ncpt++ ) );
+            customer.setExtrasAttributes( daoUtil.getString( ncpt++ ) );
         }
 
         daoUtil.free(  );

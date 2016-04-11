@@ -40,39 +40,70 @@ import java.io.Serializable;
 import javax.validation.constraints.*;
 
 
+// TODO: Auto-generated Javadoc
 /**
- * This is the business class for the object Customer
+ * This is the business class for the object Customer.
  */
 public class Customer implements Serializable
 {
+    
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
 
+    /** The _n id. */
     // Variables declarations 
     private int _nId;
+    
+    /** The _n id title. */
     private int _nIdTitle;
+    
+    /** The _str firstname. */
     @NotEmpty( message = "#i18n{gru.validation.customer.Firstname.notEmpty}" )
     @Size( max = 50, message = "#i18n{gru.validation.customer.Firstname.size}" )
     private String _strFirstname;
+    
+    /** The _str lastname. */
     @NotEmpty( message = "#i18n{gru.validation.customer.Lastname.notEmpty}" )
     @Size( max = 50, message = "#i18n{gru.validation.customer.Lastname.size}" )
     private String _strLastname;
+    
+    /** The _b has account. */
     private boolean _bHasAccount;
+    
+    /** The _str account login. */
     @Size( max = 50, message = "#i18n{gru.validation.customer.AccountLogin.size}" )
     private String _strAccountLogin;
+    
+    /** The _str account guid. */
     @Size( max = 50, message = "#i18n{gru.validation.customer.AccountGuid.size}" )
     private String _strAccountGuid;
+    
+    /** The _str email. */
     @Email( message = "#i18n{portal.validation.message.email}" )
     @Size( max = 255, message = "#i18n{gru.validation.customer.Email.size}" )
     private String _strEmail;
+    
+    /** The _b is email verified. */
     private boolean _bIsEmailVerified;
+    
+    /** The _str fixe phone. */
+    @Size( max = 50, message = "#i18n{gru.validation.customer.FixedPhoneNumber.size}" )
+    private String _strFixedPhoneNumber;
+    
+    /** The _str mobile phone. */
     @Size( max = 50, message = "#i18n{gru.validation.customer.MobilePhone.size}" )
     private String _strMobilePhone;
+    
+    /** The _b is mobile phone verified. */
     private boolean _bIsMobilePhoneVerified;
+    
+    /** The _str extras attributes. */
     @NotEmpty( message = "#i18n{gru.validation.customer.ExtrasAttributes.notEmpty}" )
     private String _strExtrasAttributes;
 
     /**
-     * Returns the Id
+     * Returns the Id.
+     *
      * @return The Id
      */
     public int getId(  )
@@ -81,7 +112,8 @@ public class Customer implements Serializable
     }
 
     /**
-     * Sets the Id
+     * Sets the Id.
+     *
      * @param nId The Id
      */
     public void setId( int nId )
@@ -90,7 +122,8 @@ public class Customer implements Serializable
     }
 
     /**
-     * Returns the IdTitle
+     * Returns the IdTitle.
+     *
      * @return The IdTitle
      */
     public int getIdTitle(  )
@@ -99,7 +132,8 @@ public class Customer implements Serializable
     }
 
     /**
-     * Sets the IdTitle
+     * Sets the IdTitle.
+     *
      * @param nIdTitle The IdTitle
      */
     public void setIdTitle( int nIdTitle )
@@ -108,7 +142,8 @@ public class Customer implements Serializable
     }
 
     /**
-     * Returns the Firstname
+     * Returns the Firstname.
+     *
      * @return The Firstname
      */
     public String getFirstname(  )
@@ -117,7 +152,8 @@ public class Customer implements Serializable
     }
 
     /**
-     * Sets the Firstname
+     * Sets the Firstname.
+     *
      * @param strFirstname The Firstname
      */
     public void setFirstname( String strFirstname )
@@ -126,7 +162,8 @@ public class Customer implements Serializable
     }
 
     /**
-     * Returns the Lastname
+     * Returns the Lastname.
+     *
      * @return The Lastname
      */
     public String getLastname(  )
@@ -135,7 +172,8 @@ public class Customer implements Serializable
     }
 
     /**
-     * Sets the Lastname
+     * Sets the Lastname.
+     *
      * @param strLastname The Lastname
      */
     public void setLastname( String strLastname )
@@ -144,7 +182,8 @@ public class Customer implements Serializable
     }
 
     /**
-     * Returns the HasAccount
+     * Returns the HasAccount.
+     *
      * @return The HasAccount
      */
     public boolean getHasAccount(  )
@@ -153,7 +192,8 @@ public class Customer implements Serializable
     }
 
     /**
-     * Sets the HasAccount
+     * Sets the HasAccount.
+     *
      * @param bHasAccount The HasAccount
      */
     public void setHasAccount( boolean bHasAccount )
@@ -162,7 +202,8 @@ public class Customer implements Serializable
     }
 
     /**
-     * Returns the AccountLogin
+     * Returns the AccountLogin.
+     *
      * @return The AccountLogin
      */
     public String getAccountLogin(  )
@@ -171,7 +212,8 @@ public class Customer implements Serializable
     }
 
     /**
-     * Sets the AccountLogin
+     * Sets the AccountLogin.
+     *
      * @param strAccountLogin The AccountLogin
      */
     public void setAccountLogin( String strAccountLogin )
@@ -180,7 +222,8 @@ public class Customer implements Serializable
     }
 
     /**
-     * Returns the AccountGuid
+     * Returns the AccountGuid.
+     *
      * @return The AccountGuid
      */
     public String getAccountGuid(  )
@@ -189,7 +232,8 @@ public class Customer implements Serializable
     }
 
     /**
-     * Sets the AccountGuid
+     * Sets the AccountGuid.
+     *
      * @param strAccountGuid The AccountGuid
      */
     public void setAccountGuid( String strAccountGuid )
@@ -198,7 +242,8 @@ public class Customer implements Serializable
     }
 
     /**
-     * Returns the Email
+     * Returns the Email.
+     *
      * @return The Email
      */
     public String getEmail(  )
@@ -207,7 +252,8 @@ public class Customer implements Serializable
     }
 
     /**
-     * Sets the Email
+     * Sets the Email.
+     *
      * @param strEmail The Email
      */
     public void setEmail( String strEmail )
@@ -216,7 +262,8 @@ public class Customer implements Serializable
     }
 
     /**
-     * Returns the IsEmailVerified
+     * Returns the IsEmailVerified.
+     *
      * @return The IsEmailVerified
      */
     public boolean getIsEmailVerified(  )
@@ -225,7 +272,8 @@ public class Customer implements Serializable
     }
 
     /**
-     * Sets the IsEmailVerified
+     * Sets the IsEmailVerified.
+     *
      * @param bIsEmailVerified The IsEmailVerified
      */
     public void setIsEmailVerified( boolean bIsEmailVerified )
@@ -234,7 +282,8 @@ public class Customer implements Serializable
     }
 
     /**
-     * Returns the MobilePhone
+     * Returns the MobilePhone.
+     *
      * @return The MobilePhone
      */
     public String getMobilePhone(  )
@@ -243,25 +292,51 @@ public class Customer implements Serializable
     }
 
     /**
-     * Sets the MobilePhone
+     * Sets the MobilePhone.
+     *
      * @param strMobilePhone The MobilePhone
      */
     public void setMobilePhone( String strMobilePhone )
     {
         _strMobilePhone = strMobilePhone;
     }
+    
+    
+    
+    /**
+     * Gets the fixe phone.
+     *
+     * @return the fixe phone
+     */
+    public String getFixedPhoneNumber(  )
+    {
+        return _strFixedPhoneNumber;
+    }
+    
+    /**
+     * Sets the fixe phone.
+     *
+     * @param strFixedPhoneNumber the new fixe phone
+     */
+    public void setFixedPhoneNumber( String strFixedPhoneNumber )
+    {
+        _strFixedPhoneNumber = strFixedPhoneNumber;
+    }
 
     /**
-     * Returns the IsMobilePhoneVerified
+     * Returns the IsMobilePhoneVerified.
+     *
      * @return The IsMobilePhoneVerified
      */
     public boolean getIsMobilePhoneVerified(  )
     {
+        
         return _bIsMobilePhoneVerified;
     }
 
     /**
-     * Sets the IsMobilePhoneVerified
+     * Sets the IsMobilePhoneVerified.
+     *
      * @param bIsMobilePhoneVerified The IsMobilePhoneVerified
      */
     public void setIsMobilePhoneVerified( boolean bIsMobilePhoneVerified )
@@ -270,7 +345,8 @@ public class Customer implements Serializable
     }
 
     /**
-     * Returns the ExtrasAttributes
+     * Returns the ExtrasAttributes.
+     *
      * @return The ExtrasAttributes
      */
     public String getExtrasAttributes(  )
@@ -279,7 +355,8 @@ public class Customer implements Serializable
     }
 
     /**
-     * Sets the ExtrasAttributes
+     * Sets the ExtrasAttributes.
+     *
      * @param strExtrasAttributes The ExtrasAttributes
      */
     public void setExtrasAttributes( String strExtrasAttributes )

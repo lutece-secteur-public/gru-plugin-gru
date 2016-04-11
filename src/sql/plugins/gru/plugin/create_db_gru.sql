@@ -16,6 +16,7 @@ email varchar(255) NOT NULL default '',
 is_email_verified SMALLINT NOT NULL default '0',
 mobile_phone varchar(50) NOT NULL default '',
 is_mobile_phone_verified SMALLINT NOT NULL default '0',
+fixed_phone_number varchar(50) NOT NULL default '',
 extras_attributes long varchar NULL ,
 PRIMARY KEY (id_customer)
 );

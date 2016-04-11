@@ -77,6 +77,7 @@ public class CustomerRest
     private static final String KEY_ACCOUNT_GUID = "account_guid";
     private static final String KEY_EMAIL = "email";
     private static final String KEY_IS_EMAIL_VERIFIED = "is_email_verified";
+    private static final String KEY_FIXED_PHONE_NUMBER = "fixed_phone_number";
     private static final String KEY_MOBILE_PHONE = "mobile_phone";
     private static final String KEY_IS_MOBILE_PHONE_VERIFIED = "is_mobile_phone_verified";
     private static final String KEY_EXTRAS_ATTRIBUTES = "extras_attributes";
@@ -271,7 +272,8 @@ public class CustomerRest
     String account_login, @FormParam( "account_guid" )
     String account_guid, @FormParam( "email" )
     String email, @FormParam( "is_email_verified" )
-    String is_email_verified, @FormParam( "mobile_phone" )
+    String is_email_verified, @FormParam( "fixed_phone_number" )
+    String fixed_phone_number, @FormParam( "mobile_phone" )
     String mobile_phone, @FormParam( "is_mobile_phone_verified" )
     String is_mobile_phone_verified, @FormParam( "extras_attributes" )
     String extras_attributes, @HeaderParam( HttpHeaders.ACCEPT )
@@ -294,6 +296,7 @@ public class CustomerRest
                 customer.setAccountGuid( account_guid );
                 customer.setEmail( email );
                 customer.setIsEmailVerified( Boolean.valueOf( is_email_verified ) );
+                customer.setFixedPhoneNumber( fixed_phone_number );
                 customer.setMobilePhone( mobile_phone );
                 customer.setIsMobilePhoneVerified( Boolean.valueOf( is_mobile_phone_verified ) );
                 customer.setExtrasAttributes( extras_attributes );
@@ -312,6 +315,7 @@ public class CustomerRest
             customer.setAccountGuid( account_guid );
             customer.setEmail( email );
             customer.setIsEmailVerified( Boolean.valueOf( is_email_verified ) );
+            customer.setFixedPhoneNumber( fixed_phone_number );
             customer.setMobilePhone( mobile_phone );
             customer.setIsMobilePhoneVerified( Boolean.valueOf( is_mobile_phone_verified ) );
             customer.setExtrasAttributes( extras_attributes );
@@ -338,7 +342,8 @@ public class CustomerRest
         XmlUtil.addElement( sbXML, KEY_ACCOUNT_GUID, customer.getAccountGuid(  ) );
         XmlUtil.addElement( sbXML, KEY_EMAIL, customer.getEmail(  ) );
         XmlUtil.addElement( sbXML, KEY_IS_EMAIL_VERIFIED, customer.getIsEmailVerified(  ) ? "1" : "0" );
-        XmlUtil.addElement( sbXML, KEY_MOBILE_PHONE, customer.getMobilePhone(  ) );
+        XmlUtil.addElement( sbXML, KEY_FIXED_PHONE_NUMBER, customer.getFixedPhoneNumber(  ) );
+        XmlUtil.addElement( sbXML, KEY_MOBILE_PHONE, customer.getMobilePhone(  ) );   
         XmlUtil.addElement( sbXML, KEY_IS_MOBILE_PHONE_VERIFIED, customer.getIsMobilePhoneVerified(  ) ? "1" : "0" );
         XmlUtil.addElement( sbXML, KEY_EXTRAS_ATTRIBUTES, customer.getExtrasAttributes(  ) );
         XmlUtil.endElement( sbXML, KEY_CUSTOMER );
@@ -361,7 +366,8 @@ public class CustomerRest
         jsonCustomer.accumulate( KEY_ACCOUNT_GUID, customer.getAccountGuid(  ) );
         jsonCustomer.accumulate( KEY_EMAIL, customer.getEmail(  ) );
         jsonCustomer.accumulate( KEY_IS_EMAIL_VERIFIED, customer.getIsEmailVerified(  ) );
-        jsonCustomer.accumulate( KEY_MOBILE_PHONE, customer.getMobilePhone(  ) );
+        jsonCustomer.accumulate( KEY_FIXED_PHONE_NUMBER, customer.getFixedPhoneNumber( ) );
+        jsonCustomer.accumulate( KEY_MOBILE_PHONE, customer.getMobilePhone(  ) );     
         jsonCustomer.accumulate( KEY_IS_MOBILE_PHONE_VERIFIED, customer.getIsMobilePhoneVerified(  ) );
         jsonCustomer.accumulate( KEY_EXTRAS_ATTRIBUTES, customer.getExtrasAttributes(  ) );
         json.accumulate( KEY_CUSTOMER, jsonCustomer );
