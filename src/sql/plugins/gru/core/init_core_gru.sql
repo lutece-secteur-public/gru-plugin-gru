@@ -370,8 +370,8 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1455, 'gru_dom_recl_autre', 'TICKET_DOMAIN', '200','VIEW'),
 
 -- User front ticketing
-(1456, 'ticketing_user_front', 'WORKFLOW_ACTION_TYPE', '309','*'),
-(1457, 'ticketing_user_front', 'WORKFLOW_ACTION_TYPE', '311', '*') -- reopen ticket 
+(1456, 'ticketing_user_front', 'WORKFLOW_ACTION_TYPE', '301','*'), -- init 
+(1457, 'ticketing_user_front', 'WORKFLOW_ACTION_TYPE', '309','*') -- respond to info request
 ;
 
 
