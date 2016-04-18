@@ -24,34 +24,39 @@ INSERT INTO workflow_action (id_action, name, description, id_workflow, id_state
             (311, 'Répondre à l''escalade', 'Répondre à l''escalade', 301, 303, 303, 1, 0, 0, 11, 0);
 		
 INSERT INTO workflow_task (id_task, task_type_key, id_action, display_order) 
-	VALUES 	(301,'taskTicketingGenerateTicketReference',301,1),
+	VALUES 	(301,'taskTicketingGenerateTicketReference',301,1), -- Initialize
 			(302,'taskTicketingAssignUnitLinkedToCategory',301,2),
 			(303,'taskTicketingCreateCustomer',301,3),
             (304,'taskNotifyGru',301,4),
-            (341,'taskTicketingQualifyTicket',303,1),
+            (305, 'taskTicketingIndexTicket',301,5),
+            (341,'taskTicketingQualifyTicket',303,1), -- Qualify
             (342,'taskTicketingModifyTicketCategory',303,2),
             (343, 'taskTypeComment', 303,3),
             (344,'taskNotifyGru',303,4),
-            (351,'taskTicketingAssignTicketToUnit',305,1),
+            (345, 'taskTicketingIndexTicket',303,5),
+            (351,'taskTicketingAssignTicketToUnit',305,1), -- Assign to unit
             (352, 'taskTypeComment', 305,2),
             (353,'taskNotifyGru',305,3),
-            (361,'taskTicketingAssignTicketToUser',306,1),
+            (361,'taskTicketingAssignTicketToUser',306,1), -- Assign to user
             (362, 'taskTypeComment', 306,2),
             (363,'taskNotifyGru',306,3),
-            (371,'taskTicketingAssignTicketToMe',307,1),
+            (371,'taskTicketingAssignTicketToMe',307,1), -- Assign to me
             (372, 'taskTypeComment', 307,2),
             (373,'taskNotifyGru',307,3),
-			(381,'taskTicketingAssignUpTicket',304,1),
+			(381,'taskTicketingAssignUpTicket',304,1), -- Assign up
 			(382, 'taskTypeComment', 304,2),
             (383,'taskNotifyGru',304,3),
             (390, 'taskTicketingEditTicket', 308,1), -- Ask for user information
             (392,'taskNotifyGru',308,2),
+            (393, 'taskTicketingIndexTicket',308,3),
             (400, 'taskTicketingEditTicket', 309,1), -- Reply to agent
             (401, 'taskTicketingSelectChannel', 309,2),
             (402,'taskNotifyGru',309,3),
+            (403, 'taskTicketingIndexTicket', 309,3),
 			(420, 'taskTicketingReply', 310,1), -- Reply to user
             (422,'taskNotifyGru',310,2),
-            (441, 'taskTicketingReplyAssignUpTicket',311,1),
+            (423, 'taskTicketingIndexTicket', 310,3),
+            (441, 'taskTicketingReplyAssignUpTicket',311,1), -- Reply to assign up
             (442, 'taskTypeComment', 311,2),
             (443,'taskNotifyGru',311,3)
 ;
