@@ -272,9 +272,8 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1115, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '306', '*'), -- assign to an other user
 (1116, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '307', '*'), -- self assign
 (1117, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '308', '*'), -- ask new informations
-(1118, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '310', '*'), -- answer from agent to user
-(1119, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '311', '*'), -- reopen ticket  
-(1121, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '312', '*'), -- respond assign up  
+(1118, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '310', '*'), -- answer from agent to user 
+(1119, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '311', '*'), -- respond assign up  
 (1120, 'gru_admin', 'UNIT_TYPE', '*', '*'), 
 (1151, 'gru_admin', 'TICKET_DOMAIN', '*', '*'), 
 (1163, 'gru_admin', 'SUPPORT_ENTITY', '*', '*'), 
@@ -298,8 +297,7 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1215, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '306', '*'), -- assign to an other user
 (1216, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '307', '*'), -- self assign
 (1217, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '308', '*'), -- ask new informations
-(1218, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '310', '*'), -- answer from agent to user
-(1219, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '311', '*'), -- reopen ticket  
+(1218, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '310', '*'), -- answer from agent to user 
 (1220, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '309', '*'), -- answer from user to agent
 (1240, 'gru_level_1', 'WORKFLOW_STATE_TYPE', '*', '*'), -- all workflow states
 
@@ -338,7 +336,6 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1316, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '307', '*'), -- self assign
 (1317, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '308', '*'), -- ask new informations
 (1318, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '310', '*'), -- answer from agent to user
-(1319, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '311', '*'), -- reopen ticket  
 
 (1340, 'gru_level_2', 'WORKFLOW_STATE_TYPE', '*', '*'), -- all workflow states
 
@@ -365,7 +362,7 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1414, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '305', '*'), -- assign to an other entity
 (1415, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '306', '*'), -- assign to an other user
 (1416, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '307', '*'), -- self assign
-(1417, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '312', '*'), -- respond assign up
+(1417, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '311', '*'), -- respond assign up
 
 (1440, 'gru_level_3', 'WORKFLOW_STATE_TYPE', '*', '*'), -- all workflow states
 
