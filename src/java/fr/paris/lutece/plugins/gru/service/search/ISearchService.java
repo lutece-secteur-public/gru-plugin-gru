@@ -67,5 +67,11 @@ public interface ISearchService
      * @param user the customer
      */
 	void updateCustomer( Customer user );
+
+	/**
+	 * Delete the user from ES
+	 * @param nId the id user
+	 */
+	void deleteCustomer( int nId );
 	
 }
