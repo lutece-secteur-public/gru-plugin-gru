@@ -35,6 +35,8 @@ package fr.paris.lutece.plugins.gru.service.search;
 
 import java.util.List;
 
+import fr.paris.lutece.plugins.gru.business.customer.Customer;
+
 
 /**
  * ISearchService
@@ -59,4 +61,11 @@ public interface ISearchService
      * @return The URL
      */
     String getAutoCompleteUrl(  );
+    
+    /**
+     * Updates the customer 
+     * @param user the customer
+     */
+	void updateCustomer( Customer user );
+	
 }

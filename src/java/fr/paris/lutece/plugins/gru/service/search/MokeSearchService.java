@@ -36,6 +36,8 @@ package fr.paris.lutece.plugins.gru.service.search;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.paris.lutece.plugins.gru.business.customer.Customer;
+
 
 /**
  * MokeSearchService
@@ -88,4 +90,9 @@ public class MokeSearchService implements ISearchService
     {
         return "";
     }
+
+	@Override
+	public void updateCustomer(Customer user) {
+		
+	}
 }

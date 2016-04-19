@@ -17,8 +17,8 @@
     
     <bean id="gru.demandService" class="fr.paris.lutece.plugins.gru.service.demand.MokeDemandService" />
     <bean id="gru.searchService" class="fr.paris.lutece.plugins.gru.service.search.MokeSearchService" /> 
-    <!--<bean id="gru.demandService" class="fr.paris.lutece.plugins.grustorage.elastic.service.ElasticDemandService" />-->
-    <!--<bean id="gru.searchService" class="fr.paris.lutece.plugins.grustorage.elastic.service.ElasticSearchService" />-->
+    <!--<bean id="gru.demandService" class="fr.paris.lutece.plugins.grustorageelastic.service.ElasticDemandService" />-->
+    <!--<bean id="gru.searchService" class="fr.paris.lutece.plugins.grustorageelastic.service.ElasticSearchService" />-->
     <!--<bean id="gru.demandService" class="fr.paris.lutece.plugins.grustoragedb.service.DatabaseDemandService" />-->
     <!--<bean id="gru.searchService" class="fr.paris.lutece.plugins.grustoragedb.service.DatabaseSearchService" />-->
 
