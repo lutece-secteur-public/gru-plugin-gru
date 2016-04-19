@@ -91,8 +91,15 @@ public class MokeSearchService implements ISearchService
         return "";
     }
 
+
+	@Override
+	public void deleteCustomer(int nId) {
+		
+	}
+
 	@Override
 	public void updateCustomer(Customer user) {
 		
 	}
+
 }

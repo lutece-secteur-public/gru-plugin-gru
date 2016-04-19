@@ -424,6 +424,10 @@ public class CustomerJspBean extends MVCAdminJspBean
     {
         int nId = Integer.parseInt( request.getParameter( Constants.PARAMETER_ID_CUSTOMER ) );
         CustomerHome.remove( nId );
+        
+        //Delete from ES
+        SearchService.instance(  ).deleteCustomer( nId );
+        
         addInfo( INFO_CUSTOMER_REMOVED, getLocale(  ) );
 
         return redirectView( request, VIEW_MANAGE_CUSTOMERS );
@@ -466,7 +470,7 @@ public class CustomerJspBean extends MVCAdminJspBean
         
         //update ES
         SearchService.instance(  ).updateCustomer( _customer );
-        
+
         // Check constraints
         if ( !validateBean( _customer, VALIDATION_ATTRIBUTES_PREFIX ) )
         {
