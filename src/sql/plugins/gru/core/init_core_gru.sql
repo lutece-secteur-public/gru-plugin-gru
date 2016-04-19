@@ -1,7 +1,8 @@
 --
 -- Data for table core_portlet
 --
-INSERT INTO `core_portlet` VALUES (95,'HTML_PORTLET',1,'Liens','2016-03-10 17:05:55',0,1,1,100,0,'2016-02-16 16:11:11',1,'none',4369);
+DELETE FROM core_portlet WHERE id_portlet = 95;
+INSERT INTO core_portlet VALUES (95,'HTML_PORTLET',1,'Liens','2016-03-10 17:05:55',0,1,1,100,0,'2016-02-16 16:11:11',1,'none',4369);
 
 
 --
@@ -277,6 +278,7 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1120, 'gru_admin', 'UNIT_TYPE', '*', '*'), 
 (1151, 'gru_admin', 'TICKET_DOMAIN', '*', '*'), 
 (1163, 'gru_admin', 'SUPPORT_ENTITY', '*', '*'), 
+(1170, 'gru_admin', 'WORKFLOW_STATE_TYPE', '*', '*'),
 
 -- level 1 : 
 (1201, 'gru_level_1', 'ticket', '*', 'CREATE'),
@@ -299,6 +301,7 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1218, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '310', '*'), -- answer from agent to user
 (1219, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '311', '*'), -- reopen ticket  
 (1220, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '309', '*'), -- answer from user to agent
+(1240, 'gru_level_1', 'WORKFLOW_STATE_TYPE', '*', '*'), -- all workflow states
 
 -- support entity
 (1251, 'gru_level_1', 'SUPPORT_ENTITY', '1', 'VIEW'), 
@@ -307,13 +310,13 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1254, 'gru_level_1', 'SUPPORT_ENTITY', '5', 'VIEW'), 
 
 -- Attached files
-(1459, 'gru_level_1', 'INSERT_SERVICE', 'librarylinkservice', '*'), -- add attached file
-(1460, 'gru_level_1', 'INSERT_SERVICE', 'libraryuploadlinkservice', '*'), -- upload attached file
-(1461, 'gru_level_1', 'DOCUMENT_SPACE', '7', '*'), -- document space image
-(1462, 'gru_level_1', 'DOCUMENT_SPACE', '8', '*'), -- document space PDF
-(1463, 'gru_level_1', 'DOCUMENT_SPACE', '6', '*'), -- document space uploaded files
-(1464, 'gru_level_1', 'DOCUMENT_TYPE', 'image', '*'),
-(1465, 'gru_level_1', 'DOCUMENT_TYPE', 'pdf', '*'),
+(1271, 'gru_level_1', 'INSERT_SERVICE', 'librarylinkservice', '*'), -- add attached file
+(1272, 'gru_level_1', 'INSERT_SERVICE', 'libraryuploadlinkservice', '*'), -- upload attached file
+(1273, 'gru_level_1', 'DOCUMENT_SPACE', '7', '*'), -- document space image
+(1274, 'gru_level_1', 'DOCUMENT_SPACE', '8', '*'), -- document space PDF
+(1275, 'gru_level_1', 'DOCUMENT_SPACE', '6', '*'), -- document space uploaded files
+(1276, 'gru_level_1', 'DOCUMENT_TYPE', 'image', '*'),
+(1277, 'gru_level_1', 'DOCUMENT_TYPE', 'pdf', '*'),
 
 
 -- level 2
@@ -337,17 +340,19 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1318, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '310', '*'), -- answer from agent to user
 (1319, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '311', '*'), -- reopen ticket  
 
+(1340, 'gru_level_2', 'WORKFLOW_STATE_TYPE', '*', '*'), -- all workflow states
+
 -- support entity
 (1351, 'gru_level_2', 'SUPPORT_ENTITY', '4', 'VIEW'),
 
 -- Attached files
-(1466, 'gru_level_2', 'INSERT_SERVICE', 'librarylinkservice', '*'), -- add attached file
-(1467, 'gru_level_2', 'INSERT_SERVICE', 'libraryuploadlinkservice', '*'), -- upload attached file
-(1468, 'gru_level_2', 'DOCUMENT_SPACE', '7', '*'), -- document space image
-(1469, 'gru_level_2', 'DOCUMENT_SPACE', '8', '*'), -- document space PDF
-(1470, 'gru_level_2', 'DOCUMENT_SPACE', '6', '*'), -- document space uploaded files
-(1471, 'gru_level_2', 'DOCUMENT_TYPE', 'image', '*'),
-(1472, 'gru_level_2', 'DOCUMENT_TYPE', 'pdf', '*'),
+(1371, 'gru_level_2', 'INSERT_SERVICE', 'librarylinkservice', '*'), -- add attached file
+(1372, 'gru_level_2', 'INSERT_SERVICE', 'libraryuploadlinkservice', '*'), -- upload attached file
+(1373, 'gru_level_2', 'DOCUMENT_SPACE', '7', '*'), -- document space image
+(1374, 'gru_level_2', 'DOCUMENT_SPACE', '8', '*'), -- document space PDF
+(1375, 'gru_level_2', 'DOCUMENT_SPACE', '6', '*'), -- document space uploaded files
+(1376, 'gru_level_2', 'DOCUMENT_TYPE', 'image', '*'),
+(1377, 'gru_level_2', 'DOCUMENT_TYPE', 'pdf', '*'),
 
 
 -- level 3
@@ -362,6 +367,8 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1416, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '307', '*'), -- self assign
 (1417, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '312', '*'), -- respond assign up
 
+(1440, 'gru_level_3', 'WORKFLOW_STATE_TYPE', '*', '*'), -- all workflow states
+
 -- domaines
 (1451, 'gru_dom_info_mairie', 'TICKET_DOMAIN', '110','VIEW'),
 (1452, 'gru_dom_info_stationnement', 'TICKET_DOMAIN', '120','VIEW'),
@@ -371,12 +378,14 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 
 -- User front ticketing
 (1456, 'ticketing_user_front', 'WORKFLOW_ACTION_TYPE', '301','*'), -- init 
-(1457, 'ticketing_user_front', 'WORKFLOW_ACTION_TYPE', '309','*') -- respond to info request
+(1457, 'ticketing_user_front', 'WORKFLOW_ACTION_TYPE', '309','*'), -- respond to info request
+(1458, 'ticketing_user_front', 'WORKFLOW_STATE_TYPE', '*', '*') -- all workflow states
 ;
 
 
 --
 -- Init  table core_dashboard
 --
+DELETE FROM core_dashboard WHERE dashboard_name='GRU';
 INSERT INTO core_dashboard(dashboard_name, dashboard_column, dashboard_order) VALUES('GRU', 1, 2);
 
