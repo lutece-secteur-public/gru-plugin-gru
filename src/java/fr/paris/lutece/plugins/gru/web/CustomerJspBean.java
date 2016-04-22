@@ -476,8 +476,10 @@ public class CustomerJspBean extends MVCAdminJspBean
         {
             return redirect( request, VIEW_MODIFY_CUSTOMER, Constants.PARAMETER_ID_CUSTOMER, _customer.getId(  ) );
         }
-
         CustomerHome.update( _customer );
+        //update ES
+        SearchService.instance(  ).updateCustomer( _customer );
+
         addInfo( INFO_CUSTOMER_UPDATED, getLocale(  ) );
 
         return redirectView( request, VIEW_MANAGE_CUSTOMERS );
