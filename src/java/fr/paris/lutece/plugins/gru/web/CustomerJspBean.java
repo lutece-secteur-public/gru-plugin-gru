@@ -43,13 +43,11 @@ import fr.paris.lutece.plugins.gru.service.search.CustomerResult;
 import fr.paris.lutece.plugins.gru.service.search.SearchService;
 import fr.paris.lutece.plugins.gru.utils.UrlUtils;
 import fr.paris.lutece.plugins.gru.web.actions.buttons.builders.impl.HomeButtonListBuilder;
-import fr.paris.lutece.plugins.gru.web.actions.model.ActionButton;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionGroup;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionPanel;
 import fr.paris.lutece.portal.service.i18n.I18nService;
 import fr.paris.lutece.portal.service.message.AdminMessage;
 import fr.paris.lutece.portal.service.message.AdminMessageService;
-import fr.paris.lutece.portal.service.util.AppLogService;
 import fr.paris.lutece.portal.service.util.AppPathService;
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
 import fr.paris.lutece.portal.util.mvc.admin.MVCAdminJspBean;
@@ -62,7 +60,6 @@ import fr.paris.lutece.util.url.UrlItem;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -427,6 +424,10 @@ public class CustomerJspBean extends MVCAdminJspBean
     {
         int nId = Integer.parseInt( request.getParameter( Constants.PARAMETER_ID_CUSTOMER ) );
         CustomerHome.remove( nId );
+        
+        //Delete from ES
+        SearchService.instance(  ).deleteCustomer( nId );
+        
         addInfo( INFO_CUSTOMER_REMOVED, getLocale(  ) );
 
         return redirectView( request, VIEW_MANAGE_CUSTOMERS );
@@ -472,8 +473,10 @@ public class CustomerJspBean extends MVCAdminJspBean
         {
             return redirect( request, VIEW_MODIFY_CUSTOMER, Constants.PARAMETER_ID_CUSTOMER, _customer.getId(  ) );
         }
-
         CustomerHome.update( _customer );
+        //update ES
+        SearchService.instance(  ).updateCustomer( _customer );
+
         addInfo( INFO_CUSTOMER_UPDATED, getLocale(  ) );
 
         return redirectView( request, VIEW_MANAGE_CUSTOMERS );
