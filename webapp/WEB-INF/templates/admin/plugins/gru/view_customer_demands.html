@@ -69,7 +69,17 @@
                           ${demand.reference}
                       </a>
                     </td>
-                    <td class="text-gru">${displayTimeOpenedTicket2(demand.timeOpenedInMs)}</td>
+                   
+                    <td class="text-gru">
+                        <#if creation_date_as_date >  
+                            <#assign time_ms = .now?long - demand.timeOpenedInMs?long>                 
+                                 ${time_ms?number_to_datetime?string["dd/MM/yyyy HH:mm"]}
+                           <#else>
+                      ${displayTimeOpenedTicket2(demand.timeOpenedInMs)}
+                    </#if>                   
+                    </td>
+                    
+                    
                     <td class="text-demand">${demand.title}</td>
                   </tr>
                 </#list>
