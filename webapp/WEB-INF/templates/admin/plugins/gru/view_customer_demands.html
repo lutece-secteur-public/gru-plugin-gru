@@ -10,7 +10,7 @@
     <div id="header-right" class="col-xs-3 col-sm-2">
       <p>
         <a class="btn btn-border btn-block" title=" Modifier" href="jsp/admin/plugins/gru/ManageCustomers.jsp?plugin_name=gru&view=modifyCustomer&id_customer=${customer.id}">
-          <i class="fa fa-pencil"></i> <span class="hidden-xs hidden-sm">Modifier le profil</span>
+          <i class="fa fa-pencil"></i> <span class="hidden-xs hidden-sm">#i18n{gru.view_customer_demand.header.right.edit.profil}</span>
         </a>
       </p>
       <ul class="list-unstyled">
@@ -22,22 +22,22 @@
             <li>
               <a href="jsp/admin/plugins/ticketing/ManageTickets.jsp?view=createTicket&cid=${customer.id!}&fn=${customer.firstname!}&ln=${customer.lastname!}&ut=${customer.idTitle!}&guid=${customer.accountGuid!}&ph=${customer.mobilePhone!}&em=${customer.email!}"
                 return-url="${return_url}" >
-                <i class="fa fa-bullhorn"></i> Nouvelle sollicitation
+                <i class="fa fa-bullhorn"></i> #i18n{gru.view_customer_demand.header.right.new.demand}
               </a>
             </li>
             <li>
               <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerNewDemands&id_customer=${customer.id}#espacepublic">
-                <i class="fa fa-street-view"></i> Espace Public
+                <i class="fa fa-street-view"></i> #i18n{gru.view_customer_demand.header.right.public.space}
               </a>
             </li>
             <li>
               <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerNewDemands&id_customer=${customer.id}#voirie">
-                <i class="fa fa-car"></i> Voirie
+                <i class="fa fa-car"></i> #i18n{gru.view_customer_demand.header.right.voirie}
               </a>
             </li>
             <li>
               <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerNewDemands&id_customer=${customer.id}#urbanisme">
-                <i class="fa fa-building"></i> Urbanisme
+                <i class="fa fa-building"></i> #i18n{gru.view_customer_demand.header.right.urbanisme}
               </a>
             </li>
           </ul>
@@ -56,9 +56,9 @@
               <table class="table table-striped table-hover">
                 <thead>
                 <tr>
-                  <th class="col-xs-12 col-sm-2">Reference</th>
-                  <th class="col-xs-12 col-sm-2">Ouvert depuis</th>
-                  <th class="col-xs-12 col-sm-8">Type de demande</th>
+                  <th class="col-xs-12 col-sm-2">#i18n{gru.view_customer_demand.demand.panel.list.reference}</th>
+                  <th class="col-xs-12 col-sm-2">#i18n{gru.view_customer_demand.demand.panel.list.open.since}</th>
+                  <th class="col-xs-12 col-sm-8">#i18n{gru.view_customer_demand.demand.panel.list.demand.type}</th>
                 </tr>
               </thead>
               <tbody>
@@ -77,10 +77,8 @@
                            <#else>
                       ${displayTimeOpenedTicket2(demand.timeOpenedInMs)}
                     </#if>                   
-                    </td>
-                    
-                    
-                    <td class="text-demand">${demand.title}</td>
+                    </td> 
+                 <td class="text-demand">${demand.title}</td>
                   </tr>
                 </#list>
               </tbody>
@@ -88,7 +86,7 @@
             </div>
             <#else>
               <div id="no-content" >
-                <h2 class="text-muted">Aucune demande pour cet usager</h2>
+                <h2 class="text-muted">#i18n{gru.view_customer_demand.no.content}</h2>
                 <img class="img-responsive" src="images/admin/skin/plugins/gru/no_user.jpg" alt="No content" title="">
               </div>
             </#if>

@@ -9,7 +9,7 @@
     <div id="header-right" class="col-xs-2 col-sm-2">
       <p>
         <a class="btn btn-border btn-block" title=" Modifier" href="jsp/admin/plugins/gru/ManageCustomers.jsp?plugin_name=gru&view=modifyCustomer&id_customer=${customer.id}">
-          <i class="fa fa-pencil"></i> <span class="hidden-sm hidden-xs">Modifier le profil</span>
+          <i class="fa fa-pencil"></i> <span class="hidden-sm hidden-xs">#i18n{gru.view_customer_demand.header.right.edit.profil}</span>
         </a>
       </p>
       <ul class="list-unstyled">
@@ -21,22 +21,22 @@
           <li>
             <a href="jsp/admin/plugins/ticketing/ManageTickets.jsp?view=createTicket&cid=${customer.id!}&fn=${customer.firstname!}&ln=${customer.lastname!}&ut=${customer.idTitle!}&guid=${customer.accountGuid!}&ph=${customer.mobilePhone!}&em=${customer.email!}"
                 return-url="${return_url}" >
-              <i class="fa fa-bullhorn"></i> Nouvelle sollicitation
+              <i class="fa fa-bullhorn"></i> #i18n{gru.view_customer_demand.header.right.new.demand}
             </a>
           </li>
           <li>
             <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerNewDemands&id_customer=${customer.id}#espacepublic">
-              <i class="fa fa-street-view"></i> Espace Public
+              <i class="fa fa-street-view"></i> #i18n{gru.view_customer_demand.header.right.public.space}
             </a>
           </li>
           <li>
             <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerNewDemands&id_customer=${customer.id}#voirie">
-              <i class="fa fa-car"></i> Voirie
+              <i class="fa fa-car"></i> #i18n{gru.view_customer_demand.header.right.voirie}
             </a>
           </li>
           <li>
             <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerNewDemands&id_customer=${customer.id}#urbanisme">
-              <i class="fa fa-building"></i> Urbanisme
+              <i class="fa fa-building"></i> #i18n{gru.view_customer_demand.header.right.urbanisme}
             </a>
           </li>
         </ul>
@@ -46,10 +46,10 @@
   </div>
   <div id="demand-panel-detail" class="row">
     <div class="col-xs-12 col-sm-3 col-sm-push-9" id="header-right">
-      <p>R&eacute;f&eacute;rence : <strong class="text-gru">${demand.reference!'Reference missing'} </strong>
-      <p>Ouvert depuis : <strong class="text-gru">${displayTimeOpenedTicket(demand.timeOpenedInMs)}</strong></p>
-      <p>Statut usager : <strong>${demand.statusForCustomer!''}</strong></p>
-      <p>Statut agent : <strong>${demand.statusForGRU!''}</strong></p>
+      <p>#i18n{gru.view_customer_demand.demand.panel.list.reference} : <strong class="text-gru">${demand.reference!'Reference missing'} </strong>
+      <p>#i18n{gru.view_customer_demand.demand.panel.list.open.since} : <strong class="text-gru">${displayTimeOpenedTicket(demand.timeOpenedInMs)}</strong></p>
+      <p>#i18n{gru.view_customer_demand.demand.panel.list.status.usager}  : <strong>${demand.statusForCustomer!''}</strong></p>
+      <p>#i18n{gru.view_customer_demand.demand.panel.list.status.agent} : <strong>${demand.statusForGRU!''}</strong></p>
       <p>Etat :
         <strong>
         <#switch demand.status>
@@ -87,7 +87,7 @@
                   <i class="fa fa-user bg-gru-cat2"></i>
                   <div class="timeline-item">
                     <h4 class="timeline-header">
-                        Notification envoy&eacute;e dans le tableau de bord <span><b>Mon Compte</b></span> de l'usager.
+                       #i18n{gru.view_customer_demand.list.notification.user.dashboard.1}  <span><b>#i18n{gru.view_customer_demand.list.notification.user.dashboard.2}</b></span> #i18n{gru.view_customer_demand.list.notification.user.dashboard.2}.
                     </h4>
                     <div class="timeline-body">
                       ${notification.userDashboard.message!'SMS message missing'}

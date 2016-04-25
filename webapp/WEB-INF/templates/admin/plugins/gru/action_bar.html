@@ -43,13 +43,13 @@
       <div class="user-panel">
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
           <i class="fa fa-bars"></i>
-          <span class="sr-only">Toggle navigation</span>
+          <span class="sr-only"> #i18n{gru.macro.action.menu.main.sidebar} </span>
         </a>
       </div>
       <ul class="sidebar-menu">
         <li>
          <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?plugin_name=gru">
-           <i class="fa fa-home"></i> <span>Accueil - Recherche Usager</span>
+           <i class="fa fa-home"></i> <span> #i18n{gru.macro.action.menu.sidebar.menu} </span>
          </a>
         </li>
         <#if customer.id != 0 >
@@ -124,7 +124,7 @@
     </li>
     <li>
       <a class="btn btn-block btn-primary" title=" Modifier" href="jsp/admin/plugins/gru/ManageCustomers.jsp?plugin_name=gru&view=modifyCustomer&id_customer=${customer.id}">
-        <i class="fa fa-pencil"></i> Modifier
+        <i class="fa fa-pencil"></i> #i18n{gru.macro.customer.menu.details}
       </a>
     </li>
   </ul>
@@ -135,7 +135,7 @@
   <div class="col-xs-2 col-sm-offset-1 col-sm-2">
     <h2>
       <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerDemands&id_customer=${customer.id}" class="btn btn-border">
-        <i class="fa fa-arrow-left"></i> <span class="hidden-xs"> Retour</span>
+        <i class="fa fa-arrow-left"></i> <span class="hidden-xs"> #i18n{gru.macro.customer.details} </span>
       </a>
     </h2>
   </div>
@@ -158,27 +158,27 @@
 <#macro customerFilter>
 <div id="filter">
   <form class="form-inline" action="">
-    <span class="form-control-static">Filter par :</span>
+    <span class="form-control-static"> #i18n{gru.macro.customer.filter.title} :</span>
     <label class="select" for="nature">
       <select name="nature" id="nature" class="form-control input-xs">
-        <option value="all" selected="selected" >Nature</option>
-        <option value="carte">Demande de carte</option>
-        <option value="stationnement">Horaire de stationnement</option>
-        <option value="autre">Autre</option>
+        <option value="all" selected="selected" >#i18n{gru.macro.customer.filter.nature.all}</option>
+        <option value="carte">#i18n{gru.macro.customer.filter.nature.carte}</option>
+        <option value="stationnement">#i18n{gru.macro.customer.filter.nature.stationnement}</option>
+        <option value="autre">#i18n{gru.macro.customer.filter.nature.autre}</option>
       </select>
      </label>
      <label class="select" for="domaine">
       <select name="domaine" id="domaine" class="form-control input-xs">
-        <option value="all" selected="selected" >Domaine</option>
-        <option value="autre">Autre</option>
+        <option value="all" selected="selected" >#i18n{gru.macro.customer.filter.domaine.title}</option>
+        <option value="autre">#i18n{gru.macro.customer.filter.domaine.autre}</option>
       </select>
      </label>
      <label class="select" for="since">
       <select name="since" id="since" class="form-control input-xs">
-        <option value="all" selected="selected" >Ouvert depuis</option>
-        <option value="1">1 jours</option>
-        <option value="2">1 semaine</option>
-        <option value="3">1 mois</option>
+        <option value="all" selected="selected" >#i18n{gru.macro.customer.filter.since.title}</option>
+        <option value="1">#i18n{gru.macro.customer.filter.since.1.day}</option>
+        <option value="2">#i18n{gru.macro.customer.filter.since.1.week}</option>
+        <option value="3">#i18n{gru.macro.customer.filter.since.1.mouth}</option>
       </select>
    </label>
   </form>
