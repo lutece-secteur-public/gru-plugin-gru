@@ -40,14 +40,13 @@
     </div>
   </div>
 </div>
+<script src="js/plugins/gru/gru.js"></script>
 <script>
 $( function(){
   $(".content-header").toggle();
   // Set link on whole tr
   $("tr").on( 'click', function(e){
-          if ( $(this).attr("data-url") !== undefined ){
-      location.replace( $(this).attr("data-url") );
-    }
+	  redirectOnClick(this);
   });
 });
 </script>

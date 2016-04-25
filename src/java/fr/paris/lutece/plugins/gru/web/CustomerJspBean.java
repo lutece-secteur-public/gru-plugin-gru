@@ -48,6 +48,7 @@ import fr.paris.lutece.plugins.gru.web.actions.model.ActionPanel;
 import fr.paris.lutece.portal.service.i18n.I18nService;
 import fr.paris.lutece.portal.service.message.AdminMessage;
 import fr.paris.lutece.portal.service.message.AdminMessageService;
+import fr.paris.lutece.portal.service.prefs.AdminUserPreferencesService;
 import fr.paris.lutece.portal.service.util.AppPathService;
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
 import fr.paris.lutece.portal.util.mvc.admin.MVCAdminJspBean;
@@ -66,6 +67,8 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang.StringUtils;
 
 
 /**
@@ -230,6 +233,12 @@ public class CustomerJspBean extends MVCAdminJspBean
             model.put( Constants.MARK_RETURN_URL,
                 UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath(  ) +
                     getControllerJsp(  ), VIEW_CUSTOMER_DEMANDS, customer ) );
+            
+            //display demand with date preference
+            String strCreationDateDisplay = AdminUserPreferencesService.instance(  ).get( String.valueOf( getUser(  ).getUserId(  ) ), Constants.MARK_USER_PREFERENCE_CREATION_DATE_DISPLAY, StringUtils.EMPTY );
+
+            model.put( Constants.MARK_CREATION_DATE_AS_DATE , Constants.USER_PREFERENCE_CREATION_DATE_DISPLAY_DATE.equals( strCreationDateDisplay ) );
+
 
             return getPage( "", TEMPLATE_VIEW_CUSTOMER_DEMANDS, model );
         }
@@ -467,6 +476,9 @@ public class CustomerJspBean extends MVCAdminJspBean
     public String doModifyCustomer( HttpServletRequest request )
     {
         populate( _customer, request );
+        
+        //update ES
+        SearchService.instance(  ).updateCustomer( _customer );
 
         // Check constraints
         if ( !validateBean( _customer, VALIDATION_ATTRIBUTES_PREFIX ) )
