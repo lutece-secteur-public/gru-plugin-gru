@@ -268,13 +268,17 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1110, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '301', '*'), -- init 
 (1112, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '303', '*'), -- requalify
 (1113, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '304', '*'), -- assign up
-(1114, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '305', '*'), -- assign to an other entity
-(1115, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '306', '*'), -- assign to an other user
-(1116, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '307', '*'), -- self assign
-(1117, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '308', '*'), -- ask new informations
-(1118, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '310', '*'), -- answer from agent to user 
-(1119, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '311', '*'), -- respond assign up  
-(1120, 'gru_admin', 'UNIT_TYPE', '*', '*'), 
+(1114, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '305', '*'), -- assign up level 3
+(1115, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '306', '*'), -- assign to an other entity
+(1116, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '307', '*'), -- assign to an other user
+(1117, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '308', '*'), -- self assign
+(1118, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '309', '*'), -- ask new informations
+(1119, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '310', '*'), -- answer from agent to user (info request)
+(1120, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '311', '*'), -- answer from agent to user 
+(1121, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '312', '*'), -- respond  to user and close ticket
+(1122, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '313', '*'), -- respond assign up
+
+(1141, 'gru_admin', 'UNIT_TYPE', '*', '*'), 
 (1151, 'gru_admin', 'TICKET_DOMAIN', '*', '*'), 
 (1163, 'gru_admin', 'SUPPORT_ENTITY', '*', '*'), 
 (1170, 'gru_admin', 'WORKFLOW_STATE_TYPE', '*', '*'),
@@ -282,23 +286,16 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 -- level 1 : 
 (1201, 'gru_level_1', 'ticket', '*', 'CREATE'),
 (1202, 'gru_level_1', 'ticket', '*', 'VIEW'),
-(1203, 'gru_level_1', 'ticket', '*', 'VIEW_HISTORY'),
-(1204, 'gru_level_1', 'ticket', '*', 'SELF_ASSIGN'),
-(1205, 'gru_level_1', 'ticket', '*', 'ASSIGN_TO_USER'),
-(1206, 'gru_level_1', 'ticket', '*', 'ASSIGN_UP_LEVEL'),
-(1207, 'gru_level_1', 'ticket', '*', 'QUALIFY'),
-(1208, 'gru_level_1', 'ticket', '*', 'RETURN_TO_ASSIGNER'),
-(1209, 'gru_level_1', 'ticket', '*', 'RESPOND_TO_USER'),
 
 (1210, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '301', '*'), -- init 
 (1212, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '303', '*'), -- requalify
 (1213, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '304', '*'), -- assign up
-(1214, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '305', '*'), -- assign to an other entity
-(1215, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '306', '*'), -- assign to an other user
-(1216, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '307', '*'), -- self assign
-(1217, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '308', '*'), -- ask new informations
-(1218, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '310', '*'), -- answer from agent to user 
-(1220, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '309', '*'), -- answer from user to agent
+(1214, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '306', '*'), -- assign to an other entity
+(1215, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '307', '*'), -- assign to an other user
+(1216, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '308', '*'), -- self assign
+(1217, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '309', '*'), -- ask new informations
+(1218, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '312', '*'), -- answer to user and close ticket
+(1220, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '310', '*'), -- answer from agent to user (info request)
 (1240, 'gru_level_1', 'WORKFLOW_STATE_TYPE', '*', '*'), -- all workflow states
 
 -- support entity
@@ -320,22 +317,16 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 -- level 2
 (1301, 'gru_level_2', 'ticket', '*', 'CREATE'),
 (1302, 'gru_level_2', 'ticket', '*', 'VIEW'),
-(1303, 'gru_level_2', 'ticket', '*', 'VIEW_HISTORY'),
-(1304, 'gru_level_2', 'ticket', '*', 'SELF_ASSIGN'),
-(1305, 'gru_level_2', 'ticket', '*', 'ASSIGN_TO_USER'),
-(1306, 'gru_level_2', 'ticket', '*', 'ASSIGN_UP_LEVEL'),
-(1307, 'gru_level_2', 'ticket', '*', 'QUALIFY'),
-(1308, 'gru_level_2', 'ticket', '*', 'RETURN_TO_ASSIGNER'),
-(1309, 'gru_level_2', 'ticket', '*', 'RESPOND_TO_USER'),
 
 (1310, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '301', '*'), -- init 
 (1312, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '303', '*'), -- requalify
-(1313, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '304', '*'), -- assign up
-(1314, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '305', '*'), -- assign to an other entity
-(1315, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '306', '*'), -- assign to an other user
-(1316, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '307', '*'), -- self assign
-(1317, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '308', '*'), -- ask new informations
-(1318, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '310', '*'), -- answer from agent to user
+(1313, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '305', '*'), -- assign up to level 3
+(1314, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '306', '*'), -- assign to an other entity
+(1315, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '307', '*'), -- assign to an other user
+(1316, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '308', '*'), -- self assign
+(1317, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '309', '*'), -- ask new informations
+(1318, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '310', '*'), -- answer from agent to user (info request)
+(1319, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '312', '*'), -- answer to user and close ticket
 
 (1340, 'gru_level_2', 'WORKFLOW_STATE_TYPE', '*', '*'), -- all workflow states
 
@@ -354,15 +345,10 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 
 -- level 3
 (1402, 'gru_level_3', 'ticket', '*', 'VIEW'),
-(1403, 'gru_level_3', 'ticket', '*', 'VIEW_HISTORY'),
-(1404, 'gru_level_3', 'ticket', '*', 'SELF_ASSIGN'),
-(1405, 'gru_level_3', 'ticket', '*', 'ASSIGN_TO_USER'),
-(1408, 'gru_level_3', 'ticket', '*', 'RETURN_TO_ASSIGNER'),
-(1409, 'gru_level_3', 'ticket', '*', 'RESPOND_ASSIGN_UP_LEVEL'),
-(1414, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '305', '*'), -- assign to an other entity
-(1415, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '306', '*'), -- assign to an other user
-(1416, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '307', '*'), -- self assign
-(1417, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '311', '*'), -- respond assign up
+(1414, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '314', '*'), -- assign to an other entity
+(1415, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '315', '*'), -- assign to an other user
+(1416, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '316', '*'), -- self assign
+(1417, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '313', '*'), -- respond assign up
 
 (1440, 'gru_level_3', 'WORKFLOW_STATE_TYPE', '*', '*'), -- all workflow states
 
@@ -375,7 +361,7 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 
 -- User front ticketing
 (1456, 'ticketing_user_front', 'WORKFLOW_ACTION_TYPE', '301','*'), -- init 
-(1457, 'ticketing_user_front', 'WORKFLOW_ACTION_TYPE', '309','*'), -- respond to info request
+(1457, 'ticketing_user_front', 'WORKFLOW_ACTION_TYPE', '311','*'), -- respond to info request
 (1458, 'ticketing_user_front', 'WORKFLOW_STATE_TYPE', '*', '*') -- all workflow states
 ;
 
