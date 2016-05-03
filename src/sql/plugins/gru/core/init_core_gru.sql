@@ -345,9 +345,8 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 
 -- level 3
 (1402, 'gru_level_3', 'ticket', '*', 'VIEW'),
-(1414, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '314', '*'), -- assign to an other entity
-(1415, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '315', '*'), -- assign to an other user
-(1416, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '316', '*'), -- self assign
+(1415, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '314', '*'), -- assign to an other user
+(1416, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '315', '*'), -- self assign
 (1417, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '313', '*'), -- respond assign up
 
 (1440, 'gru_level_3', 'WORKFLOW_STATE_TYPE', '*', '*'), -- all workflow states

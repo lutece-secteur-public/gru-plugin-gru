@@ -25,9 +25,8 @@ INSERT INTO workflow_action (id_action, name, description, id_workflow, id_state
 			(311,'Répondre (usager)','Réponse de l''usager à une demande d''informations',301,304,303,1,0,0,10,0),
             (312,'Répondre à l''usager','Réponse finale à l''usager',301,303,306,1,0,0,11,0),
             (313,'Répondre à l''escalade', 'Réponse à l''escalade', 301, 305, 303, 1, 0, 0, 12, 0),
-			(314,'Assigner à une autre entité','Assignation de la sollicitation à une autre entité',301,305,305,1,0,0,5,0), -- assignation a autre entite pour tickets escaladés
-            (315,'Assigner à un autre agent','Assignation de la sollicitation à un autre agent',301,305,305,1,0,0,4,0), -- assignation a autre agent pour tickets escaladés
-			(316,'Me l''assigner','Prise en charge de la sollicitation',301,305,305,1,0,0,3,0) -- auto assignation pour tickets escaladés
+            (314,'Assigner à un autre agent','Assignation de la sollicitation à un autre agent',301,305,305,1,0,0,4,0), -- assignation a autre agent pour tickets escaladés
+			(315,'Me l''assigner','Prise en charge de la sollicitation',301,305,305,1,0,0,3,0) -- auto assignation pour tickets escaladés
 ;
 		
 INSERT INTO workflow_task (id_task, task_type_key, id_action, display_order) 
@@ -74,15 +73,12 @@ INSERT INTO workflow_task (id_task, task_type_key, id_action, display_order)
             (441, 'taskTicketingReplyAssignUpTicket',313,1), -- Reply to assign up
             (442, 'taskTypeComment', 313,2),
             (443,'taskNotifyGru',313,3),
-            (451,'taskTicketingAssignTicketToUnit',314,1), -- Assign to unit LEVEL3
-            (452, 'taskTypeComment', 314,2),
-            (453,'taskNotifyGru',314,3),
-            (461,'taskTicketingAssignTicketToUser',315,1), -- Assign to user LEVEL3
-            (462, 'taskTypeComment', 315,2),
-            (463,'taskNotifyGru',315,3),
-            (471,'taskTicketingAssignTicketToMe',316,1), -- Assign to me LEVEL3
-            (472, 'taskTypeComment', 316,2),
-            (473,'taskNotifyGru',316,3)
+            (461,'taskTicketingAssignTicketToUser',314,1), -- Assign to user LEVEL3
+            (462, 'taskTypeComment', 314,2),
+            (463,'taskNotifyGru',314,3),
+            (471,'taskTicketingAssignTicketToMe',315,1), -- Assign to me LEVEL3
+            (472, 'taskTypeComment', 315,2),
+            (473,'taskNotifyGru',315,3)
 ;
 
 DELETE FROM workflow_task_comment_config WHERE id_task >= 300 AND id_task < 500;			
@@ -95,7 +91,6 @@ INSERT INTO workflow_task_comment_config (id_task, title, is_mandatory)
 			(382, 'Commentaire', 0),
 			(387, 'Commentaire', 0),
             (442, 'Commentaire', 0),
-            (452, 'Commentaire', 0),
             (462, 'Commentaire', 0),
 			(472, 'Commentaire', 0)
 ;
@@ -126,7 +121,6 @@ INSERT INTO `workflow_task_notify_gru_cf` (`id_task`, `id_spring_provider`, `dem
 (326, 'notifygru-ticketing.ProviderService', 1, 0, NULL, NULL, NULL, NULL, 4, 1, 0, 'A traiter', '<p>La sollicitation ${reference} a &eacute;t&eacute; qualifi&eacute;e.</p>', 1, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, 1, NULL, NULL, NULL, NULL, NULL, 0),
 (344, 'notifygru-ticketing.ProviderService', 1, 0, NULL, NULL, NULL, NULL, 4, 1, 0, 'A traiter', '<p>La sollicitation ${reference} a &eacute;t&eacute; requalifi&eacute;e.</p>', 1, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, 1, NULL, NULL, NULL, NULL, NULL, 0),
 (353, 'notifygru-ticketing.ProviderService', 1, 0, NULL, NULL, NULL, NULL, 4, 1, 0, 'A traiter', '<p>La sollicitation ${reference} a &eacute;t&eacute; assign&eacutee &agrave; une autre entit&eacute;.</p>', 1, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, 1, NULL, NULL, NULL, NULL, NULL, 0),
-(453, 'notifygru-ticketing.ProviderService', 1, 0, NULL, NULL, NULL, NULL, 4, 1, 0, 'A traiter', '<p>La sollicitation ${reference} a &eacute;t&eacute; assign&eacutee &agrave; une autre entit&eacute;.</p>', 1, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, 1, NULL, NULL, NULL, NULL, NULL, 0),
 (363, 'notifygru-ticketing.ProviderService', 1, 0, NULL, NULL, NULL, NULL, 4, 1, 0, 'A traiter', '<p>La sollicitation ${reference} a &eacute;t&eacute; assign&eacutee &agrave; un autre agent.</p>', 1, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, 1, NULL, NULL, NULL, NULL, NULL, 0),
 (463, 'notifygru-ticketing.ProviderService', 1, 0, NULL, NULL, NULL, NULL, 4, 1, 0, 'A traiter', '<p>La sollicitation ${reference} a &eacute;t&eacute; assign&eacutee &agrave; un autre agent.</p>', 1, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, 1, NULL, NULL, NULL, NULL, NULL, 0),
 (373, 'notifygru-ticketing.ProviderService', 1, 0, NULL, NULL, NULL, NULL, 4, 1, 0, 'A traiter', '<p>La sollicitation ${reference} vous a &eacute;t&eacute; assign&eacute;e.</p>', 1, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, 1, NULL, NULL, NULL, NULL, NULL, 0),
@@ -135,3 +129,9 @@ INSERT INTO `workflow_task_notify_gru_cf` (`id_task`, `id_spring_provider`, `dem
 (388, 'notifygru-ticketing.ProviderService', 1, 0, NULL, NULL, NULL, NULL, 4, 1, 0, 'A traiter', '<p>La sollicitation ${reference} a &eacute;t&eacute; transmise &agrave; l''entit&eacute; de support.</p>', 1, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, 1, NULL, NULL, NULL, NULL, NULL, 0),
 (392, 'notifygru-ticketing.ProviderService', 1, 0, '<p>Bonjour ${firstname} ${lastname},</p>\r\n<p>Votre demande ${reference} est en attente d''informations compl&eacute;mentaires de votre part. <a href=''${url_completed}''>Cliquez ici</a> pour acc&eacute;der &agrave; votre demande.</p>\r\n<p>Cordialement,</p>\r\n<p>Mairie de Paris</p>', 'En attente de compléments', 'Mairie de Paris', 'Demande d''information complémentaires, demande ${reference}', 4, 2, 1, 'En attente de compléments par l''usager', '<p>Bonjour ${firstname} ${lastname},</p>\r\n<p>Votre demande ${reference} est en attente d''informations compl&eacute;mentaires de votre part. <a href=''${url_completed}''>Cliquez ici</a> pour acc&eacute;der &agrave; votre demande.</p>\r\n<p>Cordialement,</p>\r\n<p>Mairie de Paris</p>', 1, 'Demande d''information complémentaires, demande ${reference}', '<p>Bonjour ${firstname} ${lastname},</p>\r\n<p>Votre demande ${reference} est en attente d''informations compl&eacute;mentaires de votre part. <a href=''${url_completed}''>Cliquez ici</a> pour acc&eacute;der &agrave; votre demande.</p>\r\n<p>Cordialement,</p>\r\n<p>Mairie de Paris</p>', 'Mairie de Paris', '', '', 1, 'Bonjour ${firstname} ${lastname}, votre demande ${reference} est en attente d''informations complémentaires de votre part. Cordialement. Mairie de Paris', 1, 1, 'Mairie de Paris', 'Demande d''information complémentaires, demande ${reference}', '<p>Bonjour ${firstname} ${lastname},</p>\r\n<p>Votre demande ${reference} est en attente d''informations compl&eacute;mentaires de votre part. <a href=''${url_completed}''>Cliquez ici</a> pour acc&eacute;der &agrave; votre demande.</p>\r\n<p>Cordialement,</p>\r\n<p>Mairie de Paris</p>', '', '', 1),
 (304, 'notifygru-ticketing.ProviderService', 1, 0, '<p>Bonjour ${firstname} ${lastname},</p>\r\n<p>Nous avons bien re&ccedil;u votre demande et nous vous remercions de votre confiance.</p>\r\n<p>Un e-mail de confirmation vous a &eacute;t&eacute; envoy&eacute; &agrave; l''adresse suivante ${email}. Il contient un num&eacute;ro de suivi qui vous sera demand&eacute; au 3975 pour suivre son &eacute;tat d''avancement. Il est &eacute;galement disponible dans votre espace Compte Parisien.</p>\r\n<p>Nous restons &agrave; votre enti&egrave;re disposition pour toute information compl&eacute;mentaire.</p>\r\n<p>Cordialement,</p>\r\n<p>Mairie de Paris.</p>', 'En cours de traitement', 'Mairie de Paris', 'Votre demande ${reference}', 4, 1, 1, 'Nouveau', '<p>Bonjour ${firstname} ${lastname},</p>\r\n<p>Nous avons bien re&ccedil;u votre demande et nous vous remercions de votre confiance.</p>\r\n<p>Un e-mail de confirmation vous a &eacute;t&eacute; envoy&eacute; &agrave; l''adresse suivante ${email}. Il contient un num&eacute;ro de suivi qui vous sera demand&eacute; au 3975 pour suivre son &eacute;tat d''avancement. Il est &eacute;galement disponible dans votre espace Compte Parisien.</p>\r\n<p>Nous restons &agrave; votre enti&egrave;re disposition pour toute information compl&eacute;mentaire.</p>\r\n<p>Cordialement,</p>\r\n<p>Mairie de Paris.</p>', 1, 'Votre demande ${reference}', '<p>Bonjour ${firstname} ${lastname},</p>\r\n<p>Nous avons bien re&ccedil;u votre demande et nous vous remercions de votre confiance.</p>\r\n<p>Un e-mail de confirmation vous a &eacute;t&eacute; envoy&eacute; &agrave; l''adresse suivante ${email}. Il contient un num&eacute;ro de suivi qui vous sera demand&eacute; au 3975 pour suivre son &eacute;tat d''avancement. Il est &eacute;galement disponible dans votre espace Compte Parisien.</p>\r\n<p>Nous restons &agrave; votre enti&egrave;re disposition pour toute information compl&eacute;mentaire.</p>\r\n<p>Cordialement,</p>\r\n<p>Mairie de Paris.</p>', 'Mairie de Paris', '', '', 1, 'Bonjour ${firstname} ${lastname}, votre demande ${reference} est bien reçue. Cordialement. Mairie de Paris', 1, 1, 'Mairie de Paris', 'Votre demande ${reference}', '<p>Bonjour ${firstname} ${lastname},</p>\r\n<p>Nous avons bien re&ccedil;u votre demande et nous vous remercions de votre confiance.</p>\r\n<p>Un e-mail de confirmation vous a &eacute;t&eacute; envoy&eacute; &agrave; l''adresse suivante ${email}. Il contient un num&eacute;ro de suivi qui vous sera demand&eacute; au 3975 pour suivre son &eacute;tat d''avancement. Il est &eacute;galement disponible dans votre espace Compte Parisien.</p>\r\n<p>Nous restons &agrave; votre enti&egrave;re disposition pour toute information compl&eacute;mentaire.</p>\r\n<p>Cordialement,</p>\r\n<p>Mairie de Paris.</p>', '', '', 1);
+
+DELETE FROM ticketing_configuration;
+INSERT INTO `ticketing_configuration` (`ticketing_key`, `ticketing_value`) VALUES
+('ticketing.workflow.id', '301'),
+('ticketing.workflow.state.id.closed', '306')
+;
