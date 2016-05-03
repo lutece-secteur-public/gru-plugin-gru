@@ -87,7 +87,7 @@ table.table-hover tr:hover{ cursor: pointer }
 #demand-panel .tab-content table td{ color: #656565; font-size: 1.3rem; text-align: center  }
 #demand-panel .tab-content table td:first-of-type{ width: 140px }
 
-#demand-panel .tab-content table td:nth-of-type(2){ padding-right: 55px; padding-top: 0; width: 130px }
+#demand-panel .tab-content table td:nth-of-type(2){ width: 130px }
 
 #demand-panel .tab-content table td:nth-of-type(3){ width: 200px }
 #demand-panel .tab-content table td:nth-of-type(4){ width: 400px }

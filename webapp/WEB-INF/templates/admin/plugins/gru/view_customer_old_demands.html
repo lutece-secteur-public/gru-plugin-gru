@@ -45,31 +45,35 @@
     </ul>
     </div>
   </div>
-  <div id="demand-panel" class="row bg-gru-dark">
+  <div id="demand-panel" class="row bg-gru-dark gru">
     <div class="col-xs-12 col-sm-12">
       <@tabs tab="oldDemands" customer=customer />
       <div class="tab-content">
         <div class="row">
-          <div class="col-xs-12 col-sm-offset-1 col-sm-9">
+          <div class="col-xs-12 col-sm-offset-1 col-sm-10">
           <#if demands_list?size &gt; 0 >
-            <div role="tabpanel" class="tab-pane active table-responsive">
+            <div role="tabpanel" class="tab-pane active">
             <table class="table table-striped table-hover">
-            <tr>
-              <th class="col-xs-12 col-sm-2">#i18n{gru.view_customer_demand.demand.panel.list.reference}</th>
-              <th class="col-xs-12 col-sm-2">#i18n{gru.view_customer_demand.demand.panel.deal.in}</th>
-              <th class="col-xs-12 col-sm-8">#i18n{gru.view_customer_demand.demand.panel.list.demand.type}</th>
-            </tr>
-            <#list demands_list as demand>
-              <tr data-url="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewDemand&id_demand=${demand.id}&id_demand_type=${demand.demandTypeId}&id_customer=${customer.id}">
-                <td>
-                  <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewDemand&id_demand=${demand.id}&id_demand_type=${demand.demandTypeId}&id_customer=${customer.id}">
-                    ${demand.reference}
-                  </a>
-                </td>
-                <td class="text-center text-gru">${displayTimeOpenedTicket(demand.timeOpenedInMs)}</td>
-                <td>${demand.title}</td>
+              <thead>
+              <tr>
+                <th class="col-xs-12 col-sm-2">#i18n{gru.view_customer_demand.demand.panel.list.reference}</th>
+                <th class="col-xs-12 col-sm-2">#i18n{gru.view_customer_demand.demand.panel.deal.in}</th>
+                <th class="col-xs-12 col-sm-8">#i18n{gru.view_customer_demand.demand.panel.list.demand.type}</th>
               </tr>
-            </#list>
+              </thead>
+              <tbody>
+                <#list demands_list as demand>
+                  <tr data-url="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewDemand&id_demand=${demand.id}&id_demand_type=${demand.demandTypeId}&id_customer=${customer.id}">
+                    <td>
+                      <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewDemand&id_demand=${demand.id}&id_demand_type=${demand.demandTypeId}&id_customer=${customer.id}">
+                        ${demand.reference}
+                      </a>
+                    </td>
+                    <td class="text-center">${displayTimeOpenedTicket2(demand.timeOpenedInMs)}</td>
+                    <td>${demand.title}</td>
+                  </tr>
+                </#list>
+            </tbody>
           </table>
           </div>
         <#else>
