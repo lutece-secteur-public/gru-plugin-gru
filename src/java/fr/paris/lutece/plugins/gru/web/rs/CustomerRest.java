@@ -343,7 +343,7 @@ public class CustomerRest
         XmlUtil.addElement( sbXML, KEY_EMAIL, customer.getEmail(  ) );
         XmlUtil.addElement( sbXML, KEY_IS_EMAIL_VERIFIED, customer.getIsEmailVerified(  ) ? "1" : "0" );
         XmlUtil.addElement( sbXML, KEY_FIXED_PHONE_NUMBER, customer.getFixedPhoneNumber(  ) );
-        XmlUtil.addElement( sbXML, KEY_MOBILE_PHONE, customer.getMobilePhone(  ) );   
+        XmlUtil.addElement( sbXML, KEY_MOBILE_PHONE, customer.getMobilePhone(  ) );
         XmlUtil.addElement( sbXML, KEY_IS_MOBILE_PHONE_VERIFIED, customer.getIsMobilePhoneVerified(  ) ? "1" : "0" );
         XmlUtil.addElement( sbXML, KEY_EXTRAS_ATTRIBUTES, customer.getExtrasAttributes(  ) );
         XmlUtil.endElement( sbXML, KEY_CUSTOMER );
@@ -366,8 +366,8 @@ public class CustomerRest
         jsonCustomer.accumulate( KEY_ACCOUNT_GUID, customer.getAccountGuid(  ) );
         jsonCustomer.accumulate( KEY_EMAIL, customer.getEmail(  ) );
         jsonCustomer.accumulate( KEY_IS_EMAIL_VERIFIED, customer.getIsEmailVerified(  ) );
-        jsonCustomer.accumulate( KEY_FIXED_PHONE_NUMBER, customer.getFixedPhoneNumber( ) );
-        jsonCustomer.accumulate( KEY_MOBILE_PHONE, customer.getMobilePhone(  ) );     
+        jsonCustomer.accumulate( KEY_FIXED_PHONE_NUMBER, customer.getFixedPhoneNumber(  ) );
+        jsonCustomer.accumulate( KEY_MOBILE_PHONE, customer.getMobilePhone(  ) );
         jsonCustomer.accumulate( KEY_IS_MOBILE_PHONE_VERIFIED, customer.getIsMobilePhoneVerified(  ) );
         jsonCustomer.accumulate( KEY_EXTRAS_ATTRIBUTES, customer.getExtrasAttributes(  ) );
         json.accumulate( KEY_CUSTOMER, jsonCustomer );

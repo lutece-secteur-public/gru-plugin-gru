@@ -46,57 +46,56 @@ import javax.validation.constraints.*;
  */
 public class Customer implements Serializable
 {
-    
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
 
     /** The _n id. */
     // Variables declarations 
     private int _nId;
-    
+
     /** The _n id title. */
     private int _nIdTitle;
-    
+
     /** The _str firstname. */
     @NotEmpty( message = "#i18n{gru.validation.customer.Firstname.notEmpty}" )
     @Size( max = 50, message = "#i18n{gru.validation.customer.Firstname.size}" )
     private String _strFirstname;
-    
+
     /** The _str lastname. */
     @NotEmpty( message = "#i18n{gru.validation.customer.Lastname.notEmpty}" )
     @Size( max = 50, message = "#i18n{gru.validation.customer.Lastname.size}" )
     private String _strLastname;
-    
+
     /** The _b has account. */
     private boolean _bHasAccount;
-    
+
     /** The _str account login. */
     @Size( max = 50, message = "#i18n{gru.validation.customer.AccountLogin.size}" )
     private String _strAccountLogin;
-    
+
     /** The _str account guid. */
     @Size( max = 50, message = "#i18n{gru.validation.customer.AccountGuid.size}" )
     private String _strAccountGuid;
-    
+
     /** The _str email. */
     @Email( message = "#i18n{portal.validation.message.email}" )
     @Size( max = 255, message = "#i18n{gru.validation.customer.Email.size}" )
     private String _strEmail;
-    
+
     /** The _b is email verified. */
     private boolean _bIsEmailVerified;
-    
+
     /** The _str fixe phone. */
     @Size( max = 50, message = "#i18n{gru.validation.customer.FixedPhoneNumber.size}" )
     private String _strFixedPhoneNumber;
-    
+
     /** The _str mobile phone. */
     @Size( max = 50, message = "#i18n{gru.validation.customer.MobilePhone.size}" )
     private String _strMobilePhone;
-    
+
     /** The _b is mobile phone verified. */
     private boolean _bIsMobilePhoneVerified;
-    
+
     /** The _str extras attributes. */
     @NotEmpty( message = "#i18n{gru.validation.customer.ExtrasAttributes.notEmpty}" )
     private String _strExtrasAttributes;
@@ -300,9 +299,7 @@ public class Customer implements Serializable
     {
         _strMobilePhone = strMobilePhone;
     }
-    
-    
-    
+
     /**
      * Gets the fixe phone.
      *
@@ -312,7 +309,7 @@ public class Customer implements Serializable
     {
         return _strFixedPhoneNumber;
     }
-    
+
     /**
      * Sets the fixe phone.
      *
@@ -330,7 +327,6 @@ public class Customer implements Serializable
      */
     public boolean getIsMobilePhoneVerified(  )
     {
-        
         return _bIsMobilePhoneVerified;
     }
 

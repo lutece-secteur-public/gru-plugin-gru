@@ -87,7 +87,8 @@ public final class CustomerDAO implements ICustomerDAO
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_INSERT, plugin );
 
         customer.setId( newPrimaryKey( plugin ) );
-        int ncpt=1;
+
+        int ncpt = 1;
         daoUtil.setInt( ncpt++, customer.getId(  ) );
         daoUtil.setInt( ncpt++, customer.getIdTitle(  ) );
         daoUtil.setString( ncpt++, customer.getFirstname(  ) );
@@ -123,7 +124,8 @@ public final class CustomerDAO implements ICustomerDAO
         if ( daoUtil.next(  ) )
         {
             customer = new Customer(  );
-            int ncpt=1;
+
+            int ncpt = 1;
             customer.setId( daoUtil.getInt( ncpt++ ) );
             customer.setIdTitle( daoUtil.getInt( ncpt++ ) );
             customer.setFirstname( daoUtil.getString( ncpt++ ) );
@@ -163,7 +165,7 @@ public final class CustomerDAO implements ICustomerDAO
     public void store( Customer customer, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE, plugin );
-        int ncpt=1;
+        int ncpt = 1;
         daoUtil.setInt( ncpt++, customer.getId(  ) );
         daoUtil.setInt( ncpt++, customer.getIdTitle(  ) );
         daoUtil.setString( ncpt++, customer.getFirstname(  ) );
@@ -176,7 +178,7 @@ public final class CustomerDAO implements ICustomerDAO
         daoUtil.setString( ncpt++, customer.getMobilePhone(  ) );
         daoUtil.setBoolean( ncpt++, customer.getIsMobilePhoneVerified(  ) );
         daoUtil.setString( ncpt++, customer.getFixedPhoneNumber(  ) );
-        daoUtil.setString( ncpt++, customer.getExtrasAttributes(  ) );       
+        daoUtil.setString( ncpt++, customer.getExtrasAttributes(  ) );
         daoUtil.setInt( ncpt++, customer.getId(  ) );
 
         daoUtil.executeUpdate(  );
@@ -196,7 +198,7 @@ public final class CustomerDAO implements ICustomerDAO
         while ( daoUtil.next(  ) )
         {
             Customer customer = new Customer(  );
-            int ncpt=1;
+            int ncpt = 1;
             customer.setId( daoUtil.getInt( ncpt++ ) );
             customer.setIdTitle( daoUtil.getInt( ncpt++ ) );
             customer.setFirstname( daoUtil.getString( ncpt++ ) );
@@ -252,8 +254,8 @@ public final class CustomerDAO implements ICustomerDAO
         Customer customer = null;
 
         if ( daoUtil.next(  ) )
-        {    
-        	 int ncpt=1;
+        {
+            int ncpt = 1;
             customer = new Customer(  );
             customer.setId( daoUtil.getInt( ncpt++ ) );
             customer.setIdTitle( daoUtil.getInt( ncpt++ ) );
@@ -265,7 +267,7 @@ public final class CustomerDAO implements ICustomerDAO
             customer.setEmail( daoUtil.getString( ncpt++ ) );
             customer.setIsEmailVerified( daoUtil.getBoolean( ncpt++ ) );
             customer.setMobilePhone( daoUtil.getString( ncpt++ ) );
-            customer.setIsMobilePhoneVerified( daoUtil.getBoolean( ncpt++ ) );            
+            customer.setIsMobilePhoneVerified( daoUtil.getBoolean( ncpt++ ) );
             customer.setFixedPhoneNumber( daoUtil.getString( ncpt++ ) );
             customer.setExtrasAttributes( daoUtil.getString( ncpt++ ) );
         }

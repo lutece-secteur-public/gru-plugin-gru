@@ -59,16 +59,18 @@ import fr.paris.lutece.portal.web.util.LocalizedPaginator;
 import fr.paris.lutece.util.html.Paginator;
 import fr.paris.lutece.util.url.UrlItem;
 
+import org.apache.commons.lang.StringUtils;
+
 import java.io.UnsupportedEncodingException;
+
 import java.nio.charset.Charset;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.lang.StringUtils;
 
 
 /**
@@ -161,9 +163,10 @@ public class CustomerJspBean extends MVCAdminJspBean
     }
 
     @Action( ACTION_SEARCH )
-    public String doSearch( HttpServletRequest request ) throws UnsupportedEncodingException 
+    public String doSearch( HttpServletRequest request )
+        throws UnsupportedEncodingException
     {
-    	String strQuery = request.getParameter( Constants.PARAMETER_QUERY );
+        String strQuery = request.getParameter( Constants.PARAMETER_QUERY );
 
         _listCustomer = SearchService.instance(  ).searchCustomer( strQuery );
 
@@ -177,7 +180,6 @@ public class CustomerJspBean extends MVCAdminJspBean
 
         if ( _listCustomer.size(  ) == 1 )
         {
-
             return redirect( request, VIEW_CUSTOMER_DEMANDS, Constants.PARAMETER_ID_CUSTOMER,
                 _listCustomer.get( 0 ).getId(  ) );
         }
@@ -233,12 +235,14 @@ public class CustomerJspBean extends MVCAdminJspBean
             model.put( Constants.MARK_RETURN_URL,
                 UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath(  ) +
                     getControllerJsp(  ), VIEW_CUSTOMER_DEMANDS, customer ) );
-            
+
             //display demand with date preference
-            String strCreationDateDisplay = AdminUserPreferencesService.instance(  ).get( String.valueOf( getUser(  ).getUserId(  ) ), Constants.MARK_USER_PREFERENCE_CREATION_DATE_DISPLAY, StringUtils.EMPTY );
+            String strCreationDateDisplay = AdminUserPreferencesService.instance(  )
+                                                                       .get( String.valueOf( getUser(  ).getUserId(  ) ),
+                    Constants.MARK_USER_PREFERENCE_CREATION_DATE_DISPLAY, StringUtils.EMPTY );
 
-            model.put( Constants.MARK_CREATION_DATE_AS_DATE , Constants.USER_PREFERENCE_CREATION_DATE_DISPLAY_DATE.equals( strCreationDateDisplay ) );
-
+            model.put( Constants.MARK_CREATION_DATE_AS_DATE,
+                Constants.USER_PREFERENCE_CREATION_DATE_DISPLAY_DATE.equals( strCreationDateDisplay ) );
 
             return getPage( "", TEMPLATE_VIEW_CUSTOMER_DEMANDS, model );
         }
@@ -433,10 +437,10 @@ public class CustomerJspBean extends MVCAdminJspBean
     {
         int nId = Integer.parseInt( request.getParameter( Constants.PARAMETER_ID_CUSTOMER ) );
         CustomerHome.remove( nId );
-        
+
         //Delete from ES
         SearchService.instance(  ).deleteCustomer( nId );
-        
+
         addInfo( INFO_CUSTOMER_REMOVED, getLocale(  ) );
 
         return redirectView( request, VIEW_MANAGE_CUSTOMERS );
@@ -476,7 +480,7 @@ public class CustomerJspBean extends MVCAdminJspBean
     public String doModifyCustomer( HttpServletRequest request )
     {
         populate( _customer, request );
-        
+
         //update ES
         SearchService.instance(  ).updateCustomer( _customer );
 
@@ -485,6 +489,7 @@ public class CustomerJspBean extends MVCAdminJspBean
         {
             return redirect( request, VIEW_MODIFY_CUSTOMER, Constants.PARAMETER_ID_CUSTOMER, _customer.getId(  ) );
         }
+
         CustomerHome.update( _customer );
         //update ES
         SearchService.instance(  ).updateCustomer( _customer );

@@ -33,10 +33,10 @@
  */
 package fr.paris.lutece.plugins.gru.service.search;
 
+import fr.paris.lutece.plugins.gru.business.customer.Customer;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import fr.paris.lutece.plugins.gru.business.customer.Customer;
 
 
 /**
@@ -91,15 +91,13 @@ public class MokeSearchService implements ISearchService
         return "";
     }
 
+    @Override
+    public void deleteCustomer( int nId )
+    {
+    }
 
-	@Override
-	public void deleteCustomer(int nId) {
-		
-	}
-
-	@Override
-	public void updateCustomer(Customer user) {
-		
-	}
-
+    @Override
+    public void updateCustomer( Customer user )
+    {
+    }
 }
