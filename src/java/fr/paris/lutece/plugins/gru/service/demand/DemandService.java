@@ -46,6 +46,8 @@ import fr.paris.lutece.portal.service.spring.SpringContextService;
 import fr.paris.lutece.portal.service.util.AppException;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -56,6 +58,15 @@ public class DemandService
 {
     private static final String BEAN_DEMAND_SERVICE = "gru.demandService";
     private static IDemandService _service;
+    private static Comparator<Demand> _comparatorDemands = new Comparator<Demand>(  )
+        {
+            @Override
+            public int compare( Demand demand1, Demand demand2 )
+            {
+                return ( Long.valueOf( demand1.getTimeOpenedInMs(  ) )
+                             .compareTo( Long.valueOf( demand2.getTimeOpenedInMs(  ) ) ) );
+            }
+        };
 
     /**
      * Get External implementation
@@ -111,6 +122,8 @@ public class DemandService
             }
         }
 
+        Collections.sort( listDemand, _comparatorDemands );
+
         return listDemand;
     }
 
@@ -138,6 +151,8 @@ public class DemandService
             }
         }
 
+        Collections.sort( listDemand, _comparatorDemands );
+
         return listDemand;
     }
 
@@ -164,6 +179,8 @@ public class DemandService
                 }
             }
         }
+
+        Collections.sort( listDemand, _comparatorDemands );
 
         return listDemand;
     }

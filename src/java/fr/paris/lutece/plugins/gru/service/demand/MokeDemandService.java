@@ -42,7 +42,9 @@ import fr.paris.lutece.plugins.gru.service.demandtype.DemandTypeService;
 import fr.paris.lutece.portal.business.user.AdminUser;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 
@@ -108,6 +110,7 @@ public class MokeDemandService implements IDemandService
             demand1.setId( "0" );
             demand1.setReference( "DVD15031324" );
             demand1.setDemandTypeId( "100" );
+            demand1.setTimeOpenedInMs( 10800000 );
             demand1.setStatus( Demand.STATUS_CLOSED );
             _listDemand.add( demand1 );
 
@@ -115,6 +118,8 @@ public class MokeDemandService implements IDemandService
             demand2.setId( "1" );
             demand2.setReference( "INFO15031324" );
             demand2.setDemandTypeId( "101" );
+            demand2.setTimeOpenedInMs( Calendar.getInstance(  ).getTimeInMillis(  ) -
+                ( new GregorianCalendar( 2016, 1, 1 ).getTimeInMillis(  ) ) );
             demand2.setStatus( Demand.STATUS_INPROGRESS );
             _listDemand.add( demand2 );
 
@@ -122,6 +127,8 @@ public class MokeDemandService implements IDemandService
             demand3.setId( "2" );
             demand3.setReference( "SAV15031324" );
             demand3.setDemandTypeId( "102" );
+            demand3.setTimeOpenedInMs( Calendar.getInstance(  ).getTimeInMillis(  ) -
+                ( new GregorianCalendar( 2016, 0, 0 ).getTimeInMillis(  ) ) );
             demand3.setStatus( Demand.STATUS_INPROGRESS );
             _listDemand.add( demand3 );
 
@@ -129,8 +136,18 @@ public class MokeDemandService implements IDemandService
             demand4.setId( "3" );
             demand4.setReference( "DU15031324" );
             demand4.setDemandTypeId( "103" );
+            demand4.setTimeOpenedInMs( Calendar.getInstance(  ).getTimeInMillis(  ) -
+                ( new GregorianCalendar( 2016, 2, 2 ).getTimeInMillis(  ) ) );
             demand4.setStatus( Demand.STATUS_INPROGRESS );
             _listDemand.add( demand4 );
+            
+            BaseDemand demand5 = new BaseDemand(  );
+            demand5.setId( "0" );
+            demand5.setReference( "DVD15031324" );
+            demand5.setDemandTypeId( "100" );
+            demand5.setTimeOpenedInMs( 14400000 );
+            demand5.setStatus( Demand.STATUS_CLOSED );
+            _listDemand.add( demand5 );
         }
 
         return _listDemand;
