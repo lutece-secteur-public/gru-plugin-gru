@@ -121,18 +121,18 @@ INSERT INTO core_admin_role_resource ( rbac_id , role_key, resource_type, resour
 
 DELETE FROM core_admin_user WHERE id_user >= 10 AND id_user <= 50;
 INSERT INTO core_admin_user VALUES 
-(10,'gruadmin','GRU','Administrateur','gruadmin@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(20,'dom','Durant','Dominique','dom@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(21,'ale','Dupont','Alexia','ale@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(22,'gui','Martin','Guillaume','gui@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(23,'lau','Dubois','Laura','lau@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(24,'max','Petit','Maxime','max@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(25,'ber','Morel','Bernard','ber@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(26,'vic','Roussel','Victor','vic@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(27,'mar','Fontaine','Marie','mar@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(28,'ant','Chevalier','Antoine','ant@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(29,'jul','Robin','Jules','jul@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(30,'vla','Perrin','Vladimir','vla@lutece.fr',0,'grudemo','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all');
+(10,'gruadmin','GRU','Administrateur','gruadmin@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(20,'dominique','Durant','Dominique','dom@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(21,'alexia','Dupont','Alexia','ale@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(22,'guillaume','Martin','Guillaume','gui@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(23,'laura','Dubois','Laura','lau@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(24,'maxime','Petit','Maxime','max@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(25,'bernard','Morel','Bernard','ber@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(26,'victor','Roussel','Victor','vic@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(27,'marie','Fontaine','Marie','mar@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(28,'antoine','Chevalier','Antoine','ant@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(29,'jules','Robin','Jules','jul@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(30,'vladimir','Perrin','Vladimir','vla@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all');
 
 UPDATE core_admin_user SET password = 'grudemo!' WHERE access_code = 'admin'; 
 
