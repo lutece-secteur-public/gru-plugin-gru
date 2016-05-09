@@ -36,6 +36,7 @@ package fr.paris.lutece.plugins.gru.service.demand;
 import fr.paris.lutece.plugins.gru.business.customer.Customer;
 import fr.paris.lutece.plugins.gru.business.demand.BaseDemand;
 import fr.paris.lutece.plugins.gru.business.demand.Demand;
+import fr.paris.lutece.plugins.gru.business.demand.Notification;
 import fr.paris.lutece.plugins.gru.business.demandtype.DemandType;
 import fr.paris.lutece.plugins.gru.business.demandtype.DemandTypeHome;
 import fr.paris.lutece.plugins.gru.business.domain.BusinessDomain;
@@ -68,6 +69,16 @@ public class DemandService
             }
         };
 
+    private static Comparator<Notification> _comparatorNotifications = new Comparator<Notification>(  )
+        {
+            @Override
+            public int compare( Notification notification1, Notification notification2 )
+            {
+                return ( Long.valueOf( notification2.getTimestamp(  ) )
+                             .compareTo( Long.valueOf( notification1.getTimestamp(  ) ) ) );
+            }
+        };
+
     /**
      * Get External implementation
      * @return The service
@@ -92,6 +103,7 @@ public class DemandService
     public static Demand getDemand( String strDemandId, String strDemandTypeId, AdminUser user )
     {
         Demand demand = getService(  ).getDemand( strDemandId, strDemandTypeId, user );
+        Collections.sort( demand.getNotifications(  ), _comparatorNotifications );
 
         demand.setTitle( DemandTypeService.getTypeLabel( strDemandTypeId ) );
         demand.setShowDetails( isDetailsAuthorized( strDemandTypeId, user ) );
