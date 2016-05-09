@@ -140,7 +140,7 @@ public class MokeDemandService implements IDemandService
                 ( new GregorianCalendar( 2016, 2, 2 ).getTimeInMillis(  ) ) );
             demand4.setStatus( Demand.STATUS_INPROGRESS );
             _listDemand.add( demand4 );
-            
+
             BaseDemand demand5 = new BaseDemand(  );
             demand5.setId( "0" );
             demand5.setReference( "DVD15031324" );
