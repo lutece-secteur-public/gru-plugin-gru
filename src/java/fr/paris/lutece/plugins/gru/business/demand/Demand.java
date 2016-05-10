@@ -50,8 +50,8 @@ public class Demand extends BaseDemand
     private String _strTitle;
     private List<Notification> _listNotifications = new ArrayList<Notification>(  );
     private List<Action> _listActions = new ArrayList<Action>(  );
-    private String _strStatusForCustomer;
-    private String _strStatusForGRU;
+    private String _strCustomerStatus;
+    private String _strAgentStatus;
     private boolean _bShowDetails;
 
     /** Constructor */
@@ -149,43 +149,43 @@ public class Demand extends BaseDemand
     }
 
     /**
-     * Returns the StatusForCustomer
+     * Returns the customer status
      *
-     * @return The StatusForCustomer
+     * @return The customer status
      */
-    public String getStatusForCustomer(  )
+    public String getCustomerStatus(  )
     {
-        return _strStatusForCustomer;
+        return _strCustomerStatus;
     }
 
     /**
-     * Sets the StatusForCustomer
+     * Sets the customer status
      *
-     * @param strStatusForCustomer The StatusForCustomer
+     * @param strCustomerStatus The customer status
      */
-    public void setStatusForCustomer( String strStatusForCustomer )
+    public void setCustomerStatus( String strCustomerStatus )
     {
-        _strStatusForCustomer = strStatusForCustomer;
+        _strCustomerStatus = strCustomerStatus;
     }
 
     /**
-     * Returns the StatusForGRU
+     * Returns the agent status
      *
-     * @return The StatusForGRU
+     * @return The agent status
      */
-    public String getStatusForGRU(  )
+    public String getAgentStatus(  )
     {
-        return _strStatusForGRU;
+        return _strAgentStatus;
     }
 
     /**
-     * Sets the StatusForGRU
+     * Sets the agent status
      *
-     * @param strStatusForGRU The StatusForGRU
+     * @param strAgentStatus The agent status
      */
-    public void setStatusForGRU( String strStatusForGRU )
+    public void setAgentStatus( String strAgentStatus )
     {
-        _strStatusForGRU = strStatusForGRU;
+        _strAgentStatus = strAgentStatus;
     }
 
     /**

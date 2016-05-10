@@ -48,8 +48,8 @@
     <div class="col-xs-12 col-sm-3 col-sm-push-9" id="header-right">
       <p>#i18n{gru.view_customer_demand.demand.panel.list.reference} : <strong class="text-gru">${demand.reference!'Reference missing'} </strong>
       <p>#i18n{gru.view_customer_demand.demand.panel.list.open.since} : <strong class="text-gru">${displayTimeOpenedTicket(demand.timeOpenedInMs)}</strong></p>
-      <p>#i18n{gru.view_customer_demand.demand.panel.list.status.usager}  : <strong>${demand.statusForCustomer!''}</strong></p>
-      <p>#i18n{gru.view_customer_demand.demand.panel.list.status.agent} : <strong>${demand.statusForGRU!''}</strong></p>
+      <p>#i18n{gru.view_customer_demand.demand.panel.list.status.customer}  : <strong>${demand.customerStatus!''}</strong></p>
+      <p>#i18n{gru.view_customer_demand.demand.panel.list.status.agent} : <strong>${demand.agentStatus!''}</strong></p>
       <p>Etat :
         <strong>
         <#switch demand.status>
