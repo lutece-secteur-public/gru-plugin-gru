@@ -90,37 +90,60 @@
                        #i18n{gru.view_customer_demand.list.notification.user.dashboard.1}  <span><b>#i18n{gru.view_customer_demand.list.notification.user.dashboard.2}</b></span> #i18n{gru.view_customer_demand.list.notification.user.dashboard.2}.
                     </h4>
                     <div class="timeline-body">
-                      ${notification.userDashboard.message!'SMS message missing'}
+                      <#if notification.userDashboard.message?has_content>
+                        ${notification.userDashboard.message}
+                      <#else>
+                        <em>#i18n{gru.view_customer_demand.list.notification.user.dashboard.no.content}</em>
+                      </#if>
                     </div>
-                    <div class="timeline-footer"><strong>Statut : ${notification.userDashboard.statusText!'Status text missing'}</strong></div>
+                    <div class="timeline-footer"><strong>#i18n{gru.view_customer_demand.list.notification.user.dashboard.no.labelStatus} : 
+                      <#if notification.userDashboard.statusText?has_content>
+                        ${notification.userDashboard.statusText}
+                      <#else>
+                        <em>#i18n{gru.view_customer_demand.list.notification.user.dashboard.no.status}</em>
+                      </#if>
+                      </strong>
+                    </div>
                   </div>
                 </li>
               </#if>
-              <#if notification.email ??>
+              <#if notification.email ?? && notification.email.recipient?has_content>
                 <li>
                   <i class="fa fa-envelope bg-orange"></i>
                   <div class="timeline-item">
                     <h4 class="timeline-header">
-                      Email envoy&eacute; &agrave; l'adresse <span>${notification.email.recipient!'recipient missing'}</span>
+                      #i18n{gru.view_customer_demand.list.notification.email.sendLabel} : <span>${notification.email.recipient}</span>
                     </h4>
                     <div class="timeline-body">
-                      <em>Objet <strong>${notification.email.subject!'subject missing'}</strong></em>
-                      <br>
-                      ${notification.email.message!'message missing'}
+                      <#if notification.email.subject?has_content>
+                        <em>#i18n{gru.view_customer_demand.list.notification.email.labelSubject} : <strong>${notification.email.subject}</strong></em>
+                      <#else>
+                        <em>#i18n{gru.view_customer_demand.list.notification.email.no.subject}</em>
+                      </#if>
+                      <br/>
+                      <#if notification.email.message?has_content>
+                        ${notification.email.message}
+                      <#else>
+                        <em>#i18n{gru.view_customer_demand.list.notification.email.no.content}</em>
+                      </#if>
                     </div>
                     <div class="timeline-footer"></div>
                   </div>
                 </li>
               </#if>
-              <#if notification.sms ??>
+              <#if notification.sms ?? && notification.sms.phoneNumber?has_content>
                 <li>
                   <i class="fa fa-mobile bg-green"></i>
                   <div class="timeline-item">
                     <h4 class="timeline-header">
-                      SMS envoy&eacute au num&eacute;ro : <span>${notification.sms.phoneNumber!'Phone missing'}</span>
+                      #i18n{gru.view_customer_demand.list.notification.sms.sendLabel} : <span>${notification.sms.phoneNumber}</span>
                     </h4>
                      <div class="timeline-body">
-                      ${notification.sms.message!'SMS message missing'}
+                      <#if notification.sms.message?has_content>
+                        ${notification.sms.message}
+                      <#else>
+                        <em>#i18n{gru.view_customer_demand.list.notification.sms.no.content}</em>
+                      </#if>
                     </div>
                     <div class="timeline-footer"></div>
                   </div>
