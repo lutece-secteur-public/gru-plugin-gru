@@ -79,19 +79,12 @@ table.table-hover tr:hover{ cursor: pointer }
 #demand-panel.group .tab-content hr{ margin-left:-80px; border-color: #CBCCCE }
 
 #demand-panel .tab-content table{ color: #BEBEBE }
-#demand-panel .tab-content table tr:first-of-type{ background-color: #fff; color: #000  }
+#demand-panel .tab-content table thead{ background-color: #fff; color: #000  }
 
 #demand-panel .tab-content table th{ border-top: 0; text-transform: uppercase; font-size: 1rem; vertical-align: top; text-align: center }
 #demand-panel .tab-content table th i.fa{ font-size: 10px; vertical-align: 2px }
 
 #demand-panel .tab-content table td{ color: #656565; font-size: 1.3rem; text-align: center  }
-#demand-panel .tab-content table td:first-of-type{ width: 140px }
-
-#demand-panel .tab-content table td:nth-of-type(2){ width: 130px }
-
-#demand-panel .tab-content table td:nth-of-type(3){ width: 200px }
-#demand-panel .tab-content table td:nth-of-type(4){ width: 400px }
-
 
 #demand-panel .tab-content table td strong.lead{ font-size: 4rem; font-weight: bold  }
 #demand-panel .tab-content table td .ticket-comments{ max-height: 100px; overflow: auto; background: #EEE; padding: 10px; border-radius: 8px }
