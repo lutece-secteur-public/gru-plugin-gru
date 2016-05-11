@@ -144,9 +144,27 @@
     <p>
        <i class="fa fa-envelope"></i> ${customer.email!""} <#if customer.isEmailVerified && true><i class="fa fa-check text-green" title="Email V&eacute;rifi&eacute;"></i></#if>
     </p>
-    <p>
-      <i class="fa fa-phone" ></i> ${customer.mobilePhone!""} <#if customer.isMobilePhoneVerified && true><i class="fa fa-check text-green" title="Tel V&eacute;rifi&eacute;"></i></#if>
-    </p>
+    <#if customer.fixedPhoneNumber?has_content>
+      <p>
+        <i class="fa fa-phone" ></i>
+        <#if customer.fixedPhoneNumber?length == 10>
+          ${customer.fixedPhoneNumber[0..1]} ${customer.fixedPhoneNumber[2..3]} ${customer.fixedPhoneNumber[4..5]} ${customer.fixedPhoneNumber[6..7]} ${customer.fixedPhoneNumber[8..9]}
+        <#else>
+          ${customer.fixedPhoneNumber!}
+        </#if>
+      </p>
+    </#if>
+    <#if customer.mobilePhone?has_content>
+      <p>
+        <i class="fa fa-mobile" ></i>
+        <#if customer.mobilePhone?length == 10>
+          ${customer.mobilePhone[0..1]} ${customer.mobilePhone[2..3]} ${customer.mobilePhone[4..5]} ${customer.mobilePhone[6..7]} ${customer.mobilePhone[8..9]}
+        <#else>
+          ${customer.mobilePhone!}
+        </#if>
+        <#if customer.isMobilePhoneVerified && true><i class="fa fa-check text-green" title="Tel V&eacute;rifi&eacute;"></i></#if>
+      </p>
+    </#if>
     <!-- FIXME -->
     <!--
       <p id="info">Pour me contacter privil&eacute;gier le mail</p>
