@@ -88,7 +88,6 @@ public class MokeDemandService implements IDemandService
 
         Notification notification = NotificationService.parseJSON( JSON );
         notification.setTimestamp( ( new Date(  ) ).getTime(  ) );
-        notification.setTitle( "Prise en compte de la demande" );
         demand.addNotification( notification );
 
         return demand;

@@ -49,7 +49,6 @@ public class Notification
 {
     // Variables declarations 
     private long _lTimestamp;
-    private String _strTitle;
     private String _strSource;
     private Email _email;
     private Sms _sms;
@@ -100,24 +99,6 @@ public class Notification
     public void setSource( String strSource )
     {
         _strSource = strSource;
-    }
-
-    /**
-    * Returns the Title
-    * @return The Title
-    */
-    public String getTitle(  )
-    {
-        return _strTitle;
-    }
-
-    /**
-     * Sets the Title
-     * @param strTitle The Title
-     */
-    public void setTitle( String strTitle )
-    {
-        _strTitle = strTitle;
     }
 
     /**
