@@ -61,13 +61,16 @@ public class InformationRequestActionGroupBuilder extends AbstractDemandActionGr
 
         for ( Demand demand : listDemands )
         {
-            ActionItem item = new ActionItem(  );
-            item.setTitle( demand.getTitle(  ) + " " + demand.getReference(  ) );
-            item.setLink( buildDemandManagementLink( demand.getId(  ), demand.getDemandTypeId(  ),
-                    "" + customer.getId(  ) ) );
-            item.setColor( processItemColor( demand, COLOR_PRIMARY ) );
-            group.addActionItem( item );
-            strBadgeColor = processGroupBadgeColor( demand, strBadgeColor, COLOR_PRIMARY );
+            if ( demand.getStatus(  ) != Demand.STATUS_CLOSED )
+            {
+                ActionItem item = new ActionItem(  );
+                item.setTitle( demand.getTitle(  ) + " " + demand.getReference(  ) );
+                item.setLink( buildDemandManagementLink( demand.getId(  ), demand.getDemandTypeId(  ),
+                        "" + customer.getId(  ) ) );
+                item.setColor( processItemColor( demand, COLOR_PRIMARY ) );
+                group.addActionItem( item );
+                strBadgeColor = processGroupBadgeColor( demand, strBadgeColor, COLOR_PRIMARY );
+            }
         }
 
         group.setTitle( getTitle(  ) );
