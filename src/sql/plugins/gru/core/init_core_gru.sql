@@ -16,10 +16,10 @@ INSERT INTO core_datastore VALUES('portal.site.site_property.logo_url', 'images/
 --
 -- Data for table core_feature_group
 --
-
+UPDATE core_feature_group SET feature_group_order = feature_group_order + 2 WHERE id_feature_group NOT LIKE "GRU%";
 DELETE FROM core_feature_group WHERE id_feature_group LIKE "GRU%"; 
-INSERT INTO core_feature_group VALUES ('GRU','gru.features.group.gru.description','gru.features.group.gru.label',0);
-INSERT INTO core_feature_group VALUES ('GRU_ADMIN','gru.features.group.gru_admin.description','gru.features.group.gru_admin.label',0);
+INSERT INTO core_feature_group VALUES ('GRU','gru.features.group.gru.description','gru.features.group.gru.label',1);
+INSERT INTO core_feature_group VALUES ('GRU_ADMIN','gru.features.group.gru_admin.description','gru.features.group.gru_admin.label',2);
 
 
 --
@@ -94,14 +94,17 @@ INSERT INTO core_admin_role ( role_key , role_description ) VALUES
 ( 'gru_dom_info_mairie' ,'GRU - Agents du domaine informations mairie' ),
 ( 'gru_dom_info_stationnement' ,'GRU - Agents du domaine informations Stationnement' ),
 ( 'gru_dom_recl_autre' ,'GRU - Agents du domaine informations autre' ),
-( 'gru_dom_info_autre' ,'GRU - Agents du domaine réclamations autre' )
+( 'gru_dom_info_autre' ,'GRU - Agents du domaine réclamations autre' ),
+( 'GRU_RU30_DETAILS' ,'Accès aux détails des fiches' ),
+( 'GRU_RU30_SUMMARY' ,'Accès aux sommaires des fiches' ),
+( 'gru_stats' ,'Statisrtiques GRU' )
 ;
 
 
 --
 -- Data for table core_admin_role_resource
 --
-DELETE FROM core_admin_role_resource WHERE rbac_id >= 400 AND rbac_id <= 412;
+DELETE FROM core_admin_role_resource WHERE rbac_id >= 400 AND rbac_id <= 415;
 INSERT INTO core_admin_role_resource ( rbac_id , role_key, resource_type, resource_id, permission ) VALUES 
 ( 400 , 'gru_admin' , 'GRU_FEATURE' , '*' , '*' ),
 ( 401 , 'gru_admin' , 'GRU_DEMAND_ACTION' , '*' , '*' ),
@@ -114,28 +117,32 @@ INSERT INTO core_admin_role_resource ( rbac_id , role_key, resource_type, resour
 ( 408 , 'gru_level_2' ,'GRU_DOMAIN' , '*' , '*' ),
 ( 409 , 'gru_level_3' ,'GRU_FEATURE' , '*' , '*' ),
 ( 410 , 'gru_level_3' ,'GRU_DEMAND_ACTION' , '*' , '*' ),
-( 411 , 'gru_level_3' ,'GRU_DOMAIN' , '*' , '*' )
+( 411 , 'gru_level_3' ,'GRU_DOMAIN' , '*' , '*' ),
+( 412 , 'GRU_RU30_DETAILS' ,'GRU_DOMAIN' , '*' , 'VIEW_SUMMARY' ),
+( 413 , 'GRU_RU30_DETAILS' ,'GRU_DOMAIN' , '*' , 'VIEW_DETAILS' ),
+( 414 , 'GRU_RU30_SUMMARY' ,'GRU_DOMAIN' , '*' , 'VIEW_SUMMARY' ),
+( 415 , 'gru_stats' ,'GRU_FEATURE' , '*' , 'ACCESS' )
 ;
 
 
 
-DELETE FROM core_admin_user WHERE id_user >= 10 AND id_user <= 50;
+DELETE FROM core_admin_user WHERE id_user >= 10 AND id_user <= 30;
 
 -- This only works for lutece < 6.0.0-SNAPSHOT !
 -- for lutece >= 6.0.0-SNAPSHOT, use 'PLAINTEXT:grudemo!'
 INSERT INTO core_admin_user VALUES 
 (10,'gruadmin','GRU','Administrateur','gruadmin@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(20,'dominique','Durant','Dominique','dom@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(21,'alexia','Dupont','Alexia','ale@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(22,'guillaume','Martin','Guillaume','gui@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(23,'laura','Dubois','Laura','lau@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(24,'maxime','Petit','Maxime','max@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(25,'bernard','Morel','Bernard','ber@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(26,'victor','Roussel','Victor','vic@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(27,'marie','Fontaine','Marie','mar@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(28,'antoine','Chevalier','Antoine','ant@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(29,'jules','Robin','Jules','jul@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
-(30,'vladimir','Perrin','Vladimir','vla@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all');
+(20,'dominique','Appel','Dominique','dominique.appel@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(21,'alexia','Tulipe','Alexia','alexia.tulipe@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(22,'guillaume','Parisiens','Guillaume','guillaume.parisiens@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(23,'laura','Famille','Laura','laura.famille@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(24,'maxime','Petit','Maxime','maxime.petit@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(25,'bernard','Morel','Bernard','bernard.morel@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(26,'victor','Dfpe','Victor','victor.dfpe@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(27,'marie','Mairie','Marie','marie.mairie@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(28,'antoine','Chevalier','Antoine','antoine.chevalier@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(29,'jules','Devede','Jules','jules.devede@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all'),
+(30,'vladimir','Perrin','Vladimir','vladimir.perrin@lutece.fr',0,'grudemo!','fr',0,0,0,null,null,0,'1980-01-01 00:00:00','all');
 
 DELETE FROM core_user_role WHERE role_key LIKE 'gru_%';
 INSERT INTO core_user_role ( role_key , id_user ) VALUES
@@ -144,9 +151,12 @@ INSERT INTO core_user_role ( role_key , id_user ) VALUES
 
 ( 'gru_dom_recl_facilfamille', 21), -- Alexia
 ( 'gru_level_1', 21),
+( 'GRU_RU30_SUMMARY', 21),
 
 ( 'gru_dom_recl_facilfamille', 23), -- Laura
 ( 'gru_level_2', 23),
+( 'GRU_RU30_DETAILS', 23),
+( 'GRU_RU30_SUMMARY', 23),
 
 ( 'gru_dom_recl_facilfamille', 24), -- Maxime
 ( 'gru_level_2', 24), 
@@ -154,17 +164,22 @@ INSERT INTO core_user_role ( role_key , id_user ) VALUES
 
 ( 'gru_dom_recl_facilfamille', 26), -- Victor
 ( 'gru_level_3' , 26 ),
+( 'GRU_RU30_DETAILS', 26),
 
 
 ( 'gru_dom_info_mairie' , 27), -- Marie
 ( 'gru_level_1' , 27 ),
+( 'GRU_RU30_SUMMARY', 27),
 
 
 ( 'gru_dom_info_mairie', 20), -- Dominique 
-( 'gru_level_1', 20), 
+( 'gru_level_1', 20),
+( 'GRU_RU30_SUMMARY', 20),
 
 ( 'gru_dom_info_mairie', 22), -- Guillaume
 ( 'gru_level_1' , 22 ),
+( 'GRU_RU30_DETAILS', 22),
+( 'GRU_RU30_SUMMARY', 22),
 
 ( 'gru_dom_info_stationnement', 25), -- Bernard
 ( 'gru_level_2', 25),
@@ -174,12 +189,13 @@ INSERT INTO core_user_role ( role_key , id_user ) VALUES
 
 ( 'gru_dom_info_stationnement', 29), -- Jules
 ( 'gru_level_3', 29),
+( 'GRU_RU30_DETAILS', 29),
 
 ( 'gru_dom_recl_facilfamille', 30), -- Vladimir
 ( 'gru_level_2', 30)
 ;
 
-DELETE FROM core_user_right WHERE id_user >= 10 AND id_user <= 50;
+DELETE FROM core_user_right WHERE id_user >= 10 AND id_user <= 30;
 INSERT INTO core_user_right ( id_user , id_right ) VALUES
 ( 10 , 'GRU_ADMIN_MANAGEMENT' ),
 ( 10 , 'GRU_DEMAND_MANAGEMENT' ),
