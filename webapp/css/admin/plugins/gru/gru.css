@@ -46,7 +46,7 @@ table.table-hover tr:hover{ cursor: pointer }
 
 #home-actions a{ margin-top:15px; margin-right: 5px }
 
-#customer-panel{ padding: 0; margin-left: 0; height: 150px; color:#fff }
+#customer-panel{ padding: 0; margin-left: 0; min-height: 150px; color:#fff }
 #customer-panel p{ font-size: 1.8rem }
 #customer-panel p:first-of-type{ margin-top:20px }
 #customer-panel p#info{ font-size: 1.4rem; font-style: italic }
