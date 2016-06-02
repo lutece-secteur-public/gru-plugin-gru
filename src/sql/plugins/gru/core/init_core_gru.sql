@@ -313,7 +313,11 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1217, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '309', '*'), -- ask new informations
 (1218, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '312', '*'), -- answer to user and close ticket
 (1220, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '310', '*'), -- answer from agent to user (info request)
-(1240, 'gru_level_1', 'WORKFLOW_STATE_TYPE', '*', '*'), -- all workflow states
+
+(1240, 'gru_level_1', 'WORKFLOW_STATE_TYPE', '303', '*'), -- to process
+(1241, 'gru_level_1', 'WORKFLOW_STATE_TYPE', '304', '*'), -- waiting for user answer
+(1242, 'gru_level_1', 'WORKFLOW_STATE_TYPE', '305', '*'), -- escalated to level 3
+(1243, 'gru_level_1', 'WORKFLOW_STATE_TYPE', '306', '*'), -- processed
 
 -- support entity
 (1251, 'gru_level_1', 'SUPPORT_ENTITY', '1', 'VIEW'), 
@@ -345,7 +349,10 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1318, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '310', '*'), -- answer from agent to user (info request)
 (1319, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '312', '*'), -- answer to user and close ticket
 
-(1340, 'gru_level_2', 'WORKFLOW_STATE_TYPE', '*', '*'), -- all workflow states
+(1340, 'gru_level_2', 'WORKFLOW_STATE_TYPE', '303', '*'), -- to process
+(1341, 'gru_level_2', 'WORKFLOW_STATE_TYPE', '304', '*'), -- waiting for user answer
+(1342, 'gru_level_2', 'WORKFLOW_STATE_TYPE', '305', '*'), -- escalated to level 3
+(1343, 'gru_level_2', 'WORKFLOW_STATE_TYPE', '306', '*'), -- processed
 
 -- support entity
 (1351, 'gru_level_2', 'SUPPORT_ENTITY', '4', 'VIEW'),
@@ -366,7 +373,10 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1416, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '315', '*'), -- self assign
 (1417, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '313', '*'), -- respond assign up
 
-(1440, 'gru_level_3', 'WORKFLOW_STATE_TYPE', '*', '*'), -- all workflow states
+(1440, 'gru_level_3', 'WORKFLOW_STATE_TYPE', '303', '*'), -- to process
+(1441, 'gru_level_3', 'WORKFLOW_STATE_TYPE', '304', '*'), -- waiting for user answer
+(1442, 'gru_level_3', 'WORKFLOW_STATE_TYPE', '305', '*'), -- escalated to level 3
+(1443, 'gru_level_3', 'WORKFLOW_STATE_TYPE', '306', '*'), -- processed
 
 -- domaines
 (1451, 'gru_dom_info_mairie', 'TICKET_DOMAIN', '110','VIEW'),
