@@ -134,4 +134,62 @@ public class CustomerResult
     {
         _strMobilePhone = strMobilePhone;
     }
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + _nId;
+		result = prime * result
+				+ ((_strEmail == null) ? 0 : _strEmail.hashCode());
+		result = prime * result
+				+ ((_strFirstname == null) ? 0 : _strFirstname.hashCode());
+		result = prime * result
+				+ ((_strLastname == null) ? 0 : _strLastname.hashCode());
+		result = prime * result
+				+ ((_strMobilePhone == null) ? 0 : _strMobilePhone.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CustomerResult other = (CustomerResult) obj;
+		if (_nId != other._nId)
+			return false;
+		if (_strEmail == null) {
+			if (other._strEmail != null)
+				return false;
+		} else if (!_strEmail.equals(other._strEmail))
+			return false;
+		if (_strFirstname == null) {
+			if (other._strFirstname != null)
+				return false;
+		} else if (!_strFirstname.equals(other._strFirstname))
+			return false;
+		if (_strLastname == null) {
+			if (other._strLastname != null)
+				return false;
+		} else if (!_strLastname.equals(other._strLastname))
+			return false;
+		if (_strMobilePhone == null) {
+			if (other._strMobilePhone != null)
+				return false;
+		} else if (!_strMobilePhone.equals(other._strMobilePhone))
+			return false;
+		return true;
+	}
+    
+    
 }
