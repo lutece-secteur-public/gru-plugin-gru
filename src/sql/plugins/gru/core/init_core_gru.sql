@@ -299,6 +299,7 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1151, 'gru_admin', 'TICKET_DOMAIN', '*', '*'), 
 (1163, 'gru_admin', 'SUPPORT_ENTITY', '*', '*'), 
 (1170, 'gru_admin', 'WORKFLOW_STATE_TYPE', '*', '*'),
+(1171, 'gru_admin', 'COMMENT', '*', '*'),
 
 -- level 1 : 
 (1201, 'gru_level_1', 'ticket', '*', 'CREATE'),
