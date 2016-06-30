@@ -282,19 +282,7 @@ DELETE FROM core_admin_role_resource WHERE rbac_id > 1100 AND rbac_id < 1500;
 INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource_id, permission) VALUES
 -- full right on ticketing resources for gru_admin role 
 (1101, 'gru_admin', 'ticket', '*', '*'), 
-(1110, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '301', '*'), -- init 
-(1112, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '303', '*'), -- requalify
-(1113, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '304', '*'), -- assign up
-(1114, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '305', '*'), -- assign up level 3
-(1115, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '306', '*'), -- assign to an other entity
-(1116, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '307', '*'), -- assign to an other user
-(1117, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '308', '*'), -- self assign
-(1118, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '309', '*'), -- ask new informations
-(1119, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '310', '*'), -- answer from agent to user (info request)
-(1120, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '311', '*'), -- answer from agent to user 
-(1121, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '312', '*'), -- respond  to user and close ticket
-(1122, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '313', '*'), -- respond assign up
-
+(1110, 'gru_admin', 'WORKFLOW_ACTION_TYPE', '*', '*'),
 (1141, 'gru_admin', 'UNIT_TYPE', '*', '*'), 
 (1151, 'gru_admin', 'TICKET_DOMAIN', '*', '*'), 
 (1163, 'gru_admin', 'SUPPORT_ENTITY', '*', '*'), 
