@@ -25,8 +25,8 @@ INSERT INTO ticketing_ticket_category (id_ticket_category, id_ticket_domain, lab
 (2, 110, "Réservation de salle" , NULL, 0, 301, 11 ), 
 -- affecte a MIB
 (3, 110, "Autre" , NULL, 0, 301, 11 ), 
--- affecte a MIB
-(4, 120, "Horaires de stationnement" , "DVDSSVP", 0, 301, 11 ),
+-- affecte a 3975
+(4, 120, "Horaires de stationnement" , NULL, 0, 301, 10 ),
 -- affecte a 3975
 (5, 120, "Autre" , NULL, 0, 301, 10 ), 
 -- affecte a MIB
