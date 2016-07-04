@@ -286,6 +286,7 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1141, 'gru_admin', 'UNIT_TYPE', '*', '*'), 
 (1151, 'gru_admin', 'TICKET_DOMAIN', '*', '*'), 
 (1163, 'gru_admin', 'SUPPORT_ENTITY', '*', '*'), 
+(1164, 'gru_admin', 'assigneeUnit', '*', '*'),
 (1170, 'gru_admin', 'WORKFLOW_STATE_TYPE', '*', '*'),
 (1171, 'gru_admin', 'COMMENT', '*', '*'),
 
@@ -373,6 +374,20 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1453, 'gru_dom_info_autre', 'TICKET_DOMAIN', '100','VIEW'),
 (1454, 'gru_dom_recl_facilfamille', 'TICKET_DOMAIN', '210','VIEW'),
 (1455, 'gru_dom_recl_autre', 'TICKET_DOMAIN', '200','VIEW'),
+
+-- assign to unit
+(1480, 'gru_dom_recl_facilfamille', 'assigneeUnit', '20', 'ASSIGN'),
+(1481, 'gru_dom_recl_facilfamille', 'assigneeUnit', '21', 'ASSIGN'),
+(1482, 'gru_dom_recl_facilfamille', 'assigneeUnit', '4', 'ASSIGN'),
+(1483, 'gru_dom_recl_facilfamille', 'assigneeUnit', '40', 'ASSIGN'),
+(1484, 'gru_dom_recl_facilfamille', 'assigneeUnit', '12', 'ASSIGN'),
+(1485, 'gru_dom_recl_facilfamille', 'assigneeUnit', '2', 'ASSIGN'),
+(1486, 'gru_dom_info_mairie', 'assigneeUnit', '*','ASSIGN'),
+(1487, 'gru_dom_info_stationnement', 'assigneeUnit', '*','ASSIGN'),
+(1488, 'gru_dom_info_autre', 'assigneeUnit', '*','ASSIGN'),
+(1489, 'gru_dom_recl_facilfamille', 'assigneeUnit', '*','ASSIGN'),
+(1490, 'gru_dom_recl_autre', 'assigneeUnit', '*','ASSIGN'),
+
 
 -- User front ticketing
 (1456, 'ticketing_user_front', 'WORKFLOW_ACTION_TYPE', '301','*'), -- init 
