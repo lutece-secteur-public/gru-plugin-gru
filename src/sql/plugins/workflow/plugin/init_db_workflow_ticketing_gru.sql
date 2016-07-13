@@ -42,43 +42,52 @@ INSERT INTO workflow_task (id_task, task_type_key, id_action, display_order)
             (343, 'taskTypeComment', 303,3),
             (344,'taskNotifyGru',303,4),
             (345, 'taskTicketingIndexTicket',303,5),
+            (346, 'taskTicketingMarkAsUnread',303,6),
             (351,'taskTicketingAssignTicketToUnit',306,1), -- Assign to unit
             (352, 'taskTypeComment', 306,2),
             (353,'taskNotifyGru',306,3),
+            (354, 'taskTicketingMarkAsUnread',306,4),
             (361,'taskTicketingAssignTicketToUser',307,1), -- Assign to user
             (362, 'taskTypeComment', 307,2),
             (363,'taskNotifyGru',307,3),
+            (364, 'taskTicketingMarkAsUnread',307,4),
             (371,'taskTicketingAssignTicketToMe',308,1), -- Assign to me
             (372, 'taskTypeComment', 308,2),
             (373,'taskNotifyGru',308,3),
 			(381,'taskTicketingAssignUpTicket',304,1), -- Assign up
 			(382, 'taskTypeComment', 304,2),
             (383,'taskNotifyGru',304,3),
+            (384, 'taskTicketingMarkAsUnread',304,4),
             (386,'taskTicketingAssignUpTicket',305,1), -- Assign up to level 3
 			(387, 'taskTypeComment', 305,2),
             (388,'taskNotifyGru',305,3),
-            (389,'taskTicketingIndexTicket',305,4),
-            (390, 'taskTicketingEditTicket', 309,1), -- Ask for user information
+            (389, 'taskTicketingMarkAsUnread',305,4),
+            (390,'taskTicketingIndexTicket',306,4),
+            (391, 'taskTicketingEditTicket', 309,1), -- Ask for user information
             (392,'taskNotifyGru',309,2),
             (393, 'taskTicketingIndexTicket',309,3),
             (400, 'taskTicketingEditTicket', 310,1), -- Reply to info request from agent to agent
             (401, 'taskTicketingSelectChannel', 310,2),
             (402,'taskNotifyGru',310,3),
             (403, 'taskTicketingIndexTicket', 310,4),
+            (404, 'taskTicketingMarkAsUnread',310,5),
             (410, 'taskTicketingEditTicket',311,1), -- Reply to info request from user to agent
             (411, 'taskTicketingSelectChannel',311,2),
             (412,'taskNotifyGru',311,3),
             (413, 'taskTicketingIndexTicket', 311,4),
+            (414, 'taskTicketingMarkAsUnread',311,5),
 			(420, 'taskTicketingReply', 312,1), -- Reply to user
             (422,'taskNotifyGru',312,2),
             (423, 'taskTicketingIndexTicket', 312,3),
             (441, 'taskTicketingReplyAssignUpTicket',313,1), -- Reply to assign up
             (442, 'taskTypeComment', 313,2),
             (443,'taskNotifyGru',313,3),
-            (344,'taskTicketingIndexTicket',313,4),
+            (444, 'taskTicketingMarkAsUnread',313,4),
+            (445,'taskTicketingIndexTicket',313,5),
             (461,'taskTicketingAssignTicketToUser',314,1), -- Assign to user LEVEL3
             (462, 'taskTypeComment', 314,2),
             (463,'taskNotifyGru',314,3),
+            (464, 'taskTicketingMarkAsUnread',314,4),
             (471,'taskTicketingAssignTicketToMe',315,1), -- Assign to me LEVEL3
             (472, 'taskTypeComment', 315,2),
             (473,'taskNotifyGru',315,3)
@@ -99,7 +108,7 @@ INSERT INTO workflow_task_comment_config (id_task, title, is_mandatory, is_richt
 
 DELETE FROM workflow_task_ticketing_edit_ticket_config;
 INSERT INTO workflow_task_ticketing_edit_ticket_config (id_task, message_direction, id_user_edition_action) 
-    VALUES  (390, 1, 311),  -- Ask for user information
+    VALUES  (391, 1, 311),  -- Ask for user information
             (400, 0, 310), -- Reply to agent from agent
             (410, 0, 311) -- Reply to agent from user
 ;
