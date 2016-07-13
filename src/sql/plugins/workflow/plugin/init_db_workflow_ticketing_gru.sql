@@ -57,6 +57,7 @@ INSERT INTO workflow_task (id_task, task_type_key, id_action, display_order)
             (386,'taskTicketingAssignUpTicket',305,1), -- Assign up to level 3
 			(387, 'taskTypeComment', 305,2),
             (388,'taskNotifyGru',305,3),
+            (389,'taskTicketingIndexTicket',305,4),
             (390, 'taskTicketingEditTicket', 309,1), -- Ask for user information
             (392,'taskNotifyGru',309,2),
             (393, 'taskTicketingIndexTicket',309,3),
@@ -74,6 +75,7 @@ INSERT INTO workflow_task (id_task, task_type_key, id_action, display_order)
             (441, 'taskTicketingReplyAssignUpTicket',313,1), -- Reply to assign up
             (442, 'taskTypeComment', 313,2),
             (443,'taskNotifyGru',313,3),
+            (344,'taskTicketingIndexTicket',313,4),
             (461,'taskTicketingAssignTicketToUser',314,1), -- Assign to user LEVEL3
             (462, 'taskTypeComment', 314,2),
             (463,'taskNotifyGru',314,3),
