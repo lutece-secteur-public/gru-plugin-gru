@@ -15,18 +15,21 @@ INSERT INTO workflow_state (id_state, name, description, id_workflow, is_initial
 INSERT INTO workflow_action (id_action, name, description, id_workflow, id_state_before, id_state_after, id_icon, is_automatic, is_mass_action, display_order, is_automatic_reflexive_action) 
 	VALUES 	(301,'Initialisation','Initialisation de la sollicitation',301,301,303,1,1,0,1,0),
 			(303,'Requalifier','Requalification de la sollicitation',301,303,303,1,0,0,2,0),
-            (304,'Escalader','Escalade vers un agent de niveau 2',301,303,303,1,0,0,6,0),
-            (305,'Escalader','Escalade vers un agent de niveau 3',301,303,305,1,0,0,7,0),
-			(306,'Assigner à une autre entité','Assignation de la sollicitation à une autre entité',301,303,303,1,0,0,5,0),
-            (307,'Assigner à un autre agent','Assignation de la sollicitation à un autre agent',301,303,303,1,0,0,4,0),
-			(308,'Me l''assigner','Prise en charge de la sollicitation',301,303,303,1,0,0,3,0),
-			(309,'Demander compléments','Demande d''informations complémentaires à l''usager',301,303,304,1,0,0,8,0),
-			(310,'Répondre pour l''usager','Réponse à la place de l''usager',301,304,303,1,0,0,9,0),
-			(311,'Répondre (usager)','Réponse de l''usager à une demande d''informations',301,304,303,1,0,0,10,0),
-            (312,'Répondre à l''usager','Réponse finale à l''usager',301,303,306,1,0,0,11,0),
-            (313,'Répondre à l''escalade', 'Réponse à l''escalade', 301, 305, 303, 1, 0, 0, 12, 0),
-            (314,'Assigner à un autre agent','Assignation de la sollicitation à un autre agent',301,305,305,1,0,0,4,0), -- assignation a autre agent pour tickets escaladés
-			(315,'Me l''assigner','Prise en charge de la sollicitation',301,305,305,1,0,0,3,0) -- auto assignation pour tickets escaladés
+            (302,'Ajouter un commentaire','Ajout de commentaire',301,303,303,1,0,0,3,0),
+			(304,'Escalader','Escalade vers un agent de niveau 2',301,303,303,1,0,0,7,0),
+            (305,'Escalader','Escalade vers un agent de niveau 3',301,303,305,1,0,0,8,0),
+			(306,'Assigner à une autre entité','Assignation de la sollicitation à une autre entité',301,303,303,1,0,0,6,0),
+            (307,'Assigner à un autre agent','Assignation de la sollicitation à un autre agent',301,303,303,1,0,0,5,0),
+			(308,'Me l''assigner','Prise en charge de la sollicitation',301,303,303,1,0,0,4,0),
+			(309,'Demander compléments','Demande d''informations complémentaires à l''usager',301,303,304,1,0,0,9,0),
+			(310,'Répondre pour l''usager','Réponse à la place de l''usager',301,304,303,1,0,0,10,0),
+			(311,'Répondre (usager)','Réponse de l''usager à une demande d''informations',301,304,303,1,0,0,11,0),
+            (312,'Répondre à l''usager','Réponse finale à l''usager',301,303,306,1,0,0,12,0),
+            -- actions agent level 3
+            (313,'Répondre à l''escalade', 'Réponse à l''escalade', 301, 305, 303, 1, 0, 0, 16, 0),
+            (314,'Assigner à un autre agent','Assignation de la sollicitation à un autre agent',301,305,305,1,0,0,15,0),
+			(315,'Me l''assigner','Prise en charge de la sollicitation',301,305,305,1,0,0,14,0),
+			(316,'Ajouter un commentaire','Ajout de commentaire',301,305,305,1,0,0,13,0)
 ;
 		
 INSERT INTO workflow_task (id_task, task_type_key, id_action, display_order) 
@@ -37,6 +40,7 @@ INSERT INTO workflow_task (id_task, task_type_key, id_action, display_order)
             (305,'taskNotifyGru',301,5),
             (306, 'taskTicketingIndexTicket',301,6),
             (307, 'taskTicketingRegisterChannel',301,7),
+            (321,'taskTypeComment',302,1), -- Add comment
             (341,'taskTicketingQualifyTicket',303,1), -- Qualify
             (342,'taskTicketingModifyTicketCategory',303,2),
             (343, 'taskTypeComment', 303,3),
@@ -79,23 +83,26 @@ INSERT INTO workflow_task (id_task, task_type_key, id_action, display_order)
 			(420, 'taskTicketingReply', 312,1), -- Reply to user
             (422,'taskNotifyGru',312,2),
             (423, 'taskTicketingIndexTicket', 312,3),
+            -- tasks agent level 3 
             (441, 'taskTicketingReplyAssignUpTicket',313,1), -- Reply to assign up
             (442, 'taskTypeComment', 313,2),
             (443,'taskNotifyGru',313,3),
             (444, 'taskTicketingMarkAsUnread',313,4),
             (445,'taskTicketingIndexTicket',313,5),
-            (461,'taskTicketingAssignTicketToUser',314,1), -- Assign to user LEVEL3
+            (461,'taskTicketingAssignTicketToUser',314,1), -- Assign to user
             (462, 'taskTypeComment', 314,2),
             (463,'taskNotifyGru',314,3),
             (464, 'taskTicketingMarkAsUnread',314,4),
-            (471,'taskTicketingAssignTicketToMe',315,1), -- Assign to me LEVEL3
+            (471,'taskTicketingAssignTicketToMe',315,1), -- Assign to me
             (472, 'taskTypeComment', 315,2),
-            (473,'taskNotifyGru',315,3)
+            (473,'taskNotifyGru',315,3),
+            (481,'taskTypeComment',316,1) -- Add comment
 ;
 
 DELETE FROM workflow_task_comment_config WHERE id_task >= 300 AND id_task < 500;			
 INSERT INTO workflow_task_comment_config (id_task, title, is_mandatory, is_richtext) 
-	VALUES	(343, 'Commentaire', 0, 1),
+	VALUES	(321, 'Commentaire', 1, 1),
+            (343, 'Commentaire', 0, 1),
 			(352, 'Commentaire', 0, 1),
 			(362, 'Commentaire', 0, 1),
 			(372, 'Commentaire', 0, 1),
@@ -103,7 +110,8 @@ INSERT INTO workflow_task_comment_config (id_task, title, is_mandatory, is_richt
 			(387, 'Commentaire', 0, 1),
             (442, 'Commentaire', 0, 1),
             (462, 'Commentaire', 0, 1),
-			(472, 'Commentaire', 0, 1)
+			(472, 'Commentaire', 0, 1),
+			(481, 'Commentaire', 1, 1)
 ;
 
 DELETE FROM workflow_task_ticketing_edit_ticket_config;

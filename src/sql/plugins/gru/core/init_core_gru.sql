@@ -178,6 +178,8 @@ INSERT INTO core_user_role ( role_key , id_user ) VALUES
 
 ( 'gru_dom_info_mairie', 22), -- Guillaume
 ( 'gru_level_1' , 22 ),
+( 'gru_dom_info_autre' , 22 ),
+( 'gru_dom_recl_autre' , 22 ),
 ( 'GRU_RU30_DETAILS', 22),
 ( 'GRU_RU30_SUMMARY', 22),
 
@@ -295,6 +297,7 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1202, 'gru_level_1', 'ticket', '*', 'VIEW'),
 
 (1210, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '301', '*'), -- init 
+(1211, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '302', '*'), -- add comment 
 (1212, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '303', '*'), -- requalify
 (1213, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '304', '*'), -- assign up
 (1214, 'gru_level_1', 'WORKFLOW_ACTION_TYPE', '306', '*'), -- assign to an other entity
@@ -330,6 +333,7 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1302, 'gru_level_2', 'ticket', '*', 'VIEW'),
 
 (1310, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '301', '*'), -- init 
+(1311, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '302', '*'), -- add comment 
 (1312, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '303', '*'), -- requalify
 (1313, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '305', '*'), -- assign up to level 3
 (1314, 'gru_level_2', 'WORKFLOW_ACTION_TYPE', '306', '*'), -- assign to an other entity
@@ -362,6 +366,7 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1415, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '314', '*'), -- assign to an other user
 (1416, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '315', '*'), -- self assign
 (1417, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '313', '*'), -- respond assign up
+(1418, 'gru_level_3', 'WORKFLOW_ACTION_TYPE', '316', '*'), -- add comment
 
 (1440, 'gru_level_3', 'WORKFLOW_STATE_TYPE', '303', '*'), -- to process
 (1441, 'gru_level_3', 'WORKFLOW_STATE_TYPE', '304', '*'), -- waiting for user answer
