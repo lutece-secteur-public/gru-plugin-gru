@@ -41,6 +41,7 @@ INSERT INTO workflow_task (id_task, task_type_key, id_action, display_order)
             (306, 'taskTicketingIndexTicket',301,6),
             (307, 'taskTicketingRegisterChannel',301,7),
             (321,'taskTypeComment',302,1), -- Add comment
+            (322,'taskTicketingMarkAsUnread',302,2),
             (341,'taskTicketingQualifyTicket',303,1), -- Qualify
             (342,'taskTicketingModifyTicketCategory',303,2),
             (343, 'taskTypeComment', 303,3),
@@ -96,7 +97,8 @@ INSERT INTO workflow_task (id_task, task_type_key, id_action, display_order)
             (471,'taskTicketingAssignTicketToMe',315,1), -- Assign to me
             (472, 'taskTypeComment', 315,2),
             (473,'taskNotifyGru',315,3),
-            (481,'taskTypeComment',316,1) -- Add comment
+            (481,'taskTypeComment',316,1), -- Add comment
+            (482,'taskTicketingMarkAsUnread',316,2)
 ;
 
 DELETE FROM workflow_task_comment_config WHERE id_task >= 300 AND id_task < 500;			
