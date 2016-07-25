@@ -41,64 +41,75 @@ INSERT INTO workflow_task (id_task, task_type_key, id_action, display_order)
             (306, 'taskTicketingIndexTicket',301,6),
             (307, 'taskTicketingRegisterChannel',301,7),
             (321,'taskTypeComment',302,1), -- Add comment
-            (322,'taskTicketingMarkAsUnread',302,2),
+            (322,'taskTypeUpload',302,2),
+            (323,'taskTicketingMarkAsUnread',302,3),
             (341,'taskTicketingQualifyTicket',303,1), -- Qualify
             (342,'taskTicketingModifyTicketCategory',303,2),
             (343, 'taskTypeComment', 303,3),
-            (344,'taskNotifyGru',303,4),
-            (345, 'taskTicketingIndexTicket',303,5),
-            (346, 'taskTicketingMarkAsUnread',303,6),
+            (344,'taskTypeUpload',303,4),
+            (345,'taskNotifyGru',303,5),
+            (346, 'taskTicketingIndexTicket',303,6),
+            (347, 'taskTicketingMarkAsUnread',303,7),
             (351,'taskTicketingAssignTicketToUnit',306,1), -- Assign to unit
             (352, 'taskTypeComment', 306,2),
-            (353,'taskNotifyGru',306,3),
-            (354, 'taskTicketingMarkAsUnread',306,4),
+            (353,'taskTypeUpload',306,3),
+            (354,'taskNotifyGru',306,4),
+            (355, 'taskTicketingMarkAsUnread',306,5),
             (361,'taskTicketingAssignTicketToUser',307,1), -- Assign to user
             (362, 'taskTypeComment', 307,2),
-            (363,'taskNotifyGru',307,3),
-            (364, 'taskTicketingMarkAsUnread',307,4),
+            (363,'taskTypeUpload',307,3),
+            (364,'taskNotifyGru',307,4),
+            (365, 'taskTicketingMarkAsUnread',307,5),
             (371,'taskTicketingAssignTicketToMe',308,1), -- Assign to me
             (372, 'taskTypeComment', 308,2),
-            (373,'taskNotifyGru',308,3),
+            (373,'taskTypeUpload',308,3),
+            (374,'taskNotifyGru',308,4),
 			(381,'taskTicketingAssignUpTicket',304,1), -- Assign up
 			(382, 'taskTypeComment', 304,2),
-            (383,'taskNotifyGru',304,3),
-            (384, 'taskTicketingMarkAsUnread',304,4),
-            (386,'taskTicketingAssignUpTicket',305,1), -- Assign up to level 3
-			(387, 'taskTypeComment', 305,2),
-            (388,'taskNotifyGru',305,3),
-            (389, 'taskTicketingMarkAsUnread',305,4),
-            (390,'taskTicketingIndexTicket',306,4),
-            (391, 'taskTicketingEditTicket', 309,1), -- Ask for user information
-            (392,'taskNotifyGru',309,2),
-            (393, 'taskTicketingIndexTicket',309,3),
-            (400, 'taskTicketingEditTicket', 310,1), -- Reply to info request from agent to agent
-            (401, 'taskTicketingSelectChannel', 310,2),
-            (402,'taskNotifyGru',310,3),
-            (403, 'taskTicketingIndexTicket', 310,4),
-            (404, 'taskTicketingMarkAsUnread',310,5),
-            (410, 'taskTicketingEditTicket',311,1), -- Reply to info request from user to agent
-            (411, 'taskTicketingSelectChannel',311,2),
-            (412,'taskNotifyGru',311,3),
-            (413, 'taskTicketingIndexTicket', 311,4),
-            (414, 'taskTicketingMarkAsUnread',311,5),
-			(420, 'taskTicketingReply', 312,1), -- Reply to user
-            (422,'taskNotifyGru',312,2),
-            (423, 'taskTicketingIndexTicket', 312,3),
+			(383,'taskTypeUpload',304,3),
+            (384,'taskNotifyGru',304,4),
+            (385, 'taskTicketingMarkAsUnread',304,5),
+            (391,'taskTicketingAssignUpTicket',305,1), -- Assign up to level 3
+			(392, 'taskTypeComment', 305,2),
+			(393,'taskTypeUpload',305,3),
+            (394,'taskNotifyGru',305,4),
+            (395, 'taskTicketingMarkAsUnread',305,5),
+            (396,'taskTicketingIndexTicket',306,6),
+            (401, 'taskTicketingEditTicket', 309,1), -- Ask for user information
+            (402,'taskNotifyGru',309,2),
+            (403, 'taskTicketingIndexTicket',309,3),
+            (411, 'taskTicketingEditTicket', 310,1), -- Reply to info request from agent to agent
+            (412, 'taskTicketingSelectChannel', 310,2),
+            (413,'taskNotifyGru',310,3),
+            (414, 'taskTicketingIndexTicket', 310,4),
+            (415, 'taskTicketingMarkAsUnread',310,5),
+            (421, 'taskTicketingEditTicket',311,1), -- Reply to info request from user to agent
+            (422, 'taskTicketingSelectChannel',311,2),
+            (423,'taskNotifyGru',311,3),
+            (424, 'taskTicketingIndexTicket', 311,4),
+            (425, 'taskTicketingMarkAsUnread',311,5),
+			(431, 'taskTicketingReply', 312,1), -- Reply to user
+            (432,'taskNotifyGru',312,2),
+            (433, 'taskTicketingIndexTicket', 312,3),
             -- tasks agent level 3 
             (441, 'taskTicketingReplyAssignUpTicket',313,1), -- Reply to assign up
             (442, 'taskTypeComment', 313,2),
-            (443,'taskNotifyGru',313,3),
-            (444, 'taskTicketingMarkAsUnread',313,4),
-            (445,'taskTicketingIndexTicket',313,5),
+            (443,'taskTypeUpload',313,3),
+            (444,'taskNotifyGru',313,4),
+            (445, 'taskTicketingMarkAsUnread',313,5),
+            (446,'taskTicketingIndexTicket',313,6),
             (461,'taskTicketingAssignTicketToUser',314,1), -- Assign to user
             (462, 'taskTypeComment', 314,2),
-            (463,'taskNotifyGru',314,3),
-            (464, 'taskTicketingMarkAsUnread',314,4),
+            (463,'taskTypeUpload',314,3),
+            (464,'taskNotifyGru',314,4),
+            (465, 'taskTicketingMarkAsUnread',314,5),
             (471,'taskTicketingAssignTicketToMe',315,1), -- Assign to me
             (472, 'taskTypeComment', 315,2),
-            (473,'taskNotifyGru',315,3),
+            (473,'taskTypeUpload',315,3),
+            (474,'taskNotifyGru',315,4),
             (481,'taskTypeComment',316,1), -- Add comment
-            (482,'taskTicketingMarkAsUnread',316,2)
+            (482,'taskTypeUpload',316,2),
+            (483,'taskTicketingMarkAsUnread',316,3)
 ;
 
 DELETE FROM workflow_task_comment_config WHERE id_task >= 300 AND id_task < 500;			
@@ -128,7 +139,7 @@ INSERT INTO workflow_task_ticketing_reply_config (id_task, message_direction)
     VALUES  (420, 1) -- Reply to user
 ;
 	
-DELETE FROM workflow_task_notify_gru_cf WHERE id_task >= 300 AND id_task <= 473;
+DELETE FROM workflow_task_notify_gru_cf WHERE id_task >= 300 AND id_task <= 500;
 INSERT INTO `workflow_task_notify_gru_cf` (`id_task`, `id_spring_provider`, `demand_status`, `set_onglet`, `message_guichet`, `status_text_guichet`, `sender_name_guichet`, `subject_guichet`, `demand_max_step_guichet`, `demand_user_current_step_guichet`, `is_active_onglet_guichet`, `status_text_agent`, `message_agent`, `is_active_onglet_agent`, `subject_email`, `message_email`, `sender_name_email`, `recipients_cc_email`, `recipients_cci_email`, `is_active_onglet_email`, `message_sms`, `is_active_onglet_sms`, `id_mailing_list_broadcast`, `sender_name_broadcast`, `subject_broadcast`, `message_broadcast`, `recipients_cc_broadcast`, `recipients_cci_broadcast`, `is_active_onglet_broadcast`) VALUES
 (445, 'notifygru-appointment.ProviderService.@.1', 0, 3, '<p>Bonjour ${firstName} ${lastName},</p>\r\n<p>Pour des raisons ind&eacute;pendantes de notre volont&eacute;, nous sommes contraints d''annuler votre rendez-vous ${reference} du ${date_appointment} &agrave; ${time_appointment}.</p>\r\n<p>Nous vous invitons &agrave; renouveller votre demande <a title="Demande d erendez-vous" href="jsp/site/Portal.jsp?page=appointment&amp;view=getAppointmentFormFirstStep&amp;id_form=1">ici</a></p>\r\n<p>En vous remerciant de votre compr&eacute;hension.</p>\r\n<p>Maire de Paris.</p>', 'Rendez-vous ${reference} annulé', 'Mairie de Paris', 'Votre rendez-vous ${reference} est annulé', 1, 1, 1, 'Rendez-vous ${reference} annulé par l''usager', '<p>Bonjour ${firstName} ${lastName},</p>\r\n<p>Pour des raisons ind&eacute;pendantes de notre volont&eacute;, nous sommes contraints d''annuler votre rendez-vous ${reference} du ${date_appointment} &agrave; ${time_appointment}.</p>\r\n<p>Nous vous invitons &agrave; renouveller votre demande <a href="${url_cancel}">ici</a></p>\r\n<p>En vous remerciant de votre compr&eacute;hension.</p>\r\n<p>Maire de Paris.</p>', 1, 'Votre rendez-vous ${reference} a été annulé', '<p>Bonjour ${firstName} ${lastName},</p>\r\n<p>Pour des raisons ind&eacute;pendantes de notre volont&eacute;, nous sommes contraints d''annuler votre rendez-vous ${reference} du ${date_appointment} &agrave; ${time_appointment}.</p>\r\n<p>Nous vous invitons &agrave; renouveller votre demande <a href="${url_cancel}">ici</a></p>\r\n<p>En vous remerciant de votre compr&eacute;hension.</p>\r\n<p>Maire de Paris.</p>', 'Mairie de Paris', '', '', 1, NULL, 0, 0, NULL, NULL, NULL, NULL, NULL, 0),
 (448, 'notifygru-appointment.ProviderService.@.1', 0, 3, '<p>Bonjour ${firstName} ${lastName},</p>\r\n<p>Votre demande de&nbsp;rendez-vous ${reference} du ${date_appointment} &agrave; ${time_appointment} a bien &eacute;t&eacute; annul&eacute;e.</p>\r\n<p>Nous vous invitons &agrave; renouveller votre demande ici</p>\r\n<p>Maire de Paris.</p>', 'Rendez-vous annulé à votre demande', 'Mairie de Paris', 'Rendez-vous ${reference} annulé à votre demande', 1, 1, 1, 'Rendez-vous annulé par l''usager', '<p>Bonjour ${firstName} ${lastName},</p>\r\n<p>Votre demande de&nbsp;rendez-vous ${reference} du ${date_appointment} &agrave; ${time_appointment} a bien &eacute;t&eacute; annul&eacute;e.</p>\r\n<p>Nous vous invitons &agrave; renouveller votre demande ici</p>\r\n<p>Maire de Paris.</p>', 1, 'Annulation de votre demande de rendez-vous ${reference}', '<p>Bonjour ${firstName} ${lastName},</p>\r\n<p>Votre demande de&nbsp;rendez-vous ${reference} du ${date_appointment} &agrave; ${time_appointment} a bien &eacute;t&eacute; annul&eacute;e.</p>\r\n<p>Nous vous invitons &agrave; renouveller votre demande ici</p>\r\n<p>Maire de Paris.</p>', 'Mairie de Paris', '', '', 1, NULL, 0, 0, NULL, NULL, NULL, NULL, NULL, 0),
@@ -157,4 +168,19 @@ INSERT INTO `core_datastore` (`entity_key`, `entity_value`) VALUES
 ('ticketing.configuration.actions.filtered.when.assigned.to.me', '308;315'),
 ('ticketing.configuration.adminUser.id.front', '5'),
 ('ticketing.configuration.channel.id.front', '99')
+;
+
+DELETE FROM workflow_task_upload_config WHERE id_task >= 300 AND id_task <= 500;;
+INSERT INTO workflow_task_upload_config (id_task, title, max_file, max_size_file, is_mandatory) VALUES
+(322, 'Pièce(s) jointe(s)', 5, 10, 0),
+(344, 'Pièce(s) jointe(s)', 5, 10, 0),
+(353, 'Pièce(s) jointe(s)', 5, 10, 0),
+(363, 'Pièce(s) jointe(s)', 5, 10, 0),
+(373, 'Pièce(s) jointe(s)', 5, 10, 0),
+(383, 'Pièce(s) jointe(s)', 5, 10, 0),
+(393, 'Pièce(s) jointe(s)', 5, 10, 0),
+(443, 'Pièce(s) jointe(s)', 5, 10, 0),
+(463, 'Pièce(s) jointe(s)', 5, 10, 0),
+(473, 'Pièce(s) jointe(s)', 5, 10, 0),
+(482, 'Pièce(s) jointe(s)', 5, 10, 0)
 ;
