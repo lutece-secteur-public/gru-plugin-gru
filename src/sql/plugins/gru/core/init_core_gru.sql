@@ -291,6 +291,7 @@ INSERT INTO core_admin_role_resource (rbac_id, role_key, resource_type, resource
 (1164, 'gru_admin', 'assigneeUnit', '*', '*'),
 (1170, 'gru_admin', 'WORKFLOW_STATE_TYPE', '*', '*'),
 (1171, 'gru_admin', 'COMMENT', '*', '*'),
+(1172, 'gru_admin', 'UPLOAD_WORKFLOW_HISTORY', '*', '*'),
 
 -- level 1 : 
 (1201, 'gru_level_1', 'ticket', '*', 'CREATE'),
