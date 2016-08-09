@@ -50,6 +50,7 @@ INSERT INTO workflow_task (id_task, task_type_key, id_action, display_order)
             (345,'taskNotifyGru',303,5),
             (346, 'taskTicketingIndexTicket',303,6),
             (347, 'taskTicketingMarkAsUnread',303,7),
+            (348, 'taskTicketingModifyTicketNomenclature',303,8),
             (351,'taskTicketingAssignTicketToUnit',306,1), -- Assign to unit
             (352, 'taskTypeComment', 306,2),
             (353,'taskTypeUpload',306,3),
