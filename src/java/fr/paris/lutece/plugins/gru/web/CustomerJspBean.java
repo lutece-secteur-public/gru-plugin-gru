@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2015, Mairie de Paris
+ * Copyright (c) 2002-2016, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -39,8 +39,8 @@ import fr.paris.lutece.plugins.gru.business.demand.Demand;
 import fr.paris.lutece.plugins.gru.service.CustomerActionsService;
 import fr.paris.lutece.plugins.gru.service.demand.DemandService;
 import fr.paris.lutece.plugins.gru.service.demandtype.DemandTypeService;
-import fr.paris.lutece.plugins.gru.service.search.CustomerResult;
 import fr.paris.lutece.plugins.gru.service.search.SearchService;
+import fr.paris.lutece.plugins.gru.utils.CustomerUtils;
 import fr.paris.lutece.plugins.gru.utils.UrlUtils;
 import fr.paris.lutece.plugins.gru.web.actions.buttons.builders.impl.HomeButtonListBuilder;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionGroup;
@@ -63,11 +63,8 @@ import org.apache.commons.lang.StringUtils;
 
 import java.io.UnsupportedEncodingException;
 
-import java.nio.charset.Charset;
-
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -86,7 +83,6 @@ public class CustomerJspBean extends MVCAdminJspBean
     private static final String TEMPLATE_SEARCH_CUSTOMER = "/admin/plugins/gru/search_customer.html";
     private static final String TEMPLATE_MANAGE_CUSTOMERS = "/admin/plugins/gru/manage_customers.html";
     private static final String TEMPLATE_CREATE_CUSTOMER = "/admin/plugins/gru/create_customer.html";
-    private static final String TEMPLATE_MODIFY_CUSTOMER = "/admin/plugins/gru/modify_customer.html";
     private static final String TEMPLATE_VIEW_CUSTOMER_DEMANDS = "/admin/plugins/gru/view_customer_demands.html";
     private static final String TEMPLATE_VIEW_CUSTOMER_OLD_DEMANDS = "/admin/plugins/gru/view_customer_old_demands.html";
     private static final String TEMPLATE_VIEW_CUSTOMER_NEW_DEMANDS = "/admin/plugins/gru/view_customer_new_demands.html";
@@ -95,7 +91,6 @@ public class CustomerJspBean extends MVCAdminJspBean
 
     // Properties for page titles
     private static final String PROPERTY_PAGE_TITLE_MANAGE_CUSTOMERS = "gru.manage_customers.pageTitle";
-    private static final String PROPERTY_PAGE_TITLE_MODIFY_CUSTOMER = "gru.modify_customer.pageTitle";
     private static final String PROPERTY_PAGE_TITLE_CREATE_CUSTOMER = "gru.create_customer.pageTitle";
     private static final String PROPERTY_PAGE_TITLE_SEARCH_CUSTOMER = "gru.search_customer.pageTitle";
     private static final String JSP_MANAGE_CUSTOMERS = "jsp/admin/plugins/gru/ManageCustomers.jsp";
@@ -109,7 +104,6 @@ public class CustomerJspBean extends MVCAdminJspBean
     // Views
     private static final String VIEW_MANAGE_CUSTOMERS = "manageCustomers";
     private static final String VIEW_CREATE_CUSTOMER = "createCustomer";
-    private static final String VIEW_MODIFY_CUSTOMER = "modifyCustomer";
     private static final String VIEW_SEARCH_CUSTOMER = "searchCustomer";
     private static final String VIEW_SEARCH_RESULTS = "searchResults";
     private static final String VIEW_CUSTOMER_DEMANDS = "viewCustomerDemands";
@@ -119,15 +113,12 @@ public class CustomerJspBean extends MVCAdminJspBean
 
     // Actions
     private static final String ACTION_CREATE_CUSTOMER = "createCustomer";
-    private static final String ACTION_MODIFY_CUSTOMER = "modifyCustomer";
     private static final String ACTION_REMOVE_CUSTOMER = "removeCustomer";
     private static final String ACTION_CONFIRM_REMOVE_CUSTOMER = "confirmRemoveCustomer";
     private static final String ACTION_SEARCH = "search";
 
     // Infos
     private static final String INFO_CUSTOMER_CREATED = "gru.info.customer.created";
-    private static final String INFO_CUSTOMER_UPDATED = "gru.info.customer.updated";
-    private static final String INFO_CUSTOMER_REMOVED = "gru.info.customer.removed";
 
     // Right
     public static final String RIGHT_MANAGECUSTOMERS = "GRU_MANAGEMENT";
@@ -142,7 +133,7 @@ public class CustomerJspBean extends MVCAdminJspBean
 
     // Session variable to store working values
     private Customer _customer;
-    private List<CustomerResult> _listCustomer;
+    private List<Customer> _listCustomer;
 
     @View( value = VIEW_SEARCH_CUSTOMER, defaultView = true )
     public String getSearchCustomer( HttpServletRequest request )
@@ -221,7 +212,7 @@ public class CustomerJspBean extends MVCAdminJspBean
     @View( VIEW_CUSTOMER_DEMANDS )
     public String getViewCustomerDemands( HttpServletRequest request )
     {
-        Customer customer = getCustomer( request );
+        Customer customer = CustomerUtils.getCustomer( request );
 
         if ( customer != null )
         {
@@ -253,7 +244,7 @@ public class CustomerJspBean extends MVCAdminJspBean
     @View( VIEW_CUSTOMER_OLD_DEMANDS )
     public String getViewCustomerOldDemands( HttpServletRequest request )
     {
-        Customer customer = getCustomer( request );
+        Customer customer = CustomerUtils.getCustomer( request );
 
         if ( customer != null )
         {
@@ -277,7 +268,7 @@ public class CustomerJspBean extends MVCAdminJspBean
     @View( VIEW_CUSTOMER_NEW_DEMANDS )
     public String getViewCustomerNewDemands( HttpServletRequest request )
     {
-        Customer customer = getCustomer( request );
+        Customer customer = CustomerUtils.getCustomer( request );
 
         if ( customer != null )
         {
@@ -298,26 +289,6 @@ public class CustomerJspBean extends MVCAdminJspBean
         return "Invalid Customer";
     }
 
-    private Customer getCustomer( HttpServletRequest request )
-    {
-        String strId = request.getParameter( Constants.PARAMETER_ID_CUSTOMER );
-        Customer customer = null;
-
-        if ( strId != null )
-        {
-            try
-            {
-                int nId = Integer.parseInt( strId );
-                customer = CustomerHome.findByPrimaryKey( nId );
-            }
-            catch ( NumberFormatException e )
-            {
-            }
-        }
-
-        return customer;
-    }
-
     /**
      * View Demand
      * @param request The HTTP request
@@ -331,14 +302,12 @@ public class CustomerJspBean extends MVCAdminJspBean
         String strIdDemandType = request.getParameter( Constants.PARAMETER_ID_DEMAND_TYPE );
 
         Demand demand = DemandService.getDemand( strIdDemand, strIdDemandType, getUser(  ) );
-        Customer customer = null;
+        Customer customer = CustomerUtils.getCustomer( request );
 
         if ( strId != null )
         {
             try
             {
-                int nId = Integer.parseInt( strId );
-                customer = CustomerHome.findByPrimaryKey( nId );
                 demand = DemandTypeService.setDemandActions( demand, customer, getUser(  ) );
 
                 List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
@@ -424,79 +393,6 @@ public class CustomerJspBean extends MVCAdminJspBean
                 url.getUrl(  ), AdminMessage.TYPE_CONFIRMATION );
 
         return redirect( request, strMessageUrl );
-    }
-
-    /**
-     * Handles the removal form of a customer
-     *
-     * @param request The Http request
-     * @return the jsp URL to display the form to manage customers
-     */
-    @Action( ACTION_REMOVE_CUSTOMER )
-    public String doRemoveCustomer( HttpServletRequest request )
-    {
-        int nId = Integer.parseInt( request.getParameter( Constants.PARAMETER_ID_CUSTOMER ) );
-        CustomerHome.remove( nId );
-
-        //Delete from ES
-        SearchService.instance(  ).deleteCustomer( nId );
-
-        addInfo( INFO_CUSTOMER_REMOVED, getLocale(  ) );
-
-        return redirectView( request, VIEW_MANAGE_CUSTOMERS );
-    }
-
-    /**
-     * Returns the form to update info about a customer
-     *
-     * @param request The Http request
-     * @return The HTML form to update info
-     */
-    @View( VIEW_MODIFY_CUSTOMER )
-    public String getModifyCustomer( HttpServletRequest request )
-    {
-        int nId = Integer.parseInt( request.getParameter( Constants.PARAMETER_ID_CUSTOMER ) );
-
-        if ( ( _customer == null ) || ( _customer.getId(  ) != nId ) )
-        {
-            _customer = CustomerHome.findByPrimaryKey( nId );
-        }
-
-        List<ActionPanel> listPanels = CustomerActionsService.getPanels( null, getUser(  ) );
-        Map<String, Object> model = getModel(  );
-        model.put( Constants.MARK_ACTION_PANELS, listPanels );
-        model.put( Constants.MARK_CUSTOMER, _customer );
-
-        return getPage( PROPERTY_PAGE_TITLE_MODIFY_CUSTOMER, TEMPLATE_MODIFY_CUSTOMER, model );
-    }
-
-    /**
-     * Process the change form of a customer
-     *
-     * @param request The Http request
-     * @return The Jsp URL of the process result
-     */
-    @Action( ACTION_MODIFY_CUSTOMER )
-    public String doModifyCustomer( HttpServletRequest request )
-    {
-        populate( _customer, request );
-
-        //update ES
-        SearchService.instance(  ).updateCustomer( _customer );
-
-        // Check constraints
-        if ( !validateBean( _customer, VALIDATION_ATTRIBUTES_PREFIX ) )
-        {
-            return redirect( request, VIEW_MODIFY_CUSTOMER, Constants.PARAMETER_ID_CUSTOMER, _customer.getId(  ) );
-        }
-
-        CustomerHome.update( _customer );
-        //update ES
-        SearchService.instance(  ).updateCustomer( _customer );
-
-        addInfo( INFO_CUSTOMER_UPDATED, getLocale(  ) );
-
-        return redirectView( request, VIEW_MANAGE_CUSTOMERS );
     }
 
     /**

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2015, Mairie de Paris
+ * Copyright (c) 2002-2016, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,10 +48,10 @@ public class MokeSearchService implements ISearchService
      * {@inheritDoc }
      */
     @Override
-    public List<CustomerResult> searchCustomer( String strQuery )
+    public List<Customer> searchCustomer( String strQuery )
     {
-        List<CustomerResult> list = new ArrayList<CustomerResult>(  );
-        CustomerResult customer1 = new CustomerResult(  );
+        List<Customer> list = new ArrayList<Customer>(  );
+        Customer customer1 = new Customer(  );
         customer1.setId( 1 );
         customer1.setFirstname( "Maurice" );
         customer1.setLastname( "Dupont" );
@@ -61,7 +61,7 @@ public class MokeSearchService implements ISearchService
 
         if ( strQuery.equals( "multiple" ) )
         {
-            CustomerResult customer2 = new CustomerResult(  );
+            Customer customer2 = new Customer(  );
             customer2.setId( 1 );
             customer2.setFirstname( "Maurice" );
             customer2.setLastname( "Dupont" );
@@ -71,6 +71,22 @@ public class MokeSearchService implements ISearchService
         }
 
         return list;
+    }
+    
+    /**
+     * {@inheritDoc }
+     */
+    @Override
+    public Customer searchCustomerById( int nCustomerId )
+    {
+        Customer customer = new Customer(  );
+        customer.setId( 1 );
+        customer.setFirstname( "Maurice" );
+        customer.setLastname( "Dupont" );
+        customer.setMobilePhone( "0612459812" );
+        customer.setEmail( "maurice.dupont@domain.com" );
+
+        return  customer;
     }
 
     /**
@@ -89,15 +105,5 @@ public class MokeSearchService implements ISearchService
     public String getAutoCompleteUrl(  )
     {
         return "";
-    }
-
-    @Override
-    public void deleteCustomer( int nId )
-    {
-    }
-
-    @Override
-    public void updateCustomer( Customer user )
-    {
     }
 }

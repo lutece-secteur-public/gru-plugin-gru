@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2015, Mairie de Paris
+ * Copyright (c) 2002-2016, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,7 +48,14 @@ public interface ISearchService
      * @param strQuery The query
      * @return The customer list
      */
-    List<CustomerResult> searchCustomer( String strQuery );
+    List<Customer> searchCustomer( String strQuery );
+    
+    /**
+     * Search for a Customers by using its identifier
+     * @param nCustomerId the customer id
+     * @return The customer
+     */
+    Customer searchCustomerById( int nCustomerId );
 
     /**
      * An autocomplete feature is available
@@ -61,16 +68,4 @@ public interface ISearchService
      * @return The URL
      */
     String getAutoCompleteUrl(  );
-
-    /**
-     * Updates the customer
-     * @param user the customer
-     */
-    void updateCustomer( Customer user );
-
-    /**
-     * Delete the user from ES
-     * @param nId the id user
-     */
-    void deleteCustomer( int nId );
 }

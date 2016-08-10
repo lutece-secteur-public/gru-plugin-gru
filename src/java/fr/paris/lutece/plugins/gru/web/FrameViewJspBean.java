@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2015, Mairie de Paris
+ * Copyright (c) 2002-2016, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -34,8 +34,8 @@
 package fr.paris.lutece.plugins.gru.web;
 
 import fr.paris.lutece.plugins.gru.business.customer.Customer;
-import fr.paris.lutece.plugins.gru.business.customer.CustomerHome;
 import fr.paris.lutece.plugins.gru.service.CustomerActionsService;
+import fr.paris.lutece.plugins.gru.utils.CustomerUtils;
 import fr.paris.lutece.plugins.gru.utils.UrlUtils;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionPanel;
 import fr.paris.lutece.portal.service.util.AppPathService;
@@ -103,18 +103,15 @@ public class FrameViewJspBean extends MVCAdminJspBean
     public String viewFrame( HttpServletRequest request )
     {
         String strUrl = request.getParameter( Constants.PARAMETER_URL_FRAME );
-        String strCustomerId = request.getParameter( Constants.PARAMETER_ID_CUSTOMER );
 
-        Customer customer = null;
+        Customer customer = CustomerUtils.getCustomer( request );
         Map<String, String> mapParameters = new HashMap<String, String>(  );
         mapParameters.put( Constants.PARAMETER_URL_FRAME, UrlUtils.encodeUrl( strUrl ) );
 
-        if ( strCustomerId != null )
+        if ( customer != null )
         {
             try
             {
-                int nCustomerId = Integer.parseInt( strCustomerId );
-                customer = CustomerHome.findByPrimaryKey( nCustomerId );
                 mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, String.valueOf( customer.getId(  ) ) );
             }
             catch ( NumberFormatException e )

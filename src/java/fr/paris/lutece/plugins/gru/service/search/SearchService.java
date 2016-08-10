@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2015, Mairie de Paris
+ * Copyright (c) 2002-2016, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -35,8 +35,6 @@ package fr.paris.lutece.plugins.gru.service.search;
 
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 
-import java.util.List;
-
 
 /**
  * SearchService
@@ -63,33 +61,5 @@ public class SearchService
         }
 
         return _service;
-    }
-
-    /**
-     * Search for Customers using a query string
-     * @param strQuery The query
-     * @return The customer list
-     */
-    public List<CustomerResult> searchCustomer( String strQuery )
-    {
-        return _service.searchCustomer( strQuery );
-    }
-
-    /**
-     * Is autocomplete feature available
-     * @return true if available
-     */
-    public boolean isAutoComplete(  )
-    {
-        return _service.isAutoComplete(  );
-    }
-
-    /**
-     * The AutoComplete WebService URL
-     * @return The AutoComplete WebService URL
-     */
-    public String getAutoCompleteUrl(  )
-    {
-        return _service.getAutoCompleteUrl(  );
     }
 }
