@@ -49,7 +49,7 @@ public interface ISearchService
      * @return The customer list
      */
     List<Customer> searchCustomer( String strQuery );
-    
+
     /**
      * Search for a Customers by using its identifier
      * @param nCustomerId the customer id

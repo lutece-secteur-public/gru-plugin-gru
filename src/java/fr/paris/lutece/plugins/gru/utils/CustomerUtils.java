@@ -33,11 +33,12 @@
  */
 package fr.paris.lutece.plugins.gru.utils;
 
-import javax.servlet.http.HttpServletRequest;
-
 import fr.paris.lutece.plugins.gru.business.customer.Customer;
 import fr.paris.lutece.plugins.gru.service.search.SearchService;
 import fr.paris.lutece.plugins.gru.web.Constants;
+
+import javax.servlet.http.HttpServletRequest;
+
 
 /**
  * This class provides utility methods for customers
@@ -45,15 +46,13 @@ import fr.paris.lutece.plugins.gru.web.Constants;
  */
 public final class CustomerUtils
 {
-
     /**
      * Constructor
      */
     private CustomerUtils(  )
     {
-        
     }
-    
+
     /**
      * Fetches a customer from the specified request
      * @param request the request

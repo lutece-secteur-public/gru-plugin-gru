@@ -72,7 +72,7 @@ public class MokeSearchService implements ISearchService
 
         return list;
     }
-    
+
     /**
      * {@inheritDoc }
      */
@@ -86,7 +86,7 @@ public class MokeSearchService implements ISearchService
         customer.setMobilePhone( "0612459812" );
         customer.setEmail( "maurice.dupont@domain.com" );
 
-        return  customer;
+        return customer;
     }
 
     /**
