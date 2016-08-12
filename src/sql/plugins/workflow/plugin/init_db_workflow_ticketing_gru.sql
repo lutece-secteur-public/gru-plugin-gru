@@ -45,12 +45,12 @@ INSERT INTO workflow_task (id_task, task_type_key, id_action, display_order)
             (323,'taskTicketingMarkAsUnread',302,3),
             (341,'taskTicketingQualifyTicket',303,1), -- Qualify
             (342,'taskTicketingModifyTicketCategory',303,2),
-            (343, 'taskTypeComment', 303,3),
-            (344,'taskTypeUpload',303,4),
-            (345,'taskNotifyGru',303,5),
-            (346, 'taskTicketingIndexTicket',303,6),
-            (347, 'taskTicketingMarkAsUnread',303,7),
-            (348, 'taskTicketingModifyTicketNomenclature',303,8),
+            (343, 'taskTicketingModifyTicketNomenclature',303,3),
+            (344, 'taskTypeComment', 303,4),
+            (345,'taskTypeUpload',303,5),
+            (346,'taskNotifyGru',303,6),
+            (347, 'taskTicketingIndexTicket',303,7),
+            (348, 'taskTicketingMarkAsUnread',303,8),
             (351,'taskTicketingAssignTicketToUnit',306,1), -- Assign to unit
             (352, 'taskTypeComment', 306,2),
             (353,'taskTypeUpload',306,3),
@@ -116,7 +116,7 @@ INSERT INTO workflow_task (id_task, task_type_key, id_action, display_order)
 DELETE FROM workflow_task_comment_config WHERE id_task >= 300 AND id_task < 500;			
 INSERT INTO workflow_task_comment_config (id_task, title, is_mandatory, is_richtext) 
 	VALUES	(321, 'Commentaire', 1, 1),
-            (343, 'Commentaire', 0, 1),
+            (344, 'Commentaire', 0, 1),
 			(352, 'Commentaire', 0, 1),
 			(362, 'Commentaire', 0, 1),
 			(372, 'Commentaire', 0, 1),
@@ -149,7 +149,7 @@ INSERT INTO `workflow_task_notify_gru_cf` (`id_task`, `id_spring_provider`, `dem
 (432, 'notifygru-ticketing.ProviderService', 1, 0, '<p>${user_message}</p>', 'Traité', 'Mairie de Paris', 'Réponse à votre demande ${reference}', 4, 3, 1, 'Traité', '<p>${user_message}</p>', 1, 'Réponse à votre demande ${reference}', '<p>${user_message}</p>', 'Mairie de Paris', '', '', 1, 'Bonjour ${firstname} ${lastname}, Nous avons répondu à votre demande ${reference}. Cordialement. Mairie de Paris', 1, 1, 'Mairie de Paris', 'Réponse à votre demande ${reference}', '<p>${user_message}</p>', '', '', 1),
 (413, 'notifygru-ticketing.ProviderService', 0, 0, '<p>Bonjour ${firstname} ${lastname},</p>\r\n<p>Nous avons bien re&ccedil;u vos informations compl&eacute;mentaires pour votre demande ${reference} et nous vous en remercions.</p>\r\n<p>Nous allons traiter votre demande dans les plus brefs d&eacute;lais.</p>\r\n<p>Cordialement,</p>\r\n<p>Mairie de Paris.</p>', 'En cours de traitement', 'Mairie de Paris', 'Réception de vos information complémentaires, demande ${reference}', 4, 1, 1, 'A traiter', '<p>Bonjour ${firstname} ${lastname},</p>\r\n<p>Nous avons bien re&ccedil;u vos informations compl&eacute;mentaires pour votre demande ${reference} et nous vous en remercions.</p>\r\n<p>Nous allons traiter votre demande dans les plus brefs d&eacute;lais.</p>\r\n<p>Cordialement,</p>\r\n<p>Mairie de Paris.</p>', 1, 'Réception de vos information complémentaires, demande ${reference}', '<p>Bonjour ${firstname} ${lastname},</p>\r\n<p>Nous avons bien re&ccedil;u vos informations compl&eacute;mentaires pour votre demande ${reference} et nous vous en remercions.</p>\r\n<p>Nous allons traiter votre demande dans les plus brefs d&eacute;lais.</p>\r\n<p>Cordialement,</p>\r\n<p>Mairie de Paris.</p>', 'Mairie de Paris', '', '', 1, 'Bonjour ${firstname} ${lastname}, Nous avons bien reçu vos informations complémentaires pour votre demande ${reference}. Nous allons traiter votre demande dans les plus brefs délais. Cordialement. Mairie de Paris', 1, 1, 'Mairie de Paris', 'Réception de vos information complémentaires, demande ${reference}', '<p>Bonjour ${firstname} ${lastname},</p>\r\n<p>Nous avons bien re&ccedil;u vos informations compl&eacute;mentaires pour votre demande ${reference} et nous vous en remercions.</p>\r\n<p>Nous allons traiter votre demande dans les plus brefs d&eacute;lais.</p>\r\n<p>Cordialement,</p>\r\n<p>Mairie de Paris.</p>', '', '', 1),
 (423, 'notifygru-ticketing.ProviderService', 0, 0, '<p>Bonjour ${firstname} ${lastname},</p>\r\n<p>Nous avons bien re&ccedil;u vos informations compl&eacute;mentaires pour votre demande ${reference} et nous vous en remercions.</p>\r\n<p>Nous allons traiter votre demande dans les plus brefs d&eacute;lais.</p>\r\n<p>Cordialement,</p>\r\n<p>Mairie de Paris.</p>', 'En cours de traitement', 'Mairie de Paris', 'Réception de vos information complémentaires, demande ${reference}', 4, 1, 1, 'A traiter', '<p>Bonjour ${firstname} ${lastname},</p>\r\n<p>Nous avons bien re&ccedil;u vos informations compl&eacute;mentaires pour votre demande ${reference} et nous vous en remercions.</p>\r\n<p>Nous allons traiter votre demande dans les plus brefs d&eacute;lais.</p>\r\n<p>Cordialement,</p>\r\n<p>Mairie de Paris.</p>', 1, 'Réception de vos information complémentaires, demande ${reference}', '<p>Bonjour ${firstname} ${lastname},</p>\r\n<p>Nous avons bien re&ccedil;u vos informations compl&eacute;mentaires pour votre demande ${reference} et nous vous en remercions.</p>\r\n<p>Nous allons traiter votre demande dans les plus brefs d&eacute;lais.</p>\r\n<p>Cordialement,</p>\r\n<p>Mairie de Paris.</p>', 'Mairie de Paris', '', '', 1, 'Bonjour ${firstname} ${lastname}, Nous avons bien reçu vos informations complémentaires pour votre demande ${reference}. Nous allons traiter votre demande dans les plus brefs délais. Cordialement. Mairie de Paris', 1, 1, 'Mairie de Paris', 'Réception de vos information complémentaires, demande ${reference}', '<p>Bonjour ${firstname} ${lastname},</p>\r\n<p>Nous avons bien re&ccedil;u vos informations compl&eacute;mentaires pour votre demande ${reference} et nous vous en remercions.</p>\r\n<p>Nous allons traiter votre demande dans les plus brefs d&eacute;lais.</p>\r\n<p>Cordialement,</p>\r\n<p>Mairie de Paris.</p>', '', '', 1),
-(345, 'notifygru-ticketing.ProviderService', 0, 0, NULL, NULL, NULL, NULL, 4, 1, 0, 'A traiter', '<p>La sollicitation ${reference} a &eacute;t&eacute; requalifi&eacute;e.</p>', 1, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, 1, NULL, NULL, NULL, NULL, NULL, 0),
+(346, 'notifygru-ticketing.ProviderService', 0, 0, NULL, NULL, NULL, NULL, 4, 1, 0, 'A traiter', '<p>La sollicitation ${reference} a &eacute;t&eacute; requalifi&eacute;e.</p>', 1, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, 1, NULL, NULL, NULL, NULL, NULL, 0),
 (354, 'notifygru-ticketing.ProviderService', 0, 0, NULL, NULL, NULL, NULL, 4, 1, 0, 'A traiter', '<p>La sollicitation ${reference} a &eacute;t&eacute; assign&eacutee &agrave; une autre entit&eacute;.</p>', 1, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, 1, NULL, NULL, NULL, NULL, NULL, 0),
 (364, 'notifygru-ticketing.ProviderService', 0, 0, NULL, NULL, NULL, NULL, 4, 1, 0, 'A traiter', '<p>La sollicitation ${reference} a &eacute;t&eacute; assign&eacutee &agrave; un autre agent.</p>', 1, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, 1, NULL, NULL, NULL, NULL, NULL, 0),
 (464, 'notifygru-ticketing.ProviderService', 0, 0, NULL, NULL, NULL, NULL, 4, 1, 0, 'A traiter', '<p>La sollicitation ${reference} a &eacute;t&eacute; assign&eacutee &agrave; un autre agent.</p>', 1, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, 1, NULL, NULL, NULL, NULL, NULL, 0),
@@ -174,7 +174,7 @@ INSERT INTO `core_datastore` (`entity_key`, `entity_value`) VALUES
 DELETE FROM workflow_task_upload_config WHERE id_task >= 300 AND id_task <= 500;;
 INSERT INTO workflow_task_upload_config (id_task, title, max_file, max_size_file, is_mandatory) VALUES
 (322, 'Pièce(s) jointe(s)', 5, 10, 0),
-(344, 'Pièce(s) jointe(s)', 5, 10, 0),
+(345, 'Pièce(s) jointe(s)', 5, 10, 0),
 (353, 'Pièce(s) jointe(s)', 5, 10, 0),
 (363, 'Pièce(s) jointe(s)', 5, 10, 0),
 (373, 'Pièce(s) jointe(s)', 5, 10, 0),
