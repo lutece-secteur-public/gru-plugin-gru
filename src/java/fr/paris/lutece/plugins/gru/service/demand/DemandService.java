@@ -44,6 +44,7 @@ import fr.paris.lutece.portal.business.user.AdminUser;
 import fr.paris.lutece.portal.service.rbac.RBACService;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 import fr.paris.lutece.portal.service.util.AppException;
+import fr.paris.lutece.portal.service.util.AppLogService;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -197,7 +198,8 @@ public class DemandService
 
         if ( type == null )
         {
-            throw new AppException( "Demand Type missing for ID : " + base.getDemandTypeId(  ) );
+            AppLogService.error( "Demand Type missing for ID : " + base.getDemandTypeId(  ) + " of demand ID : " + base.getId(  ) );
+            return false;
         }
 
         String strBusinessDomainId = String.valueOf( type.getBusinessDomainId(  ) );
