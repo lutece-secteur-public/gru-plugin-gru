@@ -33,10 +33,10 @@
  */
 package fr.paris.lutece.plugins.gru.service.search;
 
+import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
 
 
 /**

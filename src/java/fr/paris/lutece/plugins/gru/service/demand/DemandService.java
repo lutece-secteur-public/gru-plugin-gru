@@ -198,7 +198,9 @@ public class DemandService
 
         if ( type == null )
         {
-            AppLogService.error( "Demand Type missing for ID : " + base.getDemandTypeId(  ) + " of demand ID : " + base.getId(  ) );
+            AppLogService.error( "Demand Type missing for ID : " + base.getDemandTypeId(  ) + " of demand ID : " +
+                base.getId(  ) );
+
             return false;
         }
 
