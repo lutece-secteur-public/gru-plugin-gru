@@ -33,8 +33,8 @@
  */
 package fr.paris.lutece.plugins.gru.service.demand;
 
-import fr.paris.lutece.plugins.gru.business.demand.BaseDemand;
-import fr.paris.lutece.plugins.gru.business.demand.Demand;
+import fr.paris.lutece.plugins.grubusiness.business.demand.BaseDemand;
+import fr.paris.lutece.plugins.grubusiness.business.demand.Demand;
 import fr.paris.lutece.portal.business.user.AdminUser;
 
 import java.util.List;

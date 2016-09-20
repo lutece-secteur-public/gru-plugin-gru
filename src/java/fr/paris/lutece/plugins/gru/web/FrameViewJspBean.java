@@ -33,11 +33,11 @@
  */
 package fr.paris.lutece.plugins.gru.web;
 
-import fr.paris.lutece.plugins.gru.business.customer.Customer;
 import fr.paris.lutece.plugins.gru.service.CustomerActionsService;
 import fr.paris.lutece.plugins.gru.utils.CustomerUtils;
 import fr.paris.lutece.plugins.gru.utils.UrlUtils;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionPanel;
+import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
 import fr.paris.lutece.portal.service.util.AppPathService;
 import fr.paris.lutece.portal.util.mvc.admin.MVCAdminJspBean;
 import fr.paris.lutece.portal.util.mvc.admin.annotations.Controller;

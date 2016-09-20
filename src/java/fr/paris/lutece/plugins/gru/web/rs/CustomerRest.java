@@ -33,8 +33,8 @@
 */
 package fr.paris.lutece.plugins.gru.web.rs;
 
-import fr.paris.lutece.plugins.gru.business.customer.Customer;
 import fr.paris.lutece.plugins.gru.business.customer.CustomerHome;
+import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
 import fr.paris.lutece.plugins.rest.service.RestConstants;
 import fr.paris.lutece.plugins.rest.util.json.JSONUtil;
 import fr.paris.lutece.plugins.rest.util.xml.XMLUtil;

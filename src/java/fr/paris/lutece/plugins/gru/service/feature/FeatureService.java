@@ -33,10 +33,10 @@
  */
 package fr.paris.lutece.plugins.gru.service.feature;
 
-import fr.paris.lutece.plugins.gru.business.customer.Customer;
 import fr.paris.lutece.plugins.gru.business.feature.Feature;
 import fr.paris.lutece.plugins.gru.business.feature.FeatureHome;
 import fr.paris.lutece.plugins.gru.service.ActionLinkService;
+import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
 import fr.paris.lutece.portal.service.i18n.I18nService;
 import fr.paris.lutece.util.ReferenceList;
 

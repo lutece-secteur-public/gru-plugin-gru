@@ -33,8 +33,8 @@
  */
 package fr.paris.lutece.plugins.gru.business;
 
-import fr.paris.lutece.plugins.gru.business.customer.Customer;
 import fr.paris.lutece.plugins.gru.business.customer.CustomerHome;
+import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
 import fr.paris.lutece.test.LuteceTestCase;
 
 

@@ -33,12 +33,12 @@
  */
 package fr.paris.lutece.plugins.gru.service.demand;
 
-import fr.paris.lutece.plugins.gru.business.customer.Customer;
 import fr.paris.lutece.plugins.gru.business.customer.CustomerHome;
-import fr.paris.lutece.plugins.gru.business.demand.BaseDemand;
-import fr.paris.lutece.plugins.gru.business.demand.Demand;
-import fr.paris.lutece.plugins.gru.business.demand.Notification;
 import fr.paris.lutece.plugins.gru.service.demandtype.DemandTypeService;
+import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
+import fr.paris.lutece.plugins.grubusiness.business.demand.BaseDemand;
+import fr.paris.lutece.plugins.grubusiness.business.demand.Demand;
+import fr.paris.lutece.plugins.grubusiness.business.demand.Notification;
 import fr.paris.lutece.portal.business.user.AdminUser;
 
 import java.util.ArrayList;

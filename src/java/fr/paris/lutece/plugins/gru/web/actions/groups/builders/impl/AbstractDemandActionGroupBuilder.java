@@ -33,9 +33,9 @@
  */
 package fr.paris.lutece.plugins.gru.web.actions.groups.builders.impl;
 
-import fr.paris.lutece.plugins.gru.business.demand.Demand;
 import fr.paris.lutece.plugins.gru.web.Constants;
 import fr.paris.lutece.plugins.gru.web.actions.groups.builders.AbstractActionGroupBuilder;
+import fr.paris.lutece.plugins.grubusiness.business.demand.Demand;
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
 
 import java.util.List;

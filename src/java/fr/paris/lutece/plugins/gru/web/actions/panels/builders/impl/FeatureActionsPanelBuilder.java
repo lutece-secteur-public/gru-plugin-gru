@@ -33,7 +33,6 @@
  */
 package fr.paris.lutece.plugins.gru.web.actions.panels.builders.impl;
 
-import fr.paris.lutece.plugins.gru.business.customer.Customer;
 import fr.paris.lutece.plugins.gru.business.feature.Feature;
 import fr.paris.lutece.plugins.gru.business.feature.FeatureCategory;
 import fr.paris.lutece.plugins.gru.business.feature.FeatureCategoryHome;
@@ -41,6 +40,7 @@ import fr.paris.lutece.plugins.gru.service.feature.FeatureService;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionGroup;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionItem;
 import fr.paris.lutece.plugins.gru.web.actions.panels.builders.PanelBuilder;
+import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
 import fr.paris.lutece.portal.business.user.AdminUser;
 import fr.paris.lutece.portal.service.rbac.RBACService;
 

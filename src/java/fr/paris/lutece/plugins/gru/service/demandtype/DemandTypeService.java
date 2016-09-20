@@ -33,15 +33,15 @@
  */
 package fr.paris.lutece.plugins.gru.service.demandtype;
 
-import fr.paris.lutece.plugins.gru.business.customer.Customer;
-import fr.paris.lutece.plugins.gru.business.demand.Action;
-import fr.paris.lutece.plugins.gru.business.demand.BaseDemand;
-import fr.paris.lutece.plugins.gru.business.demand.Demand;
 import fr.paris.lutece.plugins.gru.business.demandtype.DemandType;
 import fr.paris.lutece.plugins.gru.business.demandtype.DemandTypeAction;
 import fr.paris.lutece.plugins.gru.business.demandtype.DemandTypeActionHome;
 import fr.paris.lutece.plugins.gru.business.demandtype.DemandTypeHome;
 import fr.paris.lutece.plugins.gru.service.ActionLinkService;
+import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
+import fr.paris.lutece.plugins.grubusiness.business.demand.Action;
+import fr.paris.lutece.plugins.grubusiness.business.demand.BaseDemand;
+import fr.paris.lutece.plugins.grubusiness.business.demand.Demand;
 import fr.paris.lutece.portal.business.user.AdminUser;
 import fr.paris.lutece.portal.service.rbac.RBACService;
 import fr.paris.lutece.portal.service.util.AppException;

@@ -33,7 +33,7 @@
  */
 package fr.paris.lutece.plugins.gru.service.demand;
 
-import fr.paris.lutece.plugins.gru.business.demand.Notification;
+import fr.paris.lutece.plugins.grubusiness.business.demand.Notification;
 import fr.paris.lutece.portal.service.util.AppLogService;
 
 import org.codehaus.jackson.map.DeserializationConfig;

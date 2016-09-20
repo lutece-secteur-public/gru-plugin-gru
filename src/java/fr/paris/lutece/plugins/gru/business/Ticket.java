@@ -33,7 +33,7 @@
  */
 package fr.paris.lutece.plugins.gru.business;
 
-import fr.paris.lutece.plugins.gru.business.demand.Demand;
+import fr.paris.lutece.plugins.grubusiness.business.demand.Demand;
 
 
 /**

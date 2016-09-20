@@ -33,11 +33,11 @@
  */
 package fr.paris.lutece.plugins.gru.service.demand;
 
-import fr.paris.lutece.plugins.gru.business.demand.Notification;
-
 import org.apache.commons.io.IOUtils;
 
 import org.junit.Test;
+
+import fr.paris.lutece.plugins.grubusiness.business.demand.Notification;
 
 import java.io.IOException;
 import java.io.StringWriter;

@@ -33,8 +33,8 @@
  */
 package fr.paris.lutece.plugins.gru.web.actions.panels.builders;
 
-import fr.paris.lutece.plugins.gru.business.customer.Customer;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionGroup;
+import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
 import fr.paris.lutece.portal.business.user.AdminUser;
 
 import java.util.List;

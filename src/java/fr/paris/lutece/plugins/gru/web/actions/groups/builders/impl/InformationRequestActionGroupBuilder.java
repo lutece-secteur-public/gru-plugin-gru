@@ -33,11 +33,11 @@
  */
 package fr.paris.lutece.plugins.gru.web.actions.groups.builders.impl;
 
-import fr.paris.lutece.plugins.gru.business.customer.Customer;
-import fr.paris.lutece.plugins.gru.business.demand.Demand;
 import fr.paris.lutece.plugins.gru.service.demand.DemandService;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionGroup;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionItem;
+import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
+import fr.paris.lutece.plugins.grubusiness.business.demand.Demand;
 import fr.paris.lutece.portal.business.user.AdminUser;
 
 import java.util.List;
