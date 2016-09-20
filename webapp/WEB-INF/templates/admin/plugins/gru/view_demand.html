@@ -47,15 +47,15 @@
       <p>#i18n{gru.view_customer_demand.demand.panel.list.open.since} : <strong class="text-gru">${displayTimeOpenedTicket(demand.timeOpenedInMs)}</strong></p>
       <p>#i18n{gru.view_customer_demand.demand.panel.list.status.customer}  : <strong>${demand.customerStatus!''}</strong></p>
       <p>#i18n{gru.view_customer_demand.demand.panel.list.status.agent} : <strong>${demand.agentStatus!''}</strong></p>
-      <p>Etat :
+      p>#i18n{gru.view_customer_demand.demand.panel.state} :
         <strong>
         <#switch demand.status>
           <#case 0>
-            En cours
+            #i18n{gru.view_customer_demand.demand.panel.in.progress}
             <#break>
           <#case 1>
-            Termin&eacute;e
-          <#break>
+            #i18n{gru.view_customer_demand.demand.panel.completed}
+            <#break>
         </#switch>
       </strong>
       </p>
