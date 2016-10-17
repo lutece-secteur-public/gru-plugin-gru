@@ -33,13 +33,13 @@
  */
 package fr.paris.lutece.plugins.gru.service.demand;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import fr.paris.lutece.plugins.grubusiness.business.notification.NotifyGruGlobalNotification;
 import fr.paris.lutece.portal.service.util.AppLogService;
 
 import java.io.IOException;
-
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 /**
@@ -49,7 +49,7 @@ public class NotificationService
 {
     public static NotifyGruGlobalNotification parseJSON( String strJson )
     {
-    	NotifyGruGlobalNotification notification = null;
+        NotifyGruGlobalNotification notification = null;
 
         try
         {
