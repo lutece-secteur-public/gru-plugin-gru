@@ -33,13 +33,13 @@
  */
 package fr.paris.lutece.plugins.gru.service.demand;
 
-import fr.paris.lutece.plugins.grubusiness.business.demand.Notification;
+import fr.paris.lutece.plugins.grubusiness.business.notification.NotifyGruGlobalNotification;
 import fr.paris.lutece.portal.service.util.AppLogService;
 
-import org.codehaus.jackson.map.DeserializationConfig;
-import org.codehaus.jackson.map.ObjectMapper;
-
 import java.io.IOException;
+
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 /**
@@ -47,16 +47,16 @@ import java.io.IOException;
  */
 public class NotificationService
 {
-    public static Notification parseJSON( String strJson )
+    public static NotifyGruGlobalNotification parseJSON( String strJson )
     {
-        Notification notification = null;
+    	NotifyGruGlobalNotification notification = null;
 
         try
         {
             ObjectMapper mapper = new ObjectMapper(  );
-            mapper.configure( DeserializationConfig.Feature.UNWRAP_ROOT_VALUE, true );
+            mapper.configure( DeserializationFeature.UNWRAP_ROOT_VALUE, true );
 
-            notification = mapper.readValue( strJson, Notification.class );
+            notification = mapper.readValue( strJson, NotifyGruGlobalNotification.class );
 
             return notification;
         }

@@ -33,19 +33,19 @@
  */
 package fr.paris.lutece.plugins.gru.service.demand;
 
-import fr.paris.lutece.plugins.gru.business.customer.CustomerHome;
-import fr.paris.lutece.plugins.gru.service.demandtype.DemandTypeService;
-import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
-import fr.paris.lutece.plugins.grubusiness.business.demand.BaseDemand;
-import fr.paris.lutece.plugins.grubusiness.business.demand.Demand;
-import fr.paris.lutece.plugins.grubusiness.business.demand.Notification;
-import fr.paris.lutece.portal.business.user.AdminUser;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+
+import fr.paris.lutece.plugins.gru.business.customer.CustomerHome;
+import fr.paris.lutece.plugins.gru.service.demandtype.DemandTypeService;
+import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
+import fr.paris.lutece.plugins.grubusiness.business.demand.BaseDemand;
+import fr.paris.lutece.plugins.grubusiness.business.demand.Demand;
+import fr.paris.lutece.plugins.grubusiness.business.notification.NotifyGruGlobalNotification;
+import fr.paris.lutece.portal.business.user.AdminUser;
 
 
 /**
@@ -86,8 +86,8 @@ public class MokeDemandService implements IDemandService
         Customer customer = CustomerHome.findByPrimaryKey( 1 );
         Demand demand = DemandTypeService.setDemandActions( base, customer, user );
 
-        Notification notification = NotificationService.parseJSON( JSON );
-        notification.setTimestamp( ( new Date(  ) ).getTime(  ) );
+        NotifyGruGlobalNotification notification = NotificationService.parseJSON( JSON );
+        notification.setNotificationDate( ( new Date(  ) ).getTime(  ) );
         demand.addNotification( notification );
 
         return demand;

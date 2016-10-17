@@ -33,14 +33,13 @@
  */
 package fr.paris.lutece.plugins.gru.service.demand;
 
-import fr.paris.lutece.plugins.grubusiness.business.demand.Notification;
-
-import org.apache.commons.io.IOUtils;
-
-import org.junit.Test;
-
 import java.io.IOException;
 import java.io.StringWriter;
+
+import org.apache.commons.io.IOUtils;
+import org.junit.Test;
+
+import fr.paris.lutece.plugins.grubusiness.business.notification.NotifyGruGlobalNotification;
 
 
 /**
@@ -57,8 +56,8 @@ public class NotificationServiceTest
         IOUtils.copy( getClass(  ).getResourceAsStream( FILE_TEST ), writer, "UTF-8" );
 
         String strJSON = writer.toString(  );
-        Notification notification = NotificationService.parseJSON( strJSON );
+        NotifyGruGlobalNotification notification = NotificationService.parseJSON( strJSON );
 
-        System.out.println( "recipient :" + notification.getEmail(  ).getRecipient(  ) );
+        System.out.println( "recipient :" + notification.getUserEmail(  ).getRecipient(  ) );
     }
 }
