@@ -77,7 +77,7 @@
       <div class="panel">
         <h2>${demand.title!'Title missing'} </h2>
         <#list demand.notifications?reverse as notification>
-          <#if notification.userDashboard ?? || (notification.email ?? && notification.email.recipient?has_content) || (notification.sms ?? && notification.sms.phoneNumber?has_content) >
+          <#if notification.userDashboard ?? || (notification.userEmail ?? && notification.userEmail.recipient?has_content) || (notification.userSms ?? && notification.userSms.phoneNumber?has_content) >
             <p>
               <strong class="text-gru">${notification.date!i18n('gru.view_customer_demand.list.notification.no.date')}</strong>
               <#if notification.userDashboard ??>
@@ -112,22 +112,22 @@
                     </div>
                   </li>
                 </#if>
-                <#if notification.email ?? && notification.email.recipient?has_content>
+                <#if notification.userEmail ?? && notification.userEmail.recipient?has_content>
                   <li>
                     <i class="fa fa-envelope bg-orange"></i>
                     <div class="timeline-item">
                       <h4 class="timeline-header">
-                        #i18n{gru.view_customer_demand.list.notification.email.sendLabel} : <span>${notification.email.recipient}</span>
+                        #i18n{gru.view_customer_demand.list.notification.email.sendLabel} : <span>${notification.userEmail.recipient}</span>
                       </h4>
                       <div class="timeline-body">
-                        <#if notification.email.subject?has_content>
-                          <em>#i18n{gru.view_customer_demand.list.notification.email.labelSubject} : <strong>${notification.email.subject}</strong></em>
+                        <#if notification.userEmail.subject?has_content>
+                          <em>#i18n{gru.view_customer_demand.list.notification.email.labelSubject} : <strong>${notification.userEmail.subject}</strong></em>
                         <#else>
                           <em>#i18n{gru.view_customer_demand.list.notification.email.no.subject}</em>
                         </#if>
                         <br/>
-                        <#if notification.email.message?has_content>
-                          ${notification.email.message}
+                        <#if notification.userEmail.message?has_content>
+                          ${notification.userEmail.message}
                         <#else>
                           <em>#i18n{gru.view_customer_demand.list.notification.email.no.content}</em>
                         </#if>
@@ -136,16 +136,16 @@
                     </div>
                   </li>
                 </#if>
-                <#if notification.sms ?? && notification.sms.phoneNumber?has_content>
+                <#if notification.userSms ?? && notification.userSms.phoneNumber?has_content>
                   <li>
                     <i class="fa fa-mobile bg-green"></i>
                     <div class="timeline-item">
                       <h4 class="timeline-header">
-                        #i18n{gru.view_customer_demand.list.notification.sms.sendLabel} : <span>${notification.sms.phoneNumber}</span>
+                        #i18n{gru.view_customer_demand.list.notification.sms.sendLabel} : <span>${notification.userSms.phoneNumber}</span>
                       </h4>
                        <div class="timeline-body">
-                        <#if notification.sms.message?has_content>
-                          ${notification.sms.message}
+                        <#if notification.userSms.message?has_content>
+                          ${notification.userSms.message}
                         <#else>
                           <em>#i18n{gru.view_customer_demand.list.notification.sms.no.content}</em>
                         </#if>
