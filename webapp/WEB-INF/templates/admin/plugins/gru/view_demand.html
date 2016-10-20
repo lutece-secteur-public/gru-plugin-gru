@@ -79,7 +79,13 @@
         <#list demand.notifications?reverse as notification>
           <#if notification.userDashboard ?? || (notification.userEmail ?? && notification.userEmail.recipient?has_content) || (notification.userSms ?? && notification.userSms.phoneNumber?has_content) >
             <p>
-              <strong class="text-gru">${notification.date!i18n('gru.view_customer_demand.list.notification.no.date')}</strong>
+              <strong class="text-gru">
+			  <#if notification.notificationDate?exists && notification.notificationDate gt 0 >
+				${notification.notificationDate?number_to_datetime}
+			  <#else>
+				#i18n{gru.view_customer_demand.list.notification.no.date}
+			  </#if>
+			  </strong>
               <#if notification.userDashboard ??>
                 <strong>${notification.userDashboard.statusText!i18n('gru.view_customer_demand.list.notification.no.title')}</strong>
               </#if>
