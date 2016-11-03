@@ -8,38 +8,6 @@
       <@customerDetails customer=customer />
     </div>
     <div id="header-right" class="col-xs-3 col-sm-2">
-      <p>
-      </p>
-      <ul class="list-unstyled">
-        <li class="dropdown" >
-          <a href="#" id="demandeTab" class="dropdown-toggle btn btn-border btn-block" data-toggle="dropdown" aria-controls="demandeTab-contents" aria-expanded="false">
-            <i class="fa fa-plus-circle fa-fw"></i> <span class="hidden-xs hidden-sm">#i18n{gru.view_customer_tabs.tabNewDemands}</span> <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="demandeTab" id="demandeTab-contents">
-            <li>
-              <a href="jsp/admin/plugins/ticketing/ManageTickets.jsp?view=createTicket&cid=${customer.id!}&fn=${customer.firstname!}&ln=${customer.lastname!}&ut=${customer.idTitle!}&guid=${customer.accountGuid!}&ph=${customer.mobilePhone!}&em=${customer.email!}"
-                return-url="${return_url}" >
-                <i class="fa fa-bullhorn"></i> #i18n{gru.view_customer_demand.header.right.new.demand}
-              </a>
-            </li>
-            <li>
-              <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerNewDemands&id_customer=${customer.id}#espacepublic">
-                <i class="fa fa-street-view"></i> #i18n{gru.view_customer_demand.header.right.public.space}
-              </a>
-            </li>
-            <li>
-              <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerNewDemands&id_customer=${customer.id}#voirie">
-                <i class="fa fa-car"></i> #i18n{gru.view_customer_demand.header.right.voirie}
-              </a>
-            </li>
-            <li>
-              <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerNewDemands&id_customer=${customer.id}#urbanisme">
-                <i class="fa fa-building"></i> #i18n{gru.view_customer_demand.header.right.urbanisme}
-              </a>
-            </li>
-          </ul>
-        </li>
-      </ul>
     </div>
   </div>
   <div id="demand-panel" class="row bg-gru-dark gru">
