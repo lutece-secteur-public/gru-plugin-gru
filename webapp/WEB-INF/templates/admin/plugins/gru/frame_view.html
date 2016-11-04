@@ -1,11 +1,9 @@
+<script>
+  $(".content-header").hide();
+</script>
 <#include "action_bar.html" />
 <@actionMenu panels=panels customer=customer />
 <div class="content-wrapper">
   <iframe src="${url}" width="100%" height="1200px"></iframe>
 </div>
 <script src="js/plugins/gru/gru.js"></script>
-<script>
-$( function(){
- $(".content-header").toggle();
-});
-</script>

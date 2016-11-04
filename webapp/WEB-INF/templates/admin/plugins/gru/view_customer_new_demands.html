@@ -1,3 +1,6 @@
+<script>
+  $(".content-header").hide();
+</script>
 <#include "action_bar.html" />
 <#include "view_customer_tabs.html" />
 <@actionMenu panels=panels customer=customer />
@@ -35,8 +38,3 @@
     </div>
   </div>
 </div>
-<script>
-  $(function() {
-    $(".content-header").toggle();
-  });
-</script>
