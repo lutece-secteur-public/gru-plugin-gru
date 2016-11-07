@@ -28,7 +28,7 @@ table.table-hover tr:hover{ cursor: pointer }
 /* CUSTOMER */
 .gru-wrapper{ margin: -15px; background: #fff }
 
-.gru-360{ min-height: 830px; background-image: url(../../../../images/admin/skin/plugins/gru/360_inverse.png), url(../../../../images/admin/skin/bg_gru.jpg); background-repeat: no-repeat, no-repeat; background-position: 100px 20px, left top; background-size: 50px 50px, cover;}
+.gru-360{ min-height: 830px; background-image: url(../../../../images/admin/skin/plugins/gru/360_inverse.png), url(../../../../images/admin/skin/plugins/gru/bg_gru.jpg); background-repeat: no-repeat, no-repeat; background-position: 100px 20px, left top; background-size: 50px 50px, cover;}
 .gru-360 .table{ margin-top:15px;  background-color: #fff; opacity: 0.7 }
 .gru-360 .table:hover{ opacity: 1 }
 .gru-360 .ui-autocomplete { position: absolute;cursor: pointer;top: 100%;left: 0;z-index: 1000;float: left;display: none;min-width: 160px;_width: 160px;
