@@ -52,7 +52,7 @@ public class MokeSearchService implements ISearchService
     {
         List<Customer> list = new ArrayList<Customer>(  );
         Customer customer1 = new Customer(  );
-        customer1.setId( 1 );
+        customer1.setId( "48376eb6-b6c9-4247-931c-351a8182d297" );
         customer1.setFirstname( "Maurice" );
         customer1.setLastname( "Dupont" );
         customer1.setMobilePhone( "0612459812" );
@@ -62,7 +62,7 @@ public class MokeSearchService implements ISearchService
         if ( strQuery.equals( "multiple" ) )
         {
             Customer customer2 = new Customer(  );
-            customer2.setId( 1 );
+            customer2.setId( "48376eb6-b6c9-4247-931c-351a8182d297" );
             customer2.setFirstname( "Maurice" );
             customer2.setLastname( "Dupont" );
             customer2.setMobilePhone( "0612684112" );
@@ -77,10 +77,10 @@ public class MokeSearchService implements ISearchService
      * {@inheritDoc }
      */
     @Override
-    public Customer searchCustomerById( int nCustomerId )
+    public Customer searchCustomerById( String strCustomerId )
     {
         Customer customer = new Customer(  );
-        customer.setId( 1 );
+        customer.setId( "48376eb6-b6c9-4247-931c-351a8182d297" );
         customer.setFirstname( "Maurice" );
         customer.setLastname( "Dupont" );
         customer.setMobilePhone( "0612459812" );

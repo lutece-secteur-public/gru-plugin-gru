@@ -83,11 +83,11 @@ public final class CustomerHome
 
     /**
      * Remove the customer whose identifier is specified in parameter
-     * @param nKey The customer Id
+     * @param strId The customer Id
      */
-    public static void remove( int nKey )
+    public static void remove( String strId )
     {
-        _dao.delete( nKey, _plugin );
+        _dao.delete( strId, _plugin );
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -95,12 +95,12 @@ public final class CustomerHome
 
     /**
      * Returns an instance of a customer whose identifier is specified in parameter
-     * @param nKey The customer primary key
+     * @param strKey The customer primary key
      * @return an instance of Customer
      */
-    public static Customer findByPrimaryKey( int nKey )
+    public static Customer findByPrimaryKey( String strKey )
     {
-        return _dao.load( nKey, _plugin );
+        return _dao.load( strKey, _plugin );
     }
 
     /**

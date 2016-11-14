@@ -171,8 +171,10 @@ public class CustomerJspBean extends MVCAdminJspBean
 
         if ( _listCustomer.size(  ) == 1 )
         {
-            return redirect( request, VIEW_CUSTOMER_DEMANDS, Constants.PARAMETER_ID_CUSTOMER,
-                _listCustomer.get( 0 ).getId(  ) );
+            Map<String, String> mapParameters = new HashMap<String, String>(  );
+            mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, _listCustomer.get( 0 ).getId(  ) );
+
+            return redirect( request, VIEW_CUSTOMER_DEMANDS, mapParameters );
         }
 
         return redirectView( request, VIEW_SEARCH_RESULTS );

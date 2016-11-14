@@ -109,7 +109,7 @@ public class DemandService
      */
     public static List<Demand> getDemands( Customer customer, AdminUser user, int nStatus )
     {
-        List<BaseDemand> listBase = getService(  ).getDemands( "" + customer.getId(  ), user );
+        List<BaseDemand> listBase = getService(  ).getDemands( customer.getId(  ), user );
         List<Demand> listDemand = new ArrayList<Demand>(  );
 
         for ( BaseDemand base : listBase )

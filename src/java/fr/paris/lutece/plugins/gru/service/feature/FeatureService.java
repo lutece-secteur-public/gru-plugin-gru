@@ -94,7 +94,7 @@ public class FeatureService
     {
         String strLinkTemplate = feature.getLink(  );
 
-        if ( ( customer != null ) && ( customer.getId(  ) != 0 ) )
+        if ( ( customer != null ) && ( customer.getId(  ) != null ) )
         {
             strLinkTemplate += feature.getLinkCustomerParams(  );
         }

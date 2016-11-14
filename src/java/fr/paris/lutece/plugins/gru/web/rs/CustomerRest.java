@@ -184,8 +184,7 @@ public class CustomerRest
 
         try
         {
-            int nId = Integer.parseInt( strId );
-            Customer customer = CustomerHome.findByPrimaryKey( nId );
+            Customer customer = CustomerHome.findByPrimaryKey( strId );
 
             if ( customer != null )
             {
@@ -217,8 +216,7 @@ public class CustomerRest
 
         try
         {
-            int nId = Integer.parseInt( strId );
-            Customer customer = CustomerHome.findByPrimaryKey( nId );
+            Customer customer = CustomerHome.findByPrimaryKey( strId );
 
             if ( customer != null )
             {
@@ -247,11 +245,9 @@ public class CustomerRest
     {
         try
         {
-            int nId = Integer.parseInt( strId );
-
-            if ( CustomerHome.findByPrimaryKey( nId ) != null )
+            if ( CustomerHome.findByPrimaryKey( strId ) != null )
             {
-                CustomerHome.remove( nId );
+                CustomerHome.remove( strId );
             }
         }
         catch ( NumberFormatException e )
@@ -282,9 +278,7 @@ public class CustomerRest
     {
         if ( id != null )
         {
-            int nId = Integer.parseInt( KEY_ID );
-
-            Customer customer = CustomerHome.findByPrimaryKey( nId );
+            Customer customer = CustomerHome.findByPrimaryKey( id );
 
             if ( customer != null )
             {

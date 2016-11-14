@@ -67,8 +67,7 @@ public final class CustomerUtils
         {
             try
             {
-                int nId = Integer.parseInt( strId );
-                customer = SearchService.instance(  ).searchCustomerById( nId );
+                customer = SearchService.instance(  ).searchCustomerById( strId );
             }
             catch ( NumberFormatException e )
             {

@@ -39,6 +39,7 @@ import fr.paris.lutece.util.sql.DAOUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -47,7 +48,6 @@ import java.util.List;
 public final class CustomerDAO implements ICustomerDAO
 {
     // Constants
-    private static final String SQL_QUERY_NEW_PK = "SELECT max( id_customer ) FROM gru_customer";
     private static final String SQL_QUERY_COUNT = "SELECT count( * ) FROM gru_customer";
     private static final String SQL_QUERY_SELECT = "SELECT id_customer, id_title, firstname, lastname, has_account, account_login, account_guid, email, is_email_verified, mobile_phone, is_mobile_phone_verified,fixed_phone_number, extras_attributes FROM gru_customer WHERE id_customer = ?";
     private static final String SQL_QUERY_INSERT = "INSERT INTO gru_customer ( id_customer, id_title, firstname, lastname, has_account, account_login, account_guid, email, is_email_verified, mobile_phone, is_mobile_phone_verified,fixed_phone_number, extras_attributes ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) ";
@@ -62,35 +62,23 @@ public final class CustomerDAO implements ICustomerDAO
      * @param plugin The Plugin
      * @return The new primary key
      */
-    public int newPrimaryKey( Plugin plugin )
+    public String newPrimaryKey( Plugin plugin )
     {
-        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_NEW_PK, plugin );
-        daoUtil.executeQuery(  );
-
-        int nKey = 1;
-
-        if ( daoUtil.next(  ) )
-        {
-            nKey = daoUtil.getInt( 1 ) + 1;
-        }
-
-        daoUtil.free(  );
-
-        return nKey;
+        return UUID.randomUUID(  ).toString(  );
     }
 
     /**
      * {@inheritDoc }
      */
     @Override
-    public int insert( Customer customer, Plugin plugin )
+    public String insert( Customer customer, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_INSERT, plugin );
 
         customer.setId( newPrimaryKey( plugin ) );
 
         int ncpt = 1;
-        daoUtil.setInt( ncpt++, customer.getId(  ) );
+        daoUtil.setString( ncpt++, customer.getId(  ) );
         daoUtil.setInt( ncpt++, customer.getIdTitle(  ) );
         daoUtil.setString( ncpt++, customer.getFirstname(  ) );
         daoUtil.setString( ncpt++, customer.getLastname(  ) );
@@ -114,10 +102,10 @@ public final class CustomerDAO implements ICustomerDAO
      * {@inheritDoc }
      */
     @Override
-    public Customer load( int nKey, Plugin plugin )
+    public Customer load( String strId, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT, plugin );
-        daoUtil.setInt( 1, nKey );
+        daoUtil.setString( 1, strId );
         daoUtil.executeQuery(  );
 
         Customer customer = null;
@@ -127,7 +115,7 @@ public final class CustomerDAO implements ICustomerDAO
             customer = new Customer(  );
 
             int ncpt = 1;
-            customer.setId( daoUtil.getInt( ncpt++ ) );
+            customer.setId( daoUtil.getString( ncpt++ ) );
             customer.setIdTitle( daoUtil.getInt( ncpt++ ) );
             customer.setFirstname( daoUtil.getString( ncpt++ ) );
             customer.setLastname( daoUtil.getString( ncpt++ ) );
@@ -151,10 +139,10 @@ public final class CustomerDAO implements ICustomerDAO
      * {@inheritDoc }
      */
     @Override
-    public void delete( int nKey, Plugin plugin )
+    public void delete( String strId, Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE, plugin );
-        daoUtil.setInt( 1, nKey );
+        daoUtil.setString( 1, strId );
         daoUtil.executeUpdate(  );
         daoUtil.free(  );
     }
@@ -167,7 +155,7 @@ public final class CustomerDAO implements ICustomerDAO
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE, plugin );
         int ncpt = 1;
-        daoUtil.setInt( ncpt++, customer.getId(  ) );
+        daoUtil.setString( ncpt++, customer.getId(  ) );
         daoUtil.setInt( ncpt++, customer.getIdTitle(  ) );
         daoUtil.setString( ncpt++, customer.getFirstname(  ) );
         daoUtil.setString( ncpt++, customer.getLastname(  ) );
@@ -180,7 +168,7 @@ public final class CustomerDAO implements ICustomerDAO
         daoUtil.setBoolean( ncpt++, customer.getIsMobilePhoneVerified(  ) );
         daoUtil.setString( ncpt++, customer.getFixedPhoneNumber(  ) );
         daoUtil.setString( ncpt++, customer.getExtrasAttributes(  ) );
-        daoUtil.setInt( ncpt++, customer.getId(  ) );
+        daoUtil.setString( ncpt++, customer.getId(  ) );
 
         daoUtil.executeUpdate(  );
         daoUtil.free(  );
@@ -200,7 +188,7 @@ public final class CustomerDAO implements ICustomerDAO
         {
             Customer customer = new Customer(  );
             int ncpt = 1;
-            customer.setId( daoUtil.getInt( ncpt++ ) );
+            customer.setId( daoUtil.getString( ncpt++ ) );
             customer.setIdTitle( daoUtil.getInt( ncpt++ ) );
             customer.setFirstname( daoUtil.getString( ncpt++ ) );
             customer.setLastname( daoUtil.getString( ncpt++ ) );
@@ -258,7 +246,7 @@ public final class CustomerDAO implements ICustomerDAO
         {
             int ncpt = 1;
             customer = new Customer(  );
-            customer.setId( daoUtil.getInt( ncpt++ ) );
+            customer.setId( daoUtil.getString( ncpt++ ) );
             customer.setIdTitle( daoUtil.getInt( ncpt++ ) );
             customer.setFirstname( daoUtil.getString( ncpt++ ) );
             customer.setLastname( daoUtil.getString( ncpt++ ) );

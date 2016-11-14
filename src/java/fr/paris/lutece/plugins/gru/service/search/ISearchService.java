@@ -52,10 +52,10 @@ public interface ISearchService
 
     /**
      * Search for a Customers by using its identifier
-     * @param nCustomerId the customer id
+     * @param strCustomerId the customer id
      * @return The customer
      */
-    Customer searchCustomerById( int nCustomerId );
+    Customer searchCustomerById( String strCustomerId );
 
     /**
      * An autocomplete feature is available

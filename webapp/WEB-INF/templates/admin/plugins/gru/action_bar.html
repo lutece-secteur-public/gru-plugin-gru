@@ -52,9 +52,9 @@
            <i class="fa fa-home"></i> <span> #i18n{gru.macro.action.menu.sidebar.menu} </span>
          </a>
         </li>
-        <#if customer.id != 0 >
+        <#if customer.id?? >
          <li>
-             <a class="text-success" href="jsp/admin/plugins/gru/ManageCustomers.jsp?plugin_name=gru&view=viewCustomerDemands&id_customer=${customer.id!'1'}">
+             <a class="text-success" href="jsp/admin/plugins/gru/ManageCustomers.jsp?plugin_name=gru&view=viewCustomerDemands&id_customer=${customer.id!''}">
                 <i class="fa fa-user text-green"></i>  <span> ${customer.firstname!""} ${customer.lastname!""} </span>
              </a>
           </li>

@@ -83,7 +83,7 @@ public class MokeDemandService implements IDemandService
     {
         BaseDemand base = getList(  ).get( Integer.parseInt( strDemandId ) );
 
-        Customer customer = CustomerHome.findByPrimaryKey( 1 );
+        Customer customer = CustomerHome.findByPrimaryKey( "48376eb6-b6c9-4247-931c-351a8182d297" );
         Demand demand = DemandTypeService.setDemandActions( base, customer, user );
 
         NotifyGruGlobalNotification notification = NotificationService.parseJSON( JSON );

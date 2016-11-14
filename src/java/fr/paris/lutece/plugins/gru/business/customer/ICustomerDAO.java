@@ -50,7 +50,7 @@ public interface ICustomerDAO
      * @param plugin the Plugin
      * @return The customer ID
      */
-    int insert( Customer customer, Plugin plugin );
+    String insert( Customer customer, Plugin plugin );
 
     /**
      * Update the record in the table
@@ -61,21 +61,21 @@ public interface ICustomerDAO
 
     /**
      * Delete a record from the table
-     * @param nKey The identifier of the Customer to delete
+     * @param strId The identifier of the Customer to delete
      * @param plugin the Plugin
      */
-    void delete( int nKey, Plugin plugin );
+    void delete( String strId, Plugin plugin );
 
     ///////////////////////////////////////////////////////////////////////////
     // Finders
 
     /**
      * Load the data from the table
-     * @param nKey The identifier of the customer
+     * @param strId The identifier of the customer
      * @param plugin the Plugin
      * @return The instance of the customer
      */
-    Customer load( int nKey, Plugin plugin );
+    Customer load( String strId, Plugin plugin );
 
     /**
      * Load the data of all the customer objects and returns them as a collection
