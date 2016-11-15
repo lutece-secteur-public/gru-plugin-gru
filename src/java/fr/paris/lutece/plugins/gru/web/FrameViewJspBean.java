@@ -112,7 +112,7 @@ public class FrameViewJspBean extends MVCAdminJspBean
         {
             try
             {
-                mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, String.valueOf( customer.getId(  ) ) );
+                mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, customer.getId(  ) );
             }
             catch ( NumberFormatException e )
             {
