@@ -40,6 +40,8 @@ import fr.paris.lutece.portal.service.util.AppLogService;
 import fr.paris.lutece.util.ReferenceList;
 import fr.paris.lutece.util.url.UrlItem;
 
+import org.apache.commons.lang.StringUtils;
+
 import java.io.UnsupportedEncodingException;
 
 import java.net.URLEncoder;
@@ -121,12 +123,9 @@ public class ActionLinkService
 
     private static String fillLink( String strLink, String strBookmark, String strValue )
     {
-        if ( strValue != null )
-        {
-            return strLink.replace( strBookmark, strValue );
-        }
+        String strNewValue = ( strValue == null ) ? StringUtils.EMPTY : strValue;
 
-        return strLink;
+        return strLink.replace( strBookmark, strNewValue );
     }
 
     /**
