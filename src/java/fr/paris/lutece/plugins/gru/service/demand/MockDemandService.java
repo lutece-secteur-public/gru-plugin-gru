@@ -51,7 +51,7 @@ import java.util.List;
 /**
  * DemandService
  */
-public class MokeDemandService implements IDemandService
+public class MockDemandService implements IDemandService
 {
     private static final String JSON = "{\n" + "   \"notification\": {\n" + "    \"user_guid\": 1108,\n" +
         " \"notification_source\": \"Gestion des sollicitations\",\n" + "    \"email\": \"mdupont@domain.com\",\n" +

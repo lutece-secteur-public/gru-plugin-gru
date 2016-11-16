@@ -15,8 +15,8 @@
     <bean id="gru.businessSectorDAO" class="fr.paris.lutece.plugins.gru.business.domain.BusinessSectorDAO" />
     <bean id="gru.businessDomainDAO" class="fr.paris.lutece.plugins.gru.business.domain.BusinessDomainDAO" />
     
-    <bean id="gru.demandService" class="fr.paris.lutece.plugins.gru.service.demand.MokeDemandService" />
-    <bean id="gru.searchService" class="fr.paris.lutece.plugins.gru.service.search.MokeSearchService" /> 
+    <bean id="gru.demandService" class="fr.paris.lutece.plugins.gru.service.demand.MockDemandService" />
+    <bean id="gru.searchService" class="fr.paris.lutece.plugins.gru.service.search.MockSearchService" /> 
     <!--<bean id="gru.demandService" class="fr.paris.lutece.plugins.grustorageelastic.service.ElasticDemandService" />-->
     <!--<bean id="gru.searchService" class="fr.paris.lutece.plugins.grustorageelastic.service.ElasticSearchService" />-->
     <!--<bean id="gru.demandService" class="fr.paris.lutece.plugins.grustoragedb.service.DatabaseDemandService" />-->
