@@ -138,7 +138,7 @@ public class DemandService
     public static List<Demand> getDemandsExcludingTypes( Customer customer, List<String> listExcludedTypes,
         AdminUser user )
     {
-        List<BaseDemand> listBase = getService(  ).getDemands( "" + customer.getId(  ), user );
+        List<BaseDemand> listBase = getService(  ).getDemands( customer.getId(  ), user );
         List<Demand> listDemand = new ArrayList<Demand>(  );
 
         for ( BaseDemand base : listBase )
@@ -167,7 +167,7 @@ public class DemandService
     public static List<Demand> getDemandsIncludingTypes( Customer customer, List<String> listIncludedTypes,
         AdminUser user )
     {
-        List<BaseDemand> listBase = getService(  ).getDemands( "" + customer.getId(  ), user );
+        List<BaseDemand> listBase = getService(  ).getDemands( customer.getId(  ), user );
         List<Demand> listDemand = new ArrayList<Demand>(  );
 
         for ( BaseDemand base : listBase )

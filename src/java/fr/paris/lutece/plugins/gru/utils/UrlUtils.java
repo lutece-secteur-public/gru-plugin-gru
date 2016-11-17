@@ -114,7 +114,7 @@ public final class UrlUtils
 
         if ( customer != null )
         {
-            mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, String.valueOf( customer.getId(  ) ) );
+            mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, customer.getId(  ) );
         }
 
         return buildReturnUrl( strControllerUrl, strView, mapParameters );

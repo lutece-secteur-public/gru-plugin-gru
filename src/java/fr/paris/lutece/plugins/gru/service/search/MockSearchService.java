@@ -40,9 +40,9 @@ import java.util.List;
 
 
 /**
- * MokeSearchService
+ * MockSearchService
  */
-public class MokeSearchService implements ISearchService
+public class MockSearchService implements ISearchService
 {
     /**
      * {@inheritDoc }

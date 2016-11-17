@@ -63,8 +63,7 @@ public class AppointmentsActionGroupBuilder extends AbstractDemandActionGroupBui
         {
             ActionItem item = new ActionItem(  );
             item.setTitle( demand.getTitle(  ) + " " + demand.getReference(  ) );
-            item.setLink( buildDemandManagementLink( demand.getId(  ), demand.getDemandTypeId(  ),
-                    "" + customer.getId(  ) ) );
+            item.setLink( buildDemandManagementLink( demand.getId(  ), demand.getDemandTypeId(  ), customer.getId(  ) ) );
             item.setColor( processItemColor( demand, COLOR_PRIMARY ) );
             group.addActionItem( item );
             strBadgeColor = processGroupBadgeColor( demand, strBadgeColor, COLOR_PRIMARY );
