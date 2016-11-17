@@ -29,8 +29,26 @@ table.table-hover tr:hover{ cursor: pointer }
 .gru-wrapper{ margin: -15px; background: #fff }
 
 .gru-360{ min-height: 830px; background-image: url(../../../../images/admin/skin/plugins/gru/360_inverse.png), url(../../../../images/admin/skin/plugins/gru/bg_gru.jpg); background-repeat: no-repeat, no-repeat; background-position: 100px 20px, left top; background-size: 50px 50px, cover;}
-.gru-360 .table{ margin-top:15px;  background-color: #fff; opacity: 0.7 }
+.gru-360 .table{ margin-top:15px;  background-color: #fff; }
 .gru-360 .table:hover{ opacity: 1 }
+
+/* tables with tablesorter plugin*/
+table.tablesorter thead tr .header {
+	background-image: url(../../../../images/admin/skin/plugins/gru/bg.gif);
+	background-repeat: no-repeat;
+	background-color: #EEE;
+	background-position: center right;
+	cursor: pointer;
+}
+table.tablesorter thead tr .headerSortUp {
+	background-image: url(../../../../images/admin/skin/plugins/gru/asc.gif);
+}
+table.tablesorter thead tr .headerSortDown {
+	background-image: url(../../../../images/admin/skin/plugins/gru/desc.gif);
+}
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+background-color: #b9d3ea;
+}
 .gru-360 .ui-autocomplete { position: absolute;cursor: pointer;top: 100%;left: 0;z-index: 1000;float: left;display: none;min-width: 160px;_width: 160px;
   padding: 4px 0;margin: 2px 0 0 2px;list-style: none; background-color: #fff;border-color: #ccc;border-color: rgba(0, 0, 0, 0.2);
   border-style: solid;border-width: 1px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
@@ -173,3 +191,5 @@ table.table-hover tr:hover{ cursor: pointer }
 @media only screen and (max-width : 320px) {
   #customer-panel p{ font-size: 1.2rem }
 }
+
+

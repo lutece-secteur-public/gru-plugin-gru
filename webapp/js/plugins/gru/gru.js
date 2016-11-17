@@ -33,3 +33,10 @@ function redirectOnClick( element ){
        form.submit().remove();
     }
 }
+
+$( function(){
+	  // Set link on whole tr
+	  $("tr").on( 'click', function(e){
+		  redirectOnClick(this);
+	  });
+	});

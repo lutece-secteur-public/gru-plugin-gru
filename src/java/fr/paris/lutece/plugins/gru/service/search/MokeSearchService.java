@@ -53,20 +53,26 @@ public class MokeSearchService implements ISearchService
         List<Customer> list = new ArrayList<Customer>(  );
         Customer customer1 = new Customer(  );
         customer1.setId( "48376eb6-b6c9-4247-931c-351a8182d297" );
+        customer1.setIdTitle( 1 );
         customer1.setFirstname( "Maurice" );
         customer1.setLastname( "Dupont" );
+        customer1.setFixedPhoneNumber( "0199842317" );
         customer1.setMobilePhone( "0612459812" );
         customer1.setEmail( "maurice.dupont@domain.com" );
+        customer1.setBirthDate( "01/01/1970" );
         list.add( customer1 );
 
         if ( strQuery.equals( "multiple" ) )
         {
             Customer customer2 = new Customer(  );
             customer2.setId( "48376eb6-b6c9-4247-931c-351a8182d297" );
+            customer2.setIdTitle( 2 );
             customer2.setFirstname( "Maurice" );
             customer2.setLastname( "Dupont" );
-            customer2.setMobilePhone( "0612684112" );
+            customer2.setFixedPhoneNumber( "0199842319" );
+            customer2.setMobilePhone( "0712684112" );
             customer2.setEmail( "maurice.dupont@somewhere.com" );
+            customer2.setBirthDate( "11/11/1918" );
             list.add( customer2 );
         }
 
