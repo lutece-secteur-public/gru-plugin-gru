@@ -12,6 +12,8 @@
 
 table.table-hover tr:hover{ cursor: pointer }
 
+.main-sidebar { background-color: #fff !important; }
+
 /* TOOLBAR */
 .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > span:not(.pull-right), .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu {	width: 280px;}
 .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu.user {padding:5px;}
@@ -36,7 +38,6 @@ table.table-hover tr:hover{ cursor: pointer }
 table.tablesorter thead tr .header {
 	background-image: url(../../../../images/admin/skin/plugins/gru/bg.gif);
 	background-repeat: no-repeat;
-	background-color: #EEE;
 	background-position: center right;
 	cursor: pointer;
 }
@@ -77,7 +78,7 @@ background-color: #b9d3ea;
 .gru-wrapper #no-content{ min-height:620px; margin:0 auto; width:100%; text-align: center  }
 .gru-wrapper #no-content img{ position: absolute; top: 60%;left: 60%; margin-top: -250px; margin-left: -250px }
 
-#demand-panel-detail{ padding: 15px 0 0 80px;	background-color: #F3F7FA; min-height: 800px }
+#demand-panel-detail{ padding: 15px 0 0 80px;	background-color: #FFF; min-height: 800px }
 #demand-panel-detail #header-right{ border-left: 1px solid #DDD; min-height:600px; margin-top:-15px; padding:20px 20px; margin-left: -25px }
 #demand-panel-detail .panel{ padding: 15px; background-color: #EEE }
 

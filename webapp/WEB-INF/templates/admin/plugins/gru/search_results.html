@@ -4,14 +4,8 @@
 </script>
 <#include "action_bar.html" />
 <@actionMenu panels=panels customer=customer/>
-<div class="gru-wrapper gru-360">
+<div class="gru-wrapper">
   <div id="customer-panel" class="row bg-gru-dark">
-    <!-- <div class="col-xs-12 col-sm-offset-1 col-sm-1">
-       <h2>
-        <img src="images/admin/skin/plugins/gru/360_inverse.png" class="img-reponsive" alt="" >
-      </h2>
-    </div>
-     -->
     <div class="col-xs-12 col-sm-offset-1 col-sm-7">
       <br>
       <h2>
@@ -20,56 +14,52 @@
     </div>
   </div>
   <div id="demand-panel" class="row">
-    <div class="col-xs-12 col-sm-offset-1 col-sm-10">
-      <div class="table-responsive">
-        <table id="result_table" class="table table-hover table-stripped tablesorter">
-        <thead> 
-          <tr>
-          	<th>#i18n{gru.search_results.column.title}</th>
-          	<th>#i18n{gru.search_results.column.firstName}</th>
-            <th>#i18n{gru.search_results.column.name}</th>
-            <th>#i18n{gru.search_results.column.email}</th>
-            <th>#i18n{gru.search_results.column.phone}</th>
-            <th>#i18n{gru.search_results.column.mobilePhone}</th>
-            <th>#i18n{gru.search_results.column.birthdate}</th>
-          </tr>
-         </thead>
-         <tbody>
-         <#if results_list??>
-          <#list results_list as customer>
-		  <#assign gendername=customer.idTitle >
-				<#switch gendername>
-				  <#case 0>
-					<#assign gendername="gru.search_customer.gender.code0">
-					<#break>
-				  <#case 1>
-					<#assign gendername="gru.search_customer.gender.code1">
-					<#break>
-				  <#case 2>
-					<#assign gendername="gru.search_customer.gender.code2">
-					<#break>
-				  <#default>
-					<#assign gendername="gru.search_customer.gender.code0">
-				</#switch>
-            <tr data-url="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerDemands&id_customer=${customer.id}">
-               <td>#i18n{${gendername}}</td>
-              <td>
-                  ${customer.firstname}
-           
-              </td>
-               <td>
-                     ${customer.lastname}
-           
-              </td>
-              <td>${customer.email!''}</td>
-              <td>${customer.fixedPhoneNumber!''}</td>
-              <td>${customer.mobilePhone!''}</td>
-              <td>${customer.birthDate!''}</td>
-            </tr>
-          </#list>
-          </#if>
-         </tbody>
-        </table>
+    <div class="tab-content">
+      <div class="col-xs-12 col-sm-offset-1 col-sm-10">
+        <div class="table-responsive">
+          <table id="result_table" class="table table-hover table-striped tablesorter">
+            <thead>
+              <tr>
+                <th>#i18n{gru.search_results.column.title}</th>
+                <th>#i18n{gru.search_results.column.firstName}</th>
+                <th>#i18n{gru.search_results.column.name}</th>
+                <th>#i18n{gru.search_results.column.email}</th>
+                <th>#i18n{gru.search_results.column.phone}</th>
+                <th>#i18n{gru.search_results.column.mobilePhone}</th>
+                <th>#i18n{gru.search_results.column.birthdate}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <#if results_list??>
+                <#list results_list as customer>
+                <#assign gendername=customer.idTitle >
+                <#switch gendername>
+                  <#case 0>
+                    <#assign gendername="gru.search_customer.gender.code0">
+                    <#break>
+                  <#case 1>
+                    <#assign gendername="gru.search_customer.gender.code1">
+                    <#break>
+                  <#case 2>
+                    <#assign gendername="gru.search_customer.gender.code2">
+                    <#break>
+                  <#default>
+                    <#assign gendername="gru.search_customer.gender.code0">
+                </#switch>
+                <tr data-url="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerDemands&id_customer=${customer.id}">
+                  <td>#i18n{${gendername}}</td>
+                  <td>${customer.firstname}</td>
+                  <td>${customer.lastname}</td>
+                  <td>${customer.email!''}</td>
+                  <td>${customer.fixedPhoneNumber!''}</td>
+                  <td>${customer.mobilePhone!''}</td>
+                  <td>${customer.birthDate!''}</td>
+                </tr>
+                </#list>
+              </#if>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -77,16 +67,14 @@
 <script src="js/plugins/gru/gru.js"></script>
 <script>
 $(document).ready(function() 
-	    { 
-			//Set default sorting on email column
-	        $("#result_table").tablesorter({dateFormat: "uk", sortList:[[3,0]]}); 
-	        
-	        // Set link on whole tr
-	        $("tr").on( 'click', function(e){
-	      	  redirectOnClick(this);
-	        });
-	        
-	    } 
-	); 
-
+	{
+		//Set default sorting on email column
+		$("#result_table").tablesorter({dateFormat: "uk", sortList:[[3,0]]}); 
+		
+		// Set link on whole tr
+		$("tr").on( 'click', function(e){
+			redirectOnClick(this);
+		});
+	} 
+);
 </script>
