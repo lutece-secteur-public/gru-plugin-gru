@@ -10,7 +10,7 @@
     <groupId>fr.paris.lutece.plugins</groupId>
     <artifactId>plugin-gru</artifactId>
     <packaging>lutece-plugin</packaging>
-    <version>1.1.1-SNAPSHOT</version>
+    <version>1.1.1</version>
     <name>Lutece gru plugin</name>
 
     <repositories>
@@ -55,7 +55,7 @@
         <connection>scm:git:https://github.com/lutece-secteur-public/gru-plugin-gru.git</connection>
         <developerConnection>scm:git:https://github.com/lutece-secteur-public/gru-plugin-gru.git</developerConnection>
         <url>https://github.com/lutece-secteur-public/gru-plugin-gru.git</url>
-      <tag>HEAD</tag>
+      <tag>gru-plugin-gru-1.1.1</tag>
   </scm>
         
 </project>
