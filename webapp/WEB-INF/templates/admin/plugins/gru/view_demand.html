@@ -6,18 +6,19 @@
 <@actionMenu panels=panels customer=customer />
 <div class="gru-wrapper">
   <div id="customer-panel" class="row bg-gru-dark">
-	  <div class="col-xs-2 col-sm-offset-1 col-sm-2">
-	    <h2>
-	      <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerDemands&id_customer=${customer.id}" class="btn btn-border">
-	        <i class="fa fa-arrow-left"></i> <span class="hidden-xs"> #i18n{gru.macro.customer.details} </span>
-	      </a>
-	    </h2>
-	  </div>
-	  <div class="col-xs-10 col-sm-offset-1 col-sm-8">
-	      <@customerDetails customer=customer />
-      </div>
+	  <#if customer.id??>
+		  <div class="col-xs-2 col-sm-offset-1 col-sm-2">
+		    <h2>
+		      <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerDemands&id_customer=${customer.id}" class="btn btn-border">
+		        <i class="fa fa-arrow-left"></i> <span class="hidden-xs"> #i18n{gru.macro.customer.details} </span>
+		      </a>
+		    </h2>
+		  </div>
+		  <div class="col-xs-10 col-sm-offset-1 col-sm-8">
+		      <@customerDetails customer=customer />
+	      </div>
+      </#if>
   </div>
-
   <div id="demand-panel-detail" class="row">
     <div class="col-xs-12 col-sm-3 col-sm-push-9" id="header-right">
       <p>#i18n{gru.view_customer_demand.demand.panel.list.reference} : <strong class="text-gru">${demand.reference!'Reference missing'} </strong>
