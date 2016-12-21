@@ -62,6 +62,7 @@ import fr.paris.lutece.util.url.UrlItem;
 import org.apache.commons.lang.StringUtils;
 
 import java.io.UnsupportedEncodingException;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -309,27 +310,27 @@ public class CustomerJspBean extends MVCAdminJspBean
         Demand demand = DemandService.getDemand( strIdDemand, strIdDemandType, getUser(  ) );
         Customer customer = CustomerUtils.getCustomer( request );
 
-        if ( strIdDemand != null && demand != null )
+        if ( ( strIdDemand != null ) && ( demand != null ) )
         {
             try
             {
-            	List<ActionPanel> listPanels = new ArrayList<ActionPanel>(  );
-            	Map<String, Object> model = getModel(  );
-            	Map<String, String> mapParameters = new HashMap<String, String>(  );
-            	listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
-        		model.put( Constants.MARK_ACTION_PANELS, listPanels );
-        		demand = DemandTypeService.setDemandActions( demand, customer, getUser(  ) );
-                
-            	if ( strId != null && customer != null )
+                List<ActionPanel> listPanels = new ArrayList<ActionPanel>(  );
+                Map<String, Object> model = getModel(  );
+                Map<String, String> mapParameters = new HashMap<String, String>(  );
+                listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
+                model.put( Constants.MARK_ACTION_PANELS, listPanels );
+                demand = DemandTypeService.setDemandActions( demand, customer, getUser(  ) );
+
+                if ( ( strId != null ) && ( customer != null ) )
                 {
                     mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, customer.getId(  ) );
                     model.put( Constants.MARK_CUSTOMER, customer );
-                } 
-            	else 
-                {
-                	model.put( Constants.MARK_CUSTOMER, new Customer(  ) );
                 }
-                
+                else
+                {
+                    model.put( Constants.MARK_CUSTOMER, new Customer(  ) );
+                }
+
                 model.put( Constants.MARK_DEMAND, demand );
 
                 mapParameters.put( Constants.PARAMETER_ID_DEMAND, String.valueOf( demand.getId(  ) ) );
