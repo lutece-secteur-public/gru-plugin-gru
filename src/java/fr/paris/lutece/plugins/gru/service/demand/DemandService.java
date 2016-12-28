@@ -47,6 +47,7 @@ import fr.paris.lutece.portal.service.util.AppException;
 import fr.paris.lutece.portal.service.util.AppLogService;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -58,7 +59,7 @@ import java.util.List;
 public class DemandService
 {
     private static final String BEAN_DEMAND_SERVICE = "gru.demandService";
-    private static IDemandService _service;
+    private static fr.paris.lutece.plugins.grubusiness.business.demand.DemandService _service;
     private static Comparator<Demand> _comparatorDemands = new Comparator<Demand>(  )
         {
             @Override
@@ -73,7 +74,7 @@ public class DemandService
      * Get External implementation
      * @return The service
      */
-    private static IDemandService getService(  )
+    private static fr.paris.lutece.plugins.grubusiness.business.demand.DemandService getService(  )
     {
         if ( _service == null )
         {
@@ -92,7 +93,7 @@ public class DemandService
      */
     public static Demand getDemand( String strDemandId, String strDemandTypeId, AdminUser user )
     {
-        Demand demand = getService(  ).getDemand( strDemandId, strDemandTypeId, user );
+        Demand demand = getService(  ).findByPrimaryKey( strDemandId, strDemandTypeId );
 
         demand.setTitle( DemandTypeService.getTypeLabel( strDemandTypeId ) );
         demand.setShowDetails( isDetailsAuthorized( strDemandTypeId, user ) );
@@ -109,10 +110,10 @@ public class DemandService
      */
     public static List<Demand> getDemands( Customer customer, AdminUser user, int nStatus )
     {
-        List<BaseDemand> listBase = getService(  ).getDemands( customer.getId(  ), user );
+        Collection<Demand> collectionBase = getService(  ).findByCustomerId( customer.getId(  ) );
         List<Demand> listDemand = new ArrayList<Demand>(  );
 
-        for ( BaseDemand base : listBase )
+        for ( BaseDemand base : collectionBase )
         {
             if ( base.getStatusId(  ) == nStatus )
             {
@@ -138,10 +139,10 @@ public class DemandService
     public static List<Demand> getDemandsExcludingTypes( Customer customer, List<String> listExcludedTypes,
         AdminUser user )
     {
-        List<BaseDemand> listBase = getService(  ).getDemands( customer.getId(  ), user );
+        Collection<Demand> collectionBase = getService(  ).findByCustomerId( customer.getId(  ) );
         List<Demand> listDemand = new ArrayList<Demand>(  );
 
-        for ( BaseDemand base : listBase )
+        for ( BaseDemand base : collectionBase )
         {
             if ( !listExcludedTypes.contains( base.getTypeId(  ) ) )
             {
@@ -167,10 +168,10 @@ public class DemandService
     public static List<Demand> getDemandsIncludingTypes( Customer customer, List<String> listIncludedTypes,
         AdminUser user )
     {
-        List<BaseDemand> listBase = getService(  ).getDemands( customer.getId(  ), user );
+        Collection<Demand> collectionBase = getService(  ).findByCustomerId( customer.getId(  ) );
         List<Demand> listDemand = new ArrayList<Demand>(  );
 
-        for ( BaseDemand base : listBase )
+        for ( BaseDemand base : collectionBase )
         {
             if ( listIncludedTypes.contains( base.getTypeId(  ) ) )
             {

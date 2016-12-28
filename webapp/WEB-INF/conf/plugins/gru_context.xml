@@ -15,11 +15,8 @@
     <bean id="gru.businessSectorDAO" class="fr.paris.lutece.plugins.gru.business.domain.BusinessSectorDAO" />
     <bean id="gru.businessDomainDAO" class="fr.paris.lutece.plugins.gru.business.domain.BusinessDomainDAO" />
     
-    <bean id="gru.demandService" class="fr.paris.lutece.plugins.gru.service.demand.MockDemandService" />
     <bean id="gru.searchService" class="fr.paris.lutece.plugins.gru.service.search.MockSearchService" /> 
-    <!--<bean id="gru.demandService" class="fr.paris.lutece.plugins.grustorageelastic.service.ElasticDemandService" />-->
     <!--<bean id="gru.searchService" class="fr.paris.lutece.plugins.grustorageelastic.service.ElasticSearchService" />-->
-    <!--<bean id="gru.demandService" class="fr.paris.lutece.plugins.grustoragedb.service.DatabaseDemandService" />-->
     <!--<bean id="gru.searchService" class="fr.paris.lutece.plugins.grustoragedb.service.DatabaseSearchService" />-->
 
     <bean id="gru.actions.builder.Demands" class="fr.paris.lutece.plugins.gru.web.actions.groups.builders.impl.DemandsActionGroupBuilder" >
@@ -119,6 +116,13 @@
                 <ref bean="gru.actions.panelBuilder.newActions" /> 
             </list>
         </property>
+    </bean>
+    
+    <bean id="gru.demandDAO"  class="fr.paris.lutece.plugins.grubusiness.business.demand.MockDemandDAO" />  
+    <bean id="gru.notificationDAO"  class="fr.paris.lutece.plugins.grubusiness.business.notification.MockNotificationDAO" />
+    <bean id="gru.demandService" class="fr.paris.lutece.plugins.grubusiness.business.demand.DemandService">
+      <constructor-arg ref="gru.demandDAO"/>
+      <constructor-arg ref="gru.notificationDAO"/>
     </bean>
     
 </beans>
