@@ -144,7 +144,7 @@ public abstract class AbstractDemandActionGroupBuilder extends AbstractActionGro
             strBadgeColor = COLOR_DEFAULT;
         }
 
-        if ( demand.getStatus(  ) != Demand.STATUS_CLOSED )
+        if ( demand.getStatusId(  ) != Demand.STATUS_CLOSED )
         {
             strBadgeColor = strActiveBadgeColor;
         }
@@ -154,6 +154,6 @@ public abstract class AbstractDemandActionGroupBuilder extends AbstractActionGro
 
     protected String processItemColor( Demand demand, String strActiveColor )
     {
-        return ( demand.getStatus(  ) == Demand.STATUS_CLOSED ) ? COLOR_DEFAULT : strActiveColor;
+        return ( demand.getStatusId(  ) == Demand.STATUS_CLOSED ) ? COLOR_DEFAULT : strActiveColor;
     }
 }

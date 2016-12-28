@@ -61,11 +61,11 @@ public class InformationRequestActionGroupBuilder extends AbstractDemandActionGr
 
         for ( Demand demand : listDemands )
         {
-            if ( demand.getStatus(  ) != Demand.STATUS_CLOSED )
+            if ( demand.getStatusId(  ) != Demand.STATUS_CLOSED )
             {
                 ActionItem item = new ActionItem(  );
                 item.setTitle( demand.getTitle(  ) + " " + demand.getReference(  ) );
-                item.setLink( buildDemandManagementLink( demand.getId(  ), demand.getDemandTypeId(  ),
+                item.setLink( buildDemandManagementLink( demand.getId(  ), demand.getTypeId(  ),
                         customer.getId(  ) ) );
                 item.setColor( processItemColor( demand, COLOR_PRIMARY ) );
                 group.addActionItem( item );

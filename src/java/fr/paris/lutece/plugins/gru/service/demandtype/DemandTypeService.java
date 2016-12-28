@@ -80,18 +80,18 @@ public class DemandTypeService
      */
     public static Demand setDemandActions( Demand demand, Customer customer, AdminUser user )
     {
-        DemandType type = _mapDemandTypes.get( demand.getDemandTypeId(  ) );
+        DemandType type = _mapDemandTypes.get( demand.getTypeId(  ) );
 
         if ( type == null )
         {
-            type = DemandTypeHome.findByTypeId( demand.getDemandTypeId(  ) );
+            type = DemandTypeHome.findByTypeId( demand.getTypeId(  ) );
 
             if ( type == null )
             {
-                throw new AppException( "Unable to find DemandType with the ID : " + demand.getDemandTypeId(  ) );
+                throw new AppException( "Unable to find DemandType with the ID : " + demand.getTypeId(  ) );
             }
 
-            _mapDemandTypes.put( demand.getDemandTypeId(  ), type );
+            _mapDemandTypes.put( demand.getTypeId(  ), type );
         }
 
         demand.setTitle( type.getTitle(  ) );

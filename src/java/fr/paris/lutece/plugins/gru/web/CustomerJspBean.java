@@ -43,6 +43,7 @@ import fr.paris.lutece.plugins.gru.utils.UrlUtils;
 import fr.paris.lutece.plugins.gru.web.actions.buttons.builders.impl.HomeButtonListBuilder;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionGroup;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionPanel;
+import fr.paris.lutece.plugins.gru.web.utils.ModelUtils;
 import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
 import fr.paris.lutece.plugins.grubusiness.business.demand.Demand;
 import fr.paris.lutece.portal.service.i18n.I18nService;
@@ -319,9 +320,7 @@ public class CustomerJspBean extends MVCAdminJspBean
                 model.put( Constants.MARK_DEMAND, demand );
 
                 Map<String, String> mapParameters = new HashMap<String, String>(  );
-                mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, customer.getId(  ) );
-                mapParameters.put( Constants.PARAMETER_ID_DEMAND, String.valueOf( demand.getId(  ) ) );
-                mapParameters.put( Constants.PARAMETER_ID_DEMAND_TYPE, String.valueOf( demand.getDemandTypeId(  ) ) );
+                ModelUtils.storeStatus( model, demand.getNotifications(  ) );
 
                 model.put( Constants.MARK_RETURN_URL,
                     UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath(  ) +

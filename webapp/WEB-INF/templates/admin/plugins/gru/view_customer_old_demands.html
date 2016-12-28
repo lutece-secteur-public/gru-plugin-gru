@@ -29,9 +29,9 @@
               </thead>
               <tbody>
                 <#list demands_list as demand>
-                  <tr data-url="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewDemand&id_demand=${demand.id}&id_demand_type=${demand.demandTypeId}&id_customer=${customer.id}">
+                  <tr data-url="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewDemand&id_demand=${demand.id}&id_demand_type=${demand.typeId}&id_customer=${customer.id}">
                     <td>
-                      <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewDemand&id_demand=${demand.id}&id_demand_type=${demand.demandTypeId}&id_customer=${customer.id}">
+                      <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewDemand&id_demand=${demand.id}&id_demand_type=${demand.typeId}&id_customer=${customer.id}">
                         ${demand.reference}
                       </a>
                     </td>

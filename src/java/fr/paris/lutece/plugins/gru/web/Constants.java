@@ -68,6 +68,9 @@ public final class Constants
     public static final String MARK_RETURN_URL = "return_url";
     public static final String MARK_USER_PREFERENCE_CREATION_DATE_DISPLAY = "creationDateDisplay";
     public static final String MARK_CREATION_DATE_AS_DATE = "creation_date_as_date";
+    public static final String MARK_CUSTOMER_STATUS = "customer_status";
+    public static final String MARK_AGENT_STATUS = "agent_status";
+    
     public static final String USER_PREFERENCE_CREATION_DATE_DISPLAY_DATE = "date";
 
     private Constants(  )

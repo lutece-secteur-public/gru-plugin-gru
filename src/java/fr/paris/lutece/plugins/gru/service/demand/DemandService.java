@@ -114,7 +114,7 @@ public class DemandService
 
         for ( BaseDemand base : listBase )
         {
-            if ( base.getStatus(  ) == nStatus )
+            if ( base.getStatusId(  ) == nStatus )
             {
                 if ( isAuthorized( base, user ) )
                 {
@@ -143,7 +143,7 @@ public class DemandService
 
         for ( BaseDemand base : listBase )
         {
-            if ( !listExcludedTypes.contains( base.getDemandTypeId(  ) ) )
+            if ( !listExcludedTypes.contains( base.getTypeId(  ) ) )
             {
                 if ( isAuthorized( base, user ) )
                 {
@@ -172,7 +172,7 @@ public class DemandService
 
         for ( BaseDemand base : listBase )
         {
-            if ( listIncludedTypes.contains( base.getDemandTypeId(  ) ) )
+            if ( listIncludedTypes.contains( base.getTypeId(  ) ) )
             {
                 if ( isAuthorized( base, user ) )
                 {
@@ -198,7 +198,7 @@ public class DemandService
 
         if ( type == null )
         {
-            AppLogService.error( "Demand Type missing for ID : " + base.getDemandTypeId(  ) + " of demand ID : " +
+            AppLogService.error( "Demand Type missing for ID : " + base.getTypeId(  ) + " of demand ID : " +
                 base.getId(  ) );
 
             return false;
