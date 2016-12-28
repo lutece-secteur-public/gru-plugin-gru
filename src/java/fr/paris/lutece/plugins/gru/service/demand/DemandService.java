@@ -194,7 +194,7 @@ public class DemandService
      */
     private static boolean isAuthorized( BaseDemand base, AdminUser user )
     {
-        DemandType type = DemandTypeHome.findByTypeId( base.getDemandTypeId(  ) );
+        DemandType type = DemandTypeHome.findByTypeId( base.getTypeId(  ) );
 
         if ( type == null )
         {
