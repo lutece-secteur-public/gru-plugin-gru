@@ -64,6 +64,7 @@ import org.apache.commons.lang.StringUtils;
 
 import java.io.UnsupportedEncodingException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -307,19 +308,29 @@ public class CustomerJspBean extends MVCAdminJspBean
         Demand demand = DemandService.getDemand( strIdDemand, strIdDemandType, getUser(  ) );
         Customer customer = CustomerUtils.getCustomer( request );
 
-        if ( strId != null )
+        if ( ( strIdDemand != null ) && ( demand != null ) )
         {
             try
             {
+                List<ActionPanel> listPanels = new ArrayList<ActionPanel>(  );
+                Map<String, Object> model = getModel(  );
+                Map<String, String> mapParameters = new HashMap<String, String>(  );
+                listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
+                model.put( Constants.MARK_ACTION_PANELS, listPanels );
                 demand = DemandTypeService.setDemandActions( demand, customer, getUser(  ) );
 
-                List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
-                Map<String, Object> model = getModel(  );
-                model.put( Constants.MARK_ACTION_PANELS, listPanels );
-                model.put( Constants.MARK_CUSTOMER, customer );
+                if ( ( strId != null ) && ( customer != null ) )
+                {
+                    mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, customer.getId(  ) );
+                    model.put( Constants.MARK_CUSTOMER, customer );
+                }
+                else
+                {
+                    model.put( Constants.MARK_CUSTOMER, new Customer(  ) );
+                }
+
                 model.put( Constants.MARK_DEMAND, demand );
 
-                Map<String, String> mapParameters = new HashMap<String, String>(  );
                 ModelUtils.storeStatus( model, demand.getNotifications(  ) );
 
                 model.put( Constants.MARK_RETURN_URL,
