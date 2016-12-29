@@ -65,8 +65,7 @@ public class ClaimActionGroupBuilder extends AbstractDemandActionGroupBuilder
             {
                 ActionItem item = new ActionItem(  );
                 item.setTitle( demand.getTitle(  ) + " " + demand.getReference(  ) );
-                item.setLink( buildDemandManagementLink( demand.getId(  ), demand.getTypeId(  ),
-                        customer.getId(  ) ) );
+                item.setLink( buildDemandManagementLink( demand.getId(  ), demand.getTypeId(  ), customer.getId(  ) ) );
                 item.setColor( processItemColor( demand, COLOR_DANGER ) );
                 group.addActionItem( item );
                 strBadgeColor = processGroupBadgeColor( demand, strBadgeColor, COLOR_DANGER );

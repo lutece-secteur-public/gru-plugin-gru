@@ -33,11 +33,12 @@
  */
 package fr.paris.lutece.plugins.gru.web.utils;
 
+import fr.paris.lutece.plugins.gru.web.Constants;
+import fr.paris.lutece.plugins.grubusiness.business.notification.NotifyGruGlobalNotification;
+
 import java.util.List;
 import java.util.Map;
 
-import fr.paris.lutece.plugins.gru.web.Constants;
-import fr.paris.lutece.plugins.grubusiness.business.notification.NotifyGruGlobalNotification;
 
 /**
  * Class providing utility methods for Model
@@ -61,7 +62,7 @@ public final class ModelUtils
     {
         boolean bIsAgentStatusFound = false;
         boolean bIsCustomerStatusFound = false;
-        
+
         for ( NotifyGruGlobalNotification notification : listNotifications )
         {
             if ( !bIsAgentStatusFound && ( notification.getBackofficeLogging(  ) != null ) )
