@@ -329,6 +329,9 @@ public class CustomerJspBean extends MVCAdminJspBean
                     model.put( Constants.MARK_CUSTOMER, new Customer(  ) );
                 }
 
+                mapParameters.put( Constants.PARAMETER_ID_DEMAND, String.valueOf( demand.getId(  ) ) );
+                mapParameters.put( Constants.PARAMETER_ID_DEMAND_TYPE, String.valueOf( demand.getTypeId(  ) ) );
+
                 model.put( Constants.MARK_DEMAND, demand );
 
                 ModelUtils.storeStatus( model, demand.getNotifications(  ) );
