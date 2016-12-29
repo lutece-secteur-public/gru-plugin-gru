@@ -24,10 +24,10 @@
       <p>#i18n{gru.view_customer_demand.demand.panel.list.reference} : <strong class="text-gru">${demand.reference!'Reference missing'} </strong>
       <#switch demand.statusId>
           <#case 0>
-          <p>#i18n{gru.view_customer_demand.demand.panel.list.open.since} : <strong class="text-gru">${displayTimeOpenedTicket(demand.timeOpenedInMs)}</strong></p>
+          <p>#i18n{gru.view_customer_demand.demand.panel.list.open.since} : <strong class="text-gru">${displayTimeOpenedTicket(demand)}</strong></p>
           <#break>
           <#case 1>
-            <p>#i18n{gru.view_customer_demand.demand.panel.deal.in} : <strong class="text-gru">${displayTimeOpenedTicket(demand.timeOpenedInMs)}</strong></p>
+            <p>#i18n{gru.view_customer_demand.demand.panel.deal.in} : <strong class="text-gru">${displayTimeOpenedTicket(demand)}</strong></p>
             <#break>
       </#switch>
       <p>#i18n{gru.view_customer_demand.demand.panel.list.status.customer}  : <strong>${customer_status!''}</strong></p>

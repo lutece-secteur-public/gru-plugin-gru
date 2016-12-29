@@ -65,8 +65,53 @@ public class DemandService
             @Override
             public int compare( Demand demand1, Demand demand2 )
             {
-                return ( Long.valueOf( demand1.getTimeOpenedInMs(  ) )
-                             .compareTo( Long.valueOf( demand2.getTimeOpenedInMs(  ) ) ) );
+                int nResult = -1;
+
+                switch ( demand1.getStatusId(  ) )
+                {
+                    case Demand.STATUS_INPROGRESS:
+
+                        switch ( demand2.getStatusId(  ) )
+                        {
+                            case Demand.STATUS_INPROGRESS:
+                                nResult = Long.valueOf( demand1.getCreationDate(  ) )
+                                              .compareTo( Long.valueOf( demand2.getCreationDate(  ) ) );
+
+                                break;
+
+                            case Demand.STATUS_CLOSED:
+                                nResult = 1;
+
+                                break;
+
+                            default:
+                                nResult = 1;
+                        }
+
+                    case Demand.STATUS_CLOSED:
+
+                        switch ( demand2.getStatusId(  ) )
+                        {
+                            case Demand.STATUS_INPROGRESS:
+                                nResult = -1;
+
+                                break;
+
+                            case Demand.STATUS_CLOSED:
+                                nResult = Long.valueOf( demand1.getClosureDate(  ) )
+                                              .compareTo( Long.valueOf( demand2.getClosureDate(  ) ) );
+
+                                break;
+
+                            default:
+                                nResult = 1;
+                        }
+
+                    default:
+                        nResult = -1;
+                }
+
+                return nResult;
             }
         };
 
@@ -113,7 +158,7 @@ public class DemandService
         Collection<Demand> collectionBase = getService(  ).findByCustomerId( customer.getId(  ) );
         List<Demand> listDemand = new ArrayList<Demand>(  );
 
-        for ( BaseDemand base : collectionBase )
+        for ( Demand base : collectionBase )
         {
             if ( base.getStatusId(  ) == nStatus )
             {
@@ -142,7 +187,7 @@ public class DemandService
         Collection<Demand> collectionBase = getService(  ).findByCustomerId( customer.getId(  ) );
         List<Demand> listDemand = new ArrayList<Demand>(  );
 
-        for ( BaseDemand base : collectionBase )
+        for ( Demand base : collectionBase )
         {
             if ( !listExcludedTypes.contains( base.getTypeId(  ) ) )
             {
@@ -171,7 +216,7 @@ public class DemandService
         Collection<Demand> collectionBase = getService(  ).findByCustomerId( customer.getId(  ) );
         List<Demand> listDemand = new ArrayList<Demand>(  );
 
-        for ( BaseDemand base : collectionBase )
+        for ( Demand base : collectionBase )
         {
             if ( listIncludedTypes.contains( base.getTypeId(  ) ) )
             {

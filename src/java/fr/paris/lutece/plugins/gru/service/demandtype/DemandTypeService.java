@@ -40,7 +40,6 @@ import fr.paris.lutece.plugins.gru.business.demandtype.DemandTypeHome;
 import fr.paris.lutece.plugins.gru.service.ActionLinkService;
 import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
 import fr.paris.lutece.plugins.grubusiness.business.demand.Action;
-import fr.paris.lutece.plugins.grubusiness.business.demand.BaseDemand;
 import fr.paris.lutece.plugins.grubusiness.business.demand.Demand;
 import fr.paris.lutece.portal.business.user.AdminUser;
 import fr.paris.lutece.portal.service.rbac.RBACService;
@@ -58,18 +57,6 @@ public class DemandTypeService
 {
     private static final String BOOKMARK_ID = "{id}";
     private static Map<String, DemandType> _mapDemandTypes = new HashMap<String, DemandType>(  );
-
-    /**
-     * Create a demand with actions from a base demand
-     * @param base A base demand
-     * @param customer The customer
-     * @param user The Admin User
-     * @return The demand
-     */
-    public static Demand setDemandActions( BaseDemand base, Customer customer, AdminUser user )
-    {
-        return setDemandActions( new Demand( base ), customer, user );
-    }
 
     /**
      * Add actions to a given demand with actions from a base demand
