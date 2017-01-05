@@ -71,6 +71,11 @@ public final class Constants
     public static final String MARK_CUSTOMER_STATUS = "customer_status";
     public static final String MARK_AGENT_STATUS = "agent_status";
     public static final String USER_PREFERENCE_CREATION_DATE_DISPLAY_DATE = "date";
+    public static final String MARKER_DEMAND_ID = "demand_id";
+    public static final String MARKER_DEMAND_TYPE_ID = "demand_type_id";
+    public static final String MARKER_CUSTOMER_ID = "user_cid";
+    public static final String MARKER_FIRST_NAME = "first_name";
+    public static final String MARKER_LAST_NAME = "last_name";
 
     private Constants(  )
     {

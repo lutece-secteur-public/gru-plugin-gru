@@ -44,11 +44,12 @@ import java.util.List;
 public interface ISearchService
 {
     /**
-     * Search for Customers using a query string
-     * @param strQuery The query
+     * Search for Customers using first name and last name strings
+     * @param strFirstName The first name
+     * @param strLastName The last name
      * @return The customer list
      */
-    List<Customer> searchCustomer( String strQuery );
+    List<Customer> searchCustomer( String strFirstName, String strLastName );
 
     /**
      * Search for a Customers by using its identifier

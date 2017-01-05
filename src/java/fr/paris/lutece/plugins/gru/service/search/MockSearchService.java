@@ -48,7 +48,7 @@ public class MockSearchService implements ISearchService
      * {@inheritDoc }
      */
     @Override
-    public List<Customer> searchCustomer( String strQuery )
+    public List<Customer> searchCustomer( String strFirstName, String strLastName )
     {
         List<Customer> list = new ArrayList<Customer>(  );
         Customer customer1 = new Customer(  );
@@ -62,19 +62,16 @@ public class MockSearchService implements ISearchService
         customer1.setBirthDate( "01/01/1970" );
         list.add( customer1 );
 
-        if ( strQuery.equals( "multiple" ) )
-        {
-            Customer customer2 = new Customer(  );
-            customer2.setId( "48376eb6-b6c9-4247-931c-351a8182d297" );
-            customer2.setIdTitle( 2 );
-            customer2.setFirstname( "Maurice" );
-            customer2.setLastname( "Dupont" );
-            customer2.setFixedPhoneNumber( "0199842319" );
-            customer2.setMobilePhone( "0712684112" );
-            customer2.setEmail( "maurice.dupont@somewhere.com" );
-            customer2.setBirthDate( "11/11/1918" );
-            list.add( customer2 );
-        }
+        Customer customer2 = new Customer(  );
+        customer2.setId( "48376eb6-b6c9-4247-931c-351a8182d297" );
+        customer2.setIdTitle( 2 );
+        customer2.setFirstname( "Maurice" );
+        customer2.setLastname( "Dupont" );
+        customer2.setFixedPhoneNumber( "0199842319" );
+        customer2.setMobilePhone( "0712684112" );
+        customer2.setEmail( "maurice.dupont@somewhere.com" );
+        customer2.setBirthDate( "11/11/1918" );
+        list.add( customer2 );
 
         return list;
     }

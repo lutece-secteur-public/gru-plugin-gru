@@ -8,8 +8,10 @@
           <input type="hidden" name="action" value="search">
           <label class="sr-only"><i class="fa fa-search"> </i> #i18n{gru.search_customer.title}</label>
           <div class="input-group">
-            <input type="text" name="query" id="query" class="form-control input-lg autocomplete" placeholder="#i18n{gru.search_customer.title} : #i18n{gru.search_customer.placeholder}">
-            <span class="input-group-btn">
+            <input type="text" name="searchquery" id="searchquery" class="form-control input-lg autocomplete" placeholder="#i18n{gru.search_customer.title} : #i18n{gru.search_customer.placeholder}">
+            <input type="hidden" name="query" id="query" class="hidden" >
+
+			<span class="input-group-btn">
               <button type="submit" name="search" class="btn btn-flat btn-lg" id="search-btn" <#if auto_complete>disabled</#if>>
                 <i class="fa fa-search"></i>
               </button>
@@ -45,11 +47,23 @@ $( function(){
           
                 success: function(data) {
                     var formattedResponse = $.map(data.autocomplete, function(ob) {
-                        return {
-                            label: ob.item.first_name + " " + ob.item.last_name,
-                            value: ob.item.first_name + " " + ob.item.last_name
-                        };
-                    });
+                        
+							if (ob.item.reference === undefined)
+							{
+							return {
+								label: ob.item.first_name + " " + ob.item.last_name,
+								value: ob.item
+								};
+							}
+							else
+							
+							{
+							return {
+								label: ob.item.reference,
+								value: ob.item
+							};
+							}
+                        });
                     response(formattedResponse);
                     if(formattedResponse.length > 0){
                         $("#search-btn").removeAttr("disabled");
@@ -58,8 +72,9 @@ $( function(){
             });
         },
         select: function(event, ui) {
-            $(".autocomplete").val( ui.item.first_name+"|"+ui.item.last_name);
-            $(this).val( ui.item.value );
+			event.preventDefault();
+            $(this).val( ui.item.label );
+			$("#query").val(JSON.stringify(ui.item.value));
             $("#search-customer").submit();
         }
     });

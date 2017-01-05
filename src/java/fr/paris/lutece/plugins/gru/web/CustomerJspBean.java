@@ -33,6 +33,9 @@
  */
 package fr.paris.lutece.plugins.gru.web;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import fr.paris.lutece.plugins.gru.business.customer.CustomerHome;
 import fr.paris.lutece.plugins.gru.service.CustomerActionsService;
 import fr.paris.lutece.plugins.gru.service.demand.DemandService;
@@ -50,6 +53,7 @@ import fr.paris.lutece.portal.service.i18n.I18nService;
 import fr.paris.lutece.portal.service.message.AdminMessage;
 import fr.paris.lutece.portal.service.message.AdminMessageService;
 import fr.paris.lutece.portal.service.prefs.AdminUserPreferencesService;
+import fr.paris.lutece.portal.service.util.AppLogService;
 import fr.paris.lutece.portal.service.util.AppPathService;
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
 import fr.paris.lutece.portal.util.mvc.admin.MVCAdminJspBean;
@@ -62,6 +66,7 @@ import fr.paris.lutece.util.url.UrlItem;
 
 import org.apache.commons.lang.StringUtils;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import java.util.ArrayList;
@@ -161,25 +166,82 @@ public class CustomerJspBean extends MVCAdminJspBean
     {
         String strQuery = request.getParameter( Constants.PARAMETER_QUERY );
 
-        _listCustomer = SearchService.instance(  ).searchCustomer( strQuery );
+        ObjectMapper mapper = new ObjectMapper(  );
 
-        if ( _listCustomer.size(  ) == 0 )
+        try
         {
-            String strError = I18nService.getLocalizedString( MESSAGE_NO_CUSTOMER_FOUND, getLocale(  ) );
-            addError( strError );
+            JsonNode jsonQuery = mapper.readTree( strQuery );
+            String strDemandId = StringUtils.EMPTY;
+            String strDemandTypeId = StringUtils.EMPTY;
+            String strCustomerId = StringUtils.EMPTY;
+            String strFirstName = StringUtils.EMPTY;
+            String strLastName = StringUtils.EMPTY;
+
+            if ( !jsonQuery.path( Constants.MARKER_DEMAND_ID ).isMissingNode(  ) )
+            {
+                strDemandId = jsonQuery.get( Constants.MARKER_DEMAND_ID ).asText(  );
+            }
+
+            if ( !jsonQuery.path( Constants.MARKER_DEMAND_TYPE_ID ).isMissingNode(  ) )
+            {
+                strDemandTypeId = jsonQuery.get( Constants.MARKER_DEMAND_TYPE_ID ).asText(  );
+            }
+
+            if ( !jsonQuery.path( Constants.MARKER_CUSTOMER_ID ).isMissingNode(  ) )
+            {
+                strCustomerId = jsonQuery.get( Constants.MARKER_CUSTOMER_ID ).asText(  );
+            }
+
+            if ( ( StringUtils.isNotEmpty( strDemandId ) ) && ( StringUtils.isNotEmpty( strDemandTypeId ) ) )
+            {
+                Map<String, String> mapParameters = new HashMap<String, String>(  );
+                mapParameters.put( Constants.PARAMETER_ID_DEMAND, strDemandId );
+                mapParameters.put( Constants.PARAMETER_ID_DEMAND_TYPE, strDemandTypeId );
+
+                if ( StringUtils.isNotEmpty( strCustomerId ) )
+                {
+                    mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, strCustomerId );
+                }
+
+                return redirect( request, VIEW_DEMAND, mapParameters );
+            }
+
+            if ( !jsonQuery.path( Constants.MARKER_LAST_NAME ).isMissingNode(  ) )
+            {
+                strLastName = jsonQuery.get( Constants.MARKER_LAST_NAME ).asText(  );
+            }
+
+            if ( !jsonQuery.path( Constants.MARKER_FIRST_NAME ).isMissingNode(  ) )
+            {
+                strFirstName = jsonQuery.get( Constants.MARKER_FIRST_NAME ).asText(  );
+            }
+
+            _listCustomer = SearchService.instance(  ).searchCustomer( strFirstName, strLastName );
+
+            if ( _listCustomer.size(  ) == 0 )
+            {
+                String strError = I18nService.getLocalizedString( MESSAGE_NO_CUSTOMER_FOUND, getLocale(  ) );
+                addError( strError );
+
+                return redirectView( request, VIEW_SEARCH_CUSTOMER );
+            }
+
+            if ( _listCustomer.size(  ) == 1 )
+            {
+                Map<String, String> mapParameters = new HashMap<String, String>(  );
+                mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, _listCustomer.get( 0 ).getId(  ) );
+
+                return redirect( request, VIEW_CUSTOMER_DEMANDS, mapParameters );
+            }
+
+            return redirectView( request, VIEW_SEARCH_RESULTS );
+        }
+        catch ( IOException e )
+        {
+            AppLogService.error( e + " :" + e.getMessage(  ), e );
 
             return redirectView( request, VIEW_SEARCH_CUSTOMER );
         }
-
-        if ( _listCustomer.size(  ) == 1 )
-        {
-            Map<String, String> mapParameters = new HashMap<String, String>(  );
-            mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, _listCustomer.get( 0 ).getId(  ) );
-
-            return redirect( request, VIEW_CUSTOMER_DEMANDS, mapParameters );
-        }
-
-        return redirectView( request, VIEW_SEARCH_RESULTS );
     }
 
     @View( VIEW_SEARCH_RESULTS )
