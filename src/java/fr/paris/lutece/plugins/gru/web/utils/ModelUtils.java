@@ -34,7 +34,7 @@
 package fr.paris.lutece.plugins.gru.web.utils;
 
 import fr.paris.lutece.plugins.gru.web.Constants;
-import fr.paris.lutece.plugins.grubusiness.business.notification.NotifyGruGlobalNotification;
+import fr.paris.lutece.plugins.grubusiness.business.notification.Notification;
 
 import java.util.List;
 import java.util.Map;
@@ -58,12 +58,12 @@ public final class ModelUtils
      * @param model the model to complete
      * @param listNotifications the notification list used to retrieve status
      */
-    public static void storeStatus( Map<String, Object> model, List<NotifyGruGlobalNotification> listNotifications )
+    public static void storeStatus( Map<String, Object> model, List<Notification> listNotifications )
     {
         boolean bIsAgentStatusFound = false;
         boolean bIsCustomerStatusFound = false;
 
-        for ( NotifyGruGlobalNotification notification : listNotifications )
+        for ( Notification notification : listNotifications )
         {
             if ( !bIsAgentStatusFound && ( notification.getBackofficeLogging(  ) != null ) )
             {

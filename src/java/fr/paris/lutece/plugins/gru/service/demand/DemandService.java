@@ -38,7 +38,6 @@ import fr.paris.lutece.plugins.gru.business.demandtype.DemandTypeHome;
 import fr.paris.lutece.plugins.gru.business.domain.BusinessDomain;
 import fr.paris.lutece.plugins.gru.service.demandtype.DemandTypeService;
 import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
-import fr.paris.lutece.plugins.grubusiness.business.demand.BaseDemand;
 import fr.paris.lutece.plugins.grubusiness.business.demand.Demand;
 import fr.paris.lutece.portal.business.user.AdminUser;
 import fr.paris.lutece.portal.service.rbac.RBACService;
@@ -238,7 +237,7 @@ public class DemandService
      * @param user The Admin User
      * @return true if authorized
      */
-    private static boolean isAuthorized( BaseDemand base, AdminUser user )
+    private static boolean isAuthorized( Demand base, AdminUser user )
     {
         DemandType type = DemandTypeHome.findByTypeId( base.getTypeId(  ) );
 
