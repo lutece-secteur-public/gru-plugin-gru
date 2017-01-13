@@ -1,3 +1,6 @@
+<script>
+$(".content-header").toggle();
+</script>
 <#include "action_bar.html" />
 <@actionMenu panels=panels customer=customer/>
 <div class="gru-wrapper gru-360">
@@ -36,8 +39,8 @@
 <script src="js/plugins/gru/gru.js"></script>
 <script>
 $( function(){
-  $(".content-header").toggle();
   <#if auto_complete>
+    $('.autocomplete').focus();
     $('.autocomplete').autocomplete({
         minLength: 3,
         source: function(request, response) {
@@ -46,7 +49,6 @@ $( function(){
                 url: "${auto_complete_url}?query=" + request.term,
           
                 success: function(data) {
-                    $("#query").val("");
                     var formattedResponse = $.map(data.autocomplete, function(ob) {
                         
                         if (ob.item.reference === undefined) {
@@ -62,6 +64,7 @@ $( function(){
                         }
                     });
                     response(formattedResponse);
+                    $("#query").val("");
                     if(formattedResponse.length > 0){
                         $("#search-btn").prop("disabled", false);
                     } else {
