@@ -44,7 +44,6 @@ import fr.paris.lutece.util.ReferenceList;
 
 import java.util.Locale;
 
-
 /**
  * DemandTypeAction ResourceIdService
  */
@@ -57,15 +56,15 @@ public class DemandTypeActionResourceIdService extends ResourceIdService
      * {@inheritDoc }
      */
     @Override
-    public void register(  )
+    public void register( )
     {
-        ResourceType rt = new ResourceType(  );
-        rt.setResourceIdServiceClass( DemandTypeActionResourceIdService.class.getName(  ) );
+        ResourceType rt = new ResourceType( );
+        rt.setResourceIdServiceClass( DemandTypeActionResourceIdService.class.getName( ) );
         rt.setPluginName( Constants.PLUGIN_NAME );
         rt.setResourceTypeKey( DemandTypeAction.RESOURCE_TYPE );
         rt.setResourceTypeLabelKey( PROPERTY_LABEL_RESOURCE_TYPE );
 
-        Permission p = new Permission(  );
+        Permission p = new Permission( );
         p.setPermissionKey( DemandTypeAction.PERMISSION_ACCESS );
         p.setPermissionTitleKey( PROPERTY_LABEL_ACCESS );
         rt.registerPermission( p );
@@ -79,7 +78,7 @@ public class DemandTypeActionResourceIdService extends ResourceIdService
     @Override
     public ReferenceList getResourceIdList( Locale locale )
     {
-        return DemandTypeActionHome.getActions(  );
+        return DemandTypeActionHome.getActions( );
     }
 
     /**
@@ -90,6 +89,6 @@ public class DemandTypeActionResourceIdService extends ResourceIdService
     {
         DemandTypeAction action = DemandTypeActionHome.findByPrimaryKey( Integer.parseInt( strId ) );
 
-        return action.getDemandType(  ) + " - " + action.getLabel(  );
+        return action.getDemandType( ) + " - " + action.getLabel( );
     }
 }

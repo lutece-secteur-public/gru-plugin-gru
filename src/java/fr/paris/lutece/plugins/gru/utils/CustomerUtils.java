@@ -39,7 +39,6 @@ import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 /**
  * This class provides utility methods for customers
  *
@@ -49,13 +48,15 @@ public final class CustomerUtils
     /**
      * Constructor
      */
-    private CustomerUtils(  )
+    private CustomerUtils( )
     {
     }
 
     /**
      * Fetches a customer from the specified request
-     * @param request the request
+     * 
+     * @param request
+     *            the request
      * @return the customer
      */
     public static Customer getCustomer( HttpServletRequest request )
@@ -67,9 +68,9 @@ public final class CustomerUtils
         {
             try
             {
-                customer = SearchService.instance(  ).searchCustomerById( strId );
+                customer = SearchService.instance( ).searchCustomerById( strId );
             }
-            catch ( NumberFormatException e )
+            catch( NumberFormatException e )
             {
                 // Nothing to do
             }

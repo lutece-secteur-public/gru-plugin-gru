@@ -47,7 +47,6 @@ import fr.paris.lutece.portal.service.rbac.RBACService;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * Feature Actions Panel Builder
  */
@@ -59,7 +58,7 @@ public class FeatureActionsPanelBuilder implements PanelBuilder
      * {@inheritDoc }
      */
     @Override
-    public String getTitle(  )
+    public String getTitle( )
     {
         return _strTitle;
     }
@@ -67,7 +66,8 @@ public class FeatureActionsPanelBuilder implements PanelBuilder
     /**
      * Sets the Title
      *
-     * @param strTitle The Title
+     * @param strTitle
+     *            The Title
      */
     public void setTitle( String strTitle )
     {
@@ -80,21 +80,21 @@ public class FeatureActionsPanelBuilder implements PanelBuilder
     @Override
     public List<ActionGroup> getActionGroups( Customer customer, AdminUser user )
     {
-        List<ActionGroup> listActionGroups = new ArrayList<ActionGroup>(  );
-        List<FeatureCategory> listCategories = FeatureCategoryHome.getFeatureCategorysList(  );
+        List<ActionGroup> listActionGroups = new ArrayList<ActionGroup>( );
+        List<FeatureCategory> listCategories = FeatureCategoryHome.getFeatureCategorysList( );
 
         for ( FeatureCategory category : listCategories )
         {
-            ActionGroup group = new ActionGroup(  );
-            group.setTitle( category.getName(  ) );
-            group.setIcon( category.getIcon(  ) );
+            ActionGroup group = new ActionGroup( );
+            group.setTitle( category.getName( ) );
+            group.setIcon( category.getIcon( ) );
 
-            for ( Feature feature : category.getFeatures(  ) )
+            for ( Feature feature : category.getFeatures( ) )
             {
-                if ( RBACService.isAuthorized( feature, Feature.PERMISSION_ACCESS, user ) && !feature.isHidden(  ) )
+                if ( RBACService.isAuthorized( feature, Feature.PERMISSION_ACCESS, user ) && !feature.isHidden( ) )
                 {
-                    ActionItem item = new ActionItem(  );
-                    item.setTitle( feature.getName(  ) );
+                    ActionItem item = new ActionItem( );
+                    item.setTitle( feature.getName( ) );
                     item.setLink( FeatureService.getCustomerLink( feature, customer ) );
                     group.addActionItem( item );
                 }

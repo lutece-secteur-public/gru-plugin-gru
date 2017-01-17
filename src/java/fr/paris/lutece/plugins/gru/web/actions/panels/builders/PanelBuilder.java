@@ -39,7 +39,6 @@ import fr.paris.lutece.portal.business.user.AdminUser;
 
 import java.util.List;
 
-
 /**
  * Panel Builder
  */
@@ -50,13 +49,15 @@ public interface PanelBuilder
      *
      * @return The Title
      */
-    String getTitle(  );
+    String getTitle( );
 
     /**
      * Returns the ListActionGroups
      *
-     * @param customer The customer
-     * @param user The Admin User
+     * @param customer
+     *            The customer
+     * @param user
+     *            The Admin User
      * @return The ListActionGroups
      */
     List<ActionGroup> getActionGroups( Customer customer, AdminUser user );

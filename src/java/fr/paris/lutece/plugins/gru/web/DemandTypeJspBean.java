@@ -48,14 +48,13 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 /**
  * This class provides the user interface to manage DemandType features ( manage, create, modify, remove )
  */
 @Controller( controllerJsp = "ManageDemandTypes.jsp", controllerPath = "jsp/admin/plugins/gru/", right = "GRU_DEMAND_MANAGEMENT" )
 public class DemandTypeJspBean extends ManageDemandJspBean
 {
-    ////////////////////////////////////////////////////////////////////////////
+    // //////////////////////////////////////////////////////////////////////////
     // Constants
 
     // templates
@@ -103,7 +102,9 @@ public class DemandTypeJspBean extends ManageDemandJspBean
 
     /**
      * Build the Manage View
-     * @param request The HTTP request
+     * 
+     * @param request
+     *            The HTTP request
      * @return The page
      */
     @View( value = VIEW_MANAGE_DEMANDTYPES, defaultView = true )
@@ -111,9 +112,8 @@ public class DemandTypeJspBean extends ManageDemandJspBean
     {
         _demandtype = null;
 
-        List<DemandType> listDemandTypes = (List<DemandType>) DemandTypeHome.getDemandTypesList(  );
-        Map<String, Object> model = getPaginatedListModel( request, MARK_DEMANDTYPE_LIST, listDemandTypes,
-                JSP_MANAGE_DEMANDTYPES );
+        List<DemandType> listDemandTypes = (List<DemandType>) DemandTypeHome.getDemandTypesList( );
+        Map<String, Object> model = getPaginatedListModel( request, MARK_DEMANDTYPE_LIST, listDemandTypes, JSP_MANAGE_DEMANDTYPES );
 
         return getPage( PROPERTY_PAGE_TITLE_MANAGE_DEMANDTYPES, TEMPLATE_MANAGE_DEMANDTYPES, model );
     }
@@ -121,17 +121,18 @@ public class DemandTypeJspBean extends ManageDemandJspBean
     /**
      * Returns the form to create a demandtype
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the html code of the demandtype form
      */
     @View( VIEW_CREATE_DEMANDTYPE )
     public String getCreateDemandType( HttpServletRequest request )
     {
-        _demandtype = ( _demandtype != null ) ? _demandtype : new DemandType(  );
+        _demandtype = ( _demandtype != null ) ? _demandtype : new DemandType( );
 
-        Map<String, Object> model = getModel(  );
+        Map<String, Object> model = getModel( );
         model.put( MARK_DEMANDTYPE, _demandtype );
-        model.put( MARK_BUSINESS_DOMAINS_LIST, BusinessDomainService.getDomains( getLocale(  ) ) );
+        model.put( MARK_BUSINESS_DOMAINS_LIST, BusinessDomainService.getDomains( getLocale( ) ) );
 
         return getPage( PROPERTY_PAGE_TITLE_CREATE_DEMANDTYPE, TEMPLATE_CREATE_DEMANDTYPE, model );
     }
@@ -139,7 +140,8 @@ public class DemandTypeJspBean extends ManageDemandJspBean
     /**
      * Process the data capture form of a new demandtype
      *
-     * @param request The Http Request
+     * @param request
+     *            The Http Request
      * @return The Jsp URL of the process result
      */
     @Action( ACTION_CREATE_DEMANDTYPE )
@@ -154,16 +156,16 @@ public class DemandTypeJspBean extends ManageDemandJspBean
         }
 
         DemandTypeHome.create( _demandtype );
-        addInfo( INFO_DEMANDTYPE_CREATED, getLocale(  ) );
+        addInfo( INFO_DEMANDTYPE_CREATED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_DEMANDTYPES );
     }
 
     /**
-     * Manages the removal form of a demandtype whose identifier is in the http
-     * request
+     * Manages the removal form of a demandtype whose identifier is in the http request
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the html code to confirm
      */
     @Action( ACTION_CONFIRM_REMOVE_DEMANDTYPE )
@@ -173,8 +175,7 @@ public class DemandTypeJspBean extends ManageDemandJspBean
         UrlItem url = new UrlItem( getActionUrl( ACTION_REMOVE_DEMANDTYPE ) );
         url.addParameter( PARAMETER_ID_DEMANDTYPE, nId );
 
-        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_DEMANDTYPE,
-                url.getUrl(  ), AdminMessage.TYPE_CONFIRMATION );
+        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_DEMANDTYPE, url.getUrl( ), AdminMessage.TYPE_CONFIRMATION );
 
         return redirect( request, strMessageUrl );
     }
@@ -182,7 +183,8 @@ public class DemandTypeJspBean extends ManageDemandJspBean
     /**
      * Handles the removal form of a demandtype
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the jsp URL to display the form to manage demandtypes
      */
     @Action( ACTION_REMOVE_DEMANDTYPE )
@@ -190,7 +192,7 @@ public class DemandTypeJspBean extends ManageDemandJspBean
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_DEMANDTYPE ) );
         DemandTypeHome.remove( nId );
-        addInfo( INFO_DEMANDTYPE_REMOVED, getLocale(  ) );
+        addInfo( INFO_DEMANDTYPE_REMOVED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_DEMANDTYPES );
     }
@@ -198,7 +200,8 @@ public class DemandTypeJspBean extends ManageDemandJspBean
     /**
      * Returns the form to update info about a demandtype
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return The HTML form to update info
      */
     @View( VIEW_MODIFY_DEMANDTYPE )
@@ -206,14 +209,14 @@ public class DemandTypeJspBean extends ManageDemandJspBean
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_DEMANDTYPE ) );
 
-        if ( ( _demandtype == null ) || ( _demandtype.getId(  ) != nId ) )
+        if ( ( _demandtype == null ) || ( _demandtype.getId( ) != nId ) )
         {
             _demandtype = DemandTypeHome.findByPrimaryKey( nId );
         }
 
-        Map<String, Object> model = getModel(  );
+        Map<String, Object> model = getModel( );
         model.put( MARK_DEMANDTYPE, _demandtype );
-        model.put( MARK_BUSINESS_DOMAINS_LIST, BusinessDomainService.getDomains( getLocale(  ) ) );
+        model.put( MARK_BUSINESS_DOMAINS_LIST, BusinessDomainService.getDomains( getLocale( ) ) );
 
         return getPage( PROPERTY_PAGE_TITLE_MODIFY_DEMANDTYPE, TEMPLATE_MODIFY_DEMANDTYPE, model );
     }
@@ -221,7 +224,8 @@ public class DemandTypeJspBean extends ManageDemandJspBean
     /**
      * Process the change form of a demandtype
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return The Jsp URL of the process result
      */
     @Action( ACTION_MODIFY_DEMANDTYPE )
@@ -232,11 +236,11 @@ public class DemandTypeJspBean extends ManageDemandJspBean
         // Check constraints
         if ( !validateBean( _demandtype, VALIDATION_ATTRIBUTES_PREFIX ) )
         {
-            return redirect( request, VIEW_MODIFY_DEMANDTYPE, PARAMETER_ID_DEMANDTYPE, _demandtype.getId(  ) );
+            return redirect( request, VIEW_MODIFY_DEMANDTYPE, PARAMETER_ID_DEMANDTYPE, _demandtype.getId( ) );
         }
 
         DemandTypeHome.update( _demandtype );
-        addInfo( INFO_DEMANDTYPE_UPDATED, getLocale(  ) );
+        addInfo( INFO_DEMANDTYPE_UPDATED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_DEMANDTYPES );
     }

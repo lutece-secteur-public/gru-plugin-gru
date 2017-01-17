@@ -33,14 +33,12 @@
  */
 package fr.paris.lutece.plugins.gru.business.feature;
 
-
 // import org.hibernate.validator.constraints.*;
 import java.io.Serializable;
 
 import java.util.List;
 
 import javax.validation.constraints.*;
-
 
 /**
  * This is the business class for the object FeatureCategory
@@ -49,14 +47,14 @@ public class FeatureCategory implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
-    // Variables declarations 
+    // Variables declarations
     private int _nId;
 
-    //    @NotEmpty( message = "#i18n{gru.validation.featurecategory.Name.notEmpty}" )
+    // @NotEmpty( message = "#i18n{gru.validation.featurecategory.Name.notEmpty}" )
     @Size( max = 50, message = "#i18n{gru.validation.featurecategory.Name.size}" )
     private String _strName;
 
-    //    @NotEmpty( message = "#i18n{gru.validation.featurecategory.Description.notEmpty}" )
+    // @NotEmpty( message = "#i18n{gru.validation.featurecategory.Description.notEmpty}" )
     @Size( max = 255, message = "#i18n{gru.validation.featurecategory.Description.size}" )
     private String _strDescription;
     private int _nIdOrder;
@@ -68,16 +66,19 @@ public class FeatureCategory implements Serializable
 
     /**
      * Returns the Id
+     * 
      * @return The Id
      */
-    public int getId(  )
+    public int getId( )
     {
         return _nId;
     }
 
     /**
      * Sets the Id
-     * @param nId The Id
+     * 
+     * @param nId
+     *            The Id
      */
     public void setId( int nId )
     {
@@ -86,16 +87,19 @@ public class FeatureCategory implements Serializable
 
     /**
      * Returns the Name
+     * 
      * @return The Name
      */
-    public String getName(  )
+    public String getName( )
     {
         return _strName;
     }
 
     /**
      * Sets the Name
-     * @param strName The Name
+     * 
+     * @param strName
+     *            The Name
      */
     public void setName( String strName )
     {
@@ -104,16 +108,19 @@ public class FeatureCategory implements Serializable
 
     /**
      * Returns the Description
+     * 
      * @return The Description
      */
-    public String getDescription(  )
+    public String getDescription( )
     {
         return _strDescription;
     }
 
     /**
      * Sets the Description
-     * @param strDescription The Description
+     * 
+     * @param strDescription
+     *            The Description
      */
     public void setDescription( String strDescription )
     {
@@ -122,16 +129,19 @@ public class FeatureCategory implements Serializable
 
     /**
      * Returns the IdOrder
+     * 
      * @return The IdOrder
      */
-    public int getIdOrder(  )
+    public int getIdOrder( )
     {
         return _nIdOrder;
     }
 
     /**
      * Sets the IdOrder
-     * @param nIdOrder The IdOrder
+     * 
+     * @param nIdOrder
+     *            The IdOrder
      */
     public void setIdOrder( int nIdOrder )
     {
@@ -140,16 +150,19 @@ public class FeatureCategory implements Serializable
 
     /**
      * Returns the Category Icon
+     * 
      * @return The Category Icon
      */
-    public String getIcon(  )
+    public String getIcon( )
     {
         return _strCategoryIcon;
     }
 
     /**
      * Sets the CategoryIcon
-     * @param strCategoryIcon The CategoryIcon
+     * 
+     * @param strCategoryIcon
+     *            The CategoryIcon
      */
     public void setIcon( String strCategoryIcon )
     {
@@ -157,17 +170,20 @@ public class FeatureCategory implements Serializable
     }
 
     /**
-    * Returns the IndicatorStyle
-    * @return The IndicatorStyle
-    */
-    public int getIndicatorStyle(  )
+     * Returns the IndicatorStyle
+     * 
+     * @return The IndicatorStyle
+     */
+    public int getIndicatorStyle( )
     {
         return _nIndicatorStyle;
     }
 
     /**
      * Sets the IndicatorStyle
-     * @param nIndicatorStyle The IndicatorStyle
+     * 
+     * @param nIndicatorStyle
+     *            The IndicatorStyle
      */
     public void setIndicatorStyle( int nIndicatorStyle )
     {
@@ -176,16 +192,19 @@ public class FeatureCategory implements Serializable
 
     /**
      * Returns the IndicatorText
+     * 
      * @return The IndicatorText
      */
-    public String getIndicatorText(  )
+    public String getIndicatorText( )
     {
         return _strIndicatorText;
     }
 
     /**
      * Sets the IndicatorText
-     * @param strIndicatorText The IndicatorText
+     * 
+     * @param strIndicatorText
+     *            The IndicatorText
      */
     public void setIndicatorText( String strIndicatorText )
     {
@@ -194,16 +213,19 @@ public class FeatureCategory implements Serializable
 
     /**
      * Returns the Color
+     * 
      * @return The Color
      */
-    public String getColor(  )
+    public String getColor( )
     {
         return _strColor;
     }
 
     /**
      * Sets the Color
-     * @param strColor The Color
+     * 
+     * @param strColor
+     *            The Color
      */
     public void setColor( String strColor )
     {
@@ -212,9 +234,10 @@ public class FeatureCategory implements Serializable
 
     /**
      * Gets all features for this category
+     * 
      * @return The list
      */
-    public List<Feature> getFeatures(  )
+    public List<Feature> getFeatures( )
     {
         return FeatureHome.getFeaturesListByCategory( _nId );
     }

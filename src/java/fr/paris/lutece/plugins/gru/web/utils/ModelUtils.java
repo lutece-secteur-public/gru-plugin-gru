@@ -39,7 +39,6 @@ import fr.paris.lutece.plugins.grubusiness.business.notification.Notification;
 import java.util.List;
 import java.util.Map;
 
-
 /**
  * Class providing utility methods for Model
  *
@@ -49,14 +48,17 @@ public final class ModelUtils
     /**
      * Default constructor
      */
-    private ModelUtils(  )
+    private ModelUtils( )
     {
     }
 
     /**
      * Completes the specified model with status
-     * @param model the model to complete
-     * @param listNotifications the notification list used to retrieve status
+     * 
+     * @param model
+     *            the model to complete
+     * @param listNotifications
+     *            the notification list used to retrieve status
      */
     public static void storeStatus( Map<String, Object> model, List<Notification> listNotifications )
     {
@@ -65,15 +67,15 @@ public final class ModelUtils
 
         for ( Notification notification : listNotifications )
         {
-            if ( !bIsAgentStatusFound && ( notification.getBackofficeLogging(  ) != null ) )
+            if ( !bIsAgentStatusFound && ( notification.getBackofficeLogging( ) != null ) )
             {
-                model.put( Constants.MARK_AGENT_STATUS, notification.getBackofficeLogging(  ).getStatusText(  ) );
+                model.put( Constants.MARK_AGENT_STATUS, notification.getBackofficeLogging( ).getStatusText( ) );
                 bIsAgentStatusFound = true;
             }
 
-            if ( !bIsCustomerStatusFound && ( notification.getUserDashboard(  ) != null ) )
+            if ( !bIsCustomerStatusFound && ( notification.getUserDashboard( ) != null ) )
             {
-                model.put( Constants.MARK_CUSTOMER_STATUS, notification.getUserDashboard(  ).getStatusText(  ) );
+                model.put( Constants.MARK_CUSTOMER_STATUS, notification.getUserDashboard( ).getStatusText( ) );
                 bIsCustomerStatusFound = true;
             }
 

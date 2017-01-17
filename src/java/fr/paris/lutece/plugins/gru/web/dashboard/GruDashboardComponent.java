@@ -53,7 +53,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 /**
  * GruDashboardComponent
  */
@@ -78,25 +77,26 @@ public class GruDashboardComponent extends DashboardComponent
     @Override
     public String getDashboardData( AdminUser user, HttpServletRequest request )
     {
-        Right right = RightHome.findByPrimaryKey( getRight(  ) );
-        Plugin plugin = PluginService.getPlugin( right.getPluginName(  ) );
+        Right right = RightHome.findByPrimaryKey( getRight( ) );
+        Plugin plugin = PluginService.getPlugin( right.getPluginName( ) );
 
-        UrlItem url = new UrlItem( right.getUrl(  ) );
-        url.addParameter( PARAMETER_PLUGIN_NAME, right.getPluginName(  ) );
+        UrlItem url = new UrlItem( right.getUrl( ) );
+        url.addParameter( PARAMETER_PLUGIN_NAME, right.getPluginName( ) );
 
-        Object[] arguments = { CustomerHome.getCustomersCount(  ) };
-        String strCustomersCount = I18nService.getLocalizedString( PROPERTY_CUSTOMERS_COUNT, arguments,
-                user.getLocale(  ) );
+        Object [ ] arguments = {
+            CustomerHome.getCustomersCount( )
+        };
+        String strCustomersCount = I18nService.getLocalizedString( PROPERTY_CUSTOMERS_COUNT, arguments, user.getLocale( ) );
 
-        Map<String, Object> model = new HashMap<String, Object>(  );
-        model.put( MARK_URL, url.getUrl(  ) );
-        model.put( MARK_ICON, plugin.getIconUrl(  ) );
+        Map<String, Object> model = new HashMap<String, Object>( );
+        model.put( MARK_URL, url.getUrl( ) );
+        model.put( MARK_ICON, plugin.getIconUrl( ) );
         model.put( MARK_CUSTOMERS_COUNT, strCustomersCount );
-        model.put( Constants.MARK_AUTOCOMPLETE, SearchService.instance(  ).isAutoComplete(  ) );
-        model.put( Constants.MARK_AUTOCOMPLETE_URL, SearchService.instance(  ).getAutoCompleteUrl(  ) );
+        model.put( Constants.MARK_AUTOCOMPLETE, SearchService.instance( ).isAutoComplete( ) );
+        model.put( Constants.MARK_AUTOCOMPLETE_URL, SearchService.instance( ).getAutoCompleteUrl( ) );
 
-        HtmlTemplate t = AppTemplateService.getTemplate( TEMPLATE_DASHBOARD, user.getLocale(  ), model );
+        HtmlTemplate t = AppTemplateService.getTemplate( TEMPLATE_DASHBOARD, user.getLocale( ), model );
 
-        return t.getHtml(  );
+        return t.getHtml( );
     }
 }

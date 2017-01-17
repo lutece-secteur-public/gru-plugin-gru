@@ -38,7 +38,6 @@ import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * MockSearchService
  */
@@ -50,8 +49,8 @@ public class MockSearchService implements ISearchService
     @Override
     public List<Customer> searchCustomer( String strFirstName, String strLastName )
     {
-        List<Customer> list = new ArrayList<Customer>(  );
-        Customer customer1 = new Customer(  );
+        List<Customer> list = new ArrayList<Customer>( );
+        Customer customer1 = new Customer( );
         customer1.setId( "48376eb6-b6c9-4247-931c-351a8182d297" );
         customer1.setIdTitle( 1 );
         customer1.setFirstname( "Maurice" );
@@ -62,7 +61,7 @@ public class MockSearchService implements ISearchService
         customer1.setBirthDate( "01/01/1970" );
         list.add( customer1 );
 
-        Customer customer2 = new Customer(  );
+        Customer customer2 = new Customer( );
         customer2.setId( "48376eb6-b6c9-4247-931c-351a8182d297" );
         customer2.setIdTitle( 2 );
         customer2.setFirstname( "Maurice" );
@@ -82,7 +81,7 @@ public class MockSearchService implements ISearchService
     @Override
     public Customer searchCustomerById( String strCustomerId )
     {
-        Customer customer = new Customer(  );
+        Customer customer = new Customer( );
         customer.setId( "48376eb6-b6c9-4247-931c-351a8182d297" );
         customer.setFirstname( "Maurice" );
         customer.setLastname( "Dupont" );
@@ -96,7 +95,7 @@ public class MockSearchService implements ISearchService
      * {@inheritDoc }
      */
     @Override
-    public boolean isAutoComplete(  )
+    public boolean isAutoComplete( )
     {
         return false;
     }
@@ -105,7 +104,7 @@ public class MockSearchService implements ISearchService
      * {@inheritDoc }
      */
     @Override
-    public String getAutoCompleteUrl(  )
+    public String getAutoCompleteUrl( )
     {
         return "";
     }

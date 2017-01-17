@@ -40,7 +40,6 @@ import fr.paris.lutece.util.ReferenceList;
 
 import java.util.List;
 
-
 /**
  * This class provides instances management methods (create, find, ...) for BusinessSector objects
  */
@@ -53,14 +52,16 @@ public final class BusinessSectorHome
     /**
      * Private constructor - this class need not be instantiated
      */
-    private BusinessSectorHome(  )
+    private BusinessSectorHome( )
     {
     }
 
     /**
      * Create an instance of the businessSector class
-     * @param businessSector The instance of the BusinessSector which contains the informations to store
-     * @return The  instance of businessSector which has been created with its primary key.
+     * 
+     * @param businessSector
+     *            The instance of the BusinessSector which contains the informations to store
+     * @return The instance of businessSector which has been created with its primary key.
      */
     public static BusinessSector create( BusinessSector businessSector )
     {
@@ -71,8 +72,10 @@ public final class BusinessSectorHome
 
     /**
      * Update of the businessSector which is specified in parameter
-     * @param businessSector The instance of the BusinessSector which contains the data to store
-     * @return The instance of the  businessSector which has been updated
+     * 
+     * @param businessSector
+     *            The instance of the BusinessSector which contains the data to store
+     * @return The instance of the businessSector which has been updated
      */
     public static BusinessSector update( BusinessSector businessSector )
     {
@@ -83,19 +86,23 @@ public final class BusinessSectorHome
 
     /**
      * Remove the businessSector whose identifier is specified in parameter
-     * @param nKey The businessSector Id
+     * 
+     * @param nKey
+     *            The businessSector Id
      */
     public static void remove( int nKey )
     {
         _dao.delete( nKey, _plugin );
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Finders
 
     /**
      * Returns an instance of a businessSector whose identifier is specified in parameter
-     * @param nKey The businessSector primary key
+     * 
+     * @param nKey
+     *            The businessSector primary key
      * @return an instance of BusinessSector
      */
     public static BusinessSector findByPrimaryKey( int nKey )
@@ -105,27 +112,30 @@ public final class BusinessSectorHome
 
     /**
      * Load the data of all the businessSector objects and returns them in form of a collection
+     * 
      * @return the collection which contains the data of all the businessSector objects
      */
-    public static List<BusinessSector> getBusinessSectorsList(  )
+    public static List<BusinessSector> getBusinessSectorsList( )
     {
         return _dao.selectBusinessSectorsList( _plugin );
     }
 
     /**
      * Load the id of all the businessSector objects and returns them in form of a collection
+     * 
      * @return the collection which contains the id of all the businessSector objects
      */
-    public static List<Integer> getIdBusinessSectorsList(  )
+    public static List<Integer> getIdBusinessSectorsList( )
     {
         return _dao.selectIdBusinessSectorsList( _plugin );
     }
 
     /**
      * Gets all business sectors as a reference list
+     * 
      * @return all business sectors as a reference list
      */
-    public static ReferenceList getBusinessSectors(  )
+    public static ReferenceList getBusinessSectors( )
     {
         return _dao.selectBusinessSectors( _plugin );
     }

@@ -41,7 +41,6 @@ import fr.paris.lutece.util.ReferenceList;
 import java.util.List;
 import java.util.Locale;
 
-
 /**
  * Business Domain Service
  */
@@ -51,20 +50,24 @@ public class BusinessDomainService
 
     /**
      * Get all business domains
-     * @param locale The locale
+     * 
+     * @param locale
+     *            The locale
      * @return The list
      */
     public static ReferenceList getDomains( Locale locale )
     {
-        List<BusinessDomain> listDomains = BusinessDomainHome.getBusinessDomainsList(  );
+        List<BusinessDomain> listDomains = BusinessDomainHome.getBusinessDomainsList( );
 
-        ReferenceList list = new ReferenceList(  );
+        ReferenceList list = new ReferenceList( );
 
         for ( BusinessDomain domain : listDomains )
         {
-            Object[] args = { domain.getBusinessSector(  ), domain.getName(  ) };
+            Object [ ] args = {
+                    domain.getBusinessSector( ), domain.getName( )
+            };
             String strLabel = I18nService.getLocalizedString( PROPERTY_RESOURCE_NAME_FORMAT, args, locale );
-            list.addItem( domain.getId(  ), strLabel );
+            list.addItem( domain.getId( ), strLabel );
         }
 
         return list;

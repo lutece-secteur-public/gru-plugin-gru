@@ -33,13 +33,12 @@
  */
 package fr.paris.lutece.plugins.gru.web.actions.model;
 
-
 /**
  * This is the business class for the object ActionItem
  */
 public class ActionItem
 {
-    // Variables declarations 
+    // Variables declarations
     private String _strTitle;
     private String _strIcon;
     private String _strLink;
@@ -47,16 +46,19 @@ public class ActionItem
 
     /**
      * Returns the Title
+     * 
      * @return The Title
      */
-    public String getTitle(  )
+    public String getTitle( )
     {
         return _strTitle;
     }
 
     /**
      * Sets the Title
-     * @param strTitle The Title
+     * 
+     * @param strTitle
+     *            The Title
      */
     public void setTitle( String strTitle )
     {
@@ -65,16 +67,19 @@ public class ActionItem
 
     /**
      * Returns the Icon
+     * 
      * @return The Icon
      */
-    public String getIcon(  )
+    public String getIcon( )
     {
         return _strIcon;
     }
 
     /**
      * Sets the Icon
-     * @param strIcon The Icon
+     * 
+     * @param strIcon
+     *            The Icon
      */
     public void setIcon( String strIcon )
     {
@@ -83,16 +88,19 @@ public class ActionItem
 
     /**
      * Returns the Link
+     * 
      * @return The Link
      */
-    public String getLink(  )
+    public String getLink( )
     {
         return _strLink;
     }
 
     /**
      * Sets the Link
-     * @param strLink The Link
+     * 
+     * @param strLink
+     *            The Link
      */
     public void setLink( String strLink )
     {
@@ -101,16 +109,19 @@ public class ActionItem
 
     /**
      * Returns the Color
+     * 
      * @return The Color
      */
-    public String getColor(  )
+    public String getColor( )
     {
         return _strColor;
     }
 
     /**
      * Sets the Color
-     * @param strColor The Color
+     * 
+     * @param strColor
+     *            The Color
      */
     public void setColor( String strColor )
     {

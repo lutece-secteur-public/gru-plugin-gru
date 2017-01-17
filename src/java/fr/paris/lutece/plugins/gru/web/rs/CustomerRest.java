@@ -1,36 +1,36 @@
 /*
-* Copyright (c) 2002-2012, Mairie de Paris
-* All rights reserved.
-*
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the following conditions
-* are met:
-*
-*  1. Redistributions of source code must retain the above copyright notice
-*     and the following disclaimer.
-*
-*  2. Redistributions in binary form must reproduce the above copyright notice
-*     and the following disclaimer in the documentation and/or other materials
-*     provided with the distribution.
-*
-*  3. Neither the name of 'Mairie de Paris' nor 'Lutece' nor the names of its
-*     contributors may be used to endorse or promote products derived from
-*     this software without specific prior written permission.
-*
-* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-* AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-* IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-* ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
-* LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-* CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-* SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-* INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-* CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-* ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-* POSSIBILITY OF SUCH DAMAGE.
-*
-* License 1.0
-*/
+ * Copyright (c) 2002-2012, Mairie de Paris
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright notice
+ *     and the following disclaimer.
+ *
+ *  2. Redistributions in binary form must reproduce the above copyright notice
+ *     and the following disclaimer in the documentation and/or other materials
+ *     provided with the distribution.
+ *
+ *  3. Neither the name of 'Mairie de Paris' nor 'Lutece' nor the names of its
+ *     contributors may be used to endorse or promote products derived from
+ *     this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * License 1.0
+ */
 package fr.paris.lutece.plugins.gru.web.rs;
 
 import fr.paris.lutece.plugins.gru.business.customer.CustomerHome;
@@ -59,7 +59,6 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-
 /**
  * Page resource
  */
@@ -84,36 +83,34 @@ public class CustomerRest
 
     @GET
     @Path( Constants.ALL_PATH )
-    public Response getCustomers( @HeaderParam( HttpHeaders.ACCEPT )
-    String accept, @QueryParam( Constants.FORMAT_QUERY )
-    String format ) throws IOException
+    public Response getCustomers( @HeaderParam( HttpHeaders.ACCEPT ) String accept, @QueryParam( Constants.FORMAT_QUERY ) String format ) throws IOException
     {
         String entity;
         String mediaType;
 
-        if ( ( ( accept != null ) && accept.contains( MediaType.APPLICATION_JSON ) ) ||
-                ( ( format != null ) && format.equals( Constants.MEDIA_TYPE_JSON ) ) )
+        if ( ( ( accept != null ) && accept.contains( MediaType.APPLICATION_JSON ) ) || ( ( format != null ) && format.equals( Constants.MEDIA_TYPE_JSON ) ) )
         {
-            entity = getCustomersJson(  );
+            entity = getCustomersJson( );
             mediaType = MediaType.APPLICATION_JSON;
         }
         else
         {
-            entity = getCustomersXml(  );
+            entity = getCustomersXml( );
             mediaType = MediaType.APPLICATION_XML;
         }
 
-        return Response.ok( entity, mediaType ).build(  );
+        return Response.ok( entity, mediaType ).build( );
     }
 
     /**
      * Gets all resources list in XML format
+     * 
      * @return The list
      */
-    public String getCustomersXml(  )
+    public String getCustomersXml( )
     {
-        StringBuffer sbXML = new StringBuffer( XmlUtil.getXmlHeader(  ) );
-        Collection<Customer> list = CustomerHome.getCustomersList(  );
+        StringBuffer sbXML = new StringBuffer( XmlUtil.getXmlHeader( ) );
+        Collection<Customer> list = CustomerHome.getCustomersList( );
 
         XmlUtil.beginElement( sbXML, KEY_CUSTOMERS );
 
@@ -124,19 +121,20 @@ public class CustomerRest
 
         XmlUtil.endElement( sbXML, KEY_CUSTOMERS );
 
-        return sbXML.toString(  );
+        return sbXML.toString( );
     }
 
     /**
      * Gets all resources list in JSON format
+     * 
      * @return The list
      */
-    public String getCustomersJson(  )
+    public String getCustomersJson( )
     {
-        JSONObject jsonCustomer = new JSONObject(  );
-        JSONObject json = new JSONObject(  );
+        JSONObject jsonCustomer = new JSONObject( );
+        JSONObject json = new JSONObject( );
 
-        Collection<Customer> list = CustomerHome.getCustomersList(  );
+        Collection<Customer> list = CustomerHome.getCustomersList( );
 
         for ( Customer customer : list )
         {
@@ -145,21 +143,18 @@ public class CustomerRest
 
         json.accumulate( KEY_CUSTOMERS, jsonCustomer );
 
-        return json.toString(  );
+        return json.toString( );
     }
 
     @GET
     @Path( "{" + Constants.ID_PATH + "}" )
-    public Response getCustomer( @PathParam( Constants.ID_PATH )
-    String strId, @HeaderParam( HttpHeaders.ACCEPT )
-    String accept, @QueryParam( Constants.FORMAT_QUERY )
-    String format ) throws IOException
+    public Response getCustomer( @PathParam( Constants.ID_PATH ) String strId, @HeaderParam( HttpHeaders.ACCEPT ) String accept,
+            @QueryParam( Constants.FORMAT_QUERY ) String format ) throws IOException
     {
         String entity;
         String mediaType;
 
-        if ( ( ( accept != null ) && accept.contains( MediaType.APPLICATION_JSON ) ) ||
-                ( ( format != null ) && format.equals( Constants.MEDIA_TYPE_JSON ) ) )
+        if ( ( ( accept != null ) && accept.contains( MediaType.APPLICATION_JSON ) ) || ( ( format != null ) && format.equals( Constants.MEDIA_TYPE_JSON ) ) )
         {
             entity = getCustomerJson( strId );
             mediaType = MediaType.APPLICATION_JSON;
@@ -170,17 +165,19 @@ public class CustomerRest
             mediaType = MediaType.APPLICATION_XML;
         }
 
-        return Response.ok( entity, mediaType ).build(  );
+        return Response.ok( entity, mediaType ).build( );
     }
 
     /**
      * Gets a resource in XML format
-     * @param strId The resource ID
+     * 
+     * @param strId
+     *            The resource ID
      * @return The XML output
      */
     public String getCustomerXml( String strId )
     {
-        StringBuffer sbXML = new StringBuffer(  );
+        StringBuffer sbXML = new StringBuffer( );
 
         try
         {
@@ -192,26 +189,28 @@ public class CustomerRest
                 addCustomerXml( sbXML, customer );
             }
         }
-        catch ( NumberFormatException e )
+        catch( NumberFormatException e )
         {
             sbXML.append( XMLUtil.formatError( "Invalid customer number", 3 ) );
         }
-        catch ( Exception e )
+        catch( Exception e )
         {
             sbXML.append( XMLUtil.formatError( "Customer not found", 1 ) );
         }
 
-        return sbXML.toString(  );
+        return sbXML.toString( );
     }
 
     /**
      * Gets a resource in JSON format
-     * @param strId The resource ID
+     * 
+     * @param strId
+     *            The resource ID
      * @return The JSON output
      */
     public String getCustomerJson( String strId )
     {
-        JSONObject json = new JSONObject(  );
+        JSONObject json = new JSONObject( );
         String strJson = "";
 
         try
@@ -221,14 +220,14 @@ public class CustomerRest
             if ( customer != null )
             {
                 addCustomerJson( json, customer );
-                strJson = json.toString(  );
+                strJson = json.toString( );
             }
         }
-        catch ( NumberFormatException e )
+        catch( NumberFormatException e )
         {
             strJson = JSONUtil.formatError( "Invalid customer number", 3 );
         }
-        catch ( Exception e )
+        catch( Exception e )
         {
             strJson = JSONUtil.formatError( "Customer not found", 1 );
         }
@@ -238,10 +237,8 @@ public class CustomerRest
 
     @DELETE
     @Path( "{" + Constants.ID_PATH + "}" )
-    public Response deleteCustomer( @PathParam( Constants.ID_PATH )
-    String strId, @HeaderParam( HttpHeaders.ACCEPT )
-    String accept, @QueryParam( Constants.FORMAT_QUERY )
-    String format ) throws IOException
+    public Response deleteCustomer( @PathParam( Constants.ID_PATH ) String strId, @HeaderParam( HttpHeaders.ACCEPT ) String accept,
+            @QueryParam( Constants.FORMAT_QUERY ) String format ) throws IOException
     {
         try
         {
@@ -250,7 +247,7 @@ public class CustomerRest
                 CustomerHome.remove( strId );
             }
         }
-        catch ( NumberFormatException e )
+        catch( NumberFormatException e )
         {
             AppLogService.error( "Invalid customer number" );
         }
@@ -259,22 +256,12 @@ public class CustomerRest
     }
 
     @POST
-    public Response createCustomer( @FormParam( KEY_ID )
-    String id, @FormParam( "id_title" )
-    String id_title, @FormParam( "firstname" )
-    String firstname, @FormParam( "lastname" )
-    String lastname, @FormParam( "has_account" )
-    String has_account, @FormParam( "account_login" )
-    String account_login, @FormParam( "account_guid" )
-    String account_guid, @FormParam( "email" )
-    String email, @FormParam( "is_email_verified" )
-    String is_email_verified, @FormParam( "fixed_phone_number" )
-    String fixed_phone_number, @FormParam( "mobile_phone" )
-    String mobile_phone, @FormParam( "is_mobile_phone_verified" )
-    String is_mobile_phone_verified, @FormParam( "extras_attributes" )
-    String extras_attributes, @HeaderParam( HttpHeaders.ACCEPT )
-    String accept, @QueryParam( Constants.FORMAT_QUERY )
-    String format ) throws IOException
+    public Response createCustomer( @FormParam( KEY_ID ) String id, @FormParam( "id_title" ) String id_title, @FormParam( "firstname" ) String firstname,
+            @FormParam( "lastname" ) String lastname, @FormParam( "has_account" ) String has_account, @FormParam( "account_login" ) String account_login,
+            @FormParam( "account_guid" ) String account_guid, @FormParam( "email" ) String email, @FormParam( "is_email_verified" ) String is_email_verified,
+            @FormParam( "fixed_phone_number" ) String fixed_phone_number, @FormParam( "mobile_phone" ) String mobile_phone,
+            @FormParam( "is_mobile_phone_verified" ) String is_mobile_phone_verified, @FormParam( "extras_attributes" ) String extras_attributes,
+            @HeaderParam( HttpHeaders.ACCEPT ) String accept, @QueryParam( Constants.FORMAT_QUERY ) String format ) throws IOException
     {
         if ( id != null )
         {
@@ -299,7 +286,7 @@ public class CustomerRest
         }
         else
         {
-            Customer customer = new Customer(  );
+            Customer customer = new Customer( );
 
             customer.setIdTitle( Integer.parseInt( id_title ) );
             customer.setFirstname( firstname );
@@ -321,49 +308,55 @@ public class CustomerRest
 
     /**
      * Write a customer into a buffer
-     * @param sbXML The buffer
-     * @param customer The customer
+     * 
+     * @param sbXML
+     *            The buffer
+     * @param customer
+     *            The customer
      */
     private void addCustomerXml( StringBuffer sbXML, Customer customer )
     {
         XmlUtil.beginElement( sbXML, KEY_CUSTOMER );
-        XmlUtil.addElement( sbXML, KEY_ID, customer.getId(  ) );
-        XmlUtil.addElement( sbXML, KEY_ID_TITLE, customer.getIdTitle(  ) );
-        XmlUtil.addElement( sbXML, KEY_FIRSTNAME, customer.getFirstname(  ) );
-        XmlUtil.addElement( sbXML, KEY_LASTNAME, customer.getLastname(  ) );
-        XmlUtil.addElement( sbXML, KEY_HAS_ACCOUNT, customer.getHasAccount(  ) ? "1" : "0" );
-        XmlUtil.addElement( sbXML, KEY_ACCOUNT_LOGIN, customer.getAccountLogin(  ) );
-        XmlUtil.addElement( sbXML, KEY_ACCOUNT_GUID, customer.getAccountGuid(  ) );
-        XmlUtil.addElement( sbXML, KEY_EMAIL, customer.getEmail(  ) );
-        XmlUtil.addElement( sbXML, KEY_IS_EMAIL_VERIFIED, customer.getIsEmailVerified(  ) ? "1" : "0" );
-        XmlUtil.addElement( sbXML, KEY_FIXED_PHONE_NUMBER, customer.getFixedPhoneNumber(  ) );
-        XmlUtil.addElement( sbXML, KEY_MOBILE_PHONE, customer.getMobilePhone(  ) );
-        XmlUtil.addElement( sbXML, KEY_IS_MOBILE_PHONE_VERIFIED, customer.getIsMobilePhoneVerified(  ) ? "1" : "0" );
-        XmlUtil.addElement( sbXML, KEY_EXTRAS_ATTRIBUTES, customer.getExtrasAttributes(  ) );
+        XmlUtil.addElement( sbXML, KEY_ID, customer.getId( ) );
+        XmlUtil.addElement( sbXML, KEY_ID_TITLE, customer.getIdTitle( ) );
+        XmlUtil.addElement( sbXML, KEY_FIRSTNAME, customer.getFirstname( ) );
+        XmlUtil.addElement( sbXML, KEY_LASTNAME, customer.getLastname( ) );
+        XmlUtil.addElement( sbXML, KEY_HAS_ACCOUNT, customer.getHasAccount( ) ? "1" : "0" );
+        XmlUtil.addElement( sbXML, KEY_ACCOUNT_LOGIN, customer.getAccountLogin( ) );
+        XmlUtil.addElement( sbXML, KEY_ACCOUNT_GUID, customer.getAccountGuid( ) );
+        XmlUtil.addElement( sbXML, KEY_EMAIL, customer.getEmail( ) );
+        XmlUtil.addElement( sbXML, KEY_IS_EMAIL_VERIFIED, customer.getIsEmailVerified( ) ? "1" : "0" );
+        XmlUtil.addElement( sbXML, KEY_FIXED_PHONE_NUMBER, customer.getFixedPhoneNumber( ) );
+        XmlUtil.addElement( sbXML, KEY_MOBILE_PHONE, customer.getMobilePhone( ) );
+        XmlUtil.addElement( sbXML, KEY_IS_MOBILE_PHONE_VERIFIED, customer.getIsMobilePhoneVerified( ) ? "1" : "0" );
+        XmlUtil.addElement( sbXML, KEY_EXTRAS_ATTRIBUTES, customer.getExtrasAttributes( ) );
         XmlUtil.endElement( sbXML, KEY_CUSTOMER );
     }
 
     /**
      * Write a customer into a JSON Object
-     * @param json The JSON Object
-     * @param customer The customer
+     * 
+     * @param json
+     *            The JSON Object
+     * @param customer
+     *            The customer
      */
     private void addCustomerJson( JSONObject json, Customer customer )
     {
-        JSONObject jsonCustomer = new JSONObject(  );
-        jsonCustomer.accumulate( KEY_ID, customer.getId(  ) );
-        jsonCustomer.accumulate( KEY_ID_TITLE, customer.getIdTitle(  ) );
-        jsonCustomer.accumulate( KEY_FIRSTNAME, customer.getFirstname(  ) );
-        jsonCustomer.accumulate( KEY_LASTNAME, customer.getLastname(  ) );
-        jsonCustomer.accumulate( KEY_HAS_ACCOUNT, customer.getHasAccount(  ) );
-        jsonCustomer.accumulate( KEY_ACCOUNT_LOGIN, customer.getAccountLogin(  ) );
-        jsonCustomer.accumulate( KEY_ACCOUNT_GUID, customer.getAccountGuid(  ) );
-        jsonCustomer.accumulate( KEY_EMAIL, customer.getEmail(  ) );
-        jsonCustomer.accumulate( KEY_IS_EMAIL_VERIFIED, customer.getIsEmailVerified(  ) );
-        jsonCustomer.accumulate( KEY_FIXED_PHONE_NUMBER, customer.getFixedPhoneNumber(  ) );
-        jsonCustomer.accumulate( KEY_MOBILE_PHONE, customer.getMobilePhone(  ) );
-        jsonCustomer.accumulate( KEY_IS_MOBILE_PHONE_VERIFIED, customer.getIsMobilePhoneVerified(  ) );
-        jsonCustomer.accumulate( KEY_EXTRAS_ATTRIBUTES, customer.getExtrasAttributes(  ) );
+        JSONObject jsonCustomer = new JSONObject( );
+        jsonCustomer.accumulate( KEY_ID, customer.getId( ) );
+        jsonCustomer.accumulate( KEY_ID_TITLE, customer.getIdTitle( ) );
+        jsonCustomer.accumulate( KEY_FIRSTNAME, customer.getFirstname( ) );
+        jsonCustomer.accumulate( KEY_LASTNAME, customer.getLastname( ) );
+        jsonCustomer.accumulate( KEY_HAS_ACCOUNT, customer.getHasAccount( ) );
+        jsonCustomer.accumulate( KEY_ACCOUNT_LOGIN, customer.getAccountLogin( ) );
+        jsonCustomer.accumulate( KEY_ACCOUNT_GUID, customer.getAccountGuid( ) );
+        jsonCustomer.accumulate( KEY_EMAIL, customer.getEmail( ) );
+        jsonCustomer.accumulate( KEY_IS_EMAIL_VERIFIED, customer.getIsEmailVerified( ) );
+        jsonCustomer.accumulate( KEY_FIXED_PHONE_NUMBER, customer.getFixedPhoneNumber( ) );
+        jsonCustomer.accumulate( KEY_MOBILE_PHONE, customer.getMobilePhone( ) );
+        jsonCustomer.accumulate( KEY_IS_MOBILE_PHONE_VERIFIED, customer.getIsMobilePhoneVerified( ) );
+        jsonCustomer.accumulate( KEY_EXTRAS_ATTRIBUTES, customer.getExtrasAttributes( ) );
         json.accumulate( KEY_CUSTOMER, jsonCustomer );
     }
 }

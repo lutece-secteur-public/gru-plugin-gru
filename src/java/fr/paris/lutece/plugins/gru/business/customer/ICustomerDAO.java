@@ -38,7 +38,6 @@ import fr.paris.lutece.portal.service.plugin.Plugin;
 
 import java.util.List;
 
-
 /**
  * ICustomerDAO Interface
  */
@@ -46,62 +45,83 @@ public interface ICustomerDAO
 {
     /**
      * Insert a new record in the table.
-     * @param customer instance of the Customer object to insert
-     * @param plugin the Plugin
+     * 
+     * @param customer
+     *            instance of the Customer object to insert
+     * @param plugin
+     *            the Plugin
      * @return The customer ID
      */
     String insert( Customer customer, Plugin plugin );
 
     /**
      * Update the record in the table
-     * @param customer the reference of the Customer
-     * @param plugin the Plugin
+     * 
+     * @param customer
+     *            the reference of the Customer
+     * @param plugin
+     *            the Plugin
      */
     void store( Customer customer, Plugin plugin );
 
     /**
      * Delete a record from the table
-     * @param strId The identifier of the Customer to delete
-     * @param plugin the Plugin
+     * 
+     * @param strId
+     *            The identifier of the Customer to delete
+     * @param plugin
+     *            the Plugin
      */
     void delete( String strId, Plugin plugin );
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Finders
 
     /**
      * Load the data from the table
-     * @param strId The identifier of the customer
-     * @param plugin the Plugin
+     * 
+     * @param strId
+     *            The identifier of the customer
+     * @param plugin
+     *            the Plugin
      * @return The instance of the customer
      */
     Customer load( String strId, Plugin plugin );
 
     /**
      * Load the data of all the customer objects and returns them as a collection
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the data of all the customer objects
      */
     List<Customer> selectCustomersList( Plugin plugin );
 
     /**
      * Load the id of all the customer objects and returns them as a collection
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the id of all the customer objects
      */
     List<Integer> selectIdCustomersList( Plugin plugin );
 
     /**
      * Find a customer by its GUID
-     * @param strGuid The GUID
-     * @param plugin The Plugin
+     * 
+     * @param strGuid
+     *            The GUID
+     * @param plugin
+     *            The Plugin
      * @return The customer
      */
     Customer selectByGuid( String strGuid, Plugin plugin );
 
     /**
      * The number of customers
-     * @param plugin The Plugin
+     * 
+     * @param plugin
+     *            The Plugin
      * @return The number of customers
      */
     int selectCustomersCount( Plugin plugin );

@@ -51,7 +51,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-
 /**
  * Demande Service
  */
@@ -59,66 +58,65 @@ public class DemandService
 {
     private static final String BEAN_DEMAND_SERVICE = "gru.demandService";
     private static fr.paris.lutece.plugins.grubusiness.business.demand.DemandService _service;
-    private static Comparator<Demand> _comparatorDemands = new Comparator<Demand>(  )
+    private static Comparator<Demand> _comparatorDemands = new Comparator<Demand>( )
+    {
+        @Override
+        public int compare( Demand demand1, Demand demand2 )
         {
-            @Override
-            public int compare( Demand demand1, Demand demand2 )
+            int nResult = -1;
+
+            switch( demand1.getStatusId( ) )
             {
-                int nResult = -1;
+                case Demand.STATUS_INPROGRESS:
 
-                switch ( demand1.getStatusId(  ) )
-                {
-                    case Demand.STATUS_INPROGRESS:
+                    switch( demand2.getStatusId( ) )
+                    {
+                        case Demand.STATUS_INPROGRESS:
+                            nResult = Long.valueOf( demand1.getCreationDate( ) ).compareTo( Long.valueOf( demand2.getCreationDate( ) ) );
 
-                        switch ( demand2.getStatusId(  ) )
-                        {
-                            case Demand.STATUS_INPROGRESS:
-                                nResult = Long.valueOf( demand1.getCreationDate(  ) )
-                                              .compareTo( Long.valueOf( demand2.getCreationDate(  ) ) );
+                            break;
 
-                                break;
+                        case Demand.STATUS_CLOSED:
+                            nResult = 1;
 
-                            case Demand.STATUS_CLOSED:
-                                nResult = 1;
+                            break;
 
-                                break;
+                        default:
+                            nResult = 1;
+                    }
 
-                            default:
-                                nResult = 1;
-                        }
+                case Demand.STATUS_CLOSED:
 
-                    case Demand.STATUS_CLOSED:
+                    switch( demand2.getStatusId( ) )
+                    {
+                        case Demand.STATUS_INPROGRESS:
+                            nResult = -1;
 
-                        switch ( demand2.getStatusId(  ) )
-                        {
-                            case Demand.STATUS_INPROGRESS:
-                                nResult = -1;
+                            break;
 
-                                break;
+                        case Demand.STATUS_CLOSED:
+                            nResult = Long.valueOf( demand1.getClosureDate( ) ).compareTo( Long.valueOf( demand2.getClosureDate( ) ) );
 
-                            case Demand.STATUS_CLOSED:
-                                nResult = Long.valueOf( demand1.getClosureDate(  ) )
-                                              .compareTo( Long.valueOf( demand2.getClosureDate(  ) ) );
+                            break;
 
-                                break;
+                        default:
+                            nResult = 1;
+                    }
 
-                            default:
-                                nResult = 1;
-                        }
-
-                    default:
-                        nResult = -1;
-                }
-
-                return nResult;
+                default:
+                    nResult = -1;
             }
-        };
+
+            return nResult;
+        }
+    };
 
     /**
      * Get External implementation
+     * 
      * @return The service
      */
-    private static fr.paris.lutece.plugins.grubusiness.business.demand.DemandService getService(  )
+    private static fr.paris.lutece.plugins.grubusiness.business.demand.DemandService getService( )
     {
         if ( _service == null )
         {
@@ -130,14 +128,17 @@ public class DemandService
 
     /**
      * Return a Demand object from an Id
-     * @param strDemandId The Demand Id
+     * 
+     * @param strDemandId
+     *            The Demand Id
      * @param strDemandTypeId
-     * @param user The Admin User
+     * @param user
+     *            The Admin User
      * @return The demand
      */
     public static Demand getDemand( String strDemandId, String strDemandTypeId, AdminUser user )
     {
-        Demand demand = getService(  ).findByPrimaryKey( strDemandId, strDemandTypeId );
+        Demand demand = getService( ).findByPrimaryKey( strDemandId, strDemandTypeId );
 
         demand.setTitle( DemandTypeService.getTypeLabel( strDemandTypeId ) );
         demand.setShowDetails( isDetailsAuthorized( strDemandTypeId, user ) );
@@ -147,19 +148,23 @@ public class DemandService
 
     /**
      * Gets a list of demand for a given Customer
-     * @param customer The customer
-     * @param user The admin user
-     * @param nStatus The status
+     * 
+     * @param customer
+     *            The customer
+     * @param user
+     *            The admin user
+     * @param nStatus
+     *            The status
      * @return The list
      */
     public static List<Demand> getDemands( Customer customer, AdminUser user, int nStatus )
     {
-        Collection<Demand> collectionBase = getService(  ).findByCustomerId( customer.getId(  ) );
-        List<Demand> listDemand = new ArrayList<Demand>(  );
+        Collection<Demand> collectionBase = getService( ).findByCustomerId( customer.getId( ) );
+        List<Demand> listDemand = new ArrayList<Demand>( );
 
         for ( Demand base : collectionBase )
         {
-            if ( base.getStatusId(  ) == nStatus )
+            if ( base.getStatusId( ) == nStatus )
             {
                 if ( isAuthorized( base, user ) )
                 {
@@ -175,20 +180,23 @@ public class DemandService
 
     /**
      * Gets a list of demand for a given Customer filtered by types
-     * @param customer The customer
-     * @param listExcludedTypes excluded types
-     * @param user The admin user
+     * 
+     * @param customer
+     *            The customer
+     * @param listExcludedTypes
+     *            excluded types
+     * @param user
+     *            The admin user
      * @return The list
      */
-    public static List<Demand> getDemandsExcludingTypes( Customer customer, List<String> listExcludedTypes,
-        AdminUser user )
+    public static List<Demand> getDemandsExcludingTypes( Customer customer, List<String> listExcludedTypes, AdminUser user )
     {
-        Collection<Demand> collectionBase = getService(  ).findByCustomerId( customer.getId(  ) );
-        List<Demand> listDemand = new ArrayList<Demand>(  );
+        Collection<Demand> collectionBase = getService( ).findByCustomerId( customer.getId( ) );
+        List<Demand> listDemand = new ArrayList<Demand>( );
 
         for ( Demand base : collectionBase )
         {
-            if ( !listExcludedTypes.contains( base.getTypeId(  ) ) )
+            if ( !listExcludedTypes.contains( base.getTypeId( ) ) )
             {
                 if ( isAuthorized( base, user ) )
                 {
@@ -204,20 +212,23 @@ public class DemandService
 
     /**
      * Gets a list of demand for a given Customer filtered by types
-     * @param customer The customer
-     * @param listIncludedTypes included types
-     * @param user The admin user
+     * 
+     * @param customer
+     *            The customer
+     * @param listIncludedTypes
+     *            included types
+     * @param user
+     *            The admin user
      * @return The list
      */
-    public static List<Demand> getDemandsIncludingTypes( Customer customer, List<String> listIncludedTypes,
-        AdminUser user )
+    public static List<Demand> getDemandsIncludingTypes( Customer customer, List<String> listIncludedTypes, AdminUser user )
     {
-        Collection<Demand> collectionBase = getService(  ).findByCustomerId( customer.getId(  ) );
-        List<Demand> listDemand = new ArrayList<Demand>(  );
+        Collection<Demand> collectionBase = getService( ).findByCustomerId( customer.getId( ) );
+        List<Demand> listDemand = new ArrayList<Demand>( );
 
         for ( Demand base : collectionBase )
         {
-            if ( listIncludedTypes.contains( base.getTypeId(  ) ) )
+            if ( listIncludedTypes.contains( base.getTypeId( ) ) )
             {
                 if ( isAuthorized( base, user ) )
                 {
@@ -233,34 +244,37 @@ public class DemandService
 
     /**
      * Check if the user can view the demand
-     * @param base The base demand
-     * @param user The Admin User
+     * 
+     * @param base
+     *            The base demand
+     * @param user
+     *            The Admin User
      * @return true if authorized
      */
     private static boolean isAuthorized( Demand base, AdminUser user )
     {
-        DemandType type = DemandTypeHome.findByTypeId( base.getTypeId(  ) );
+        DemandType type = DemandTypeHome.findByTypeId( base.getTypeId( ) );
 
         if ( type == null )
         {
-            AppLogService.error( "Demand Type missing for ID : " + base.getTypeId(  ) + " of demand ID : " +
-                base.getId(  ) );
+            AppLogService.error( "Demand Type missing for ID : " + base.getTypeId( ) + " of demand ID : " + base.getId( ) );
 
             return false;
         }
 
-        String strBusinessDomainId = String.valueOf( type.getBusinessDomainId(  ) );
+        String strBusinessDomainId = String.valueOf( type.getBusinessDomainId( ) );
 
-        return RBACService.isAuthorized( BusinessDomain.RESOURCE_TYPE, strBusinessDomainId,
-            BusinessDomain.PERMISSION_VIEW_SUMMARY, user ) ||
-        RBACService.isAuthorized( BusinessDomain.RESOURCE_TYPE, strBusinessDomainId,
-            BusinessDomain.PERMISSION_VIEW_DETAILS, user );
+        return RBACService.isAuthorized( BusinessDomain.RESOURCE_TYPE, strBusinessDomainId, BusinessDomain.PERMISSION_VIEW_SUMMARY, user )
+                || RBACService.isAuthorized( BusinessDomain.RESOURCE_TYPE, strBusinessDomainId, BusinessDomain.PERMISSION_VIEW_DETAILS, user );
     }
 
     /**
      * Check if the user can view details
-     * @param strDemandTypeId The demand Id type
-     * @param user The admin user
+     * 
+     * @param strDemandTypeId
+     *            The demand Id type
+     * @param user
+     *            The admin user
      * @return true if authorized
      */
     private static boolean isDetailsAuthorized( String strDemandTypeId, AdminUser user )
@@ -272,9 +286,8 @@ public class DemandService
             throw new AppException( "Demand Type missing for ID : " + strDemandTypeId );
         }
 
-        String strBusinessDomainId = String.valueOf( type.getBusinessDomainId(  ) );
+        String strBusinessDomainId = String.valueOf( type.getBusinessDomainId( ) );
 
-        return RBACService.isAuthorized( BusinessDomain.RESOURCE_TYPE, strBusinessDomainId,
-            BusinessDomain.PERMISSION_VIEW_DETAILS, user );
+        return RBACService.isAuthorized( BusinessDomain.RESOURCE_TYPE, strBusinessDomainId, BusinessDomain.PERMISSION_VIEW_DETAILS, user );
     }
 }

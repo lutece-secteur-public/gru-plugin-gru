@@ -33,7 +33,6 @@
  */
 package fr.paris.lutece.plugins.gru.web;
 
-
 /**
  * Constants
  */
@@ -77,7 +76,7 @@ public final class Constants
     public static final String MARKER_FIRST_NAME = "first_name";
     public static final String MARKER_LAST_NAME = "last_name";
 
-    private Constants(  )
+    private Constants( )
     {
     }
 }

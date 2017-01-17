@@ -42,14 +42,13 @@ import fr.paris.lutece.portal.business.user.AdminUser;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * ActionGroup List PanelBuilder
  */
 public class ActionGroupListPanelBuilder implements PanelBuilder
 {
     private String _strTitle;
-    private List<ActionGroupBuilder> _listActionGroupBuilders = new ArrayList<ActionGroupBuilder>(  );
+    private List<ActionGroupBuilder> _listActionGroupBuilders = new ArrayList<ActionGroupBuilder>( );
 
     /**
      * Returns the Title
@@ -57,7 +56,7 @@ public class ActionGroupListPanelBuilder implements PanelBuilder
      * @return The Title
      */
     @Override
-    public String getTitle(  )
+    public String getTitle( )
     {
         return _strTitle;
     }
@@ -65,7 +64,8 @@ public class ActionGroupListPanelBuilder implements PanelBuilder
     /**
      * Sets the Title
      *
-     * @param strTitle The Title
+     * @param strTitle
+     *            The Title
      */
     public void setTitle( String strTitle )
     {
@@ -77,7 +77,7 @@ public class ActionGroupListPanelBuilder implements PanelBuilder
      *
      * @return The ListActionGroups
      */
-    public List<ActionGroupBuilder> getActionGroupBuilders(  )
+    public List<ActionGroupBuilder> getActionGroupBuilders( )
     {
         return _listActionGroupBuilders;
     }
@@ -85,7 +85,8 @@ public class ActionGroupListPanelBuilder implements PanelBuilder
     /**
      * Sets the ListActionGroups
      *
-     * @param listActionGroupBuilders The ListActionGroups
+     * @param listActionGroupBuilders
+     *            The ListActionGroups
      */
     public void setActionGroupBuilders( List<ActionGroupBuilder> listActionGroupBuilders )
     {
@@ -98,7 +99,7 @@ public class ActionGroupListPanelBuilder implements PanelBuilder
     @Override
     public List<ActionGroup> getActionGroups( Customer customer, AdminUser user )
     {
-        List<ActionGroup> listActionGroup = new ArrayList<ActionGroup>(  );
+        List<ActionGroup> listActionGroup = new ArrayList<ActionGroup>( );
 
         if ( customer != null )
         {

@@ -47,14 +47,13 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 /**
  * This class provides the user interface to manage BusinessSector features ( manage, create, modify, remove )
  */
 @Controller( controllerJsp = "ManageBusinessSectors.jsp", controllerPath = "jsp/admin/plugins/gru/", right = "GRU_DOMAIN_MANAGEMENT" )
 public class BusinessSectorJspBean extends ManageDomainGruJspBean
 {
-    ////////////////////////////////////////////////////////////////////////////
+    // //////////////////////////////////////////////////////////////////////////
     // Constants
 
     // templates
@@ -101,7 +100,9 @@ public class BusinessSectorJspBean extends ManageDomainGruJspBean
 
     /**
      * Build the Manage View
-     * @param request The HTTP request
+     * 
+     * @param request
+     *            The HTTP request
      * @return The page
      */
     @View( value = VIEW_MANAGE_BUSINESSSECTORS, defaultView = true )
@@ -109,9 +110,8 @@ public class BusinessSectorJspBean extends ManageDomainGruJspBean
     {
         _businesssector = null;
 
-        List<BusinessSector> listBusinessSectors = (List<BusinessSector>) BusinessSectorHome.getBusinessSectorsList(  );
-        Map<String, Object> model = getPaginatedListModel( request, MARK_BUSINESSSECTOR_LIST, listBusinessSectors,
-                JSP_MANAGE_BUSINESSSECTORS );
+        List<BusinessSector> listBusinessSectors = (List<BusinessSector>) BusinessSectorHome.getBusinessSectorsList( );
+        Map<String, Object> model = getPaginatedListModel( request, MARK_BUSINESSSECTOR_LIST, listBusinessSectors, JSP_MANAGE_BUSINESSSECTORS );
 
         return getPage( PROPERTY_PAGE_TITLE_MANAGE_BUSINESSSECTORS, TEMPLATE_MANAGE_BUSINESSSECTORS, model );
     }
@@ -119,15 +119,16 @@ public class BusinessSectorJspBean extends ManageDomainGruJspBean
     /**
      * Returns the form to create a businesssector
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the html code of the businesssector form
      */
     @View( VIEW_CREATE_BUSINESSSECTOR )
     public String getCreateBusinessSector( HttpServletRequest request )
     {
-        _businesssector = ( _businesssector != null ) ? _businesssector : new BusinessSector(  );
+        _businesssector = ( _businesssector != null ) ? _businesssector : new BusinessSector( );
 
-        Map<String, Object> model = getModel(  );
+        Map<String, Object> model = getModel( );
         model.put( MARK_BUSINESSSECTOR, _businesssector );
 
         return getPage( PROPERTY_PAGE_TITLE_CREATE_BUSINESSSECTOR, TEMPLATE_CREATE_BUSINESSSECTOR, model );
@@ -136,7 +137,8 @@ public class BusinessSectorJspBean extends ManageDomainGruJspBean
     /**
      * Process the data capture form of a new businesssector
      *
-     * @param request The Http Request
+     * @param request
+     *            The Http Request
      * @return The Jsp URL of the process result
      */
     @Action( ACTION_CREATE_BUSINESSSECTOR )
@@ -151,16 +153,16 @@ public class BusinessSectorJspBean extends ManageDomainGruJspBean
         }
 
         BusinessSectorHome.create( _businesssector );
-        addInfo( INFO_BUSINESSSECTOR_CREATED, getLocale(  ) );
+        addInfo( INFO_BUSINESSSECTOR_CREATED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_BUSINESSSECTORS );
     }
 
     /**
-     * Manages the removal form of a businesssector whose identifier is in the http
-     * request
+     * Manages the removal form of a businesssector whose identifier is in the http request
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the html code to confirm
      */
     @Action( ACTION_CONFIRM_REMOVE_BUSINESSSECTOR )
@@ -170,8 +172,8 @@ public class BusinessSectorJspBean extends ManageDomainGruJspBean
         UrlItem url = new UrlItem( getActionUrl( ACTION_REMOVE_BUSINESSSECTOR ) );
         url.addParameter( PARAMETER_ID_BUSINESSSECTOR, nId );
 
-        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_BUSINESSSECTOR,
-                url.getUrl(  ), AdminMessage.TYPE_CONFIRMATION );
+        String strMessageUrl = AdminMessageService
+                .getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_BUSINESSSECTOR, url.getUrl( ), AdminMessage.TYPE_CONFIRMATION );
 
         return redirect( request, strMessageUrl );
     }
@@ -179,7 +181,8 @@ public class BusinessSectorJspBean extends ManageDomainGruJspBean
     /**
      * Handles the removal form of a businesssector
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the jsp URL to display the form to manage businesssectors
      */
     @Action( ACTION_REMOVE_BUSINESSSECTOR )
@@ -187,7 +190,7 @@ public class BusinessSectorJspBean extends ManageDomainGruJspBean
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_BUSINESSSECTOR ) );
         BusinessSectorHome.remove( nId );
-        addInfo( INFO_BUSINESSSECTOR_REMOVED, getLocale(  ) );
+        addInfo( INFO_BUSINESSSECTOR_REMOVED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_BUSINESSSECTORS );
     }
@@ -195,7 +198,8 @@ public class BusinessSectorJspBean extends ManageDomainGruJspBean
     /**
      * Returns the form to update info about a businesssector
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return The HTML form to update info
      */
     @View( VIEW_MODIFY_BUSINESSSECTOR )
@@ -203,12 +207,12 @@ public class BusinessSectorJspBean extends ManageDomainGruJspBean
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_BUSINESSSECTOR ) );
 
-        if ( ( _businesssector == null ) || ( _businesssector.getId(  ) != nId ) )
+        if ( ( _businesssector == null ) || ( _businesssector.getId( ) != nId ) )
         {
             _businesssector = BusinessSectorHome.findByPrimaryKey( nId );
         }
 
-        Map<String, Object> model = getModel(  );
+        Map<String, Object> model = getModel( );
         model.put( MARK_BUSINESSSECTOR, _businesssector );
 
         return getPage( PROPERTY_PAGE_TITLE_MODIFY_BUSINESSSECTOR, TEMPLATE_MODIFY_BUSINESSSECTOR, model );
@@ -217,7 +221,8 @@ public class BusinessSectorJspBean extends ManageDomainGruJspBean
     /**
      * Process the change form of a businesssector
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return The Jsp URL of the process result
      */
     @Action( ACTION_MODIFY_BUSINESSSECTOR )
@@ -228,11 +233,11 @@ public class BusinessSectorJspBean extends ManageDomainGruJspBean
         // Check constraints
         if ( !validateBean( _businesssector, VALIDATION_ATTRIBUTES_PREFIX ) )
         {
-            return redirect( request, VIEW_MODIFY_BUSINESSSECTOR, PARAMETER_ID_BUSINESSSECTOR, _businesssector.getId(  ) );
+            return redirect( request, VIEW_MODIFY_BUSINESSSECTOR, PARAMETER_ID_BUSINESSSECTOR, _businesssector.getId( ) );
         }
 
         BusinessSectorHome.update( _businesssector );
-        addInfo( INFO_BUSINESSSECTOR_UPDATED, getLocale(  ) );
+        addInfo( INFO_BUSINESSSECTOR_UPDATED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_BUSINESSSECTORS );
     }

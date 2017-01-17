@@ -40,7 +40,6 @@ import fr.paris.lutece.portal.service.spring.SpringContextService;
 
 import java.util.List;
 
-
 /**
  * This class provides instances management methods (create, find, ...) for Customer objects
  */
@@ -53,14 +52,16 @@ public final class CustomerHome
     /**
      * Private constructor - this class need not be instantiated
      */
-    private CustomerHome(  )
+    private CustomerHome( )
     {
     }
 
     /**
      * Create an instance of the customer class
-     * @param customer The instance of the Customer which contains the informations to store
-     * @return The  instance of customer which has been created with its primary key.
+     * 
+     * @param customer
+     *            The instance of the Customer which contains the informations to store
+     * @return The instance of customer which has been created with its primary key.
      */
     public static Customer create( Customer customer )
     {
@@ -71,8 +72,10 @@ public final class CustomerHome
 
     /**
      * Update of the customer which is specified in parameter
-     * @param customer The instance of the Customer which contains the data to store
-     * @return The instance of the  customer which has been updated
+     * 
+     * @param customer
+     *            The instance of the Customer which contains the data to store
+     * @return The instance of the customer which has been updated
      */
     public static Customer update( Customer customer )
     {
@@ -83,19 +86,23 @@ public final class CustomerHome
 
     /**
      * Remove the customer whose identifier is specified in parameter
-     * @param strId The customer Id
+     * 
+     * @param strId
+     *            The customer Id
      */
     public static void remove( String strId )
     {
         _dao.delete( strId, _plugin );
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Finders
 
     /**
      * Returns an instance of a customer whose identifier is specified in parameter
-     * @param strKey The customer primary key
+     * 
+     * @param strKey
+     *            The customer primary key
      * @return an instance of Customer
      */
     public static Customer findByPrimaryKey( String strKey )
@@ -105,7 +112,9 @@ public final class CustomerHome
 
     /**
      * Find a customer by its GUID
-     * @param strGuid The GUID
+     * 
+     * @param strGuid
+     *            The GUID
      * @return The customer
      */
     public static Customer findByGuid( String strGuid )
@@ -115,27 +124,30 @@ public final class CustomerHome
 
     /**
      * Load the data of all the customer objects and returns them in form of a collection
+     * 
      * @return the collection which contains the data of all the customer objects
      */
-    public static List<Customer> getCustomersList(  )
+    public static List<Customer> getCustomersList( )
     {
         return _dao.selectCustomersList( _plugin );
     }
 
     /**
      * Load the id of all the customer objects and returns them in form of a collection
+     * 
      * @return the collection which contains the id of all the customer objects
      */
-    public static List<Integer> getIdCustomersList(  )
+    public static List<Integer> getIdCustomersList( )
     {
         return _dao.selectIdCustomersList( _plugin );
     }
 
     /**
      * The number of customers
+     * 
      * @return The number of customers
      */
-    public static int getCustomersCount(  )
+    public static int getCustomersCount( )
     {
         return _dao.selectCustomersCount( _plugin );
     }

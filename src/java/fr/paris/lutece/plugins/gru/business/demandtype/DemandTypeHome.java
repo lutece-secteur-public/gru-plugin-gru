@@ -40,7 +40,6 @@ import fr.paris.lutece.util.ReferenceList;
 
 import java.util.List;
 
-
 /**
  * This class provides instances management methods (create, find, ...) for DemandType objects
  */
@@ -53,14 +52,16 @@ public final class DemandTypeHome
     /**
      * Private constructor - this class need not be instantiated
      */
-    private DemandTypeHome(  )
+    private DemandTypeHome( )
     {
     }
 
     /**
      * Create an instance of the demandType class
-     * @param demandType The instance of the DemandType which contains the informations to store
-     * @return The  instance of demandType which has been created with its primary key.
+     * 
+     * @param demandType
+     *            The instance of the DemandType which contains the informations to store
+     * @return The instance of demandType which has been created with its primary key.
      */
     public static DemandType create( DemandType demandType )
     {
@@ -71,8 +72,10 @@ public final class DemandTypeHome
 
     /**
      * Update of the demandType which is specified in parameter
-     * @param demandType The instance of the DemandType which contains the data to store
-     * @return The instance of the  demandType which has been updated
+     * 
+     * @param demandType
+     *            The instance of the DemandType which contains the data to store
+     * @return The instance of the demandType which has been updated
      */
     public static DemandType update( DemandType demandType )
     {
@@ -83,19 +86,23 @@ public final class DemandTypeHome
 
     /**
      * Remove the demandType whose identifier is specified in parameter
-     * @param nKey The demandType Id
+     * 
+     * @param nKey
+     *            The demandType Id
      */
     public static void remove( int nKey )
     {
         _dao.delete( nKey, _plugin );
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Finders
 
     /**
      * Returns an instance of a demandType whose identifier is specified in parameter
-     * @param nKey The demandType primary key
+     * 
+     * @param nKey
+     *            The demandType primary key
      * @return an instance of DemandType
      */
     public static DemandType findByPrimaryKey( int nKey )
@@ -105,7 +112,9 @@ public final class DemandTypeHome
 
     /**
      * Find a DemandType by its DemandTypeId
-     * @param strDemandTypeId The demandTypeId
+     * 
+     * @param strDemandTypeId
+     *            The demandTypeId
      * @return The DemandType
      */
     public static DemandType findByTypeId( String strDemandTypeId )
@@ -115,27 +124,30 @@ public final class DemandTypeHome
 
     /**
      * Load the data of all the demandType objects and returns them in form of a collection
+     * 
      * @return the collection which contains the data of all the demandType objects
      */
-    public static List<DemandType> getDemandTypesList(  )
+    public static List<DemandType> getDemandTypesList( )
     {
         return _dao.selectDemandTypesList( _plugin );
     }
 
     /**
      * Load the id of all the demandType objects and returns them in form of a collection
+     * 
      * @return the collection which contains the id of all the demandType objects
      */
-    public static List<Integer> getIdDemandTypesList(  )
+    public static List<Integer> getIdDemandTypesList( )
     {
         return _dao.selectIdDemandTypesList( _plugin );
     }
 
     /**
      * Return a reference list of all demands
+     * 
      * @return The list
      */
-    public static ReferenceList getDemandTypes(  )
+    public static ReferenceList getDemandTypes( )
     {
         return _dao.selectDemandTypes( _plugin );
     }

@@ -35,7 +35,6 @@ package fr.paris.lutece.plugins.gru.service.search;
 
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 
-
 /**
  * SearchService
  */
@@ -45,15 +44,16 @@ public class SearchService
     private static ISearchService _service;
 
     /** Private constructor */
-    private SearchService(  )
+    private SearchService( )
     {
     }
 
     /**
      * Get the unique instance
+     * 
      * @return The instance
      */
-    public static ISearchService instance(  )
+    public static ISearchService instance( )
     {
         if ( _service == null )
         {

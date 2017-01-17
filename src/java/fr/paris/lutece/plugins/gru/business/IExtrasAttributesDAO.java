@@ -37,7 +37,6 @@ import fr.paris.lutece.portal.service.plugin.Plugin;
 
 import java.util.List;
 
-
 /**
  * IExtrasAttributesDAO Interface
  */
@@ -45,46 +44,62 @@ public interface IExtrasAttributesDAO
 {
     /**
      * Insert a new record in the table.
-     * @param extrasAttributes instance of the ExtrasAttributes object to insert
-     * @param plugin the Plugin
+     * 
+     * @param extrasAttributes
+     *            instance of the ExtrasAttributes object to insert
+     * @param plugin
+     *            the Plugin
      */
     void insert( ExtrasAttributes extrasAttributes, Plugin plugin );
 
     /**
      * Update the record in the table
-     * @param extrasAttributes the reference of the ExtrasAttributes
-     * @param plugin the Plugin
+     * 
+     * @param extrasAttributes
+     *            the reference of the ExtrasAttributes
+     * @param plugin
+     *            the Plugin
      */
     void store( ExtrasAttributes extrasAttributes, Plugin plugin );
 
     /**
      * Delete a record from the table
-     * @param nKey The identifier of the ExtrasAttributes to delete
-     * @param plugin the Plugin
+     * 
+     * @param nKey
+     *            The identifier of the ExtrasAttributes to delete
+     * @param plugin
+     *            the Plugin
      */
     void delete( int nKey, Plugin plugin );
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Finders
 
     /**
      * Load the data from the table
-     * @param nKey The identifier of the extrasAttributes
-     * @param plugin the Plugin
+     * 
+     * @param nKey
+     *            The identifier of the extrasAttributes
+     * @param plugin
+     *            the Plugin
      * @return The instance of the extrasAttributes
      */
     ExtrasAttributes load( int nKey, Plugin plugin );
 
     /**
      * Load the data of all the extrasAttributes objects and returns them as a collection
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the data of all the extrasAttributes objects
      */
     List<ExtrasAttributes> selectExtrasAttributessList( Plugin plugin );
 
     /**
      * Load the id of all the extrasAttributes objects and returns them as a collection
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the id of all the extrasAttributes objects
      */
     List<Integer> selectIdExtrasAttributessList( Plugin plugin );

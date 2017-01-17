@@ -40,7 +40,6 @@ import fr.paris.lutece.util.sql.DAOUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * This class provides Data Access methods for BusinessSector objects
  */
@@ -57,22 +56,24 @@ public final class BusinessSectorDAO implements IBusinessSectorDAO
 
     /**
      * Generates a new primary key
-     * @param plugin The Plugin
+     * 
+     * @param plugin
+     *            The Plugin
      * @return The new primary key
      */
     public int newPrimaryKey( Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_NEW_PK, plugin );
-        daoUtil.executeQuery(  );
+        daoUtil.executeQuery( );
 
         int nKey = 1;
 
-        if ( daoUtil.next(  ) )
+        if ( daoUtil.next( ) )
         {
             nKey = daoUtil.getInt( 1 ) + 1;
         }
 
-        daoUtil.free(  );
+        daoUtil.free( );
 
         return nKey;
     }
@@ -87,12 +88,12 @@ public final class BusinessSectorDAO implements IBusinessSectorDAO
 
         businessSector.setId( newPrimaryKey( plugin ) );
 
-        daoUtil.setInt( 1, businessSector.getId(  ) );
-        daoUtil.setString( 2, businessSector.getName(  ) );
-        daoUtil.setString( 3, businessSector.getDescription(  ) );
+        daoUtil.setInt( 1, businessSector.getId( ) );
+        daoUtil.setString( 2, businessSector.getName( ) );
+        daoUtil.setString( 3, businessSector.getDescription( ) );
 
-        daoUtil.executeUpdate(  );
-        daoUtil.free(  );
+        daoUtil.executeUpdate( );
+        daoUtil.free( );
     }
 
     /**
@@ -103,19 +104,19 @@ public final class BusinessSectorDAO implements IBusinessSectorDAO
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT, plugin );
         daoUtil.setInt( 1, nKey );
-        daoUtil.executeQuery(  );
+        daoUtil.executeQuery( );
 
         BusinessSector businessSector = null;
 
-        if ( daoUtil.next(  ) )
+        if ( daoUtil.next( ) )
         {
-            businessSector = new BusinessSector(  );
+            businessSector = new BusinessSector( );
             businessSector.setId( daoUtil.getInt( 1 ) );
             businessSector.setName( daoUtil.getString( 2 ) );
             businessSector.setDescription( daoUtil.getString( 3 ) );
         }
 
-        daoUtil.free(  );
+        daoUtil.free( );
 
         return businessSector;
     }
@@ -128,8 +129,8 @@ public final class BusinessSectorDAO implements IBusinessSectorDAO
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE, plugin );
         daoUtil.setInt( 1, nKey );
-        daoUtil.executeUpdate(  );
-        daoUtil.free(  );
+        daoUtil.executeUpdate( );
+        daoUtil.free( );
     }
 
     /**
@@ -140,13 +141,13 @@ public final class BusinessSectorDAO implements IBusinessSectorDAO
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE, plugin );
 
-        daoUtil.setInt( 1, businessSector.getId(  ) );
-        daoUtil.setString( 2, businessSector.getName(  ) );
-        daoUtil.setString( 3, businessSector.getDescription(  ) );
-        daoUtil.setInt( 4, businessSector.getId(  ) );
+        daoUtil.setInt( 1, businessSector.getId( ) );
+        daoUtil.setString( 2, businessSector.getName( ) );
+        daoUtil.setString( 3, businessSector.getDescription( ) );
+        daoUtil.setInt( 4, businessSector.getId( ) );
 
-        daoUtil.executeUpdate(  );
-        daoUtil.free(  );
+        daoUtil.executeUpdate( );
+        daoUtil.free( );
     }
 
     /**
@@ -155,13 +156,13 @@ public final class BusinessSectorDAO implements IBusinessSectorDAO
     @Override
     public List<BusinessSector> selectBusinessSectorsList( Plugin plugin )
     {
-        List<BusinessSector> businessSectorList = new ArrayList<BusinessSector>(  );
+        List<BusinessSector> businessSectorList = new ArrayList<BusinessSector>( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin );
-        daoUtil.executeQuery(  );
+        daoUtil.executeQuery( );
 
-        while ( daoUtil.next(  ) )
+        while ( daoUtil.next( ) )
         {
-            BusinessSector businessSector = new BusinessSector(  );
+            BusinessSector businessSector = new BusinessSector( );
 
             businessSector.setId( daoUtil.getInt( 1 ) );
             businessSector.setName( daoUtil.getString( 2 ) );
@@ -170,7 +171,7 @@ public final class BusinessSectorDAO implements IBusinessSectorDAO
             businessSectorList.add( businessSector );
         }
 
-        daoUtil.free(  );
+        daoUtil.free( );
 
         return businessSectorList;
     }
@@ -181,16 +182,16 @@ public final class BusinessSectorDAO implements IBusinessSectorDAO
     @Override
     public List<Integer> selectIdBusinessSectorsList( Plugin plugin )
     {
-        List<Integer> businessSectorList = new ArrayList<Integer>(  );
+        List<Integer> businessSectorList = new ArrayList<Integer>( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_ID, plugin );
-        daoUtil.executeQuery(  );
+        daoUtil.executeQuery( );
 
-        while ( daoUtil.next(  ) )
+        while ( daoUtil.next( ) )
         {
             businessSectorList.add( daoUtil.getInt( 1 ) );
         }
 
-        daoUtil.free(  );
+        daoUtil.free( );
 
         return businessSectorList;
     }
@@ -201,16 +202,16 @@ public final class BusinessSectorDAO implements IBusinessSectorDAO
     @Override
     public ReferenceList selectBusinessSectors( Plugin plugin )
     {
-        ReferenceList listSectors = new ReferenceList(  );
+        ReferenceList listSectors = new ReferenceList( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin );
-        daoUtil.executeQuery(  );
+        daoUtil.executeQuery( );
 
-        while ( daoUtil.next(  ) )
+        while ( daoUtil.next( ) )
         {
             listSectors.addItem( daoUtil.getInt( 1 ), daoUtil.getString( 2 ) );
         }
 
-        daoUtil.free(  );
+        daoUtil.free( );
 
         return listSectors;
     }

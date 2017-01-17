@@ -40,7 +40,6 @@ import fr.paris.lutece.portal.service.util.AppPropertiesService;
 
 import java.util.List;
 
-
 /**
  * AbstractDemandActionGroupBuilder
  */
@@ -60,7 +59,9 @@ public abstract class AbstractDemandActionGroupBuilder extends AbstractActionGro
 
     /**
      * Define the management url of the demand
-     * @param strUrl The url
+     * 
+     * @param strUrl
+     *            The url
      */
     public void setDemandManagementUrl( String strUrl )
     {
@@ -69,18 +70,23 @@ public abstract class AbstractDemandActionGroupBuilder extends AbstractActionGro
 
     /**
      * Gets the management url of the demand
+     * 
      * @return strUrl The url
      */
-    protected String getDemandManagementUrl(  )
+    protected String getDemandManagementUrl( )
     {
         return _strDemandManagementUrl;
     }
 
     /**
      * Build the management link for a given demand
-     * @param strDemandId The demand
-     * @param strDemandTypeId The demand type ID
-     * @param strCustomerId The customer ID
+     * 
+     * @param strDemandId
+     *            The demand
+     * @param strDemandTypeId
+     *            The demand type ID
+     * @param strCustomerId
+     *            The customer ID
      * @return The RUL of the link
      */
     protected String buildDemandManagementLink( String strDemandId, String strDemandTypeId, String strCustomerId )
@@ -94,7 +100,9 @@ public abstract class AbstractDemandActionGroupBuilder extends AbstractActionGro
 
     /**
      * Define excluded types list
-     * @param listExcludedTypes The list
+     * 
+     * @param listExcludedTypes
+     *            The list
      */
     public void setExcludedTypesList( List<String> listExcludedTypes )
     {
@@ -103,16 +111,19 @@ public abstract class AbstractDemandActionGroupBuilder extends AbstractActionGro
 
     /**
      * Gets the excluded types list
+     * 
      * @return The list
      */
-    protected List<String> getExcludedTypesList(  )
+    protected List<String> getExcludedTypesList( )
     {
         return _listExcludedTypes;
     }
 
     /**
      * Define excluded types list
-     * @param listIncludedTypes The list
+     * 
+     * @param listIncludedTypes
+     *            The list
      */
     public void setIncludedTypesList( List<String> listIncludedTypes )
     {
@@ -121,18 +132,23 @@ public abstract class AbstractDemandActionGroupBuilder extends AbstractActionGro
 
     /**
      * Gets the excluded types list
+     * 
      * @return The list
      */
-    protected List<String> getIncludedTypesList(  )
+    protected List<String> getIncludedTypesList( )
     {
         return _listIncludedTypes;
     }
 
     /**
      * Process the badge color
-     * @param demand The Demand
-     * @param strCurrentBadgeColor The current badge color
-     * @param strActiveBadgeColor The active badge color
+     * 
+     * @param demand
+     *            The Demand
+     * @param strCurrentBadgeColor
+     *            The current badge color
+     * @param strActiveBadgeColor
+     *            The active badge color
      * @return the badge color
      */
     protected String processGroupBadgeColor( Demand demand, String strCurrentBadgeColor, String strActiveBadgeColor )
@@ -144,7 +160,7 @@ public abstract class AbstractDemandActionGroupBuilder extends AbstractActionGro
             strBadgeColor = COLOR_DEFAULT;
         }
 
-        if ( demand.getStatusId(  ) != Demand.STATUS_CLOSED )
+        if ( demand.getStatusId( ) != Demand.STATUS_CLOSED )
         {
             strBadgeColor = strActiveBadgeColor;
         }
@@ -154,6 +170,6 @@ public abstract class AbstractDemandActionGroupBuilder extends AbstractActionGro
 
     protected String processItemColor( Demand demand, String strActiveColor )
     {
-        return ( demand.getStatusId(  ) == Demand.STATUS_CLOSED ) ? COLOR_DEFAULT : strActiveColor;
+        return ( demand.getStatusId( ) == Demand.STATUS_CLOSED ) ? COLOR_DEFAULT : strActiveColor;
     }
 }

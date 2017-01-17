@@ -42,7 +42,6 @@ import fr.paris.lutece.portal.business.user.AdminUser;
 
 import java.util.List;
 
-
 /**
  * ClaimActionGroupBuilder
  */
@@ -54,27 +53,27 @@ public class ClaimActionGroupBuilder extends AbstractDemandActionGroupBuilder
     @Override
     public ActionGroup buildActionGroup( Customer customer, AdminUser user )
     {
-        ActionGroup group = new ActionGroup(  );
-        List<Demand> listDemands = DemandService.getDemandsIncludingTypes( customer, getIncludedTypesList(  ), user );
+        ActionGroup group = new ActionGroup( );
+        List<Demand> listDemands = DemandService.getDemandsIncludingTypes( customer, getIncludedTypesList( ), user );
 
         String strBadgeColor = null;
 
         for ( Demand demand : listDemands )
         {
-            if ( demand.getStatusId(  ) != Demand.STATUS_CLOSED )
+            if ( demand.getStatusId( ) != Demand.STATUS_CLOSED )
             {
-                ActionItem item = new ActionItem(  );
-                item.setTitle( demand.getTitle(  ) + " " + demand.getReference(  ) );
-                item.setLink( buildDemandManagementLink( demand.getId(  ), demand.getTypeId(  ), customer.getId(  ) ) );
+                ActionItem item = new ActionItem( );
+                item.setTitle( demand.getTitle( ) + " " + demand.getReference( ) );
+                item.setLink( buildDemandManagementLink( demand.getId( ), demand.getTypeId( ), customer.getId( ) ) );
                 item.setColor( processItemColor( demand, COLOR_DANGER ) );
                 group.addActionItem( item );
                 strBadgeColor = processGroupBadgeColor( demand, strBadgeColor, COLOR_DANGER );
             }
         }
 
-        group.setTitle( getTitle(  ) );
-        group.setIcon( getIcon(  ) );
-        group.setBadgeText( "" + group.getActions(  ).size(  ) );
+        group.setTitle( getTitle( ) );
+        group.setIcon( getIcon( ) );
+        group.setBadgeText( "" + group.getActions( ).size( ) );
         group.setBadgeColor( strBadgeColor );
 
         return group;

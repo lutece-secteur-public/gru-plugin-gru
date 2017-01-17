@@ -50,14 +50,13 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 /**
  * This class provides the user interface to manage Feature features ( manage, create, modify, remove )
  */
 @Controller( controllerJsp = "ManageFeatures.jsp", controllerPath = "jsp/admin/plugins/gru/", right = "GRU_ADMIN_MANAGEMENT" )
 public class FeatureJspBean extends ManageAdminGRUJspBean
 {
-    ////////////////////////////////////////////////////////////////////////////
+    // //////////////////////////////////////////////////////////////////////////
     // Constants
 
     // templates
@@ -107,7 +106,9 @@ public class FeatureJspBean extends ManageAdminGRUJspBean
 
     /**
      * Build the Manage View
-     * @param request The HTTP request
+     * 
+     * @param request
+     *            The HTTP request
      * @return The page
      */
     @View( value = VIEW_MANAGE_FEATURES, defaultView = true )
@@ -115,7 +116,7 @@ public class FeatureJspBean extends ManageAdminGRUJspBean
     {
         _feature = null;
 
-        List<Feature> listFeatures = (List<Feature>) FeatureHome.getFeaturesList(  );
+        List<Feature> listFeatures = (List<Feature>) FeatureHome.getFeaturesList( );
         Map<String, Object> model = getPaginatedListModel( request, MARK_FEATURE_LIST, listFeatures, JSP_MANAGE_FEATURES );
 
         return getPage( PROPERTY_PAGE_TITLE_MANAGE_FEATURES, TEMPLATE_MANAGE_FEATURES, model );
@@ -124,26 +125,29 @@ public class FeatureJspBean extends ManageAdminGRUJspBean
     /**
      * Returns the form to create a feature
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the html code of the feature form
      */
     @View( VIEW_CREATE_FEATURE )
     public String getCreateFeature( HttpServletRequest request )
     {
-        _feature = ( _feature != null ) ? _feature : new Feature(  );
+        _feature = ( _feature != null ) ? _feature : new Feature( );
 
-        Map<String, Object> model = getModel(  );
+        Map<String, Object> model = getModel( );
         model.put( MARK_FEATURE, _feature );
-        model.put( MARK_CATEGORIES_LIST, FeatureCategoryHome.getCategoriesList(  ) );
-        model.put( MARK_TARGETS_LIST, ActionLinkService.getTargetList( getLocale(  ) ) );
-        model.put( MARK_DISPLAY_LEVELS_LIST, FeatureService.getFeatureDisplayLevels( getLocale(  ) ) );
+        model.put( MARK_CATEGORIES_LIST, FeatureCategoryHome.getCategoriesList( ) );
+        model.put( MARK_TARGETS_LIST, ActionLinkService.getTargetList( getLocale( ) ) );
+        model.put( MARK_DISPLAY_LEVELS_LIST, FeatureService.getFeatureDisplayLevels( getLocale( ) ) );
 
         return getPage( PROPERTY_PAGE_TITLE_CREATE_FEATURE, TEMPLATE_CREATE_FEATURE, model );
     }
 
     /**
-     * Process the data capture form of a new feature     *
-     * @param request The Http Request
+     * Process the data capture form of a new feature *
+     * 
+     * @param request
+     *            The Http Request
      * @return The Jsp URL of the process result
      */
     @Action( ACTION_CREATE_FEATURE )
@@ -158,16 +162,16 @@ public class FeatureJspBean extends ManageAdminGRUJspBean
         }
 
         FeatureHome.create( _feature );
-        addInfo( INFO_FEATURE_CREATED, getLocale(  ) );
+        addInfo( INFO_FEATURE_CREATED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_FEATURES );
     }
 
     /**
-     * Manages the removal form of a feature whose identifier is in the http
-     * request
+     * Manages the removal form of a feature whose identifier is in the http request
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the html code to confirm
      */
     @Action( ACTION_CONFIRM_REMOVE_FEATURE )
@@ -177,8 +181,7 @@ public class FeatureJspBean extends ManageAdminGRUJspBean
         UrlItem url = new UrlItem( getActionUrl( ACTION_REMOVE_FEATURE ) );
         url.addParameter( PARAMETER_ID_FEATURE, nId );
 
-        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_FEATURE,
-                url.getUrl(  ), AdminMessage.TYPE_CONFIRMATION );
+        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_FEATURE, url.getUrl( ), AdminMessage.TYPE_CONFIRMATION );
 
         return redirect( request, strMessageUrl );
     }
@@ -186,7 +189,8 @@ public class FeatureJspBean extends ManageAdminGRUJspBean
     /**
      * Handles the removal form of a feature
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the jsp URL to display the form to manage features
      */
     @Action( ACTION_REMOVE_FEATURE )
@@ -194,7 +198,7 @@ public class FeatureJspBean extends ManageAdminGRUJspBean
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_FEATURE ) );
         FeatureHome.remove( nId );
-        addInfo( INFO_FEATURE_REMOVED, getLocale(  ) );
+        addInfo( INFO_FEATURE_REMOVED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_FEATURES );
     }
@@ -202,7 +206,8 @@ public class FeatureJspBean extends ManageAdminGRUJspBean
     /**
      * Returns the form to update info about a feature
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return The HTML form to update info
      */
     @View( VIEW_MODIFY_FEATURE )
@@ -210,15 +215,15 @@ public class FeatureJspBean extends ManageAdminGRUJspBean
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_FEATURE ) );
 
-        if ( ( _feature == null ) || ( _feature.getId(  ) != nId ) )
+        if ( ( _feature == null ) || ( _feature.getId( ) != nId ) )
         {
             _feature = FeatureHome.findByPrimaryKey( nId );
         }
 
-        Map<String, Object> model = getModel(  );
-        model.put( MARK_CATEGORIES_LIST, FeatureCategoryHome.getCategoriesList(  ) );
-        model.put( MARK_TARGETS_LIST, ActionLinkService.getTargetList( getLocale(  ) ) );
-        model.put( MARK_DISPLAY_LEVELS_LIST, FeatureService.getFeatureDisplayLevels( getLocale(  ) ) );
+        Map<String, Object> model = getModel( );
+        model.put( MARK_CATEGORIES_LIST, FeatureCategoryHome.getCategoriesList( ) );
+        model.put( MARK_TARGETS_LIST, ActionLinkService.getTargetList( getLocale( ) ) );
+        model.put( MARK_DISPLAY_LEVELS_LIST, FeatureService.getFeatureDisplayLevels( getLocale( ) ) );
         model.put( MARK_FEATURE, _feature );
 
         return getPage( PROPERTY_PAGE_TITLE_MODIFY_FEATURE, TEMPLATE_MODIFY_FEATURE, model );
@@ -227,7 +232,8 @@ public class FeatureJspBean extends ManageAdminGRUJspBean
     /**
      * Process the change form of a feature
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return The Jsp URL of the process result
      */
     @Action( ACTION_MODIFY_FEATURE )
@@ -238,11 +244,11 @@ public class FeatureJspBean extends ManageAdminGRUJspBean
         // Check constraints
         if ( !validateBean( _feature, VALIDATION_ATTRIBUTES_PREFIX ) )
         {
-            return redirect( request, VIEW_MODIFY_FEATURE, PARAMETER_ID_FEATURE, _feature.getId(  ) );
+            return redirect( request, VIEW_MODIFY_FEATURE, PARAMETER_ID_FEATURE, _feature.getId( ) );
         }
 
         FeatureHome.update( _feature );
-        addInfo( INFO_FEATURE_UPDATED, getLocale(  ) );
+        addInfo( INFO_FEATURE_UPDATED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_FEATURES );
     }

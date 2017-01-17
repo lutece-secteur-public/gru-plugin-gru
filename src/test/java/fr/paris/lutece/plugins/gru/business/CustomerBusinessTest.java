@@ -37,7 +37,6 @@ import fr.paris.lutece.plugins.gru.business.customer.CustomerHome;
 import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
 import fr.paris.lutece.test.LuteceTestCase;
 
-
 public class CustomerBusinessTest extends LuteceTestCase
 {
     private final static int IDTITLE1 = 1;
@@ -63,10 +62,10 @@ public class CustomerBusinessTest extends LuteceTestCase
     private final static String EXTRASATTRIBUTES1 = "ExtrasAttributes1";
     private final static String EXTRASATTRIBUTES2 = "ExtrasAttributes2";
 
-    public void testBusiness(  )
+    public void testBusiness( )
     {
         // Initialize an object
-        Customer customer = new Customer(  );
+        Customer customer = new Customer( );
         customer.setIdTitle( IDTITLE1 );
         customer.setFirstname( FIRSTNAME1 );
         customer.setLastname( LASTNAME1 );
@@ -82,18 +81,18 @@ public class CustomerBusinessTest extends LuteceTestCase
         // Create test
         CustomerHome.create( customer );
 
-        Customer customerStored = CustomerHome.findByPrimaryKey( customer.getId(  ) );
-        assertEquals( customerStored.getIdTitle(  ), customer.getIdTitle(  ) );
-        assertEquals( customerStored.getFirstname(  ), customer.getFirstname(  ) );
-        assertEquals( customerStored.getLastname(  ), customer.getLastname(  ) );
-        assertEquals( customerStored.getHasAccount(  ), customer.getHasAccount(  ) );
-        assertEquals( customerStored.getAccountLogin(  ), customer.getAccountLogin(  ) );
-        assertEquals( customerStored.getAccountGuid(  ), customer.getAccountGuid(  ) );
-        assertEquals( customerStored.getEmail(  ), customer.getEmail(  ) );
-        assertEquals( customerStored.getIsEmailVerified(  ), customer.getIsEmailVerified(  ) );
-        assertEquals( customerStored.getMobilePhone(  ), customer.getMobilePhone(  ) );
-        assertEquals( customerStored.getIsMobilePhoneVerified(  ), customer.getIsMobilePhoneVerified(  ) );
-        assertEquals( customerStored.getExtrasAttributes(  ), customer.getExtrasAttributes(  ) );
+        Customer customerStored = CustomerHome.findByPrimaryKey( customer.getId( ) );
+        assertEquals( customerStored.getIdTitle( ), customer.getIdTitle( ) );
+        assertEquals( customerStored.getFirstname( ), customer.getFirstname( ) );
+        assertEquals( customerStored.getLastname( ), customer.getLastname( ) );
+        assertEquals( customerStored.getHasAccount( ), customer.getHasAccount( ) );
+        assertEquals( customerStored.getAccountLogin( ), customer.getAccountLogin( ) );
+        assertEquals( customerStored.getAccountGuid( ), customer.getAccountGuid( ) );
+        assertEquals( customerStored.getEmail( ), customer.getEmail( ) );
+        assertEquals( customerStored.getIsEmailVerified( ), customer.getIsEmailVerified( ) );
+        assertEquals( customerStored.getMobilePhone( ), customer.getMobilePhone( ) );
+        assertEquals( customerStored.getIsMobilePhoneVerified( ), customer.getIsMobilePhoneVerified( ) );
+        assertEquals( customerStored.getExtrasAttributes( ), customer.getExtrasAttributes( ) );
 
         // Update test
         customer.setIdTitle( IDTITLE2 );
@@ -108,25 +107,25 @@ public class CustomerBusinessTest extends LuteceTestCase
         customer.setIsMobilePhoneVerified( ISMOBILEPHONEVERIFIED2 );
         customer.setExtrasAttributes( EXTRASATTRIBUTES2 );
         CustomerHome.update( customer );
-        customerStored = CustomerHome.findByPrimaryKey( customer.getId(  ) );
-        assertEquals( customerStored.getIdTitle(  ), customer.getIdTitle(  ) );
-        assertEquals( customerStored.getFirstname(  ), customer.getFirstname(  ) );
-        assertEquals( customerStored.getLastname(  ), customer.getLastname(  ) );
-        assertEquals( customerStored.getHasAccount(  ), customer.getHasAccount(  ) );
-        assertEquals( customerStored.getAccountLogin(  ), customer.getAccountLogin(  ) );
-        assertEquals( customerStored.getAccountGuid(  ), customer.getAccountGuid(  ) );
-        assertEquals( customerStored.getEmail(  ), customer.getEmail(  ) );
-        assertEquals( customerStored.getIsEmailVerified(  ), customer.getIsEmailVerified(  ) );
-        assertEquals( customerStored.getMobilePhone(  ), customer.getMobilePhone(  ) );
-        assertEquals( customerStored.getIsMobilePhoneVerified(  ), customer.getIsMobilePhoneVerified(  ) );
-        assertEquals( customerStored.getExtrasAttributes(  ), customer.getExtrasAttributes(  ) );
+        customerStored = CustomerHome.findByPrimaryKey( customer.getId( ) );
+        assertEquals( customerStored.getIdTitle( ), customer.getIdTitle( ) );
+        assertEquals( customerStored.getFirstname( ), customer.getFirstname( ) );
+        assertEquals( customerStored.getLastname( ), customer.getLastname( ) );
+        assertEquals( customerStored.getHasAccount( ), customer.getHasAccount( ) );
+        assertEquals( customerStored.getAccountLogin( ), customer.getAccountLogin( ) );
+        assertEquals( customerStored.getAccountGuid( ), customer.getAccountGuid( ) );
+        assertEquals( customerStored.getEmail( ), customer.getEmail( ) );
+        assertEquals( customerStored.getIsEmailVerified( ), customer.getIsEmailVerified( ) );
+        assertEquals( customerStored.getMobilePhone( ), customer.getMobilePhone( ) );
+        assertEquals( customerStored.getIsMobilePhoneVerified( ), customer.getIsMobilePhoneVerified( ) );
+        assertEquals( customerStored.getExtrasAttributes( ), customer.getExtrasAttributes( ) );
 
         // List test
-        CustomerHome.getCustomersList(  );
+        CustomerHome.getCustomersList( );
 
         // Delete test
-        CustomerHome.remove( customer.getId(  ) );
-        customerStored = CustomerHome.findByPrimaryKey( customer.getId(  ) );
+        CustomerHome.remove( customer.getId( ) );
+        customerStored = CustomerHome.findByPrimaryKey( customer.getId( ) );
         assertNull( customerStored );
     }
 }

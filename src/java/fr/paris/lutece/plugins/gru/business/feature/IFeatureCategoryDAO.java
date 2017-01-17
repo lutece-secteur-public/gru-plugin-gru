@@ -38,7 +38,6 @@ import fr.paris.lutece.util.ReferenceList;
 
 import java.util.List;
 
-
 /**
  * IFeatureCategoryDAO Interface
  */
@@ -46,53 +45,71 @@ public interface IFeatureCategoryDAO
 {
     /**
      * Insert a new record in the table.
-     * @param featureCategory instance of the FeatureCategory object to insert
-     * @param plugin the Plugin
+     * 
+     * @param featureCategory
+     *            instance of the FeatureCategory object to insert
+     * @param plugin
+     *            the Plugin
      */
     void insert( FeatureCategory featureCategory, Plugin plugin );
 
     /**
      * Update the record in the table
-     * @param featureCategory the reference of the FeatureCategory
-     * @param plugin the Plugin
+     * 
+     * @param featureCategory
+     *            the reference of the FeatureCategory
+     * @param plugin
+     *            the Plugin
      */
     void store( FeatureCategory featureCategory, Plugin plugin );
 
     /**
      * Delete a record from the table
-     * @param nKey The identifier of the FeatureCategory to delete
-     * @param plugin the Plugin
+     * 
+     * @param nKey
+     *            The identifier of the FeatureCategory to delete
+     * @param plugin
+     *            the Plugin
      */
     void delete( int nKey, Plugin plugin );
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Finders
 
     /**
      * Load the data from the table
-     * @param nKey The identifier of the featureCategory
-     * @param plugin the Plugin
+     * 
+     * @param nKey
+     *            The identifier of the featureCategory
+     * @param plugin
+     *            the Plugin
      * @return The instance of the featureCategory
      */
     FeatureCategory load( int nKey, Plugin plugin );
 
     /**
      * Load the data of all the featureCategory objects and returns them as a collection
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the data of all the featureCategory objects
      */
     List<FeatureCategory> selectFeatureCategorysList( Plugin plugin );
 
     /**
      * Load the id of all the featureCategory objects and returns them as a collection
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the id of all the featureCategory objects
      */
     List<Integer> selectIdFeatureCategorysList( Plugin plugin );
 
     /**
      * Get all categories as a reference list
-     * @param plugin The plugin
+     * 
+     * @param plugin
+     *            The plugin
      * @return The list
      */
     ReferenceList selectCategoriesList( Plugin plugin );

@@ -47,14 +47,13 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 /**
  * This class provides the user interface to manage ExtrasAttributes features ( manage, create, modify, remove )
  */
 @Controller( controllerJsp = "ManageExtrasAttributess.jsp", controllerPath = "jsp/admin/plugins/gru/", right = "GRU_ADMIN_MANAGEMENT" )
 public class ExtrasAttributesJspBean extends ManageAdminGRUJspBean
 {
-    ////////////////////////////////////////////////////////////////////////////
+    // //////////////////////////////////////////////////////////////////////////
     // Constants
 
     // templates
@@ -101,7 +100,9 @@ public class ExtrasAttributesJspBean extends ManageAdminGRUJspBean
 
     /**
      * Build the Manage View
-     * @param request The HTTP request
+     * 
+     * @param request
+     *            The HTTP request
      * @return The page
      */
     @View( value = VIEW_MANAGE_EXTRASATTRIBUTESS, defaultView = true )
@@ -109,9 +110,8 @@ public class ExtrasAttributesJspBean extends ManageAdminGRUJspBean
     {
         _extrasattributes = null;
 
-        List<ExtrasAttributes> listExtrasAttributess = (List<ExtrasAttributes>) ExtrasAttributesHome.getExtrasAttributessList(  );
-        Map<String, Object> model = getPaginatedListModel( request, MARK_EXTRASATTRIBUTES_LIST, listExtrasAttributess,
-                JSP_MANAGE_EXTRASATTRIBUTESS );
+        List<ExtrasAttributes> listExtrasAttributess = (List<ExtrasAttributes>) ExtrasAttributesHome.getExtrasAttributessList( );
+        Map<String, Object> model = getPaginatedListModel( request, MARK_EXTRASATTRIBUTES_LIST, listExtrasAttributess, JSP_MANAGE_EXTRASATTRIBUTESS );
 
         return getPage( PROPERTY_PAGE_TITLE_MANAGE_EXTRASATTRIBUTESS, TEMPLATE_MANAGE_EXTRASATTRIBUTESS, model );
     }
@@ -119,15 +119,16 @@ public class ExtrasAttributesJspBean extends ManageAdminGRUJspBean
     /**
      * Returns the form to create a extrasattributes
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the html code of the extrasattributes form
      */
     @View( VIEW_CREATE_EXTRASATTRIBUTES )
     public String getCreateExtrasAttributes( HttpServletRequest request )
     {
-        _extrasattributes = ( _extrasattributes != null ) ? _extrasattributes : new ExtrasAttributes(  );
+        _extrasattributes = ( _extrasattributes != null ) ? _extrasattributes : new ExtrasAttributes( );
 
-        Map<String, Object> model = getModel(  );
+        Map<String, Object> model = getModel( );
         model.put( MARK_EXTRASATTRIBUTES, _extrasattributes );
 
         return getPage( PROPERTY_PAGE_TITLE_CREATE_EXTRASATTRIBUTES, TEMPLATE_CREATE_EXTRASATTRIBUTES, model );
@@ -136,7 +137,8 @@ public class ExtrasAttributesJspBean extends ManageAdminGRUJspBean
     /**
      * Process the data capture form of a new extrasattributes
      *
-     * @param request The Http Request
+     * @param request
+     *            The Http Request
      * @return The Jsp URL of the process result
      */
     @Action( ACTION_CREATE_EXTRASATTRIBUTES )
@@ -151,16 +153,16 @@ public class ExtrasAttributesJspBean extends ManageAdminGRUJspBean
         }
 
         ExtrasAttributesHome.create( _extrasattributes );
-        addInfo( INFO_EXTRASATTRIBUTES_CREATED, getLocale(  ) );
+        addInfo( INFO_EXTRASATTRIBUTES_CREATED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_EXTRASATTRIBUTESS );
     }
 
     /**
-     * Manages the removal form of a extrasattributes whose identifier is in the http
-     * request
+     * Manages the removal form of a extrasattributes whose identifier is in the http request
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the html code to confirm
      */
     @Action( ACTION_CONFIRM_REMOVE_EXTRASATTRIBUTES )
@@ -170,8 +172,8 @@ public class ExtrasAttributesJspBean extends ManageAdminGRUJspBean
         UrlItem url = new UrlItem( getActionUrl( ACTION_REMOVE_EXTRASATTRIBUTES ) );
         url.addParameter( PARAMETER_ID_EXTRASATTRIBUTES, nId );
 
-        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_EXTRASATTRIBUTES,
-                url.getUrl(  ), AdminMessage.TYPE_CONFIRMATION );
+        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_EXTRASATTRIBUTES, url.getUrl( ),
+                AdminMessage.TYPE_CONFIRMATION );
 
         return redirect( request, strMessageUrl );
     }
@@ -179,7 +181,8 @@ public class ExtrasAttributesJspBean extends ManageAdminGRUJspBean
     /**
      * Handles the removal form of a extrasattributes
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the jsp URL to display the form to manage extrasattributess
      */
     @Action( ACTION_REMOVE_EXTRASATTRIBUTES )
@@ -187,7 +190,7 @@ public class ExtrasAttributesJspBean extends ManageAdminGRUJspBean
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_EXTRASATTRIBUTES ) );
         ExtrasAttributesHome.remove( nId );
-        addInfo( INFO_EXTRASATTRIBUTES_REMOVED, getLocale(  ) );
+        addInfo( INFO_EXTRASATTRIBUTES_REMOVED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_EXTRASATTRIBUTESS );
     }
@@ -195,7 +198,8 @@ public class ExtrasAttributesJspBean extends ManageAdminGRUJspBean
     /**
      * Returns the form to update info about a extrasattributes
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return The HTML form to update info
      */
     @View( VIEW_MODIFY_EXTRASATTRIBUTES )
@@ -203,12 +207,12 @@ public class ExtrasAttributesJspBean extends ManageAdminGRUJspBean
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_EXTRASATTRIBUTES ) );
 
-        if ( ( _extrasattributes == null ) || ( _extrasattributes.getId(  ) != nId ) )
+        if ( ( _extrasattributes == null ) || ( _extrasattributes.getId( ) != nId ) )
         {
             _extrasattributes = ExtrasAttributesHome.findByPrimaryKey( nId );
         }
 
-        Map<String, Object> model = getModel(  );
+        Map<String, Object> model = getModel( );
         model.put( MARK_EXTRASATTRIBUTES, _extrasattributes );
 
         return getPage( PROPERTY_PAGE_TITLE_MODIFY_EXTRASATTRIBUTES, TEMPLATE_MODIFY_EXTRASATTRIBUTES, model );
@@ -217,7 +221,8 @@ public class ExtrasAttributesJspBean extends ManageAdminGRUJspBean
     /**
      * Process the change form of a extrasattributes
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return The Jsp URL of the process result
      */
     @Action( ACTION_MODIFY_EXTRASATTRIBUTES )
@@ -228,12 +233,11 @@ public class ExtrasAttributesJspBean extends ManageAdminGRUJspBean
         // Check constraints
         if ( !validateBean( _extrasattributes, VALIDATION_ATTRIBUTES_PREFIX ) )
         {
-            return redirect( request, VIEW_MODIFY_EXTRASATTRIBUTES, PARAMETER_ID_EXTRASATTRIBUTES,
-                _extrasattributes.getId(  ) );
+            return redirect( request, VIEW_MODIFY_EXTRASATTRIBUTES, PARAMETER_ID_EXTRASATTRIBUTES, _extrasattributes.getId( ) );
         }
 
         ExtrasAttributesHome.update( _extrasattributes );
-        addInfo( INFO_EXTRASATTRIBUTES_UPDATED, getLocale(  ) );
+        addInfo( INFO_EXTRASATTRIBUTES_UPDATED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_EXTRASATTRIBUTESS );
     }

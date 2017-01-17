@@ -48,14 +48,13 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 /**
  * This class provides the user interface to manage DemandTypeAction features ( manage, create, modify, remove )
  */
 @Controller( controllerJsp = "ManageDemandTypeActions.jsp", controllerPath = "jsp/admin/plugins/gru/", right = "GRU_DEMAND_MANAGEMENT" )
 public class DemandTypeActionJspBean extends ManageDemandJspBean
 {
-    ////////////////////////////////////////////////////////////////////////////
+    // //////////////////////////////////////////////////////////////////////////
     // Constants
 
     // templates
@@ -103,7 +102,9 @@ public class DemandTypeActionJspBean extends ManageDemandJspBean
 
     /**
      * Build the Manage View
-     * @param request The HTTP request
+     * 
+     * @param request
+     *            The HTTP request
      * @return The page
      */
     @View( value = VIEW_MANAGE_DEMANDTYPEACTIONS, defaultView = true )
@@ -111,9 +112,8 @@ public class DemandTypeActionJspBean extends ManageDemandJspBean
     {
         _demandtypeaction = null;
 
-        List<DemandTypeAction> listDemandTypeActions = (List<DemandTypeAction>) DemandTypeActionHome.getDemandTypeActionsList(  );
-        Map<String, Object> model = getPaginatedListModel( request, MARK_DEMANDTYPEACTION_LIST, listDemandTypeActions,
-                JSP_MANAGE_DEMANDTYPEACTIONS );
+        List<DemandTypeAction> listDemandTypeActions = (List<DemandTypeAction>) DemandTypeActionHome.getDemandTypeActionsList( );
+        Map<String, Object> model = getPaginatedListModel( request, MARK_DEMANDTYPEACTION_LIST, listDemandTypeActions, JSP_MANAGE_DEMANDTYPEACTIONS );
 
         return getPage( PROPERTY_PAGE_TITLE_MANAGE_DEMANDTYPEACTIONS, TEMPLATE_MANAGE_DEMANDTYPEACTIONS, model );
     }
@@ -121,17 +121,18 @@ public class DemandTypeActionJspBean extends ManageDemandJspBean
     /**
      * Returns the form to create a demandtypeaction
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the html code of the demandtypeaction form
      */
     @View( VIEW_CREATE_DEMANDTYPEACTION )
     public String getCreateDemandTypeAction( HttpServletRequest request )
     {
-        _demandtypeaction = ( _demandtypeaction != null ) ? _demandtypeaction : new DemandTypeAction(  );
+        _demandtypeaction = ( _demandtypeaction != null ) ? _demandtypeaction : new DemandTypeAction( );
 
-        Map<String, Object> model = getModel(  );
+        Map<String, Object> model = getModel( );
         model.put( MARK_DEMANDTYPEACTION, _demandtypeaction );
-        model.put( MARK_DEMAND_TYPES_LIST, DemandTypeHome.getDemandTypes(  ) );
+        model.put( MARK_DEMAND_TYPES_LIST, DemandTypeHome.getDemandTypes( ) );
 
         return getPage( PROPERTY_PAGE_TITLE_CREATE_DEMANDTYPEACTION, TEMPLATE_CREATE_DEMANDTYPEACTION, model );
     }
@@ -139,7 +140,8 @@ public class DemandTypeActionJspBean extends ManageDemandJspBean
     /**
      * Process the data capture form of a new demandtypeaction
      *
-     * @param request The Http Request
+     * @param request
+     *            The Http Request
      * @return The Jsp URL of the process result
      */
     @Action( ACTION_CREATE_DEMANDTYPEACTION )
@@ -154,16 +156,16 @@ public class DemandTypeActionJspBean extends ManageDemandJspBean
         }
 
         DemandTypeActionHome.create( _demandtypeaction );
-        addInfo( INFO_DEMANDTYPEACTION_CREATED, getLocale(  ) );
+        addInfo( INFO_DEMANDTYPEACTION_CREATED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_DEMANDTYPEACTIONS );
     }
 
     /**
-     * Manages the removal form of a demandtypeaction whose identifier is in the http
-     * request
+     * Manages the removal form of a demandtypeaction whose identifier is in the http request
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the html code to confirm
      */
     @Action( ACTION_CONFIRM_REMOVE_DEMANDTYPEACTION )
@@ -173,8 +175,8 @@ public class DemandTypeActionJspBean extends ManageDemandJspBean
         UrlItem url = new UrlItem( getActionUrl( ACTION_REMOVE_DEMANDTYPEACTION ) );
         url.addParameter( PARAMETER_ID_DEMANDTYPEACTION, nId );
 
-        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_DEMANDTYPEACTION,
-                url.getUrl(  ), AdminMessage.TYPE_CONFIRMATION );
+        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_DEMANDTYPEACTION, url.getUrl( ),
+                AdminMessage.TYPE_CONFIRMATION );
 
         return redirect( request, strMessageUrl );
     }
@@ -182,7 +184,8 @@ public class DemandTypeActionJspBean extends ManageDemandJspBean
     /**
      * Handles the removal form of a demandtypeaction
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the jsp URL to display the form to manage demandtypeactions
      */
     @Action( ACTION_REMOVE_DEMANDTYPEACTION )
@@ -190,7 +193,7 @@ public class DemandTypeActionJspBean extends ManageDemandJspBean
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_DEMANDTYPEACTION ) );
         DemandTypeActionHome.remove( nId );
-        addInfo( INFO_DEMANDTYPEACTION_REMOVED, getLocale(  ) );
+        addInfo( INFO_DEMANDTYPEACTION_REMOVED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_DEMANDTYPEACTIONS );
     }
@@ -198,7 +201,8 @@ public class DemandTypeActionJspBean extends ManageDemandJspBean
     /**
      * Returns the form to update info about a demandtypeaction
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return The HTML form to update info
      */
     @View( VIEW_MODIFY_DEMANDTYPEACTION )
@@ -206,14 +210,14 @@ public class DemandTypeActionJspBean extends ManageDemandJspBean
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_DEMANDTYPEACTION ) );
 
-        if ( ( _demandtypeaction == null ) || ( _demandtypeaction.getId(  ) != nId ) )
+        if ( ( _demandtypeaction == null ) || ( _demandtypeaction.getId( ) != nId ) )
         {
             _demandtypeaction = DemandTypeActionHome.findByPrimaryKey( nId );
         }
 
-        Map<String, Object> model = getModel(  );
+        Map<String, Object> model = getModel( );
         model.put( MARK_DEMANDTYPEACTION, _demandtypeaction );
-        model.put( MARK_DEMAND_TYPES_LIST, DemandTypeHome.getDemandTypes(  ) );
+        model.put( MARK_DEMAND_TYPES_LIST, DemandTypeHome.getDemandTypes( ) );
 
         return getPage( PROPERTY_PAGE_TITLE_MODIFY_DEMANDTYPEACTION, TEMPLATE_MODIFY_DEMANDTYPEACTION, model );
     }
@@ -221,7 +225,8 @@ public class DemandTypeActionJspBean extends ManageDemandJspBean
     /**
      * Process the change form of a demandtypeaction
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return The Jsp URL of the process result
      */
     @Action( ACTION_MODIFY_DEMANDTYPEACTION )
@@ -232,12 +237,11 @@ public class DemandTypeActionJspBean extends ManageDemandJspBean
         // Check constraints
         if ( !validateBean( _demandtypeaction, VALIDATION_ATTRIBUTES_PREFIX ) )
         {
-            return redirect( request, VIEW_MODIFY_DEMANDTYPEACTION, PARAMETER_ID_DEMANDTYPEACTION,
-                _demandtypeaction.getId(  ) );
+            return redirect( request, VIEW_MODIFY_DEMANDTYPEACTION, PARAMETER_ID_DEMANDTYPEACTION, _demandtypeaction.getId( ) );
         }
 
         DemandTypeActionHome.update( _demandtypeaction );
-        addInfo( INFO_DEMANDTYPEACTION_UPDATED, getLocale(  ) );
+        addInfo( INFO_DEMANDTYPEACTION_UPDATED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_DEMANDTYPEACTIONS );
     }

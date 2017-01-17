@@ -37,7 +37,6 @@ import fr.paris.lutece.plugins.gru.business.feature.Feature;
 import fr.paris.lutece.plugins.gru.business.feature.FeatureHome;
 import fr.paris.lutece.test.LuteceTestCase;
 
-
 public class FeatureBusinessTest extends LuteceTestCase
 {
     private final static String NAME1 = "Name1";
@@ -49,10 +48,10 @@ public class FeatureBusinessTest extends LuteceTestCase
     private final static int IDORDER1 = 1;
     private final static int IDORDER2 = 2;
 
-    public void testBusiness(  )
+    public void testBusiness( )
     {
         // Initialize an object
-        Feature feature = new Feature(  );
+        Feature feature = new Feature( );
         feature.setName( NAME1 );
         feature.setLink( LINK1 );
         feature.setIdCategory( IDCATEGORY1 );
@@ -61,11 +60,11 @@ public class FeatureBusinessTest extends LuteceTestCase
         // Create test
         FeatureHome.create( feature );
 
-        Feature featureStored = FeatureHome.findByPrimaryKey( feature.getId(  ) );
-        assertEquals( featureStored.getName(  ), feature.getName(  ) );
-        assertEquals( featureStored.getLink(  ), feature.getLink(  ) );
-        assertEquals( featureStored.getIdCategory(  ), feature.getIdCategory(  ) );
-        assertEquals( featureStored.getIdOrder(  ), feature.getIdOrder(  ) );
+        Feature featureStored = FeatureHome.findByPrimaryKey( feature.getId( ) );
+        assertEquals( featureStored.getName( ), feature.getName( ) );
+        assertEquals( featureStored.getLink( ), feature.getLink( ) );
+        assertEquals( featureStored.getIdCategory( ), feature.getIdCategory( ) );
+        assertEquals( featureStored.getIdOrder( ), feature.getIdOrder( ) );
 
         // Update test
         feature.setName( NAME2 );
@@ -73,18 +72,18 @@ public class FeatureBusinessTest extends LuteceTestCase
         feature.setIdCategory( IDCATEGORY2 );
         feature.setIdOrder( IDORDER2 );
         FeatureHome.update( feature );
-        featureStored = FeatureHome.findByPrimaryKey( feature.getId(  ) );
-        assertEquals( featureStored.getName(  ), feature.getName(  ) );
-        assertEquals( featureStored.getLink(  ), feature.getLink(  ) );
-        assertEquals( featureStored.getIdCategory(  ), feature.getIdCategory(  ) );
-        assertEquals( featureStored.getIdOrder(  ), feature.getIdOrder(  ) );
+        featureStored = FeatureHome.findByPrimaryKey( feature.getId( ) );
+        assertEquals( featureStored.getName( ), feature.getName( ) );
+        assertEquals( featureStored.getLink( ), feature.getLink( ) );
+        assertEquals( featureStored.getIdCategory( ), feature.getIdCategory( ) );
+        assertEquals( featureStored.getIdOrder( ), feature.getIdOrder( ) );
 
         // List test
-        FeatureHome.getFeaturesList(  );
+        FeatureHome.getFeaturesList( );
 
         // Delete test
-        FeatureHome.remove( feature.getId(  ) );
-        featureStored = FeatureHome.findByPrimaryKey( feature.getId(  ) );
+        FeatureHome.remove( feature.getId( ) );
+        featureStored = FeatureHome.findByPrimaryKey( feature.getId( ) );
         assertNull( featureStored );
     }
 }

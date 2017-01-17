@@ -48,14 +48,13 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 /**
  * This class provides the user interface to manage BusinessDomain features ( manage, create, modify, remove )
  */
 @Controller( controllerJsp = "ManageBusinessDomains.jsp", controllerPath = "jsp/admin/plugins/gru/", right = "GRU_DOMAIN_MANAGEMENT" )
 public class BusinessDomainJspBean extends ManageDomainGruJspBean
 {
-    ////////////////////////////////////////////////////////////////////////////
+    // //////////////////////////////////////////////////////////////////////////
     // Constants
 
     // templates
@@ -103,7 +102,9 @@ public class BusinessDomainJspBean extends ManageDomainGruJspBean
 
     /**
      * Build the Manage View
-     * @param request The HTTP request
+     * 
+     * @param request
+     *            The HTTP request
      * @return The page
      */
     @View( value = VIEW_MANAGE_BUSINESSDOMAINS, defaultView = true )
@@ -111,9 +112,8 @@ public class BusinessDomainJspBean extends ManageDomainGruJspBean
     {
         _businessdomain = null;
 
-        List<BusinessDomain> listBusinessDomains = (List<BusinessDomain>) BusinessDomainHome.getBusinessDomainsList(  );
-        Map<String, Object> model = getPaginatedListModel( request, MARK_BUSINESS_DOMAIN_LIST, listBusinessDomains,
-                JSP_MANAGE_BUSINESSDOMAINS );
+        List<BusinessDomain> listBusinessDomains = (List<BusinessDomain>) BusinessDomainHome.getBusinessDomainsList( );
+        Map<String, Object> model = getPaginatedListModel( request, MARK_BUSINESS_DOMAIN_LIST, listBusinessDomains, JSP_MANAGE_BUSINESSDOMAINS );
 
         return getPage( PROPERTY_PAGE_TITLE_MANAGE_BUSINESSDOMAINS, TEMPLATE_MANAGE_BUSINESSDOMAINS, model );
     }
@@ -121,17 +121,18 @@ public class BusinessDomainJspBean extends ManageDomainGruJspBean
     /**
      * Returns the form to create a businessdomain
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the html code of the businessdomain form
      */
     @View( VIEW_CREATE_BUSINESSDOMAIN )
     public String getCreateBusinessDomain( HttpServletRequest request )
     {
-        _businessdomain = ( _businessdomain != null ) ? _businessdomain : new BusinessDomain(  );
+        _businessdomain = ( _businessdomain != null ) ? _businessdomain : new BusinessDomain( );
 
-        Map<String, Object> model = getModel(  );
+        Map<String, Object> model = getModel( );
         model.put( MARK_BUSINESS_DOMAIN, _businessdomain );
-        model.put( MARK_BUSINESS_SECTORS_LIST, BusinessSectorHome.getBusinessSectors(  ) );
+        model.put( MARK_BUSINESS_SECTORS_LIST, BusinessSectorHome.getBusinessSectors( ) );
 
         return getPage( PROPERTY_PAGE_TITLE_CREATE_BUSINESSDOMAIN, TEMPLATE_CREATE_BUSINESSDOMAIN, model );
     }
@@ -139,7 +140,8 @@ public class BusinessDomainJspBean extends ManageDomainGruJspBean
     /**
      * Process the data capture form of a new businessdomain
      *
-     * @param request The Http Request
+     * @param request
+     *            The Http Request
      * @return The Jsp URL of the process result
      */
     @Action( ACTION_CREATE_BUSINESSDOMAIN )
@@ -154,16 +156,16 @@ public class BusinessDomainJspBean extends ManageDomainGruJspBean
         }
 
         BusinessDomainHome.create( _businessdomain );
-        addInfo( INFO_BUSINESSDOMAIN_CREATED, getLocale(  ) );
+        addInfo( INFO_BUSINESSDOMAIN_CREATED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_BUSINESSDOMAINS );
     }
 
     /**
-     * Manages the removal form of a businessdomain whose identifier is in the http
-     * request
+     * Manages the removal form of a businessdomain whose identifier is in the http request
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the html code to confirm
      */
     @Action( ACTION_CONFIRM_REMOVE_BUSINESSDOMAIN )
@@ -173,8 +175,8 @@ public class BusinessDomainJspBean extends ManageDomainGruJspBean
         UrlItem url = new UrlItem( getActionUrl( ACTION_REMOVE_BUSINESSDOMAIN ) );
         url.addParameter( PARAMETER_ID_BUSINESSDOMAIN, nId );
 
-        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_BUSINESSDOMAIN,
-                url.getUrl(  ), AdminMessage.TYPE_CONFIRMATION );
+        String strMessageUrl = AdminMessageService
+                .getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_BUSINESSDOMAIN, url.getUrl( ), AdminMessage.TYPE_CONFIRMATION );
 
         return redirect( request, strMessageUrl );
     }
@@ -182,7 +184,8 @@ public class BusinessDomainJspBean extends ManageDomainGruJspBean
     /**
      * Handles the removal form of a businessdomain
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the jsp URL to display the form to manage businessdomains
      */
     @Action( ACTION_REMOVE_BUSINESSDOMAIN )
@@ -190,7 +193,7 @@ public class BusinessDomainJspBean extends ManageDomainGruJspBean
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_BUSINESSDOMAIN ) );
         BusinessDomainHome.remove( nId );
-        addInfo( INFO_BUSINESSDOMAIN_REMOVED, getLocale(  ) );
+        addInfo( INFO_BUSINESSDOMAIN_REMOVED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_BUSINESSDOMAINS );
     }
@@ -198,7 +201,8 @@ public class BusinessDomainJspBean extends ManageDomainGruJspBean
     /**
      * Returns the form to update info about a businessdomain
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return The HTML form to update info
      */
     @View( VIEW_MODIFY_BUSINESSDOMAIN )
@@ -206,14 +210,14 @@ public class BusinessDomainJspBean extends ManageDomainGruJspBean
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_BUSINESSDOMAIN ) );
 
-        if ( ( _businessdomain == null ) || ( _businessdomain.getId(  ) != nId ) )
+        if ( ( _businessdomain == null ) || ( _businessdomain.getId( ) != nId ) )
         {
             _businessdomain = BusinessDomainHome.findByPrimaryKey( nId );
         }
 
-        Map<String, Object> model = getModel(  );
+        Map<String, Object> model = getModel( );
         model.put( MARK_BUSINESS_DOMAIN, _businessdomain );
-        model.put( MARK_BUSINESS_SECTORS_LIST, BusinessSectorHome.getBusinessSectors(  ) );
+        model.put( MARK_BUSINESS_SECTORS_LIST, BusinessSectorHome.getBusinessSectors( ) );
 
         return getPage( PROPERTY_PAGE_TITLE_MODIFY_BUSINESSDOMAIN, TEMPLATE_MODIFY_BUSINESSDOMAIN, model );
     }
@@ -221,7 +225,8 @@ public class BusinessDomainJspBean extends ManageDomainGruJspBean
     /**
      * Process the change form of a businessdomain
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return The Jsp URL of the process result
      */
     @Action( ACTION_MODIFY_BUSINESSDOMAIN )
@@ -232,11 +237,11 @@ public class BusinessDomainJspBean extends ManageDomainGruJspBean
         // Check constraints
         if ( !validateBean( _businessdomain, VALIDATION_ATTRIBUTES_PREFIX ) )
         {
-            return redirect( request, VIEW_MODIFY_BUSINESSDOMAIN, PARAMETER_ID_BUSINESSDOMAIN, _businessdomain.getId(  ) );
+            return redirect( request, VIEW_MODIFY_BUSINESSDOMAIN, PARAMETER_ID_BUSINESSDOMAIN, _businessdomain.getId( ) );
         }
 
         BusinessDomainHome.update( _businessdomain );
-        addInfo( INFO_BUSINESSDOMAIN_UPDATED, getLocale(  ) );
+        addInfo( INFO_BUSINESSDOMAIN_UPDATED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_BUSINESSDOMAINS );
     }
