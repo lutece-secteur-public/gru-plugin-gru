@@ -40,3 +40,14 @@ $( function(){
 		  redirectOnClick(this);
 	  });
 	});
+
+// Change the icon of the button when the notficiation si collapse or not
+$(".collapse-button").click(function(){
+	var current_id = $(this).attr('id');
+	var child_icon = document.getElementById(current_id).firstElementChild;
+	if( child_icon.getAttribute('class').includes('fa-plus') ){
+		child_icon.setAttribute('class', 'fa fa-minus');
+	} else {
+		child_icon.setAttribute('class', 'fa fa-plus');
+	}
+});

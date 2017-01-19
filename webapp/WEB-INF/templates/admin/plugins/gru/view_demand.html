@@ -68,13 +68,32 @@
                 <strong>${notification.userDashboard.statusText!i18n('gru.view_customer_demand.list.notification.no.title')}</strong>
               </#if>
             </p>
+            <ul class="timeline">
+            <#if notification.backofficeLogging ??>
+            	<li>
+                	<button id="button-agent-${notification.id}" class="btn btn-box-tool collapse-button" data-toggle="collapse" data-target="#user-agent-${notification.id}"><i class="fa fa-minus"></i></button>
+                   	<i class="fa fa-user bg-cat2"></i>
+                   	<div id="user-agent-${notification.id}" class="timeline-item collapse in">
+                      	<h4 class="timeline-header">
+                        	<em>#i18n{gru.view_customer_demand.list.notification.agent.statut.title} <span>${notification.backofficeLogging.statusText}</span></em>
+                      	</h4>
+                       	<div class="timeline-body" style="border-bottom: 1px solid #f4f4f4">
+                        	<strong>#i18n{gru.view_customer_demand.list.notification.agent.title}</strong>
+                      	</div>
+                      	<#if notification.backofficeLogging.message?has_content>
+                    		<div class="timeline-footer">
+                    			${notification.backofficeLogging.message}
+                    		</div>
+                    	</#if>
+                	</div>
+            	</li>
+            </#if>
             <#if demand.showDetails>
-              <ul class="timeline">
-              
                 <#if notification.userDashboard ??>
                   <li>
+                  	<button id="button-dashboard-${notification.id}" class="btn btn-box-tool collapse-button" data-toggle="collapse" data-target="#user-dashboard-${notification.id}"><i class="fa fa-plus"></i></button>
                     <i class="fa fa-user bg-gru-cat2"></i>
-                    <div class="timeline-item">
+                    <div id="user-dashboard-${notification.id}" class="timeline-item collapse">
                       <h4 class="timeline-header">
                          #i18n{gru.view_customer_demand.list.notification.user.dashboard.1}  <span><b>#i18n{gru.view_customer_demand.list.notification.user.dashboard.2}</b></span> #i18n{gru.view_customer_demand.list.notification.user.dashboard.3}.
                       </h4>
@@ -98,8 +117,9 @@
                 </#if>
                 <#if notification.userEmail ?? && notification.userEmail.recipient?has_content>
                   <li>
+                  	<button id="button-email-${notification.id}" class="btn btn-box-tool collapse-button" data-toggle="collapse" data-target="#user-email-${notification.id}"><i class="fa fa-plus"></i></button>
                     <i class="fa fa-envelope bg-orange"></i>
-                    <div class="timeline-item">
+                    <div id="user-email-${notification.id}" class="timeline-item collapse">
                       <h4 class="timeline-header">
                         #i18n{gru.view_customer_demand.list.notification.email.sendLabel} : <span>${notification.userEmail.recipient}</span>
                       </h4>
@@ -122,8 +142,9 @@
                 </#if>
                 <#if notification.userSms ?? && notification.userSms.phoneNumber?has_content>
                   <li>
+                  	<button id="button-sms-${notification.id}" class="btn btn-box-tool collapse-button" data-toggle="collapse" data-target="#user-sms-${notification.id}"><i class="fa fa-plus"></i></button>
                     <i class="fa fa-mobile bg-green"></i>
-                    <div class="timeline-item">
+                    <div id="user-sms-${notification.id}" class="timeline-item collapse">
                       <h4 class="timeline-header">
                         #i18n{gru.view_customer_demand.list.notification.sms.sendLabel} : <span>${notification.userSms.phoneNumber}</span>
                       </h4>
@@ -138,9 +159,9 @@
                     </div>
                   </li>
                 </#if>
-              </ul>
-            </#if>
-          </#if>
+            	</#if>
+          		</ul>
+          	</#if>
         </#list>
       </div>
     </div>
