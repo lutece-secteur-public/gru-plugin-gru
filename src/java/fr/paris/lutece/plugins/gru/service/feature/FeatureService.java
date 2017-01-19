@@ -44,7 +44,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-
 /**
  * FeatureService
  */
@@ -56,7 +55,7 @@ public class FeatureService
 
     public static ReferenceList getFeatureDisplayLevels( Locale locale )
     {
-        ReferenceList list = new ReferenceList(  );
+        ReferenceList list = new ReferenceList( );
 
         list.addItem( Feature.DISPLAY_STANDARD, I18nService.getLocalizedString( PROPERTY_DISPLAY_STANDARD, locale ) );
         list.addItem( Feature.DISPLAY_HOME, I18nService.getLocalizedString( PROPERTY_DISPLAY_HOME, locale ) );
@@ -67,15 +66,16 @@ public class FeatureService
 
     /**
      * Gets the list of features that should be displayed on the home page
+     * 
      * @return The list
      */
-    public static List<Feature> getHomeFeatures(  )
+    public static List<Feature> getHomeFeatures( )
     {
-        List<Feature> list = new ArrayList<Feature>(  );
+        List<Feature> list = new ArrayList<Feature>( );
 
-        for ( Feature feature : FeatureHome.getFeaturesList(  ) )
+        for ( Feature feature : FeatureHome.getFeaturesList( ) )
         {
-            if ( feature.isHome(  ) )
+            if ( feature.isHome( ) )
             {
                 list.add( feature );
             }
@@ -86,19 +86,22 @@ public class FeatureService
 
     /**
      * Build a link to a feature for a given customer
-     * @param feature The feature
-     * @param customer The customer
+     * 
+     * @param feature
+     *            The feature
+     * @param customer
+     *            The customer
      * @return The link
      */
     public static String getCustomerLink( Feature feature, Customer customer )
     {
-        String strLinkTemplate = feature.getLink(  );
+        String strLinkTemplate = feature.getLink( );
 
-        if ( ( customer != null ) && ( customer.getId(  ) != null ) )
+        if ( ( customer != null ) && ( customer.getId( ) != null ) )
         {
-            strLinkTemplate += feature.getLinkCustomerParams(  );
+            strLinkTemplate += feature.getLinkCustomerParams( );
         }
 
-        return ActionLinkService.buildLink( strLinkTemplate, feature.getTarget(  ), customer );
+        return ActionLinkService.buildLink( strLinkTemplate, feature.getTarget( ), customer );
     }
 }

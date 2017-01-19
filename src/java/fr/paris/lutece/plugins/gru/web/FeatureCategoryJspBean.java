@@ -48,14 +48,13 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 /**
  * This class provides the user interface to manage FeatureCategory features ( manage, create, modify, remove )
  */
 @Controller( controllerJsp = "ManageFeatureCategorys.jsp", controllerPath = "jsp/admin/plugins/gru/", right = "GRU_ADMIN_MANAGEMENT" )
 public class FeatureCategoryJspBean extends ManageAdminGRUJspBean
 {
-    ////////////////////////////////////////////////////////////////////////////
+    // //////////////////////////////////////////////////////////////////////////
     // Constants
 
     // templates
@@ -102,7 +101,9 @@ public class FeatureCategoryJspBean extends ManageAdminGRUJspBean
 
     /**
      * Build the Manage View
-     * @param request The HTTP request
+     * 
+     * @param request
+     *            The HTTP request
      * @return The page
      */
     @View( value = VIEW_MANAGE_FEATURECATEGORYS, defaultView = true )
@@ -110,9 +111,8 @@ public class FeatureCategoryJspBean extends ManageAdminGRUJspBean
     {
         _featurecategory = null;
 
-        List<FeatureCategory> listFeatureCategorys = (List<FeatureCategory>) FeatureCategoryHome.getFeatureCategorysList(  );
-        Map<String, Object> model = getPaginatedListModel( request, MARK_FEATURECATEGORY_LIST, listFeatureCategorys,
-                JSP_MANAGE_FEATURECATEGORYS );
+        List<FeatureCategory> listFeatureCategorys = (List<FeatureCategory>) FeatureCategoryHome.getFeatureCategorysList( );
+        Map<String, Object> model = getPaginatedListModel( request, MARK_FEATURECATEGORY_LIST, listFeatureCategorys, JSP_MANAGE_FEATURECATEGORYS );
 
         return getPage( PROPERTY_PAGE_TITLE_MANAGE_FEATURECATEGORYS, TEMPLATE_MANAGE_FEATURECATEGORYS, model );
     }
@@ -120,17 +120,18 @@ public class FeatureCategoryJspBean extends ManageAdminGRUJspBean
     /**
      * Returns the form to create a featurecategory
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the html code of the featurecategory form
      */
     @View( VIEW_CREATE_FEATURECATEGORY )
     public String getCreateFeatureCategory( HttpServletRequest request )
     {
-        _featurecategory = ( _featurecategory != null ) ? _featurecategory : new FeatureCategory(  );
+        _featurecategory = ( _featurecategory != null ) ? _featurecategory : new FeatureCategory( );
 
-        Map<String, Object> model = getModel(  );
+        Map<String, Object> model = getModel( );
         model.put( MARK_FEATURECATEGORY, _featurecategory );
-        model.put( Constants.MARK_COLORS_LIST, ColorService.getColorList(  ) );
+        model.put( Constants.MARK_COLORS_LIST, ColorService.getColorList( ) );
 
         return getPage( PROPERTY_PAGE_TITLE_CREATE_FEATURECATEGORY, TEMPLATE_CREATE_FEATURECATEGORY, model );
     }
@@ -138,7 +139,8 @@ public class FeatureCategoryJspBean extends ManageAdminGRUJspBean
     /**
      * Process the data capture form of a new featurecategory
      *
-     * @param request The Http Request
+     * @param request
+     *            The Http Request
      * @return The Jsp URL of the process result
      */
     @Action( ACTION_CREATE_FEATURECATEGORY )
@@ -153,16 +155,16 @@ public class FeatureCategoryJspBean extends ManageAdminGRUJspBean
         }
 
         FeatureCategoryHome.create( _featurecategory );
-        addInfo( INFO_FEATURECATEGORY_CREATED, getLocale(  ) );
+        addInfo( INFO_FEATURECATEGORY_CREATED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_FEATURECATEGORYS );
     }
 
     /**
-     * Manages the removal form of a featurecategory whose identifier is in the http
-     * request
+     * Manages the removal form of a featurecategory whose identifier is in the http request
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the html code to confirm
      */
     @Action( ACTION_CONFIRM_REMOVE_FEATURECATEGORY )
@@ -172,8 +174,8 @@ public class FeatureCategoryJspBean extends ManageAdminGRUJspBean
         UrlItem url = new UrlItem( getActionUrl( ACTION_REMOVE_FEATURECATEGORY ) );
         url.addParameter( PARAMETER_ID_FEATURECATEGORY, nId );
 
-        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_FEATURECATEGORY,
-                url.getUrl(  ), AdminMessage.TYPE_CONFIRMATION );
+        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_FEATURECATEGORY, url.getUrl( ),
+                AdminMessage.TYPE_CONFIRMATION );
 
         return redirect( request, strMessageUrl );
     }
@@ -181,7 +183,8 @@ public class FeatureCategoryJspBean extends ManageAdminGRUJspBean
     /**
      * Handles the removal form of a featurecategory
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the jsp URL to display the form to manage featurecategorys
      */
     @Action( ACTION_REMOVE_FEATURECATEGORY )
@@ -189,7 +192,7 @@ public class FeatureCategoryJspBean extends ManageAdminGRUJspBean
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_FEATURECATEGORY ) );
         FeatureCategoryHome.remove( nId );
-        addInfo( INFO_FEATURECATEGORY_REMOVED, getLocale(  ) );
+        addInfo( INFO_FEATURECATEGORY_REMOVED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_FEATURECATEGORYS );
     }
@@ -197,7 +200,8 @@ public class FeatureCategoryJspBean extends ManageAdminGRUJspBean
     /**
      * Returns the form to update info about a featurecategory
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return The HTML form to update info
      */
     @View( VIEW_MODIFY_FEATURECATEGORY )
@@ -205,14 +209,14 @@ public class FeatureCategoryJspBean extends ManageAdminGRUJspBean
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_FEATURECATEGORY ) );
 
-        if ( ( _featurecategory == null ) || ( _featurecategory.getId(  ) != nId ) )
+        if ( ( _featurecategory == null ) || ( _featurecategory.getId( ) != nId ) )
         {
             _featurecategory = FeatureCategoryHome.findByPrimaryKey( nId );
         }
 
-        Map<String, Object> model = getModel(  );
+        Map<String, Object> model = getModel( );
         model.put( MARK_FEATURECATEGORY, _featurecategory );
-        model.put( Constants.MARK_COLORS_LIST, ColorService.getColorList(  ) );
+        model.put( Constants.MARK_COLORS_LIST, ColorService.getColorList( ) );
 
         return getPage( PROPERTY_PAGE_TITLE_MODIFY_FEATURECATEGORY, TEMPLATE_MODIFY_FEATURECATEGORY, model );
     }
@@ -220,7 +224,8 @@ public class FeatureCategoryJspBean extends ManageAdminGRUJspBean
     /**
      * Process the change form of a featurecategory
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return The Jsp URL of the process result
      */
     @Action( ACTION_MODIFY_FEATURECATEGORY )
@@ -231,12 +236,11 @@ public class FeatureCategoryJspBean extends ManageAdminGRUJspBean
         // Check constraints
         if ( !validateBean( _featurecategory, VALIDATION_ATTRIBUTES_PREFIX ) )
         {
-            return redirect( request, VIEW_MODIFY_FEATURECATEGORY, PARAMETER_ID_FEATURECATEGORY,
-                _featurecategory.getId(  ) );
+            return redirect( request, VIEW_MODIFY_FEATURECATEGORY, PARAMETER_ID_FEATURECATEGORY, _featurecategory.getId( ) );
         }
 
         FeatureCategoryHome.update( _featurecategory );
-        addInfo( INFO_FEATURECATEGORY_UPDATED, getLocale(  ) );
+        addInfo( INFO_FEATURECATEGORY_UPDATED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_FEATURECATEGORYS );
     }

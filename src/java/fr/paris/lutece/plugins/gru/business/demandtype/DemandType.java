@@ -39,7 +39,6 @@ import java.io.Serializable;
 
 import javax.validation.constraints.*;
 
-
 /**
  * This is the business class for the object DemandType
  */
@@ -47,7 +46,7 @@ public class DemandType implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
-    // Variables declarations 
+    // Variables declarations
     private int _nId;
     private int _nDemandTypeId;
     @NotEmpty( message = "#i18n{gru.validation.demandtype.Title.notEmpty}" )
@@ -59,16 +58,19 @@ public class DemandType implements Serializable
 
     /**
      * Returns the Id
+     * 
      * @return The Id
      */
-    public int getId(  )
+    public int getId( )
     {
         return _nId;
     }
 
     /**
      * Sets the Id
-     * @param nId The Id
+     * 
+     * @param nId
+     *            The Id
      */
     public void setId( int nId )
     {
@@ -77,16 +79,19 @@ public class DemandType implements Serializable
 
     /**
      * Returns the DemandTypeId
+     * 
      * @return The DemandTypeId
      */
-    public int getDemandTypeId(  )
+    public int getDemandTypeId( )
     {
         return _nDemandTypeId;
     }
 
     /**
      * Sets the DemandTypeId
-     * @param nDemandTypeId The DemandTypeId
+     * 
+     * @param nDemandTypeId
+     *            The DemandTypeId
      */
     public void setDemandTypeId( int nDemandTypeId )
     {
@@ -95,16 +100,19 @@ public class DemandType implements Serializable
 
     /**
      * Returns the Title
+     * 
      * @return The Title
      */
-    public String getTitle(  )
+    public String getTitle( )
     {
         return _strTitle;
     }
 
     /**
      * Sets the Title
-     * @param strTitle The Title
+     * 
+     * @param strTitle
+     *            The Title
      */
     public void setTitle( String strTitle )
     {
@@ -112,17 +120,20 @@ public class DemandType implements Serializable
     }
 
     /**
-      * Returns the BusinessDomainId
-      * @return The BusinessDomainId
-      */
-    public int getBusinessDomainId(  )
+     * Returns the BusinessDomainId
+     * 
+     * @return The BusinessDomainId
+     */
+    public int getBusinessDomainId( )
     {
         return _nBusinessDomainId;
     }
 
     /**
      * Sets the BusinessDomainId
-     * @param nBusinessDomainId The BusinessDomainId
+     * 
+     * @param nBusinessDomainId
+     *            The BusinessDomainId
      */
     public void setBusinessDomainId( int nBusinessDomainId )
     {
@@ -131,16 +142,19 @@ public class DemandType implements Serializable
 
     /**
      * Returns the BusinessDomain
+     * 
      * @return The BusinessDomain
      */
-    public String getBusinessDomain(  )
+    public String getBusinessDomain( )
     {
         return _strBusinessDomain;
     }
 
     /**
      * Sets the BusinessDomain
-     * @param strBusinessDomain The BusinessDomain
+     * 
+     * @param strBusinessDomain
+     *            The BusinessDomain
      */
     public void setBusinessDomain( String strBusinessDomain )
     {
@@ -149,16 +163,19 @@ public class DemandType implements Serializable
 
     /**
      * Returns the BusinessSector
+     * 
      * @return The BusinessSector
      */
-    public String getBusinessSector(  )
+    public String getBusinessSector( )
     {
         return _strBusinessSector;
     }
 
     /**
      * Sets the BusinessSector
-     * @param strBusinessSector The BusinessSector
+     * 
+     * @param strBusinessSector
+     *            The BusinessSector
      */
     public void setBusinessSector( String strBusinessSector )
     {

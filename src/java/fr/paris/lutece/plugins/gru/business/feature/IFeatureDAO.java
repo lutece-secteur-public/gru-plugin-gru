@@ -37,7 +37,6 @@ import fr.paris.lutece.portal.service.plugin.Plugin;
 
 import java.util.List;
 
-
 /**
  * IFeatureDAO Interface
  */
@@ -45,54 +44,73 @@ public interface IFeatureDAO
 {
     /**
      * Insert a new record in the table.
-     * @param feature instance of the Feature object to insert
-     * @param plugin the Plugin
+     * 
+     * @param feature
+     *            instance of the Feature object to insert
+     * @param plugin
+     *            the Plugin
      */
     void insert( Feature feature, Plugin plugin );
 
     /**
      * Update the record in the table
-     * @param feature the reference of the Feature
-     * @param plugin the Plugin
+     * 
+     * @param feature
+     *            the reference of the Feature
+     * @param plugin
+     *            the Plugin
      */
     void store( Feature feature, Plugin plugin );
 
     /**
      * Delete a record from the table
-     * @param nKey The identifier of the Feature to delete
-     * @param plugin the Plugin
+     * 
+     * @param nKey
+     *            The identifier of the Feature to delete
+     * @param plugin
+     *            the Plugin
      */
     void delete( int nKey, Plugin plugin );
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Finders
 
     /**
      * Load the data from the table
-     * @param nKey The identifier of the feature
-     * @param plugin the Plugin
+     * 
+     * @param nKey
+     *            The identifier of the feature
+     * @param plugin
+     *            the Plugin
      * @return The instance of the feature
      */
     Feature load( int nKey, Plugin plugin );
 
     /**
      * Load the data of all the feature objects and returns them as a collection
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the data of all the feature objects
      */
     List<Feature> selectFeaturesList( Plugin plugin );
 
     /**
      * Load the id of all the feature objects and returns them as a collection
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the id of all the feature objects
      */
     List<Integer> selectIdFeaturesList( Plugin plugin );
 
     /**
      * Gets all features for a given category
-     * @param nCategory The category
-     * @param plugin The plugin
+     * 
+     * @param nCategory
+     *            The category
+     * @param plugin
+     *            The plugin
      * @return The list
      */
     List<Feature> selectFeaturesListByCategory( int nCategory, Plugin plugin );

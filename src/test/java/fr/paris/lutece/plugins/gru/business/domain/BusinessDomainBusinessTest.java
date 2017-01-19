@@ -35,7 +35,6 @@ package fr.paris.lutece.plugins.gru.business.domain;
 
 import fr.paris.lutece.test.LuteceTestCase;
 
-
 public class BusinessDomainBusinessTest extends LuteceTestCase
 {
     private final static int IDBUSINESSSECTOR1 = 1;
@@ -47,10 +46,10 @@ public class BusinessDomainBusinessTest extends LuteceTestCase
     private final static String DESCRIPTION1 = "Description1";
     private final static String DESCRIPTION2 = "Description2";
 
-    public void testBusiness(  )
+    public void testBusiness( )
     {
         // Initialize an object
-        BusinessDomain businessDomain = new BusinessDomain(  );
+        BusinessDomain businessDomain = new BusinessDomain( );
         businessDomain.setIdBusinessSector( IDBUSINESSSECTOR1 );
         businessDomain.setBusinessSector( BUSINESSSECTOR1 );
         businessDomain.setName( NAME1 );
@@ -59,11 +58,11 @@ public class BusinessDomainBusinessTest extends LuteceTestCase
         // Create test
         BusinessDomainHome.create( businessDomain );
 
-        BusinessDomain businessDomainStored = BusinessDomainHome.findByPrimaryKey( businessDomain.getId(  ) );
-        assertEquals( businessDomainStored.getIdBusinessSector(  ), businessDomain.getIdBusinessSector(  ) );
-        assertEquals( businessDomainStored.getBusinessSector(  ), businessDomain.getBusinessSector(  ) );
-        assertEquals( businessDomainStored.getName(  ), businessDomain.getName(  ) );
-        assertEquals( businessDomainStored.getDescription(  ), businessDomain.getDescription(  ) );
+        BusinessDomain businessDomainStored = BusinessDomainHome.findByPrimaryKey( businessDomain.getId( ) );
+        assertEquals( businessDomainStored.getIdBusinessSector( ), businessDomain.getIdBusinessSector( ) );
+        assertEquals( businessDomainStored.getBusinessSector( ), businessDomain.getBusinessSector( ) );
+        assertEquals( businessDomainStored.getName( ), businessDomain.getName( ) );
+        assertEquals( businessDomainStored.getDescription( ), businessDomain.getDescription( ) );
 
         // Update test
         businessDomain.setIdBusinessSector( IDBUSINESSSECTOR2 );
@@ -71,18 +70,18 @@ public class BusinessDomainBusinessTest extends LuteceTestCase
         businessDomain.setName( NAME2 );
         businessDomain.setDescription( DESCRIPTION2 );
         BusinessDomainHome.update( businessDomain );
-        businessDomainStored = BusinessDomainHome.findByPrimaryKey( businessDomain.getId(  ) );
-        assertEquals( businessDomainStored.getIdBusinessSector(  ), businessDomain.getIdBusinessSector(  ) );
-        assertEquals( businessDomainStored.getBusinessSector(  ), businessDomain.getBusinessSector(  ) );
-        assertEquals( businessDomainStored.getName(  ), businessDomain.getName(  ) );
-        assertEquals( businessDomainStored.getDescription(  ), businessDomain.getDescription(  ) );
+        businessDomainStored = BusinessDomainHome.findByPrimaryKey( businessDomain.getId( ) );
+        assertEquals( businessDomainStored.getIdBusinessSector( ), businessDomain.getIdBusinessSector( ) );
+        assertEquals( businessDomainStored.getBusinessSector( ), businessDomain.getBusinessSector( ) );
+        assertEquals( businessDomainStored.getName( ), businessDomain.getName( ) );
+        assertEquals( businessDomainStored.getDescription( ), businessDomain.getDescription( ) );
 
         // List test
-        BusinessDomainHome.getBusinessDomainsList(  );
+        BusinessDomainHome.getBusinessDomainsList( );
 
         // Delete test
-        BusinessDomainHome.remove( businessDomain.getId(  ) );
-        businessDomainStored = BusinessDomainHome.findByPrimaryKey( businessDomain.getId(  ) );
+        BusinessDomainHome.remove( businessDomain.getId( ) );
+        businessDomainStored = BusinessDomainHome.findByPrimaryKey( businessDomain.getId( ) );
         assertNull( businessDomainStored );
     }
 }

@@ -38,7 +38,6 @@ import fr.paris.lutece.util.ReferenceList;
 
 import java.util.List;
 
-
 /**
  * IBusinessSectorDAO Interface
  */
@@ -46,53 +45,71 @@ public interface IBusinessSectorDAO
 {
     /**
      * Insert a new record in the table.
-     * @param businessSector instance of the BusinessSector object to insert
-     * @param plugin the Plugin
+     * 
+     * @param businessSector
+     *            instance of the BusinessSector object to insert
+     * @param plugin
+     *            the Plugin
      */
     void insert( BusinessSector businessSector, Plugin plugin );
 
     /**
      * Update the record in the table
-     * @param businessSector the reference of the BusinessSector
-     * @param plugin the Plugin
+     * 
+     * @param businessSector
+     *            the reference of the BusinessSector
+     * @param plugin
+     *            the Plugin
      */
     void store( BusinessSector businessSector, Plugin plugin );
 
     /**
      * Delete a record from the table
-     * @param nKey The identifier of the BusinessSector to delete
-     * @param plugin the Plugin
+     * 
+     * @param nKey
+     *            The identifier of the BusinessSector to delete
+     * @param plugin
+     *            the Plugin
      */
     void delete( int nKey, Plugin plugin );
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Finders
 
     /**
      * Load the data from the table
-     * @param nKey The identifier of the businessSector
-     * @param plugin the Plugin
+     * 
+     * @param nKey
+     *            The identifier of the businessSector
+     * @param plugin
+     *            the Plugin
      * @return The instance of the businessSector
      */
     BusinessSector load( int nKey, Plugin plugin );
 
     /**
      * Load the data of all the businessSector objects and returns them as a collection
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the data of all the businessSector objects
      */
     List<BusinessSector> selectBusinessSectorsList( Plugin plugin );
 
     /**
      * Load the id of all the businessSector objects and returns them as a collection
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the id of all the businessSector objects
      */
     List<Integer> selectIdBusinessSectorsList( Plugin plugin );
 
     /**
      * Gets all business sectors as a reference list
-     * @param plugin The plugin
+     * 
+     * @param plugin
+     *            The plugin
      * @return all business sectors as a reference list
      */
     ReferenceList selectBusinessSectors( Plugin plugin );

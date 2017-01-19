@@ -36,25 +36,24 @@ package fr.paris.lutece.plugins.gru.web.actions.model;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * ActionGroup
  */
 public class ActionGroup
 {
-    // Variables declarations 
+    // Variables declarations
     private String _strTitle;
     private String _strIcon;
     private String _strBadgeText;
     private String _strBadgeColor;
-    private List<ActionItem> _listActions = new ArrayList<ActionItem>(  );
+    private List<ActionItem> _listActions = new ArrayList<ActionItem>( );
 
     /**
      * Returns the Title
      *
      * @return The Title
      */
-    public String getTitle(  )
+    public String getTitle( )
     {
         return _strTitle;
     }
@@ -62,7 +61,8 @@ public class ActionGroup
     /**
      * Sets the Title
      *
-     * @param strTitle The Title
+     * @param strTitle
+     *            The Title
      */
     public void setTitle( String strTitle )
     {
@@ -74,7 +74,7 @@ public class ActionGroup
      *
      * @return The Icon
      */
-    public String getIcon(  )
+    public String getIcon( )
     {
         return _strIcon;
     }
@@ -82,7 +82,8 @@ public class ActionGroup
     /**
      * Sets the Icon
      *
-     * @param strIcon The Icon
+     * @param strIcon
+     *            The Icon
      */
     public void setIcon( String strIcon )
     {
@@ -94,7 +95,7 @@ public class ActionGroup
      *
      * @return The BadgeText
      */
-    public String getBadgeText(  )
+    public String getBadgeText( )
     {
         return _strBadgeText;
     }
@@ -102,7 +103,8 @@ public class ActionGroup
     /**
      * Sets the BadgeText
      *
-     * @param strBadgeText The BadgeText
+     * @param strBadgeText
+     *            The BadgeText
      */
     public void setBadgeText( String strBadgeText )
     {
@@ -114,7 +116,7 @@ public class ActionGroup
      *
      * @return The BadgeColor
      */
-    public String getBadgeColor(  )
+    public String getBadgeColor( )
     {
         return _strBadgeColor;
     }
@@ -122,7 +124,8 @@ public class ActionGroup
     /**
      * Sets the BadgeColor
      *
-     * @param strBadgeColor The BadgeColor
+     * @param strBadgeColor
+     *            The BadgeColor
      */
     public void setBadgeColor( String strBadgeColor )
     {
@@ -134,7 +137,7 @@ public class ActionGroup
      *
      * @return The Actions
      */
-    public List<ActionItem> getActions(  )
+    public List<ActionItem> getActions( )
     {
         return _listActions;
     }
@@ -142,7 +145,8 @@ public class ActionGroup
     /**
      * Sets the Actions
      *
-     * @param listActions The Actions
+     * @param listActions
+     *            The Actions
      */
     public void setActions( List<ActionItem> listActions )
     {

@@ -38,7 +38,6 @@ import fr.paris.lutece.util.ReferenceList;
 
 import java.util.List;
 
-
 /**
  * IDemandTypeActionDAO Interface
  */
@@ -46,62 +45,83 @@ public interface IDemandTypeActionDAO
 {
     /**
      * Insert a new record in the table.
-     * @param demandTypeAction instance of the DemandTypeAction object to insert
-     * @param plugin the Plugin
+     * 
+     * @param demandTypeAction
+     *            instance of the DemandTypeAction object to insert
+     * @param plugin
+     *            the Plugin
      */
     void insert( DemandTypeAction demandTypeAction, Plugin plugin );
 
     /**
      * Update the record in the table
-     * @param demandTypeAction the reference of the DemandTypeAction
-     * @param plugin the Plugin
+     * 
+     * @param demandTypeAction
+     *            the reference of the DemandTypeAction
+     * @param plugin
+     *            the Plugin
      */
     void store( DemandTypeAction demandTypeAction, Plugin plugin );
 
     /**
      * Delete a record from the table
-     * @param nKey The identifier of the DemandTypeAction to delete
-     * @param plugin the Plugin
+     * 
+     * @param nKey
+     *            The identifier of the DemandTypeAction to delete
+     * @param plugin
+     *            the Plugin
      */
     void delete( int nKey, Plugin plugin );
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Finders
 
     /**
      * Load the data from the table
-     * @param nKey The identifier of the demandTypeAction
-     * @param plugin the Plugin
+     * 
+     * @param nKey
+     *            The identifier of the demandTypeAction
+     * @param plugin
+     *            the Plugin
      * @return The instance of the demandTypeAction
      */
     DemandTypeAction load( int nKey, Plugin plugin );
 
     /**
      * Load the data of all the demandTypeAction objects and returns them as a collection
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the data of all the demandTypeAction objects
      */
     List<DemandTypeAction> selectDemandTypeActionsList( Plugin plugin );
 
     /**
      * Load the id of all the demandTypeAction objects and returns them as a collection
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the id of all the demandTypeAction objects
      */
     List<Integer> selectIdDemandTypeActionsList( Plugin plugin );
 
     /**
      * Select all Actions for a given demand type
-     * @param nDemandTypeId The DemandType ID
-     * @param plugin The plugin
-     * @return  The list
+     * 
+     * @param nDemandTypeId
+     *            The DemandType ID
+     * @param plugin
+     *            The plugin
+     * @return The list
      */
     List<DemandTypeAction> selectActionsByType( int nDemandTypeId, Plugin plugin );
 
     /**
      * Select all Actions as a Reference List
-     * @param plugin The plugin
-     * @return  The list
+     * 
+     * @param plugin
+     *            The plugin
+     * @return The list
      */
     ReferenceList selectActionsReferenceList( Plugin _plugin );
 }

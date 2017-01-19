@@ -49,51 +49,54 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 /**
  * Demande Type Service
  */
 public class DemandTypeService
 {
     private static final String BOOKMARK_ID = "{id}";
-    private static Map<String, DemandType> _mapDemandTypes = new HashMap<String, DemandType>(  );
+    private static Map<String, DemandType> _mapDemandTypes = new HashMap<String, DemandType>( );
 
     /**
      * Add actions to a given demand with actions from a base demand
-     * @param demand A demand
-     * @param customer The customer
-     * @param user The Admin User
+     * 
+     * @param demand
+     *            A demand
+     * @param customer
+     *            The customer
+     * @param user
+     *            The Admin User
      * @return The demand
      */
     public static Demand setDemandActions( Demand demand, Customer customer, AdminUser user )
     {
-        DemandType type = _mapDemandTypes.get( demand.getTypeId(  ) );
+        DemandType type = _mapDemandTypes.get( demand.getTypeId( ) );
 
         if ( type == null )
         {
-            type = DemandTypeHome.findByTypeId( demand.getTypeId(  ) );
+            type = DemandTypeHome.findByTypeId( demand.getTypeId( ) );
 
             if ( type == null )
             {
-                throw new AppException( "Unable to find DemandType with the ID : " + demand.getTypeId(  ) );
+                throw new AppException( "Unable to find DemandType with the ID : " + demand.getTypeId( ) );
             }
 
-            _mapDemandTypes.put( demand.getTypeId(  ), type );
+            _mapDemandTypes.put( demand.getTypeId( ), type );
         }
 
-        demand.setTitle( type.getTitle(  ) );
+        demand.setTitle( type.getTitle( ) );
 
-        List<DemandTypeAction> listActions = DemandTypeActionHome.getActionsByType( type.getId(  ) );
+        List<DemandTypeAction> listActions = DemandTypeActionHome.getActionsByType( type.getId( ) );
 
         for ( DemandTypeAction dta : listActions )
         {
             if ( RBACService.isAuthorized( dta, DemandTypeAction.PERMISSION_ACCESS, user ) )
             {
-                Action action = new Action(  );
-                action.setName( dta.getLabel(  ) );
+                Action action = new Action( );
+                action.setName( dta.getLabel( ) );
 
-                String strUrl = dta.getLink(  );
-                strUrl = strUrl.replace( BOOKMARK_ID, demand.getId(  ) );
+                String strUrl = dta.getLink( );
+                strUrl = strUrl.replace( BOOKMARK_ID, demand.getId( ) );
                 // TODO manage target
                 action.setUrl( ActionLinkService.buildLink( strUrl, ActionLinkService.TARGET_NO_FRAME, customer ) );
                 demand.addAction( action );
@@ -105,7 +108,9 @@ public class DemandTypeService
 
     /**
      * Get a demand type label
-     * @param strDemandTypeId The ID
+     * 
+     * @param strDemandTypeId
+     *            The ID
      * @return The label
      */
     public static String getTypeLabel( String strDemandTypeId )
@@ -124,6 +129,6 @@ public class DemandTypeService
             _mapDemandTypes.put( strDemandTypeId, type );
         }
 
-        return type.getTitle(  );
+        return type.getTitle( );
     }
 }

@@ -37,7 +37,6 @@ import fr.paris.lutece.portal.service.plugin.Plugin;
 
 import java.util.List;
 
-
 /**
  * IBusinessDomainDAO Interface
  */
@@ -45,46 +44,62 @@ public interface IBusinessDomainDAO
 {
     /**
      * Insert a new record in the table.
-     * @param businessDomain instance of the BusinessDomain object to insert
-     * @param plugin the Plugin
+     * 
+     * @param businessDomain
+     *            instance of the BusinessDomain object to insert
+     * @param plugin
+     *            the Plugin
      */
     void insert( BusinessDomain businessDomain, Plugin plugin );
 
     /**
      * Update the record in the table
-     * @param businessDomain the reference of the BusinessDomain
-     * @param plugin the Plugin
+     * 
+     * @param businessDomain
+     *            the reference of the BusinessDomain
+     * @param plugin
+     *            the Plugin
      */
     void store( BusinessDomain businessDomain, Plugin plugin );
 
     /**
      * Delete a record from the table
-     * @param nKey The identifier of the BusinessDomain to delete
-     * @param plugin the Plugin
+     * 
+     * @param nKey
+     *            The identifier of the BusinessDomain to delete
+     * @param plugin
+     *            the Plugin
      */
     void delete( int nKey, Plugin plugin );
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Finders
 
     /**
      * Load the data from the table
-     * @param nKey The identifier of the businessDomain
-     * @param plugin the Plugin
+     * 
+     * @param nKey
+     *            The identifier of the businessDomain
+     * @param plugin
+     *            the Plugin
      * @return The instance of the businessDomain
      */
     BusinessDomain load( int nKey, Plugin plugin );
 
     /**
      * Load the data of all the businessDomain objects and returns them as a collection
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the data of all the businessDomain objects
      */
     List<BusinessDomain> selectBusinessDomainsList( Plugin plugin );
 
     /**
      * Load the id of all the businessDomain objects and returns them as a collection
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the id of all the businessDomain objects
      */
     List<Integer> selectIdBusinessDomainsList( Plugin plugin );

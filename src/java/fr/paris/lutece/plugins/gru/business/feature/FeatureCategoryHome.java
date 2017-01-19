@@ -40,7 +40,6 @@ import fr.paris.lutece.util.ReferenceList;
 
 import java.util.List;
 
-
 /**
  * This class provides instances management methods (create, find, ...) for FeatureCategory objects
  */
@@ -53,14 +52,16 @@ public final class FeatureCategoryHome
     /**
      * Private constructor - this class need not be instantiated
      */
-    private FeatureCategoryHome(  )
+    private FeatureCategoryHome( )
     {
     }
 
     /**
      * Create an instance of the featureCategory class
-     * @param featureCategory The instance of the FeatureCategory which contains the informations to store
-     * @return The  instance of featureCategory which has been created with its primary key.
+     * 
+     * @param featureCategory
+     *            The instance of the FeatureCategory which contains the informations to store
+     * @return The instance of featureCategory which has been created with its primary key.
      */
     public static FeatureCategory create( FeatureCategory featureCategory )
     {
@@ -71,8 +72,10 @@ public final class FeatureCategoryHome
 
     /**
      * Update of the featureCategory which is specified in parameter
-     * @param featureCategory The instance of the FeatureCategory which contains the data to store
-     * @return The instance of the  featureCategory which has been updated
+     * 
+     * @param featureCategory
+     *            The instance of the FeatureCategory which contains the data to store
+     * @return The instance of the featureCategory which has been updated
      */
     public static FeatureCategory update( FeatureCategory featureCategory )
     {
@@ -83,19 +86,23 @@ public final class FeatureCategoryHome
 
     /**
      * Remove the featureCategory whose identifier is specified in parameter
-     * @param nKey The featureCategory Id
+     * 
+     * @param nKey
+     *            The featureCategory Id
      */
     public static void remove( int nKey )
     {
         _dao.delete( nKey, _plugin );
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Finders
 
     /**
      * Returns an instance of a featureCategory whose identifier is specified in parameter
-     * @param nKey The featureCategory primary key
+     * 
+     * @param nKey
+     *            The featureCategory primary key
      * @return an instance of FeatureCategory
      */
     public static FeatureCategory findByPrimaryKey( int nKey )
@@ -105,23 +112,25 @@ public final class FeatureCategoryHome
 
     /**
      * Load the data of all the featureCategory objects and returns them in form of a collection
+     * 
      * @return the collection which contains the data of all the featureCategory objects
      */
-    public static List<FeatureCategory> getFeatureCategorysList(  )
+    public static List<FeatureCategory> getFeatureCategorysList( )
     {
         return _dao.selectFeatureCategorysList( _plugin );
     }
 
     /**
      * Load the id of all the featureCategory objects and returns them in form of a collection
+     * 
      * @return the collection which contains the id of all the featureCategory objects
      */
-    public static List<Integer> getIdFeatureCategorysList(  )
+    public static List<Integer> getIdFeatureCategorysList( )
     {
         return _dao.selectIdFeatureCategorysList( _plugin );
     }
 
-    public static ReferenceList getCategoriesList(  )
+    public static ReferenceList getCategoriesList( )
     {
         return _dao.selectCategoriesList( _plugin );
     }

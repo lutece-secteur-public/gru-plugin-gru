@@ -35,7 +35,6 @@ package fr.paris.lutece.plugins.gru.business;
 
 import fr.paris.lutece.test.LuteceTestCase;
 
-
 public class ExtrasAttributesBusinessTest extends LuteceTestCase
 {
     private final static String ATTRIBUTEKEY1 = "AttributeKey1";
@@ -45,10 +44,10 @@ public class ExtrasAttributesBusinessTest extends LuteceTestCase
     private final static String DESCRIPTION1 = "Description1";
     private final static String DESCRIPTION2 = "Description2";
 
-    public void testBusiness(  )
+    public void testBusiness( )
     {
         // Initialize an object
-        ExtrasAttributes extrasAttributes = new ExtrasAttributes(  );
+        ExtrasAttributes extrasAttributes = new ExtrasAttributes( );
         extrasAttributes.setAttributeKey( ATTRIBUTEKEY1 );
         extrasAttributes.setName( NAME1 );
         extrasAttributes.setDescription( DESCRIPTION1 );
@@ -56,27 +55,27 @@ public class ExtrasAttributesBusinessTest extends LuteceTestCase
         // Create test
         ExtrasAttributesHome.create( extrasAttributes );
 
-        ExtrasAttributes extrasAttributesStored = ExtrasAttributesHome.findByPrimaryKey( extrasAttributes.getId(  ) );
-        assertEquals( extrasAttributesStored.getAttributeKey(  ), extrasAttributes.getAttributeKey(  ) );
-        assertEquals( extrasAttributesStored.getName(  ), extrasAttributes.getName(  ) );
-        assertEquals( extrasAttributesStored.getDescription(  ), extrasAttributes.getDescription(  ) );
+        ExtrasAttributes extrasAttributesStored = ExtrasAttributesHome.findByPrimaryKey( extrasAttributes.getId( ) );
+        assertEquals( extrasAttributesStored.getAttributeKey( ), extrasAttributes.getAttributeKey( ) );
+        assertEquals( extrasAttributesStored.getName( ), extrasAttributes.getName( ) );
+        assertEquals( extrasAttributesStored.getDescription( ), extrasAttributes.getDescription( ) );
 
         // Update test
         extrasAttributes.setAttributeKey( ATTRIBUTEKEY2 );
         extrasAttributes.setName( NAME2 );
         extrasAttributes.setDescription( DESCRIPTION2 );
         ExtrasAttributesHome.update( extrasAttributes );
-        extrasAttributesStored = ExtrasAttributesHome.findByPrimaryKey( extrasAttributes.getId(  ) );
-        assertEquals( extrasAttributesStored.getAttributeKey(  ), extrasAttributes.getAttributeKey(  ) );
-        assertEquals( extrasAttributesStored.getName(  ), extrasAttributes.getName(  ) );
-        assertEquals( extrasAttributesStored.getDescription(  ), extrasAttributes.getDescription(  ) );
+        extrasAttributesStored = ExtrasAttributesHome.findByPrimaryKey( extrasAttributes.getId( ) );
+        assertEquals( extrasAttributesStored.getAttributeKey( ), extrasAttributes.getAttributeKey( ) );
+        assertEquals( extrasAttributesStored.getName( ), extrasAttributes.getName( ) );
+        assertEquals( extrasAttributesStored.getDescription( ), extrasAttributes.getDescription( ) );
 
         // List test
-        ExtrasAttributesHome.getExtrasAttributessList(  );
+        ExtrasAttributesHome.getExtrasAttributessList( );
 
         // Delete test
-        ExtrasAttributesHome.remove( extrasAttributes.getId(  ) );
-        extrasAttributesStored = ExtrasAttributesHome.findByPrimaryKey( extrasAttributes.getId(  ) );
+        ExtrasAttributesHome.remove( extrasAttributes.getId( ) );
+        extrasAttributesStored = ExtrasAttributesHome.findByPrimaryKey( extrasAttributes.getId( ) );
         assertNull( extrasAttributesStored );
     }
 }

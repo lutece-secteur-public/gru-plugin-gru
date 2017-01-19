@@ -40,7 +40,6 @@ import fr.paris.lutece.util.ReferenceList;
 
 import java.util.List;
 
-
 /**
  * This class provides instances management methods (create, find, ...) for BusinessDomain objects
  */
@@ -53,14 +52,16 @@ public final class BusinessDomainHome
     /**
      * Private constructor - this class need not be instantiated
      */
-    private BusinessDomainHome(  )
+    private BusinessDomainHome( )
     {
     }
 
     /**
      * Create an instance of the businessDomain class
-     * @param businessDomain The instance of the BusinessDomain which contains the informations to store
-     * @return The  instance of businessDomain which has been created with its primary key.
+     * 
+     * @param businessDomain
+     *            The instance of the BusinessDomain which contains the informations to store
+     * @return The instance of businessDomain which has been created with its primary key.
      */
     public static BusinessDomain create( BusinessDomain businessDomain )
     {
@@ -71,8 +72,10 @@ public final class BusinessDomainHome
 
     /**
      * Update of the businessDomain which is specified in parameter
-     * @param businessDomain The instance of the BusinessDomain which contains the data to store
-     * @return The instance of the  businessDomain which has been updated
+     * 
+     * @param businessDomain
+     *            The instance of the BusinessDomain which contains the data to store
+     * @return The instance of the businessDomain which has been updated
      */
     public static BusinessDomain update( BusinessDomain businessDomain )
     {
@@ -83,19 +86,23 @@ public final class BusinessDomainHome
 
     /**
      * Remove the businessDomain whose identifier is specified in parameter
-     * @param nKey The businessDomain Id
+     * 
+     * @param nKey
+     *            The businessDomain Id
      */
     public static void remove( int nKey )
     {
         _dao.delete( nKey, _plugin );
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Finders
 
     /**
      * Returns an instance of a businessDomain whose identifier is specified in parameter
-     * @param nKey The businessDomain primary key
+     * 
+     * @param nKey
+     *            The businessDomain primary key
      * @return an instance of BusinessDomain
      */
     public static BusinessDomain findByPrimaryKey( int nKey )
@@ -105,18 +112,20 @@ public final class BusinessDomainHome
 
     /**
      * Load the data of all the businessDomain objects and returns them in form of a collection
+     * 
      * @return the collection which contains the data of all the businessDomain objects
      */
-    public static List<BusinessDomain> getBusinessDomainsList(  )
+    public static List<BusinessDomain> getBusinessDomainsList( )
     {
         return _dao.selectBusinessDomainsList( _plugin );
     }
 
     /**
      * Load the id of all the businessDomain objects and returns them in form of a collection
+     * 
      * @return the collection which contains the id of all the businessDomain objects
      */
-    public static List<Integer> getIdBusinessDomainsList(  )
+    public static List<Integer> getIdBusinessDomainsList( )
     {
         return _dao.selectIdBusinessDomainsList( _plugin );
     }

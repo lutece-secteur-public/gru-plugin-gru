@@ -41,7 +41,6 @@ import fr.paris.lutece.portal.business.user.AdminUser;
 import java.util.Collection;
 import java.util.List;
 
-
 /**
  * ButtonListBuilder
  */
@@ -49,16 +48,22 @@ public interface ButtonListBuilder
 {
     /**
      * Build a panel for a given customer
-     * @param customer The customer
-     * @param user The admin user
+     * 
+     * @param customer
+     *            The customer
+     * @param user
+     *            The admin user
      * @return The panel
      */
     List<ActionButton> buildActionButtonList( Customer customer, AdminUser user );
 
     /**
      * Build a collection of ButtonGroup
-     * @param customer The customer
-     * @param user The user
+     * 
+     * @param customer
+     *            The customer
+     * @param user
+     *            The user
      * @return The list
      */
     List<ActionGroup> buildButtonGroupList( Customer customer, AdminUser user );

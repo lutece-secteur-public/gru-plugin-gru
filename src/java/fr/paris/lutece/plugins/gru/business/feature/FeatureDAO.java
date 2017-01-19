@@ -39,7 +39,6 @@ import fr.paris.lutece.util.sql.DAOUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * This class provides Data Access methods for Feature objects
  */
@@ -51,29 +50,31 @@ public final class FeatureDAO implements IFeatureDAO
     private static final String SQL_QUERY_INSERT = "INSERT INTO gru_feature ( id_feature, name, link, link_customer_params, target, id_category, id_order, display_level ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? ) ";
     private static final String SQL_QUERY_DELETE = "DELETE FROM gru_feature WHERE id_feature = ? ";
     private static final String SQL_QUERY_UPDATE = "UPDATE gru_feature SET id_feature = ?, name = ?, link = ?, link_customer_params = ?, target = ?, id_category = ?, id_order = ?, display_level = ? WHERE id_feature = ?";
-    private static final String SQL_QUERY_SELECTALL = "SELECT a.id_feature, a.name, a.link, a.link_customer_params, a.target, a.id_category, b.name, a.id_order, a.display_level " +
-        " FROM gru_feature a, gru_feature_category b WHERE a.id_category = b.id_feature_category ORDER BY a.id_order";
+    private static final String SQL_QUERY_SELECTALL = "SELECT a.id_feature, a.name, a.link, a.link_customer_params, a.target, a.id_category, b.name, a.id_order, a.display_level "
+            + " FROM gru_feature a, gru_feature_category b WHERE a.id_category = b.id_feature_category ORDER BY a.id_order";
     private static final String SQL_QUERY_SELECTALL_ID = "SELECT id_feature FROM gru_feature";
     private static final String SQL_QUERY_SELECT_BY_CATEGORY = "SELECT id_feature, name, link, link_customer_params, target, id_category, id_order, display_level FROM gru_feature WHERE id_category = ? ORDER BY id_order";
 
     /**
      * Generates a new primary key
-     * @param plugin The Plugin
+     * 
+     * @param plugin
+     *            The Plugin
      * @return The new primary key
      */
     public int newPrimaryKey( Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_NEW_PK, plugin );
-        daoUtil.executeQuery(  );
+        daoUtil.executeQuery( );
 
         int nKey = 1;
 
-        if ( daoUtil.next(  ) )
+        if ( daoUtil.next( ) )
         {
             nKey = daoUtil.getInt( 1 ) + 1;
         }
 
-        daoUtil.free(  );
+        daoUtil.free( );
 
         return nKey;
     }
@@ -89,17 +90,17 @@ public final class FeatureDAO implements IFeatureDAO
         feature.setId( newPrimaryKey( plugin ) );
 
         int nIndex = 1;
-        daoUtil.setInt( nIndex++, feature.getId(  ) );
-        daoUtil.setString( nIndex++, feature.getName(  ) );
-        daoUtil.setString( nIndex++, feature.getLink(  ) );
-        daoUtil.setString( nIndex++, feature.getLinkCustomerParams(  ) );
-        daoUtil.setInt( nIndex++, feature.getTarget(  ) );
-        daoUtil.setInt( nIndex++, feature.getIdCategory(  ) );
-        daoUtil.setInt( nIndex++, feature.getIdOrder(  ) );
-        daoUtil.setInt( nIndex++, feature.getDisplayLevel(  ) );
+        daoUtil.setInt( nIndex++, feature.getId( ) );
+        daoUtil.setString( nIndex++, feature.getName( ) );
+        daoUtil.setString( nIndex++, feature.getLink( ) );
+        daoUtil.setString( nIndex++, feature.getLinkCustomerParams( ) );
+        daoUtil.setInt( nIndex++, feature.getTarget( ) );
+        daoUtil.setInt( nIndex++, feature.getIdCategory( ) );
+        daoUtil.setInt( nIndex++, feature.getIdOrder( ) );
+        daoUtil.setInt( nIndex++, feature.getDisplayLevel( ) );
 
-        daoUtil.executeUpdate(  );
-        daoUtil.free(  );
+        daoUtil.executeUpdate( );
+        daoUtil.free( );
     }
 
     /**
@@ -110,13 +111,13 @@ public final class FeatureDAO implements IFeatureDAO
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT, plugin );
         daoUtil.setInt( 1, nKey );
-        daoUtil.executeQuery(  );
+        daoUtil.executeQuery( );
 
         Feature feature = null;
 
-        if ( daoUtil.next(  ) )
+        if ( daoUtil.next( ) )
         {
-            feature = new Feature(  );
+            feature = new Feature( );
 
             int nIndex = 1;
             feature.setId( daoUtil.getInt( nIndex++ ) );
@@ -129,7 +130,7 @@ public final class FeatureDAO implements IFeatureDAO
             feature.setDisplayLevel( daoUtil.getInt( nIndex++ ) );
         }
 
-        daoUtil.free(  );
+        daoUtil.free( );
 
         return feature;
     }
@@ -142,8 +143,8 @@ public final class FeatureDAO implements IFeatureDAO
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE, plugin );
         daoUtil.setInt( 1, nKey );
-        daoUtil.executeUpdate(  );
-        daoUtil.free(  );
+        daoUtil.executeUpdate( );
+        daoUtil.free( );
     }
 
     /**
@@ -155,18 +156,18 @@ public final class FeatureDAO implements IFeatureDAO
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE, plugin );
 
         int nIndex = 1;
-        daoUtil.setInt( nIndex++, feature.getId(  ) );
-        daoUtil.setString( nIndex++, feature.getName(  ) );
-        daoUtil.setString( nIndex++, feature.getLink(  ) );
-        daoUtil.setString( nIndex++, feature.getLinkCustomerParams(  ) );
-        daoUtil.setInt( nIndex++, feature.getTarget(  ) );
-        daoUtil.setInt( nIndex++, feature.getIdCategory(  ) );
-        daoUtil.setInt( nIndex++, feature.getIdOrder(  ) );
-        daoUtil.setInt( nIndex++, feature.getDisplayLevel(  ) );
-        daoUtil.setInt( nIndex++, feature.getId(  ) );
+        daoUtil.setInt( nIndex++, feature.getId( ) );
+        daoUtil.setString( nIndex++, feature.getName( ) );
+        daoUtil.setString( nIndex++, feature.getLink( ) );
+        daoUtil.setString( nIndex++, feature.getLinkCustomerParams( ) );
+        daoUtil.setInt( nIndex++, feature.getTarget( ) );
+        daoUtil.setInt( nIndex++, feature.getIdCategory( ) );
+        daoUtil.setInt( nIndex++, feature.getIdOrder( ) );
+        daoUtil.setInt( nIndex++, feature.getDisplayLevel( ) );
+        daoUtil.setInt( nIndex++, feature.getId( ) );
 
-        daoUtil.executeUpdate(  );
-        daoUtil.free(  );
+        daoUtil.executeUpdate( );
+        daoUtil.free( );
     }
 
     /**
@@ -175,13 +176,13 @@ public final class FeatureDAO implements IFeatureDAO
     @Override
     public List<Feature> selectFeaturesList( Plugin plugin )
     {
-        List<Feature> featureList = new ArrayList<Feature>(  );
+        List<Feature> featureList = new ArrayList<Feature>( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin );
-        daoUtil.executeQuery(  );
+        daoUtil.executeQuery( );
 
-        while ( daoUtil.next(  ) )
+        while ( daoUtil.next( ) )
         {
-            Feature feature = new Feature(  );
+            Feature feature = new Feature( );
 
             int nIndex = 1;
             feature.setId( daoUtil.getInt( nIndex++ ) );
@@ -197,7 +198,7 @@ public final class FeatureDAO implements IFeatureDAO
             featureList.add( feature );
         }
 
-        daoUtil.free(  );
+        daoUtil.free( );
 
         return featureList;
     }
@@ -208,14 +209,14 @@ public final class FeatureDAO implements IFeatureDAO
     @Override
     public List<Feature> selectFeaturesListByCategory( int nCategory, Plugin plugin )
     {
-        List<Feature> featureList = new ArrayList<Feature>(  );
+        List<Feature> featureList = new ArrayList<Feature>( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT_BY_CATEGORY, plugin );
         daoUtil.setInt( 1, nCategory );
-        daoUtil.executeQuery(  );
+        daoUtil.executeQuery( );
 
-        while ( daoUtil.next(  ) )
+        while ( daoUtil.next( ) )
         {
-            Feature feature = new Feature(  );
+            Feature feature = new Feature( );
 
             int nIndex = 1;
             feature.setId( daoUtil.getInt( nIndex++ ) );
@@ -230,7 +231,7 @@ public final class FeatureDAO implements IFeatureDAO
             featureList.add( feature );
         }
 
-        daoUtil.free(  );
+        daoUtil.free( );
 
         return featureList;
     }
@@ -241,16 +242,16 @@ public final class FeatureDAO implements IFeatureDAO
     @Override
     public List<Integer> selectIdFeaturesList( Plugin plugin )
     {
-        List<Integer> featureList = new ArrayList<Integer>(  );
+        List<Integer> featureList = new ArrayList<Integer>( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_ID, plugin );
-        daoUtil.executeQuery(  );
+        daoUtil.executeQuery( );
 
-        while ( daoUtil.next(  ) )
+        while ( daoUtil.next( ) )
         {
             featureList.add( daoUtil.getInt( 1 ) );
         }
 
-        daoUtil.free(  );
+        daoUtil.free( );
 
         return featureList;
     }

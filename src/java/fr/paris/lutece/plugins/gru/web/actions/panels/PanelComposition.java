@@ -37,13 +37,12 @@ import fr.paris.lutece.plugins.gru.web.actions.panels.builders.PanelBuilder;
 
 import java.util.List;
 
-
 /**
  * PanelComposition
  */
 public class PanelComposition
 {
-    // Variables declarations 
+    // Variables declarations
     private List<PanelBuilder> _listPanelBuilders;
 
     /**
@@ -51,7 +50,7 @@ public class PanelComposition
      *
      * @return The PanelBuilders
      */
-    public List<PanelBuilder> getPanels(  )
+    public List<PanelBuilder> getPanels( )
     {
         return _listPanelBuilders;
     }
@@ -59,7 +58,8 @@ public class PanelComposition
     /**
      * Sets the PanelBuilders
      *
-     * @param listPanelBuilders The PanelBuilders
+     * @param listPanelBuilders
+     *            The PanelBuilders
      */
     public void setPanels( List<PanelBuilder> listPanelBuilders )
     {

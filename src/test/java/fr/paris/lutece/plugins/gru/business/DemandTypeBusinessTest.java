@@ -37,7 +37,6 @@ import fr.paris.lutece.plugins.gru.business.demandtype.DemandType;
 import fr.paris.lutece.plugins.gru.business.demandtype.DemandTypeHome;
 import fr.paris.lutece.test.LuteceTestCase;
 
-
 public class DemandTypeBusinessTest extends LuteceTestCase
 {
     private final static int DEMANDTYPEID1 = 1;
@@ -45,34 +44,34 @@ public class DemandTypeBusinessTest extends LuteceTestCase
     private final static String TITLE1 = "Title1";
     private final static String TITLE2 = "Title2";
 
-    public void testBusiness(  )
+    public void testBusiness( )
     {
         // Initialize an object
-        DemandType demandType = new DemandType(  );
+        DemandType demandType = new DemandType( );
         demandType.setDemandTypeId( DEMANDTYPEID1 );
         demandType.setTitle( TITLE1 );
 
         // Create test
         DemandTypeHome.create( demandType );
 
-        DemandType demandTypeStored = DemandTypeHome.findByPrimaryKey( demandType.getId(  ) );
-        assertEquals( demandTypeStored.getDemandTypeId(  ), demandType.getDemandTypeId(  ) );
-        assertEquals( demandTypeStored.getTitle(  ), demandType.getTitle(  ) );
+        DemandType demandTypeStored = DemandTypeHome.findByPrimaryKey( demandType.getId( ) );
+        assertEquals( demandTypeStored.getDemandTypeId( ), demandType.getDemandTypeId( ) );
+        assertEquals( demandTypeStored.getTitle( ), demandType.getTitle( ) );
 
         // Update test
         demandType.setDemandTypeId( DEMANDTYPEID2 );
         demandType.setTitle( TITLE2 );
         DemandTypeHome.update( demandType );
-        demandTypeStored = DemandTypeHome.findByPrimaryKey( demandType.getId(  ) );
-        assertEquals( demandTypeStored.getDemandTypeId(  ), demandType.getDemandTypeId(  ) );
-        assertEquals( demandTypeStored.getTitle(  ), demandType.getTitle(  ) );
+        demandTypeStored = DemandTypeHome.findByPrimaryKey( demandType.getId( ) );
+        assertEquals( demandTypeStored.getDemandTypeId( ), demandType.getDemandTypeId( ) );
+        assertEquals( demandTypeStored.getTitle( ), demandType.getTitle( ) );
 
         // List test
-        DemandTypeHome.getDemandTypesList(  );
+        DemandTypeHome.getDemandTypesList( );
 
         // Delete test
-        DemandTypeHome.remove( demandType.getId(  ) );
-        demandTypeStored = DemandTypeHome.findByPrimaryKey( demandType.getId(  ) );
+        DemandTypeHome.remove( demandType.getId( ) );
+        demandTypeStored = DemandTypeHome.findByPrimaryKey( demandType.getId( ) );
         assertNull( demandTypeStored );
     }
 }

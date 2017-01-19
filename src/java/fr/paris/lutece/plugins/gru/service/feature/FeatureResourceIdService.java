@@ -45,7 +45,6 @@ import fr.paris.lutece.util.ReferenceList;
 import java.util.List;
 import java.util.Locale;
 
-
 /**
  * Feature ResourceIdService
  */
@@ -58,15 +57,15 @@ public class FeatureResourceIdService extends ResourceIdService
      * {@inheritDoc }
      */
     @Override
-    public void register(  )
+    public void register( )
     {
-        ResourceType rt = new ResourceType(  );
-        rt.setResourceIdServiceClass( FeatureResourceIdService.class.getName(  ) );
+        ResourceType rt = new ResourceType( );
+        rt.setResourceIdServiceClass( FeatureResourceIdService.class.getName( ) );
         rt.setPluginName( Constants.PLUGIN_NAME );
         rt.setResourceTypeKey( Feature.RESOURCE_TYPE );
         rt.setResourceTypeLabelKey( PROPERTY_LABEL_RESOURCE_TYPE );
 
-        Permission p = new Permission(  );
+        Permission p = new Permission( );
         p.setPermissionKey( Feature.PERMISSION_ACCESS );
         p.setPermissionTitleKey( PROPERTY_LABEL_ACCESS );
         rt.registerPermission( p );
@@ -80,7 +79,7 @@ public class FeatureResourceIdService extends ResourceIdService
     @Override
     public ReferenceList getResourceIdList( Locale locale )
     {
-        List<Feature> listFeatures = FeatureHome.getFeaturesList(  );
+        List<Feature> listFeatures = FeatureHome.getFeaturesList( );
 
         return ReferenceList.convert( listFeatures, "id", "name", true );
     }
@@ -93,6 +92,6 @@ public class FeatureResourceIdService extends ResourceIdService
     {
         Feature feature = FeatureHome.findByPrimaryKey( Integer.parseInt( strId ) );
 
-        return feature.getName(  );
+        return feature.getName( );
     }
 }

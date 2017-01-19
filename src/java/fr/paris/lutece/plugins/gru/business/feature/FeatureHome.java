@@ -39,7 +39,6 @@ import fr.paris.lutece.portal.service.spring.SpringContextService;
 
 import java.util.List;
 
-
 /**
  * This class provides instances management methods (create, find, ...) for Feature objects
  */
@@ -52,14 +51,16 @@ public final class FeatureHome
     /**
      * Private constructor - this class need not be instantiated
      */
-    private FeatureHome(  )
+    private FeatureHome( )
     {
     }
 
     /**
      * Create an instance of the feature class
-     * @param feature The instance of the Feature which contains the informations to store
-     * @return The  instance of feature which has been created with its primary key.
+     * 
+     * @param feature
+     *            The instance of the Feature which contains the informations to store
+     * @return The instance of feature which has been created with its primary key.
      */
     public static Feature create( Feature feature )
     {
@@ -70,8 +71,10 @@ public final class FeatureHome
 
     /**
      * Update of the feature which is specified in parameter
-     * @param feature The instance of the Feature which contains the data to store
-     * @return The instance of the  feature which has been updated
+     * 
+     * @param feature
+     *            The instance of the Feature which contains the data to store
+     * @return The instance of the feature which has been updated
      */
     public static Feature update( Feature feature )
     {
@@ -82,19 +85,23 @@ public final class FeatureHome
 
     /**
      * Remove the feature whose identifier is specified in parameter
-     * @param nKey The feature Id
+     * 
+     * @param nKey
+     *            The feature Id
      */
     public static void remove( int nKey )
     {
         _dao.delete( nKey, _plugin );
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Finders
 
     /**
      * Returns an instance of a feature whose identifier is specified in parameter
-     * @param nKey The feature primary key
+     * 
+     * @param nKey
+     *            The feature primary key
      * @return an instance of Feature
      */
     public static Feature findByPrimaryKey( int nKey )
@@ -104,16 +111,19 @@ public final class FeatureHome
 
     /**
      * Load the data of all the feature objects and returns them in form of a collection
+     * 
      * @return the collection which contains the data of all the feature objects
      */
-    public static List<Feature> getFeaturesList(  )
+    public static List<Feature> getFeaturesList( )
     {
         return _dao.selectFeaturesList( _plugin );
     }
 
     /**
      * Gets all features for a given category
-     * @param nCategory The category
+     * 
+     * @param nCategory
+     *            The category
      * @return The list
      */
     public static List<Feature> getFeaturesListByCategory( int nCategory )
@@ -123,9 +133,10 @@ public final class FeatureHome
 
     /**
      * Load the id of all the feature objects and returns them in form of a collection
+     * 
      * @return the collection which contains the id of all the feature objects
      */
-    public static List<Integer> getIdFeaturesList(  )
+    public static List<Integer> getIdFeaturesList( )
     {
         return _dao.selectIdFeaturesList( _plugin );
     }

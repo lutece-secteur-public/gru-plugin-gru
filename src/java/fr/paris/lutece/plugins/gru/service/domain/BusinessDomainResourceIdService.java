@@ -46,7 +46,6 @@ import fr.paris.lutece.util.ReferenceList;
 import java.util.List;
 import java.util.Locale;
 
-
 /**
  * BusinessDomainResourceIdService
  */
@@ -60,20 +59,20 @@ public class BusinessDomainResourceIdService extends ResourceIdService
      * {@inheritDoc }
      */
     @Override
-    public void register(  )
+    public void register( )
     {
-        ResourceType rt = new ResourceType(  );
-        rt.setResourceIdServiceClass( BusinessDomainResourceIdService.class.getName(  ) );
+        ResourceType rt = new ResourceType( );
+        rt.setResourceIdServiceClass( BusinessDomainResourceIdService.class.getName( ) );
         rt.setPluginName( Constants.PLUGIN_NAME );
         rt.setResourceTypeKey( BusinessDomain.RESOURCE_TYPE );
         rt.setResourceTypeLabelKey( PROPERTY_LABEL_RESOURCE_TYPE );
 
-        Permission pSummary = new Permission(  );
+        Permission pSummary = new Permission( );
         pSummary.setPermissionKey( BusinessDomain.PERMISSION_VIEW_SUMMARY );
         pSummary.setPermissionTitleKey( PROPERTY_LABEL_VIEW_SUMMARY );
         rt.registerPermission( pSummary );
 
-        Permission pDetails = new Permission(  );
+        Permission pDetails = new Permission( );
         pDetails.setPermissionKey( BusinessDomain.PERMISSION_VIEW_DETAILS );
         pDetails.setPermissionTitleKey( PROPERTY_LABEL_VIEW_DETAILS );
         rt.registerPermission( pDetails );
@@ -98,6 +97,6 @@ public class BusinessDomainResourceIdService extends ResourceIdService
     {
         BusinessDomain domain = BusinessDomainHome.findByPrimaryKey( Integer.parseInt( strId ) );
 
-        return domain.getName(  );
+        return domain.getName( );
     }
 }

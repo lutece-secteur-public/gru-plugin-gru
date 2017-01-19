@@ -49,7 +49,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 /*
  * Copyright (c) 2002-2015, Mairie de Paris
  * All rights reserved.
@@ -96,7 +95,9 @@ public class FrameViewJspBean extends MVCAdminJspBean
 
     /**
      * View the Frame
-     * @param request The HTTP request
+     * 
+     * @param request
+     *            The HTTP request
      * @return
      */
     @View( value = VIEW_FRAME, defaultView = true )
@@ -105,29 +106,28 @@ public class FrameViewJspBean extends MVCAdminJspBean
         String strUrl = request.getParameter( Constants.PARAMETER_URL_FRAME );
 
         Customer customer = CustomerUtils.getCustomer( request );
-        Map<String, String> mapParameters = new HashMap<String, String>(  );
+        Map<String, String> mapParameters = new HashMap<String, String>( );
         mapParameters.put( Constants.PARAMETER_URL_FRAME, UrlUtils.encodeUrl( strUrl ) );
 
         if ( customer != null )
         {
             try
             {
-                mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, customer.getId(  ) );
+                mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, customer.getId( ) );
             }
-            catch ( NumberFormatException e )
+            catch( NumberFormatException e )
             {
             }
         }
 
-        List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
+        List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser( ) );
 
-        Map<String, Object> model = getModel(  );
+        Map<String, Object> model = getModel( );
         model.put( Constants.MARK_ACTION_PANELS, listPanels );
-        model.put( Constants.MARK_CUSTOMER, ( customer != null ) ? customer : new Customer(  ) );
+        model.put( Constants.MARK_CUSTOMER, ( customer != null ) ? customer : new Customer( ) );
         model.put( Constants.MARK_URL_FRAME, strUrl );
         model.put( Constants.MARK_RETURN_URL,
-            UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath(  ) +
-                getControllerJsp(  ), VIEW_FRAME, mapParameters ) );
+                UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath( ) + getControllerJsp( ), VIEW_FRAME, mapParameters ) );
 
         return getPage( "", TEMPLATE_FRAME, model );
     }

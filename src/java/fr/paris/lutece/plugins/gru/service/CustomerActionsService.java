@@ -43,7 +43,6 @@ import fr.paris.lutece.portal.service.spring.SpringContextService;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * Customer Actions Service
  */
@@ -54,17 +53,19 @@ public class CustomerActionsService
 
     /**
      * Gets panels for a given customer
-     * @param customer The customer
+     * 
+     * @param customer
+     *            The customer
      * @return The list of panels
      */
     public static List<ActionPanel> getPanels( Customer customer, AdminUser user )
     {
-        List<ActionPanel> listPanels = new ArrayList<ActionPanel>(  );
+        List<ActionPanel> listPanels = new ArrayList<ActionPanel>( );
 
-        for ( PanelBuilder panelBuilder : _panelComposition.getPanels(  ) )
+        for ( PanelBuilder panelBuilder : _panelComposition.getPanels( ) )
         {
-            ActionPanel panel = new ActionPanel(  );
-            panel.setTitle( panelBuilder.getTitle(  ) );
+            ActionPanel panel = new ActionPanel( );
+            panel.setTitle( panelBuilder.getTitle( ) );
 
             panel.setActionGroupList( panelBuilder.getActionGroups( customer, user ) );
 

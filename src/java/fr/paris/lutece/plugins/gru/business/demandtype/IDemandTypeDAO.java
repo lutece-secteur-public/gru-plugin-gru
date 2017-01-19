@@ -38,7 +38,6 @@ import fr.paris.lutece.util.ReferenceList;
 
 import java.util.List;
 
-
 /**
  * IDemandTypeDAO Interface
  */
@@ -46,61 +45,82 @@ public interface IDemandTypeDAO
 {
     /**
      * Insert a new record in the table.
-     * @param demandType instance of the DemandType object to insert
-     * @param plugin the Plugin
+     * 
+     * @param demandType
+     *            instance of the DemandType object to insert
+     * @param plugin
+     *            the Plugin
      */
     void insert( DemandType demandType, Plugin plugin );
 
     /**
      * Update the record in the table
-     * @param demandType the reference of the DemandType
-     * @param plugin the Plugin
+     * 
+     * @param demandType
+     *            the reference of the DemandType
+     * @param plugin
+     *            the Plugin
      */
     void store( DemandType demandType, Plugin plugin );
 
     /**
      * Delete a record from the table
-     * @param nKey The identifier of the DemandType to delete
-     * @param plugin the Plugin
+     * 
+     * @param nKey
+     *            The identifier of the DemandType to delete
+     * @param plugin
+     *            the Plugin
      */
     void delete( int nKey, Plugin plugin );
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Finders
 
     /**
      * Load the data from the table
-     * @param nKey The identifier of the demandType
-     * @param plugin the Plugin
+     * 
+     * @param nKey
+     *            The identifier of the demandType
+     * @param plugin
+     *            the Plugin
      * @return The instance of the demandType
      */
     DemandType load( int nKey, Plugin plugin );
 
     /**
      * Load the data of all the demandType objects and returns them as a collection
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the data of all the demandType objects
      */
     List<DemandType> selectDemandTypesList( Plugin plugin );
 
     /**
      * Load the id of all the demandType objects and returns them as a collection
-     * @param plugin the Plugin
+     * 
+     * @param plugin
+     *            the Plugin
      * @return The collection which contains the id of all the demandType objects
      */
     List<Integer> selectIdDemandTypesList( Plugin plugin );
 
     /**
      * Return a reference list of all demands
-     * @param plugin The plugin
+     * 
+     * @param plugin
+     *            The plugin
      * @return The list
      */
     ReferenceList selectDemandTypes( Plugin plugin );
 
     /**
      * Find a DemandType by its DemandTypeId
-     * @param strDemandTypeId The demandTypeId
-     * @param plugin The plugin
+     * 
+     * @param strDemandTypeId
+     *            The demandTypeId
+     * @param plugin
+     *            The plugin
      * @return The DemandType
      */
     DemandType selectByTypeId( String strDemandTypeId, Plugin plugin );

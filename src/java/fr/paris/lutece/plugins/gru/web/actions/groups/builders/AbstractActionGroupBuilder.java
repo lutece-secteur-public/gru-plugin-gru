@@ -33,14 +33,13 @@
  */
 package fr.paris.lutece.plugins.gru.web.actions.groups.builders;
 
-
 /**
  *
  * @author pierre
  */
 public abstract class AbstractActionGroupBuilder implements ActionGroupBuilder
 {
-    // Variables declarations 
+    // Variables declarations
     private String _strTitle;
     private String _strIcon;
 
@@ -49,14 +48,16 @@ public abstract class AbstractActionGroupBuilder implements ActionGroupBuilder
      *
      * @return The Title
      */
-    public String getTitle(  )
+    public String getTitle( )
     {
         return _strTitle;
     }
 
     /**
      * Sets the Title
-     * @param strTitle The Title
+     * 
+     * @param strTitle
+     *            The Title
      */
     public void setTitle( String strTitle )
     {
@@ -68,7 +69,7 @@ public abstract class AbstractActionGroupBuilder implements ActionGroupBuilder
      *
      * @return The Icon
      */
-    public String getIcon(  )
+    public String getIcon( )
     {
         return _strIcon;
     }
@@ -76,7 +77,8 @@ public abstract class AbstractActionGroupBuilder implements ActionGroupBuilder
     /**
      * Sets the Icon
      *
-     * @param strIcon The Icon
+     * @param strIcon
+     *            The Icon
      */
     public void setIcon( String strIcon )
     {

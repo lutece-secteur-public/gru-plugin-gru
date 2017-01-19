@@ -42,7 +42,6 @@ import fr.paris.lutece.portal.business.user.AdminUser;
 
 import java.util.List;
 
-
 /**
  *
  * @author pierre
@@ -52,25 +51,25 @@ public class DemandsActionGroupBuilder extends AbstractDemandActionGroupBuilder
     @Override
     public ActionGroup buildActionGroup( Customer customer, AdminUser user )
     {
-        ActionGroup group = new ActionGroup(  );
+        ActionGroup group = new ActionGroup( );
 
-        List<Demand> listDemands = DemandService.getDemandsExcludingTypes( customer, getExcludedTypesList(  ), user );
+        List<Demand> listDemands = DemandService.getDemandsExcludingTypes( customer, getExcludedTypesList( ), user );
 
         String strBadgeColor = null;
 
         for ( Demand demand : listDemands )
         {
-            ActionItem item = new ActionItem(  );
-            item.setTitle( demand.getTitle(  ) + " " + demand.getReference(  ) );
-            item.setLink( buildDemandManagementLink( demand.getId(  ), demand.getTypeId(  ), customer.getId(  ) ) );
+            ActionItem item = new ActionItem( );
+            item.setTitle( demand.getTitle( ) + " " + demand.getReference( ) );
+            item.setLink( buildDemandManagementLink( demand.getId( ), demand.getTypeId( ), customer.getId( ) ) );
             item.setColor( processItemColor( demand, COLOR_PRIMARY ) );
             group.addActionItem( item );
             strBadgeColor = processGroupBadgeColor( demand, strBadgeColor, COLOR_PRIMARY );
         }
 
-        group.setTitle( getTitle(  ) );
-        group.setIcon( getIcon(  ) );
-        group.setBadgeText( "" + group.getActions(  ).size(  ) );
+        group.setTitle( getTitle( ) );
+        group.setIcon( getIcon( ) );
+        group.setBadgeText( "" + group.getActions( ).size( ) );
         group.setBadgeColor( strBadgeColor );
 
         return group;

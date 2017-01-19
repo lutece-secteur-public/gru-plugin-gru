@@ -44,7 +44,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
-
 /**
  * This class provides utility methods for URLs
  *
@@ -56,13 +55,15 @@ public final class UrlUtils
     /**
      * Default constructor
      */
-    private UrlUtils(  )
+    private UrlUtils( )
     {
     }
 
     /**
      * Encodes a URL
-     * @param strUrl the URL
+     * 
+     * @param strUrl
+     *            the URL
      * @return the encoded URL or the original URL if there is an exception during the encoding
      */
     public static String encodeUrl( String strUrl )
@@ -73,7 +74,7 @@ public final class UrlUtils
         {
             strUrlEncoded = java.net.URLEncoder.encode( strUrl, URL_ENCODING );
         }
-        catch ( UnsupportedEncodingException e1 )
+        catch( UnsupportedEncodingException e1 )
         {
             AppLogService.error( e1 );
         }
@@ -83,9 +84,13 @@ public final class UrlUtils
 
     /**
      * Builds the URL to return to plugin gru after action on another plugin
-     * @param strControllerUrl the controller URL
-     * @param strView the view to display
-     * @param mapParameters the map of parameters
+     * 
+     * @param strControllerUrl
+     *            the controller URL
+     * @param strView
+     *            the view to display
+     * @param mapParameters
+     *            the map of parameters
      * @return the return URL
      */
     public static String buildReturnUrl( String strControllerUrl, String strView, Map<String, String> mapParameters )
@@ -93,28 +98,32 @@ public final class UrlUtils
         UrlItem url = new UrlItem( strControllerUrl );
         url.addParameter( MVCUtils.PARAMETER_VIEW, strView );
 
-        for ( Map.Entry<String, String> entry : mapParameters.entrySet(  ) )
+        for ( Map.Entry<String, String> entry : mapParameters.entrySet( ) )
         {
-            url.addParameter( entry.getKey(  ), entry.getValue(  ) );
+            url.addParameter( entry.getKey( ), entry.getValue( ) );
         }
 
-        return url.getUrl(  );
+        return url.getUrl( );
     }
 
     /**
      * Builds the URL to return to plugin gru after action on another plugin
-     * @param strControllerUrl the controller URL
-     * @param strView the view to display
-     * @param customer the customer
+     * 
+     * @param strControllerUrl
+     *            the controller URL
+     * @param strView
+     *            the view to display
+     * @param customer
+     *            the customer
      * @return the return URL
      */
     public static String buildReturnUrl( String strControllerUrl, String strView, Customer customer )
     {
-        Map<String, String> mapParameters = new HashMap<String, String>(  );
+        Map<String, String> mapParameters = new HashMap<String, String>( );
 
         if ( customer != null )
         {
-            mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, customer.getId(  ) );
+            mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, customer.getId( ) );
         }
 
         return buildReturnUrl( strControllerUrl, strView, mapParameters );

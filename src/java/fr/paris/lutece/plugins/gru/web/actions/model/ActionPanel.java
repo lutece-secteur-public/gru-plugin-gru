@@ -36,22 +36,21 @@ package fr.paris.lutece.plugins.gru.web.actions.model;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * This is the business class for the object ActionPanel
  */
 public class ActionPanel
 {
-    // Variables declarations 
+    // Variables declarations
     private String _strTitle;
-    private List<ActionGroup> _listActionGroups = new ArrayList<ActionGroup>(  );
+    private List<ActionGroup> _listActionGroups = new ArrayList<ActionGroup>( );
 
     /**
      * Returns the Title
      *
      * @return The Title
      */
-    public String getTitle(  )
+    public String getTitle( )
     {
         return _strTitle;
     }
@@ -59,7 +58,8 @@ public class ActionPanel
     /**
      * Sets the Title
      *
-     * @param strTitle The Title
+     * @param strTitle
+     *            The Title
      */
     public void setTitle( String strTitle )
     {
@@ -71,7 +71,7 @@ public class ActionPanel
      *
      * @return The ListActionGroups
      */
-    public List<ActionGroup> getActionGroups(  )
+    public List<ActionGroup> getActionGroups( )
     {
         return _listActionGroups;
     }
@@ -79,7 +79,8 @@ public class ActionPanel
     /**
      * Add an ActionGroup
      *
-     * @param actionGroup The ActionGroup
+     * @param actionGroup
+     *            The ActionGroup
      */
     public void addActionGroup( ActionGroup actionGroup )
     {
@@ -89,7 +90,8 @@ public class ActionPanel
     /**
      * Set ActionGroup List
      *
-     * @param listActionGroups The ListActionGroups
+     * @param listActionGroups
+     *            The ListActionGroups
      */
     public void setActionGroupList( List<ActionGroup> listActionGroups )
     {

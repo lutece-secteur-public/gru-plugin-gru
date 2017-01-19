@@ -37,7 +37,6 @@ import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
 
 import java.util.List;
 
-
 /**
  * ISearchService
  */
@@ -45,28 +44,35 @@ public interface ISearchService
 {
     /**
      * Search for Customers using first name and last name strings
-     * @param strFirstName The first name
-     * @param strLastName The last name
+     * 
+     * @param strFirstName
+     *            The first name
+     * @param strLastName
+     *            The last name
      * @return The customer list
      */
     List<Customer> searchCustomer( String strFirstName, String strLastName );
 
     /**
      * Search for a Customers by using its identifier
-     * @param strCustomerId the customer id
+     * 
+     * @param strCustomerId
+     *            the customer id
      * @return The customer
      */
     Customer searchCustomerById( String strCustomerId );
 
     /**
      * An autocomplete feature is available
+     * 
      * @return true of auto complete otherwise false
      */
-    boolean isAutoComplete(  );
+    boolean isAutoComplete( );
 
     /**
      * Return the AutoComplete Web Service URL
+     * 
      * @return The URL
      */
-    String getAutoCompleteUrl(  );
+    String getAutoCompleteUrl( );
 }

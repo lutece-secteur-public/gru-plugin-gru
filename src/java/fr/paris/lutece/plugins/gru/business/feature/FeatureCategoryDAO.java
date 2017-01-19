@@ -40,7 +40,6 @@ import fr.paris.lutece.util.sql.DAOUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * This class provides Data Access methods for FeatureCategory objects
  */
@@ -57,22 +56,24 @@ public final class FeatureCategoryDAO implements IFeatureCategoryDAO
 
     /**
      * Generates a new primary key
-     * @param plugin The Plugin
+     * 
+     * @param plugin
+     *            The Plugin
      * @return The new primary key
      */
     public int newPrimaryKey( Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_NEW_PK, plugin );
-        daoUtil.executeQuery(  );
+        daoUtil.executeQuery( );
 
         int nKey = 1;
 
-        if ( daoUtil.next(  ) )
+        if ( daoUtil.next( ) )
         {
             nKey = daoUtil.getInt( 1 ) + 1;
         }
 
-        daoUtil.free(  );
+        daoUtil.free( );
 
         return nKey;
     }
@@ -87,15 +88,15 @@ public final class FeatureCategoryDAO implements IFeatureCategoryDAO
 
         category.setId( newPrimaryKey( plugin ) );
 
-        daoUtil.setInt( 1, category.getId(  ) );
-        daoUtil.setString( 2, category.getName(  ) );
-        daoUtil.setString( 3, category.getDescription(  ) );
-        daoUtil.setInt( 4, category.getIdOrder(  ) );
-        daoUtil.setString( 5, category.getIcon(  ) );
-        daoUtil.setString( 6, category.getColor(  ) );
+        daoUtil.setInt( 1, category.getId( ) );
+        daoUtil.setString( 2, category.getName( ) );
+        daoUtil.setString( 3, category.getDescription( ) );
+        daoUtil.setInt( 4, category.getIdOrder( ) );
+        daoUtil.setString( 5, category.getIcon( ) );
+        daoUtil.setString( 6, category.getColor( ) );
 
-        daoUtil.executeUpdate(  );
-        daoUtil.free(  );
+        daoUtil.executeUpdate( );
+        daoUtil.free( );
     }
 
     /**
@@ -106,13 +107,13 @@ public final class FeatureCategoryDAO implements IFeatureCategoryDAO
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT, plugin );
         daoUtil.setInt( 1, nKey );
-        daoUtil.executeQuery(  );
+        daoUtil.executeQuery( );
 
         FeatureCategory category = null;
 
-        if ( daoUtil.next(  ) )
+        if ( daoUtil.next( ) )
         {
-            category = new FeatureCategory(  );
+            category = new FeatureCategory( );
             category.setId( daoUtil.getInt( 1 ) );
             category.setName( daoUtil.getString( 2 ) );
             category.setDescription( daoUtil.getString( 3 ) );
@@ -121,7 +122,7 @@ public final class FeatureCategoryDAO implements IFeatureCategoryDAO
             category.setColor( daoUtil.getString( 6 ) );
         }
 
-        daoUtil.free(  );
+        daoUtil.free( );
 
         return category;
     }
@@ -134,8 +135,8 @@ public final class FeatureCategoryDAO implements IFeatureCategoryDAO
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE, plugin );
         daoUtil.setInt( 1, nKey );
-        daoUtil.executeUpdate(  );
-        daoUtil.free(  );
+        daoUtil.executeUpdate( );
+        daoUtil.free( );
     }
 
     /**
@@ -146,16 +147,16 @@ public final class FeatureCategoryDAO implements IFeatureCategoryDAO
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE, plugin );
 
-        daoUtil.setInt( 1, category.getId(  ) );
-        daoUtil.setString( 2, category.getName(  ) );
-        daoUtil.setString( 3, category.getDescription(  ) );
-        daoUtil.setInt( 4, category.getIdOrder(  ) );
-        daoUtil.setString( 5, category.getIcon(  ) );
-        daoUtil.setString( 6, category.getColor(  ) );
-        daoUtil.setInt( 7, category.getId(  ) );
+        daoUtil.setInt( 1, category.getId( ) );
+        daoUtil.setString( 2, category.getName( ) );
+        daoUtil.setString( 3, category.getDescription( ) );
+        daoUtil.setInt( 4, category.getIdOrder( ) );
+        daoUtil.setString( 5, category.getIcon( ) );
+        daoUtil.setString( 6, category.getColor( ) );
+        daoUtil.setInt( 7, category.getId( ) );
 
-        daoUtil.executeUpdate(  );
-        daoUtil.free(  );
+        daoUtil.executeUpdate( );
+        daoUtil.free( );
     }
 
     /**
@@ -164,13 +165,13 @@ public final class FeatureCategoryDAO implements IFeatureCategoryDAO
     @Override
     public List<FeatureCategory> selectFeatureCategorysList( Plugin plugin )
     {
-        List<FeatureCategory> listCategories = new ArrayList<FeatureCategory>(  );
+        List<FeatureCategory> listCategories = new ArrayList<FeatureCategory>( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin );
-        daoUtil.executeQuery(  );
+        daoUtil.executeQuery( );
 
-        while ( daoUtil.next(  ) )
+        while ( daoUtil.next( ) )
         {
-            FeatureCategory category = new FeatureCategory(  );
+            FeatureCategory category = new FeatureCategory( );
 
             category.setId( daoUtil.getInt( 1 ) );
             category.setName( daoUtil.getString( 2 ) );
@@ -182,7 +183,7 @@ public final class FeatureCategoryDAO implements IFeatureCategoryDAO
             listCategories.add( category );
         }
 
-        daoUtil.free(  );
+        daoUtil.free( );
 
         return listCategories;
     }
@@ -193,16 +194,16 @@ public final class FeatureCategoryDAO implements IFeatureCategoryDAO
     @Override
     public List<Integer> selectIdFeatureCategorysList( Plugin plugin )
     {
-        List<Integer> listCategories = new ArrayList<Integer>(  );
+        List<Integer> listCategories = new ArrayList<Integer>( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_ID, plugin );
-        daoUtil.executeQuery(  );
+        daoUtil.executeQuery( );
 
-        while ( daoUtil.next(  ) )
+        while ( daoUtil.next( ) )
         {
             listCategories.add( daoUtil.getInt( 1 ) );
         }
 
-        daoUtil.free(  );
+        daoUtil.free( );
 
         return listCategories;
     }
@@ -213,16 +214,16 @@ public final class FeatureCategoryDAO implements IFeatureCategoryDAO
     @Override
     public ReferenceList selectCategoriesList( Plugin plugin )
     {
-        ReferenceList listCategories = new ReferenceList(  );
+        ReferenceList listCategories = new ReferenceList( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin );
-        daoUtil.executeQuery(  );
+        daoUtil.executeQuery( );
 
-        while ( daoUtil.next(  ) )
+        while ( daoUtil.next( ) )
         {
             listCategories.addItem( daoUtil.getInt( 1 ), daoUtil.getString( 2 ) );
         }
 
-        daoUtil.free(  );
+        daoUtil.free( );
 
         return listCategories;
     }

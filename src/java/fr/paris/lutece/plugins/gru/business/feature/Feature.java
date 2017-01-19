@@ -41,7 +41,6 @@ import java.io.Serializable;
 
 import javax.validation.constraints.*;
 
-
 /**
  * This is the business class for the object Feature
  */
@@ -55,7 +54,7 @@ public class Feature implements Serializable, RBACResource
     public static final int DISPLAY_HIDDEN = -1;
     private static final long serialVersionUID = 1L;
 
-    // Variables declarations 
+    // Variables declarations
     private int _nId;
     @NotEmpty( message = "#i18n{gru.validation.feature.Name.notEmpty}" )
     @Size( max = 50, message = "#i18n{gru.validation.feature.Name.size}" )
@@ -71,16 +70,19 @@ public class Feature implements Serializable, RBACResource
 
     /**
      * Returns the Id
+     * 
      * @return The Id
      */
-    public int getId(  )
+    public int getId( )
     {
         return _nId;
     }
 
     /**
      * Sets the Id
-     * @param nId The Id
+     * 
+     * @param nId
+     *            The Id
      */
     public void setId( int nId )
     {
@@ -89,16 +91,19 @@ public class Feature implements Serializable, RBACResource
 
     /**
      * Returns the Name
+     * 
      * @return The Name
      */
-    public String getName(  )
+    public String getName( )
     {
         return _strName;
     }
 
     /**
      * Sets the Name
-     * @param strName The Name
+     * 
+     * @param strName
+     *            The Name
      */
     public void setName( String strName )
     {
@@ -107,16 +112,19 @@ public class Feature implements Serializable, RBACResource
 
     /**
      * Returns the Link
+     * 
      * @return The Link
      */
-    public String getLink(  )
+    public String getLink( )
     {
         return _strLink;
     }
 
     /**
      * Sets the Link
-     * @param strLink The Link
+     * 
+     * @param strLink
+     *            The Link
      */
     public void setLink( String strLink )
     {
@@ -125,16 +133,19 @@ public class Feature implements Serializable, RBACResource
 
     /**
      * Returns the LinkCustomerParams
+     * 
      * @return The LinkCustomerParams
      */
-    public String getLinkCustomerParams(  )
+    public String getLinkCustomerParams( )
     {
         return _strLinkCustomerParams;
     }
 
     /**
      * Sets the LinkCustomerParams
-     * @param strLinkCustomerParams The LinkCustomerParams
+     * 
+     * @param strLinkCustomerParams
+     *            The LinkCustomerParams
      */
     public void setLinkCustomerParams( String strLinkCustomerParams )
     {
@@ -143,16 +154,19 @@ public class Feature implements Serializable, RBACResource
 
     /**
      * Returns the IdCategory
+     * 
      * @return The IdCategory
      */
-    public int getIdCategory(  )
+    public int getIdCategory( )
     {
         return _nIdCategory;
     }
 
     /**
      * Sets the IdCategory
-     * @param nIdCategory The IdCategory
+     * 
+     * @param nIdCategory
+     *            The IdCategory
      */
     public void setIdCategory( int nIdCategory )
     {
@@ -161,16 +175,19 @@ public class Feature implements Serializable, RBACResource
 
     /**
      * Returns the Category
+     * 
      * @return The Category
      */
-    public String getCategory(  )
+    public String getCategory( )
     {
         return _strCategory;
     }
 
     /**
      * Sets the Category
-     * @param strCategory The Category
+     * 
+     * @param strCategory
+     *            The Category
      */
     public void setCategory( String strCategory )
     {
@@ -179,16 +196,19 @@ public class Feature implements Serializable, RBACResource
 
     /**
      * Returns the IdOrder
+     * 
      * @return The IdOrder
      */
-    public int getIdOrder(  )
+    public int getIdOrder( )
     {
         return _nIdOrder;
     }
 
     /**
      * Sets the IdOrder
-     * @param nIdOrder The IdOrder
+     * 
+     * @param nIdOrder
+     *            The IdOrder
      */
     public void setIdOrder( int nIdOrder )
     {
@@ -197,16 +217,19 @@ public class Feature implements Serializable, RBACResource
 
     /**
      * Returns the Target
+     * 
      * @return The Target
      */
-    public int getTarget(  )
+    public int getTarget( )
     {
         return _nTarget;
     }
 
     /**
      * Sets the Target
-     * @param nTarget The Target
+     * 
+     * @param nTarget
+     *            The Target
      */
     public void setTarget( int nTarget )
     {
@@ -215,16 +238,19 @@ public class Feature implements Serializable, RBACResource
 
     /**
      * Returns the DisplayLevel
+     * 
      * @return The DisplayLevel
      */
-    public int getDisplayLevel(  )
+    public int getDisplayLevel( )
     {
         return _nDisplayLevel;
     }
 
     /**
      * Sets the DisplayLevel
-     * @param nDisplayLevel The DisplayLevel
+     * 
+     * @param nDisplayLevel
+     *            The DisplayLevel
      */
     public void setDisplayLevel( int nDisplayLevel )
     {
@@ -233,30 +259,32 @@ public class Feature implements Serializable, RBACResource
 
     /**
      * Is feature disabled
+     * 
      * @return true if disabled otherwise false
      */
-    public boolean isHidden(  )
+    public boolean isHidden( )
     {
         return _nDisplayLevel == DISPLAY_HIDDEN;
     }
 
     /**
      * Is feature on Home page
+     * 
      * @return true if on Home page otherwise false
      */
-    public boolean isHome(  )
+    public boolean isHome( )
     {
         return _nDisplayLevel == DISPLAY_HOME;
     }
 
-    ////////////////////////////////////////////////////////////////////////////
+    // //////////////////////////////////////////////////////////////////////////
     // RBAC Resource implementation
 
     /**
      * {@inheritDoc }
      */
     @Override
-    public String getResourceTypeCode(  )
+    public String getResourceTypeCode( )
     {
         return RESOURCE_TYPE;
     }
@@ -265,7 +293,7 @@ public class Feature implements Serializable, RBACResource
      * {@inheritDoc }
      */
     @Override
-    public String getResourceId(  )
+    public String getResourceId( )
     {
         return "" + _nId;
     }

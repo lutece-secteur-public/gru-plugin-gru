@@ -39,7 +39,6 @@ import java.io.Serializable;
 
 import javax.validation.constraints.*;
 
-
 /**
  * This is the business class for the object ExtrasAttributes
  */
@@ -47,7 +46,7 @@ public class ExtrasAttributes implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
-    // Variables declarations 
+    // Variables declarations
     private int _nId;
     @NotEmpty( message = "#i18n{gru.validation.extrasattributes.AttributeKey.notEmpty}" )
     @Size( max = 50, message = "#i18n{gru.validation.extrasattributes.AttributeKey.size}" )
@@ -61,16 +60,19 @@ public class ExtrasAttributes implements Serializable
 
     /**
      * Returns the Id
+     * 
      * @return The Id
      */
-    public int getId(  )
+    public int getId( )
     {
         return _nId;
     }
 
     /**
      * Sets the Id
-     * @param nId The Id
+     * 
+     * @param nId
+     *            The Id
      */
     public void setId( int nId )
     {
@@ -79,16 +81,19 @@ public class ExtrasAttributes implements Serializable
 
     /**
      * Returns the AttributeKey
+     * 
      * @return The AttributeKey
      */
-    public String getAttributeKey(  )
+    public String getAttributeKey( )
     {
         return _strAttributeKey;
     }
 
     /**
      * Sets the AttributeKey
-     * @param strAttributeKey The AttributeKey
+     * 
+     * @param strAttributeKey
+     *            The AttributeKey
      */
     public void setAttributeKey( String strAttributeKey )
     {
@@ -97,16 +102,19 @@ public class ExtrasAttributes implements Serializable
 
     /**
      * Returns the Name
+     * 
      * @return The Name
      */
-    public String getName(  )
+    public String getName( )
     {
         return _strName;
     }
 
     /**
      * Sets the Name
-     * @param strName The Name
+     * 
+     * @param strName
+     *            The Name
      */
     public void setName( String strName )
     {
@@ -115,16 +123,19 @@ public class ExtrasAttributes implements Serializable
 
     /**
      * Returns the Description
+     * 
      * @return The Description
      */
-    public String getDescription(  )
+    public String getDescription( )
     {
         return _strDescription;
     }
 
     /**
      * Sets the Description
-     * @param strDescription The Description
+     * 
+     * @param strDescription
+     *            The Description
      */
     public void setDescription( String strDescription )
     {

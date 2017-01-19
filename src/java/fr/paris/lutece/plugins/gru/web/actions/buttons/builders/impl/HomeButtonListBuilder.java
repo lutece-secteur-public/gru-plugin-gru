@@ -49,7 +49,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 /**
  * HomeButtonListBuilder
  */
@@ -61,18 +60,18 @@ public class HomeButtonListBuilder implements ButtonListBuilder
     @Override
     public List<ActionButton> buildActionButtonList( Customer customer, AdminUser user )
     {
-        List<ActionButton> listButtons = new ArrayList<ActionButton>(  );
+        List<ActionButton> listButtons = new ArrayList<ActionButton>( );
 
-        for ( Feature feature : FeatureService.getHomeFeatures(  ) )
+        for ( Feature feature : FeatureService.getHomeFeatures( ) )
         {
             if ( RBACService.isAuthorized( feature, Feature.PERMISSION_ACCESS, user ) )
             {
-                FeatureCategory category = FeatureCategoryHome.findByPrimaryKey( feature.getIdCategory(  ) );
-                ActionButton button = new ActionButton(  );
-                button.setTitle( feature.getName(  ) );
+                FeatureCategory category = FeatureCategoryHome.findByPrimaryKey( feature.getIdCategory( ) );
+                ActionButton button = new ActionButton( );
+                button.setTitle( feature.getName( ) );
                 button.setLink( FeatureService.getCustomerLink( feature, customer ) );
-                button.setIcon( category.getIcon(  ) );
-                button.setColor( category.getColor(  ) );
+                button.setIcon( category.getIcon( ) );
+                button.setColor( category.getColor( ) );
                 listButtons.add( button );
             }
         }
@@ -86,33 +85,33 @@ public class HomeButtonListBuilder implements ButtonListBuilder
     @Override
     public List<ActionGroup> buildButtonGroupList( Customer customer, AdminUser user )
     {
-        Map<String, ActionGroup> map = new HashMap<String, ActionGroup>(  );
+        Map<String, ActionGroup> map = new HashMap<String, ActionGroup>( );
 
-        for ( Feature feature : FeatureService.getHomeFeatures(  ) )
+        for ( Feature feature : FeatureService.getHomeFeatures( ) )
         {
             if ( RBACService.isAuthorized( feature, Feature.PERMISSION_ACCESS, user ) )
             {
-                FeatureCategory category = FeatureCategoryHome.findByPrimaryKey( feature.getIdCategory(  ) );
-                ActionGroup group = map.get( category.getName(  ) );
+                FeatureCategory category = FeatureCategoryHome.findByPrimaryKey( feature.getIdCategory( ) );
+                ActionGroup group = map.get( category.getName( ) );
 
                 if ( group == null )
                 {
-                    group = new ActionGroup(  );
-                    group.setTitle( category.getName(  ) );
-                    group.setIcon( category.getIcon(  ) );
-                    group.setBadgeColor( category.getColor(  ) );
-                    map.put( category.getName(  ), group );
+                    group = new ActionGroup( );
+                    group.setTitle( category.getName( ) );
+                    group.setIcon( category.getIcon( ) );
+                    group.setBadgeColor( category.getColor( ) );
+                    map.put( category.getName( ), group );
                 }
 
-                ActionButton button = new ActionButton(  );
-                button.setTitle( feature.getName(  ) );
+                ActionButton button = new ActionButton( );
+                button.setTitle( feature.getName( ) );
                 button.setLink( FeatureService.getCustomerLink( feature, customer ) );
-                button.setIcon( category.getIcon(  ) );
-                button.setColor( category.getColor(  ) );
+                button.setIcon( category.getIcon( ) );
+                button.setColor( category.getColor( ) );
                 group.addActionItem( button );
             }
         }
 
-        return new ArrayList( map.values(  ) );
+        return new ArrayList( map.values( ) );
     }
 }

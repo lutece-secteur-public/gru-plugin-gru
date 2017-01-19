@@ -48,7 +48,6 @@ import java.net.URLEncoder;
 
 import java.util.Locale;
 
-
 /**
  * ActionLinkService
  */
@@ -66,21 +65,26 @@ public class ActionLinkService
     private static final String INFO_USER_TITLE = "{user_title}";
     private static final String INFO_FIRSTNAME = "{firstname}";
     private static final String INFO_LASTNAME = "{lastname}";
-    private static final String INFO_PHONE = "{phone}";
+    private static final String INFO_FIXED_PHONE = "{fixed_phone}";
+    private static final String INFO_MOBILE_PHONE = "{mobile_phone}";
     private static final String INFO_EMAIL = "{email}";
 
     /**
      * Adapt Link for customer
-     * @param strLinkTemplate The Link template
-     * @param nTarget The target
-     * @param customer The customer
+     * 
+     * @param strLinkTemplate
+     *            The Link template
+     * @param nTarget
+     *            The target
+     * @param customer
+     *            The customer
      * @return The adapted link
      */
     public static String buildLink( String strLinkTemplate, int nTarget, Customer customer )
     {
         String strLink = setCustomerInfo( strLinkTemplate, customer );
 
-        switch ( nTarget )
+        switch( nTarget )
         {
             case TARGET_FRAME:
                 strLink = buildFrameLink( strLink, customer );
@@ -99,9 +103,12 @@ public class ActionLinkService
 
     /**
      * Replace in the linktemplate informations about the customer
-     * @param strLinkTemplate The Link Template
-     * @param customer The customer
-     * @return  The link
+     * 
+     * @param strLinkTemplate
+     *            The Link Template
+     * @param customer
+     *            The customer
+     * @return The link
      */
     public static String setCustomerInfo( String strLinkTemplate, Customer customer )
     {
@@ -109,13 +116,14 @@ public class ActionLinkService
 
         if ( customer != null )
         {
-            strLink = fillLink( strLink, INFO_GUID, customer.getAccountGuid(  ) );
-            strLink = fillLink( strLink, INFO_CUSTOMER_ID, customer.getId(  ) );
-            strLink = fillLink( strLink, INFO_USER_TITLE, "" + customer.getIdTitle(  ) );
-            strLink = fillLink( strLink, INFO_FIRSTNAME, customer.getFirstname(  ) );
-            strLink = fillLink( strLink, INFO_LASTNAME, customer.getLastname(  ) );
-            strLink = fillLink( strLink, INFO_PHONE, customer.getMobilePhone(  ) );
-            strLink = fillLink( strLink, INFO_EMAIL, customer.getEmail(  ) );
+            strLink = fillLink( strLink, INFO_GUID, customer.getAccountGuid( ) );
+            strLink = fillLink( strLink, INFO_CUSTOMER_ID, customer.getId( ) );
+            strLink = fillLink( strLink, INFO_USER_TITLE, "" + customer.getIdTitle( ) );
+            strLink = fillLink( strLink, INFO_FIRSTNAME, customer.getFirstname( ) );
+            strLink = fillLink( strLink, INFO_LASTNAME, customer.getLastname( ) );
+            strLink = fillLink( strLink, INFO_FIXED_PHONE, customer.getFixedPhoneNumber(  ) );
+            strLink = fillLink( strLink, INFO_MOBILE_PHONE, customer.getMobilePhone( ) );
+            strLink = fillLink( strLink, INFO_EMAIL, customer.getEmail( ) );
         }
 
         return strLink;
@@ -130,8 +138,11 @@ public class ActionLinkService
 
     /**
      * Build a link to display a given URL into a frame
-     * @param strUrl The input URL
-     * @param customer The customer
+     * 
+     * @param strUrl
+     *            The input URL
+     * @param customer
+     *            The customer
      * @return The frame URL
      */
     private static String buildFrameLink( String strUrl, Customer customer )
@@ -147,14 +158,14 @@ public class ActionLinkService
 
             if ( customer != null )
             {
-                url.addParameter( Constants.PARAMETER_ID_CUSTOMER, customer.getId(  ) );
+                url.addParameter( Constants.PARAMETER_ID_CUSTOMER, customer.getId( ) );
             }
 
-            return url.getUrl(  );
+            return url.getUrl( );
         }
-        catch ( UnsupportedEncodingException ex )
+        catch( UnsupportedEncodingException ex )
         {
-            AppLogService.error( "Error encoding url " + ex.getMessage(  ), ex );
+            AppLogService.error( "Error encoding url " + ex.getMessage( ), ex );
 
             return "";
         }
@@ -162,12 +173,14 @@ public class ActionLinkService
 
     /**
      * The list of available targets
-     * @param locale The locale
+     * 
+     * @param locale
+     *            The locale
      * @return The list
      */
     public static ReferenceList getTargetList( Locale locale )
     {
-        ReferenceList list = new ReferenceList(  );
+        ReferenceList list = new ReferenceList( );
         list.addItem( TARGET_FRAME, I18nService.getLocalizedString( PROPERTY_TARGET_FRAME, locale ) );
         list.addItem( TARGET_NO_FRAME, I18nService.getLocalizedString( PROPERTY_TARGET_NO_FRAME, locale ) );
         list.addItem( TARGET_NEW_WINDOW, I18nService.getLocalizedString( PROPERTY_TARGET_NEW_WINDOW, locale ) );

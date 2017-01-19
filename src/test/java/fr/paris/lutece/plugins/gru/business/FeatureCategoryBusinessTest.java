@@ -37,7 +37,6 @@ import fr.paris.lutece.plugins.gru.business.feature.FeatureCategory;
 import fr.paris.lutece.plugins.gru.business.feature.FeatureCategoryHome;
 import fr.paris.lutece.test.LuteceTestCase;
 
-
 public class FeatureCategoryBusinessTest extends LuteceTestCase
 {
     private final static String NAME1 = "Name1";
@@ -49,10 +48,10 @@ public class FeatureCategoryBusinessTest extends LuteceTestCase
     private final static String CATEGORYICON1 = "CategoryIcon1";
     private final static String CATEGORYICON2 = "CategoryIcon2";
 
-    public void testBusiness(  )
+    public void testBusiness( )
     {
         // Initialize an object
-        FeatureCategory featureCategory = new FeatureCategory(  );
+        FeatureCategory featureCategory = new FeatureCategory( );
         featureCategory.setName( NAME1 );
         featureCategory.setDescription( DESCRIPTION1 );
         featureCategory.setIdOrder( IDORDER1 );
@@ -61,11 +60,11 @@ public class FeatureCategoryBusinessTest extends LuteceTestCase
         // Create test
         FeatureCategoryHome.create( featureCategory );
 
-        FeatureCategory featureCategoryStored = FeatureCategoryHome.findByPrimaryKey( featureCategory.getId(  ) );
-        assertEquals( featureCategoryStored.getName(  ), featureCategory.getName(  ) );
-        assertEquals( featureCategoryStored.getDescription(  ), featureCategory.getDescription(  ) );
-        assertEquals( featureCategoryStored.getIdOrder(  ), featureCategory.getIdOrder(  ) );
-        assertEquals( featureCategoryStored.getIcon(  ), featureCategory.getIcon(  ) );
+        FeatureCategory featureCategoryStored = FeatureCategoryHome.findByPrimaryKey( featureCategory.getId( ) );
+        assertEquals( featureCategoryStored.getName( ), featureCategory.getName( ) );
+        assertEquals( featureCategoryStored.getDescription( ), featureCategory.getDescription( ) );
+        assertEquals( featureCategoryStored.getIdOrder( ), featureCategory.getIdOrder( ) );
+        assertEquals( featureCategoryStored.getIcon( ), featureCategory.getIcon( ) );
 
         // Update test
         featureCategory.setName( NAME2 );
@@ -73,18 +72,18 @@ public class FeatureCategoryBusinessTest extends LuteceTestCase
         featureCategory.setIdOrder( IDORDER2 );
         featureCategory.setIcon( CATEGORYICON2 );
         FeatureCategoryHome.update( featureCategory );
-        featureCategoryStored = FeatureCategoryHome.findByPrimaryKey( featureCategory.getId(  ) );
-        assertEquals( featureCategoryStored.getName(  ), featureCategory.getName(  ) );
-        assertEquals( featureCategoryStored.getDescription(  ), featureCategory.getDescription(  ) );
-        assertEquals( featureCategoryStored.getIdOrder(  ), featureCategory.getIdOrder(  ) );
-        assertEquals( featureCategoryStored.getIcon(  ), featureCategory.getIcon(  ) );
+        featureCategoryStored = FeatureCategoryHome.findByPrimaryKey( featureCategory.getId( ) );
+        assertEquals( featureCategoryStored.getName( ), featureCategory.getName( ) );
+        assertEquals( featureCategoryStored.getDescription( ), featureCategory.getDescription( ) );
+        assertEquals( featureCategoryStored.getIdOrder( ), featureCategory.getIdOrder( ) );
+        assertEquals( featureCategoryStored.getIcon( ), featureCategory.getIcon( ) );
 
         // List test
-        FeatureCategoryHome.getFeatureCategorysList(  );
+        FeatureCategoryHome.getFeatureCategorysList( );
 
         // Delete test
-        FeatureCategoryHome.remove( featureCategory.getId(  ) );
-        featureCategoryStored = FeatureCategoryHome.findByPrimaryKey( featureCategory.getId(  ) );
+        FeatureCategoryHome.remove( featureCategory.getId( ) );
+        featureCategoryStored = FeatureCategoryHome.findByPrimaryKey( featureCategory.getId( ) );
         assertNull( featureCategoryStored );
     }
 }

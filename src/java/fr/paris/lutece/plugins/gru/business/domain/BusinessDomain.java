@@ -41,7 +41,6 @@ import java.io.Serializable;
 
 import javax.validation.constraints.*;
 
-
 /**
  * This is the business class for the object BusinessDomain
  */
@@ -53,7 +52,7 @@ public class BusinessDomain implements Serializable, RBACResource
     public static final String PERMISSION_VIEW_DETAILS = "VIEW_DETAILS";
     private static final long serialVersionUID = 1L;
 
-    // Variables declarations 
+    // Variables declarations
     private int _nId;
     @NotEmpty( message = "#i18n{gru.validation.businessdomain.Name.notEmpty}" )
     @Size( max = 50, message = "#i18n{gru.validation.businessdomain.Name.size}" )
@@ -66,16 +65,19 @@ public class BusinessDomain implements Serializable, RBACResource
 
     /**
      * Returns the Id
+     * 
      * @return The Id
      */
-    public int getId(  )
+    public int getId( )
     {
         return _nId;
     }
 
     /**
      * Sets the Id
-     * @param nId The Id
+     * 
+     * @param nId
+     *            The Id
      */
     public void setId( int nId )
     {
@@ -84,16 +86,19 @@ public class BusinessDomain implements Serializable, RBACResource
 
     /**
      * Returns the IdBusinessSector
+     * 
      * @return The IdBusinessSector
      */
-    public int getIdBusinessSector(  )
+    public int getIdBusinessSector( )
     {
         return _nIdBusinessSector;
     }
 
     /**
      * Sets the IdBusinessSector
-     * @param nIdBusinessSector The IdBusinessSector
+     * 
+     * @param nIdBusinessSector
+     *            The IdBusinessSector
      */
     public void setIdBusinessSector( int nIdBusinessSector )
     {
@@ -102,16 +107,19 @@ public class BusinessDomain implements Serializable, RBACResource
 
     /**
      * Returns the BusinessSector
+     * 
      * @return The BusinessSector
      */
-    public String getBusinessSector(  )
+    public String getBusinessSector( )
     {
         return _strBusinessSector;
     }
 
     /**
      * Sets the BusinessSector
-     * @param strBusinessSector The BusinessSector
+     * 
+     * @param strBusinessSector
+     *            The BusinessSector
      */
     public void setBusinessSector( String strBusinessSector )
     {
@@ -120,16 +128,19 @@ public class BusinessDomain implements Serializable, RBACResource
 
     /**
      * Returns the Name
+     * 
      * @return The Name
      */
-    public String getName(  )
+    public String getName( )
     {
         return _strName;
     }
 
     /**
      * Sets the Name
-     * @param strName The Name
+     * 
+     * @param strName
+     *            The Name
      */
     public void setName( String strName )
     {
@@ -138,30 +149,33 @@ public class BusinessDomain implements Serializable, RBACResource
 
     /**
      * Returns the Description
+     * 
      * @return The Description
      */
-    public String getDescription(  )
+    public String getDescription( )
     {
         return _strDescription;
     }
 
     /**
      * Sets the Description
-     * @param strDescription The Description
+     * 
+     * @param strDescription
+     *            The Description
      */
     public void setDescription( String strDescription )
     {
         _strDescription = strDescription;
     }
 
-    ////////////////////////////////////////////////////////////////////////////
+    // //////////////////////////////////////////////////////////////////////////
     // RBAC Resource implementation
 
     /**
      * {@inheritDoc }
      */
     @Override
-    public String getResourceTypeCode(  )
+    public String getResourceTypeCode( )
     {
         return RESOURCE_TYPE;
     }
@@ -170,7 +184,7 @@ public class BusinessDomain implements Serializable, RBACResource
      * {@inheritDoc }
      */
     @Override
-    public String getResourceId(  )
+    public String getResourceId( )
     {
         return String.valueOf( _nId ); // for exemple
     }

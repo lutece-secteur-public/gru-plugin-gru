@@ -76,14 +76,13 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 /**
  * This class provides the user interface to manage Customer features ( manage, create, modify, remove )
  */
 @Controller( controllerJsp = "ManageCustomers.jsp", controllerPath = "jsp/admin/plugins/gru/", right = "GRU_MANAGEMENT" )
 public class CustomerJspBean extends MVCAdminJspBean
 {
-    ////////////////////////////////////////////////////////////////////////////
+    // //////////////////////////////////////////////////////////////////////////
     // Constants
 
     // templates
@@ -131,9 +130,9 @@ public class CustomerJspBean extends MVCAdminJspBean
     public static final String RIGHT_MANAGECUSTOMERS = "GRU_MANAGEMENT";
     private static final String PROPERTY_DEFAULT_LIST_ITEM_PER_PAGE = "gru.listItems.itemsPerPage";
     private static final long serialVersionUID = 1L;
-    private static HomeButtonListBuilder _homeButtonListBuilder = new HomeButtonListBuilder(  );
+    private static HomeButtonListBuilder _homeButtonListBuilder = new HomeButtonListBuilder( );
 
-    //Variables
+    // Variables
     private int _nDefaultItemsPerPage;
     private String _strCurrentPageIndex;
     private int _nItemsPerPage;
@@ -146,27 +145,25 @@ public class CustomerJspBean extends MVCAdminJspBean
     public String getSearchCustomer( HttpServletRequest request )
     {
         Customer customer = null;
-        List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
-        Map<String, Object> model = getModel(  );
+        List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser( ) );
+        Map<String, Object> model = getModel( );
         model.put( Constants.MARK_ACTION_PANELS, listPanels );
-        model.put( Constants.MARK_CUSTOMER, new Customer(  ) );
-        model.put( Constants.MARK_BUTTONS_LIST, _homeButtonListBuilder.buildActionButtonList( customer, getUser(  ) ) );
-        model.put( Constants.MARK_AUTOCOMPLETE, SearchService.instance(  ).isAutoComplete(  ) );
-        model.put( Constants.MARK_AUTOCOMPLETE_URL, SearchService.instance(  ).getAutoCompleteUrl(  ) );
+        model.put( Constants.MARK_CUSTOMER, new Customer( ) );
+        model.put( Constants.MARK_BUTTONS_LIST, _homeButtonListBuilder.buildActionButtonList( customer, getUser( ) ) );
+        model.put( Constants.MARK_AUTOCOMPLETE, SearchService.instance( ).isAutoComplete( ) );
+        model.put( Constants.MARK_AUTOCOMPLETE_URL, SearchService.instance( ).getAutoCompleteUrl( ) );
         model.put( Constants.MARK_RETURN_URL,
-            UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath(  ) +
-                getControllerJsp(  ), VIEW_SEARCH_CUSTOMER, customer ) );
+                UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath( ) + getControllerJsp( ), VIEW_SEARCH_CUSTOMER, customer ) );
 
         return getPage( PROPERTY_PAGE_TITLE_SEARCH_CUSTOMER, TEMPLATE_SEARCH_CUSTOMER, model );
     }
 
     @Action( ACTION_SEARCH )
-    public String doSearch( HttpServletRequest request )
-        throws UnsupportedEncodingException
+    public String doSearch( HttpServletRequest request ) throws UnsupportedEncodingException
     {
         String strQuery = request.getParameter( Constants.PARAMETER_QUERY );
 
-        ObjectMapper mapper = new ObjectMapper(  );
+        ObjectMapper mapper = new ObjectMapper( );
 
         try
         {
@@ -177,24 +174,24 @@ public class CustomerJspBean extends MVCAdminJspBean
             String strFirstName = StringUtils.EMPTY;
             String strLastName = StringUtils.EMPTY;
 
-            if ( !jsonQuery.path( Constants.MARKER_DEMAND_ID ).isMissingNode(  ) )
+            if ( !jsonQuery.path( Constants.MARKER_DEMAND_ID ).isMissingNode( ) )
             {
-                strDemandId = jsonQuery.get( Constants.MARKER_DEMAND_ID ).asText(  );
+                strDemandId = jsonQuery.get( Constants.MARKER_DEMAND_ID ).asText( );
             }
 
-            if ( !jsonQuery.path( Constants.MARKER_DEMAND_TYPE_ID ).isMissingNode(  ) )
+            if ( !jsonQuery.path( Constants.MARKER_DEMAND_TYPE_ID ).isMissingNode( ) )
             {
-                strDemandTypeId = jsonQuery.get( Constants.MARKER_DEMAND_TYPE_ID ).asText(  );
+                strDemandTypeId = jsonQuery.get( Constants.MARKER_DEMAND_TYPE_ID ).asText( );
             }
 
-            if ( !jsonQuery.path( Constants.MARKER_CUSTOMER_ID ).isMissingNode(  ) )
+            if ( !jsonQuery.path( Constants.MARKER_CUSTOMER_ID ).isMissingNode( ) )
             {
-                strCustomerId = jsonQuery.get( Constants.MARKER_CUSTOMER_ID ).asText(  );
+                strCustomerId = jsonQuery.get( Constants.MARKER_CUSTOMER_ID ).asText( );
             }
 
             if ( ( StringUtils.isNotEmpty( strDemandId ) ) && ( StringUtils.isNotEmpty( strDemandTypeId ) ) )
             {
-                Map<String, String> mapParameters = new HashMap<String, String>(  );
+                Map<String, String> mapParameters = new HashMap<String, String>( );
                 mapParameters.put( Constants.PARAMETER_ID_DEMAND, strDemandId );
                 mapParameters.put( Constants.PARAMETER_ID_DEMAND_TYPE, strDemandTypeId );
 
@@ -206,39 +203,39 @@ public class CustomerJspBean extends MVCAdminJspBean
                 return redirect( request, VIEW_DEMAND, mapParameters );
             }
 
-            if ( !jsonQuery.path( Constants.MARKER_LAST_NAME ).isMissingNode(  ) )
+            if ( !jsonQuery.path( Constants.MARKER_LAST_NAME ).isMissingNode( ) )
             {
-                strLastName = jsonQuery.get( Constants.MARKER_LAST_NAME ).asText(  );
+                strLastName = jsonQuery.get( Constants.MARKER_LAST_NAME ).asText( );
             }
 
-            if ( !jsonQuery.path( Constants.MARKER_FIRST_NAME ).isMissingNode(  ) )
+            if ( !jsonQuery.path( Constants.MARKER_FIRST_NAME ).isMissingNode( ) )
             {
-                strFirstName = jsonQuery.get( Constants.MARKER_FIRST_NAME ).asText(  );
+                strFirstName = jsonQuery.get( Constants.MARKER_FIRST_NAME ).asText( );
             }
 
-            _listCustomer = SearchService.instance(  ).searchCustomer( strFirstName, strLastName );
+            _listCustomer = SearchService.instance( ).searchCustomer( strFirstName, strLastName );
 
-            if ( _listCustomer.size(  ) == 0 )
+            if ( _listCustomer.size( ) == 0 )
             {
-                String strError = I18nService.getLocalizedString( MESSAGE_NO_CUSTOMER_FOUND, getLocale(  ) );
+                String strError = I18nService.getLocalizedString( MESSAGE_NO_CUSTOMER_FOUND, getLocale( ) );
                 addError( strError );
 
                 return redirectView( request, VIEW_SEARCH_CUSTOMER );
             }
 
-            if ( _listCustomer.size(  ) == 1 )
+            if ( _listCustomer.size( ) == 1 )
             {
-                Map<String, String> mapParameters = new HashMap<String, String>(  );
-                mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, _listCustomer.get( 0 ).getId(  ) );
+                Map<String, String> mapParameters = new HashMap<String, String>( );
+                mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, _listCustomer.get( 0 ).getId( ) );
 
                 return redirect( request, VIEW_CUSTOMER_DEMANDS, mapParameters );
             }
 
             return redirectView( request, VIEW_SEARCH_RESULTS );
         }
-        catch ( IOException e )
+        catch( IOException e )
         {
-            AppLogService.error( e + " :" + e.getMessage(  ), e );
+            AppLogService.error( e + " :" + e.getMessage( ), e );
 
             return redirectView( request, VIEW_SEARCH_CUSTOMER );
         }
@@ -248,19 +245,21 @@ public class CustomerJspBean extends MVCAdminJspBean
     public String getSearchResults( HttpServletRequest request )
     {
         Customer customer = null;
-        List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
+        List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser( ) );
 
-        Map<String, Object> model = getModel(  );
+        Map<String, Object> model = getModel( );
         model.put( Constants.MARK_RESULTS_LIST, _listCustomer );
         model.put( Constants.MARK_ACTION_PANELS, listPanels );
-        model.put( Constants.MARK_CUSTOMER, new Customer(  ) );
+        model.put( Constants.MARK_CUSTOMER, new Customer( ) );
 
         return getPage( PROPERTY_PAGE_TITLE_MANAGE_CUSTOMERS, TEMPLATE_SEARCH_RESULTS, model );
     }
 
     /**
      * Build the Manage View
-     * @param request The HTTP request
+     * 
+     * @param request
+     *            The HTTP request
      * @return The page
      */
     @View( VIEW_MANAGE_CUSTOMERS )
@@ -268,9 +267,8 @@ public class CustomerJspBean extends MVCAdminJspBean
     {
         _customer = null;
 
-        List<Customer> listCustomers = (List<Customer>) CustomerHome.getCustomersList(  );
-        Map<String, Object> model = getPaginatedListModel( request, Constants.MARK_CUSTOMER_LIST, listCustomers,
-                JSP_MANAGE_CUSTOMERS );
+        List<Customer> listCustomers = (List<Customer>) CustomerHome.getCustomersList( );
+        Map<String, Object> model = getPaginatedListModel( request, Constants.MARK_CUSTOMER_LIST, listCustomers, JSP_MANAGE_CUSTOMERS );
 
         return getPage( PROPERTY_PAGE_TITLE_MANAGE_CUSTOMERS, TEMPLATE_MANAGE_CUSTOMERS, model );
     }
@@ -282,24 +280,21 @@ public class CustomerJspBean extends MVCAdminJspBean
 
         if ( customer != null )
         {
-            List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
-            List<Demand> listDemands = DemandService.getDemands( customer, getUser(  ), Demand.STATUS_INPROGRESS );
+            List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser( ) );
+            List<Demand> listDemands = DemandService.getDemands( customer, getUser( ), Demand.STATUS_INPROGRESS );
 
-            Map<String, Object> model = getModel(  );
+            Map<String, Object> model = getModel( );
             model.put( Constants.MARK_ACTION_PANELS, listPanels );
             model.put( Constants.MARK_CUSTOMER, customer );
             model.put( Constants.MARK_DEMANDS_LIST, listDemands );
-            model.put( Constants.MARK_RETURN_URL,
-                UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath(  ) +
-                    getControllerJsp(  ), VIEW_CUSTOMER_DEMANDS, customer ) );
+            model.put( Constants.MARK_RETURN_URL, UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath( ) + getControllerJsp( ),
+                    VIEW_CUSTOMER_DEMANDS, customer ) );
 
-            //display demand with date preference
-            String strCreationDateDisplay = AdminUserPreferencesService.instance(  )
-                                                                       .get( String.valueOf( getUser(  ).getUserId(  ) ),
+            // display demand with date preference
+            String strCreationDateDisplay = AdminUserPreferencesService.instance( ).get( String.valueOf( getUser( ).getUserId( ) ),
                     Constants.MARK_USER_PREFERENCE_CREATION_DATE_DISPLAY, StringUtils.EMPTY );
 
-            model.put( Constants.MARK_CREATION_DATE_AS_DATE,
-                Constants.USER_PREFERENCE_CREATION_DATE_DISPLAY_DATE.equals( strCreationDateDisplay ) );
+            model.put( Constants.MARK_CREATION_DATE_AS_DATE, Constants.USER_PREFERENCE_CREATION_DATE_DISPLAY_DATE.equals( strCreationDateDisplay ) );
 
             return getPage( "", TEMPLATE_VIEW_CUSTOMER_DEMANDS, model );
         }
@@ -314,16 +309,15 @@ public class CustomerJspBean extends MVCAdminJspBean
 
         if ( customer != null )
         {
-            List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
-            List<Demand> listDemands = DemandService.getDemands( customer, getUser(  ), Demand.STATUS_CLOSED );
+            List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser( ) );
+            List<Demand> listDemands = DemandService.getDemands( customer, getUser( ), Demand.STATUS_CLOSED );
 
-            Map<String, Object> model = getModel(  );
+            Map<String, Object> model = getModel( );
             model.put( Constants.MARK_ACTION_PANELS, listPanels );
             model.put( Constants.MARK_CUSTOMER, customer );
             model.put( Constants.MARK_DEMANDS_LIST, listDemands );
-            model.put( Constants.MARK_RETURN_URL,
-                UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath(  ) +
-                    getControllerJsp(  ), VIEW_CUSTOMER_OLD_DEMANDS, customer ) );
+            model.put( Constants.MARK_RETURN_URL, UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath( ) + getControllerJsp( ),
+                    VIEW_CUSTOMER_OLD_DEMANDS, customer ) );
 
             return getPage( "", TEMPLATE_VIEW_CUSTOMER_OLD_DEMANDS, model );
         }
@@ -338,16 +332,15 @@ public class CustomerJspBean extends MVCAdminJspBean
 
         if ( customer != null )
         {
-            List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
-            List<ActionGroup> listButtonsGroups = _homeButtonListBuilder.buildButtonGroupList( customer, getUser(  ) );
+            List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser( ) );
+            List<ActionGroup> listButtonsGroups = _homeButtonListBuilder.buildButtonGroupList( customer, getUser( ) );
 
-            Map<String, Object> model = getModel(  );
+            Map<String, Object> model = getModel( );
             model.put( Constants.MARK_ACTION_PANELS, listPanels );
             model.put( Constants.MARK_CUSTOMER, customer );
             model.put( Constants.MARK_BUTTONS_GROUPS_LIST, listButtonsGroups );
-            model.put( Constants.MARK_RETURN_URL,
-                UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath(  ) +
-                    getControllerJsp(  ), VIEW_CUSTOMER_NEW_DEMANDS, customer ) );
+            model.put( Constants.MARK_RETURN_URL, UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath( ) + getControllerJsp( ),
+                    VIEW_CUSTOMER_NEW_DEMANDS, customer ) );
 
             return getPage( "", TEMPLATE_VIEW_CUSTOMER_NEW_DEMANDS, model );
         }
@@ -357,7 +350,9 @@ public class CustomerJspBean extends MVCAdminJspBean
 
     /**
      * View Demand
-     * @param request The HTTP request
+     * 
+     * @param request
+     *            The HTTP request
      * @return The page
      */
     @View( VIEW_DEMAND )
@@ -367,44 +362,43 @@ public class CustomerJspBean extends MVCAdminJspBean
         String strIdDemand = request.getParameter( Constants.PARAMETER_ID_DEMAND );
         String strIdDemandType = request.getParameter( Constants.PARAMETER_ID_DEMAND_TYPE );
 
-        Demand demand = DemandService.getDemand( strIdDemand, strIdDemandType, getUser(  ) );
+        Demand demand = DemandService.getDemand( strIdDemand, strIdDemandType, getUser( ) );
         Customer customer = CustomerUtils.getCustomer( request );
 
         if ( ( strIdDemand != null ) && ( demand != null ) )
         {
             try
             {
-                List<ActionPanel> listPanels = new ArrayList<ActionPanel>(  );
-                Map<String, Object> model = getModel(  );
-                Map<String, String> mapParameters = new HashMap<String, String>(  );
-                listPanels = CustomerActionsService.getPanels( customer, getUser(  ) );
+                List<ActionPanel> listPanels = new ArrayList<ActionPanel>( );
+                Map<String, Object> model = getModel( );
+                Map<String, String> mapParameters = new HashMap<String, String>( );
+                listPanels = CustomerActionsService.getPanels( customer, getUser( ) );
                 model.put( Constants.MARK_ACTION_PANELS, listPanels );
-                demand = DemandTypeService.setDemandActions( demand, customer, getUser(  ) );
+                demand = DemandTypeService.setDemandActions( demand, customer, getUser( ) );
 
                 if ( ( strId != null ) && ( customer != null ) )
                 {
-                    mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, customer.getId(  ) );
+                    mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, customer.getId( ) );
                     model.put( Constants.MARK_CUSTOMER, customer );
                 }
                 else
                 {
-                    model.put( Constants.MARK_CUSTOMER, new Customer(  ) );
+                    model.put( Constants.MARK_CUSTOMER, new Customer( ) );
                 }
 
-                mapParameters.put( Constants.PARAMETER_ID_DEMAND, String.valueOf( demand.getId(  ) ) );
-                mapParameters.put( Constants.PARAMETER_ID_DEMAND_TYPE, String.valueOf( demand.getTypeId(  ) ) );
+                mapParameters.put( Constants.PARAMETER_ID_DEMAND, String.valueOf( demand.getId( ) ) );
+                mapParameters.put( Constants.PARAMETER_ID_DEMAND_TYPE, String.valueOf( demand.getTypeId( ) ) );
 
                 model.put( Constants.MARK_DEMAND, demand );
 
-                ModelUtils.storeStatus( model, demand.getNotifications(  ) );
+                ModelUtils.storeStatus( model, demand.getNotifications( ) );
 
                 model.put( Constants.MARK_RETURN_URL,
-                    UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath(  ) +
-                        getControllerJsp(  ), VIEW_DEMAND, mapParameters ) );
+                        UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath( ) + getControllerJsp( ), VIEW_DEMAND, mapParameters ) );
 
                 return getPage( "", TEMPLATE_VIEW_DEMAND, model );
             }
-            catch ( NumberFormatException e )
+            catch( NumberFormatException e )
             {
             }
         }
@@ -415,15 +409,16 @@ public class CustomerJspBean extends MVCAdminJspBean
     /**
      * Returns the form to create a customer
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the html code of the customer form
      */
     @View( VIEW_CREATE_CUSTOMER )
     public String getCreateCustomer( HttpServletRequest request )
     {
-        _customer = ( _customer != null ) ? _customer : new Customer(  );
+        _customer = ( _customer != null ) ? _customer : new Customer( );
 
-        Map<String, Object> model = getModel(  );
+        Map<String, Object> model = getModel( );
         model.put( Constants.MARK_CUSTOMER, _customer );
 
         return getPage( PROPERTY_PAGE_TITLE_CREATE_CUSTOMER, TEMPLATE_CREATE_CUSTOMER, model );
@@ -432,7 +427,8 @@ public class CustomerJspBean extends MVCAdminJspBean
     /**
      * Process the data capture form of a new customer
      *
-     * @param request The Http Request
+     * @param request
+     *            The Http Request
      * @return The Jsp URL of the process result
      */
     @Action( ACTION_CREATE_CUSTOMER )
@@ -447,16 +443,16 @@ public class CustomerJspBean extends MVCAdminJspBean
         }
 
         CustomerHome.create( _customer );
-        addInfo( INFO_CUSTOMER_CREATED, getLocale(  ) );
+        addInfo( INFO_CUSTOMER_CREATED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_CUSTOMERS );
     }
 
     /**
-     * Manages the removal form of a customer whose identifier is in the http
-     * request
+     * Manages the removal form of a customer whose identifier is in the http request
      *
-     * @param request The Http request
+     * @param request
+     *            The Http request
      * @return the html code to confirm
      */
     @Action( ACTION_CONFIRM_REMOVE_CUSTOMER )
@@ -466,40 +462,41 @@ public class CustomerJspBean extends MVCAdminJspBean
         UrlItem url = new UrlItem( getActionUrl( ACTION_REMOVE_CUSTOMER ) );
         url.addParameter( Constants.PARAMETER_ID_CUSTOMER, nId );
 
-        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_CUSTOMER,
-                url.getUrl(  ), AdminMessage.TYPE_CONFIRMATION );
+        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_CUSTOMER, url.getUrl( ), AdminMessage.TYPE_CONFIRMATION );
 
         return redirect( request, strMessageUrl );
     }
 
     /**
      * Return a model that contains the list and paginator infos
-     * @param request The HTTP request
-     * @param strBookmark The bookmark
-     * @param list The list of item
-     * @param strManageJsp The JSP
+     * 
+     * @param request
+     *            The HTTP request
+     * @param strBookmark
+     *            The bookmark
+     * @param list
+     *            The list of item
+     * @param strManageJsp
+     *            The JSP
      * @return The model
      */
-    private Map<String, Object> getPaginatedListModel( HttpServletRequest request, String strBookmark, List list,
-        String strManageJsp )
+    private Map<String, Object> getPaginatedListModel( HttpServletRequest request, String strBookmark, List list, String strManageJsp )
     {
         _strCurrentPageIndex = Paginator.getPageIndex( request, Paginator.PARAMETER_PAGE_INDEX, _strCurrentPageIndex );
         _nDefaultItemsPerPage = AppPropertiesService.getPropertyInt( PROPERTY_DEFAULT_LIST_ITEM_PER_PAGE, 50 );
-        _nItemsPerPage = Paginator.getItemsPerPage( request, Paginator.PARAMETER_ITEMS_PER_PAGE, _nItemsPerPage,
-                _nDefaultItemsPerPage );
+        _nItemsPerPage = Paginator.getItemsPerPage( request, Paginator.PARAMETER_ITEMS_PER_PAGE, _nItemsPerPage, _nDefaultItemsPerPage );
 
         UrlItem url = new UrlItem( strManageJsp );
-        String strUrl = url.getUrl(  );
+        String strUrl = url.getUrl( );
 
         // PAGINATOR
-        LocalizedPaginator paginator = new LocalizedPaginator( list, _nItemsPerPage, strUrl,
-                Constants.PARAMETER_PAGE_INDEX, _strCurrentPageIndex, getLocale(  ) );
+        LocalizedPaginator paginator = new LocalizedPaginator( list, _nItemsPerPage, strUrl, Constants.PARAMETER_PAGE_INDEX, _strCurrentPageIndex, getLocale( ) );
 
-        Map<String, Object> model = getModel(  );
+        Map<String, Object> model = getModel( );
 
         model.put( Constants.MARK_NB_ITEMS_PER_PAGE, "" + _nItemsPerPage );
         model.put( Constants.MARK_PAGINATOR, paginator );
-        model.put( strBookmark, paginator.getPageItems(  ) );
+        model.put( strBookmark, paginator.getPageItems( ) );
 
         return model;
     }

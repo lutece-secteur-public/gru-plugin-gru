@@ -39,7 +39,6 @@ import fr.paris.lutece.portal.service.spring.SpringContextService;
 
 import java.util.List;
 
-
 /**
  * This class provides instances management methods (create, find, ...) for ExtrasAttributes objects
  */
@@ -52,14 +51,16 @@ public final class ExtrasAttributesHome
     /**
      * Private constructor - this class need not be instantiated
      */
-    private ExtrasAttributesHome(  )
+    private ExtrasAttributesHome( )
     {
     }
 
     /**
      * Create an instance of the extrasAttributes class
-     * @param extrasAttributes The instance of the ExtrasAttributes which contains the informations to store
-     * @return The  instance of extrasAttributes which has been created with its primary key.
+     * 
+     * @param extrasAttributes
+     *            The instance of the ExtrasAttributes which contains the informations to store
+     * @return The instance of extrasAttributes which has been created with its primary key.
      */
     public static ExtrasAttributes create( ExtrasAttributes extrasAttributes )
     {
@@ -70,8 +71,10 @@ public final class ExtrasAttributesHome
 
     /**
      * Update of the extrasAttributes which is specified in parameter
-     * @param extrasAttributes The instance of the ExtrasAttributes which contains the data to store
-     * @return The instance of the  extrasAttributes which has been updated
+     * 
+     * @param extrasAttributes
+     *            The instance of the ExtrasAttributes which contains the data to store
+     * @return The instance of the extrasAttributes which has been updated
      */
     public static ExtrasAttributes update( ExtrasAttributes extrasAttributes )
     {
@@ -82,19 +85,23 @@ public final class ExtrasAttributesHome
 
     /**
      * Remove the extrasAttributes whose identifier is specified in parameter
-     * @param nKey The extrasAttributes Id
+     * 
+     * @param nKey
+     *            The extrasAttributes Id
      */
     public static void remove( int nKey )
     {
         _dao.delete( nKey, _plugin );
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // Finders
 
     /**
      * Returns an instance of a extrasAttributes whose identifier is specified in parameter
-     * @param nKey The extrasAttributes primary key
+     * 
+     * @param nKey
+     *            The extrasAttributes primary key
      * @return an instance of ExtrasAttributes
      */
     public static ExtrasAttributes findByPrimaryKey( int nKey )
@@ -104,18 +111,20 @@ public final class ExtrasAttributesHome
 
     /**
      * Load the data of all the extrasAttributes objects and returns them in form of a collection
+     * 
      * @return the collection which contains the data of all the extrasAttributes objects
      */
-    public static List<ExtrasAttributes> getExtrasAttributessList(  )
+    public static List<ExtrasAttributes> getExtrasAttributessList( )
     {
         return _dao.selectExtrasAttributessList( _plugin );
     }
 
     /**
      * Load the id of all the extrasAttributes objects and returns them in form of a collection
+     * 
      * @return the collection which contains the id of all the extrasAttributes objects
      */
-    public static List<Integer> getIdExtrasAttributessList(  )
+    public static List<Integer> getIdExtrasAttributessList( )
     {
         return _dao.selectIdExtrasAttributessList( _plugin );
     }
