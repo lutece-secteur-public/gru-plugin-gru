@@ -72,7 +72,7 @@
             <#if notification.backofficeLogging ??>
             	<li>
                 	<button id="button-agent-${notification.id}" class="btn btn-box-tool collapse-button" data-toggle="collapse" data-target="#user-agent-${notification.id}"><i class="fa fa-minus"></i></button>
-                   	<i class="fa fa-user bg-cat2"></i>
+                   	<i id="agent-${notification.id}" class="fa fa-institution bg-blue notification-icon" style="cursor: pointer;"></i>
                    	<div id="user-agent-${notification.id}" class="timeline-item collapse in">
                       	<h4 class="timeline-header">
                         	<em>#i18n{gru.view_customer_demand.list.notification.agent.statut.title} <span>${notification.backofficeLogging.statusText}</span></em>
@@ -92,25 +92,27 @@
                 <#if notification.userDashboard ??>
                   <li>
                   	<button id="button-dashboard-${notification.id}" class="btn btn-box-tool collapse-button" data-toggle="collapse" data-target="#user-dashboard-${notification.id}"><i class="fa fa-plus"></i></button>
-                    <i class="fa fa-user bg-gru-cat2"></i>
+                    <i id="dashboard-${notification.id}" class="fa fa-user bg-purple notification-icon" style="cursor: pointer;"></i>
                     <div id="user-dashboard-${notification.id}" class="timeline-item collapse">
                       <h4 class="timeline-header">
-                         #i18n{gru.view_customer_demand.list.notification.user.dashboard.1}  <span><b>#i18n{gru.view_customer_demand.list.notification.user.dashboard.2}</b></span> #i18n{gru.view_customer_demand.list.notification.user.dashboard.3}.
+                      	<em>
+                      		#i18n{gru.view_customer_demand.list.notification.user.dashboard.no.labelStatus} : 
+                        	<#if notification.userDashboard.statusText?has_content>
+                          		${notification.userDashboard.statusText}
+                        	<#else>
+                          		#i18n{gru.view_customer_demand.list.notification.user.dashboard.no.status}
+                        	</#if>
+                        </em>
                       </h4>
-                      <div class="timeline-body">
+                      <div class="timeline-body" style="border-bottom: 1px solid #f4f4f4">
+						<strong>#i18n{gru.view_customer_demand.list.notification.user.dashboard.1} #i18n{gru.view_customer_demand.list.notification.user.dashboard.2} #i18n{gru.view_customer_demand.list.notification.user.dashboard.3}.</strong>
+                      </div>
+                      <div class="timeline-footer">
                         <#if notification.userDashboard.message?has_content>
                           ${notification.userDashboard.message}
                         <#else>
                           <em>#i18n{gru.view_customer_demand.list.notification.user.dashboard.no.content}</em>
                         </#if>
-                      </div>
-                      <div class="timeline-footer"><strong>#i18n{gru.view_customer_demand.list.notification.user.dashboard.no.labelStatus} : 
-                        <#if notification.userDashboard.statusText?has_content>
-                          ${notification.userDashboard.statusText}
-                        <#else>
-                          <em>#i18n{gru.view_customer_demand.list.notification.user.dashboard.no.status}</em>
-                        </#if>
-                        </strong>
                       </div>
                     </div>
                   </li>
@@ -118,7 +120,7 @@
                 <#if notification.userEmail ?? && notification.userEmail.recipient?has_content>
                   <li>
                   	<button id="button-email-${notification.id}" class="btn btn-box-tool collapse-button" data-toggle="collapse" data-target="#user-email-${notification.id}"><i class="fa fa-plus"></i></button>
-                    <i class="fa fa-envelope bg-orange"></i>
+                    <i id="email-${notification.id}" class="fa fa-envelope bg-orange notification-icon" style="cursor: pointer;"></i>
                     <div id="user-email-${notification.id}" class="timeline-item collapse">
                       <h4 class="timeline-header">
                         #i18n{gru.view_customer_demand.list.notification.email.sendLabel} : <span>${notification.userEmail.recipient}</span>
@@ -143,7 +145,7 @@
                 <#if notification.userSms ?? && notification.userSms.phoneNumber?has_content>
                   <li>
                   	<button id="button-sms-${notification.id}" class="btn btn-box-tool collapse-button" data-toggle="collapse" data-target="#user-sms-${notification.id}"><i class="fa fa-plus"></i></button>
-                    <i class="fa fa-mobile bg-green"></i>
+                    <i id="sms-${notification.id}" class="fa fa-mobile bg-green notification-icon" style="cursor: pointer;"></i>
                     <div id="user-sms-${notification.id}" class="timeline-item collapse">
                       <h4 class="timeline-header">
                         #i18n{gru.view_customer_demand.list.notification.sms.sendLabel} : <span>${notification.userSms.phoneNumber}</span>

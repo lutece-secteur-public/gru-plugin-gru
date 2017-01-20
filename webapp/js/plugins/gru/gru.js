@@ -45,9 +45,16 @@ $( function(){
 $(".collapse-button").click(function(){
 	var current_id = $(this).attr('id');
 	var child_icon = document.getElementById(current_id).firstElementChild;
-	if( child_icon.getAttribute('class').includes('fa-plus') ){
+	if( child_icon.getAttribute('class').indexOf('fa-plus') !== -1 ){
 		child_icon.setAttribute('class', 'fa fa-minus');
 	} else {
 		child_icon.setAttribute('class', 'fa fa-plus');
 	}
+});
+
+// Click on user icon launch a click on the collapse button
+$(".notification-icon").click(function (){
+	var current_id = $(this).attr('id');
+	var button_icon = document.getElementById('button-' + current_id);
+	button_icon.click();
 });
