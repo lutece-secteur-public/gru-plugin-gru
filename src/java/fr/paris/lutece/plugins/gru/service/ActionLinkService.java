@@ -121,7 +121,7 @@ public class ActionLinkService
             strLink = fillLink( strLink, INFO_USER_TITLE, "" + customer.getIdTitle( ) );
             strLink = fillLink( strLink, INFO_FIRSTNAME, customer.getFirstname( ) );
             strLink = fillLink( strLink, INFO_LASTNAME, customer.getLastname( ) );
-            strLink = fillLink( strLink, INFO_FIXED_PHONE, customer.getFixedPhoneNumber(  ) );
+            strLink = fillLink( strLink, INFO_FIXED_PHONE, customer.getFixedPhoneNumber( ) );
             strLink = fillLink( strLink, INFO_MOBILE_PHONE, customer.getMobilePhone( ) );
             strLink = fillLink( strLink, INFO_EMAIL, customer.getEmail( ) );
         }
