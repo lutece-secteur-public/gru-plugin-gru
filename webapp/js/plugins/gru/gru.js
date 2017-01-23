@@ -53,7 +53,7 @@ $(".collapse-button").click(function(){
 });
 
 // Click on user icon launch a click on the collapse button
-$(".notification-icon").click(function (){
+$(".gru-notification-icon").click(function (){
 	var current_id = $(this).attr('id');
 	var button_icon = document.getElementById('button-' + current_id);
 	button_icon.click();

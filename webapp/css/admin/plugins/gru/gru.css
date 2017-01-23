@@ -114,6 +114,12 @@ background-color: #b9d3ea;
 #demand-panel .tab-content>.tab-pane ul li ul li a{ font-family: "Montserrat-Regular";font-size: 1.25rem; text-transform: uppercase; padding:10px; border-radius: 7px }
 #demand-panel #selectable_channels{ height:120px }
 
+/* NOTIFICATIONS */
+.gru-notification-icon{ cursor: pointer }
+.gru-notification .timeline-body{ border-bottom: 1px solid #f4f4f4 }
+.gru-agent{ background-color: #DF225A !important }
+.gru-agent > img{ max-width:65%; max-height:65% }
+
 /* FILTERS */
 #filter{ font-size: 1.2rem; color:#000; margin: 0 0 15px 0 }
 #filter .form-control{ border-color: #000 }
