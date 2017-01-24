@@ -41,20 +41,16 @@ $( function(){
 	  });
 	});
 
-// Change the icon of the button when the notficiation si collapse or not
-$(".collapse-button").click(function(){
-	var current_id = $(this).attr('id');
-	var child_icon = document.getElementById(current_id).firstElementChild;
-	if( child_icon.getAttribute('class').indexOf('fa-plus') !== -1 ){
-		child_icon.setAttribute('class', 'fa fa-minus');
+//Change the icon of the button when the notification is collapse or not
+$(".collapse-notif .collapse-button").click(function(){
+	var liParent = $(this).parent();
+	var plusMinusIcon = liParent.find("button > i.fa");
+	var divItem = liParent.find("div.timeline-item");
+	if( plusMinusIcon.hasClass('fa-plus') ){
+		plusMinusIcon.removeClass('fa-plus').addClass('fa-minus');
+		divItem.slideToggle();
 	} else {
-		child_icon.setAttribute('class', 'fa fa-plus');
+		plusMinusIcon.removeClass('fa-minus').addClass('fa-plus');
+		divItem.slideToggle();
 	}
-});
-
-// Click on user icon launch a click on the collapse button
-$(".gru-notification-icon").click(function (){
-	var current_id = $(this).attr('id');
-	var button_icon = document.getElementById('button-' + current_id);
-	button_icon.click();
 });

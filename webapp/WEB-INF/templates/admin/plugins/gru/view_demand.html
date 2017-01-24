@@ -67,12 +67,13 @@
             </p>
             <ul class="timeline">
             <#if notification.backofficeLogging ??>
-            	<li class="gru-notification">
-                	<button id="button-agent-${notification.id}" class="btn btn-box-tool collapse-button" data-toggle="collapse" data-target="#user-agent-${notification.id}"><i class="fa fa-minus"></i></button>
-                   	<i id="agent-${notification.id}" class="fa gru-notification-icon bg-gru-dark gru-agent">
+            	<li class="gru-notification collapse-notif">
+                	<button class="btn btn-box-tool collapse-button"><i class="fa fa-minus"></i></button>
+                   	<i class="fa gru-notification-icon bg-gru-dark gru-agent collapse-button">
                    		<img src="images/admin/skin/plugins/gru/nef.svg"/>
                    	</i>
-                   	<div id="user-agent-${notification.id}" class="timeline-item collapse in">
+					
+                   	<div class="timeline-item">
                       	<h4 class="timeline-header">
                         	<em>#i18n{gru.view_customer_demand.list.notification.agent.statut.title} <span>${notification.backofficeLogging.statusText}</span></em>
                       	</h4>
@@ -89,10 +90,10 @@
             </#if>
             <#if demand.showDetails>
                 <#if notification.userDashboard ??>
-                  <li class="gru-notification">
-                  	<button id="button-dashboard-${notification.id}" class="btn btn-box-tool collapse-button" data-toggle="collapse" data-target="#user-dashboard-${notification.id}"><i class="fa fa-plus"></i></button>
-                    <i id="dashboard-${notification.id}" class="fa fa-user bg-gru-dark gru-notification-icon"></i>
-                    <div id="user-dashboard-${notification.id}" class="timeline-item collapse">
+                  <li class="gru-notification collapse-notif">
+                  	<button class="btn btn-box-tool collapse-button"><i class="fa fa-plus"></i></button>
+                    <i class="fa fa-user bg-gru-dark gru-notification-icon collapse-button"></i>
+                    <div class="timeline-item" style="display:none;">
                       <h4 class="timeline-header">
                       	<em>
                       		#i18n{gru.view_customer_demand.list.notification.user.dashboard.no.labelStatus} : 
@@ -117,10 +118,10 @@
                   </li>
                 </#if>
                 <#if notification.userEmail ?? && notification.userEmail.recipient?has_content>
-                  <li>
-                  	<button id="button-email-${notification.id}" class="btn btn-box-tool collapse-button" data-toggle="collapse" data-target="#user-email-${notification.id}"><i class="fa fa-plus"></i></button>
-                    <i id="email-${notification.id}" class="fa fa-envelope bg-gru-dark gru-notification-icon"></i>
-                    <div id="user-email-${notification.id}" class="timeline-item collapse">
+                  <li class="collapse-notif">
+                  	<button class="btn btn-box-tool collapse-button"><i class="fa fa-plus"></i></button>
+                    <i class="fa fa-envelope bg-gru-dark gru-notification-icon collapse-button"></i>
+                    <div class="timeline-item" style="display:none;">
                       <h4 class="timeline-header">
                         #i18n{gru.view_customer_demand.list.notification.email.sendLabel} : <span>${notification.userEmail.recipient}</span>
                       </h4>
@@ -142,10 +143,10 @@
                   </li>
                 </#if>
                 <#if notification.userSms ?? && notification.userSms.phoneNumber?has_content>
-                  <li>
-                  	<button id="button-sms-${notification.id}" class="btn btn-box-tool collapse-button" data-toggle="collapse" data-target="#user-sms-${notification.id}"><i class="fa fa-plus"></i></button>
-                    <i id="sms-${notification.id}" class="fa fa-mobile bg-gru-dark gru-notification-icon" style="font-size: 2em;"></i>
-                    <div id="user-sms-${notification.id}" class="timeline-item collapse">
+                  <li class="collapse-notif">
+                  	<button class="btn btn-box-tool collapse-buttoni class="fa fa-plus"></i></button>
+                    <i class="fa fa-mobile bg-gru-dark gru-notification-icon collapse-button" style="font-size: 2em;"></i>
+                    <div class="timeline-item" style="display:none;">
                       <h4 class="timeline-header">
                         #i18n{gru.view_customer_demand.list.notification.sms.sendLabel} : <span>${notification.userSms.phoneNumber}</span>
                       </h4>
