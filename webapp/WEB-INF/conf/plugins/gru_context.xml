@@ -4,12 +4,8 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd" >
 
-    <!--    <bean id="gru.customerRest"  class="fr.paris.lutece.plugins.gru.web.rs.CustomerRest" /> -->
-
-    <bean id="gru.customerDAO"  class="fr.paris.lutece.plugins.gru.business.customer.CustomerDAO" />  
     <bean id="gru.demandTypeDAO" class="fr.paris.lutece.plugins.gru.business.demandtype.DemandTypeDAO"/>
     <bean id="gru.demandTypeActionDAO" class="fr.paris.lutece.plugins.gru.business.demandtype.DemandTypeActionDAO"/>
-    <bean id="gru.extrasAttributesDAO"  class="fr.paris.lutece.plugins.gru.business.ExtrasAttributesDAO" />  
     <bean id="gru.featureCategoryDAO"  class="fr.paris.lutece.plugins.gru.business.feature.FeatureCategoryDAO" />  
     <bean id="gru.featureDAO"  class="fr.paris.lutece.plugins.gru.business.feature.FeatureDAO" />  
     <bean id="gru.businessSectorDAO" class="fr.paris.lutece.plugins.gru.business.domain.BusinessSectorDAO" />
