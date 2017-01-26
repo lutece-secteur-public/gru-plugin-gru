@@ -64,42 +64,64 @@
 				#i18n{gru.view_customer_demand.list.notification.no.date}
 			  </#if>
 			  </strong>
-              <#if notification.userDashboard ??>
-                <strong>${notification.userDashboard.statusText!i18n('gru.view_customer_demand.list.notification.no.title')}</strong>
-              </#if>
             </p>
+            <ul class="timeline">
+            <#if notification.backofficeLogging ??>
+            	<li class="gru-notification collapse-notif">
+                	<button class="btn btn-box-tool collapse-button"><i class="fa fa-minus"></i></button>
+                   	<i class="fa gru-notification-icon bg-gru-dark gru-agent collapse-button">
+                   		<img src="images/admin/skin/plugins/gru/nef.svg"/>
+                   	</i>
+					
+                   	<div class="timeline-item">
+                      	<h4 class="timeline-header">
+                        	<em>#i18n{gru.view_customer_demand.list.notification.agent.statut.title} <span>${notification.backofficeLogging.statusText}</span></em>
+                      	</h4>
+                       	<div class="timeline-body">
+                        	<strong>#i18n{gru.view_customer_demand.list.notification.agent.title}</strong>
+                      	</div>
+                      	<#if notification.backofficeLogging.message?has_content>
+                    		<div class="timeline-footer">
+                    			${notification.backofficeLogging.message}
+                    		</div>
+                    	</#if>
+                	</div>
+            	</li>
+            </#if>
             <#if demand.showDetails>
-              <ul class="timeline">
-              
                 <#if notification.userDashboard ??>
-                  <li>
-                    <i class="fa fa-user bg-gru-cat2"></i>
-                    <div class="timeline-item">
+                  <li class="gru-notification collapse-notif">
+                  	<button class="btn btn-box-tool collapse-button"><i class="fa fa-plus"></i></button>
+                    <i class="fa fa-user bg-gru-dark gru-notification-icon collapse-button"></i>
+                    <div class="timeline-item" style="display:none;">
                       <h4 class="timeline-header">
-                         #i18n{gru.view_customer_demand.list.notification.user.dashboard.1}  <span><b>#i18n{gru.view_customer_demand.list.notification.user.dashboard.2}</b></span> #i18n{gru.view_customer_demand.list.notification.user.dashboard.3}.
+                      	<em>
+                      		#i18n{gru.view_customer_demand.list.notification.user.dashboard.no.labelStatus} : 
+                        	<#if notification.userDashboard.statusText?has_content>
+                          		${notification.userDashboard.statusText}
+                        	<#else>
+                          		#i18n{gru.view_customer_demand.list.notification.user.dashboard.no.status}
+                        	</#if>
+                        </em>
                       </h4>
                       <div class="timeline-body">
+						<strong>#i18n{gru.view_customer_demand.list.notification.user.dashboard.1} #i18n{gru.view_customer_demand.list.notification.user.dashboard.2} #i18n{gru.view_customer_demand.list.notification.user.dashboard.3}.</strong>
+                      </div>
+                      <div class="timeline-footer">
                         <#if notification.userDashboard.message?has_content>
                           ${notification.userDashboard.message}
                         <#else>
                           <em>#i18n{gru.view_customer_demand.list.notification.user.dashboard.no.content}</em>
                         </#if>
                       </div>
-                      <div class="timeline-footer"><strong>#i18n{gru.view_customer_demand.list.notification.user.dashboard.no.labelStatus} : 
-                        <#if notification.userDashboard.statusText?has_content>
-                          ${notification.userDashboard.statusText}
-                        <#else>
-                          <em>#i18n{gru.view_customer_demand.list.notification.user.dashboard.no.status}</em>
-                        </#if>
-                        </strong>
-                      </div>
                     </div>
                   </li>
                 </#if>
                 <#if notification.userEmail ?? && notification.userEmail.recipient?has_content>
-                  <li>
-                    <i class="fa fa-envelope bg-orange"></i>
-                    <div class="timeline-item">
+                  <li class="collapse-notif">
+                  	<button class="btn btn-box-tool collapse-button"><i class="fa fa-plus"></i></button>
+                    <i class="fa fa-envelope bg-gru-dark gru-notification-icon collapse-button"></i>
+                    <div class="timeline-item" style="display:none;">
                       <h4 class="timeline-header">
                         #i18n{gru.view_customer_demand.list.notification.email.sendLabel} : <span>${notification.userEmail.recipient}</span>
                       </h4>
@@ -121,9 +143,10 @@
                   </li>
                 </#if>
                 <#if notification.userSms ?? && notification.userSms.phoneNumber?has_content>
-                  <li>
-                    <i class="fa fa-mobile bg-green"></i>
-                    <div class="timeline-item">
+                  <li class="collapse-notif">
+                  	<button class="btn btn-box-tool collapse-buttoni class="fa fa-plus"></i></button>
+                    <i class="fa fa-mobile bg-gru-dark gru-notification-icon collapse-button" style="font-size: 2em;"></i>
+                    <div class="timeline-item" style="display:none;">
                       <h4 class="timeline-header">
                         #i18n{gru.view_customer_demand.list.notification.sms.sendLabel} : <span>${notification.userSms.phoneNumber}</span>
                       </h4>
@@ -138,9 +161,9 @@
                     </div>
                   </li>
                 </#if>
-              </ul>
-            </#if>
-          </#if>
+            	</#if>
+          		</ul>
+          	</#if>
         </#list>
       </div>
     </div>

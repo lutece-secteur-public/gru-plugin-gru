@@ -40,3 +40,17 @@ $( function(){
 		  redirectOnClick(this);
 	  });
 	});
+
+//Change the icon of the button when the notification is collapse or not
+$(".collapse-notif .collapse-button").click(function(){
+	var liParent = $(this).parent();
+	var plusMinusIcon = liParent.find("button > i.fa");
+	var divItem = liParent.find("div.timeline-item");
+	if( plusMinusIcon.hasClass('fa-plus') ){
+		plusMinusIcon.removeClass('fa-plus').addClass('fa-minus');
+		divItem.slideToggle();
+	} else {
+		plusMinusIcon.removeClass('fa-minus').addClass('fa-plus');
+		divItem.slideToggle();
+	}
+});
