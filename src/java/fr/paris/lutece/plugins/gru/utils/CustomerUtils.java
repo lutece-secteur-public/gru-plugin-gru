@@ -33,7 +33,7 @@
  */
 package fr.paris.lutece.plugins.gru.utils;
 
-import fr.paris.lutece.plugins.gru.service.search.SearchService;
+import fr.paris.lutece.plugins.gru.service.customer.CustomerService;
 import fr.paris.lutece.plugins.gru.web.Constants;
 import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
 
@@ -68,7 +68,7 @@ public final class CustomerUtils
         {
             try
             {
-                customer = SearchService.instance( ).searchCustomerById( strId );
+                customer = CustomerService.instance( ).findById( strId );
             }
             catch( NumberFormatException e )
             {
