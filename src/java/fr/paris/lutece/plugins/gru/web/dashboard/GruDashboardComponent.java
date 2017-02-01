@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2015, Mairie de Paris
+ * Copyright (c) 2002-2016, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -33,13 +33,11 @@
  */
 package fr.paris.lutece.plugins.gru.web.dashboard;
 
-import fr.paris.lutece.plugins.gru.business.customer.CustomerHome;
 import fr.paris.lutece.plugins.gru.web.Constants;
 import fr.paris.lutece.portal.business.right.Right;
 import fr.paris.lutece.portal.business.right.RightHome;
 import fr.paris.lutece.portal.business.user.AdminUser;
 import fr.paris.lutece.portal.service.dashboard.DashboardComponent;
-import fr.paris.lutece.portal.service.i18n.I18nService;
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.portal.service.plugin.PluginService;
 import fr.paris.lutece.portal.service.template.AppTemplateService;
@@ -57,12 +55,9 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class GruDashboardComponent extends DashboardComponent
 {
-    private static final String PROPERTY_CUSTOMERS_COUNT = "gru.dashboard.customersCount";
-
     // MARKS
     private static final String MARK_URL = "url";
     private static final String MARK_ICON = "icon";
-    private static final String MARK_CUSTOMERS_COUNT = "customers_count";
 
     // PARAMETERS
     private static final String PARAMETER_PLUGIN_NAME = "plugin_name";
@@ -82,15 +77,9 @@ public class GruDashboardComponent extends DashboardComponent
         UrlItem url = new UrlItem( right.getUrl( ) );
         url.addParameter( PARAMETER_PLUGIN_NAME, right.getPluginName( ) );
 
-        Object [ ] arguments = {
-            CustomerHome.getCustomersCount( )
-        };
-        String strCustomersCount = I18nService.getLocalizedString( PROPERTY_CUSTOMERS_COUNT, arguments, user.getLocale( ) );
-
         Map<String, Object> model = new HashMap<String, Object>( );
         model.put( MARK_URL, url.getUrl( ) );
         model.put( MARK_ICON, plugin.getIconUrl( ) );
-        model.put( MARK_CUSTOMERS_COUNT, strCustomersCount );
         model.put( Constants.MARK_AUTOCOMPLETE, AppPropertiesService.getProperty( Constants.PROPERTY_AUTOCOMPLETE_ENABLED ) );
         model.put( Constants.MARK_AUTOCOMPLETE_URL, AppPropertiesService.getProperty( Constants.PROPERTY_AUTOCOMPLETE_URL ) );
 

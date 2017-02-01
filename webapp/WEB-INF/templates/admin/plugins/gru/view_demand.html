@@ -55,7 +55,7 @@
       <div class="panel">
         <h2>${demand.title!'Title missing'} </h2>
         <#list demand.notifications as notification>
-          <#if notification.userDashboard ?? || (notification.userEmail ?? && notification.userEmail.recipient?has_content) || (notification.userSms ?? && notification.userSms.phoneNumber?has_content) >
+          <#if notification.backofficeLogging ?? || notification.userDashboard ?? || (notification.userEmail ?? && notification.userEmail.recipient?has_content) || (notification.userSms ?? && notification.userSms.phoneNumber?has_content) >
             <p>
               <strong class="text-gru">
 			  <#if notification.notificationDate?exists && notification.notificationDate gt 0 >

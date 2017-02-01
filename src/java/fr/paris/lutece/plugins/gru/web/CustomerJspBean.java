@@ -36,7 +36,6 @@ package fr.paris.lutece.plugins.gru.web;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import fr.paris.lutece.plugins.gru.business.customer.CustomerHome;
 import fr.paris.lutece.plugins.gru.service.CustomerActionsService;
 import fr.paris.lutece.plugins.gru.service.customer.CustomerService;
 import fr.paris.lutece.plugins.gru.service.demand.DemandService;
@@ -51,8 +50,6 @@ import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
 import fr.paris.lutece.plugins.grubusiness.business.demand.Demand;
 import fr.paris.lutece.plugins.rest.service.RestConstants;
 import fr.paris.lutece.portal.service.i18n.I18nService;
-import fr.paris.lutece.portal.service.message.AdminMessage;
-import fr.paris.lutece.portal.service.message.AdminMessageService;
 import fr.paris.lutece.portal.service.prefs.AdminUserPreferencesService;
 import fr.paris.lutece.portal.service.util.AppLogService;
 import fr.paris.lutece.portal.service.util.AppPathService;
@@ -61,9 +58,6 @@ import fr.paris.lutece.portal.util.mvc.admin.MVCAdminJspBean;
 import fr.paris.lutece.portal.util.mvc.admin.annotations.Controller;
 import fr.paris.lutece.portal.util.mvc.commons.annotations.Action;
 import fr.paris.lutece.portal.util.mvc.commons.annotations.View;
-import fr.paris.lutece.portal.web.util.LocalizedPaginator;
-import fr.paris.lutece.util.html.Paginator;
-import fr.paris.lutece.util.url.UrlItem;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -89,29 +83,20 @@ public class CustomerJspBean extends MVCAdminJspBean
 
     // templates
     private static final String TEMPLATE_SEARCH_CUSTOMER = "/admin/plugins/gru/search_customer.html";
-    private static final String TEMPLATE_MANAGE_CUSTOMERS = "/admin/plugins/gru/manage_customers.html";
-    private static final String TEMPLATE_CREATE_CUSTOMER = "/admin/plugins/gru/create_customer.html";
     private static final String TEMPLATE_VIEW_CUSTOMER_DEMANDS = "/admin/plugins/gru/view_customer_demands.html";
     private static final String TEMPLATE_VIEW_CUSTOMER_OLD_DEMANDS = "/admin/plugins/gru/view_customer_old_demands.html";
     private static final String TEMPLATE_VIEW_CUSTOMER_NEW_DEMANDS = "/admin/plugins/gru/view_customer_new_demands.html";
     private static final String TEMPLATE_VIEW_DEMAND = "/admin/plugins/gru/view_demand.html";
     private static final String TEMPLATE_SEARCH_RESULTS = "/admin/plugins/gru/search_results.html";
 
-    // Properties for page titles
-    private static final String PROPERTY_PAGE_TITLE_MANAGE_CUSTOMERS = "gru.manage_customers.pageTitle";
-    private static final String PROPERTY_PAGE_TITLE_CREATE_CUSTOMER = "gru.create_customer.pageTitle";
+    // Messages for page titles
+    private static final String PROPERTY_PAGE_TITLE_LIST_CUSTOMERS = "gru.list_customers.pageTitle";
     private static final String PROPERTY_PAGE_TITLE_SEARCH_CUSTOMER = "gru.search_customer.pageTitle";
-    private static final String JSP_MANAGE_CUSTOMERS = "jsp/admin/plugins/gru/ManageCustomers.jsp";
 
-    // Properties
-    private static final String MESSAGE_CONFIRM_REMOVE_CUSTOMER = "gru.message.confirmRemoveCustomer";
+    // Messages
     private static final String MESSAGE_NO_CUSTOMER_FOUND = "gru.message.noCustomerFound";
-    private static final String PROPERTY_DEFAULT_LIST_CUSTOMER_PER_PAGE = "gru.listCustomers.itemsPerPage";
-    private static final String VALIDATION_ATTRIBUTES_PREFIX = "gru.model.entity.customer.attribute.";
 
     // Views
-    private static final String VIEW_MANAGE_CUSTOMERS = "manageCustomers";
-    private static final String VIEW_CREATE_CUSTOMER = "createCustomer";
     private static final String VIEW_SEARCH_CUSTOMER = "searchCustomer";
     private static final String VIEW_SEARCH_RESULTS = "searchResults";
     private static final String VIEW_CUSTOMER_DEMANDS = "viewCustomerDemands";
@@ -120,27 +105,12 @@ public class CustomerJspBean extends MVCAdminJspBean
     private static final String VIEW_DEMAND = "viewDemand";
 
     // Actions
-    private static final String ACTION_CREATE_CUSTOMER = "createCustomer";
-    private static final String ACTION_REMOVE_CUSTOMER = "removeCustomer";
-    private static final String ACTION_CONFIRM_REMOVE_CUSTOMER = "confirmRemoveCustomer";
     private static final String ACTION_SEARCH = "search";
 
-    // Infos
-    private static final String INFO_CUSTOMER_CREATED = "gru.info.customer.created";
-
-    // Right
-    public static final String RIGHT_MANAGECUSTOMERS = "GRU_MANAGEMENT";
-    private static final String PROPERTY_DEFAULT_LIST_ITEM_PER_PAGE = "gru.listItems.itemsPerPage";
     private static final long serialVersionUID = 1L;
     private static HomeButtonListBuilder _homeButtonListBuilder = new HomeButtonListBuilder( );
 
-    // Variables
-    private int _nDefaultItemsPerPage;
-    private String _strCurrentPageIndex;
-    private int _nItemsPerPage;
-
     // Session variable to store working values
-    private Customer _customer;
     private List<Customer> _listCustomer;
 
     @View( value = VIEW_SEARCH_CUSTOMER, defaultView = true )
@@ -254,25 +224,7 @@ public class CustomerJspBean extends MVCAdminJspBean
         model.put( Constants.MARK_ACTION_PANELS, listPanels );
         model.put( Constants.MARK_CUSTOMER, new Customer( ) );
 
-        return getPage( PROPERTY_PAGE_TITLE_MANAGE_CUSTOMERS, TEMPLATE_SEARCH_RESULTS, model );
-    }
-
-    /**
-     * Build the Manage View
-     * 
-     * @param request
-     *            The HTTP request
-     * @return The page
-     */
-    @View( VIEW_MANAGE_CUSTOMERS )
-    public String getManageCustomers( HttpServletRequest request )
-    {
-        _customer = null;
-
-        List<Customer> listCustomers = (List<Customer>) CustomerHome.getCustomersList( );
-        Map<String, Object> model = getPaginatedListModel( request, Constants.MARK_CUSTOMER_LIST, listCustomers, JSP_MANAGE_CUSTOMERS );
-
-        return getPage( PROPERTY_PAGE_TITLE_MANAGE_CUSTOMERS, TEMPLATE_MANAGE_CUSTOMERS, model );
+        return getPage( PROPERTY_PAGE_TITLE_LIST_CUSTOMERS, TEMPLATE_SEARCH_RESULTS, model );
     }
 
     @View( VIEW_CUSTOMER_DEMANDS )
@@ -406,100 +358,5 @@ public class CustomerJspBean extends MVCAdminJspBean
         }
 
         return "Invalid ID";
-    }
-
-    /**
-     * Returns the form to create a customer
-     *
-     * @param request
-     *            The Http request
-     * @return the html code of the customer form
-     */
-    @View( VIEW_CREATE_CUSTOMER )
-    public String getCreateCustomer( HttpServletRequest request )
-    {
-        _customer = ( _customer != null ) ? _customer : new Customer( );
-
-        Map<String, Object> model = getModel( );
-        model.put( Constants.MARK_CUSTOMER, _customer );
-
-        return getPage( PROPERTY_PAGE_TITLE_CREATE_CUSTOMER, TEMPLATE_CREATE_CUSTOMER, model );
-    }
-
-    /**
-     * Process the data capture form of a new customer
-     *
-     * @param request
-     *            The Http Request
-     * @return The Jsp URL of the process result
-     */
-    @Action( ACTION_CREATE_CUSTOMER )
-    public String doCreateCustomer( HttpServletRequest request )
-    {
-        populate( _customer, request );
-
-        // Check constraints
-        if ( !validateBean( _customer, VALIDATION_ATTRIBUTES_PREFIX ) )
-        {
-            return redirectView( request, VIEW_CREATE_CUSTOMER );
-        }
-
-        CustomerHome.create( _customer );
-        addInfo( INFO_CUSTOMER_CREATED, getLocale( ) );
-
-        return redirectView( request, VIEW_MANAGE_CUSTOMERS );
-    }
-
-    /**
-     * Manages the removal form of a customer whose identifier is in the http request
-     *
-     * @param request
-     *            The Http request
-     * @return the html code to confirm
-     */
-    @Action( ACTION_CONFIRM_REMOVE_CUSTOMER )
-    public String getConfirmRemoveCustomer( HttpServletRequest request )
-    {
-        int nId = Integer.parseInt( request.getParameter( Constants.PARAMETER_ID_CUSTOMER ) );
-        UrlItem url = new UrlItem( getActionUrl( ACTION_REMOVE_CUSTOMER ) );
-        url.addParameter( Constants.PARAMETER_ID_CUSTOMER, nId );
-
-        String strMessageUrl = AdminMessageService.getMessageUrl( request, MESSAGE_CONFIRM_REMOVE_CUSTOMER, url.getUrl( ), AdminMessage.TYPE_CONFIRMATION );
-
-        return redirect( request, strMessageUrl );
-    }
-
-    /**
-     * Return a model that contains the list and paginator infos
-     * 
-     * @param request
-     *            The HTTP request
-     * @param strBookmark
-     *            The bookmark
-     * @param list
-     *            The list of item
-     * @param strManageJsp
-     *            The JSP
-     * @return The model
-     */
-    private Map<String, Object> getPaginatedListModel( HttpServletRequest request, String strBookmark, List list, String strManageJsp )
-    {
-        _strCurrentPageIndex = Paginator.getPageIndex( request, Paginator.PARAMETER_PAGE_INDEX, _strCurrentPageIndex );
-        _nDefaultItemsPerPage = AppPropertiesService.getPropertyInt( PROPERTY_DEFAULT_LIST_ITEM_PER_PAGE, 50 );
-        _nItemsPerPage = Paginator.getItemsPerPage( request, Paginator.PARAMETER_ITEMS_PER_PAGE, _nItemsPerPage, _nDefaultItemsPerPage );
-
-        UrlItem url = new UrlItem( strManageJsp );
-        String strUrl = url.getUrl( );
-
-        // PAGINATOR
-        LocalizedPaginator paginator = new LocalizedPaginator( list, _nItemsPerPage, strUrl, Constants.PARAMETER_PAGE_INDEX, _strCurrentPageIndex, getLocale( ) );
-
-        Map<String, Object> model = getModel( );
-
-        model.put( Constants.MARK_NB_ITEMS_PER_PAGE, "" + _nItemsPerPage );
-        model.put( Constants.MARK_PAGINATOR, paginator );
-        model.put( strBookmark, paginator.getPageItems( ) );
-
-        return model;
     }
 }

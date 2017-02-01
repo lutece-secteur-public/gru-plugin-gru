@@ -49,7 +49,6 @@ public final class Constants
     public static final String PARAMETER_ID_DEMAND_TYPE = "id_demand_type";
 
     // Markers
-    public static final String MARK_CUSTOMER_LIST = "customer_list";
     public static final String MARK_CUSTOMER = "customer";
     public static final String MARK_ACTION_PANELS = "panels";
     public static final String MARK_PAGINATOR = "paginator";
