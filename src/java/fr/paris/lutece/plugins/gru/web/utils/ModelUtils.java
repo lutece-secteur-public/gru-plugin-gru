@@ -67,15 +67,15 @@ public final class ModelUtils
 
         for ( Notification notification : listNotifications )
         {
-            if ( !bIsAgentStatusFound && ( notification.getBackofficeLogging( ) != null ) )
+            if ( !bIsAgentStatusFound && ( notification.getBackofficeNotification( ) != null ) )
             {
-                model.put( Constants.MARK_AGENT_STATUS, notification.getBackofficeLogging( ).getStatusText( ) );
+                model.put( Constants.MARK_AGENT_STATUS, notification.getBackofficeNotification( ).getStatusText( ) );
                 bIsAgentStatusFound = true;
             }
 
-            if ( !bIsCustomerStatusFound && ( notification.getUserDashboard( ) != null ) )
+            if ( !bIsCustomerStatusFound && ( notification.getMyDashboardNotification( ) != null ) )
             {
-                model.put( Constants.MARK_CUSTOMER_STATUS, notification.getUserDashboard( ).getStatusText( ) );
+                model.put( Constants.MARK_CUSTOMER_STATUS, notification.getMyDashboardNotification( ).getStatusText( ) );
                 bIsCustomerStatusFound = true;
             }
 

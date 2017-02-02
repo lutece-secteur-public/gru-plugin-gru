@@ -55,18 +55,19 @@
       <div class="panel">
         <h2>${demand.title!'Title missing'} </h2>
         <#list demand.notifications as notification>
-          <#if notification.backofficeLogging ?? || notification.userDashboard ?? || (notification.userEmail ?? && notification.userEmail.recipient?has_content) || (notification.userSms ?? && notification.userSms.phoneNumber?has_content) >
+          <#if notification.backofficeNotification ?? || notification.myDashboardNotification ?? || (notification.emailNotification ?? && notification.emailNotification.recipient?has_content) || (notification.smsNotification ?? && notification.smsNotification.phoneNumber?has_content) >
             <p>
               <strong class="text-gru">
-			  <#if notification.notificationDate?exists && notification.notificationDate gt 0 >
-				${notification.notificationDate?number_to_datetime}
+			  <#if notification.date?exists && notification.date gt 0 >
+				${notification.date?number_to_datetime}
 			  <#else>
 				#i18n{gru.view_customer_demand.list.notification.no.date}
 			  </#if>
 			  </strong>
+			  
             </p>
             <ul class="timeline">
-            <#if notification.backofficeLogging ??>
+            <#if notification.backofficeNotification ??>
             	<li class="gru-notification collapse-notif">
                 	<button class="btn btn-box-tool collapse-button"><i class="fa fa-minus"></i></button>
                    	<i class="fa gru-notification-icon bg-gru-dark gru-agent collapse-button">
@@ -75,21 +76,21 @@
 					
                    	<div class="timeline-item">
                       	<h4 class="timeline-header">
-                        	<em>#i18n{gru.view_customer_demand.list.notification.agent.statut.title} <span>${notification.backofficeLogging.statusText}</span></em>
+                        	<em>#i18n{gru.view_customer_demand.list.notification.agent.statut.title} <span>${notification.backofficeNotification.statusText}</span></em>
                       	</h4>
                        	<div class="timeline-body">
                         	<strong>#i18n{gru.view_customer_demand.list.notification.agent.title}</strong>
                       	</div>
-                      	<#if notification.backofficeLogging.message?has_content>
+                      	<#if notification.backofficeNotification.message?has_content>
                     		<div class="timeline-footer">
-                    			${notification.backofficeLogging.message}
+                    			${notification.backofficeNotification.message}
                     		</div>
                     	</#if>
                 	</div>
             	</li>
             </#if>
             <#if demand.showDetails>
-                <#if notification.userDashboard ??>
+                <#if notification.myDashboardNotification ??>
                   <li class="gru-notification collapse-notif">
                   	<button class="btn btn-box-tool collapse-button"><i class="fa fa-plus"></i></button>
                     <i class="fa fa-user bg-gru-dark gru-notification-icon collapse-button"></i>
@@ -97,8 +98,8 @@
                       <h4 class="timeline-header">
                       	<em>
                       		#i18n{gru.view_customer_demand.list.notification.user.dashboard.no.labelStatus} : 
-                        	<#if notification.userDashboard.statusText?has_content>
-                          		${notification.userDashboard.statusText}
+                        	<#if notification.myDashboardNotification.statusText?has_content>
+                          		${notification.myDashboardNotification.statusText}
                         	<#else>
                           		#i18n{gru.view_customer_demand.list.notification.user.dashboard.no.status}
                         	</#if>
@@ -108,8 +109,8 @@
 						<strong>#i18n{gru.view_customer_demand.list.notification.user.dashboard.1} #i18n{gru.view_customer_demand.list.notification.user.dashboard.2} #i18n{gru.view_customer_demand.list.notification.user.dashboard.3}.</strong>
                       </div>
                       <div class="timeline-footer">
-                        <#if notification.userDashboard.message?has_content>
-                          ${notification.userDashboard.message}
+                        <#if notification.myDashboardNotification.message?has_content>
+                          ${notification.myDashboardNotification.message}
                         <#else>
                           <em>#i18n{gru.view_customer_demand.list.notification.user.dashboard.no.content}</em>
                         </#if>
@@ -117,23 +118,23 @@
                     </div>
                   </li>
                 </#if>
-                <#if notification.userEmail ?? && notification.userEmail.recipient?has_content>
+                <#if notification.emailNotification ?? && notification.emailNotification.recipient?has_content>
                   <li class="collapse-notif">
                   	<button class="btn btn-box-tool collapse-button"><i class="fa fa-plus"></i></button>
                     <i class="fa fa-envelope bg-gru-dark gru-notification-icon collapse-button"></i>
                     <div class="timeline-item" style="display:none;">
                       <h4 class="timeline-header">
-                        #i18n{gru.view_customer_demand.list.notification.email.sendLabel} : <span>${notification.userEmail.recipient}</span>
+                        #i18n{gru.view_customer_demand.list.notification.email.sendLabel} : <span>${notification.emailNotification.recipient}</span>
                       </h4>
                       <div class="timeline-body">
-                        <#if notification.userEmail.subject?has_content>
-                          <em>#i18n{gru.view_customer_demand.list.notification.email.labelSubject} : <strong>${notification.userEmail.subject}</strong></em>
+                        <#if notification.emailNotification.subject?has_content>
+                          <em>#i18n{gru.view_customer_demand.list.notification.email.labelSubject} : <strong>${notification.emailNotification.subject}</strong></em>
                         <#else>
                           <em>#i18n{gru.view_customer_demand.list.notification.email.no.subject}</em>
                         </#if>
                         <br/>
-                        <#if notification.userEmail.message?has_content>
-                          ${notification.userEmail.message}
+                        <#if notification.emailNotification.message?has_content>
+                          ${notification.emailNotification.message}
                         <#else>
                           <em>#i18n{gru.view_customer_demand.list.notification.email.no.content}</em>
                         </#if>
@@ -142,17 +143,17 @@
                     </div>
                   </li>
                 </#if>
-                <#if notification.userSms ?? && notification.userSms.phoneNumber?has_content>
+                <#if notification.smsNotification ?? && notification.smsNotification.phoneNumber?has_content>
                   <li class="collapse-notif">
                   	<button class="btn btn-box-tool collapse-buttoni class="fa fa-plus"></i></button>
                     <i class="fa fa-mobile bg-gru-dark gru-notification-icon collapse-button" style="font-size: 2em;"></i>
                     <div class="timeline-item" style="display:none;">
                       <h4 class="timeline-header">
-                        #i18n{gru.view_customer_demand.list.notification.sms.sendLabel} : <span>${notification.userSms.phoneNumber}</span>
+                        #i18n{gru.view_customer_demand.list.notification.sms.sendLabel} : <span>${notification.smsNotification.phoneNumber}</span>
                       </h4>
                        <div class="timeline-body">
-                        <#if notification.userSms.message?has_content>
-                          ${notification.userSms.message}
+                        <#if notification.smsNotification.message?has_content>
+                          ${notification.smsNotification.message}
                         <#else>
                           <em>#i18n{gru.view_customer_demand.list.notification.sms.no.content}</em>
                         </#if>
