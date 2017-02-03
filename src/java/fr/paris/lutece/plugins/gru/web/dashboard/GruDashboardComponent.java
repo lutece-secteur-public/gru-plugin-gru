@@ -33,7 +33,6 @@
  */
 package fr.paris.lutece.plugins.gru.web.dashboard;
 
-import fr.paris.lutece.plugins.gru.service.search.SearchService;
 import fr.paris.lutece.plugins.gru.web.Constants;
 import fr.paris.lutece.portal.business.right.Right;
 import fr.paris.lutece.portal.business.right.RightHome;
@@ -42,6 +41,7 @@ import fr.paris.lutece.portal.service.dashboard.DashboardComponent;
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.portal.service.plugin.PluginService;
 import fr.paris.lutece.portal.service.template.AppTemplateService;
+import fr.paris.lutece.portal.service.util.AppPropertiesService;
 import fr.paris.lutece.util.html.HtmlTemplate;
 import fr.paris.lutece.util.url.UrlItem;
 
@@ -80,8 +80,8 @@ public class GruDashboardComponent extends DashboardComponent
         Map<String, Object> model = new HashMap<String, Object>( );
         model.put( MARK_URL, url.getUrl( ) );
         model.put( MARK_ICON, plugin.getIconUrl( ) );
-        model.put( Constants.MARK_AUTOCOMPLETE, SearchService.instance( ).isAutoComplete( ) );
-        model.put( Constants.MARK_AUTOCOMPLETE_URL, SearchService.instance( ).getAutoCompleteUrl( ) );
+        model.put( Constants.MARK_AUTOCOMPLETE, AppPropertiesService.getProperty( Constants.PROPERTY_AUTOCOMPLETE_ENABLED ) );
+        model.put( Constants.MARK_AUTOCOMPLETE_URL, AppPropertiesService.getProperty( Constants.PROPERTY_AUTOCOMPLETE_URL ) );
 
         HtmlTemplate t = AppTemplateService.getTemplate( TEMPLATE_DASHBOARD, user.getLocale( ), model );
 

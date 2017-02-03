@@ -76,6 +76,10 @@ public final class Constants
     public static final String MARKER_FIRST_NAME = "first_name";
     public static final String MARKER_LAST_NAME = "last_name";
 
+    // Properties
+    public static final String PROPERTY_AUTOCOMPLETE_URL = "gru.search.autocomplete.url";
+    public static final String PROPERTY_AUTOCOMPLETE_ENABLED = "gru.search.autocomplete.enabled";
+
     private Constants( )
     {
     }

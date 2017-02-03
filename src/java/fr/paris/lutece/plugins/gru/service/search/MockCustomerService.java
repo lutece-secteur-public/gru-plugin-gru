@@ -41,13 +41,16 @@ import java.util.List;
 /**
  * MockSearchService
  */
-public class MockSearchService implements ISearchService
+public class MockCustomerService
 {
     /**
-     * {@inheritDoc }
+     * Find all customer with a specified name and lastname
+     * 
+     * @param strFirstName
+     * @param strLastName
+     * @return the list of all customer with the same name
      */
-    @Override
-    public List<Customer> searchCustomer( String strFirstName, String strLastName )
+    public List<Customer> findbyName( String strFirstName, String strLastName )
     {
         List<Customer> list = new ArrayList<Customer>( );
         Customer customer1 = new Customer( );
@@ -76,10 +79,12 @@ public class MockSearchService implements ISearchService
     }
 
     /**
-     * {@inheritDoc }
+     * Find a customer by its id
+     * 
+     * @param strCustomerId
+     * @return the customer with the specified id
      */
-    @Override
-    public Customer searchCustomerById( String strCustomerId )
+    public Customer findById( String strCustomerId )
     {
         Customer customer = new Customer( );
         customer.setId( "48376eb6-b6c9-4247-931c-351a8182d297" );
@@ -89,23 +94,5 @@ public class MockSearchService implements ISearchService
         customer.setEmail( "maurice.dupont@domain.com" );
 
         return customer;
-    }
-
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public boolean isAutoComplete( )
-    {
-        return false;
-    }
-
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public String getAutoCompleteUrl( )
-    {
-        return "";
     }
 }

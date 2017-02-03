@@ -31,48 +31,35 @@
  *
  * License 1.0
  */
-package fr.paris.lutece.plugins.gru.service.search;
+package fr.paris.lutece.plugins.gru.service.customer;
 
-import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
-
-import java.util.List;
+import fr.paris.lutece.portal.service.spring.SpringContextService;
 
 /**
- * ISearchService
+ * SearchService
  */
-public interface ISearchService
+public class CustomerService
 {
-    /**
-     * Search for Customers using first name and last name strings
-     * 
-     * @param strFirstName
-     *            The first name
-     * @param strLastName
-     *            The last name
-     * @return The customer list
-     */
-    List<Customer> searchCustomer( String strFirstName, String strLastName );
+    private static final String BEAN_CUSTOMER_SERVICE = "gru.customerService";
+    private static fr.paris.lutece.plugins.grubusiness.business.customer.CustomerService _service;
+
+    /** Private constructor */
+    private CustomerService( )
+    {
+    }
 
     /**
-     * Search for a Customers by using its identifier
+     * Get the unique instance
      * 
-     * @param strCustomerId
-     *            the customer id
-     * @return The customer
+     * @return The instance
      */
-    Customer searchCustomerById( String strCustomerId );
+    public static fr.paris.lutece.plugins.grubusiness.business.customer.CustomerService instance( )
+    {
+        if ( _service == null )
+        {
+            _service = SpringContextService.getBean( BEAN_CUSTOMER_SERVICE );
+        }
 
-    /**
-     * An autocomplete feature is available
-     * 
-     * @return true of auto complete otherwise false
-     */
-    boolean isAutoComplete( );
-
-    /**
-     * Return the AutoComplete Web Service URL
-     * 
-     * @return The URL
-     */
-    String getAutoCompleteUrl( );
+        return _service;
+    }
 }

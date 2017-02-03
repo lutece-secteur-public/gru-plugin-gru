@@ -38,9 +38,9 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import fr.paris.lutece.plugins.gru.service.CustomerActionsService;
+import fr.paris.lutece.plugins.gru.service.customer.CustomerService;
 import fr.paris.lutece.plugins.gru.service.demand.DemandService;
 import fr.paris.lutece.plugins.gru.service.demandtype.DemandTypeService;
-import fr.paris.lutece.plugins.gru.service.search.SearchService;
 import fr.paris.lutece.plugins.gru.utils.CustomerUtils;
 import fr.paris.lutece.plugins.gru.utils.UrlUtils;
 import fr.paris.lutece.plugins.gru.web.actions.buttons.builders.impl.HomeButtonListBuilder;
@@ -49,10 +49,12 @@ import fr.paris.lutece.plugins.gru.web.actions.model.ActionPanel;
 import fr.paris.lutece.plugins.gru.web.utils.ModelUtils;
 import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
 import fr.paris.lutece.plugins.grubusiness.business.demand.Demand;
+import fr.paris.lutece.plugins.rest.service.RestConstants;
 import fr.paris.lutece.portal.service.i18n.I18nService;
 import fr.paris.lutece.portal.service.prefs.AdminUserPreferencesService;
 import fr.paris.lutece.portal.service.util.AppLogService;
 import fr.paris.lutece.portal.service.util.AppPathService;
+import fr.paris.lutece.portal.service.util.AppPropertiesService;
 import fr.paris.lutece.portal.util.mvc.admin.MVCAdminJspBean;
 import fr.paris.lutece.portal.util.mvc.admin.annotations.Controller;
 import fr.paris.lutece.portal.util.mvc.commons.annotations.Action;
@@ -64,6 +66,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -121,8 +124,8 @@ public class CustomerJspBean extends MVCAdminJspBean
         model.put( Constants.MARK_ACTION_PANELS, listPanels );
         model.put( Constants.MARK_CUSTOMER, new Customer( ) );
         model.put( Constants.MARK_BUTTONS_LIST, _homeButtonListBuilder.buildActionButtonList( customer, getUser( ) ) );
-        model.put( Constants.MARK_AUTOCOMPLETE, SearchService.instance( ).isAutoComplete( ) );
-        model.put( Constants.MARK_AUTOCOMPLETE_URL, SearchService.instance( ).getAutoCompleteUrl( ) );
+        model.put( Constants.MARK_AUTOCOMPLETE, Boolean.parseBoolean( AppPropertiesService.getProperty( Constants.PROPERTY_AUTOCOMPLETE_ENABLED ) ) );
+        model.put( Constants.MARK_AUTOCOMPLETE_URL, AppPropertiesService.getProperty( Constants.PROPERTY_AUTOCOMPLETE_URL ) );
         model.put( Constants.MARK_RETURN_URL,
                 UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath( ) + getControllerJsp( ), VIEW_SEARCH_CUSTOMER, customer ) );
 
@@ -174,7 +177,7 @@ public class CustomerJspBean extends MVCAdminJspBean
                 strFirstName = jsonQuery.get( Constants.MARKER_FIRST_NAME ).asText( );
             }
 
-            _listCustomer = SearchService.instance( ).searchCustomer( strFirstName, strLastName );
+            _listCustomer = CustomerService.instance( ).findbyName( strFirstName, strLastName );
 
             if ( _listCustomer.size( ) == 0 )
             {

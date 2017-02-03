@@ -116,7 +116,7 @@ public class ActionLinkService
 
         if ( customer != null )
         {
-            strLink = fillLink( strLink, INFO_GUID, customer.getAccountGuid( ) );
+            strLink = fillLink( strLink, INFO_GUID, customer.getConnectionId( ) );
             strLink = fillLink( strLink, INFO_CUSTOMER_ID, customer.getId( ) );
             strLink = fillLink( strLink, INFO_USER_TITLE, "" + customer.getIdTitle( ) );
             strLink = fillLink( strLink, INFO_FIRSTNAME, customer.getFirstname( ) );
