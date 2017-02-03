@@ -43,6 +43,7 @@ public final class Constants
     // Parameters
     public static final String PARAMETER_ID_CUSTOMER = "id_customer";
     public static final String PARAMETER_QUERY = "query";
+    public static final String PARAMETER_SEARCH_QUERY = "searchquery";
     public static final String PARAMETER_PAGE_INDEX = "page_index";
     public static final String PARAMETER_URL_FRAME = "url";
     public static final String PARAMETER_ID_DEMAND = "id_demand";

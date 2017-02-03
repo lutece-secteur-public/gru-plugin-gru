@@ -177,6 +177,38 @@ public class DemandService
 
         return listDemand;
     }
+    
+    /**
+     * Gets a list of demand for a given reference
+     * 
+     * @param customer
+     *            The customer
+     * @param user
+     *            The admin user
+     * @param nStatus
+     *            The status
+     * @return The list
+     */
+    public static List<Demand> getDemandsByRef( String reference, AdminUser user, int nStatus )
+    {
+        Collection<Demand> collectionBase = getService( ).findByReference( reference );
+        List<Demand> listDemand = new ArrayList<Demand>( );
+
+        for ( Demand base : collectionBase )
+        {
+            if ( base.getStatusId( ) == nStatus )
+            {
+                if ( isAuthorized( base, user ) )
+                {
+                    listDemand.add( DemandTypeService.setDemandActions( base, base.getCustomer(), user ) );
+                }
+            }
+        }
+
+        Collections.sort( listDemand, _comparatorDemands );
+
+        return listDemand;
+    }
 
     /**
      * Gets a list of demand for a given Customer filtered by types

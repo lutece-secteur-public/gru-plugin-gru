@@ -33,6 +33,7 @@
  */
 package fr.paris.lutece.plugins.gru.web;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -92,6 +93,7 @@ public class CustomerJspBean extends MVCAdminJspBean
 
     // Messages
     private static final String MESSAGE_NO_CUSTOMER_FOUND = "gru.message.noCustomerFound";
+    private static final String MESSAGE_NO_DEMAND_FOUND = "gru.message.noDemandFound";
 
     // Views
     private static final String VIEW_SEARCH_CUSTOMER = "searchCustomer";
@@ -130,49 +132,39 @@ public class CustomerJspBean extends MVCAdminJspBean
     @Action( ACTION_SEARCH )
     public String doSearch( HttpServletRequest request ) throws UnsupportedEncodingException
     {
-        String strQuery = request.getParameter( Constants.PARAMETER_QUERY );
+        String strQuery = request.getParameter( Constants.PARAMETER_SEARCH_QUERY );
 
-        ObjectMapper mapper = new ObjectMapper( );
-
-        try
+        if (!StringUtils.isEmpty(strQuery))
         {
-            JsonNode jsonQuery = mapper.readTree( strQuery );
-            String strDemandId = StringUtils.EMPTY;
-            String strDemandTypeId = StringUtils.EMPTY;
-            String strCustomerId = StringUtils.EMPTY;
+        	Map<String, String> mapParameters = new HashMap<String, String>( );
+            mapParameters.put( Constants.PARAMETER_SEARCH_QUERY, strQuery );
+
+            return redirect( request, VIEW_DEMAND, mapParameters );
+        } 
+        else 
+        {
+        	return searchRedirectCustomer(request.getParameter( Constants.PARAMETER_QUERY ), request);
+        }
+    }
+    
+    /**
+     * Get redirection for customer search
+     * @param strQuery
+     *            The strQuery
+     * @param request
+     *            The HTTP request
+     * @return The page
+     */
+    private String searchRedirectCustomer(String strQuery, HttpServletRequest request)
+    {
+    	try
+        {
+    		ObjectMapper mapper = new ObjectMapper( );
+        	JsonNode jsonQuery = mapper.readTree( strQuery );
             String strFirstName = StringUtils.EMPTY;
             String strLastName = StringUtils.EMPTY;
 
-            if ( !jsonQuery.path( Constants.MARKER_DEMAND_ID ).isMissingNode( ) )
-            {
-                strDemandId = jsonQuery.get( Constants.MARKER_DEMAND_ID ).asText( );
-            }
-
-            if ( !jsonQuery.path( Constants.MARKER_DEMAND_TYPE_ID ).isMissingNode( ) )
-            {
-                strDemandTypeId = jsonQuery.get( Constants.MARKER_DEMAND_TYPE_ID ).asText( );
-            }
-
-            if ( !jsonQuery.path( Constants.MARKER_CUSTOMER_ID ).isMissingNode( ) )
-            {
-                strCustomerId = jsonQuery.get( Constants.MARKER_CUSTOMER_ID ).asText( );
-            }
-
-            if ( ( StringUtils.isNotEmpty( strDemandId ) ) && ( StringUtils.isNotEmpty( strDemandTypeId ) ) )
-            {
-                Map<String, String> mapParameters = new HashMap<String, String>( );
-                mapParameters.put( Constants.PARAMETER_ID_DEMAND, strDemandId );
-                mapParameters.put( Constants.PARAMETER_ID_DEMAND_TYPE, strDemandTypeId );
-
-                if ( StringUtils.isNotEmpty( strCustomerId ) )
-                {
-                    mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, strCustomerId );
-                }
-
-                return redirect( request, VIEW_DEMAND, mapParameters );
-            }
-
-            if ( !jsonQuery.path( Constants.MARKER_LAST_NAME ).isMissingNode( ) )
+        	if ( !jsonQuery.path( Constants.MARKER_LAST_NAME ).isMissingNode( ) )
             {
                 strLastName = jsonQuery.get( Constants.MARKER_LAST_NAME ).asText( );
             }
@@ -186,20 +178,20 @@ public class CustomerJspBean extends MVCAdminJspBean
 
             if ( _listCustomer.size( ) == 0 )
             {
-                String strError = I18nService.getLocalizedString( MESSAGE_NO_CUSTOMER_FOUND, getLocale( ) );
+            	String strError = I18nService.getLocalizedString( MESSAGE_NO_CUSTOMER_FOUND, getLocale( ) );
                 addError( strError );
-
-                return redirectView( request, VIEW_SEARCH_CUSTOMER );
+                 
+             	return redirectView( request, VIEW_SEARCH_CUSTOMER );
             }
 
             if ( _listCustomer.size( ) == 1 )
             {
-                Map<String, String> mapParameters = new HashMap<String, String>( );
+            	Map<String, String> mapParameters = new HashMap<String, String>( );
                 mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, _listCustomer.get( 0 ).getId( ) );
 
                 return redirect( request, VIEW_CUSTOMER_DEMANDS, mapParameters );
             }
-
+            
             return redirectView( request, VIEW_SEARCH_RESULTS );
         }
         catch( IOException e )
@@ -309,51 +301,50 @@ public class CustomerJspBean extends MVCAdminJspBean
     @View( VIEW_DEMAND )
     public String getViewDemand( HttpServletRequest request )
     {
+        String strReference = request.getParameter( Constants.PARAMETER_SEARCH_QUERY );
         String strId = request.getParameter( Constants.PARAMETER_ID_CUSTOMER );
-        String strIdDemand = request.getParameter( Constants.PARAMETER_ID_DEMAND );
-        String strIdDemandType = request.getParameter( Constants.PARAMETER_ID_DEMAND_TYPE );
+        
+        Demand demand = null;
+        
+		List<Demand> demandsByRef = DemandService.getDemandsByRef(strReference, getUser( ), Demand.STATUS_INPROGRESS);
+		
+		if(demandsByRef.isEmpty()){
+			String strError = I18nService.getLocalizedString( MESSAGE_NO_DEMAND_FOUND, getLocale( ) );
+            addError( strError );
+             
+         	return redirectView( request, VIEW_SEARCH_CUSTOMER );
+		}
+		demand = DemandService.getDemand(demandsByRef.get( 0 ).getId(), demandsByRef.get( 0 ).getTypeId(), getUser());
 
-        Demand demand = DemandService.getDemand( strIdDemand, strIdDemandType, getUser( ) );
         Customer customer = CustomerUtils.getCustomer( request );
 
-        if ( ( strIdDemand != null ) && ( demand != null ) )
+        List<ActionPanel> listPanels = new ArrayList<ActionPanel>( );
+        Map<String, Object> model = getModel( );
+        Map<String, String> mapParameters = new HashMap<String, String>( );
+        listPanels = CustomerActionsService.getPanels( customer, getUser( ) );
+        model.put( Constants.MARK_ACTION_PANELS, listPanels );
+        demand = DemandTypeService.setDemandActions( demand, customer, getUser( ) );
+
+        if ( ( strId != null ) && ( customer != null ) )
         {
-            try
-            {
-                List<ActionPanel> listPanels = new ArrayList<ActionPanel>( );
-                Map<String, Object> model = getModel( );
-                Map<String, String> mapParameters = new HashMap<String, String>( );
-                listPanels = CustomerActionsService.getPanels( customer, getUser( ) );
-                model.put( Constants.MARK_ACTION_PANELS, listPanels );
-                demand = DemandTypeService.setDemandActions( demand, customer, getUser( ) );
-
-                if ( ( strId != null ) && ( customer != null ) )
-                {
-                    mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, customer.getId( ) );
-                    model.put( Constants.MARK_CUSTOMER, customer );
-                }
-                else
-                {
-                    model.put( Constants.MARK_CUSTOMER, new Customer( ) );
-                }
-
-                mapParameters.put( Constants.PARAMETER_ID_DEMAND, String.valueOf( demand.getId( ) ) );
-                mapParameters.put( Constants.PARAMETER_ID_DEMAND_TYPE, String.valueOf( demand.getTypeId( ) ) );
-
-                model.put( Constants.MARK_DEMAND, demand );
-
-                ModelUtils.storeStatus( model, demand.getNotifications( ) );
-
-                model.put( Constants.MARK_RETURN_URL,
-                        UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath( ) + getControllerJsp( ), VIEW_DEMAND, mapParameters ) );
-
-                return getPage( "", TEMPLATE_VIEW_DEMAND, model );
-            }
-            catch( NumberFormatException e )
-            {
-            }
+            mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, customer.getId( ) );
+            model.put( Constants.MARK_CUSTOMER, customer );
+        }
+        else
+        {
+            model.put( Constants.MARK_CUSTOMER, new Customer( ) );
         }
 
-        return "Invalid ID";
+        mapParameters.put( Constants.PARAMETER_ID_DEMAND, String.valueOf( demand.getId( ) ) );
+        mapParameters.put( Constants.PARAMETER_ID_DEMAND_TYPE, String.valueOf( demand.getTypeId( ) ) );
+
+        model.put( Constants.MARK_DEMAND, demand );
+
+        ModelUtils.storeStatus( model, demand.getNotifications( ) );
+
+        model.put( Constants.MARK_RETURN_URL,
+                UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath( ) + getControllerJsp( ), VIEW_DEMAND, mapParameters ) );
+
+        return getPage( "", TEMPLATE_VIEW_DEMAND, model );
     }
 }
