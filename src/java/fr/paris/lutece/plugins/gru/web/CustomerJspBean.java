@@ -137,37 +137,38 @@ public class CustomerJspBean extends MVCAdminJspBean
     {
         String strQuery = request.getParameter( Constants.PARAMETER_SEARCH_QUERY );
 
-        if (!StringUtils.isEmpty(strQuery))
+        if ( !StringUtils.isEmpty( strQuery ) )
         {
-        	Map<String, String> mapParameters = new HashMap<String, String>( );
+            Map<String, String> mapParameters = new HashMap<String, String>( );
             mapParameters.put( Constants.PARAMETER_SEARCH_QUERY, strQuery );
 
             return redirect( request, VIEW_DEMAND, mapParameters );
-        } 
-        else 
+        }
+        else
         {
-        	return searchRedirectCustomer(request.getParameter( Constants.PARAMETER_QUERY ), request);
+            return searchRedirectCustomer( request.getParameter( Constants.PARAMETER_QUERY ), request );
         }
     }
-    
+
     /**
      * Get redirection for customer search
+     * 
      * @param strQuery
      *            The strQuery
      * @param request
      *            The HTTP request
      * @return The page
      */
-    private String searchRedirectCustomer(String strQuery, HttpServletRequest request)
+    private String searchRedirectCustomer( String strQuery, HttpServletRequest request )
     {
-    	try
+        try
         {
-    		ObjectMapper mapper = new ObjectMapper( );
-        	JsonNode jsonQuery = mapper.readTree( strQuery );
+            ObjectMapper mapper = new ObjectMapper( );
+            JsonNode jsonQuery = mapper.readTree( strQuery );
             String strFirstName = StringUtils.EMPTY;
             String strLastName = StringUtils.EMPTY;
 
-        	if ( !jsonQuery.path( Constants.MARKER_LAST_NAME ).isMissingNode( ) )
+            if ( !jsonQuery.path( Constants.MARKER_LAST_NAME ).isMissingNode( ) )
             {
                 strLastName = jsonQuery.get( Constants.MARKER_LAST_NAME ).asText( );
             }
@@ -181,20 +182,20 @@ public class CustomerJspBean extends MVCAdminJspBean
 
             if ( _listCustomer.size( ) == 0 )
             {
-            	String strError = I18nService.getLocalizedString( MESSAGE_NO_CUSTOMER_FOUND, getLocale( ) );
+                String strError = I18nService.getLocalizedString( MESSAGE_NO_CUSTOMER_FOUND, getLocale( ) );
                 addError( strError );
-                 
-             	return redirectView( request, VIEW_SEARCH_CUSTOMER );
+
+                return redirectView( request, VIEW_SEARCH_CUSTOMER );
             }
 
             if ( _listCustomer.size( ) == 1 )
             {
-            	Map<String, String> mapParameters = new HashMap<String, String>( );
+                Map<String, String> mapParameters = new HashMap<String, String>( );
                 mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, _listCustomer.get( 0 ).getId( ) );
 
                 return redirect( request, VIEW_CUSTOMER_DEMANDS, mapParameters );
             }
-            
+
             return redirectView( request, VIEW_SEARCH_RESULTS );
         }
         catch( IOException e )
@@ -306,18 +307,19 @@ public class CustomerJspBean extends MVCAdminJspBean
     {
         String strReference = request.getParameter( Constants.PARAMETER_SEARCH_QUERY );
         String strId = request.getParameter( Constants.PARAMETER_ID_CUSTOMER );
-        
+
         Demand demand = null;
-        
-		List<Demand> demandsByRef = DemandService.getDemandsByRef(strReference, getUser( ), Demand.STATUS_INPROGRESS);
-		
-		if(demandsByRef.isEmpty()){
-			String strError = I18nService.getLocalizedString( MESSAGE_NO_DEMAND_FOUND, getLocale( ) );
+
+        List<Demand> demandsByRef = DemandService.getDemandsByRef( strReference, getUser( ), Demand.STATUS_INPROGRESS );
+
+        if ( demandsByRef.isEmpty( ) )
+        {
+            String strError = I18nService.getLocalizedString( MESSAGE_NO_DEMAND_FOUND, getLocale( ) );
             addError( strError );
-             
-         	return redirectView( request, VIEW_SEARCH_CUSTOMER );
-		}
-		demand = DemandService.getDemand(demandsByRef.get( 0 ).getId(), demandsByRef.get( 0 ).getTypeId(), getUser());
+
+            return redirectView( request, VIEW_SEARCH_CUSTOMER );
+        }
+        demand = DemandService.getDemand( demandsByRef.get( 0 ).getId( ), demandsByRef.get( 0 ).getTypeId( ), getUser( ) );
 
         Customer customer = CustomerUtils.getCustomer( request );
 

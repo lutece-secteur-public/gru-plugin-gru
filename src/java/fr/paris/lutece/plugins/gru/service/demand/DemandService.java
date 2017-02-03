@@ -177,7 +177,7 @@ public class DemandService
 
         return listDemand;
     }
-    
+
     /**
      * Gets a list of demand for a given reference
      * 
@@ -200,7 +200,7 @@ public class DemandService
             {
                 if ( isAuthorized( base, user ) )
                 {
-                    listDemand.add( DemandTypeService.setDemandActions( base, base.getCustomer(), user ) );
+                    listDemand.add( DemandTypeService.setDemandActions( base, base.getCustomer( ), user ) );
                 }
             }
         }
