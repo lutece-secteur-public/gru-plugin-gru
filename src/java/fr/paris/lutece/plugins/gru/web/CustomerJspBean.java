@@ -135,12 +135,13 @@ public class CustomerJspBean extends MVCAdminJspBean
     @Action( ACTION_SEARCH )
     public String doSearch( HttpServletRequest request ) throws UnsupportedEncodingException
     {
-        String strQuery = request.getParameter( Constants.PARAMETER_SEARCH_QUERY );
+        String strSearchQuery = request.getParameter( Constants.PARAMETER_SEARCH_QUERY );
+        String strQuery = request.getParameter( Constants.PARAMETER_QUERY );
 
-        if ( !StringUtils.isEmpty( strQuery ) )
+        if ( !StringUtils.isEmpty( strSearchQuery ) && StringUtils.isEmpty( strQuery ) )
         {
             Map<String, String> mapParameters = new HashMap<String, String>( );
-            mapParameters.put( Constants.PARAMETER_SEARCH_QUERY, strQuery );
+            mapParameters.put( Constants.PARAMETER_SEARCH_QUERY, strSearchQuery );
 
             return redirect( request, VIEW_DEMAND, mapParameters );
         }
@@ -306,7 +307,6 @@ public class CustomerJspBean extends MVCAdminJspBean
     public String getViewDemand( HttpServletRequest request )
     {
         String strReference = request.getParameter( Constants.PARAMETER_SEARCH_QUERY );
-        String strId = request.getParameter( Constants.PARAMETER_ID_CUSTOMER );
 
         Demand demand = null;
 
@@ -319,9 +319,15 @@ public class CustomerJspBean extends MVCAdminJspBean
 
             return redirectView( request, VIEW_SEARCH_CUSTOMER );
         }
+        
         demand = DemandService.getDemand( demandsByRef.get( 0 ).getId( ), demandsByRef.get( 0 ).getTypeId( ), getUser( ) );
-
-        Customer customer = CustomerUtils.getCustomer( request );
+        
+        Customer customer = new Customer();
+        
+        if(demand.getCustomer() != null)
+        {
+        	customer = CustomerService.instance( ).findById(demand.getCustomer().getId());
+        }
 
         List<ActionPanel> listPanels = new ArrayList<ActionPanel>( );
         Map<String, Object> model = getModel( );
@@ -330,7 +336,7 @@ public class CustomerJspBean extends MVCAdminJspBean
         model.put( Constants.MARK_ACTION_PANELS, listPanels );
         demand = DemandTypeService.setDemandActions( demand, customer, getUser( ) );
 
-        if ( ( strId != null ) && ( customer != null ) )
+        if ( customer != null )
         {
             mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, customer.getId( ) );
             model.put( Constants.MARK_CUSTOMER, customer );
