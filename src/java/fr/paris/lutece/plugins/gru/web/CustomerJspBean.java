@@ -314,20 +314,30 @@ public class CustomerJspBean extends MVCAdminJspBean
     public String getViewDemand( HttpServletRequest request )
     {
         String strReference = request.getParameter( Constants.PARAMETER_SEARCH_QUERY );
+        String demandId = null;
+        String demandTypeId = null;
 
-        Demand demand = null;
-
-        List<Demand> demandsByRef = DemandService.getDemandsByRef( strReference, getUser( ), Demand.STATUS_INPROGRESS );
-
-        if ( demandsByRef.isEmpty( ) )
+        if ( !StringUtils.isEmpty( strReference ) )
         {
-            String strError = I18nService.getLocalizedString( MESSAGE_NO_DEMAND_FOUND, getLocale( ) );
-            addError( strError );
+            List<Demand> demandsByRef = DemandService.getDemandsByRef( strReference, getUser( ), Demand.STATUS_INPROGRESS );
 
-            return redirectView( request, VIEW_SEARCH_CUSTOMER );
+            if ( demandsByRef.isEmpty( ) )
+            {
+                String strError = I18nService.getLocalizedString( MESSAGE_NO_DEMAND_FOUND, getLocale( ) );
+                addError( strError );
+
+                return redirectView( request, VIEW_SEARCH_CUSTOMER );
+            }
+            demandId = demandsByRef.get( 0 ).getId( );
+            demandTypeId = demandsByRef.get( 0 ).getTypeId( );
+        }
+        else
+        {
+            demandId = request.getParameter( Constants.PARAMETER_ID_DEMAND );
+            demandTypeId = request.getParameter( Constants.PARAMETER_ID_DEMAND_TYPE );
         }
 
-        demand = DemandService.getDemand( demandsByRef.get( 0 ).getId( ), demandsByRef.get( 0 ).getTypeId( ), getUser( ) );
+        Demand demand = DemandService.getDemand( demandId, demandTypeId, getUser( ) );
 
         Customer customer = new Customer( );
 
