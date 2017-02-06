@@ -319,14 +319,14 @@ public class CustomerJspBean extends MVCAdminJspBean
 
             return redirectView( request, VIEW_SEARCH_CUSTOMER );
         }
-        
+
         demand = DemandService.getDemand( demandsByRef.get( 0 ).getId( ), demandsByRef.get( 0 ).getTypeId( ), getUser( ) );
-        
-        Customer customer = new Customer();
-        
-        if(demand.getCustomer() != null)
+
+        Customer customer = new Customer( );
+
+        if ( demand.getCustomer( ) != null )
         {
-        	customer = CustomerService.instance( ).findById(demand.getCustomer().getId());
+            customer = CustomerService.instance( ).findById( demand.getCustomer( ).getId( ) );
         }
 
         List<ActionPanel> listPanels = new ArrayList<ActionPanel>( );
