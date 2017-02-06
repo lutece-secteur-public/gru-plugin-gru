@@ -68,6 +68,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -179,7 +180,13 @@ public class CustomerJspBean extends MVCAdminJspBean
                 strFirstName = jsonQuery.get( Constants.MARKER_FIRST_NAME ).asText( );
             }
 
-            _listCustomer = CustomerService.instance( ).findbyName( strFirstName, strLastName );
+            List<Customer> listCustomer = CustomerService.instance( ).findbyName( strFirstName, strLastName );
+            Map<String, Customer> mapCustomer = new LinkedHashMap<String, Customer>( );
+            for ( Customer customer : listCustomer )
+            {
+                mapCustomer.put( customer.getId( ), customer );
+            }
+            _listCustomer = new ArrayList<Customer>( mapCustomer.values( ) );
 
             if ( _listCustomer.size( ) == 0 )
             {
