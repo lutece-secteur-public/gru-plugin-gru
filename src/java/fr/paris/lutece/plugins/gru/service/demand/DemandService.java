@@ -81,7 +81,7 @@ public class DemandService
                         default:
                             nResult = 1;
                     }
-                break;
+                    break;
 
                 case Demand.STATUS_CLOSED:
                     switch( demand2.getStatusId( ) )
@@ -97,7 +97,7 @@ public class DemandService
                         default:
                             nResult = 1;
                     }
-                break;
+                    break;
 
                 default:
                     nResult = -1;
