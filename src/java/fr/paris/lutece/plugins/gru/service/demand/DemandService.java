@@ -68,40 +68,36 @@ public class DemandService
             switch( demand1.getStatusId( ) )
             {
                 case Demand.STATUS_INPROGRESS:
-
                     switch( demand2.getStatusId( ) )
                     {
                         case Demand.STATUS_INPROGRESS:
-                            nResult = Long.valueOf( demand1.getCreationDate( ) ).compareTo( Long.valueOf( demand2.getCreationDate( ) ) );
-
+                            nResult = Long.valueOf( demand2.getCreationDate( ) ).compareTo( Long.valueOf( demand1.getCreationDate( ) ) );
                             break;
 
                         case Demand.STATUS_CLOSED:
                             nResult = 1;
-
                             break;
 
                         default:
                             nResult = 1;
                     }
+                break;
 
                 case Demand.STATUS_CLOSED:
-
                     switch( demand2.getStatusId( ) )
                     {
                         case Demand.STATUS_INPROGRESS:
                             nResult = -1;
-
                             break;
 
                         case Demand.STATUS_CLOSED:
-                            nResult = Long.valueOf( demand1.getClosureDate( ) ).compareTo( Long.valueOf( demand2.getClosureDate( ) ) );
-
+                            nResult = Long.valueOf( demand2.getClosureDate( ) ).compareTo( Long.valueOf( demand1.getClosureDate( ) ) );
                             break;
 
                         default:
                             nResult = 1;
                     }
+                break;
 
                 default:
                     nResult = -1;
