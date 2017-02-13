@@ -127,9 +127,11 @@
 
 <#macro customerDetails customer>
    <h2>${customer.firstname} ${customer.lastname}</h2>
+   <#if customer.email?has_content>
    <p>
-      <i class="fa fa-envelope"></i> ${customer.email!""} <#if customer.isEmailVerified && true><i class="fa fa-check text-green" title="Email V&eacute;rifi&eacute;"></i></#if>
+      <i class="fa fa-envelope"></i> ${customer.email} <#if customer.isEmailVerified && true><i class="fa fa-check text-green" title="Email V&eacute;rifi&eacute;"></i></#if>
    </p>
+   </#if>
    <#if customer.fixedPhoneNumber?has_content>
      <p>
        <i class="fa fa-phone" ></i>
