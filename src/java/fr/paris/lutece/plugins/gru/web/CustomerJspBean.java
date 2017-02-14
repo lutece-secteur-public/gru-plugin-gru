@@ -341,7 +341,7 @@ public class CustomerJspBean extends MVCAdminJspBean
 
         Customer customer = new Customer( );
 
-        if ( demand.getCustomer( ) != null )
+        if ( demand.getCustomer( ) != null && demand.getCustomer( ).getId( ) != null )
         {
             customer = CustomerService.instance( ).findById( demand.getCustomer( ).getId( ) );
         }
