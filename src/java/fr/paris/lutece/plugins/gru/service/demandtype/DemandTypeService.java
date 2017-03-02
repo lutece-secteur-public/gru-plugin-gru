@@ -131,4 +131,21 @@ public class DemandTypeService
 
         return type.getTitle( );
     }
+    
+    /**
+     * Update a demand type in _mapDemandType
+     * 
+     * @param demandType the DemandType
+     */
+    public static void updateDemandType( DemandType demandType )
+    {
+        if ( _mapDemandTypes.containsKey( Integer.toString( demandType.getDemandTypeId( ) ) ) )
+        {
+             _mapDemandTypes.replace( Integer.toString( demandType.getDemandTypeId( ) ), demandType );
+        }
+        else
+        {
+            _mapDemandTypes.put( Integer.toString( demandType.getDemandTypeId( ) ), demandType );
+        }
+    }
 }
