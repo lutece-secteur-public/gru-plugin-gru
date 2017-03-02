@@ -12,10 +12,10 @@
 
 table.table-hover tr:hover{ cursor: pointer }
 
-.main-sidebar { background-color: #fff !important; }
+.main-sidebar { background-color: #fff !important; width: auto !important; }
 
 /* TOOLBAR */
-.sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > span:not(.pull-right), .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu {	width: 280px;}
+.sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > span:not(.pull-right), .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu {	width: auto; }
 .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu.user {padding:5px;}
 .sidebar-mini.sidebar-collapse .sidebar-menu > li.treeview > a > .label {	position: absolute;	top: 9px;	right: 7px;	text-align: center;	font-size: 9px;	padding: 2px 3px;	line-height: 0.9;  display: block !important;}
 .sidebar-menu li > a > .pull-right { display: none }
