@@ -185,19 +185,16 @@ public class DemandService
      *            The status
      * @return The list
      */
-    public static List<Demand> getDemandsByRef( String reference, AdminUser user, int nStatus )
+    public static List<Demand> getDemandsByRef( String reference, AdminUser user )
     {
         Collection<Demand> collectionBase = getService( ).findByReference( reference );
         List<Demand> listDemand = new ArrayList<Demand>( );
 
         for ( Demand base : collectionBase )
         {
-            if ( base.getStatusId( ) == nStatus )
+            if ( isAuthorized( base, user ) )
             {
-                if ( isAuthorized( base, user ) )
-                {
-                    listDemand.add( DemandTypeService.setDemandActions( base, base.getCustomer( ), user ) );
-                }
+                listDemand.add( DemandTypeService.setDemandActions( base, base.getCustomer( ), user ) );
             }
         }
 

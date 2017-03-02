@@ -35,6 +35,7 @@ package fr.paris.lutece.plugins.gru.web;
 
 import fr.paris.lutece.plugins.gru.business.demandtype.DemandType;
 import fr.paris.lutece.plugins.gru.business.demandtype.DemandTypeHome;
+import fr.paris.lutece.plugins.gru.service.demandtype.DemandTypeService;
 import fr.paris.lutece.plugins.gru.service.domain.BusinessDomainService;
 import fr.paris.lutece.portal.service.message.AdminMessage;
 import fr.paris.lutece.portal.service.message.AdminMessageService;
@@ -240,6 +241,7 @@ public class DemandTypeJspBean extends ManageDemandJspBean
         }
 
         DemandTypeHome.update( _demandtype );
+        DemandTypeService.updateDemandType( _demandtype );
         addInfo( INFO_DEMANDTYPE_UPDATED, getLocale( ) );
 
         return redirectView( request, VIEW_MANAGE_DEMANDTYPES );
