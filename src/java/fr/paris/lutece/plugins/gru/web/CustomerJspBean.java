@@ -319,7 +319,7 @@ public class CustomerJspBean extends MVCAdminJspBean
 
         if ( !StringUtils.isEmpty( strReference ) )
         {
-            List<Demand> demandsByRef = DemandService.getDemandsByRef( strReference, getUser( ), Demand.STATUS_INPROGRESS );
+            List<Demand> demandsByRef = DemandService.getDemandsByRef( strReference, getUser( ) );
 
             if ( demandsByRef.isEmpty( ) )
             {
