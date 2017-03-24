@@ -33,7 +33,6 @@
  */
 package fr.paris.lutece.plugins.gru.web;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -49,7 +48,6 @@ import fr.paris.lutece.plugins.gru.web.actions.model.ActionPanel;
 import fr.paris.lutece.plugins.gru.web.utils.ModelUtils;
 import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
 import fr.paris.lutece.plugins.grubusiness.business.demand.Demand;
-import fr.paris.lutece.plugins.rest.service.RestConstants;
 import fr.paris.lutece.portal.service.i18n.I18nService;
 import fr.paris.lutece.portal.service.prefs.AdminUserPreferencesService;
 import fr.paris.lutece.portal.service.util.AppLogService;
@@ -66,7 +64,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
