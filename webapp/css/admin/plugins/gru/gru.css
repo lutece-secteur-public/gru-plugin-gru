@@ -23,6 +23,13 @@ table.table-hover tr:hover{ cursor: pointer }
 .sidebar-mini.sidebar-collapse .sidebar-menu li > a > .pull-right { display: block }
 .sidebar-mini.sidebar-collapse .content-wrapper, .sidebar-mini.sidebar-collapse .right-side, .sidebar-mini.sidebar-collapse .main-footer {margin-left: 35px !important;}
 
+.sidebar-menu .treeview-menu>li>a.sidebar-link-container { display: flex; }
+.sidebar-link-container small {
+	white-space: normal; 
+	min-width:190px;
+	margin: 0 5px;
+}
+
 .user-panel{ padding-left:20px !important;}
 
 #info-user{ margin:15px 0}
