@@ -140,13 +140,6 @@ public class DemandTypeService
      */
     public static void updateDemandType( DemandType demandType )
     {
-        if ( _mapDemandTypes.containsKey( Integer.toString( demandType.getDemandTypeId( ) ) ) )
-        {
-            _mapDemandTypes.replace( Integer.toString( demandType.getDemandTypeId( ) ), demandType );
-        }
-        else
-        {
-            _mapDemandTypes.put( Integer.toString( demandType.getDemandTypeId( ) ), demandType );
-        }
+    	_mapDemandTypes.put( Integer.toString( demandType.getDemandTypeId( ) ), demandType );
     }
 }
