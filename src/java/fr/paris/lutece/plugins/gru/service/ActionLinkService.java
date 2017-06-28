@@ -65,6 +65,7 @@ public class ActionLinkService
     private static final String INFO_USER_TITLE = "{user_title}";
     private static final String INFO_FIRSTNAME = "{firstname}";
     private static final String INFO_LASTNAME = "{lastname}";
+    private static final String INFO_FAMILYNAME = "{familyname}";
     private static final String INFO_FIXED_PHONE = "{fixed_phone}";
     private static final String INFO_MOBILE_PHONE = "{mobile_phone}";
     private static final String INFO_EMAIL = "{email}";
@@ -121,6 +122,7 @@ public class ActionLinkService
             strLink = fillLink( strLink, INFO_USER_TITLE, "" + customer.getIdTitle( ) );
             strLink = fillLink( strLink, INFO_FIRSTNAME, customer.getFirstname( ) );
             strLink = fillLink( strLink, INFO_LASTNAME, customer.getLastname( ) );
+            strLink = fillLink( strLink, INFO_FAMILYNAME, customer.getFamilyname( ) );
             strLink = fillLink( strLink, INFO_FIXED_PHONE, customer.getFixedPhoneNumber( ) );
             strLink = fillLink( strLink, INFO_MOBILE_PHONE, customer.getMobilePhone( ) );
             strLink = fillLink( strLink, INFO_EMAIL, customer.getEmail( ) );
