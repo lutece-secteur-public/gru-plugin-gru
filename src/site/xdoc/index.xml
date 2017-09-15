@@ -19,7 +19,7 @@
                 <p><strong>The Customer DAO</strong></p>
                 <p>
                 By default, the plugin uses a mock to search the customers. The search always returns a message saying that no customer is found.
-                To use a correct search mechanism, the bean <code>gru.customerService</code> defined in the Spring context must have a concrete implementation of <code>fr.paris.lutece.plugins.grubusiness.business.customer.ICustomerDAO</code>
+                To use a correct search mechanism, the bean <code>gru.customerService</code> defined in the Spring context must use a concrete implementation of <code>fr.paris.lutece.plugins.grubusiness.business.customer.ICustomerDAO</code>
                 from the library <code>gru-library-grubusiness</code>.
                 </p>
                 <p>
@@ -32,6 +32,36 @@
                     <li>
                         <code>fr.paris.lutece.plugins.gruindexing.business.elasticsearch.ElasticSearchCustomerDAO</code> from the plugin <code>gru-plugin-gru-indexing</code>.
                         The customers are retrieved from a ElasticSearch server.
+                    </li>
+                </ul>
+                </p>
+                <p><strong>The Demand DAO</strong></p>
+                <p>
+                By default, the plugin uses a mock to retrieve the demands. The customers have no demand.
+                To use a correct retrieval mechanism, the bean <code>gru.demandService</code> defined in the Spring context must use a concrete implementation of <code>fr.paris.lutece.plugins.grubusiness.business.demand.IDemandDAO</code>
+                from the library <code>gru-library-grubusiness</code>.
+                </p>
+                <p>
+                The known implementations are the following:
+                <ul>
+                    <li>
+                        <code>fr.paris.lutece.plugins.grustoragedb.business.DemandDAO</code> from the plugin <code>gru-plugin-grustoragedb</code>.
+                        The demands are retrieved from the database.
+                    </li>
+                </ul>
+                </p>
+                <p><strong>The Notification DAO</strong></p>
+                <p>
+                By default, the plugin uses a mock to retrieve the notifications. The customers have no notification.
+                To use a correct retrieval mechanism, the bean <code>gru.demandService</code> defined in the Spring context must use a concrete implementation of <code>fr.paris.lutece.plugins.grubusiness.business.notification.INotificationDAO</code>
+                from the library <code>gru-library-grubusiness</code>.
+                </p>
+                <p>
+                The known implementations are the following:
+                <ul>
+                    <li>
+                        <code>fr.paris.lutece.plugins.grustoragedb.business.NotificationDAO</code> from the plugin <code>gru-plugin-grustoragedb</code>.
+                        The notifications are retrieved from the database.
                     </li>
                 </ul>
                 </p>

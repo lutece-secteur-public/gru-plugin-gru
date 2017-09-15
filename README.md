@@ -9,12 +9,30 @@ This plugin enables to see all the demands of a customer in the same view and to
 
  **The Customer DAO** 
 
-By default, the plugin uses a mock to search the customers. The search always returns a message saying that no customer is found. To use a correct search mechanism, the bean `gru.customerService` defined in the Spring context must have a concrete implementation of `fr.paris.lutece.plugins.grubusiness.business.customer.ICustomerDAO` from the library `gru-library-grubusiness` .
+By default, the plugin uses a mock to search the customers. The search always returns a message saying that no customer is found. To use a correct search mechanism, the bean `gru.customerService` defined in the Spring context must use a concrete implementation of `fr.paris.lutece.plugins.grubusiness.business.customer.ICustomerDAO` from the library `gru-library-grubusiness` .
 
 The known implementations are the following:
  
 *  `fr.paris.lutece.plugins.gruindexing.business.lucene.LuceneCustomerDAO` from the plugin `gru-plugin-gru-indexing` . The customers are retrieved from a Lucene index.
 *  `fr.paris.lutece.plugins.gruindexing.business.elasticsearch.ElasticSearchCustomerDAO` from the plugin `gru-plugin-gru-indexing` . The customers are retrieved from a ElasticSearch server.
+
+
+ **The Demand DAO** 
+
+By default, the plugin uses a mock to retrieve the demands. The customers have no demand. To use a correct retrieval mechanism, the bean `gru.demandService` defined in the Spring context must use a concrete implementation of `fr.paris.lutece.plugins.grubusiness.business.demand.IDemandDAO` from the library `gru-library-grubusiness` .
+
+The known implementations are the following:
+ 
+*  `fr.paris.lutece.plugins.grustoragedb.business.DemandDAO` from the plugin `gru-plugin-grustoragedb` . The demands are retrieved from the database.
+
+
+ **The Notification DAO** 
+
+By default, the plugin uses a mock to retrieve the notifications. The customers have no notification. To use a correct retrieval mechanism, the bean `gru.demandService` defined in the Spring context must use a concrete implementation of `fr.paris.lutece.plugins.grubusiness.business.notification.INotificationDAO` from the library `gru-library-grubusiness` .
+
+The known implementations are the following:
+ 
+*  `fr.paris.lutece.plugins.grustoragedb.business.NotificationDAO` from the plugin `gru-plugin-grustoragedb` . The notifications are retrieved from the database.
 
 
 ## Usage
