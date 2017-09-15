@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2015, Mairie de Paris
+ * Copyright (c) 2002-2017, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -62,7 +62,7 @@ public final class Constants
     public static final String MARK_BUTTONS_GROUPS_LIST = "buttons_groups_list";
     public static final String MARK_COLORS_LIST = "colors_list";
     public static final String MARK_RESULTS_LIST = "results_list";
-    public static final String MARK_AUTOCOMPLETE = "auto_complete";
+    public static final String MARK_IS_AUTOCOMPLETE = "is_auto_complete";
     public static final String MARK_AUTOCOMPLETE_URL = "auto_complete_url";
     public static final String MARK_RETURN_URL = "return_url";
     public static final String MARK_USER_PREFERENCE_CREATION_DATE_DISPLAY = "creationDateDisplay";
@@ -80,6 +80,9 @@ public final class Constants
     public static final String PROPERTY_AUTOCOMPLETE_URL = "gru.search.autocomplete.url";
     public static final String PROPERTY_AUTOCOMPLETE_ENABLED = "gru.search.autocomplete.enabled";
 
+    /**
+     * Private constructor
+     */
     private Constants( )
     {
     }

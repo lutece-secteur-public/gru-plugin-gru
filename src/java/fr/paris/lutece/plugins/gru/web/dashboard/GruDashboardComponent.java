@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2016, Mairie de Paris
+ * Copyright (c) 2002-2017, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -80,7 +80,7 @@ public class GruDashboardComponent extends DashboardComponent
         Map<String, Object> model = new HashMap<String, Object>( );
         model.put( MARK_URL, url.getUrl( ) );
         model.put( MARK_ICON, plugin.getIconUrl( ) );
-        model.put( Constants.MARK_AUTOCOMPLETE, AppPropertiesService.getProperty( Constants.PROPERTY_AUTOCOMPLETE_ENABLED ) );
+        model.put( Constants.MARK_IS_AUTOCOMPLETE, Boolean.parseBoolean( AppPropertiesService.getProperty( Constants.PROPERTY_AUTOCOMPLETE_ENABLED ) ) );
         model.put( Constants.MARK_AUTOCOMPLETE_URL, AppPropertiesService.getProperty( Constants.PROPERTY_AUTOCOMPLETE_URL ) );
 
         HtmlTemplate t = AppTemplateService.getTemplate( TEMPLATE_DASHBOARD, user.getLocale( ), model );
