@@ -10,12 +10,12 @@
     <bean id="gru.featureDAO"  class="fr.paris.lutece.plugins.gru.business.feature.FeatureDAO" />  
     <bean id="gru.businessSectorDAO" class="fr.paris.lutece.plugins.gru.business.domain.BusinessSectorDAO" />
     <bean id="gru.businessDomainDAO" class="fr.paris.lutece.plugins.gru.business.domain.BusinessDomainDAO" />
-    
-    <bean id="gru.elasticCustomerService" class="fr.paris.lutece.plugins.gruindexing.business.elasticsearch.ElasticSearchCustomerDAO" />
+
+    <!-- TO BE CHANGED BY A NORMAL IMPLEMENTATION -->
+    <bean id="gru.mockCustomerDAO" class="fr.paris.lutece.plugins.grubusiness.business.mock.MockCustomerDAO" />
     <bean id="gru.customerService" class="fr.paris.lutece.plugins.grubusiness.business.customer.CustomerService">
-    	<constructor-arg ref="gru.elasticCustomerService"/>
+        <constructor-arg ref="gru.mockCustomerDAO"/>
     </bean>
-    <!--<bean id="gru.searchService" class="fr.paris.lutece.plugins.gruindexing.business.elasticsearch.ElasticSearchCustomerDAO" />-->
         
     <bean id="gru.actions.panelBuilder.newActions" class="fr.paris.lutece.plugins.gru.web.actions.panels.builders.impl.FeatureActionsPanelBuilder" >
         <property name="title">
