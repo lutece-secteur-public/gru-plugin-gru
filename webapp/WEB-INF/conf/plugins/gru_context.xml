@@ -31,8 +31,8 @@
         </property>
     </bean>
     
-    <bean id="gru.demandDAO"  class="fr.paris.lutece.plugins.grubusiness.business.demand.MockDemandDAO" />  
-    <bean id="gru.notificationDAO"  class="fr.paris.lutece.plugins.grubusiness.business.notification.MockNotificationDAO" />
+    <bean id="gru.demandDAO"  class="fr.paris.lutece.plugins.grubusiness.business.mock.MockDemandDAO" />
+    <bean id="gru.notificationDAO"  class="fr.paris.lutece.plugins.grubusiness.business.mock.MockNotificationDAO" />
     <bean id="gru.demandService" class="fr.paris.lutece.plugins.grubusiness.business.demand.DemandService">
       <constructor-arg ref="gru.demandDAO"/>
       <constructor-arg ref="gru.notificationDAO"/>
