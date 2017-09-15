@@ -11,10 +11,30 @@
             </p>
             -->
             <subsection name="Introduction">
-                <p></p>
+                <p>
+                This plugin enables to see all the demands of a customer in the same view and to manage them.
+                </p>
             </subsection>
             <subsection name="Configuration">
-                <p></p>
+                <p><strong>The Customer DAO</strong></p>
+                <p>
+                By default, the plugin uses a mock to search the customers. The search always returns a message saying that no customer is found.
+                To use a correct search mechanism, the bean <code>gru.customerService</code> defined in the Spring context must have a concrete implementation of <code>fr.paris.lutece.plugins.grubusiness.business.customer.ICustomerDAO</code>
+                from the library <code>gru-library-grubusiness</code>.
+                </p>
+                <p>
+                The known implementations are the following:
+                <ul>
+                    <li>
+                        <code>fr.paris.lutece.plugins.gruindexing.business.lucene.LuceneCustomerDAO</code> from the plugin <code>gru-plugin-gru-indexing</code>.
+                        The customers are retrieved from a Lucene index.
+                    </li>
+                    <li>
+                        <code>fr.paris.lutece.plugins.gruindexing.business.elasticsearch.ElasticSearchCustomerDAO</code> from the plugin <code>gru-plugin-gru-indexing</code>.
+                        The customers are retrieved from a ElasticSearch server.
+                    </li>
+                </ul>
+                </p>
             </subsection>
             <subsection name="Usage">
                 <p></p>

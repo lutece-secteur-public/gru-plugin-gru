@@ -11,10 +11,30 @@
             </p>
             -->
             <subsection name="Introduction">
-                <p></p>
+                <p>
+                Ce plugin permet de voir toutes les demandes d'un usager dans la même page et de les gérer.
+                </p>
             </subsection>
             <subsection name="Configuration">
-                <p></p>
+                <p><strong>Le Customer DAO</strong></p>
+                <p>
+                Par défaut, le plugin utilise a bouchon pour la recherche d'usager. La recherche retourne tout le temps un message disant qu'aucun usager n'a été trouvé.
+                Pour utiliser un mécanisme de recherche correct, le bean <code>gru.customerService</code> défini dans le contexte Spring doit avoir une implémentation concrete de <code>fr.paris.lutece.plugins.grubusiness.business.customer.ICustomerDAO</code>
+                de la librairie <code>gru-library-grubusiness</code>.
+                </p>
+                <p>
+                Les implémentations connues sont les suivantes :
+                <ul>
+                    <li>
+                        <code>fr.paris.lutece.plugins.gruindexing.business.lucene.LuceneCustomerDAO</code> du plugin <code>gru-plugin-gru-indexing</code>.
+                        Les usagers sont retrouvés à partir d'un index Lucene.
+                    </li>
+                    <li>
+                        <code>fr.paris.lutece.plugins.gruindexing.business.elasticsearch.ElasticSearchCustomerDAO</code> du plugin <code>gru-plugin-gru-indexing</code>.
+                        Les usagers sont retrouvés à partir d'un serveur ElasticSearch.
+                    </li>
+                </ul>
+                </p>
             </subsection>
             <subsection name="Usage">
                 <p></p>
