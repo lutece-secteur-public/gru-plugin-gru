@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2015, Mairie de Paris
+ * Copyright (c) 2002-2017, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,13 +53,13 @@ public final class DemandTypeDAO implements IDemandTypeDAO
     private static final String SQL_QUERY_INSERT = "INSERT INTO gru_demand_type ( id_demand_type, demand_type_id, title , id_business_domain ) VALUES ( ?, ?, ?, ? ) ";
     private static final String SQL_QUERY_DELETE = "DELETE FROM gru_demand_type WHERE id_demand_type = ? ";
     private static final String SQL_QUERY_UPDATE = "UPDATE gru_demand_type SET id_demand_type = ?, demand_type_id = ?, title = ?, id_business_domain = ? WHERE id_demand_type = ?";
-    private static final String SQL_QUERY_SELECTALL = "SELECT a.id_demand_type, a.demand_type_id, a.title, b.name, c.name "
-            + " FROM gru_demand_type a, gru_business_domain b, gru_business_sector c "
-            + " WHERE a.id_business_domain = b.id_business_domain AND b.id_business_sector = c.id_business_sector ";
+    private static final String SQL_QUERY_SELECTALL = "SELECT a.id_demand_type, a.demand_type_id, a.title, b.name, c.name  FROM gru_demand_type a "
+            + "LEFT JOIN gru_business_domain b ON a.id_business_domain = b.id_business_domain "
+            + "LEFT JOIN gru_business_sector c ON b.id_business_sector = c.id_business_sector;";
     private static final String SQL_QUERY_SELECTALL_ID = "SELECT id_demand_type FROM gru_demand_type";
-    private static final String SQL_QUERY_SELECT_BY_TYPE_ID = "SELECT a.id_demand_type, a.demand_type_id, a.title, b.name, c.name "
-            + " FROM gru_demand_type a, gru_business_domain b, gru_business_sector c "
-            + " WHERE a.demand_type_id = ? AND a.id_business_domain = b.id_business_domain AND b.id_business_sector = c.id_business_sector ";
+    private static final String SQL_QUERY_SELECT_BY_TYPE_ID = "SELECT a.id_demand_type, a.demand_type_id, a.title, b.name, c.name  FROM gru_demand_type a "
+            + "LEFT JOIN gru_business_domain b ON a.id_business_domain = b.id_business_domain "
+            + "LEFT JOIN gru_business_sector c ON b.id_business_sector = c.id_business_sector WHERE a.demand_type_id = ?";
 
     /**
      * Generates a new primary key

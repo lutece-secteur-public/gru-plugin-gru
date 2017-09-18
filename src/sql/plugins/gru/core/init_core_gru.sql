@@ -70,3 +70,8 @@ INSERT INTO core_user_right (id_right,id_user) VALUES ('GRU_DOMAIN_MANAGEMENT',1
 DELETE FROM core_dashboard WHERE dashboard_name='GRU';
 INSERT INTO core_dashboard(dashboard_name, dashboard_column, dashboard_order) VALUES('GRU', 1, 2);
 
+
+--
+-- Init RBAC permissions
+--
+INSERT INTO core_admin_role_resource (rbac_id,role_key,resource_type,resource_id,permission) (SELECT MAX(rbac_id) +1, 'super_admin','GRU_DOMAIN','*','*' FROM core_admin_role_resource);
