@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2015, Mairie de Paris
+ * Copyright (c) 2002-2017, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,6 +38,7 @@ import fr.paris.lutece.plugins.gru.business.demandtype.DemandTypeAction;
 import fr.paris.lutece.plugins.gru.business.demandtype.DemandTypeActionHome;
 import fr.paris.lutece.plugins.gru.business.demandtype.DemandTypeHome;
 import fr.paris.lutece.plugins.gru.service.ActionLinkService;
+import fr.paris.lutece.plugins.gru.service.encryption.CustomerEncryptionService;
 import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
 import fr.paris.lutece.plugins.grubusiness.business.demand.Action;
 import fr.paris.lutece.plugins.grubusiness.business.demand.Demand;
@@ -70,6 +71,8 @@ public class DemandTypeService
      */
     public static Demand setDemandActions( Demand demand, Customer customer, AdminUser user )
     {
+        Customer customerEncrypted = CustomerEncryptionService.getInstance( ).encrypt( customer, demand );
+
         DemandType type = _mapDemandTypes.get( demand.getTypeId( ) );
 
         if ( type == null )
@@ -98,7 +101,7 @@ public class DemandTypeService
                 String strUrl = dta.getLink( );
                 strUrl = strUrl.replace( BOOKMARK_ID, demand.getId( ) );
                 // TODO manage target
-                action.setUrl( ActionLinkService.buildLink( strUrl, ActionLinkService.TARGET_NO_FRAME, customer ) );
+                action.setUrl( ActionLinkService.buildLink( strUrl, ActionLinkService.TARGET_NO_FRAME, customerEncrypted ) );
                 demand.addAction( action );
             }
         }

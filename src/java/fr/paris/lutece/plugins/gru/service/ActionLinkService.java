@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2015, Mairie de Paris
+ * Copyright (c) 2002-2017, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -45,7 +45,7 @@ import org.apache.commons.lang.StringUtils;
 import java.io.UnsupportedEncodingException;
 
 import java.net.URLEncoder;
-
+import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
 /**
@@ -131,9 +131,33 @@ public class ActionLinkService
         return strLink;
     }
 
+    /**
+     * Replaces a bookmark by a value in a link
+     * 
+     * @param strLink
+     *            the link containing the bookmarks
+     * @param strBookmark
+     *            the bookmark to replace
+     * @param strValue
+     *            the value to set
+     * @return the resulting link
+     */
     private static String fillLink( String strLink, String strBookmark, String strValue )
     {
-        String strNewValue = ( strValue == null ) ? StringUtils.EMPTY : strValue;
+        String strNewValue = StringUtils.EMPTY;
+
+        if ( strValue != null )
+        {
+            try
+            {
+                strNewValue = URLEncoder.encode( strValue, StandardCharsets.UTF_8.name( ) );
+            }
+            catch( UnsupportedEncodingException e )
+            {
+                AppLogService.error( e );
+                strNewValue = strValue;
+            }
+        }
 
         return strLink.replace( strBookmark, strNewValue );
     }

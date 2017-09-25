@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2015, Mairie de Paris
+ * Copyright (c) 2002-2017, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,6 +36,7 @@ package fr.paris.lutece.plugins.gru.service.feature;
 import fr.paris.lutece.plugins.gru.business.feature.Feature;
 import fr.paris.lutece.plugins.gru.business.feature.FeatureHome;
 import fr.paris.lutece.plugins.gru.service.ActionLinkService;
+import fr.paris.lutece.plugins.gru.service.encryption.CustomerEncryptionService;
 import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
 import fr.paris.lutece.portal.service.i18n.I18nService;
 import fr.paris.lutece.util.ReferenceList;
@@ -95,13 +96,15 @@ public class FeatureService
      */
     public static String getCustomerLink( Feature feature, Customer customer )
     {
+        Customer customerEncrypted = customer;
         String strLinkTemplate = feature.getLink( );
 
         if ( ( customer != null ) && ( customer.getId( ) != null ) )
         {
+            customerEncrypted = CustomerEncryptionService.getInstance( ).encrypt( customer, feature.getResourceTypeCode( ) + feature.getResourceId( ) );
             strLinkTemplate += feature.getLinkCustomerParams( );
         }
 
-        return ActionLinkService.buildLink( strLinkTemplate, feature.getTarget( ), customer );
+        return ActionLinkService.buildLink( strLinkTemplate, feature.getTarget( ), customerEncrypted );
     }
 }

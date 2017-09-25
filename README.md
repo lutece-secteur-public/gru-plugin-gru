@@ -5,6 +5,12 @@
 
 This plugin enables to see all the demands of a customer in the same view and to manage them.
 
+## Encryption of customers
+
+The plugin can use customers with encrypted ids. This mechanism permits to have a specific id for each service provider. Thus, the id is not shared.
+
+To use encryption, the site has to contain a class implementing the interface `fr.paris.lutece.plugins.grubusiness.service.encryption.ICustomerEncryptionService` from the library `gru-library-grubusiness` . For example, add the plugin `gru-plugin-grukeydiversification` in the `pom.xml` of the site. The encryption is then enabled.
+
 ## Configuration
 
  **The Customer DAO** 
