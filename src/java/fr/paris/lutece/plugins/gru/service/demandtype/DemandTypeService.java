@@ -143,6 +143,6 @@ public class DemandTypeService
      */
     public static void updateDemandType( DemandType demandType )
     {
-    	_mapDemandTypes.put( Integer.toString( demandType.getDemandTypeId( ) ), demandType );
+        _mapDemandTypes.put( Integer.toString( demandType.getDemandTypeId( ) ), demandType );
     }
 }
