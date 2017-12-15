@@ -81,6 +81,13 @@ background-color: #b9d3ea;
 #search-panel{ background-color: #fff }
 #search-panel h2{ margin:30px 0 }
 
+.gru.notifications {  position: fixed;  z-index: 9999;}
+/* Positioning */
+.gru.notifications.top-right {  right: 10px;  top: 105px;}
+/* Notification Element */
+.gru.notifications > div {  position: relative;  margin: 5px 0px;}
+.gru.notifications .alert-info, .gru.notifications .alert-danger, .gru.notifications .alert-success, .gru.notifications .alert-warning {  background-image: none }
+
 /* DEMAND */
 .gru-wrapper #no-content{ min-height:620px; margin:0 auto; width:100%; text-align: center  }
 .gru-wrapper #no-content img{ position: absolute; top: 60%;left: 60%; margin-top: -250px; margin-left: -250px }
