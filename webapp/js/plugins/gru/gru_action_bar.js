@@ -2,6 +2,11 @@ $(document).ready(function() {
 	var marginSup = 10;
 	var emptyWidth = 0;
 	
+	// Collapse the side bar by default
+	if( !$("body").hasClass("sidebar-collapse")) {
+	  $("body").addClass("sidebar-collapse");
+	}
+
 	// Get the width of the menu bar
 	var sidebarMenuWidth;
 	$('.sidebar-menu').each(function(){
