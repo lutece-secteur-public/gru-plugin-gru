@@ -51,18 +51,11 @@ $( function(){
           
                 success: function(data) {
                     var formattedResponse = $.map(data.autocomplete, function(ob) {
-                        
-                        if (ob.item.reference === undefined) {
-                            return {
-                                label: ob.item.first_name + " " + ob.item.last_name,
-                                value: ob.item
-                            };
-                        } else {
-                            return {
-                                label: ob.item.reference,
-                                value: ob.item
-                            };
-                        }
+
+                        return {
+                            label: ob.output,
+                            value: ob.search
+                        };
                     });
                     response(formattedResponse);
                     $("#query").val("");

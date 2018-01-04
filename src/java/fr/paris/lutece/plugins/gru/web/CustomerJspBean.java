@@ -65,6 +65,7 @@ import java.io.UnsupportedEncodingException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -160,55 +161,33 @@ public class CustomerJspBean extends MVCAdminJspBean
      */
     private String searchRedirectCustomer( String strQuery, HttpServletRequest request )
     {
-        try
+        List<Customer> listCustomer = CustomerService.instance( ).findbyFilter( convertToSearchFilter( strQuery ) );
+        Map<String, Customer> mapCustomer = new LinkedHashMap<String, Customer>( );
+
+        for ( Customer customer : listCustomer )
         {
-            ObjectMapper mapper = new ObjectMapper( );
-            JsonNode jsonQuery = mapper.readTree( strQuery );
-            String strFirstName = StringUtils.EMPTY;
-            String strLastName = StringUtils.EMPTY;
-
-            if ( !jsonQuery.path( Constants.MARKER_LAST_NAME ).isMissingNode( ) )
-            {
-                strLastName = jsonQuery.get( Constants.MARKER_LAST_NAME ).asText( );
-            }
-
-            if ( !jsonQuery.path( Constants.MARKER_FIRST_NAME ).isMissingNode( ) )
-            {
-                strFirstName = jsonQuery.get( Constants.MARKER_FIRST_NAME ).asText( );
-            }
-
-            List<Customer> listCustomer = CustomerService.instance( ).findbyName( strFirstName, strLastName );
-            Map<String, Customer> mapCustomer = new LinkedHashMap<String, Customer>( );
-            for ( Customer customer : listCustomer )
-            {
-                mapCustomer.put( customer.getId( ), customer );
-            }
-            _listCustomer = new ArrayList<Customer>( mapCustomer.values( ) );
-
-            if ( _listCustomer.size( ) == 0 )
-            {
-                String strError = I18nService.getLocalizedString( MESSAGE_NO_CUSTOMER_FOUND, getLocale( ) );
-                addError( strError );
-
-                return redirectView( request, VIEW_SEARCH_CUSTOMER );
-            }
-
-            if ( _listCustomer.size( ) == 1 )
-            {
-                Map<String, String> mapParameters = new HashMap<String, String>( );
-                mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, _listCustomer.get( 0 ).getId( ) );
-
-                return redirect( request, VIEW_CUSTOMER_DEMANDS, mapParameters );
-            }
-
-            return redirectView( request, VIEW_SEARCH_RESULTS );
+            mapCustomer.put( customer.getId( ), customer );
         }
-        catch( IOException e )
+
+        _listCustomer = new ArrayList<Customer>( mapCustomer.values( ) );
+
+        if ( _listCustomer.size( ) == 0 )
         {
-            AppLogService.error( e + " :" + e.getMessage( ), e );
+            String strError = I18nService.getLocalizedString( MESSAGE_NO_CUSTOMER_FOUND, getLocale( ) );
+            addError( strError );
 
             return redirectView( request, VIEW_SEARCH_CUSTOMER );
         }
+
+        if ( _listCustomer.size( ) == 1 )
+        {
+            Map<String, String> mapParameters = new HashMap<String, String>( );
+            mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, _listCustomer.get( 0 ).getId( ) );
+
+            return redirect( request, VIEW_CUSTOMER_DEMANDS, mapParameters );
+        }
+
+        return redirectView( request, VIEW_SEARCH_RESULTS );
     }
 
     @View( VIEW_SEARCH_RESULTS )
@@ -371,5 +350,38 @@ public class CustomerJspBean extends MVCAdminJspBean
                 UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath( ) + getControllerJsp( ), VIEW_DEMAND, mapParameters ) );
 
         return getPage( "", TEMPLATE_VIEW_DEMAND, model );
+    }
+
+    /**
+     * Converts the specified query into a search filter
+     * 
+     * @param strQuery
+     *            the query to convert
+     * @return the search filter
+     */
+    private Map<String, String> convertToSearchFilter( String strQuery )
+    {
+        Map<String, String> mapFilter = new HashMap<>( );
+
+        try
+        {
+            ObjectMapper mapper = new ObjectMapper( );
+            JsonNode nodeQuery = mapper.readTree( strQuery );
+
+            Iterator<String> iterator = nodeQuery.fieldNames( );
+
+            while ( iterator.hasNext( ) )
+            {
+                String strSearchField = iterator.next( );
+                mapFilter.put( strSearchField, nodeQuery.get( strSearchField ).asText( ) );
+            }
+
+        }
+        catch( IOException e )
+        {
+            AppLogService.error( "cannot convert the search query to JSON object :" + strQuery );
+        }
+
+        return mapFilter;
     }
 }
