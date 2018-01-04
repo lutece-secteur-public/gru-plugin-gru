@@ -35,11 +35,11 @@ package fr.paris.lutece.plugins.gru.business.demandtype;
 
 import fr.paris.lutece.portal.service.rbac.RBACResource;
 
-import org.hibernate.validator.constraints.*;
-
 import java.io.Serializable;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * This is the business class for the object DemandTypeAction
@@ -185,6 +185,6 @@ public class DemandTypeAction implements Serializable, RBACResource
     @Override
     public String getResourceId( )
     {
-        return "" + _nId;
+        return String.valueOf( _nId );
     }
 }

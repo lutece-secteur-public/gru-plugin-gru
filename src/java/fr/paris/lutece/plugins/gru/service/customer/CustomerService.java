@@ -38,28 +38,35 @@ import fr.paris.lutece.portal.service.spring.SpringContextService;
 /**
  * SearchService
  */
-public class CustomerService
+public final class CustomerService
 {
     private static final String BEAN_CUSTOMER_SERVICE = "gru.customerService";
-    private static fr.paris.lutece.plugins.grubusiness.business.customer.CustomerService _service;
+    private final fr.paris.lutece.plugins.grubusiness.business.customer.CustomerService _service;
 
-    /** Private constructor */
+    /**
+     * Private constructor
+     */
     private CustomerService( )
     {
+        _service = SpringContextService.getBean( BEAN_CUSTOMER_SERVICE );
     }
 
     /**
-     * Get the unique instance
+     * Get the singleton instance
      * 
-     * @return The instance
+     * @return The singleton instance
      */
     public static fr.paris.lutece.plugins.grubusiness.business.customer.CustomerService instance( )
     {
-        if ( _service == null )
-        {
-            _service = SpringContextService.getBean( BEAN_CUSTOMER_SERVICE );
-        }
+        return CustomerServiceHolder._instance._service;
+    }
 
-        return _service;
+    /**
+     * This class holds the {@code CustomerService} instance
+     *
+     */
+    private static class CustomerServiceHolder
+    {
+        private static final CustomerService _instance = new CustomerService( );
     }
 }

@@ -38,7 +38,6 @@ import fr.paris.lutece.plugins.gru.web.actions.model.ActionGroup;
 import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
 import fr.paris.lutece.portal.business.user.AdminUser;
 
-import java.util.Collection;
 import java.util.List;
 
 /**

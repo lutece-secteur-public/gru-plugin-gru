@@ -54,10 +54,10 @@ import java.util.List;
 /**
  * Demande Service
  */
-public class DemandService
+public final class DemandService
 {
     private static final String BEAN_DEMAND_SERVICE = "gru.demandService";
-    private static fr.paris.lutece.plugins.grubusiness.business.demand.DemandService _service;
+    private static fr.paris.lutece.plugins.grubusiness.business.demand.DemandService _service = SpringContextService.getBean( BEAN_DEMAND_SERVICE );;
     private static Comparator<Demand> _comparatorDemands = new Comparator<Demand>( )
     {
         @Override
@@ -71,7 +71,7 @@ public class DemandService
                     switch( demand2.getStatusId( ) )
                     {
                         case Demand.STATUS_INPROGRESS:
-                            nResult = Long.valueOf( demand2.getCreationDate( ) ).compareTo( Long.valueOf( demand1.getCreationDate( ) ) );
+                            nResult = Long.compare( demand2.getCreationDate( ), demand1.getCreationDate( ) );
                             break;
 
                         case Demand.STATUS_CLOSED:
@@ -80,6 +80,7 @@ public class DemandService
 
                         default:
                             nResult = 1;
+                            break;
                     }
                     break;
 
@@ -91,11 +92,12 @@ public class DemandService
                             break;
 
                         case Demand.STATUS_CLOSED:
-                            nResult = Long.valueOf( demand2.getClosureDate( ) ).compareTo( Long.valueOf( demand1.getClosureDate( ) ) );
+                            nResult = Long.compare( demand2.getClosureDate( ), demand1.getClosureDate( ) );
                             break;
 
                         default:
                             nResult = 1;
+                            break;
                     }
                     break;
 
@@ -108,18 +110,11 @@ public class DemandService
     };
 
     /**
-     * Get External implementation
-     * 
-     * @return The service
+     * Private constructor
      */
-    private static fr.paris.lutece.plugins.grubusiness.business.demand.DemandService getService( )
+    private DemandService( )
     {
-        if ( _service == null )
-        {
-            _service = SpringContextService.getBean( BEAN_DEMAND_SERVICE );
-        }
 
-        return _service;
     }
 
     /**
@@ -128,13 +123,14 @@ public class DemandService
      * @param strDemandId
      *            The Demand Id
      * @param strDemandTypeId
+     *            the demand type id
      * @param user
      *            The Admin User
      * @return The demand
      */
     public static Demand getDemand( String strDemandId, String strDemandTypeId, AdminUser user )
     {
-        Demand demand = getService( ).findByPrimaryKey( strDemandId, strDemandTypeId );
+        Demand demand = _service.findByPrimaryKey( strDemandId, strDemandTypeId );
 
         demand.setTitle( DemandTypeService.getTypeLabel( strDemandTypeId ) );
         demand.setShowDetails( isDetailsAuthorized( strDemandTypeId, user ) );
@@ -155,17 +151,14 @@ public class DemandService
      */
     public static List<Demand> getDemands( Customer customer, AdminUser user, int nStatus )
     {
-        Collection<Demand> collectionBase = getService( ).findByCustomerId( customer.getId( ) );
+        Collection<Demand> collectionBase = _service.findByCustomerId( customer.getId( ) );
         List<Demand> listDemand = new ArrayList<Demand>( );
 
         for ( Demand base : collectionBase )
         {
-            if ( base.getStatusId( ) == nStatus )
+            if ( base.getStatusId( ) == nStatus && isAuthorized( base, user ) )
             {
-                if ( isAuthorized( base, user ) )
-                {
-                    listDemand.add( DemandTypeService.setDemandActions( base, customer, user ) );
-                }
+                listDemand.add( DemandTypeService.setDemandActions( base, customer, user ) );
             }
         }
 
@@ -177,17 +170,15 @@ public class DemandService
     /**
      * Gets a list of demand for a given reference
      * 
-     * @param customer
-     *            The customer
+     * @param reference
+     *            The reference
      * @param user
      *            The admin user
-     * @param nStatus
-     *            The status
      * @return The list
      */
     public static List<Demand> getDemandsByRef( String reference, AdminUser user )
     {
-        Collection<Demand> collectionBase = getService( ).findByReference( reference );
+        Collection<Demand> collectionBase = _service.findByReference( reference );
         List<Demand> listDemand = new ArrayList<Demand>( );
 
         for ( Demand base : collectionBase )
@@ -216,17 +207,14 @@ public class DemandService
      */
     public static List<Demand> getDemandsExcludingTypes( Customer customer, List<String> listExcludedTypes, AdminUser user )
     {
-        Collection<Demand> collectionBase = getService( ).findByCustomerId( customer.getId( ) );
+        Collection<Demand> collectionBase = _service.findByCustomerId( customer.getId( ) );
         List<Demand> listDemand = new ArrayList<Demand>( );
 
         for ( Demand base : collectionBase )
         {
-            if ( !listExcludedTypes.contains( base.getTypeId( ) ) )
+            if ( !listExcludedTypes.contains( base.getTypeId( ) ) && isAuthorized( base, user ) )
             {
-                if ( isAuthorized( base, user ) )
-                {
-                    listDemand.add( DemandTypeService.setDemandActions( base, customer, user ) );
-                }
+                listDemand.add( DemandTypeService.setDemandActions( base, customer, user ) );
             }
         }
 
@@ -248,17 +236,14 @@ public class DemandService
      */
     public static List<Demand> getDemandsIncludingTypes( Customer customer, List<String> listIncludedTypes, AdminUser user )
     {
-        Collection<Demand> collectionBase = getService( ).findByCustomerId( customer.getId( ) );
+        Collection<Demand> collectionBase = _service.findByCustomerId( customer.getId( ) );
         List<Demand> listDemand = new ArrayList<Demand>( );
 
         for ( Demand base : collectionBase )
         {
-            if ( listIncludedTypes.contains( base.getTypeId( ) ) )
+            if ( listIncludedTypes.contains( base.getTypeId( ) ) && isAuthorized( base, user ) )
             {
-                if ( isAuthorized( base, user ) )
-                {
-                    listDemand.add( DemandTypeService.setDemandActions( base, customer, user ) );
-                }
+                listDemand.add( DemandTypeService.setDemandActions( base, customer, user ) );
             }
         }
 

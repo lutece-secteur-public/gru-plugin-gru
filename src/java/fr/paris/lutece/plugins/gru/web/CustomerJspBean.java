@@ -61,7 +61,6 @@ import fr.paris.lutece.portal.util.mvc.commons.annotations.View;
 import org.apache.commons.lang.StringUtils;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -114,6 +113,13 @@ public class CustomerJspBean extends MVCAdminJspBean
     // Session variable to store working values
     private List<Customer> _listCustomer;
 
+    /**
+     * Builds the view for searching a customer
+     * 
+     * @param request
+     *            the request
+     * @return the view
+     */
     @View( value = VIEW_SEARCH_CUSTOMER, defaultView = true )
     public String getSearchCustomer( HttpServletRequest request )
     {
@@ -131,8 +137,15 @@ public class CustomerJspBean extends MVCAdminJspBean
         return getPage( PROPERTY_PAGE_TITLE_SEARCH_CUSTOMER, TEMPLATE_SEARCH_CUSTOMER, model );
     }
 
+    /**
+     * Performs the search and redirects to the corresponding view
+     * 
+     * @param request
+     *            the request
+     * @return the URL of the corresponding view
+     */
     @Action( ACTION_SEARCH )
-    public String doSearch( HttpServletRequest request ) throws UnsupportedEncodingException
+    public String doSearch( HttpServletRequest request )
     {
         String strSearchQuery = request.getParameter( Constants.PARAMETER_SEARCH_QUERY );
         String strQuery = request.getParameter( Constants.PARAMETER_QUERY );
@@ -171,7 +184,7 @@ public class CustomerJspBean extends MVCAdminJspBean
 
         _listCustomer = new ArrayList<Customer>( mapCustomer.values( ) );
 
-        if ( _listCustomer.size( ) == 0 )
+        if ( _listCustomer.isEmpty( ) )
         {
             String strError = I18nService.getLocalizedString( MESSAGE_NO_CUSTOMER_FOUND, getLocale( ) );
             addError( strError );
@@ -190,6 +203,13 @@ public class CustomerJspBean extends MVCAdminJspBean
         return redirectView( request, VIEW_SEARCH_RESULTS );
     }
 
+    /**
+     * Builds the view for the search results
+     * 
+     * @param request
+     *            the request
+     * @return the view
+     */
     @View( VIEW_SEARCH_RESULTS )
     public String getSearchResults( HttpServletRequest request )
     {
@@ -204,6 +224,13 @@ public class CustomerJspBean extends MVCAdminJspBean
         return getPage( PROPERTY_PAGE_TITLE_LIST_CUSTOMERS, TEMPLATE_SEARCH_RESULTS, model );
     }
 
+    /**
+     * Builds the view for the active demands of the customer
+     * 
+     * @param request
+     *            the request
+     * @return the view
+     */
     @View( VIEW_CUSTOMER_DEMANDS )
     public String getViewCustomerDemands( HttpServletRequest request )
     {
@@ -233,6 +260,13 @@ public class CustomerJspBean extends MVCAdminJspBean
         return "Invalid Customer";
     }
 
+    /**
+     * Builds the view for the old demands of the customer
+     * 
+     * @param request
+     *            the request
+     * @return the view
+     */
     @View( VIEW_CUSTOMER_OLD_DEMANDS )
     public String getViewCustomerOldDemands( HttpServletRequest request )
     {
@@ -256,6 +290,13 @@ public class CustomerJspBean extends MVCAdminJspBean
         return "Invalid Customer";
     }
 
+    /**
+     * Builds the view for the new demands of the customer
+     * 
+     * @param request
+     *            the request
+     * @return the view
+     */
     @View( VIEW_CUSTOMER_NEW_DEMANDS )
     public String getViewCustomerNewDemands( HttpServletRequest request )
     {
@@ -322,10 +363,9 @@ public class CustomerJspBean extends MVCAdminJspBean
             customer = CustomerService.instance( ).findById( demand.getCustomer( ).getId( ) );
         }
 
-        List<ActionPanel> listPanels = new ArrayList<ActionPanel>( );
         Map<String, Object> model = getModel( );
         Map<String, String> mapParameters = new HashMap<String, String>( );
-        listPanels = CustomerActionsService.getPanels( customer, getUser( ) );
+        List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser( ) );
         model.put( Constants.MARK_ACTION_PANELS, listPanels );
         demand = DemandTypeService.setDemandActions( demand, customer, getUser( ) );
 

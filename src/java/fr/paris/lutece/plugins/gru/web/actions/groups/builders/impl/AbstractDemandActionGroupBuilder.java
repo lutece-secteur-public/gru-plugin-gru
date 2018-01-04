@@ -45,12 +45,13 @@ import java.util.List;
  */
 public abstract class AbstractDemandActionGroupBuilder extends AbstractActionGroupBuilder
 {
-    private static final String PROPERTY_COLOR_DEFAULT = "gru.color.default";
-    private static final String PROPERTY_COLOR_PRIMARY = "gru.color.primary";
-    private static final String PROPERTY_COLOR_DANGER = "gru.color.danger";
+    protected static final String PROPERTY_COLOR_DEFAULT = "gru.color.default";
+    protected static final String PROPERTY_COLOR_PRIMARY = "gru.color.primary";
+    protected static final String PROPERTY_COLOR_DANGER = "gru.color.danger";
     protected static final String COLOR_DEFAULT = AppPropertiesService.getProperty( PROPERTY_COLOR_DEFAULT, "default" );
     protected static final String COLOR_PRIMARY = AppPropertiesService.getProperty( PROPERTY_COLOR_PRIMARY, "blue" );
     protected static final String COLOR_DANGER = AppPropertiesService.getProperty( PROPERTY_COLOR_DANGER, "red" );
+
     private static final String BOOKMARK_ID = "{id}";
     private static final String BOOKMARK_TYPE = "{type}";
     private String _strDemandManagementUrl;
@@ -93,9 +94,8 @@ public abstract class AbstractDemandActionGroupBuilder extends AbstractActionGro
     {
         String strUrl = _strDemandManagementUrl.replace( BOOKMARK_ID, strDemandId );
         strUrl = strUrl.replace( BOOKMARK_TYPE, strDemandTypeId );
-        strUrl += ( "&" + Constants.PARAMETER_ID_CUSTOMER + "=" + strCustomerId );
 
-        return strUrl;
+        return new StringBuilder( strUrl ).append( '&' ).append( Constants.PARAMETER_ID_CUSTOMER ).append( '=' ).append( strCustomerId ).toString( );
     }
 
     /**
@@ -168,6 +168,15 @@ public abstract class AbstractDemandActionGroupBuilder extends AbstractActionGro
         return strBadgeColor;
     }
 
+    /**
+     * Process the item color
+     * 
+     * @param demand
+     *            The Demand
+     * @param strActiveColor
+     *            The active item color
+     * @return the item color
+     */
     protected String processItemColor( Demand demand, String strActiveColor )
     {
         return ( demand.getStatusId( ) == Demand.STATUS_CLOSED ) ? COLOR_DEFAULT : strActiveColor;

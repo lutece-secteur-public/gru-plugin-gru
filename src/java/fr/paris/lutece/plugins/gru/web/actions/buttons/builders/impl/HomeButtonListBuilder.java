@@ -112,6 +112,6 @@ public class HomeButtonListBuilder implements ButtonListBuilder
             }
         }
 
-        return new ArrayList( map.values( ) );
+        return new ArrayList<ActionGroup>( map.values( ) );
     }
 }

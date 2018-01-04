@@ -59,18 +59,18 @@ public class FeatureResourceIdService extends ResourceIdService
     @Override
     public void register( )
     {
-        ResourceType rt = new ResourceType( );
-        rt.setResourceIdServiceClass( FeatureResourceIdService.class.getName( ) );
-        rt.setPluginName( Constants.PLUGIN_NAME );
-        rt.setResourceTypeKey( Feature.RESOURCE_TYPE );
-        rt.setResourceTypeLabelKey( PROPERTY_LABEL_RESOURCE_TYPE );
+        ResourceType resourceType = new ResourceType( );
+        resourceType.setResourceIdServiceClass( FeatureResourceIdService.class.getName( ) );
+        resourceType.setPluginName( Constants.PLUGIN_NAME );
+        resourceType.setResourceTypeKey( Feature.RESOURCE_TYPE );
+        resourceType.setResourceTypeLabelKey( PROPERTY_LABEL_RESOURCE_TYPE );
 
-        Permission p = new Permission( );
-        p.setPermissionKey( Feature.PERMISSION_ACCESS );
-        p.setPermissionTitleKey( PROPERTY_LABEL_ACCESS );
-        rt.registerPermission( p );
+        Permission permission = new Permission( );
+        permission.setPermissionKey( Feature.PERMISSION_ACCESS );
+        permission.setPermissionTitleKey( PROPERTY_LABEL_ACCESS );
+        resourceType.registerPermission( permission );
 
-        ResourceTypeManager.registerResourceType( rt );
+        ResourceTypeManager.registerResourceType( resourceType );
     }
 
     /**

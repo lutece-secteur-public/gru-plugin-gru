@@ -35,11 +35,11 @@ package fr.paris.lutece.plugins.gru.business.domain;
 
 import fr.paris.lutece.portal.service.rbac.RBACResource;
 
-import org.hibernate.validator.constraints.*;
-
 import java.io.Serializable;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * This is the business class for the object BusinessDomain

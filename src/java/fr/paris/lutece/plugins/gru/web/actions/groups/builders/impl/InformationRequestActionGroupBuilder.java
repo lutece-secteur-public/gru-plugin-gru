@@ -73,7 +73,7 @@ public class InformationRequestActionGroupBuilder extends AbstractDemandActionGr
 
         group.setTitle( getTitle( ) );
         group.setIcon( getIcon( ) );
-        group.setBadgeText( "" + group.getActions( ).size( ) );
+        group.setBadgeText( String.valueOf( group.getActions( ).size( ) ) );
         group.setBadgeColor( strBadgeColor );
 
         return group;

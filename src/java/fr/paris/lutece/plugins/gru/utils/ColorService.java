@@ -42,26 +42,43 @@ import java.util.StringTokenizer;
 /**
  * ColorService
  */
-public class ColorService
+public final class ColorService
 {
     private static final String PROPERTY_COLORS_LIST = "gru.colors.list";
-    private static List<String> _listColors;
+    private final List<String> _listColors;
 
+    /**
+     * Private constructor
+     */
+    private ColorService( )
+    {
+        _listColors = new ArrayList<String>( );
+
+        String strColors = AppPropertiesService.getProperty( PROPERTY_COLORS_LIST );
+        StringTokenizer stringTokenizer = new StringTokenizer( strColors, "," );
+
+        while ( stringTokenizer.hasMoreTokens( ) )
+        {
+            _listColors.add( stringTokenizer.nextToken( ).trim( ) );
+        }
+    }
+
+    /**
+     * Gives the list of colors
+     * 
+     * @return the list of colors
+     */
     public static List<String> getColorList( )
     {
-        if ( _listColors == null )
-        {
-            _listColors = new ArrayList<String>( );
+        return ColorServiceHolder._instance._listColors;
+    }
 
-            String strColors = AppPropertiesService.getProperty( PROPERTY_COLORS_LIST );
-            StringTokenizer st = new StringTokenizer( strColors, "," );
-
-            while ( st.hasMoreTokens( ) )
-            {
-                _listColors.add( st.nextToken( ).trim( ) );
-            }
-        }
-
-        return _listColors;
+    /**
+     * This class holds the {@code ColorService} instance
+     *
+     */
+    private static class ColorServiceHolder
+    {
+        private static final ColorService _instance = new ColorService( );
     }
 }

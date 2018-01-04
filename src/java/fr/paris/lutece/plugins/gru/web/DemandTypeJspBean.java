@@ -53,10 +53,15 @@ import javax.servlet.http.HttpServletRequest;
  * This class provides the user interface to manage DemandType features ( manage, create, modify, remove )
  */
 @Controller( controllerJsp = "ManageDemandTypes.jsp", controllerPath = "jsp/admin/plugins/gru/", right = "GRU_DEMAND_MANAGEMENT" )
-public class DemandTypeJspBean extends ManageDemandJspBean
+public class DemandTypeJspBean extends AbstractManageDemandJspBean
 {
     // //////////////////////////////////////////////////////////////////////////
     // Constants
+
+    /**
+     * Generated serial id
+     */
+    private static final long serialVersionUID = 3713528527466833843L;
 
     // templates
     private static final String TEMPLATE_MANAGE_DEMANDTYPES = "/admin/plugins/gru/demandtype/manage_demandtypes.html";
@@ -79,7 +84,6 @@ public class DemandTypeJspBean extends ManageDemandJspBean
 
     // Properties
     private static final String MESSAGE_CONFIRM_REMOVE_DEMANDTYPE = "gru.message.confirmRemoveDemandType";
-    private static final String PROPERTY_DEFAULT_LIST_DEMANDTYPE_PER_PAGE = "gru.listDemandTypes.itemsPerPage";
     private static final String VALIDATION_ATTRIBUTES_PREFIX = "gru.model.entity.demandtype.attribute.";
 
     // Views

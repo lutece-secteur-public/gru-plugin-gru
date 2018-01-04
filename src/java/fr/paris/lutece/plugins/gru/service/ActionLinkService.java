@@ -51,7 +51,7 @@ import java.util.Locale;
 /**
  * ActionLinkService
  */
-public class ActionLinkService
+public final class ActionLinkService
 {
     public static final int TARGET_FRAME = 0;
     public static final int TARGET_NO_FRAME = 1;
@@ -69,6 +69,14 @@ public class ActionLinkService
     private static final String INFO_FIXED_PHONE = "{fixed_phone}";
     private static final String INFO_MOBILE_PHONE = "{mobile_phone}";
     private static final String INFO_EMAIL = "{email}";
+
+    /**
+     * Private constructor
+     */
+    private ActionLinkService( )
+    {
+
+    }
 
     /**
      * Adapt Link for customer
@@ -97,6 +105,7 @@ public class ActionLinkService
 
             case TARGET_NEW_WINDOW:
                 break;
+            default:
         }
 
         return strLink;
@@ -119,7 +128,7 @@ public class ActionLinkService
         {
             strLink = fillLink( strLink, INFO_GUID, customer.getConnectionId( ) );
             strLink = fillLink( strLink, INFO_CUSTOMER_ID, customer.getId( ) );
-            strLink = fillLink( strLink, INFO_USER_TITLE, "" + customer.getIdTitle( ) );
+            strLink = fillLink( strLink, INFO_USER_TITLE, String.valueOf( customer.getIdTitle( ) ) );
             strLink = fillLink( strLink, INFO_FIRSTNAME, customer.getFirstname( ) );
             strLink = fillLink( strLink, INFO_LASTNAME, customer.getLastname( ) );
             strLink = fillLink( strLink, INFO_FAMILYNAME, customer.getFamilyname( ) );

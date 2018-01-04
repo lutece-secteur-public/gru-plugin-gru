@@ -38,7 +38,7 @@ import java.io.Serializable;
 
 import java.util.List;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Size;
 
 /**
  * This is the business class for the object FeatureCategory

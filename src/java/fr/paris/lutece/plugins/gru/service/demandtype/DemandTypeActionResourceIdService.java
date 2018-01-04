@@ -58,18 +58,18 @@ public class DemandTypeActionResourceIdService extends ResourceIdService
     @Override
     public void register( )
     {
-        ResourceType rt = new ResourceType( );
-        rt.setResourceIdServiceClass( DemandTypeActionResourceIdService.class.getName( ) );
-        rt.setPluginName( Constants.PLUGIN_NAME );
-        rt.setResourceTypeKey( DemandTypeAction.RESOURCE_TYPE );
-        rt.setResourceTypeLabelKey( PROPERTY_LABEL_RESOURCE_TYPE );
+        ResourceType resourceType = new ResourceType( );
+        resourceType.setResourceIdServiceClass( DemandTypeActionResourceIdService.class.getName( ) );
+        resourceType.setPluginName( Constants.PLUGIN_NAME );
+        resourceType.setResourceTypeKey( DemandTypeAction.RESOURCE_TYPE );
+        resourceType.setResourceTypeLabelKey( PROPERTY_LABEL_RESOURCE_TYPE );
 
-        Permission p = new Permission( );
-        p.setPermissionKey( DemandTypeAction.PERMISSION_ACCESS );
-        p.setPermissionTitleKey( PROPERTY_LABEL_ACCESS );
-        rt.registerPermission( p );
+        Permission permission = new Permission( );
+        permission.setPermissionKey( DemandTypeAction.PERMISSION_ACCESS );
+        permission.setPermissionTitleKey( PROPERTY_LABEL_ACCESS );
+        resourceType.registerPermission( permission );
 
-        ResourceTypeManager.registerResourceType( rt );
+        ResourceTypeManager.registerResourceType( resourceType );
     }
 
     /**

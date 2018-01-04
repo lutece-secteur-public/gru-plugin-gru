@@ -52,10 +52,15 @@ import javax.servlet.http.HttpServletRequest;
  * This class provides the user interface to manage BusinessDomain features ( manage, create, modify, remove )
  */
 @Controller( controllerJsp = "ManageBusinessDomains.jsp", controllerPath = "jsp/admin/plugins/gru/", right = "GRU_DOMAIN_MANAGEMENT" )
-public class BusinessDomainJspBean extends ManageDomainGruJspBean
+public class BusinessDomainJspBean extends AbstractManageDomainGruJspBean
 {
     // //////////////////////////////////////////////////////////////////////////
     // Constants
+
+    /**
+     * Generated serial id
+     */
+    private static final long serialVersionUID = 1846177751031257909L;
 
     // templates
     private static final String TEMPLATE_MANAGE_BUSINESSDOMAINS = "/admin/plugins/gru/domain/manage_business_domains.html";
@@ -78,7 +83,6 @@ public class BusinessDomainJspBean extends ManageDomainGruJspBean
 
     // Properties
     private static final String MESSAGE_CONFIRM_REMOVE_BUSINESSDOMAIN = "gru.message.confirmRemoveBusinessDomain";
-    private static final String PROPERTY_DEFAULT_LIST_BUSINESSDOMAIN_PER_PAGE = "gru.listBusinessDomains.itemsPerPage";
     private static final String VALIDATION_ATTRIBUTES_PREFIX = "gru.model.entity.businessdomain.attribute.";
 
     // Views

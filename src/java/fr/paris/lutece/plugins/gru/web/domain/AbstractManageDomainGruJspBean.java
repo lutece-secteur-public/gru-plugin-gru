@@ -31,7 +31,7 @@
  *
  * License 1.0
  */
-package fr.paris.lutece.plugins.gru.web;
+package fr.paris.lutece.plugins.gru.web.domain;
 
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
 import fr.paris.lutece.portal.util.mvc.admin.MVCAdminJspBean;
@@ -45,13 +45,22 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * ManageAdminGRU JSP Bean abstract class for JSP Bean
+ * ManageDomainGru JSP Bean abstract class for JSP Bean
  */
-public abstract class ManageAdminGRUJspBean extends MVCAdminJspBean
+public abstract class AbstractManageDomainGruJspBean extends MVCAdminJspBean
 {
     // Right
-    public static final String RIGHT_MANAGEADMINGRU = "GRU_ADMIN_MANAGEMENT";
+    public static final String RIGHT_MANAGEDOMAINGRU = "GRU_DOMAIN_MANAGEMENT";
+
+    /**
+     * Generated serial id
+     */
+    private static final long serialVersionUID = -5333447548040378014L;
+
     private static final String PROPERTY_DEFAULT_LIST_ITEM_PER_PAGE = "gru.listItems.itemsPerPage";
+    private static final String PARAMETER_PAGE_INDEX = "page_index";
+    private static final String MARK_PAGINATOR = "paginator";
+    private static final String MARK_NB_ITEMS_PER_PAGE = "nb_items_per_page";
 
     // Variables
     private int _nDefaultItemsPerPage;
@@ -71,6 +80,7 @@ public abstract class ManageAdminGRUJspBean extends MVCAdminJspBean
      *            The JSP
      * @return The model
      */
+    @SuppressWarnings( "rawtypes" )
     protected Map<String, Object> getPaginatedListModel( HttpServletRequest request, String strBookmark, List list, String strManageJsp )
     {
         _strCurrentPageIndex = Paginator.getPageIndex( request, Paginator.PARAMETER_PAGE_INDEX, _strCurrentPageIndex );
@@ -81,12 +91,13 @@ public abstract class ManageAdminGRUJspBean extends MVCAdminJspBean
         String strUrl = url.getUrl( );
 
         // PAGINATOR
-        LocalizedPaginator paginator = new LocalizedPaginator( list, _nItemsPerPage, strUrl, Constants.PARAMETER_PAGE_INDEX, _strCurrentPageIndex, getLocale( ) );
+        @SuppressWarnings( "unchecked" )
+        LocalizedPaginator paginator = new LocalizedPaginator( list, _nItemsPerPage, strUrl, PARAMETER_PAGE_INDEX, _strCurrentPageIndex, getLocale( ) );
 
         Map<String, Object> model = getModel( );
 
-        model.put( Constants.MARK_NB_ITEMS_PER_PAGE, "" + _nItemsPerPage );
-        model.put( Constants.MARK_PAGINATOR, paginator );
+        model.put( MARK_NB_ITEMS_PER_PAGE, String.valueOf( _nItemsPerPage ) );
+        model.put( MARK_PAGINATOR, paginator );
         model.put( strBookmark, paginator.getPageItems( ) );
 
         return model;

@@ -44,9 +44,17 @@ import java.util.Locale;
 /**
  * Business Domain Service
  */
-public class BusinessDomainService
+public final class BusinessDomainService
 {
     private static final String PROPERTY_RESOURCE_NAME_FORMAT = "gru.rbac.domain.resourceName.format";
+
+    /**
+     * Private constructor
+     */
+    private BusinessDomainService( )
+    {
+
+    }
 
     /**
      * Get all business domains
@@ -64,7 +72,7 @@ public class BusinessDomainService
         for ( BusinessDomain domain : listDomains )
         {
             Object [ ] args = {
-                    domain.getBusinessSector( ), domain.getName( )
+                    domain.getBusinessSector( ), domain.getName( ),
             };
             String strLabel = I18nService.getLocalizedString( PROPERTY_RESOURCE_NAME_FORMAT, args, locale );
             list.addItem( domain.getId( ), strLabel );

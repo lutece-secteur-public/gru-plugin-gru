@@ -94,11 +94,11 @@ public class FrameViewJspBean extends MVCAdminJspBean
     private static final long serialVersionUID = 1L;
 
     /**
-     * View the Frame
+     * Builds the view for a frame
      * 
      * @param request
      *            The HTTP request
-     * @return
+     * @return the view
      */
     @View( value = VIEW_FRAME, defaultView = true )
     public String viewFrame( HttpServletRequest request )
@@ -111,13 +111,7 @@ public class FrameViewJspBean extends MVCAdminJspBean
 
         if ( customer != null )
         {
-            try
-            {
-                mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, customer.getId( ) );
-            }
-            catch( NumberFormatException e )
-            {
-            }
+            mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, customer.getId( ) );
         }
 
         List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser( ) );

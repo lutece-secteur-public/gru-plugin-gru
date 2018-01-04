@@ -130,6 +130,11 @@ public final class FeatureCategoryHome
         return _dao.selectIdFeatureCategorysList( _plugin );
     }
 
+    /**
+     * Gives the list of categories as a {@code ReferenceList}
+     * 
+     * @return the {@code ReferenceList}
+     */
     public static ReferenceList getCategoriesList( )
     {
         return _dao.selectCategoriesList( _plugin );

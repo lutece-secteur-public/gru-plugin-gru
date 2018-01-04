@@ -73,7 +73,7 @@ public class ClaimActionGroupBuilder extends AbstractDemandActionGroupBuilder
 
         group.setTitle( getTitle( ) );
         group.setIcon( getIcon( ) );
-        group.setBadgeText( "" + group.getActions( ).size( ) );
+        group.setBadgeText( String.valueOf( group.getActions( ).size( ) ) );
         group.setBadgeColor( strBadgeColor );
 
         return group;

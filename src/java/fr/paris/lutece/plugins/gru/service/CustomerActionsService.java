@@ -46,16 +46,26 @@ import java.util.List;
 /**
  * Customer Actions Service
  */
-public class CustomerActionsService
+public final class CustomerActionsService
 {
     private static final String BEAN_PANEL_COMPOSITION = "gru.actions.panelComposition";
     private static PanelComposition _panelComposition = SpringContextService.getBean( BEAN_PANEL_COMPOSITION );
+
+    /**
+     * Private constructor
+     */
+    private CustomerActionsService( )
+    {
+
+    }
 
     /**
      * Gets panels for a given customer
      * 
      * @param customer
      *            The customer
+     * @param user
+     *            the user
      * @return The list of panels
      */
     public static List<ActionPanel> getPanels( Customer customer, AdminUser user )

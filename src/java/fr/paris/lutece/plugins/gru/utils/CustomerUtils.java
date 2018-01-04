@@ -66,14 +66,7 @@ public final class CustomerUtils
 
         if ( strId != null )
         {
-            try
-            {
-                customer = CustomerService.instance( ).findById( strId );
-            }
-            catch( NumberFormatException e )
-            {
-                // Nothing to do
-            }
+            customer = CustomerService.instance( ).findById( strId );
         }
 
         return customer;

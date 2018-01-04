@@ -53,10 +53,18 @@ import java.util.Map;
 /**
  * Demande Type Service
  */
-public class DemandTypeService
+public final class DemandTypeService
 {
     private static final String BOOKMARK_ID = "{id}";
     private static Map<String, DemandType> _mapDemandTypes = new HashMap<String, DemandType>( );
+
+    /**
+     * Private constructor
+     */
+    private DemandTypeService( )
+    {
+
+    }
 
     /**
      * Add actions to a given demand with actions from a base demand
@@ -71,8 +79,6 @@ public class DemandTypeService
      */
     public static Demand setDemandActions( Demand demand, Customer customer, AdminUser user )
     {
-        Customer customerEncrypted = CustomerEncryptionService.getInstance( ).encrypt( customer, demand );
-
         DemandType type = _mapDemandTypes.get( demand.getTypeId( ) );
 
         if ( type == null )
@@ -90,6 +96,7 @@ public class DemandTypeService
         demand.setTitle( type.getTitle( ) );
 
         List<DemandTypeAction> listActions = DemandTypeActionHome.getActionsByType( type.getId( ) );
+        Customer customerEncrypted = CustomerEncryptionService.getInstance( ).encrypt( customer, demand );
 
         for ( DemandTypeAction dta : listActions )
         {

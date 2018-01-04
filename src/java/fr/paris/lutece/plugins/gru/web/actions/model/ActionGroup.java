@@ -153,6 +153,12 @@ public class ActionGroup
         _listActions = listActions;
     }
 
+    /**
+     * Adds the specified {@code ActionItem}
+     * 
+     * @param item
+     *            the {@code ActionItem} to add
+     */
     public void addActionItem( ActionItem item )
     {
         _listActions.add( item );

@@ -54,10 +54,15 @@ import javax.servlet.http.HttpServletRequest;
  * This class provides the user interface to manage Feature features ( manage, create, modify, remove )
  */
 @Controller( controllerJsp = "ManageFeatures.jsp", controllerPath = "jsp/admin/plugins/gru/", right = "GRU_ADMIN_MANAGEMENT" )
-public class FeatureJspBean extends ManageAdminGRUJspBean
+public class FeatureJspBean extends AbstractManageAdminGRUJspBean
 {
     // //////////////////////////////////////////////////////////////////////////
     // Constants
+
+    /**
+     * Generated serial id
+     */
+    private static final long serialVersionUID = -1451499089928854496L;
 
     // templates
     private static final String TEMPLATE_MANAGE_FEATURES = "/admin/plugins/gru/manage_features.html";
@@ -82,7 +87,6 @@ public class FeatureJspBean extends ManageAdminGRUJspBean
 
     // Properties
     private static final String MESSAGE_CONFIRM_REMOVE_FEATURE = "gru.message.confirmRemoveFeature";
-    private static final String PROPERTY_DEFAULT_LIST_FEATURE_PER_PAGE = "gru.listFeatures.itemsPerPage";
     private static final String VALIDATION_ATTRIBUTES_PREFIX = "gru.model.entity.feature.attribute.";
 
     // Views

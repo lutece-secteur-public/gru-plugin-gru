@@ -123,5 +123,5 @@ public interface IDemandTypeActionDAO
      *            The plugin
      * @return The list
      */
-    ReferenceList selectActionsReferenceList( Plugin _plugin );
+    ReferenceList selectActionsReferenceList( Plugin plugin );
 }

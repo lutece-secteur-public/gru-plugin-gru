@@ -47,10 +47,16 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * ManageDemand JSP Bean abstract class for JSP Bean
  */
-public abstract class ManageDemandJspBean extends MVCAdminJspBean
+public abstract class AbstractManageDemandJspBean extends MVCAdminJspBean
 {
     // Right
     public static final String RIGHT_MANAGEDEMAND = "GRU_DEMAND_MANAGEMENT";
+
+    /**
+     * Generated serial id
+     */
+    private static final long serialVersionUID = 3082810571689727970L;
+
     private static final String PROPERTY_DEFAULT_LIST_ITEM_PER_PAGE = "gru.listItems.itemsPerPage";
     private static final String PARAMETER_PAGE_INDEX = "page_index";
     private static final String MARK_PAGINATOR = "paginator";
@@ -74,6 +80,7 @@ public abstract class ManageDemandJspBean extends MVCAdminJspBean
      *            The JSP
      * @return The model
      */
+    @SuppressWarnings( "rawtypes" )
     protected Map<String, Object> getPaginatedListModel( HttpServletRequest request, String strBookmark, List list, String strManageJsp )
     {
         _strCurrentPageIndex = Paginator.getPageIndex( request, Paginator.PARAMETER_PAGE_INDEX, _strCurrentPageIndex );
@@ -84,11 +91,12 @@ public abstract class ManageDemandJspBean extends MVCAdminJspBean
         String strUrl = url.getUrl( );
 
         // PAGINATOR
+        @SuppressWarnings( "unchecked" )
         LocalizedPaginator paginator = new LocalizedPaginator( list, _nItemsPerPage, strUrl, PARAMETER_PAGE_INDEX, _strCurrentPageIndex, getLocale( ) );
 
         Map<String, Object> model = getModel( );
 
-        model.put( MARK_NB_ITEMS_PER_PAGE, "" + _nItemsPerPage );
+        model.put( MARK_NB_ITEMS_PER_PAGE, String.valueOf( _nItemsPerPage ) );
         model.put( MARK_PAGINATOR, paginator );
         model.put( strBookmark, paginator.getPageItems( ) );
 

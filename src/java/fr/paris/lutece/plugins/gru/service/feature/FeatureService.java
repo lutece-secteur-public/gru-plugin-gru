@@ -48,12 +48,27 @@ import java.util.Locale;
 /**
  * FeatureService
  */
-public class FeatureService
+public final class FeatureService
 {
     private static final String PROPERTY_DISPLAY_STANDARD = "gru.features.display.standard";
     private static final String PROPERTY_DISPLAY_HOME = "gru.features.display.home";
     private static final String PROPERTY_DISPLAY_HIDDEN = "gru.features.display.hidden";
 
+    /**
+     * Private constructor
+     */
+    private FeatureService( )
+    {
+
+    }
+
+    /**
+     * Gives the list of display levels as a {@code ReferenceList}
+     * 
+     * @param locale
+     *            the locale
+     * @return the {@code ReferenceList}
+     */
     public static ReferenceList getFeatureDisplayLevels( Locale locale )
     {
         ReferenceList list = new ReferenceList( );
@@ -97,14 +112,14 @@ public class FeatureService
     public static String getCustomerLink( Feature feature, Customer customer )
     {
         Customer customerEncrypted = customer;
-        String strLinkTemplate = feature.getLink( );
+        StringBuilder sbLinkTemplate = new StringBuilder( feature.getLink( ) );
 
         if ( ( customer != null ) && ( customer.getId( ) != null ) )
         {
             customerEncrypted = CustomerEncryptionService.getInstance( ).encrypt( customer, feature.getResourceTypeCode( ) + feature.getResourceId( ) );
-            strLinkTemplate += feature.getLinkCustomerParams( );
+            sbLinkTemplate.append( feature.getLinkCustomerParams( ) );
         }
 
-        return ActionLinkService.buildLink( strLinkTemplate, feature.getTarget( ), customerEncrypted );
+        return ActionLinkService.buildLink( sbLinkTemplate.toString( ), feature.getTarget( ), customerEncrypted );
     }
 }

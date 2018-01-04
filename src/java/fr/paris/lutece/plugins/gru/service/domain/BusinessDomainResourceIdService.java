@@ -36,14 +36,12 @@ package fr.paris.lutece.plugins.gru.service.domain;
 import fr.paris.lutece.plugins.gru.business.domain.BusinessDomain;
 import fr.paris.lutece.plugins.gru.business.domain.BusinessDomainHome;
 import fr.paris.lutece.plugins.gru.web.Constants;
-import fr.paris.lutece.portal.service.i18n.I18nService;
 import fr.paris.lutece.portal.service.rbac.Permission;
 import fr.paris.lutece.portal.service.rbac.ResourceIdService;
 import fr.paris.lutece.portal.service.rbac.ResourceType;
 import fr.paris.lutece.portal.service.rbac.ResourceTypeManager;
 import fr.paris.lutece.util.ReferenceList;
 
-import java.util.List;
 import java.util.Locale;
 
 /**
@@ -61,23 +59,23 @@ public class BusinessDomainResourceIdService extends ResourceIdService
     @Override
     public void register( )
     {
-        ResourceType rt = new ResourceType( );
-        rt.setResourceIdServiceClass( BusinessDomainResourceIdService.class.getName( ) );
-        rt.setPluginName( Constants.PLUGIN_NAME );
-        rt.setResourceTypeKey( BusinessDomain.RESOURCE_TYPE );
-        rt.setResourceTypeLabelKey( PROPERTY_LABEL_RESOURCE_TYPE );
+        ResourceType resoureType = new ResourceType( );
+        resoureType.setResourceIdServiceClass( BusinessDomainResourceIdService.class.getName( ) );
+        resoureType.setPluginName( Constants.PLUGIN_NAME );
+        resoureType.setResourceTypeKey( BusinessDomain.RESOURCE_TYPE );
+        resoureType.setResourceTypeLabelKey( PROPERTY_LABEL_RESOURCE_TYPE );
 
-        Permission pSummary = new Permission( );
-        pSummary.setPermissionKey( BusinessDomain.PERMISSION_VIEW_SUMMARY );
-        pSummary.setPermissionTitleKey( PROPERTY_LABEL_VIEW_SUMMARY );
-        rt.registerPermission( pSummary );
+        Permission permissionSummary = new Permission( );
+        permissionSummary.setPermissionKey( BusinessDomain.PERMISSION_VIEW_SUMMARY );
+        permissionSummary.setPermissionTitleKey( PROPERTY_LABEL_VIEW_SUMMARY );
+        resoureType.registerPermission( permissionSummary );
 
-        Permission pDetails = new Permission( );
-        pDetails.setPermissionKey( BusinessDomain.PERMISSION_VIEW_DETAILS );
-        pDetails.setPermissionTitleKey( PROPERTY_LABEL_VIEW_DETAILS );
-        rt.registerPermission( pDetails );
+        Permission permissionDetails = new Permission( );
+        permissionDetails.setPermissionKey( BusinessDomain.PERMISSION_VIEW_DETAILS );
+        permissionDetails.setPermissionTitleKey( PROPERTY_LABEL_VIEW_DETAILS );
+        resoureType.registerPermission( permissionDetails );
 
-        ResourceTypeManager.registerResourceType( rt );
+        ResourceTypeManager.registerResourceType( resoureType );
     }
 
     /**

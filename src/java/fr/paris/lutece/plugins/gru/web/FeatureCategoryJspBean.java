@@ -52,10 +52,15 @@ import javax.servlet.http.HttpServletRequest;
  * This class provides the user interface to manage FeatureCategory features ( manage, create, modify, remove )
  */
 @Controller( controllerJsp = "ManageFeatureCategorys.jsp", controllerPath = "jsp/admin/plugins/gru/", right = "GRU_ADMIN_MANAGEMENT" )
-public class FeatureCategoryJspBean extends ManageAdminGRUJspBean
+public class FeatureCategoryJspBean extends AbstractManageAdminGRUJspBean
 {
     // //////////////////////////////////////////////////////////////////////////
     // Constants
+
+    /**
+     * Generated serial id
+     */
+    private static final long serialVersionUID = -3652702067177724571L;
 
     // templates
     private static final String TEMPLATE_MANAGE_FEATURECATEGORYS = "/admin/plugins/gru/manage_featurecategories.html";
@@ -77,7 +82,6 @@ public class FeatureCategoryJspBean extends ManageAdminGRUJspBean
 
     // Properties
     private static final String MESSAGE_CONFIRM_REMOVE_FEATURECATEGORY = "gru.message.confirmRemoveFeatureCategory";
-    private static final String PROPERTY_DEFAULT_LIST_FEATURECATEGORY_PER_PAGE = "gru.listFeatureCategorys.itemsPerPage";
     private static final String VALIDATION_ATTRIBUTES_PREFIX = "gru.model.entity.featurecategory.attribute.";
 
     // Views
