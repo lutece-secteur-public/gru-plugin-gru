@@ -125,6 +125,16 @@
   </ul>
 </#macro>
 
+<#macro getCustomerAttribute customer strAttributeKey iconName=''>
+    <#assign attribute=customer.getAttribute(strAttributeKey) />
+    <#if attribute?has_content>
+        <p>
+            <i class="fa fa-${iconName}"></i>
+            ${attribute}
+        </p>
+    </#if>
+</#macro>
+
 <#macro customerDetails customer>
    <h2>${customer.firstname} ${customer.lastname}</h2>
    <#if customer.email?has_content>
