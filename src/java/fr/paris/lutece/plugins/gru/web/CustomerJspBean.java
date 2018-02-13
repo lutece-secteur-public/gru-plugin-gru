@@ -33,14 +33,10 @@
  */
 package fr.paris.lutece.plugins.gru.web;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import fr.paris.lutece.plugins.gru.service.CustomerActionsService;
-import fr.paris.lutece.plugins.gru.service.customer.CustomerService;
+import fr.paris.lutece.plugins.gru.service.customer.UserAuthorizedCustomerFinder;
 import fr.paris.lutece.plugins.gru.service.demand.DemandService;
 import fr.paris.lutece.plugins.gru.service.demandtype.DemandTypeService;
-import fr.paris.lutece.plugins.gru.utils.CustomerUtils;
 import fr.paris.lutece.plugins.gru.utils.UrlUtils;
 import fr.paris.lutece.plugins.gru.web.actions.buttons.builders.impl.HomeButtonListBuilder;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionGroup;
@@ -48,9 +44,9 @@ import fr.paris.lutece.plugins.gru.web.actions.model.ActionPanel;
 import fr.paris.lutece.plugins.gru.web.utils.ModelUtils;
 import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
 import fr.paris.lutece.plugins.grubusiness.business.demand.Demand;
+import fr.paris.lutece.portal.service.admin.AccessDeniedException;
 import fr.paris.lutece.portal.service.i18n.I18nService;
 import fr.paris.lutece.portal.service.prefs.AdminUserPreferencesService;
-import fr.paris.lutece.portal.service.util.AppLogService;
 import fr.paris.lutece.portal.service.util.AppPathService;
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
 import fr.paris.lutece.portal.util.mvc.admin.MVCAdminJspBean;
@@ -60,11 +56,8 @@ import fr.paris.lutece.portal.util.mvc.commons.annotations.View;
 
 import org.apache.commons.lang.StringUtils;
 
-import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -174,7 +167,7 @@ public class CustomerJspBean extends MVCAdminJspBean
      */
     private String searchRedirectCustomer( String strQuery, HttpServletRequest request )
     {
-        List<Customer> listCustomer = CustomerService.instance( ).findbyFilter( convertToSearchFilter( strQuery ) );
+        List<Customer> listCustomer = new UserAuthorizedCustomerFinder( getUser( ) ).findByQuery( strQuery );
         Map<String, Customer> mapCustomer = new LinkedHashMap<String, Customer>( );
 
         for ( Customer customer : listCustomer )
@@ -230,34 +223,45 @@ public class CustomerJspBean extends MVCAdminJspBean
      * @param request
      *            the request
      * @return the view
+     * @throws AccessDeniedException
+     *             if the logged in user is not authorized to access the customer
      */
     @View( VIEW_CUSTOMER_DEMANDS )
-    public String getViewCustomerDemands( HttpServletRequest request )
+    public String getViewCustomerDemands( HttpServletRequest request ) throws AccessDeniedException
     {
-        Customer customer = CustomerUtils.getCustomer( request );
+        Customer customer = findCustomerFrom( request );
+        List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser( ) );
+        List<Demand> listDemands = DemandService.getDemands( customer, getUser( ), Demand.STATUS_INPROGRESS );
+        Map<String, Object> model = getModel( );
 
-        if ( customer != null )
-        {
-            List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser( ) );
-            List<Demand> listDemands = DemandService.getDemands( customer, getUser( ), Demand.STATUS_INPROGRESS );
+        model.put( Constants.MARK_ACTION_PANELS, listPanels );
+        model.put( Constants.MARK_CUSTOMER, customer );
+        model.put( Constants.MARK_DEMANDS_LIST, listDemands );
+        model.put( Constants.MARK_RETURN_URL,
+                UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath( ) + getControllerJsp( ), VIEW_CUSTOMER_DEMANDS, customer ) );
 
-            Map<String, Object> model = getModel( );
-            model.put( Constants.MARK_ACTION_PANELS, listPanels );
-            model.put( Constants.MARK_CUSTOMER, customer );
-            model.put( Constants.MARK_DEMANDS_LIST, listDemands );
-            model.put( Constants.MARK_RETURN_URL, UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath( ) + getControllerJsp( ),
-                    VIEW_CUSTOMER_DEMANDS, customer ) );
+        // display demand with date preference
+        String strCreationDateDisplay = AdminUserPreferencesService.instance( ).get( String.valueOf( getUser( ).getUserId( ) ),
+                Constants.MARK_USER_PREFERENCE_CREATION_DATE_DISPLAY, StringUtils.EMPTY );
 
-            // display demand with date preference
-            String strCreationDateDisplay = AdminUserPreferencesService.instance( ).get( String.valueOf( getUser( ).getUserId( ) ),
-                    Constants.MARK_USER_PREFERENCE_CREATION_DATE_DISPLAY, StringUtils.EMPTY );
+        model.put( Constants.MARK_CREATION_DATE_AS_DATE, Constants.USER_PREFERENCE_CREATION_DATE_DISPLAY_DATE.equals( strCreationDateDisplay ) );
 
-            model.put( Constants.MARK_CREATION_DATE_AS_DATE, Constants.USER_PREFERENCE_CREATION_DATE_DISPLAY_DATE.equals( strCreationDateDisplay ) );
+        return getPage( "", TEMPLATE_VIEW_CUSTOMER_DEMANDS, model );
+    }
 
-            return getPage( "", TEMPLATE_VIEW_CUSTOMER_DEMANDS, model );
-        }
-
-        return "Invalid Customer";
+    /**
+     * Finds a customer from the specified request
+     * 
+     * @param request
+     *            the request
+     * @return the customer
+     * @throws AccessDeniedException
+     *             if the logged in user is not authorized to access the customer
+     */
+    private Customer findCustomerFrom( HttpServletRequest request ) throws AccessDeniedException
+    {
+        String strCustomerId = request.getParameter( Constants.PARAMETER_ID_CUSTOMER );
+        return new UserAuthorizedCustomerFinder( getUser( ) ).findById( strCustomerId );
     }
 
     /**
@@ -266,28 +270,24 @@ public class CustomerJspBean extends MVCAdminJspBean
      * @param request
      *            the request
      * @return the view
+     * @throws AccessDeniedException
+     *             if the logged in user is not authorized to access the customer
      */
     @View( VIEW_CUSTOMER_OLD_DEMANDS )
-    public String getViewCustomerOldDemands( HttpServletRequest request )
+    public String getViewCustomerOldDemands( HttpServletRequest request ) throws AccessDeniedException
     {
-        Customer customer = CustomerUtils.getCustomer( request );
+        Customer customer = findCustomerFrom( request );
+        List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser( ) );
+        List<Demand> listDemands = DemandService.getDemands( customer, getUser( ), Demand.STATUS_CLOSED );
+        Map<String, Object> model = getModel( );
 
-        if ( customer != null )
-        {
-            List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser( ) );
-            List<Demand> listDemands = DemandService.getDemands( customer, getUser( ), Demand.STATUS_CLOSED );
+        model.put( Constants.MARK_ACTION_PANELS, listPanels );
+        model.put( Constants.MARK_CUSTOMER, customer );
+        model.put( Constants.MARK_DEMANDS_LIST, listDemands );
+        model.put( Constants.MARK_RETURN_URL, UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath( ) + getControllerJsp( ),
+                VIEW_CUSTOMER_OLD_DEMANDS, customer ) );
 
-            Map<String, Object> model = getModel( );
-            model.put( Constants.MARK_ACTION_PANELS, listPanels );
-            model.put( Constants.MARK_CUSTOMER, customer );
-            model.put( Constants.MARK_DEMANDS_LIST, listDemands );
-            model.put( Constants.MARK_RETURN_URL, UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath( ) + getControllerJsp( ),
-                    VIEW_CUSTOMER_OLD_DEMANDS, customer ) );
-
-            return getPage( "", TEMPLATE_VIEW_CUSTOMER_OLD_DEMANDS, model );
-        }
-
-        return "Invalid Customer";
+        return getPage( "", TEMPLATE_VIEW_CUSTOMER_OLD_DEMANDS, model );
     }
 
     /**
@@ -296,28 +296,24 @@ public class CustomerJspBean extends MVCAdminJspBean
      * @param request
      *            the request
      * @return the view
+     * @throws AccessDeniedException
+     *             if the logged in user is not authorized to access the customer
      */
     @View( VIEW_CUSTOMER_NEW_DEMANDS )
-    public String getViewCustomerNewDemands( HttpServletRequest request )
+    public String getViewCustomerNewDemands( HttpServletRequest request ) throws AccessDeniedException
     {
-        Customer customer = CustomerUtils.getCustomer( request );
+        Customer customer = findCustomerFrom( request );
+        List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser( ) );
+        List<ActionGroup> listButtonsGroups = _homeButtonListBuilder.buildButtonGroupList( customer, getUser( ) );
+        Map<String, Object> model = getModel( );
 
-        if ( customer != null )
-        {
-            List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser( ) );
-            List<ActionGroup> listButtonsGroups = _homeButtonListBuilder.buildButtonGroupList( customer, getUser( ) );
+        model.put( Constants.MARK_ACTION_PANELS, listPanels );
+        model.put( Constants.MARK_CUSTOMER, customer );
+        model.put( Constants.MARK_BUTTONS_GROUPS_LIST, listButtonsGroups );
+        model.put( Constants.MARK_RETURN_URL, UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath( ) + getControllerJsp( ),
+                VIEW_CUSTOMER_NEW_DEMANDS, customer ) );
 
-            Map<String, Object> model = getModel( );
-            model.put( Constants.MARK_ACTION_PANELS, listPanels );
-            model.put( Constants.MARK_CUSTOMER, customer );
-            model.put( Constants.MARK_BUTTONS_GROUPS_LIST, listButtonsGroups );
-            model.put( Constants.MARK_RETURN_URL, UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath( ) + getControllerJsp( ),
-                    VIEW_CUSTOMER_NEW_DEMANDS, customer ) );
-
-            return getPage( "", TEMPLATE_VIEW_CUSTOMER_NEW_DEMANDS, model );
-        }
-
-        return "Invalid Customer";
+        return getPage( "", TEMPLATE_VIEW_CUSTOMER_NEW_DEMANDS, model );
     }
 
     /**
@@ -326,9 +322,11 @@ public class CustomerJspBean extends MVCAdminJspBean
      * @param request
      *            The HTTP request
      * @return The page
+     * @throws AccessDeniedException
+     *             if the logged in user is not authorized to access the demand
      */
     @View( VIEW_DEMAND )
-    public String getViewDemand( HttpServletRequest request )
+    public String getViewDemand( HttpServletRequest request ) throws AccessDeniedException
     {
         String strReference = request.getParameter( Constants.PARAMETER_SEARCH_QUERY );
         String demandId = null;
@@ -355,30 +353,21 @@ public class CustomerJspBean extends MVCAdminJspBean
         }
 
         Demand demand = DemandService.getDemand( demandId, demandTypeId, getUser( ) );
+        Customer customer = new UserAuthorizedCustomerFinder( getUser( ) ).findByDemand( demand );
 
-        Customer customer = new Customer( );
-
-        if ( demand.getCustomer( ) != null && demand.getCustomer( ).getId( ) != null )
+        if ( customer == null )
         {
-            customer = CustomerService.instance( ).findById( demand.getCustomer( ).getId( ) );
+            customer = new Customer( );
         }
 
         Map<String, Object> model = getModel( );
         Map<String, String> mapParameters = new HashMap<String, String>( );
         List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser( ) );
         model.put( Constants.MARK_ACTION_PANELS, listPanels );
+        model.put( Constants.MARK_CUSTOMER, customer );
         demand = DemandTypeService.setDemandActions( demand, customer, getUser( ) );
 
-        if ( customer != null )
-        {
-            mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, customer.getId( ) );
-            model.put( Constants.MARK_CUSTOMER, customer );
-        }
-        else
-        {
-            model.put( Constants.MARK_CUSTOMER, new Customer( ) );
-        }
-
+        mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, customer.getId( ) );
         mapParameters.put( Constants.PARAMETER_ID_DEMAND, String.valueOf( demand.getId( ) ) );
         mapParameters.put( Constants.PARAMETER_ID_DEMAND_TYPE, String.valueOf( demand.getTypeId( ) ) );
 
@@ -390,38 +379,5 @@ public class CustomerJspBean extends MVCAdminJspBean
                 UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath( ) + getControllerJsp( ), VIEW_DEMAND, mapParameters ) );
 
         return getPage( "", TEMPLATE_VIEW_DEMAND, model );
-    }
-
-    /**
-     * Converts the specified query into a search filter
-     * 
-     * @param strQuery
-     *            the query to convert
-     * @return the search filter
-     */
-    private Map<String, String> convertToSearchFilter( String strQuery )
-    {
-        Map<String, String> mapFilter = new HashMap<>( );
-
-        try
-        {
-            ObjectMapper mapper = new ObjectMapper( );
-            JsonNode nodeQuery = mapper.readTree( strQuery );
-
-            Iterator<String> iterator = nodeQuery.fieldNames( );
-
-            while ( iterator.hasNext( ) )
-            {
-                String strSearchField = iterator.next( );
-                mapFilter.put( strSearchField, nodeQuery.get( strSearchField ).asText( ) );
-            }
-
-        }
-        catch( IOException e )
-        {
-            AppLogService.error( "cannot convert the search query to JSON object :" + strQuery );
-        }
-
-        return mapFilter;
     }
 }

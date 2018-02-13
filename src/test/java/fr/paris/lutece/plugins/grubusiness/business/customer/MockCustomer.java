@@ -31,43 +31,16 @@
  *
  * License 1.0
  */
-package fr.paris.lutece.plugins.gru.utils;
+package fr.paris.lutece.plugins.grubusiness.business.customer;
 
-import fr.paris.lutece.plugins.gru.service.customer.CustomerService;
-import fr.paris.lutece.plugins.gru.web.Constants;
-import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
+import fr.paris.lutece.plugins.gru.util.IdGenerator;
 
-import javax.servlet.http.HttpServletRequest;
-
-/**
- * This class provides utility methods for customers
- *
- */
-public final class CustomerUtils
+public class MockCustomer
 {
-    /**
-     * Constructor
-     */
-    private CustomerUtils( )
+    public static Customer create( )
     {
-    }
-
-    /**
-     * Fetches a customer from the specified request
-     * 
-     * @param request
-     *            the request
-     * @return the customer
-     */
-    public static Customer getCustomer( HttpServletRequest request )
-    {
-        String strId = request.getParameter( Constants.PARAMETER_ID_CUSTOMER );
-        Customer customer = null;
-
-        if ( strId != null )
-        {
-            customer = CustomerService.instance( ).findById( strId );
-        }
+        Customer customer = new Customer( );
+        customer.setId( String.valueOf( IdGenerator.generateId( ) ) );
 
         return customer;
     }

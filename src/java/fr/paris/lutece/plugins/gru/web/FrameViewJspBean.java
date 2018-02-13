@@ -34,10 +34,11 @@
 package fr.paris.lutece.plugins.gru.web;
 
 import fr.paris.lutece.plugins.gru.service.CustomerActionsService;
-import fr.paris.lutece.plugins.gru.utils.CustomerUtils;
+import fr.paris.lutece.plugins.gru.service.customer.UserAuthorizedCustomerFinder;
 import fr.paris.lutece.plugins.gru.utils.UrlUtils;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionPanel;
 import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
+import fr.paris.lutece.portal.service.admin.AccessDeniedException;
 import fr.paris.lutece.portal.service.util.AppPathService;
 import fr.paris.lutece.portal.util.mvc.admin.MVCAdminJspBean;
 import fr.paris.lutece.portal.util.mvc.admin.annotations.Controller;
@@ -99,13 +100,16 @@ public class FrameViewJspBean extends MVCAdminJspBean
      * @param request
      *            The HTTP request
      * @return the view
+     * @throws AccessDeniedException
+     *             if the user is not authorized to access the customer
      */
     @View( value = VIEW_FRAME, defaultView = true )
-    public String viewFrame( HttpServletRequest request )
+    public String viewFrame( HttpServletRequest request ) throws AccessDeniedException
     {
         String strUrl = request.getParameter( Constants.PARAMETER_URL_FRAME );
+        String strCustomerId = request.getParameter( Constants.PARAMETER_ID_CUSTOMER );
 
-        Customer customer = CustomerUtils.getCustomer( request );
+        Customer customer = new UserAuthorizedCustomerFinder( getUser( ) ).findById( strCustomerId );
         Map<String, String> mapParameters = new HashMap<String, String>( );
         mapParameters.put( Constants.PARAMETER_URL_FRAME, UrlUtils.encodeUrl( strUrl ) );
 

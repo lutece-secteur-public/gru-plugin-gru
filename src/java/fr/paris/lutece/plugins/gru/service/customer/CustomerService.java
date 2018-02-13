@@ -33,10 +33,19 @@
  */
 package fr.paris.lutece.plugins.gru.service.customer;
 
+import java.util.List;
+import java.util.Map;
+
+import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 
 /**
- * SearchService
+ * <p>
+ * This class represents a service for customers.
+ * </p>
+ * <p>
+ * Designed as a singleton.
+ * </p>
  */
 public final class CustomerService
 {
@@ -56,9 +65,40 @@ public final class CustomerService
      * 
      * @return The singleton instance
      */
-    public static fr.paris.lutece.plugins.grubusiness.business.customer.CustomerService instance( )
+    public static CustomerService instance( )
     {
-        return CustomerServiceHolder._instance._service;
+        return CustomerServiceHolder._instance;
+    }
+
+    /**
+     * Finds the customers depending on the specified filter
+     * 
+     * @param mapFilter
+     *            the filter
+     * @return the list of customers
+     */
+    public List<Customer> findByFilter( Map<String, String> mapFilter )
+    {
+        return _service.findbyFilter( mapFilter );
+    }
+
+    /**
+     * Finds a customer by its id
+     * 
+     * @param strCustomerId
+     *            the customer id
+     * @return the customer, or {@code null} if not found
+     */
+    public Customer findById( String strCustomerId )
+    {
+        Customer customer = null;
+
+        if ( strCustomerId != null )
+        {
+            customer = _service.findById( strCustomerId );
+        }
+
+        return customer;
     }
 
     /**

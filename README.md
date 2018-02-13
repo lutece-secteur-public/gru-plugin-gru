@@ -11,6 +11,10 @@ The plugin can use customers with encrypted ids. This mechanism permits to have 
 
 To use encryption, the site has to contain a class implementing the interface `fr.paris.lutece.plugins.grubusiness.service.encryption.ICustomerEncryptionService` from the library `gru-library-grubusiness` . For example, add the plugin `gru-plugin-grukeydiversification` in the `pom.xml` of the site. The encryption is then enabled.
 
+## Authorization on customers
+
+To prevent the logged in user to access some customers, implements the interface `fr.paris.lutece.plugins.gru.service.customer.ICustomerAuthorizationFilter` and declare the implementation as a bean in the Spring context.
+
 ## Configuration
 
  **The Customer DAO** 

@@ -24,6 +24,11 @@
                 Par exemple, ajoutez le plugin <code>gru-plugin-grukeydiversification</code> dans le <code>pom.xml</code> du site. The cryptage est alors activé.
                 </p>
             </subsection>
+            <subsection name="Autorisation sur les objets Customer">
+                <p>
+                Afin d'empêcher l'utilisateur connecté d'accéder à certains objets <code>Customer</code>, il suffit d'implémenter l'interface <code>fr.paris.lutece.plugins.gru.service.customer.ICustomerAuthorizationFilter</code> et de déclarer l'implementation en tant que bean dans le contexte Spring.
+                </p>
+            </subsection>
             <subsection name="Configuration">
                 <p><strong>Le DAO pour les usagers</strong></p>
                 <p>

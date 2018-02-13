@@ -24,6 +24,11 @@
                 For example, add the plugin <code>gru-plugin-grukeydiversification</code> in the <code>pom.xml</code> of the site. The encryption is then enabled.
                 </p>
             </subsection>
+            <subsection name="Authorization on customers">
+                <p>
+                To prevent the logged in user to access some customers, implements the interface <code>fr.paris.lutece.plugins.gru.service.customer.ICustomerAuthorizationFilter</code> and declare the implementation as a bean in the Spring context.
+                </p>
+            </subsection>
             <subsection name="Configuration">
                 <p><strong>The Customer DAO</strong></p>
                 <p>
