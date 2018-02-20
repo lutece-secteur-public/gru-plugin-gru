@@ -231,15 +231,19 @@ public class CustomerJspBean extends MVCAdminJspBean
     {
         Customer customer = findCustomerFrom( request );
         List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser( ) );
-        List<Demand> listDemands = DemandService.getDemands( customer, getUser( ), Demand.STATUS_INPROGRESS );
+        List<Demand> listInProgressDemands = DemandService.getDemands( customer, getUser( ), Demand.STATUS_INPROGRESS );
+        int nInProgressDemandCount = listInProgressDemands.size( );
+        List<Demand> listClosedDemands = DemandService.getDemands( customer, getUser( ), Demand.STATUS_CLOSED );
+        int nClosedDemandCount = listClosedDemands.size( );
         Map<String, Object> model = getModel( );
 
         model.put( Constants.MARK_ACTION_PANELS, listPanels );
         model.put( Constants.MARK_CUSTOMER, customer );
-        model.put( Constants.MARK_DEMANDS_LIST, listDemands );
+        model.put( Constants.MARK_DEMANDS_LIST, listInProgressDemands );
         model.put( Constants.MARK_RETURN_URL,
                 UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath( ) + getControllerJsp( ), VIEW_CUSTOMER_DEMANDS, customer ) );
-
+        model.put( Constants.MARK_INPROGRESS_DEMAND_COUNT, nInProgressDemandCount );
+        model.put( Constants.MARK_CLOSED_DEMAND_COUNT, nClosedDemandCount );
         // display demand with date preference
         String strCreationDateDisplay = AdminUserPreferencesService.instance( ).get( String.valueOf( getUser( ).getUserId( ) ),
                 Constants.MARK_USER_PREFERENCE_CREATION_DATE_DISPLAY, StringUtils.EMPTY );
@@ -278,14 +282,19 @@ public class CustomerJspBean extends MVCAdminJspBean
     {
         Customer customer = findCustomerFrom( request );
         List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser( ) );
-        List<Demand> listDemands = DemandService.getDemands( customer, getUser( ), Demand.STATUS_CLOSED );
+        List<Demand> listInProgressDemands = DemandService.getDemands( customer, getUser( ), Demand.STATUS_INPROGRESS );
+        int nInProgressDemandCount = listInProgressDemands.size( );
+        List<Demand> listClosedDemands = DemandService.getDemands( customer, getUser( ), Demand.STATUS_CLOSED );
+        int nClosedDemandCount = listClosedDemands.size( );
         Map<String, Object> model = getModel( );
 
         model.put( Constants.MARK_ACTION_PANELS, listPanels );
         model.put( Constants.MARK_CUSTOMER, customer );
-        model.put( Constants.MARK_DEMANDS_LIST, listDemands );
+        model.put( Constants.MARK_DEMANDS_LIST, listClosedDemands );
         model.put( Constants.MARK_RETURN_URL, UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath( ) + getControllerJsp( ),
                 VIEW_CUSTOMER_OLD_DEMANDS, customer ) );
+        model.put( Constants.MARK_INPROGRESS_DEMAND_COUNT, nInProgressDemandCount );
+        model.put( Constants.MARK_CLOSED_DEMAND_COUNT, nClosedDemandCount );
 
         return getPage( "", TEMPLATE_VIEW_CUSTOMER_OLD_DEMANDS, model );
     }

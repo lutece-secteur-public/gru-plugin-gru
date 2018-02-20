@@ -2,12 +2,12 @@
 <ul class="nav nav-tabs nav-gru">
   <li <#if tab="demands">class="active"</#if>>
     <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerDemands&id_customer=${customer.id}" >
-      #i18n{gru.view_customer_tabs.tabDemands}
+      #i18n{gru.view_customer_tabs.tabDemands} <span class="badge"> ${inprogress_demand_count!} </span>
     </a>
   </li>
   <li <#if tab="oldDemands">class="active"</#if>>
     <a href="jsp/admin/plugins/gru/ManageCustomers.jsp?view=viewCustomerOldDemands&id_customer=${customer.id}">
-      #i18n{gru.view_customer_tabs.tabOldDemands}
+      #i18n{gru.view_customer_tabs.tabOldDemands} <span class="badge"> ${closed_demand_count!} </span>
     </a>
   </li>
 </ul>
