@@ -102,7 +102,7 @@ public class CustomerJspBean extends AbstractManageDemandJspBean
 
     // Session variable to store working values
     private List<Customer> _listCustomer;
-    
+
     /**
      * Builds the view for searching a customer
      * 
@@ -394,5 +394,5 @@ public class CustomerJspBean extends AbstractManageDemandJspBean
 
         return getPage( "", TEMPLATE_VIEW_DEMAND, model );
     }
-    
+
 }

@@ -48,7 +48,7 @@ public final class Constants
     public static final String PARAMETER_URL_FRAME = "url";
     public static final String PARAMETER_ID_DEMAND = "id_demand";
     public static final String PARAMETER_ID_DEMAND_TYPE = "id_demand_type";
-	public static final String PARAMETER_VIEW = "view";
+    public static final String PARAMETER_VIEW = "view";
 
     // Markers
     public static final String MARK_CUSTOMER = "customer";
@@ -76,13 +76,12 @@ public final class Constants
     public static final String MARKER_CUSTOMER_ID = "user_cid";
     public static final String MARKER_FIRST_NAME = "first_name";
     public static final String MARKER_LAST_NAME = "last_name";
-	public static final String MARK_INPROGRESS_DEMAND_COUNT = "inprogress_demand_count";
-	public static final String MARK_CLOSED_DEMAND_COUNT = "closed_demand_count";
+    public static final String MARK_INPROGRESS_DEMAND_COUNT = "inprogress_demand_count";
+    public static final String MARK_CLOSED_DEMAND_COUNT = "closed_demand_count";
 
     // Properties
     public static final String PROPERTY_AUTOCOMPLETE_URL = "gru.search.autocomplete.url";
     public static final String PROPERTY_AUTOCOMPLETE_ENABLED = "gru.search.autocomplete.enabled";
-
 
     /**
      * Private constructor
