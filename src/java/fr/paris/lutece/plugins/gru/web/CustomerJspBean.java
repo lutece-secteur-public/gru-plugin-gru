@@ -49,10 +49,10 @@ import fr.paris.lutece.portal.service.i18n.I18nService;
 import fr.paris.lutece.portal.service.prefs.AdminUserPreferencesService;
 import fr.paris.lutece.portal.service.util.AppPathService;
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
-import fr.paris.lutece.portal.util.mvc.admin.MVCAdminJspBean;
 import fr.paris.lutece.portal.util.mvc.admin.annotations.Controller;
 import fr.paris.lutece.portal.util.mvc.commons.annotations.Action;
 import fr.paris.lutece.portal.util.mvc.commons.annotations.View;
+import fr.paris.lutece.util.url.UrlItem;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -68,11 +68,8 @@ import javax.servlet.http.HttpServletRequest;
  * This class provides the user interface to manage Customer features ( manage, create, modify, remove )
  */
 @Controller( controllerJsp = "ManageCustomers.jsp", controllerPath = "jsp/admin/plugins/gru/", right = "GRU_MANAGEMENT" )
-public class CustomerJspBean extends MVCAdminJspBean
+public class CustomerJspBean extends AbstractManageDemandJspBean
 {
-    // //////////////////////////////////////////////////////////////////////////
-    // Constants
-
     // templates
     private static final String TEMPLATE_SEARCH_CUSTOMER = "/admin/plugins/gru/search_customer.html";
     private static final String TEMPLATE_VIEW_CUSTOMER_DEMANDS = "/admin/plugins/gru/view_customer_demands.html";
@@ -105,7 +102,7 @@ public class CustomerJspBean extends MVCAdminJspBean
 
     // Session variable to store working values
     private List<Customer> _listCustomer;
-
+    
     /**
      * Builds the view for searching a customer
      * 
@@ -235,11 +232,15 @@ public class CustomerJspBean extends MVCAdminJspBean
         int nInProgressDemandCount = listInProgressDemands.size( );
         List<Demand> listClosedDemands = DemandService.getDemands( customer, getUser( ), Demand.STATUS_CLOSED );
         int nClosedDemandCount = listClosedDemands.size( );
-        Map<String, Object> model = getModel( );
+
+        UrlItem url = new UrlItem( getControllerPath( ) + getControllerJsp( ) );
+        url.addParameter( Constants.PARAMETER_VIEW, VIEW_CUSTOMER_DEMANDS );
+        url.addParameter( Constants.PARAMETER_ID_CUSTOMER, request.getParameter( Constants.PARAMETER_ID_CUSTOMER ) );
+
+        Map<String, Object> model = getPaginatedListModel( request, Constants.MARK_DEMANDS_LIST, listInProgressDemands, url.getUrl( ) );
 
         model.put( Constants.MARK_ACTION_PANELS, listPanels );
         model.put( Constants.MARK_CUSTOMER, customer );
-        model.put( Constants.MARK_DEMANDS_LIST, listInProgressDemands );
         model.put( Constants.MARK_RETURN_URL,
                 UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath( ) + getControllerJsp( ), VIEW_CUSTOMER_DEMANDS, customer ) );
         model.put( Constants.MARK_INPROGRESS_DEMAND_COUNT, nInProgressDemandCount );
@@ -286,11 +287,15 @@ public class CustomerJspBean extends MVCAdminJspBean
         int nInProgressDemandCount = listInProgressDemands.size( );
         List<Demand> listClosedDemands = DemandService.getDemands( customer, getUser( ), Demand.STATUS_CLOSED );
         int nClosedDemandCount = listClosedDemands.size( );
-        Map<String, Object> model = getModel( );
+
+        UrlItem url = new UrlItem( getControllerPath( ) + getControllerJsp( ) );
+        url.addParameter( Constants.PARAMETER_VIEW, VIEW_CUSTOMER_OLD_DEMANDS );
+        url.addParameter( Constants.PARAMETER_ID_CUSTOMER, request.getParameter( Constants.PARAMETER_ID_CUSTOMER ) );
+
+        Map<String, Object> model = getPaginatedListModel( request, Constants.MARK_DEMANDS_LIST, listClosedDemands, url.getUrl( ) );
 
         model.put( Constants.MARK_ACTION_PANELS, listPanels );
         model.put( Constants.MARK_CUSTOMER, customer );
-        model.put( Constants.MARK_DEMANDS_LIST, listClosedDemands );
         model.put( Constants.MARK_RETURN_URL, UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath( ) + getControllerJsp( ),
                 VIEW_CUSTOMER_OLD_DEMANDS, customer ) );
         model.put( Constants.MARK_INPROGRESS_DEMAND_COUNT, nInProgressDemandCount );
@@ -389,4 +394,5 @@ public class CustomerJspBean extends MVCAdminJspBean
 
         return getPage( "", TEMPLATE_VIEW_DEMAND, model );
     }
+    
 }

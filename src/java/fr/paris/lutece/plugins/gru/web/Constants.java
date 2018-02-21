@@ -48,6 +48,7 @@ public final class Constants
     public static final String PARAMETER_URL_FRAME = "url";
     public static final String PARAMETER_ID_DEMAND = "id_demand";
     public static final String PARAMETER_ID_DEMAND_TYPE = "id_demand_type";
+	public static final String PARAMETER_VIEW = "view";
 
     // Markers
     public static final String MARK_CUSTOMER = "customer";
@@ -81,7 +82,6 @@ public final class Constants
     // Properties
     public static final String PROPERTY_AUTOCOMPLETE_URL = "gru.search.autocomplete.url";
     public static final String PROPERTY_AUTOCOMPLETE_ENABLED = "gru.search.autocomplete.enabled";
-
 
 
     /**
