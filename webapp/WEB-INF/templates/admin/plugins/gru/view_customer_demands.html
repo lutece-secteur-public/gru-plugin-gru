@@ -22,13 +22,14 @@
               <table class="table table-striped table-hover">
                 <thead>
                 <tr>
-                  <th class="col-xs-12 col-sm-4">#i18n{gru.view_customer_demand.demand.panel.list.reference}</th>
+                  <th class="col-xs-12 col-sm-3">#i18n{gru.view_customer_demand.demand.panel.list.reference}</th>
                   <#if creation_date_as_date >
-                    <th class="col-xs-12 col-sm-4">#i18n{gru.view_customer_demand.demand.panel.list.create}</th>
+                    <th class="col-xs-12 col-sm-3">#i18n{gru.view_customer_demand.demand.panel.list.create}</th>
                   <#else>
-                    <th class="col-xs-12 col-sm-4">#i18n{gru.view_customer_demand.demand.panel.list.open.since}</th>
+                    <th class="col-xs-12 col-sm-3">#i18n{gru.view_customer_demand.demand.panel.list.open.since}</th>
                   </#if>
-                  <th class="col-xs-12 col-sm-4">#i18n{gru.view_customer_demand.demand.panel.list.demand.type}</th>
+				  <th class="col-xs-12 col-sm-3">#i18n{gru.view_customer_demand.demand.panel.list.status.agent}</th>
+                  <th class="col-xs-12 col-sm-3">#i18n{gru.view_customer_demand.demand.panel.list.demand.type}</th>
                 </tr>
               </thead>
               <tbody>
@@ -47,7 +48,8 @@
                            <#else>
                       ${displayTimeOpenedTicket2(demand)}
                     </#if>                   
-                    </td> 
+                    </td>
+				 <td class="text-demand">${demand.agentStatus!}</td>
                  <td class="text-demand">${demand.title}</td>
                   </tr>
                 </#list>

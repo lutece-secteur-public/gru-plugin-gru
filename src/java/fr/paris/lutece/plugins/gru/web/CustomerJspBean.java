@@ -33,6 +33,7 @@
  */
 package fr.paris.lutece.plugins.gru.web;
 
+import fr.paris.lutece.plugins.gru.business.NotifiedDemand;
 import fr.paris.lutece.plugins.gru.service.CustomerActionsService;
 import fr.paris.lutece.plugins.gru.service.customer.UserAuthorizedCustomerFinder;
 import fr.paris.lutece.plugins.gru.service.demand.DemandService;
@@ -41,7 +42,6 @@ import fr.paris.lutece.plugins.gru.utils.UrlUtils;
 import fr.paris.lutece.plugins.gru.web.actions.buttons.builders.impl.HomeButtonListBuilder;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionGroup;
 import fr.paris.lutece.plugins.gru.web.actions.model.ActionPanel;
-import fr.paris.lutece.plugins.gru.web.utils.ModelUtils;
 import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
 import fr.paris.lutece.plugins.grubusiness.business.demand.Demand;
 import fr.paris.lutece.portal.service.admin.AccessDeniedException;
@@ -228,9 +228,9 @@ public class CustomerJspBean extends AbstractManageDemandJspBean
     {
         Customer customer = findCustomerFrom( request );
         List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser( ) );
-        List<Demand> listInProgressDemands = DemandService.getDemands( customer, getUser( ), Demand.STATUS_INPROGRESS );
+        List<NotifiedDemand> listInProgressDemands = DemandService.getNotifiedDemands( customer, getUser( ), Demand.STATUS_INPROGRESS );
         int nInProgressDemandCount = listInProgressDemands.size( );
-        List<Demand> listClosedDemands = DemandService.getDemands( customer, getUser( ), Demand.STATUS_CLOSED );
+        List<NotifiedDemand> listClosedDemands = DemandService.getNotifiedDemands( customer, getUser( ), Demand.STATUS_CLOSED );
         int nClosedDemandCount = listClosedDemands.size( );
 
         UrlItem url = new UrlItem( getControllerPath( ) + getControllerJsp( ) );
@@ -283,9 +283,9 @@ public class CustomerJspBean extends AbstractManageDemandJspBean
     {
         Customer customer = findCustomerFrom( request );
         List<ActionPanel> listPanels = CustomerActionsService.getPanels( customer, getUser( ) );
-        List<Demand> listInProgressDemands = DemandService.getDemands( customer, getUser( ), Demand.STATUS_INPROGRESS );
+        List<NotifiedDemand> listInProgressDemands = DemandService.getNotifiedDemands( customer, getUser( ), Demand.STATUS_INPROGRESS );
         int nInProgressDemandCount = listInProgressDemands.size( );
-        List<Demand> listClosedDemands = DemandService.getDemands( customer, getUser( ), Demand.STATUS_CLOSED );
+        List<NotifiedDemand> listClosedDemands = DemandService.getNotifiedDemands( customer, getUser( ), Demand.STATUS_CLOSED );
         int nClosedDemandCount = listClosedDemands.size( );
 
         UrlItem url = new UrlItem( getControllerPath( ) + getControllerJsp( ) );
@@ -381,14 +381,13 @@ public class CustomerJspBean extends AbstractManageDemandJspBean
         model.put( Constants.MARK_CUSTOMER, customer );
         demand = DemandTypeService.setDemandActions( demand, customer, getUser( ) );
 
+        NotifiedDemand notifiedDemand = DemandService.updateNotifiedDemandStatus( demand );
+
         mapParameters.put( Constants.PARAMETER_ID_CUSTOMER, customer.getId( ) );
         mapParameters.put( Constants.PARAMETER_ID_DEMAND, String.valueOf( demand.getId( ) ) );
         mapParameters.put( Constants.PARAMETER_ID_DEMAND_TYPE, String.valueOf( demand.getTypeId( ) ) );
 
-        model.put( Constants.MARK_DEMAND, demand );
-
-        ModelUtils.storeStatus( model, demand.getNotifications( ) );
-
+        model.put( Constants.MARK_DEMAND, notifiedDemand );
         model.put( Constants.MARK_RETURN_URL,
                 UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath( ) + getControllerJsp( ), VIEW_DEMAND, mapParameters ) );
 

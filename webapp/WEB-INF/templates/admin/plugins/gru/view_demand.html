@@ -30,8 +30,8 @@
             <p>#i18n{gru.view_customer_demand.demand.panel.deal.in} : <strong class="text-gru">${displayTimeOpenedTicket(demand)}</strong></p>
             <#break>
       </#switch>
-      <p>#i18n{gru.view_customer_demand.demand.panel.list.status.customer}  : <strong>${customer_status!''}</strong></p>
-      <p>#i18n{gru.view_customer_demand.demand.panel.list.status.agent} : <strong>${agent_status!''}</strong></p>
+      <p>#i18n{gru.view_customer_demand.demand.panel.list.status.customer}  : <strong>${demand.customerStatus!''}</strong></p>
+      <p>#i18n{gru.view_customer_demand.demand.panel.list.status.agent} : <strong>${demand.agentStatus!''}</strong></p>
       <p>#i18n{gru.view_customer_demand.demand.panel.state} :
         <strong>
         <#switch demand.statusId>

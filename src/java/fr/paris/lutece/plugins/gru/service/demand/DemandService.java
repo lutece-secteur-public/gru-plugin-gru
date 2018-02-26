@@ -33,12 +33,14 @@
  */
 package fr.paris.lutece.plugins.gru.service.demand;
 
+import fr.paris.lutece.plugins.gru.business.NotifiedDemand;
 import fr.paris.lutece.plugins.gru.business.demandtype.DemandType;
 import fr.paris.lutece.plugins.gru.business.demandtype.DemandTypeHome;
 import fr.paris.lutece.plugins.gru.business.domain.BusinessDomain;
 import fr.paris.lutece.plugins.gru.service.demandtype.DemandTypeService;
 import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
 import fr.paris.lutece.plugins.grubusiness.business.demand.Demand;
+import fr.paris.lutece.plugins.grubusiness.business.notification.Notification;
 import fr.paris.lutece.portal.business.user.AdminUser;
 import fr.paris.lutece.portal.service.rbac.RBACService;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
@@ -300,4 +302,70 @@ public final class DemandService
 
         return RBACService.isAuthorized( BusinessDomain.RESOURCE_TYPE, strBusinessDomainId, BusinessDomain.PERMISSION_VIEW_DETAILS, user );
     }
+
+    /**
+     * Gets a list of demand for a given Customer
+     * 
+     * @param customer
+     *            The customer
+     * @param user
+     *            The admin user
+     * @param nStatus
+     *            The status
+     * @return The list
+     */
+    public static List<NotifiedDemand> getNotifiedDemands( Customer customer, AdminUser user, int nStatus )
+    {
+        List<Demand> listDemand = getDemands( customer, user, nStatus );
+        List<NotifiedDemand> listNotifiedDemand = new ArrayList<NotifiedDemand>( );
+        NotifiedDemand notifiedDemand = null;
+
+        for ( Demand demand : listDemand )
+        {
+            notifiedDemand = updateNotifiedDemandStatus( demand );
+            listNotifiedDemand.add( notifiedDemand );
+        }
+
+        return listNotifiedDemand;
+    }
+
+    /**
+     * Return a NotifiedDemand object from a Demand object with status data contained in notifications
+     * 
+     * @param notifiedDemand
+     *            the notifiedDemand to update
+     * @return the updated notifiedDemande
+     */
+    public static NotifiedDemand updateNotifiedDemandStatus( Demand demand )
+    {
+        boolean bIsAgentStatusFound = false;
+        boolean bIsCustomerStatusFound = false;
+        
+        NotifiedDemand notifiedDemand = NotifiedDemand.toDemand( demand );
+
+        if ( notifiedDemand != null && notifiedDemand.getNotifications( ) != null )
+        {
+            for ( Notification notification : notifiedDemand.getNotifications( ) )
+            {
+                if ( !bIsAgentStatusFound && ( notification.getBackofficeNotification( ) != null ) )
+                {
+                    notifiedDemand.setAgentStatus( notification.getBackofficeNotification( ).getStatusText( ) );
+                    bIsAgentStatusFound = true;
+                }
+
+                if ( !bIsCustomerStatusFound && ( notification.getMyDashboardNotification( ) != null ) )
+                {
+                    notifiedDemand.setCustomerStatus( notification.getMyDashboardNotification( ).getStatusText( ) );
+                    bIsCustomerStatusFound = true;
+                }
+
+                if ( bIsAgentStatusFound && bIsCustomerStatusFound )
+                {
+                    break;
+                }
+            }
+        }
+        return notifiedDemand;
+    }
+
 }
