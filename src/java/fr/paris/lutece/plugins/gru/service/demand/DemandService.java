@@ -340,7 +340,7 @@ public final class DemandService
     {
         boolean bIsAgentStatusFound = false;
         boolean bIsCustomerStatusFound = false;
-        
+
         NotifiedDemand notifiedDemand = NotifiedDemand.toDemand( demand );
 
         if ( notifiedDemand != null && notifiedDemand.getNotifications( ) != null )

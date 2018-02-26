@@ -46,7 +46,7 @@ import fr.paris.lutece.portal.service.util.AppLogService;
 public class NotifiedDemand extends Demand
 {
     public static final String COPY_PROPERTIES_ERROR = "Could not copy properties from Demand to NotifiedDemand object";
-	private String _strAgentStatus;
+    private String _strAgentStatus;
     private String _strCustomerStatus;
 
     /**
@@ -71,7 +71,7 @@ public class NotifiedDemand extends Demand
             }
             catch( IllegalAccessException | InvocationTargetException | NoSuchMethodException e )
             {
-                AppLogService.error(COPY_PROPERTIES_ERROR, e);
+                AppLogService.error( COPY_PROPERTIES_ERROR, e );
             }
 
         }
