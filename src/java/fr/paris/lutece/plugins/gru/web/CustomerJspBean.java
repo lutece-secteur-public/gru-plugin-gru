@@ -54,6 +54,7 @@ import fr.paris.lutece.portal.util.mvc.commons.annotations.Action;
 import fr.paris.lutece.portal.util.mvc.commons.annotations.View;
 import fr.paris.lutece.util.url.UrlItem;
 
+import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.ArrayList;
@@ -70,7 +71,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller( controllerJsp = "ManageCustomers.jsp", controllerPath = "jsp/admin/plugins/gru/", right = "GRU_MANAGEMENT" )
 public class CustomerJspBean extends AbstractManageDemandJspBean
 {
-    // templates
+	// templates
     private static final String TEMPLATE_SEARCH_CUSTOMER = "/admin/plugins/gru/search_customer.html";
     private static final String TEMPLATE_VIEW_CUSTOMER_DEMANDS = "/admin/plugins/gru/view_customer_demands.html";
     private static final String TEMPLATE_VIEW_CUSTOMER_OLD_DEMANDS = "/admin/plugins/gru/view_customer_old_demands.html";
@@ -99,6 +100,7 @@ public class CustomerJspBean extends AbstractManageDemandJspBean
 
     private static final long serialVersionUID = 1L;
     private static HomeButtonListBuilder _homeButtonListBuilder = new HomeButtonListBuilder( );
+    private static final String FALSE_VALUE = "false";
 
     // Session variable to store working values
     private List<Customer> _listCustomer;
@@ -245,12 +247,10 @@ public class CustomerJspBean extends AbstractManageDemandJspBean
                 UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath( ) + getControllerJsp( ), VIEW_CUSTOMER_DEMANDS, customer ) );
         model.put( Constants.MARK_INPROGRESS_DEMAND_COUNT, nInProgressDemandCount );
         model.put( Constants.MARK_CLOSED_DEMAND_COUNT, nClosedDemandCount );
-        // display demand with date preference
-        String strCreationDateDisplay = AdminUserPreferencesService.instance( ).get( String.valueOf( getUser( ).getUserId( ) ),
-                Constants.MARK_USER_PREFERENCE_CREATION_DATE_DISPLAY, StringUtils.EMPTY );
-
-        model.put( Constants.MARK_CREATION_DATE_AS_DATE, Constants.USER_PREFERENCE_CREATION_DATE_DISPLAY_DATE.equals( strCreationDateDisplay ) );
-
+        
+        String strCreationDateDisplay = AppPropertiesService.getProperty(Constants.PROPERTY_CREATION_DATE_DISPLAY, FALSE_VALUE);
+        model.put( Constants.MARK_CREATION_DATE_AS_DATE, BooleanUtils.toBoolean(strCreationDateDisplay) );
+        
         return getPage( "", TEMPLATE_VIEW_CUSTOMER_DEMANDS, model );
     }
 

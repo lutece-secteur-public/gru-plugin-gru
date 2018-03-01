@@ -66,7 +66,6 @@ public final class Constants
     public static final String MARK_IS_AUTOCOMPLETE = "is_auto_complete";
     public static final String MARK_AUTOCOMPLETE_URL = "auto_complete_url";
     public static final String MARK_RETURN_URL = "return_url";
-    public static final String MARK_USER_PREFERENCE_CREATION_DATE_DISPLAY = "creationDateDisplay";
     public static final String MARK_CREATION_DATE_AS_DATE = "creation_date_as_date";
     public static final String MARK_CUSTOMER_STATUS = "customer_status";
     public static final String MARK_AGENT_STATUS = "agent_status";
@@ -82,6 +81,8 @@ public final class Constants
     // Properties
     public static final String PROPERTY_AUTOCOMPLETE_URL = "gru.search.autocomplete.url";
     public static final String PROPERTY_AUTOCOMPLETE_ENABLED = "gru.search.autocomplete.enabled";
+
+	public static final String PROPERTY_CREATION_DATE_DISPLAY = "gru.demands.creationDateDisplay";
 
     /**
      * Private constructor
