@@ -71,7 +71,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller( controllerJsp = "ManageCustomers.jsp", controllerPath = "jsp/admin/plugins/gru/", right = "GRU_MANAGEMENT" )
 public class CustomerJspBean extends AbstractManageDemandJspBean
 {
-	// templates
+    // templates
     private static final String TEMPLATE_SEARCH_CUSTOMER = "/admin/plugins/gru/search_customer.html";
     private static final String TEMPLATE_VIEW_CUSTOMER_DEMANDS = "/admin/plugins/gru/view_customer_demands.html";
     private static final String TEMPLATE_VIEW_CUSTOMER_OLD_DEMANDS = "/admin/plugins/gru/view_customer_old_demands.html";
@@ -247,10 +247,10 @@ public class CustomerJspBean extends AbstractManageDemandJspBean
                 UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath( ) + getControllerJsp( ), VIEW_CUSTOMER_DEMANDS, customer ) );
         model.put( Constants.MARK_INPROGRESS_DEMAND_COUNT, nInProgressDemandCount );
         model.put( Constants.MARK_CLOSED_DEMAND_COUNT, nClosedDemandCount );
-        
-        String strCreationDateDisplay = AppPropertiesService.getProperty(Constants.PROPERTY_CREATION_DATE_DISPLAY, FALSE_VALUE);
-        model.put( Constants.MARK_CREATION_DATE_AS_DATE, BooleanUtils.toBoolean(strCreationDateDisplay) );
-        
+
+        String strCreationDateDisplay = AppPropertiesService.getProperty( Constants.PROPERTY_CREATION_DATE_DISPLAY, FALSE_VALUE );
+        model.put( Constants.MARK_CREATION_DATE_AS_DATE, BooleanUtils.toBoolean( strCreationDateDisplay ) );
+
         return getPage( "", TEMPLATE_VIEW_CUSTOMER_DEMANDS, model );
     }
 

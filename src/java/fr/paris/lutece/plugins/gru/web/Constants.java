@@ -82,7 +82,7 @@ public final class Constants
     public static final String PROPERTY_AUTOCOMPLETE_URL = "gru.search.autocomplete.url";
     public static final String PROPERTY_AUTOCOMPLETE_ENABLED = "gru.search.autocomplete.enabled";
 
-	public static final String PROPERTY_CREATION_DATE_DISPLAY = "gru.demands.creationDateDisplay";
+    public static final String PROPERTY_CREATION_DATE_DISPLAY = "gru.demands.creationDateDisplay";
 
     /**
      * Private constructor
