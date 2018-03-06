@@ -24,7 +24,11 @@
       <p>#i18n{gru.view_customer_demand.demand.panel.list.reference} : <strong class="text-gru">${demand.reference!'Reference missing'} </strong>
       <#switch demand.statusId>
           <#case 0>
-          <p>#i18n{gru.view_customer_demand.demand.panel.list.open.since} : <strong class="text-gru">${displayTimeOpenedTicket(demand)}</strong></p>
+          <#if creation_date_as_date >
+            <p>#i18n{gru.view_customer_demand.demand.panel.list.create} : <strong class="text-gru">${demand.creationDate?number_to_datetime?string["dd/MM/yyyy HH:mm"]}</strong></p>
+          <#else>
+            <p>#i18n{gru.view_customer_demand.demand.panel.list.open.since} : <strong class="text-gru">${displayTimeOpenedTicket(demand)}</strong></p>
+          </#if>
           <#break>
           <#case 1>
             <p>#i18n{gru.view_customer_demand.demand.panel.deal.in} : <strong class="text-gru">${displayTimeOpenedTicket(demand)}</strong></p>

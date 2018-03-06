@@ -46,7 +46,6 @@ import fr.paris.lutece.plugins.grubusiness.business.customer.Customer;
 import fr.paris.lutece.plugins.grubusiness.business.demand.Demand;
 import fr.paris.lutece.portal.service.admin.AccessDeniedException;
 import fr.paris.lutece.portal.service.i18n.I18nService;
-import fr.paris.lutece.portal.service.prefs.AdminUserPreferencesService;
 import fr.paris.lutece.portal.service.util.AppPathService;
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
 import fr.paris.lutece.portal.util.mvc.admin.annotations.Controller;
@@ -100,7 +99,6 @@ public class CustomerJspBean extends AbstractManageDemandJspBean
 
     private static final long serialVersionUID = 1L;
     private static HomeButtonListBuilder _homeButtonListBuilder = new HomeButtonListBuilder( );
-    private static final String FALSE_VALUE = "false";
 
     // Session variable to store working values
     private List<Customer> _listCustomer;
@@ -248,10 +246,19 @@ public class CustomerJspBean extends AbstractManageDemandJspBean
         model.put( Constants.MARK_INPROGRESS_DEMAND_COUNT, nInProgressDemandCount );
         model.put( Constants.MARK_CLOSED_DEMAND_COUNT, nClosedDemandCount );
 
-        String strCreationDateDisplay = AppPropertiesService.getProperty( Constants.PROPERTY_CREATION_DATE_DISPLAY, FALSE_VALUE );
-        model.put( Constants.MARK_CREATION_DATE_AS_DATE, BooleanUtils.toBoolean( strCreationDateDisplay ) );
+        fillModelWithCreationDateDisplay( model );
 
         return getPage( "", TEMPLATE_VIEW_CUSTOMER_DEMANDS, model );
+    }
+
+    /**
+     * Fills the model with the display of the creation date
+     * @param model the model to fill
+     */
+    private void fillModelWithCreationDateDisplay( Map<String, Object> model )
+    {
+        boolean bCreationDateAsDate = AppPropertiesService.getPropertyBoolean( Constants.PROPERTY_CREATION_DATE_DISPLAY, false );
+        model.put( Constants.MARK_CREATION_DATE_AS_DATE, bCreationDateAsDate );
     }
 
     /**
@@ -390,6 +397,8 @@ public class CustomerJspBean extends AbstractManageDemandJspBean
         model.put( Constants.MARK_DEMAND, notifiedDemand );
         model.put( Constants.MARK_RETURN_URL,
                 UrlUtils.buildReturnUrl( AppPathService.getBaseUrl( request ) + getControllerPath( ) + getControllerJsp( ), VIEW_DEMAND, mapParameters ) );
+
+        fillModelWithCreationDateDisplay( model );
 
         return getPage( "", TEMPLATE_VIEW_DEMAND, model );
     }

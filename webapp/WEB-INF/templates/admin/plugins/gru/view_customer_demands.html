@@ -43,8 +43,7 @@
                    
                     <td>
                         <#if creation_date_as_date >  
-                            <#assign time_ms = .now?long - demand.creationDate>
-                                 ${time_ms?number_to_datetime?string["dd/MM/yyyy"]}</br>${time_ms?number_to_datetime?string["HH:mm"]}
+                                 ${demand.creationDate?number_to_datetime?string["dd/MM/yyyy"]}</br>${demand.creationDate?number_to_datetime?string["HH:mm"]}
                            <#else>
                       ${displayTimeOpenedTicket2(demand)}
                     </#if>                   
