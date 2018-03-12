@@ -79,6 +79,12 @@
                     </li>
                 </ul>
                 </p>
+                <p><strong>Propriétés d'affichage</strong></p>
+                <p>Mode d'affichage de la date de création des demandes ( onglet des demandes usager "en cours" ):</p>
+                <p>
+                Modifier la valeur de la propriété <code>gru.demands.creationDateDisplay</code> du fichier <code>/WEB-INF/conf/plugins/gru.properties</code> pour changer le mode d'affichage de la date.
+                Mettre à <code>true</code> pour afficher une date de création, <code>false</code> pour afficher un compteur. false par défaut.
+                </p>
             </subsection>
             <subsection name="Usage">
                 <p></p>

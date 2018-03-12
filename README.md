@@ -45,6 +45,12 @@ The known implementations are the following:
 *  `fr.paris.lutece.plugins.grustoragedb.business.NotificationDAO` from the plugin `gru-plugin-grustoragedb` . The notifications are retrieved from the database.
 
 
+ **Display properties** 
+
+Demands creation date display mode ( "in progress" customer demands tab ):
+
+Modify the value of `gru.demands.creationDateDisplay` property in the `/WEB-INF/conf/plugins/gru.properties` file in order to change the date display mode. Set to `true` to display creation date, `false` to display a counter. Default is false.
+
 ## Usage
 
 
