@@ -63,6 +63,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.github.openjson.JSONObject;
 /**
  * This class provides the user interface to manage Customer features ( manage, create, modify, remove )
  */
@@ -95,6 +96,7 @@ public class CustomerJspBean extends AbstractManageDemandJspBean
 
     // Actions
     private static final String ACTION_SEARCH = "search";
+    private static final String ACTION_FORM_SEARCH = "formSearch";
 
     private static final long serialVersionUID = 1L;
     private static HomeButtonListBuilder _homeButtonListBuilder = new HomeButtonListBuilder( );
@@ -152,6 +154,26 @@ public class CustomerJspBean extends AbstractManageDemandJspBean
         }
     }
 
+
+    /**
+     * Performs the search and redirects to the corresponding view
+     * 
+     * @param request
+     *            the request
+     * @return the URL of the corresponding view
+     */
+    @Action( ACTION_FORM_SEARCH )
+    public String doFormSearch( HttpServletRequest request )
+    {
+        List<String> fieldNames = new ArrayList<String>( request.getParameterMap( ).keySet( ) );
+         JSONObject json = new JSONObject( );
+         fieldNames.remove( 0 ); 
+        for( String fieldName : fieldNames ) {
+            json.put( fieldName, request.getParameter( fieldName ) );
+        }
+            return searchRedirectCustomer( json.toString( ), request );
+    }
+    
     /**
      * Get redirection for customer search
      * 
